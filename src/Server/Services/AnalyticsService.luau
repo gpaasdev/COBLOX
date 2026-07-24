@@ -45,9 +45,14 @@ end
 function AnalyticsService.Start()
 	-- 1. Error Tracking (Crash & Stability Dashboard)
 	ScriptContext.Error:Connect(function(message, stackTrace, scriptInstance)
-		-- Filter out CoreGui errors safely
-		local ok, isCore = pcall(function() return scriptInstance and scriptInstance:IsDescendantOf(game.CoreGui) end)
-		if ok and isCore then return end
+		-- CoreGui errors are client-only, skip CoreGui checks on server
+		if not RunService:IsServer() then
+			local ok, isCore = pcall(function()
+				local coreGui = game:GetService("CoreGui")
+				return scriptInstance and scriptInstance:IsDescendantOf(coreGui)
+			end)
+			if ok and isCore then return end
+		end
 		
 		AnalyticsService.LogEvent("system.error", {
 			severity = "Error",
@@ -58,6 +63,13 @@ function AnalyticsService.Start()
 			uptime = workspace.DistributedGameTime,
 		})
 	end)
+
+function AnalyticsService._HandleFTUEStep(player: Player, stepIndex: number, stepName: string)
+	AnalyticsService.LogEvent("ftue.step", {
+		step = stepIndex,
+		name = stepName,
+	}, player.UserId)
+end
 
 	-- 2. DomainEventBus Hooks (Event Taxonomy Mapping)
 	DomainEventBus.Subscribe(function(event: DomainEvent)

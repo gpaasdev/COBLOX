@@ -277,7 +277,7 @@ local milestone4: TextLabel
 
 function FTUEController._CreateQuestBar()
 	local playerGui = localPlayer:WaitForChild("PlayerGui")
-	local mainHUD = playerGui:WaitForChild("COBLOX_MainHUD")
+	local mainHUD = playerGui:WaitForChild("COBLOX_AlchemyHUD")
 	
 	questHUD = Instance.new("Frame")
 	questHUD.Name = "FTUE_QuestBar"
