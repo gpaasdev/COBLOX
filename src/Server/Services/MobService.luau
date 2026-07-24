@@ -71,7 +71,7 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	bb.Name = "MobHealthHUD"
 	bb.Size = UDim2.new(0, 160, 0, 45)
 	bb.StudsOffset = Vector3.new(0, 4, 0)
-	bb.MaxDistance = 45
+	bb.MaxDistance = 35 -- Reduced to prevent clutter
 	bb.AlwaysOnTop = false
 
 	local card = Instance.new("Frame")
@@ -87,7 +87,7 @@ function MobService.SpawnMob(id: string, position: Vector3)
 
 	local uiStroke = Instance.new("UIStroke")
 	uiStroke.Color = Color3.fromRGB(239, 68, 68)
-	uiStroke.Thickness = 1.5
+	uiStroke.Thickness = 1 -- Thinner stroke for premium look
 	uiStroke.Parent = card
 
 	local nameLbl = Instance.new("TextLabel")
@@ -96,10 +96,15 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	nameLbl.Text = "<b>👻 SHADOW WRAITH</b>"
 	nameLbl.RichText = true
 	nameLbl.BackgroundTransparency = 1
-	nameLbl.TextColor3 = Color3.fromRGB(248, 113, 113)
+	nameLbl.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text for better contrast
 	nameLbl.TextScaled = true
 	nameLbl.Font = Enum.Font.GothamBold
 	nameLbl.Parent = card
+
+	local nameStroke = Instance.new("UIStroke")
+	nameStroke.Color = Color3.fromRGB(153, 27, 27) -- Dark red stroke for readability
+	nameStroke.Thickness = 1.5
+	nameStroke.Parent = nameLbl
 
 	local hpBg = Instance.new("Frame")
 	hpBg.Name = "HPBg"

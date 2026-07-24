@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Search, Edit2 } from "lucide-react";
-import { getDatastoreEntries, updatePlayerGems } from "@/app/actions/opencloud";
+import { getDatastoreEntries, updatePlayerData } from "@/app/actions/opencloud";
 
 export default function DatastorePage() {
   const [query, setQuery] = useState("");
@@ -31,10 +31,13 @@ export default function DatastorePage() {
   const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const newGems = parseInt(formData.get("gems") as string, 10);
+    const gems = parseInt(formData.get("gems") as string, 10);
+    const coins = parseInt(formData.get("coins") as string, 10);
+    const auraEnergy = parseInt(formData.get("auraEnergy") as string, 10);
+    const chronoSparks = parseInt(formData.get("chronoSparks") as string, 10);
     
     if (selectedPlayer) {
-      await updatePlayerGems(selectedPlayer.id, newGems);
+      await updatePlayerData(selectedPlayer.id, { gems, coins, auraEnergy, chronoSparks });
       await fetchData();
     }
     dialogRef.current?.close();
@@ -45,7 +48,7 @@ export default function DatastorePage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">DataStore Viewer</h1>
-          <p className="text-slate-500">View and modify live player data.</p>
+          <p className="text-slate-500">View and modify live player data from Roblox Open Cloud.</p>
         </div>
 
         <search>
@@ -53,7 +56,7 @@ export default function DatastorePage() {
             <Search className="absolute left-3 h-4 w-4 text-slate-400" />
             <input
               type="search"
-              placeholder="Search username..."
+              placeholder="Search User ID..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-4 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:w-64"
@@ -68,9 +71,10 @@ export default function DatastorePage() {
           <table className="w-full text-left text-sm text-slate-600">
             <thead className="bg-slate-50 text-slate-500">
               <tr>
-                <th className="px-6 py-4 font-medium">Player</th>
-                <th className="px-6 py-4 font-medium">Rank</th>
-                <th className="px-6 py-4 font-medium">Gems</th>
+                <th className="px-6 py-4 font-medium">Player Avatar</th>
+                <th className="px-6 py-4 font-medium">Username</th>
+                <th className="px-6 py-4 font-medium">Aura / Sparks</th>
+                <th className="px-6 py-4 font-medium">Coins / Gems</th>
                 <th className="px-6 py-4 font-medium">Status</th>
                 <th className="px-6 py-4 font-medium text-right">Actions</th>
               </tr>
@@ -78,18 +82,39 @@ export default function DatastorePage() {
             <tbody className="divide-y divide-slate-100">
               {loading ? (
                 <tr>
-                  <td colSpan={5} className="px-6 py-8 text-center text-slate-400">Loading data...</td>
+                  <td colSpan={6} className="px-6 py-8 text-center text-slate-400">Loading live data...</td>
                 </tr>
               ) : data.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-6 py-8 text-center text-slate-400">No players found.</td>
+                  <td colSpan={6} className="px-6 py-8 text-center text-slate-400">No active player profiles found.</td>
                 </tr>
               ) : (
                 data.map((player) => (
                   <tr key={player.id} className="transition-colors hover:bg-slate-50">
-                    <td className="px-6 py-4 font-medium text-slate-900">{player.username}</td>
-                    <td className="px-6 py-4">{player.rank}</td>
-                    <td className="px-6 py-4 font-mono">{player.gems.toLocaleString()}</td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        {player.avatarUrl && (
+                          <img
+                            src={player.avatarUrl}
+                            alt={player.username}
+                            className="h-10 w-10 rounded-full border border-slate-200 bg-slate-100"
+                          />
+                        )}
+                        <div>
+                          <div className="font-semibold text-slate-900">{player.displayName || player.username}</div>
+                          <div className="text-xs text-slate-400">ID: {player.id}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 font-mono text-slate-700">@{player.username}</td>
+                    <td className="px-6 py-4">
+                      <div className="font-semibold text-amber-600">✨ Aura: {player.auraEnergy?.toLocaleString()}</div>
+                      <div className="text-xs text-cyan-600">⚡ Sparks: {player.chronoSparks?.toLocaleString()}</div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="font-semibold text-emerald-600">💰 {player.coins?.toLocaleString()}</div>
+                      <div className="text-xs text-purple-600">💎 {player.gems?.toLocaleString()}</div>
+                    </td>
                     <td className="px-6 py-4">
                       <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                         player.status === "Active" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
@@ -117,24 +142,67 @@ export default function DatastorePage() {
       {/* Edit Modal Dialog */}
       <dialog
         ref={dialogRef}
-        className="backdrop:bg-slate-900/50 open:animate-in open:fade-in-0 open:zoom-in-95 rounded-xl border border-slate-200 bg-white p-6 shadow-xl w-full max-w-sm m-auto"
+        className="backdrop:bg-slate-900/50 open:animate-in open:fade-in-0 open:zoom-in-95 rounded-xl border border-slate-200 bg-white p-6 shadow-xl w-full max-w-md m-auto"
         onClose={() => setSelectedPlayer(null)}
       >
-        <h3 className="text-lg font-semibold text-slate-900">Edit Player Data</h3>
-        <p className="mt-1 text-sm text-slate-500">Modifying data for <strong className="text-slate-900">{selectedPlayer?.username}</strong></p>
+        <h3 className="text-lg font-semibold text-slate-900">Edit Live Player Data</h3>
+        <p className="mt-1 text-sm text-slate-500">Modifying profile for <strong className="text-slate-900">@{selectedPlayer?.username}</strong></p>
         
         <form onSubmit={handleSave} className="mt-6 flex flex-col gap-4">
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="gems" className="text-sm font-medium text-slate-700">Gems Balance</label>
-            <input
-              id="gems"
-              name="gems"
-              type="number"
-              min="0"
-              required
-              defaultValue={selectedPlayer?.gems}
-              className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="auraEnergy" className="text-xs font-semibold text-amber-700">Aura Energy</label>
+              <input
+                id="auraEnergy"
+                name="auraEnergy"
+                type="number"
+                min="0"
+                required
+                defaultValue={selectedPlayer?.auraEnergy}
+                className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+            
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="chronoSparks" className="text-xs font-semibold text-cyan-700">Chrono Sparks</label>
+              <input
+                id="chronoSparks"
+                name="chronoSparks"
+                type="number"
+                min="0"
+                required
+                defaultValue={selectedPlayer?.chronoSparks}
+                className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="coins" className="text-xs font-semibold text-emerald-700">Coins Balance</label>
+              <input
+                id="coins"
+                name="coins"
+                type="number"
+                min="0"
+                required
+                defaultValue={selectedPlayer?.coins}
+                className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="gems" className="text-xs font-semibold text-purple-700">Gems Balance</label>
+              <input
+                id="gems"
+                name="gems"
+                type="number"
+                min="0"
+                required
+                defaultValue={selectedPlayer?.gems}
+                className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
           </div>
           
           <div className="mt-4 flex justify-end gap-3">
@@ -149,7 +217,7 @@ export default function DatastorePage() {
               type="submit"
               className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
-              Save Changes
+              Save Changes to Open Cloud
             </button>
           </div>
         </form>

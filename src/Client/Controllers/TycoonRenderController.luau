@@ -20,13 +20,14 @@ function TycoonRenderController.Start()
 		if not claimPad:IsA("BasePart") then return end
 		local ownerName = claimPad:GetAttribute("PlotOwner") or "None"
 		
-		HologramUIEngine.Create(claimPad, {
-			Title = "🔮 MARKAS DIKLAIM",
-			Subtitle = ownerName,
-			AccentColor = Color3.fromRGB(16, 185, 129),
-			Size = UDim2.new(0, 240, 0, 70),
-			StudsOffset = Vector3.new(0, 4.5, 0)
-		})
+		local prompt = Instance.new("ProximityPrompt")
+		prompt.ActionText = ownerName == "None" and "Klaim Markas" or "Info Markas"
+		prompt.ObjectText = ownerName == "None" and "Plot Kosong" or "Milik: " .. ownerName
+		prompt.KeyboardKeyCode = Enum.KeyCode.L
+		prompt.HoldDuration = 0.5
+		prompt.MaxActivationDistance = 15
+		prompt.Style = Enum.ProximityPromptStyle.Default
+		prompt.Parent = claimPad
 	end
 
 	CollectionService:GetInstanceAddedSignal("TycoonClaimPad"):Connect(setupClaimPad)

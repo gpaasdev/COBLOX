@@ -3,7 +3,7 @@
 local AudioEvents = {
 	UI = {
 		Hover = "rbxassetid://6895079853",
-		Click = "rbxassetid://6895079854",
+		Click = "rbxassetid://6895079853",
 		ButtonPressed = "rbxassetid://6895079855",
 		TabSwitch = "rbxassetid://6895079856",
 	},

@@ -13,6 +13,7 @@ local uiModules = clientFolder:WaitForChild("Modules"):WaitForChild("UI")
 
 local UIButtonAnimator = require(uiModules:WaitForChild("UIButtonAnimator") :: any)
 local UIEffectPool = require(uiModules:WaitForChild("UIEffectPool") :: any)
+local UIAnimationEngine = require(uiModules:WaitForChild("UIAnimationEngine") :: any)
 local VFXEngine = require(uiModules:WaitForChild("VFXEngine") :: any)
 local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
 
@@ -53,8 +54,10 @@ end
 function UIController.Start()
 	local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 	if syncRemote then
-		syncRemote.OnClientEvent:Connect(function(data: { Coins: number, Gems: number })
-			UIController.UpdateWallet(data.Coins, data.Gems)
+		syncRemote.OnClientEvent:Connect(function(data: { Coins: number, Gems: number, AuraEnergy: number?, ChronoSparks: number? })
+			local aura = data.AuraEnergy or data.Coins or 0
+			local sparks = data.ChronoSparks or data.Gems or 0
+			UIController.UpdateWallet(aura, sparks)
 		end)
 	end
 
@@ -323,7 +326,7 @@ function UIController._CreateHUD()
 	notificationLabel.Position = UDim2.new(0.26, 0, 0.14, 0)
 	notificationLabel.BackgroundColor3 = COLOR_BG_DARK
 	notificationLabel.BackgroundTransparency = 0.4
-	notificationLabel.TextColor3 = COLOR_AURA_GOLD
+	notificationLabel.TextColor3 = COLOR_TEXT_WHITE
 	notificationLabel.Font = Enum.Font.FredokaOne
 	notificationLabel.TextSize = 15
 	notificationLabel.ZIndex = 300 -- Always on top of all modals
@@ -336,8 +339,8 @@ function UIController._CreateHUD()
 	notifCorner.Parent = notificationLabel
 
 	local notifStroke = Instance.new("UIStroke")
-	notifStroke.Color = COLOR_AURA_GOLD
-	notifStroke.Thickness = 2
+	notifStroke.Color = Color3.fromRGB(0, 0, 0) -- High-contrast solid black stroke
+	notifStroke.Thickness = 2.5
 	notifStroke.Parent = notificationLabel
 
 	-- 4. Bottom Viral Action Hotbar & Inventory Slots HUD (Grow a Garden / Pet Sim Benchmark)
@@ -345,8 +348,8 @@ function UIController._CreateHUD()
 	bottomBar.Name = "BottomActionHotbar"
 	bottomBar.Size = UDim2.new(0.55, 0, 0.12, 0)
 	bottomBar.Position = UDim2.new(0.225, 0, 0.86, 0)
-	bottomBar.BackgroundColor3 = COLOR_BG_DARK
-	bottomBar.BackgroundTransparency = 0.4
+	bottomBar.BackgroundColor3 = Color3.fromRGB(15, 23, 42) -- Dark Glassmorphism base
+	bottomBar.BackgroundTransparency = 0.2
 	bottomBar.BorderSizePixel = 0
 	bottomBar.ZIndex = 60
 	bottomBar.Parent = mainScreenGui
@@ -356,8 +359,8 @@ function UIController._CreateHUD()
 	bottomCorner.Parent = bottomBar
 
 	local bottomStroke = Instance.new("UIStroke")
-	bottomStroke.Color = COLOR_AURA_GOLD
-	bottomStroke.Thickness = 2.5
+	bottomStroke.Color = COLOR_SPARK_CYAN -- Neon Cyan accent
+	bottomStroke.Thickness = 1.5
 	bottomStroke.Parent = bottomBar
 
 	-- Action Pill Buttons Row (SEEDS / GARDEN / PETS / SELL)
@@ -386,8 +389,8 @@ function UIController._CreateHUD()
 		local pill = Instance.new("TextButton")
 		pill.Name = "Pill_" .. act.Name
 		pill.Size = UDim2.new(0.18, 0, 1, 0) -- Scaled down slightly to fit 5 pills
-		pill.BackgroundColor3 = Color3.fromRGB(15, 23, 42)
-		pill.BackgroundTransparency = 0.35
+		pill.BackgroundColor3 = Color3.fromRGB(30, 41, 59) -- Lighter slate for inner buttons
+		pill.BackgroundTransparency = 0.3
 		pill.TextColor3 = act.Color
 		pill.Font = Enum.Font.FredokaOne
 		pill.TextSize = 12
@@ -400,7 +403,7 @@ function UIController._CreateHUD()
 
 		local pillStroke = Instance.new("UIStroke")
 		pillStroke.Color = act.Color
-		pillStroke.Thickness = 1.5
+		pillStroke.Thickness = 1
 		pillStroke.Parent = pill
 
 		local isMounted = false
@@ -566,6 +569,19 @@ function UIController.ShowNotification(msg: string)
 	if notificationLabel then
 		notificationLabel.Text = msg
 		notificationLabel.Visible = true
+		
+		-- Spring Physics Popup Bounce
+		UIAnimationEngine.AnimateScale(notificationLabel, 1.1)
+		task.delay(0.1, function()
+			UIAnimationEngine.AnimateScale(notificationLabel, 1.0)
+		end)
+		
+		-- Audio Chime
+		local controllersFolder = script.Parent
+		local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)
+		pcall(function()
+			AudioController.PlaySound("rbxassetid://6895079853", 1.0) -- Crisp UI pop chime
+		end)
         
         -- Haptic Feedback (Juiciness)
         if UserInputService.TouchEnabled then
@@ -580,7 +596,11 @@ function UIController.ShowNotification(msg: string)
         end
 
 		task.delay(3, function()
-			notificationLabel.Visible = false
+			UIAnimationEngine.AnimateScale(notificationLabel, 0.8)
+			task.delay(0.15, function()
+				notificationLabel.Visible = false
+				UIAnimationEngine.AnimateScale(notificationLabel, 1.0)
+			end)
 		end)
 	end
 end

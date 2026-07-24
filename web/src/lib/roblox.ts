@@ -55,8 +55,8 @@ export interface Badge {
   slug: string;
 }
 
-const ROBLOX_API_KEY = process.env.ROBLOX_API_KEY || "";
-const ROBLOX_UNIVERSE_ID = process.env.ROBLOX_UNIVERSE_ID || "6891240835"; // Fallback demo universe ID
+const ROBLOX_API_KEY = process.env.ROBLOX_OPEN_CLOUD_API_KEY || process.env.ROBLOX_API_KEY || "";
+const ROBLOX_UNIVERSE_ID = process.env.ROBLOX_UNIVERSE_ID || "10545905192";
 
 /**
  * Roblox Open Cloud API Client with Next.js ISR (60s Revalidation)
@@ -64,14 +64,13 @@ const ROBLOX_UNIVERSE_ID = process.env.ROBLOX_UNIVERSE_ID || "6891240835"; // Fa
 export async function getUniverseStats(): Promise<UniverseStats> {
   try {
     if (!ROBLOX_API_KEY) {
-      // Mock/Fallback data if API Key is not set in environment
       return {
         id: Number(ROBLOX_UNIVERSE_ID),
         name: "COBLOX: Multiverse Alchemy Sanctum",
         description: "Hybrid Pet Tycoon & Social Action Alkimia di Roblox.",
-        playing: 8402,
-        visits: 1250400,
-        favoritedCount: 45200,
+        playing: 0,
+        visits: 0,
+        favoritedCount: 0,
         updated: new Date().toISOString(),
       };
     }
@@ -102,14 +101,14 @@ export async function getUniverseStats(): Promise<UniverseStats> {
       updated: data.updated || new Date().toISOString(),
     };
   } catch (error) {
-    console.warn("Failed to fetch universe stats from Roblox Open Cloud, using fallback:", error);
+    console.warn("Failed to fetch universe stats from Roblox Open Cloud:", error);
     return {
       id: Number(ROBLOX_UNIVERSE_ID),
       name: "COBLOX: Multiverse Alchemy Sanctum",
       description: "Hybrid Pet Tycoon & Social Action Alkimia di Roblox.",
-      playing: 8402,
-      visits: 1250400,
-      favoritedCount: 45200,
+      playing: 0,
+      visits: 0,
+      favoritedCount: 0,
       updated: new Date().toISOString(),
     };
   }
@@ -121,19 +120,11 @@ export async function getUniverseStats(): Promise<UniverseStats> {
 export async function getTopPlayers(limit: number = 50): Promise<LeaderboardPlayer[]> {
   try {
     if (!ROBLOX_API_KEY) {
-      // Mock/Fallback Top Players for Programmatic SEO / Sitemap / AEO
-      return Array.from({ length: limit }).map((_, idx) => ({
-        rank: idx + 1,
-        username: `Alchemist_Legend_${idx + 1}`,
-        userId: 10000000 + idx,
-        score: (100 - idx) * 5000 + 1250,
-        slug: `alchemist-legend-${idx + 1}`,
-        lastUpdated: new Date().toISOString(),
-      }));
+      return [];
     }
 
     const response = await fetch(
-      `https://apis.roblox.com/datastores/v1/universes/${ROBLOX_UNIVERSE_ID}/standard-datastores/datastore/entries?datastoreName=Leaderboard_Global&limit=${limit}`,
+      `https://apis.roblox.com/datastores/v1/universes/${ROBLOX_UNIVERSE_ID}/standard-datastores/datastore/entries?datastoreName=COBLOX_DataStore_LGBOS_v11&limit=${limit}`,
       {
         headers: {
           "x-api-key": ROBLOX_API_KEY,
@@ -150,24 +141,20 @@ export async function getTopPlayers(limit: number = 50): Promise<LeaderboardPlay
     const data = await response.json();
     const entries = data.keys || [];
 
-    return entries.map((entry: any, index: number) => ({
-      rank: index + 1,
-      username: entry.key || `Player_${index + 1}`,
-      userId: Number(entry.key.replace(/\D/g, "")) || index + 1000,
-      score: entry.value || 0,
-      slug: (entry.key || `player-${index + 1}`).toLowerCase().replace(/[^a-z0-9]/g, "-"),
-      lastUpdated: new Date().toISOString(),
-    }));
+    return entries.map((entry: any, index: number) => {
+      const rawId = entry.key ? entry.key.replace("COBLOX_LGBOS_v11_", "") : `User_${index + 1}`;
+      return {
+        rank: index + 1,
+        username: `Player_${rawId}`,
+        userId: Number(rawId) || index + 1000,
+        score: entry.value || 0,
+        slug: `player-${rawId}`,
+        lastUpdated: new Date().toISOString(),
+      };
+    });
   } catch (error) {
-    console.warn("Failed to fetch top players from Roblox DataStore API, using fallback:", error);
-    return Array.from({ length: limit }).map((_, idx) => ({
-      rank: idx + 1,
-      username: `Alchemist_Legend_${idx + 1}`,
-      userId: 10000000 + idx,
-      score: (100 - idx) * 5000 + 1250,
-      slug: `alchemist-legend-${idx + 1}`,
-      lastUpdated: new Date().toISOString(),
-    }));
+    console.warn("Failed to fetch top players from Roblox DataStore API:", error);
+    return [];
   }
 }
 

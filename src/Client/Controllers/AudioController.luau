@@ -7,7 +7,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local AudioEventBus = require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("Audio"):WaitForChild("AudioEventBus") :: any)
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local SoundPool = require(Shared:WaitForChild("Utility"):WaitForChild("SoundPool") :: any)
-local AssetsFolder = ReplicatedStorage:WaitForChild("Assets")
+local AssetsFolder = Shared:WaitForChild("Assets")
 local AssetRegistry = require(AssetsFolder:WaitForChild("AssetRegistry") :: any)
 
 local AudioController = {}

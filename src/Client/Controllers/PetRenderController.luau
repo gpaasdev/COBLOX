@@ -150,10 +150,7 @@ function PetRenderController.MountNeonCrocodile(enable: boolean)
 	body.Anchored = true
 	body.Parent = mount
 
-	-- Head
-	local sfx = Instance.new("Sound")
-	sfx.SoundId = "rbxassetid://130761214"
-	sfx.Volume = 0.7
+	-- Head Snout
 	local head = Instance.new("Part")
 	head.Name = "MountHead"
 	head.Size = Vector3.new(3.2, 2, 4)
@@ -173,23 +170,61 @@ function PetRenderController.MountNeonCrocodile(enable: boolean)
 	tail.Anchored = true
 	tail.Parent = mount
 
+	-- 4 Cybernetic Legs
+	local legSize = Vector3.new(1.2, 2, 1.5)
+	local legColor = Color3.fromRGB(16, 185, 129)
+
+	local legFL = Instance.new("Part")
+	legFL.Name = "LegFL"; legFL.Size = legSize; legFL.Color = legColor; legFL.Material = Enum.Material.Neon; legFL.CanCollide = false; legFL.Anchored = true; legFL.Parent = mount
+
+	local legFR = Instance.new("Part")
+	legFR.Name = "LegFR"; legFR.Size = legSize; legFR.Color = legColor; legFR.Material = Enum.Material.Neon; legFR.CanCollide = false; legFR.Anchored = true; legFR.Parent = mount
+
+	local legBL = Instance.new("Part")
+	legBL.Name = "LegBL"; legBL.Size = legSize; legBL.Color = legColor; legBL.Material = Enum.Material.Neon; legBL.CanCollide = false; legBL.Anchored = true; legBL.Parent = mount
+
+	local legBR = Instance.new("Part")
+	legBR.Name = "LegBR"; legBR.Size = legSize; legBR.Color = legColor; legBR.Material = Enum.Material.Neon; legBR.CanCollide = false; legBR.Anchored = true; legBR.Parent = mount
+
+	-- Set exact anatomical CFrames relative to body
+	local bodyCF = hrp.CFrame * CFrame.new(0, -2.2, 0)
+	body.CFrame = bodyCF
+	head.CFrame = bodyCF * CFrame.new(0, 0.3, -5.5)
+	tail.CFrame = bodyCF * CFrame.new(0, 0.2, 6.5)
+
+	legFL.CFrame = bodyCF * CFrame.new(-2.2, -1, -3)
+	legFR.CFrame = bodyCF * CFrame.new(2.2, -1, -3)
+	legBL.CFrame = bodyCF * CFrame.new(-2.2, -1, 3)
+	legBR.CFrame = bodyCF * CFrame.new(2.2, -1, 3)
+
 	mount.PrimaryPart = body
-	mount:PivotTo(hrp.CFrame * CFrame.new(0, -2.2, 0))
-	
-	-- Unanchor and weld to HRP
+
+	-- Unanchor and weld all parts
 	body.Anchored = false
 	head.Anchored = false
 	tail.Anchored = false
+	legFL.Anchored = false
+	legFR.Anchored = false
+	legBL.Anchored = false
+	legBR.Anchored = false
 
 	local headWeld = Instance.new("WeldConstraint")
-	headWeld.Part0 = body
-	headWeld.Part1 = head
-	headWeld.Parent = body
+	headWeld.Part0 = body; headWeld.Part1 = head; headWeld.Parent = body
 
 	local tailWeld = Instance.new("WeldConstraint")
-	tailWeld.Part0 = body
-	tailWeld.Part1 = tail
-	tailWeld.Parent = body
+	tailWeld.Part0 = body; tailWeld.Part1 = tail; tailWeld.Parent = body
+
+	local legFLWeld = Instance.new("WeldConstraint")
+	legFLWeld.Part0 = body; legFLWeld.Part1 = legFL; legFLWeld.Parent = body
+
+	local legFRWeld = Instance.new("WeldConstraint")
+	legFRWeld.Part0 = body; legFRWeld.Part1 = legFR; legFRWeld.Parent = body
+
+	local legBLWeld = Instance.new("WeldConstraint")
+	legBLWeld.Part0 = body; legBLWeld.Part1 = legBL; legBLWeld.Parent = body
+
+	local legBRWeld = Instance.new("WeldConstraint")
+	legBRWeld.Part0 = body; legBRWeld.Part1 = legBR; legBRWeld.Parent = body
 
 	local mountWeld = Instance.new("WeldConstraint")
 	mountWeld.Part0 = hrp

@@ -76,6 +76,46 @@ local PET_REGISTRY: { [string]: PetConfig } = {
 		BaseMultiplier = 100.0,
 		ModelAssetId = 0,
 	},
+	["Pet_Rare_Fox"] = {
+		Id = "Pet_Rare_Fox",
+		Name = "Mystic Spirit Fox",
+		Rarity = "Rare",
+		BaseMultiplier = 2.4,
+		ModelAssetId = 0,
+		Description = "Spirit rubah lincah yang meningkatkan keberuntungan memanen herbal.",
+	},
+	["Pet_Epic_Pegasus"] = {
+		Id = "Pet_Epic_Pegasus",
+		Name = "Astral Pegasus",
+		Rarity = "Epic",
+		BaseMultiplier = 4.2,
+		ModelAssetId = 0,
+		Description = "Spirit kuda bersayap dari dimensi astral.",
+	},
+	["Pet_Legendary_Kraken"] = {
+		Id = "Pet_Legendary_Kraken",
+		Name = "Abyssal Leviathan Kraken",
+		Rarity = "Legendary",
+		BaseMultiplier = 8.5,
+		ModelAssetId = 0,
+		Description = "Spirit penguasa lautan dalam yang melipatgandakan hasil panen.",
+	},
+	["Pet_Mythic_Hydra"] = {
+		Id = "Pet_Mythic_Hydra",
+		Name = "Void Hydra Lord",
+		Rarity = "Mythic",
+		BaseMultiplier = 18.0,
+		ModelAssetId = 0,
+		Description = "Spirit hydra kepala sembilan bermuatan aura kegelapan kosmik.",
+	},
+	["Pet_Secret_CelestialVoid"] = {
+		Id = "Pet_Secret_CelestialVoid",
+		Name = "Celestial Void Sovereign",
+		Rarity = "Secret",
+		BaseMultiplier = 75.0,
+		ModelAssetId = 0,
+		Description = "Spirit rahasia pencipta galaksi alkimia.",
+	},
 }
 
 return table.freeze(PET_REGISTRY)
