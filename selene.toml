@@ -1,7 +1,5 @@
 std = "roblox"
 
-[config]
-shadowing = "allow"
-
 [rules]
+shadowing = "allow"
 roblox_incorrect_roblox_api = "allow"
