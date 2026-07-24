@@ -1,0 +1,9 @@
+# Environment credentials
+.env
+.env.local
+*.env
+
+# Build outputs
+*.rbxl
+*.rbxlx
+build/

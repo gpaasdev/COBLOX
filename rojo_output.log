@@ -1,0 +1,14 @@
+Rojo server listening:
+  Address: localhost
+  Port:    34872
+
+Visit http://localhost:34872/ in your browser for more information.
+[ERROR librojo::web::api] WebSocket error: WebSocket protocol error: Connection reset without closing handshake
+[ERROR librojo::web::api] WebSocket error: WebSocket protocol error: Connection reset without closing handshake
+[ERROR librojo::web::api] WebSocket error: WebSocket protocol error: Connection reset without closing handshake
+[ERROR librojo::web::api] WebSocket error: WebSocket protocol error: Connection reset without closing handshake
+[ERROR librojo::web::api] WebSocket error: WebSocket protocol error: Connection reset without closing handshake
+[ERROR librojo::web::api] WebSocket error: WebSocket protocol error: Connection reset without closing handshake
+[ERROR librojo::web::api] WebSocket error: WebSocket protocol error: Connection reset without closing handshake
+[ERROR librojo::web::api] WebSocket error: WebSocket protocol error: Connection reset without closing handshake
+[ERROR librojo::web::api] WebSocket error: WebSocket protocol error: Connection reset without closing handshake

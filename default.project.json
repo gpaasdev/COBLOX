@@ -1,0 +1,66 @@
+{
+  "name": "COBLOX",
+  "tree": {
+    "$className": "DataModel",
+    "Workspace": {
+      "$className": "Workspace",
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Position": [0, -10, 0],
+          "Size": [512, 20, 512],
+          "Locked": true,
+          "Color": [0.4, 0.4, 0.4]
+        }
+      },
+      "SpawnLocation": {
+        "$className": "SpawnLocation",
+        "$properties": {
+          "Anchored": true,
+          "Position": [0, 0.5, 0],
+          "Size": [12, 1, 12]
+        }
+      }
+    },
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "Shared": {
+        "$path": "src/Shared",
+        "Assets": {
+          "$path": "src/Assets"
+        }
+      },
+      "Packages": {
+        "$path": "Packages"
+      },
+      "Localization": {
+        "$path": "src/Localization"
+      }
+    },
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "Server": {
+        "$path": "src/Server"
+      },
+      "ServerPackages": {
+        "$path": "ServerPackages"
+      },
+      "Content": {
+        "$path": "src/Content"
+      },
+      "LiveOps": {
+        "$path": "src/LiveOps"
+      }
+    },
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "Client": {
+          "$path": "src/Client"
+        }
+      }
+    }
+  }
+}

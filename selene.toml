@@ -1,0 +1,7 @@
+std = "rojo"
+
+[config]
+shadowing = "allow"
+
+[rules]
+roblox_incorrect_roblox_api = "allow"
