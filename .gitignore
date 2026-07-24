@@ -1,9 +1,44 @@
-# Environment credentials
+# Environment & Secret Credentials
 .env
 .env.local
 *.env
+*.pem
+*.key
+credentials.json
 
-# Build outputs
+# Roblox & Rojo Build Outputs
 *.rbxl
 *.rbxlx
 build/
+dist/
+out/
+.rojo/
+
+# Python Cache & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+
+# Node.js & Web Build Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.next/
+.cache/
+
+# IDE & System Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary Scratch Files
+scratch/*.tmp
+*.log

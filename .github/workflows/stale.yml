@@ -1,0 +1,22 @@
+name: "Close Stale Issues and PRs"
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/stale@v9
+        with:
+          stale-issue-message: "Issues ini telah dinonaktifkan sementara karena tidak ada aktivitas selama 30 hari. Balas pesan ini jika masalah masih relevan."
+          stale-pr-message: "Pull Request ini ditandai stale karena tidak ada pembaruan selama 30 hari. Mohon perbarui cabang ini jika masih aktif."
+          days-before-stale: 30
+          days-before-close: 7
+          stale-issue-label: "stale"
+          stale-pr-label: "stale"
