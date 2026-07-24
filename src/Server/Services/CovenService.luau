@@ -253,6 +253,26 @@ function CovenService.DonateToCoven(player: Player, amount: number)
     end
 end
 
+function CovenService.WithdrawFromCoven(player: Player, amount: number)
+    local covenId = playerCovenMap[player.UserId]
+    if not covenId then return end
+    
+    local coven = activeCovens[covenId]
+    if not coven then return end
+    
+    if coven.LeaderId ~= player.UserId then
+        warn("[CovenService] Only Coven Leader can withdraw funds.")
+        return
+    end
+
+    if coven.TreasuryCoins >= amount then
+        coven.TreasuryCoins -= amount
+        local EconomyService = require(script.Parent.EconomyService)
+        EconomyService.AddCoins(player, amount, "CovenWithdrawal")
+        NetChannels.GetRemoteEvent("CovenEvent"):FireClient(player, "Sync", coven)
+    end
+end
+
 function CovenService.GetGlobalMultiplier(player: Player): number
     local covenId = playerCovenMap[player.UserId]
     if not covenId then return 1.0 end

@@ -3,11 +3,14 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 local QuestRegistry = require(ReplicatedStorage.Shared.Configuration.QuestRegistry)
+local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
 local QuestManager = {}
 
 function QuestManager.Init()
 	print("[QuestManager] Initializing Daily Quest Engine...")
+	NetChannels.GetRemoteFunction("ClaimQuest")
+	NetChannels.GetRemoteEvent("SyncQuest")
 end
 
 function QuestManager.Start()
@@ -31,6 +34,27 @@ function QuestManager.Start()
 	claimRemote.OnServerInvoke = function(player, questId)
 		return QuestManager.ClaimQuest(player, questId)
 	end
+    
+    -- Automated Daily Quest Rotation Engine
+    task.spawn(function()
+        while true do
+            -- Rotate quests every 24 hours (simulated as 1 hour for testing)
+            task.wait(3600)
+            print("[QuestManager] Rotating Daily Quests for all active players...")
+            for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
+                local res = PlayerDataService.GetProfile(player)
+                if res.Success and res.Data then
+                    -- Reset daily quest progress
+                    res.Data.DailyQuests.Progress = {}
+                    res.Data.DailyQuests.Completed = {}
+                    -- In a full implementation, we'd pick new random quests from QuestRegistry
+                    QuestManager.SyncClient(player, res.Data.DailyQuests)
+                end
+            end
+            local GlobalBroadcastService = require(game:GetService("ServerScriptService").Server.Services.GlobalBroadcastService)
+            GlobalBroadcastService.Broadcast("📜 Daily Quests have been reset!", 147, 197, 253)
+        end
+    end)
 end
 
 function QuestManager.IncrementProgress(player: Player, questType: string, amount: number)

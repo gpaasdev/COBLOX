@@ -23,6 +23,7 @@ PetService.PetAwakened = Signal.new()
 
 function PetService.Init()
 	print("[PetService] Initializing Pet Engine with Pet Awakening & Fusion Systems (Adopt Me/Blox Fruits Benchmark)...")
+	NetChannels.GetRemoteEvent("PetMiningEvent") -- Pre-register for Client
 end
 
 function PetService.Start()

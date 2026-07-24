@@ -104,10 +104,17 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 		}
 	end
 
-	-- Apply RemoteConfig & LiveOps Hatch Luck Modifiers
+	local resProfile = PlayerDataService.GetProfile(player)
+	local pityCounter = 0
+	if resProfile.Success and resProfile.Data then
+		pityCounter = resProfile.Data.Inventory.PityCounter or 0
+	end
+
+	-- Apply RemoteConfig, LiveOps, and Exponential Pity Modifiers
 	local remoteLuck = RemoteConfigService.GetTuningValue("HatchChanceLegendaryMultiplier", 1.0)
 	local liveOpsLuck = LiveOpsService.GetActiveModifiers().HatchLuckMultiplier or 1.0
-	local totalLuckMultiplier = remoteLuck * liveOpsLuck
+	local pityMultiplier = math.pow(1.2, pityCounter) -- Exponential Pity System
+	local totalLuckMultiplier = remoteLuck * liveOpsLuck * pityMultiplier
 
 	-- Weighted Random Selection with Dynamic Luck Multipliers
 	local totalWeight = 0
@@ -140,6 +147,15 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 		-- Refund coins on inventory failure
 		EconomyService.AddCoins(player, config.CostCoins, "HatchRefund")
 		return createRes
+	end
+
+	-- Update Pity Counter
+	if resProfile.Success and resProfile.Data then
+		if selectedPetId == "GoldenDragon" then
+			resProfile.Data.Inventory.PityCounter = 0
+		else
+			resProfile.Data.Inventory.PityCounter = pityCounter + 1
+		end
 	end
 
 	EggService.EggHatched:Fire(player, eggId, createRes.Data)

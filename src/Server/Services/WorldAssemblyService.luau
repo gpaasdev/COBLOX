@@ -257,7 +257,7 @@ function WorldAssemblyService._AssembleWorld()
 		bb.Name = "ClaimHUD"
 		bb.Size = UDim2.new(0, 220, 0, 70)
 		bb.StudsOffset = Vector3.new(0, 5, 0)
-		bb.MaxDistance = 35
+		bb.MaxDistance = 45
 		bb.AlwaysOnTop = false
 
 		local card = Instance.new("Frame")

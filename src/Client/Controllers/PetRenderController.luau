@@ -26,10 +26,12 @@ function PetRenderController.Start()
 		for _, companionModel in ipairs(activeSpiritCompanions) do
 			if companionModel.PrimaryPart and not companionModel:GetAttribute("IsAttacking") then
 				companionModel:SetAttribute("IsAttacking", true)
-				local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, true)
-				local tween = TweenService:Create(companionModel.PrimaryPart, tweenInfo, {CFrame = CFrame.new(node.Position)})
-				tween:Play()
-				tween.Completed:Connect(function()
+				local alignPos = companionModel.PrimaryPart:FindFirstChildOfClass("AlignPosition")
+				if alignPos then
+					alignPos.Position = node.Position
+				end
+				
+				task.delay(0.6, function()
 					companionModel:SetAttribute("IsAttacking", false)
 				end)
 			end
@@ -67,10 +69,13 @@ function PetRenderController.Start()
 				
 				local targetCFrame = hrpCFrame * CFrame.new(offset) * CFrame.Angles(0, 0, turnTilt)
 				
-				-- Smooth CFrame movement using PivotTo (prevents gravity void falling)
-				local currentCFrame = companionModel:GetPivot()
-				local lerpSpeed = math.clamp(dt * 9.5, 0, 1)
-				companionModel:PivotTo(currentCFrame:Lerp(targetCFrame, lerpSpeed))
+				-- Physics-based floating movement
+				local alignPos = companionModel.PrimaryPart:FindFirstChildOfClass("AlignPosition")
+				local alignOri = companionModel.PrimaryPart:FindFirstChildOfClass("AlignOrientation")
+				if alignPos and alignOri then
+					alignPos.Position = targetCFrame.Position
+					alignOri.CFrame = targetCFrame
+				end
 			end
 		end
 	end)
@@ -79,9 +84,29 @@ end
 function PetRenderController.SpawnSpiritCompanion(spiritId: string): Model
 	local companionModel = CreatureBuilder.BuildCyberPet(spiritId)
 	
-	-- Anchor PrimaryPart so gravity does not pull it into the void before RenderStepped
+	-- Setup Physics Constraints for Floating
 	if companionModel.PrimaryPart then
-		companionModel.PrimaryPart.Anchored = true
+		companionModel.PrimaryPart.Anchored = false
+		
+		local attachment = Instance.new("Attachment")
+		attachment.Name = "FloatingAttachment"
+		attachment.Parent = companionModel.PrimaryPart
+		
+		local alignPos = Instance.new("AlignPosition")
+		alignPos.Attachment0 = attachment
+		alignPos.Mode = Enum.PositionAlignmentMode.OneAttachment
+		alignPos.MaxForce = 50000
+		alignPos.MaxVelocity = 40
+		alignPos.Responsiveness = 35 -- Bouncy spring feel
+		alignPos.Parent = companionModel.PrimaryPart
+		
+		local alignOri = Instance.new("AlignOrientation")
+		alignOri.Attachment0 = attachment
+		alignOri.Mode = Enum.OrientationAlignmentMode.OneAttachment
+		alignOri.MaxTorque = 50000
+		alignOri.MaxAngularVelocity = 20
+		alignOri.Responsiveness = 25
+		alignOri.Parent = companionModel.PrimaryPart
 	end
 	
 	companionModel.Parent = Workspace
@@ -126,6 +151,9 @@ function PetRenderController.MountNeonCrocodile(enable: boolean)
 	body.Parent = mount
 
 	-- Head
+	local sfx = Instance.new("Sound")
+	sfx.SoundId = "rbxassetid://130761214"
+	sfx.Volume = 0.7
 	local head = Instance.new("Part")
 	head.Name = "MountHead"
 	head.Size = Vector3.new(3.2, 2, 4)

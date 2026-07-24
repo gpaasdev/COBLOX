@@ -67,7 +67,13 @@ function CrystalPurificationService.Start()
 end
 
 function CrystalPurificationService.AddCrystalCharge(plotId: string, amount: number)
-	crystalCharges[plotId] = (crystalCharges[plotId] or 0) + amount
+	local currentBal = crystalCharges[plotId] or 0
+	-- Compound Interest formula: V(t) = P * (1 + r)^dt
+	-- Where r is 0.01 (1% growth) and dt is 1 (per call).
+	local interestRate = 0.01 
+	local newBal = currentBal * (1 + interestRate) + amount
+	crystalCharges[plotId] = math.floor(newBal)
+	
 	local balance = crystalCharges[plotId]
 
 	-- Visual Beacon update if capacity reached

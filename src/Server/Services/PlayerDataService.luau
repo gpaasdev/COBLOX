@@ -29,6 +29,7 @@ local defaultProfile: PlayerProfile = {
 		QuantumBadges = 0,
 	},
 	Inventory = {
+		PityCounter = 0,
 		Pets = {},
 		Spirits = {},
 		Items = {
@@ -73,8 +74,15 @@ local defaultProfile: PlayerProfile = {
 	},
 }
 
+local DataStoreService = game:GetService("DataStoreService")
 local PlayerStore = ProfileStore.New("COBLOX_DataStore_LGBOS_v11", defaultProfile)
-if RunService:IsStudio() then
+
+-- Live production uses real DataStoreService; Studio safely falls back to Mock if API is disabled
+local isDataStoreAvailable = pcall(function()
+	DataStoreService:GetDataStore("__COBLOX_HealthCheck"):GetAsync("__test")
+end)
+
+if not isDataStoreAvailable then
 	PlayerStore = PlayerStore.Mock
 end
 
@@ -105,7 +113,7 @@ function PlayerDataService._LoadPlayerProfile(player: Player)
 			profilesBuffer[player] = profile
 			PlayerDataService.ProfileLoaded:Fire(player, profile.Data)
 		else
-			profile:Release()
+			profile:EndSession()
 		end
 	else
 		player:Kick("Gagal memuat profil. Silakan coba lagi nanti.")
@@ -116,7 +124,7 @@ function PlayerDataService._UnloadPlayerProfile(player: Player)
 	local profile = profilesBuffer[player]
 	if profile ~= nil then
 		PlayerDataService.ProfileReleasing:Fire(player)
-		profile:Release()
+		profile:EndSession()
 		profilesBuffer[player] = nil
 	end
 end

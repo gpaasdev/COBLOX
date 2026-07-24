@@ -20,16 +20,44 @@ function AssetRegistry.GetAudioId(category: string, soundKey: string): string
 	return "rbxassetid://0"
 end
 
-function AssetRegistry.ValidateAllAssetsExist(): (boolean, { string })
+function AssetRegistry.GetLicenseInfo(assetPathKey: string): { Type: string, Source: string }
+	local licensing = (AssetManifest :: any).Licensing
+	if licensing and licensing.AssetLicenses and licensing.AssetLicenses[assetPathKey] then
+		return licensing.AssetLicenses[assetPathKey]
+	end
+	return {
+		Type = (licensing and licensing.DefaultCommercialLicense) or "RobloxStandard",
+		Source = "Unspecified_CreatorStore",
+	}
+end
+
+function AssetRegistry.ValidateAllAssetsExist(): (boolean, { string }, { string })
 	local missing: { string } = {}
+	local unverifiedLicenses: { string } = {}
+
 	for catName, catTable in pairs(AssetManifest.Models) do
 		for itemKey, assetId in pairs(catTable) do
+			local fullPath = string.format("Models.%s.%s", catName, itemKey)
 			if assetId == "rbxassetid://0" or assetId == "" then
-				table.insert(missing, string.format("Models.%s.%s", catName, itemKey))
+				table.insert(missing, fullPath)
+			end
+			local lic = AssetRegistry.GetLicenseInfo(fullPath)
+			if lic.Source == "Unspecified_CreatorStore" then
+				table.insert(unverifiedLicenses, fullPath)
 			end
 		end
 	end
-	return #missing == 0, missing
+
+	for catName, catTable in pairs(AssetManifest.Audio) do
+		for soundKey, assetId in pairs(catTable) do
+			local fullPath = string.format("Audio.%s.%s", catName, soundKey)
+			if assetId == "rbxassetid://0" or assetId == "" then
+				table.insert(missing, fullPath)
+			end
+		end
+	end
+
+	return #missing == 0, missing, unverifiedLicenses
 end
 
 function AssetRegistry.CreateLowPolyPrimitive(fallbackShape: string?): Model

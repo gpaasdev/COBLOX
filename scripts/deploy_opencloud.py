@@ -22,7 +22,7 @@ def load_env(env_path=".env"):
 
 def main():
     env = load_env()
-    api_key = env.get("ROBLOX_OPEN_CLOUD_API_KEY")
+    api_key = env.get("ROBLOX_OPEN_CLOUD_API_KEY") or env.get("ROBLOX_OPENCLOUD_API_KEY")
     universe_id = env.get("ROBLOX_UNIVERSE_ID")
     place_id = env.get("ROBLOX_PLACE_ID")
 

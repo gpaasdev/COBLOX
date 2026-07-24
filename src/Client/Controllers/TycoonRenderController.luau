@@ -58,6 +58,51 @@ function TycoonRenderController.Start()
 		task.spawn(setupUpgradeButton, pad)
 	end
 
+	-- Proximity UI Filter Loop (Max 2 UI, Distance <= 15 studs)
+	local Players = game:GetService("Players")
+	local RunService = game:GetService("RunService")
+	local localPlayer = Players.LocalPlayer
+
+	task.spawn(function()
+		while true do
+			task.wait(0.2)
+			local char = localPlayer.Character
+			if char and char.PrimaryPart then
+				local playerPos = char.PrimaryPart.Position
+				local taggedButtons = CollectionService:GetTagged("TycoonUpgradeButton")
+				local nearby: { { Button: BasePart, Dist: number, Gui: BillboardGui } } = {}
+
+				for _, pad in ipairs(taggedButtons) do
+					if pad:IsA("BasePart") then
+						local gui = pad:FindFirstChildOfClass("BillboardGui")
+						if gui then
+							local dist = (pad.Position - playerPos).Magnitude
+							if dist <= 15 then
+								table.insert(nearby, { Button = pad, Dist = dist, Gui = gui })
+							else
+								gui.Enabled = false
+							end
+						end
+					end
+				end
+
+				-- Sort by distance
+				table.sort(nearby, function(a, b)
+					return a.Dist < b.Dist
+				end)
+
+				-- Enable top 2 closest, disable others
+				for i, item in ipairs(nearby) do
+					if i <= 2 then
+						item.Gui.Enabled = true
+					else
+						item.Gui.Enabled = false
+					end
+				end
+			end
+		end
+	end)
+
 	-- 3. Render Demo Sanctum Altar dengan Sci-Fi Hologram UI (Placeholder untuk map utama nantinya)
 	local demoPosition = Vector3.new(0, 1, 0)
 	local altarModel = SanctumBuilder.CreateAlchemicalAltar(demoPosition)

@@ -127,6 +127,27 @@ function PlacementService.PlaceStructure(
 		CozyValue = 15,
 	}
 
+	-- Spatial Query (AABB Collision Validation)
+	local overlapParams = OverlapParams.new()
+	overlapParams.FilterType = Enum.RaycastFilterType.Include
+	overlapParams.FilterDescendantsInstances = {Workspace} -- only check placed models or plots, adjust as needed
+
+	-- assuming 3x3 studs bounding box for standard structures
+	local collisionBoxCFrame = CFrame.new(targetPosition)
+	local collisionBoxSize = Vector3.new(2.9, 10, 2.9) -- slightly smaller to allow edge adjacency
+	
+	local intersectingParts = Workspace:GetPartBoundsInBox(collisionBoxCFrame, collisionBoxSize, overlapParams)
+	if #intersectingParts > 0 then
+		return {
+			Success = false,
+			Category = "Validation",
+			ErrorCode = "COLLISION_DETECTED",
+			Message = "Placement failed: Overlapping with existing structure.",
+			Data = nil,
+			Retryable = false,
+		}
+	end
+
 	grid.Structures[gridIndex] = structureData
 	grid.CozyRating = (grid.CozyRating or 100) + structureData.CozyValue
 
@@ -134,6 +155,7 @@ function PlacementService.PlaceStructure(
 	local SanctumBuilder = require(ReplicatedStorage.Shared.Modules.Render.SanctumBuilder)
 	local placedModel = SanctumBuilder.CreateAlchemicalAltar(targetPosition)
 	placedModel.Name = "Placed_" .. structureId .. "_" .. gridIndex
+
 
 	PlacementService.StructurePlaced:Fire(player, gridIndex, structureData, grid.CozyRating)
 

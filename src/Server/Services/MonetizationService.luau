@@ -21,10 +21,14 @@ MonetizationService.GamePasses = {
 }
 
 MonetizationService.DevProducts = {
-	CoinsSmall = 3611126655, -- +5,000 Coins (25 R$)
-	CoinsLarge = 3611126895, -- +50,000 Coins (99 R$)
-	GemsSmall = 3611126819,  -- +100 Gems (49 R$)
-	GemsLarge = 3611126995,  -- +1,000 Gems (199 R$)
+	CoinsSmall = 3611126655,      -- +5,000 Coins (25 R$)
+	CoinsLarge = 3611126895,      -- +50,000 Coins (99 R$)
+	GemsSmall = 3611126819,       -- +100 Gems (49 R$)
+	GemsLarge = 3611126995,       -- +1,000 Gems (199 R$)
+	AuraBoostMedium = 3611127120, -- +2,500 Aura Energy (79 R$)
+	ChronoSparksPack = 3611127250,-- +100 Chrono Sparks (149 R$)
+	InstantEggHatch = 3611127380, -- Instant Egg Hatch (15 R$)
+	RebirthSkipToken = 3611127510,-- +1 Rebirth Token (299 R$)
 }
 
 local processedReceipts: { [string]: boolean } = {}
@@ -35,6 +39,59 @@ end
 
 function MonetizationService.Start()
 	MarketplaceService.ProcessReceipt = MonetizationService._ProcessReceipt
+
+	-- Handle GamePass purchase completion & ownership checks on Player Join
+	Players.PlayerAdded:Connect(function(player)
+		MonetizationService.CheckGamePassOwnership(player)
+		MonetizationService.CheckPremiumPerks(player)
+	end)
+
+	MarketplaceService.PromptGamePassPurchaseFinished:Connect(function(player, passId, wasPurchased)
+		if wasPurchased then
+			MonetizationService.GrantGamePassPerks(player, passId)
+		end
+	end)
+end
+
+function MonetizationService.CheckGamePassOwnership(player: Player)
+	for passName, passId in pairs(MonetizationService.GamePasses) do
+		local hasPass = false
+		pcall(function()
+			hasPass = MarketplaceService:UserOwnsGamePassAsync(player.UserId, passId)
+		end)
+
+		if hasPass then
+			MonetizationService.GrantGamePassPerks(player, passId)
+		end
+	end
+end
+
+function MonetizationService.CheckPremiumPerks(player: Player)
+	if player.MembershipType == Enum.MembershipType.Premium then
+		player:SetAttribute("IsPremiumSubscriber", true)
+		player:SetAttribute("PremiumLuckMultiplier", 1.2)
+		player:SetAttribute("PremiumAuraBoost", 1.20)
+		print(string.format("[MonetizationService] Granted Roblox Premium Subscriber Perks (+20%% Aura Boost, 1.2x Luck) to %s", player.Name))
+	end
+end
+
+function MonetizationService.GrantGamePassPerks(player: Player, passId: number)
+	local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
+	local profileRes = PlayerDataService.GetProfile(player)
+	if not profileRes.Success or not profileRes.Data then return end
+	local data = profileRes.Data
+
+	if passId == MonetizationService.GamePasses.VIP then
+		data.Monetization.PremiumUnlocked = true
+		print(string.format("[MonetizationService] Granted VIP Perks to %s", player.Name))
+	elseif passId == MonetizationService.GamePasses.ExtraInventory then
+		data.Inventory.MaxInventorySlots = 100
+		data.Inventory.MaxEquipSlots = 5
+		print(string.format("[MonetizationService] Granted Extra Inventory & Slots to %s", player.Name))
+	elseif passId == MonetizationService.GamePasses.SuperLuck then
+		player:SetAttribute("SuperLuckActive", true)
+		print(string.format("[MonetizationService] Activated Super Luck for %s", player.Name))
+	end
 end
 
 local HttpService = game:GetService("HttpService")
@@ -43,7 +100,7 @@ local RemoteConfigService = require(ServerScriptService.Server.Services.RemoteCo
 function MonetizationService._SendWebhook(player: Player, productId: number, amount: number, currency: string)
 	local webhookUrl = RemoteConfigService.GetTuningValue("GuildedWebhookURL", "")
 	if not webhookUrl or type(webhookUrl) ~= "string" or webhookUrl == "" then
-		return -- Silent return if no webhook URL is configured (prevents credential leaks)
+		return
 	end
 
 	local payload = {
@@ -57,7 +114,6 @@ end
 function MonetizationService._ProcessReceipt(receiptInfo: { PlayerId: number, ProductId: number, PurchaseId: string }): Enum.ProductPurchaseDecision
 	local receiptId = receiptInfo.PurchaseId
 	if processedReceipts[receiptId] then
-		print(string.format("[MonetizationService] Receipt %s was already processed.", receiptId))
 		return Enum.ProductPurchaseDecision.PurchaseGranted
 	end
 
@@ -67,7 +123,6 @@ function MonetizationService._ProcessReceipt(receiptInfo: { PlayerId: number, Pr
 	end
 
 	local productId = receiptInfo.ProductId
-
 	local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 
 	local success = false
@@ -91,10 +146,24 @@ function MonetizationService._ProcessReceipt(receiptInfo: { PlayerId: number, Pr
 		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 1000, Currency = "Gems" })
 		MonetizationService._SendWebhook(player, productId, 1000, "Gems")
 		success = true
+	elseif productId == MonetizationService.DevProducts.AuraBoostMedium then
+		PlayerDataService.AddCurrency(player, "AuraEnergy", 2500)
+		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 2500, Currency = "AuraEnergy" })
+		MonetizationService._SendWebhook(player, productId, 2500, "AuraEnergy")
+		success = true
+	elseif productId == MonetizationService.DevProducts.ChronoSparksPack then
+		PlayerDataService.AddCurrency(player, "ChronoSparks", 100)
+		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 100, Currency = "ChronoSparks" })
+		MonetizationService._SendWebhook(player, productId, 100, "ChronoSparks")
+		success = true
+	elseif productId == MonetizationService.DevProducts.RebirthSkipToken then
+		PlayerDataService.AddCurrency(player, "RebirthTokens", 1)
+		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 1, Currency = "RebirthTokens" })
+		MonetizationService._SendWebhook(player, productId, 1, "RebirthTokens")
+		success = true
 	end
 
 	if success then
-		-- Trigger immediate ProfileStore save attempt to guarantee transaction persistence
 		pcall(function()
 			PlayerDataService.SavePlayerProfile(player)
 		end)

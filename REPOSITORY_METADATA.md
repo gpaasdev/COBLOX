@@ -5,7 +5,7 @@ Dokumen ini menyediakan data siap salin (*copy-pasteable*) untuk dikonfigurasi d
 ---
 
 ## 📌 Description (150 Karaketer Summary)
-> COBLOX: Multiverse Alchemy Sanctum - Roblox Live Service Architecture, ProfileStore v3, 3x3 Recipe Transmutation, OpenCloud APIs & Web Portal MVP.
+> COBLOX: Multiverse Alchemy Sanctum - Roblox Live Service Architecture, ProfileStore v3, 3x3 Recipe Transmutation, OpenCloud APIs, SoundPool & LaunchData Engine.
 
 ---
 
@@ -13,16 +13,21 @@ Dokumen ini menyediakan data siap salin (*copy-pasteable*) untuk dikonfigurasi d
 Copy-paste kata kunci di bawah ini pada bidang **Topics** di GitHub repository settings:
 
 ```text
-roblox, luau, rojo, selene, alchemy, tycoon, profilestore, opencloud-api, github-pages, game-development, live-ops, zero-trust, CI-CD
+roblox, luau, rojo, selene, alchemy, tycoon, profilestore, opencloud-api, github-pages, game-development, live-ops, zero-trust, CI-CD, soundpool, launchdata, premium-payouts
 ```
 
 ---
 
-## 🌐 Website URL
+## 🌐 Website URL & Official Share Link
 Salin tautan ini ke bagian **Website** pada GitHub UI:
 
 ```text
 https://gpaasdev.github.io/COBLOX/
+```
+
+Official Roblox Join Link:
+```text
+https://www.roblox.com/join/qkced
 ```
 
 ---

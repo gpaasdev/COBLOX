@@ -1,21 +1,26 @@
 # COBLOX: Multiverse Alchemy Sanctum
 
+![COBLOX Official Key Art](docs/assets/game_thumbnail_16x9.png)
+
+[![Play on Roblox](https://img.shields.io/badge/Roblox-Play%20Now%20(Official%20Link)-FF0000?style=for-the-badge&logo=roblox&logoColor=white)](https://www.roblox.com/join/qkced)
 [![CI/CD Build Status](https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml/badge.svg)](https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-emerald?style=flat&logo=github)](https://gpaasdev.github.io/COBLOX/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-amber.svg)](LICENSE)
-[![Engine: Roblox Luau](https://img.shields.io/badge/Engine-Roblox%20Luau-000000?logo=roblox)](https://luau-lang.org/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-emerald?style=for-the-badge&logo=github)](https://gpaasdev.github.io/COBLOX/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge)](LICENSE)
+[![Engine: Roblox Luau](https://img.shields.io/badge/Engine-Roblox%20Luau--strict-000000?style=for-the-badge&logo=roblox)](https://luau-lang.org/)
 
 Pengalaman **Hybrid Pet Tycoon & Social Action Alkimia** terdepan di Roblox 2026. Susun Bejana Aura otomatis, racik elemen magis dalam matriks 3x3, tetaskan Spirit Companion legendaris, dan berkumpul bersama teman dalam klan alkemis (*Coven Order*).
 
 ---
 
-## 🌟 Fitur Utama
+## 🌟 Fitur Utama & Sistem Terbaru
 
 - **🏡 Sanctum Grid 3x3:** Tata bejana aura, extractor otomatis, dan altar kristal secara bebas dalam matriks 3x3 berpresisi tinggi.
 - **🧪 Alchemic Transmutation:** Eksperimen racikan elemen Pyro, Hydro, dan Astral untuk menemukan ramuan rahasia dengan bonus *yield multiplier*.
 - **🐉 Spirit Companions:** Tetaskan telur magis dengan animasi *spring feedback*, koleksi kawan Spirit imut dengan *mount speed* dan *auto-harvest*.
-- **🏰 Coven Order & Politics:** Bentuk klan alkemis bersama kawan, bangun kas *Guild Treasury*, dan kuasai Grand Obelisk di pusat dunia.
-- **🌐 OpenCloud LiveOps:** Sinkronisasi web-to-game dua arah via REST API untuk *promo code claiming* instan dan *broadcast update*.
+- **🎵 4-Channel Audio & SoundPool:** Daur ulang `Sound` instances untuk efisiensi RAM (target $<2.5\text{ GB}$) dengan *dynamic BGM crossfading* dan 4 channel (`Master`, `BGM`, `SFX`, `UI`).
+- **🔗 LaunchData Marketing Engine:** Integrasi Roblox Share Link ([`https://www.roblox.com/join/qkced`](https://www.roblox.com/join/qkced)) untuk memberikan bonus *+250 Aura Energy* dan *Starter Pack* secara otomatis & aman via `LaunchDataService.luau`.
+- **⭐ Roblox Premium Engagement Perks:** Penggandaan otomatis `+20% Aura Boost` & `1.2x Luck Multiplier` untuk pemain berlangganan Roblox Premium via `MonetizationService.luau`.
+- **📜 Asset License Audit System:** Validator lisensi komersial runtime (CC0, MIT, CustomRoyaltyFree) via `AssetRegistry.luau` untuk mencegah klaim DMCA.
 - **⚡ Mobile-First Performance:** Beban memori dijaga ketat di bawah **< 2.5 GB RAM** untuk pengalaman bebas lag di perangkat mobile low-end.
 
 ---

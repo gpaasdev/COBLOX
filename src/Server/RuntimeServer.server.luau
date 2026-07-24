@@ -42,6 +42,7 @@ local CrystalPurificationService = require(ServerScriptService.Server.Services.C
 local ConsumableMutationService = require(ServerScriptService.Server.Services.ConsumableMutationService)
 local KarmaContractService = require(ServerScriptService.Server.Services.KarmaContractService)
 local FlexZoneService = require(ServerScriptService.Server.Services.FlexZoneService)
+local LaunchDataService = require(ServerScriptService.Server.Services.LaunchDataService)
 
 local services = {
 	RateLimitService,
@@ -49,6 +50,7 @@ local services = {
 	ExperimentService,
 	LiveOpsService,
 	PolicyComplianceService,
+	LaunchDataService,
 	PlayerDataService,
 	ProfileStoreAdapter,
 	RetentionService,

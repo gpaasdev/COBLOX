@@ -42,8 +42,8 @@ function TopbarController.UpdateCurrencies(aura: number, sparks: number)
 	currentAura = aura
 	currentSparks = sparks
 
-	local auraText = LocalizationController.GetFormat("HUD_AURA", aura)
-	local sparksText = LocalizationController.GetFormat("HUD_SPARKS", sparks)
+	local auraText = LocalizationController.Get("HUD_AURA", aura)
+	local sparksText = LocalizationController.Get("HUD_SPARKS", sparks)
 
 	-- Print status update for debugging/logging
 	print(string.format("[TopbarController] Display Updated -> %s | %s", auraText, sparksText))

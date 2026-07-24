@@ -71,6 +71,22 @@ local AssetManifest = {
 			RoughnessMap = "rbxassetid://1082802",
 		},
 	},
+
+	Licensing = {
+		DefaultCommercialLicense = "RobloxStandard",
+
+		AssetLicenses = {
+			["Models.Nature.StylizedTree_Emerald"] = { Type = "CC0", Source = "CreatorStore_Verified" },
+			["Models.Nature.StylizedTree_Sakura"] = { Type = "CC0", Source = "CreatorStore_Verified" },
+			["Models.Nature.ManaCrystalLarge"] = { Type = "RobloxStandard", Source = "RobloxStudio" },
+			["Audio.SFX.CoinPurchase"] = { Type = "CustomRoyaltyFree", Source = "DevForum_FreeComposition" },
+			["Audio.SFX.EggHatchCommon"] = { Type = "CustomRoyaltyFree", Source = "DevForum_FreeComposition" },
+			["Audio.BGM.LobbyTheme"] = { Type = "CustomRoyaltyFree", Source = "DevForum_FreeComposition" },
+			["Audio.BGM.ForestTheme"] = { Type = "CustomRoyaltyFree", Source = "DevForum_FreeComposition" },
+			["PBRMaterials.PolyHavenSteel"] = { Type = "CC0", Source = "PolyHaven" },
+			["PBRMaterials.PolyHavenMarble"] = { Type = "CC0", Source = "PolyHaven" },
+		},
+	},
 }
 
 return table.freeze(AssetManifest)

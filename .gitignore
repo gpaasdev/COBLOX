@@ -42,3 +42,4 @@ Thumbs.db
 # Temporary Scratch Files
 scratch/*.tmp
 *.log
+*.zip

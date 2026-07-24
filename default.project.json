@@ -5,10 +5,7 @@
     "Workspace": {
       "$className": "Workspace",
       "$properties": {
-        "StreamingEnabled": true,
-        "StreamingMinDistance": 64,
-        "StreamingTargetDistance": 256,
-        "TerrainOnePixelGrid": true
+        "StreamingEnabled": true
       },
       "Baseplate": {
         "$className": "Part",
@@ -52,7 +49,6 @@
         "Brightness": 2.2,
         "ClockTime": 14.5,
         "GeographicLatitude": 23.5,
-        "EnvironmentHeaderScale": 1,
         "GlobalShadows": true
       },
       "Atmosphere": {

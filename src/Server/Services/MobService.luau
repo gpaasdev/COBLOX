@@ -71,7 +71,7 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	bb.Name = "MobHealthHUD"
 	bb.Size = UDim2.new(0, 160, 0, 45)
 	bb.StudsOffset = Vector3.new(0, 4, 0)
-	bb.MaxDistance = 40
+	bb.MaxDistance = 45
 	bb.AlwaysOnTop = false
 
 	local card = Instance.new("Frame")
@@ -125,9 +125,40 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	bb.Parent = hrp
 	mobModel.Parent = workspace
 	
+	-- Physics Movers for Smooth Interpolation
+	local attachment = Instance.new("Attachment")
+	attachment.Name = "MoverAttachment"
+	attachment.Parent = hrp
+	
+	local alignPos = Instance.new("AlignPosition")
+	alignPos.Attachment0 = attachment
+	alignPos.Mode = Enum.PositionAlignmentMode.OneAttachment
+	alignPos.Position = position
+	alignPos.MaxForce = 100000
+	alignPos.MaxVelocity = MOB_SPEED
+	alignPos.Responsiveness = 40
+	alignPos.Parent = hrp
+	
+	local alignOri = Instance.new("AlignOrientation")
+	alignOri.Attachment0 = attachment
+	alignOri.Mode = Enum.OrientationAlignmentMode.OneAttachment
+	alignOri.CFrame = hrp.CFrame
+	alignOri.MaxTorque = 100000
+	alignOri.MaxAngularVelocity = 15
+	alignOri.Responsiveness = 30
+	alignOri.Parent = hrp
+	
+	-- Ensure Unanchored for Physics
+	hrp.Anchored = false
+
+	local mobActor = Instance.new("Actor")
+	mobActor.Name = "MobActor"
+	mobActor.Parent = mobModel
+	
 	activeMobs[id] = {
 		Id = id,
 		Model = mobModel,
+		Actor = mobActor,
 		State = "IDLE",
 		StateTime = os.clock(),
 		Target = nil,
@@ -199,6 +230,11 @@ function MobService.Tick(dt: number)
 		local hrp = mob.Model.PrimaryPart
 		if not hrp then continue end
 		
+		local alignPos = hrp:FindFirstChildOfClass("AlignPosition")
+		local alignOri = hrp:FindFirstChildOfClass("AlignOrientation")
+		
+		if not alignPos or not alignOri then continue end
+		
 		local now = os.clock()
 		local timeInState = now - mob.StateTime
 		
@@ -207,9 +243,12 @@ function MobService.Tick(dt: number)
 			if timeInState > 4 then
 				local randomAngle = math.rad(math.random(0, 360))
 				local patrolTarget = mob.SpawnPosition + Vector3.new(math.cos(randomAngle) * 10, 0, math.sin(randomAngle) * 10)
-				local dir = (patrolTarget - hrp.Position).Unit
-				hrp.CFrame = CFrame.new(hrp.Position + dir * (MOB_SPEED * 0.25) * dt)
-				if (patrolTarget - hrp.Position).Magnitude < 1.5 then
+				local distToPatrol = (patrolTarget - hrp.Position).Magnitude
+				
+				alignPos.Position = patrolTarget
+				alignOri.CFrame = CFrame.lookAt(hrp.Position, patrolTarget)
+				
+				if distToPatrol < 2 then
 					mob.StateTime = now
 				end
 			end
@@ -225,8 +264,11 @@ function MobService.Tick(dt: number)
 			end
 			
 			local targetPos = mob.Target.Character.PrimaryPart.Position
-			local distFromTarget = (targetPos - hrp.Position).Magnitude
-			local distFromSpawn = (hrp.Position - mob.SpawnPosition).Magnitude
+			local hrpPos = hrp.Position
+			
+			local distFromTarget = (targetPos - hrpPos).Magnitude
+			local distFromSpawn = (hrpPos - mob.SpawnPosition).Magnitude
+			local lookAtCFrame = CFrame.lookAt(hrpPos, targetPos * Vector3.new(1,0,1) + Vector3.new(0, hrpPos.Y, 0))
 			
 			if distFromTarget > LEASH_DISTANCE or distFromSpawn > LEASH_DISTANCE then
 				-- Exceeded Leash distance -> RETURN state
@@ -237,6 +279,7 @@ function MobService.Tick(dt: number)
 				-- Within attack range -> WINDUP warning state (1.0s stop + Red Zone Visual Telegraph)
 				mob.State = "WINDUP"
 				mob.StateTime = now
+				alignPos.Position = hrp.Position -- Stop moving
 
 				-- Flash Eyes Red for WINDUP telegraph
 				local eyesCore = mob.Model:FindFirstChild("EyesCore") :: BasePart?
@@ -249,9 +292,9 @@ function MobService.Tick(dt: number)
 
 				CombatEvent:FireAllClients("MobWindup", mob.Id, targetPos)
 			else
-				-- MoveTo / Interpolation toward target
-				local dir = (targetPos - hrp.Position).Unit
-				hrp.CFrame = CFrame.new(hrp.Position + dir * MOB_SPEED * dt)
+				-- Physics follow target
+				alignPos.Position = targetPos
+				alignOri.CFrame = CFrame.lookAt(hrp.Position, targetPos * Vector3.new(1,0,1) + Vector3.new(0, hrp.Position.Y, 0))
 			end
 			
 		elseif mob.State == "WINDUP" then
@@ -261,15 +304,25 @@ function MobService.Tick(dt: number)
 			end
 			
 		elseif mob.State == "ATTACK" then
-			-- Hitbox Validation & Auto-Transition back to CHASE
+			-- Hitbox Validation via Spatial Query (Lag-compensated) & Auto-Transition back to CHASE
 			if mob.Target and mob.Target.Character and mob.Target.Character.PrimaryPart then
-				local dist = (mob.Target.Character.PrimaryPart.Position - hrp.Position).Magnitude
-				if dist <= ATTACK_RANGE + 2 then
+				local targetChar = mob.Target.Character
+				
+				local overlapParams = OverlapParams.new()
+				overlapParams.FilterType = Enum.RaycastFilterType.Include
+				overlapParams.FilterDescendantsInstances = {targetChar}
+				
+				local attackHitboxSize = Vector3.new(ATTACK_RANGE * 2, 8, ATTACK_RANGE * 2)
+				local attackHitboxCFrame = hrp.CFrame * CFrame.new(0, 0, -ATTACK_RANGE/2)
+				
+				local hitParts = workspace:GetPartBoundsInBox(attackHitboxCFrame, attackHitboxSize, overlapParams)
+				
+				if #hitParts > 0 then
 					local CombatService = require(script.Parent.CombatService)
 					if CombatService.CheckParry(mob.Target) then
 						CombatEvent:FireAllClients("MobStunned", mob.Id)
 					else
-						local hum = mob.Target.Character:FindFirstChildOfClass("Humanoid")
+						local hum = targetChar:FindFirstChildOfClass("Humanoid")
 						if hum then
 							hum:TakeDamage(20)
 						end
@@ -282,15 +335,14 @@ function MobService.Tick(dt: number)
 			mob.StateTime = now
 			
 		elseif mob.State == "RETURN" then
-			-- Invulnerable walk back to SpawnPosition
+			-- Walk back to SpawnPosition
 			local distToSpawn = (mob.SpawnPosition - hrp.Position).Magnitude
 			if distToSpawn <= 2 then
-				hrp.CFrame = CFrame.new(mob.SpawnPosition)
 				mob.State = "IDLE"
 				mob.StateTime = now
 			else
-				local dir = (mob.SpawnPosition - hrp.Position).Unit
-				hrp.CFrame = CFrame.new(hrp.Position + dir * MOB_SPEED * dt)
+				alignPos.Position = mob.SpawnPosition
+				alignOri.CFrame = CFrame.lookAt(hrp.Position, mob.SpawnPosition)
 			end
 		end
 	end

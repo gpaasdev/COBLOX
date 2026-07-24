@@ -44,6 +44,7 @@ Selamat datang di pusat navigasi dokumentasi COBLOX. Dokumentasi telah diramping
 ## 🚀 03. Production & LiveOps Hub (`docs/03-PRODUCTION_AND_LIVEOPS/`)
 
 - 📅 **[Roadmap](03-PRODUCTION_AND_LIVEOPS/ROADMAP.md)**
+- 🛍️ **[Creator Dashboard & Monetization Guide](03-PRODUCTION_AND_LIVEOPS/CREATOR_DASHBOARD_AND_MONETIZATION_GUIDE.md)**
 - ✅ **Production Checklist & QA:**
   - 📋 [Production Checklist](03-PRODUCTION_AND_LIVEOPS/CHECKLIST/PRODUCTION_CHECKLIST.md)
   - 🧪 [Master Integration Test Plan](03-PRODUCTION_AND_LIVEOPS/CHECKLIST/INTEGRATION_TEST_PLAN.md)
@@ -66,6 +67,22 @@ Selamat datang di pusat navigasi dokumentasi COBLOX. Dokumentasi telah diramping
   - 📄 [Economy Template](04-KNOWLEDGE_AND_TEMPLATES/TEMPLATES/economy-template.md)
   - 📄 [Test Plan Template](04-KNOWLEDGE_AND_TEMPLATES/TEMPLATES/test-plan-template.md)
 - 📦 **Assets & Setup Guides:** `docs/04-KNOWLEDGE_AND_TEMPLATES/ASSETS/`
+
+---
+
+## 🎨 05. Visual Media Asset Navigation Index (`docs/assets/`)
+
+ Seluruh aset visual game & branding COBLOX dikumpulkan secara terpusat di folder [`docs/assets/`](file:///Users/mac/.gemini/antigravity-ide/scratch/COBLOX/docs/assets):
+
+| Nama Aset | File Path | Tipe / Rasio | Kegunaan Utama |
+| :--- | :--- | :---: | :--- |
+| **Game Icon (Square)** | [`game_icon.png`](file:///Users/mac/.gemini/antigravity-ide/scratch/COBLOX/docs/assets/game_icon.png) | `1:1` (512x512) | Ikon Resmi Game di Roblox Creator Hub & Store |
+| **Game Thumbnail (Landscape)** | [`game_thumbnail_16x9.png`](file:///Users/mac/.gemini/antigravity-ide/scratch/COBLOX/docs/assets/game_thumbnail_16x9.png) | `16:9` (1920x1080) | Banner Key-Art Utama Halaman Game (Official Standard) |
+| **Game Thumbnail (Square)** | [`game_thumbnail.png`](file:///Users/mac/.gemini/antigravity-ide/scratch/COBLOX/docs/assets/game_thumbnail.png) | `1:1` (1024x1024) | Gambar Media Kit & Promo Card |
+| **GamePass: Auto Hatch** | [`pass_auto_hatch.png`](file:///Users/mac/.gemini/antigravity-ide/scratch/COBLOX/docs/assets/pass_auto_hatch.png) | `1:1` (512x512) | Ikon GamePass Auto Hatch Penetasan Telur |
+| **GamePass: Extra Inventory** | [`pass_extra_inventory.png`](file:///Users/mac/.gemini/antigravity-ide/scratch/COBLOX/docs/assets/pass_extra_inventory.png) | `1:1` (512x512) | Ikon GamePass Ekstra Slot Inventori |
+| **GamePass: Super Luck** | [`pass_super_luck.png`](file:///Users/mac/.gemini/antigravity-ide/scratch/COBLOX/docs/assets/pass_super_luck.png) | `1:1` (512x512) | Ikon GamePass Super Luck Multiplier |
+| **GamePass: VIP Alchemist** | [`pass_vip.png`](file:///Users/mac/.gemini/antigravity-ide/scratch/COBLOX/docs/assets/pass_vip.png) | `1:1` (512x512) | Ikon GamePass Status VIP Member |
 
 ---
 *Streamlined & Verified by Antigravity Documentation Engine*

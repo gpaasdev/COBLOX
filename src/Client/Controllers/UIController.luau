@@ -3,6 +3,7 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
+local HapticService = game:GetService("HapticService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
@@ -92,8 +93,9 @@ function UIController._CreateHUD()
 	questBanner.Name = "QuestBanner"
 	questBanner.Size = UDim2.new(0.26, 0, 0.12, 0)
 	questBanner.AnchorPoint = Vector2.new(1, 0)
-	questBanner.Position = UDim2.new(0.99, 0, 0.20, 0) -- Top-Right, avoiding Roblox leaderboard
-	questBanner.BackgroundColor3 = Color3.fromRGB(15, 23, 42)
+	questBanner.Position = UDim2.new(0.99, 0, 0.15, 0) -- Top-Right, avoiding TopBar
+	questBanner.BackgroundColor3 = COLOR_BG_DARK
+	questBanner.BackgroundTransparency = 0.4
 	questBanner.BorderSizePixel = 0
 	questBanner.ZIndex = 55
 	questBanner.Parent = mainScreenGui
@@ -132,52 +134,67 @@ function UIController._CreateHUD()
 	questDesc.Parent = questBanner
 
 	-- 1. Top Bar (Aura Energy & Chrono Sparks)
-	local topBar = Instance.new("Frame")
-	topBar.Name = "TopBar"
-	topBar.Size = UDim2.new(0.4, 0, 0.08, 0)
-	topBar.Position = UDim2.new(0.3, 0, 0.02, 0)
-	topBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	topBar.BorderSizePixel = 0
-	topBar.ZIndex = 50
-	topBar.Parent = mainScreenGui
+	-- Aura Pill
+	local auraBar = Instance.new("Frame")
+	auraBar.Name = "AuraBar"
+	auraBar.Size = UDim2.new(0.18, 0, 0.05, 0)
+	auraBar.AnchorPoint = Vector2.new(1, 0)
+	auraBar.Position = UDim2.new(0.99, 0, 0.02, 0)
+	auraBar.BackgroundColor3 = COLOR_BG_DARK
+	auraBar.BackgroundTransparency = 0.4
+	auraBar.BorderSizePixel = 0
+	auraBar.ZIndex = 50
+	auraBar.Parent = mainScreenGui
 
-	local uiCorner = Instance.new("UICorner")
-	uiCorner.CornerRadius = UDim.new(0, 12)
-	uiCorner.Parent = topBar
+	local auraCorner = Instance.new("UICorner")
+	auraCorner.CornerRadius = UDim.new(0, 12)
+	auraCorner.Parent = auraBar
 	
-	local topBarGradient = Instance.new("UIGradient")
-	topBarGradient.Color = ColorSequence.new({
-		ColorSequenceKeypoint.new(0, COLOR_BG_DARK),
-		ColorSequenceKeypoint.new(1, Color3.fromRGB(49, 46, 129)) -- Lighter indigo
-	})
-	topBarGradient.Rotation = 0
-	topBarGradient.Parent = topBar
-
-	local topBarStroke = Instance.new("UIStroke")
-	topBarStroke.Color = COLOR_ACCENT_PURPLE
-	topBarStroke.Thickness = 2
-	topBarStroke.Parent = topBar
+	local auraStroke = Instance.new("UIStroke")
+	auraStroke.Color = COLOR_AURA_GOLD
+	auraStroke.Thickness = 1.5
+	auraStroke.Parent = auraBar
 
 	walletAuraLabel = Instance.new("TextLabel")
 	walletAuraLabel.Name = "AuraLabel"
-	walletAuraLabel.Size = UDim2.new(0.5, 0, 1, 0)
+	walletAuraLabel.Size = UDim2.new(1, 0, 1, 0)
 	walletAuraLabel.BackgroundTransparency = 1
 	walletAuraLabel.TextColor3 = COLOR_AURA_GOLD
 	walletAuraLabel.Font = Enum.Font.FredokaOne
-	walletAuraLabel.TextSize = 20
+	walletAuraLabel.TextSize = 16
 	walletAuraLabel.Text = LocalizationController.Get("HUD_AURA", 0)
-	walletAuraLabel.Parent = topBar
+	walletAuraLabel.Parent = auraBar
+
+	-- Sparks Pill
+	local sparksBar = Instance.new("Frame")
+	sparksBar.Name = "SparksBar"
+	sparksBar.Size = UDim2.new(0.15, 0, 0.05, 0)
+	sparksBar.AnchorPoint = Vector2.new(1, 0)
+	sparksBar.Position = UDim2.new(0.80, 0, 0.02, 0)
+	sparksBar.BackgroundColor3 = COLOR_BG_DARK
+	sparksBar.BackgroundTransparency = 0.4
+	sparksBar.BorderSizePixel = 0
+	sparksBar.ZIndex = 50
+	sparksBar.Parent = mainScreenGui
+
+	local sparksCorner = Instance.new("UICorner")
+	sparksCorner.CornerRadius = UDim.new(0, 12)
+	sparksCorner.Parent = sparksBar
+	
+	local sparksStroke = Instance.new("UIStroke")
+	sparksStroke.Color = COLOR_SPARK_CYAN
+	sparksStroke.Thickness = 1.5
+	sparksStroke.Parent = sparksBar
 
 	walletSparksLabel = Instance.new("TextLabel")
 	walletSparksLabel.Name = "SparksLabel"
-	walletSparksLabel.Size = UDim2.new(0.5, 0, 1, 0)
-	walletSparksLabel.Position = UDim2.new(0.5, 0, 0, 0)
+	walletSparksLabel.Size = UDim2.new(1, 0, 1, 0)
 	walletSparksLabel.BackgroundTransparency = 1
 	walletSparksLabel.TextColor3 = COLOR_SPARK_CYAN
 	walletSparksLabel.Font = Enum.Font.FredokaOne
-	walletSparksLabel.TextSize = 20
+	walletSparksLabel.TextSize = 16
 	walletSparksLabel.Text = LocalizationController.Get("HUD_SPARKS", 0)
-	walletSparksLabel.Parent = topBar
+	walletSparksLabel.Parent = sparksBar
 
 	-- LiveOps TopBar Event Indicator Banner
 	liveOpsBanner = Instance.new("TextLabel")
@@ -196,42 +213,45 @@ function UIController._CreateHUD()
 	bannerCorner.CornerRadius = UDim.new(0, 6)
 	bannerCorner.Parent = liveOpsBanner
 
-	local isMobile = UserInputService.TouchEnabled
+	-- Hamburger Toggle Button
+	local menuBtn = Instance.new("TextButton")
+	menuBtn.Name = "MobileMenuBtn"
+	menuBtn.Size = UDim2.new(0, 44, 0, 44)
+	menuBtn.Position = UDim2.new(0.01, 0, 0.70, 0)
+	menuBtn.BackgroundColor3 = COLOR_BG_DARK
+	menuBtn.BackgroundTransparency = 0.4
+	menuBtn.TextColor3 = COLOR_TEXT_WHITE
+	menuBtn.Font = Enum.Font.FredokaOne
+	menuBtn.TextSize = 22
+	menuBtn.Text = "☰"
+	menuBtn.ZIndex = 50
+	menuBtn.Parent = mainScreenGui
 
-	-- Mobile Hamburger Toggle Button
-	if isMobile then
-		local menuBtn = Instance.new("TextButton")
-		menuBtn.Name = "MobileMenuBtn"
-		menuBtn.Size = UDim2.new(0, 44, 0, 44)
-		menuBtn.Position = UDim2.new(0.01, 0, 0.25, 0)
-		menuBtn.BackgroundColor3 = COLOR_ACCENT_PURPLE
-		menuBtn.TextColor3 = COLOR_TEXT_WHITE
-		menuBtn.Font = Enum.Font.FredokaOne
-		menuBtn.TextSize = 22
-		menuBtn.Text = "☰"
-		menuBtn.ZIndex = 50
-		menuBtn.Parent = mainScreenGui
+	local menuCorner = Instance.new("UICorner")
+	menuCorner.CornerRadius = UDim.new(0, 10)
+	menuCorner.Parent = menuBtn
+	
+	local menuStroke = Instance.new("UIStroke")
+	menuStroke.Color = COLOR_ACCENT_PURPLE
+	menuStroke.Thickness = 1.5
+	menuStroke.Parent = menuBtn
 
-		local menuCorner = Instance.new("UICorner")
-		menuCorner.CornerRadius = UDim.new(0, 10)
-		menuCorner.Parent = menuBtn
+	UIButtonAnimator.BindButton(menuBtn, { "Click", "Audio" }, function()
+		if sideDrawer then
+			sideDrawer.Visible = not sideDrawer.Visible
+		end
+	end)
 
-		UIButtonAnimator.BindButton(menuBtn, { "Click", "Audio" }, function()
-			if sideDrawer then
-				sideDrawer.Visible = not sideDrawer.Visible
-			end
-		end)
-	end
-
-	-- 2. Side Drawer (Max Width 180px Collapsible)
+	-- 2. Side Drawer (Max Width 160px Collapsible)
 	sideDrawer = Instance.new("Frame")
 	sideDrawer.Name = "SideDrawer"
 	sideDrawer.Size = UDim2.new(0, 160, 0.60, 0)
-	sideDrawer.Position = isMobile and UDim2.new(0.01, 50, 0.25, 0) or UDim2.new(0.01, 0, 0.25, 0)
+	sideDrawer.Position = UDim2.new(0.01, 50, 0.15, 0)
 	sideDrawer.BackgroundColor3 = COLOR_BG_DARK
+	sideDrawer.BackgroundTransparency = 0.4
 	sideDrawer.BorderSizePixel = 0
 	sideDrawer.ZIndex = 40
-	sideDrawer.Visible = not isMobile
+	sideDrawer.Visible = false -- Always collapsed by default
 	sideDrawer.Parent = mainScreenGui
 
 	local drawerCorner = Instance.new("UICorner")
@@ -301,7 +321,8 @@ function UIController._CreateHUD()
 	notificationLabel.Name = "NotificationBanner"
 	notificationLabel.Size = UDim2.new(0.48, 0, 0.055, 0)
 	notificationLabel.Position = UDim2.new(0.26, 0, 0.14, 0)
-	notificationLabel.BackgroundColor3 = Color3.fromRGB(15, 23, 42)
+	notificationLabel.BackgroundColor3 = COLOR_BG_DARK
+	notificationLabel.BackgroundTransparency = 0.4
 	notificationLabel.TextColor3 = COLOR_AURA_GOLD
 	notificationLabel.Font = Enum.Font.FredokaOne
 	notificationLabel.TextSize = 15
@@ -324,8 +345,8 @@ function UIController._CreateHUD()
 	bottomBar.Name = "BottomActionHotbar"
 	bottomBar.Size = UDim2.new(0.55, 0, 0.12, 0)
 	bottomBar.Position = UDim2.new(0.225, 0, 0.86, 0)
-	bottomBar.BackgroundColor3 = Color3.fromRGB(15, 23, 42)
-	bottomBar.BackgroundTransparency = 0.2
+	bottomBar.BackgroundColor3 = COLOR_BG_DARK
+	bottomBar.BackgroundTransparency = 0.4
 	bottomBar.BorderSizePixel = 0
 	bottomBar.ZIndex = 60
 	bottomBar.Parent = mainScreenGui
@@ -365,8 +386,9 @@ function UIController._CreateHUD()
 		local pill = Instance.new("TextButton")
 		pill.Name = "Pill_" .. act.Name
 		pill.Size = UDim2.new(0.18, 0, 1, 0) -- Scaled down slightly to fit 5 pills
-		pill.BackgroundColor3 = act.Color
-		pill.TextColor3 = COLOR_TEXT_WHITE
+		pill.BackgroundColor3 = Color3.fromRGB(15, 23, 42)
+		pill.BackgroundTransparency = 0.35
+		pill.TextColor3 = act.Color
 		pill.Font = Enum.Font.FredokaOne
 		pill.TextSize = 12
 		pill.Text = act.Name
@@ -375,6 +397,11 @@ function UIController._CreateHUD()
 		local pillCorner = Instance.new("UICorner")
 		pillCorner.CornerRadius = UDim.new(0, 8)
 		pillCorner.Parent = pill
+
+		local pillStroke = Instance.new("UIStroke")
+		pillStroke.Color = act.Color
+		pillStroke.Thickness = 1.5
+		pillStroke.Parent = pill
 
 		local isMounted = false
 		UIButtonAnimator.BindButton(pill, { "Hover", "Click", "Audio" }, function()
@@ -388,7 +415,7 @@ function UIController._CreateHUD()
 					-- Tactile Audio & Visual Polish
 					local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)
 					pcall(function()
-						AudioController.PlaySound("rbxassetid://6023565860", 0.8) -- Valid Dash swoosh SFX
+						AudioController.PlaySound("rbxassetid://4606776100", 0.8) -- Valid Dash swoosh SFX
 					end)
 					
 					UIController.ShowNotification("⚡ Dash Activated!")
@@ -539,6 +566,19 @@ function UIController.ShowNotification(msg: string)
 	if notificationLabel then
 		notificationLabel.Text = msg
 		notificationLabel.Visible = true
+        
+        -- Haptic Feedback (Juiciness)
+        if UserInputService.TouchEnabled then
+            pcall(function()
+                if HapticService:IsMotorSupported(Enum.UserInputType.Gamepad1, Enum.VibrationMotor.Small) then
+                    HapticService:SetMotor(Enum.UserInputType.Gamepad1, Enum.VibrationMotor.Small, 0.5)
+                    task.delay(0.1, function()
+                        HapticService:SetMotor(Enum.UserInputType.Gamepad1, Enum.VibrationMotor.Small, 0)
+                    end)
+                end
+            end)
+        end
+
 		task.delay(3, function()
 			notificationLabel.Visible = false
 		end)

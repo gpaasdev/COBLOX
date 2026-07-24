@@ -28,7 +28,7 @@ function NetChannels.GetRemoteEvent(name: string): RemoteEvent?
 	else
 		local remote = remotesFolder:FindFirstChild(name)
 		if not remote then
-			remote = remotesFolder:WaitForChild(name, 5)
+			remote = remotesFolder:WaitForChild(name, 15)
 		end
 		return remote :: RemoteEvent?
 	end
@@ -46,7 +46,7 @@ function NetChannels.GetRemoteFunction(name: string): RemoteFunction?
 	else
 		local remote = remotesFolder:FindFirstChild(name)
 		if not remote then
-			remote = remotesFolder:WaitForChild(name, 5)
+			remote = remotesFolder:WaitForChild(name, 15)
 		end
 		return remote :: RemoteFunction?
 	end

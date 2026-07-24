@@ -7,6 +7,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local ClientRemotes = require(script.Parent.Parent:WaitForChild("Network"):WaitForChild("ClientRemotes") :: any)
+local VFXEngine = require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("VFXEngine") :: any)
 
 local localPlayer = Players.LocalPlayer
 local mouse = localPlayer:GetMouse()
@@ -94,15 +95,30 @@ function PlacementController.StartPlacementPreview()
 
 			previewHologram.Position = Vector3.new(snappedX, snappedY, snappedZ)
 
-			-- Check distance to character <= 15 studs
+			-- Check distance to character <= 15 studs and Overlap
 			local character = localPlayer.Character
+			local isValid = false
 			if character and character.PrimaryPart then
 				local dist = (character.PrimaryPart.Position - previewHologram.Position).Magnitude
 				if dist <= 15 then
-					previewHologram.Color = Color3.fromRGB(34, 197, 94) -- Valid Green
-				else
-					previewHologram.Color = Color3.fromRGB(239, 68, 68) -- Invalid Red
+					-- Check overlap
+					local overlapParams = OverlapParams.new()
+					overlapParams.FilterType = Enum.RaycastFilterType.Exclude
+					overlapParams.FilterDescendantsInstances = { character, previewHologram, Workspace.Terrain }
+					local bounds = Workspace:GetPartBoundsInBox(previewHologram.CFrame, previewHologram.Size, overlapParams)
+					
+					if #bounds > 0 then
+						isValid = false -- Overlapping with something
+					else
+						isValid = true
+					end
 				end
+			end
+			
+			if isValid then
+				previewHologram.Color = Color3.fromRGB(34, 197, 94) -- Valid Green
+			else
+				previewHologram.Color = Color3.fromRGB(239, 68, 68) -- Invalid Red (Too far or Overlapping)
 			end
 		end
 	end)
@@ -122,11 +138,23 @@ end
 function PlacementController.ConfirmPlacement()
 	if not previewHologram then return end
 
+	if previewHologram.Color == Color3.fromRGB(239, 68, 68) then
+		-- Invalid Placement Feedback
+		VFXEngine.ScreenPunch(0.5)
+		local uiFolder = script.Parent
+		local UIController = require(uiFolder:WaitForChild("UIController") :: any)
+		UIController.ShowNotification("❌ TIDAK VALID: Area tertutup atau terlalu jauh!")
+		return -- Cancel placement attempt
+	end
+
 	local pos = previewHologram.Position
 	local remote = ClientRemotes.RequestPlacement
 	if remote then
 		remote:FireServer(currentStructureId, "Grid_" .. tostring(os.time()), pos)
 		print(string.format("[PlacementController] Fired RequestPlacement for %s at (%.1f, %.1f, %.1f)", currentStructureId, pos.X, pos.Y, pos.Z))
+		
+		-- Success feedback
+		VFXEngine.EmitImpactSparks(pos, Color3.fromRGB(34, 197, 94))
 	end
 
 	PlacementController.StopPlacementPreview()

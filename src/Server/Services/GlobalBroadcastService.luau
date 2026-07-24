@@ -37,6 +37,7 @@ local TOPIC_NAME = "COBLOX_GlobalAnnounce"
 
 function GlobalBroadcastService.Init()
 	print("[GlobalBroadcastService] Initializing Global Server Broadcast Engine...")
+	NetChannels.GetRemoteEvent("BroadcastServerMessage")
 end
 
 function GlobalBroadcastService.Start()

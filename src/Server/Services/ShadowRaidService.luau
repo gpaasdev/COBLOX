@@ -25,6 +25,21 @@ function ShadowRaidService.Init()
 	local raidRemoteFunc = NetChannels.GetRemoteFunction("RequestShadowRaid")
 	if raidRemoteFunc then
 		raidRemoteFunc.OnServerInvoke = function(raider: Player, victimUserId: any, slotIndex: any)
+            -- [NEW] PvE Boss Raid Check
+            if victimUserId == "BOSS_RAID" then
+                -- Calculate dynamic scaling based on server player count
+                local activePlayersCount = #Players:GetPlayers()
+                local bossHealth = 10000 + (activePlayersCount * 5000)
+                local bossDamage = 50 + (activePlayersCount * 10)
+                
+                GlobalBroadcastService.Broadcast(
+                    string.format("⚠️ BOSS RAID SHADOW DRAGON MUNCUL! HP: %d", bossHealth),
+                    255, 69, 0
+                )
+                
+                return { Success = true, IsBossRaid = true, BossHealth = bossHealth, BossDamage = bossDamage }
+            end
+
 			-- Zero-Trust Payload Validation
 			local ok, vId, sIdx = PayloadValidator.Validate({victimUserId, slotIndex}, {"number", "number"})
 			if not ok then

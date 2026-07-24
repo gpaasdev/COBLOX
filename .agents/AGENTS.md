@@ -1,5 +1,9 @@
 # Antigravity Agent Engineering Standards & Operating Methodology
 
+## Project Repository & Links
+- **GitHub Repository**: https://github.com/gpaasdev/COBLOX
+- **Web Portal / GitHub Pages**: https://gpaasdev.github.io/COBLOX/
+
 ## 1. Operating Workflow
 All non-trivial feature developments and architectural modifications must follow this strict cycle:
 1. **Understand Codebase & Map Dependencies**: Use structural analysis, trace imports, and verify schemas before making changes.

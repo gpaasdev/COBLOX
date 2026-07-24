@@ -11,6 +11,9 @@ local stepNames = { "Spawn_Sanctum", "Approach_IceWall", "Complete_FTUE" }
 
 function OnboardingService.Init()
 	print("[OnboardingService] Initializing Event-Driven FTUE State Machine...")
+	NetChannels.GetRemoteEvent("StartCinematicFTUE")
+	NetChannels.GetRemoteEvent("AdvanceFTUE")
+	NetChannels.GetRemoteFunction("RequestCraft")
 end
 
 function OnboardingService.Start()

@@ -14,6 +14,8 @@ local CombatController = {}
 local canAttack = true
 local isDashing = false
 
+local VFXEngine = require(script.Parent.Parent.Modules.UI.VFXEngine)
+
 function CombatController.Init()
     -- Bind Mobile & PC Actions via ContextActionService (creates Touch Buttons automatically on Mobile)
     ContextActionService:BindAction("AttackAction", function(actionName, inputState)
@@ -76,6 +78,11 @@ function CombatController.Attack()
                 if dist <= nearestDist then
                     nearestDist = dist
                     nearestMobId = part:GetAttribute("MobId")
+                    
+                    -- Trigger Impact Sparks locally for juicy visual feedback
+                    VFXEngine.EmitImpactSparks(part.PrimaryPart.Position + Vector3.new(0,1,0), Color3.fromRGB(255, 180, 50))
+                    VFXEngine.HitStop(0.04)
+                    VFXEngine.PlayCameraShake(0.3, 0.15)
                 end
             end
         end
@@ -130,6 +137,11 @@ end
 
 function CombatController.PlayStunVFX(mobId: string)
     print("[VFX] 💥 PERFECT PARRY! Monster stunned!")
+    
+    -- Cinematic dopamine hit
+    VFXEngine.ScreenPunch(0.8)
+    VFXEngine.PlayCameraShake(0.6, 0.25)
+    
     local uiFolder = script.Parent
     local UIController = require(uiFolder:WaitForChild("UIController") :: any)
     UIController.ShowNotification("💥 TANGKISAN SEMPURNA! Monster Terkena Stun (+50 Coins)!")
