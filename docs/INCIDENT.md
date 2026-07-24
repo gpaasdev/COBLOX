@@ -1,5 +1,7 @@
 # COBLOX Incident Playbook
 
+[🏠 Master Index](README.md)
+
 Panduan taktis operasional (On-Call) untuk merespons kegagalan sistem pada fase *Live-Service*.
 
 ## Service Level Objectives (SLO) & Error Budget
