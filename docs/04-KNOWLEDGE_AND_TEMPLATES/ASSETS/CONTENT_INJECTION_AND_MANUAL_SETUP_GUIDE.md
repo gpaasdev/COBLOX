@@ -64,7 +64,7 @@ graph LR
 3. Klik tombol **Bulk Import**, lalu pilih berkas model 3D (`.fbx`/`.obj`) atau gambar (`.png`) Anda.
 4. Setelah proses unggah selesai, klik kanan aset pada Asset Manager $\to$ pilih **Copy Asset ID**.
 5. Buka berkas konfigurasi terkait di IDE:
-   - [AssetManifest.luau](file:///Users/mac/.gemini/antigravity-ide/scratch/COBLOX/src/Assets/AssetManifest.luau)
-   - [PetData.luau](file:///Users/mac/.gemini/antigravity-ide/scratch/COBLOX/src/Shared/Configuration/PetData.luau)
+   - [AssetManifest.luau](../../../src/Assets/AssetManifest.luau)
+   - [PetData.luau](../../../src/Shared/Configuration/PetData.luau)
 6. Ganti ID placeholder `rbxassetid://0` dengan ID yang di-copy.
 7. Jalankan perintah `rojo build -o test.rbxl` untuk menyinkronkan perubahan ke tempat (*place*) Roblox Studio Anda.
