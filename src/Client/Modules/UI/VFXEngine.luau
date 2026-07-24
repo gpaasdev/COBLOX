@@ -50,7 +50,7 @@ local sparkTemplate = Instance.new("Part")
 sparkTemplate.Transparency = 1
 sparkTemplate.CanCollide = false
 sparkTemplate.Anchored = true
-local attach = Instance.new("Attachment", sparkTemplate)
+local attach = Instance.new("Attachment"); attach.Parent = sparkTemplate
 local emitter = Instance.new("ParticleEmitter")
 emitter.Name = "SparkEmitter"
 emitter.Texture = "rbxassetid://13837943485"

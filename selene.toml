@@ -3,3 +3,6 @@ std = "roblox"
 [rules]
 shadowing = "allow"
 roblox_incorrect_roblox_api = "allow"
+multiple_statements = "allow"
+global_usage = "allow"
+unused_variable = "allow"

@@ -452,7 +452,7 @@ function UIController._CreateHUD()
 	slotLayout.Parent = slotsRow
 
 	local slotIcons = { "🔮", "💧", "⚡", "🧪", "📜" }
-	hotbarSlotsData = {}
+	local hotbarSlotsData = {}
 	for slotIdx = 1, 5 do
 		local slotBtn = Instance.new("TextButton")
 		slotBtn.Name = "Slot_" .. slotIdx

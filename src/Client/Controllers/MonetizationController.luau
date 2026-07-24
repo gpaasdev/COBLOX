@@ -22,6 +22,8 @@ local PRODUCT_COINS_LARGE = 3611126895
 local PRODUCT_GEMS_SMALL = 3611126819
 local PRODUCT_GEMS_LARGE = 3611126995
 
+local manualHatchCount = 0
+
 function MonetizationController.Init()
 	print("[MonetizationController] Initializing Contextual Monetization Controller...")
 end

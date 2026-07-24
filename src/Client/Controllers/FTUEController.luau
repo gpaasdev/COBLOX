@@ -56,12 +56,6 @@ function FTUEController.Start()
 	
 	-- Mock remote for crafting detection since it's server authoritative
 	local craftRemote = NetChannels.GetRemoteFunction("RequestCraft")
-	if craftRemote then
-		-- In a real scenario we might wait for a server broadcast, but we can hook into the client invocation
-		-- for immediate UI feedback. However, since it's a function we don't have OnClientEvent.
-		-- Let's just poll the inventory or assume success when they invoke for the tutorial.
-	end
-
 	-- Scan the workspace to check if the plot is claimed or droppers bought
 	RunService.Heartbeat:Connect(function()
 		if not hasClaimedPlot then
@@ -139,8 +133,8 @@ function FTUEController.GuideToFurnace()
 			local hrp = character and character:FindFirstChild("HumanoidRootPart")
 			if hrp then
 				local beam = Instance.new("Beam")
-				local att0 = Instance.new("Attachment", hrp)
-				local att1 = Instance.new("Attachment", furnace)
+				local att0 = Instance.new("Attachment"); att0.Parent = hrp
+				local att1 = Instance.new("Attachment"); att1.Parent = furnace
 				beam.Attachment0 = att0
 				beam.Attachment1 = att1
 				beam.FaceCamera = true
