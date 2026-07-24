@@ -47,3 +47,5 @@ scratch/*.tmp
 # Security & Private Documentation
 .agents/
 
+.vercel
+scratch/
