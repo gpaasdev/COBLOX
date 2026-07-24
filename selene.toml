@@ -1,4 +1,4 @@
-std = "rojo"
+std = "roblox"
 
 [config]
 shadowing = "allow"
