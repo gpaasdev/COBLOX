@@ -388,7 +388,7 @@ function UIController._CreateHUD()
 					-- Tactile Audio & Visual Polish
 					local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)
 					pcall(function()
-						AudioController.PlaySound("rbxassetid://9114223179", 0.8) -- Valid Dash swoosh SFX
+						AudioController.PlaySound("rbxassetid://6023565860", 0.8) -- Valid Dash swoosh SFX
 					end)
 					
 					UIController.ShowNotification("⚡ Dash Activated!")

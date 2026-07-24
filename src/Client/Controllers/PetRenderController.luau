@@ -179,10 +179,6 @@ function PetRenderController.MountNeonCrocodile(enable: boolean)
 	print("[PetRenderController] 🐊 Mounted Giant Neon Alligator Mount with Speed Boost & Aura Trail!")
 end
 
-	activeMountModel = mount
-	print("[PetRenderController] 🐊 Mounted Giant Neon Alligator Mount with Speed Boost & Aura Trail!")
-end
-
 function PetRenderController.DespawnAll()
 	for _, spirit in ipairs(activeSpiritCompanions) do
 		spirit:Destroy()

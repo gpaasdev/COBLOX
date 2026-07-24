@@ -136,7 +136,7 @@ function CrystalPurificationService.TakeCrystalCargo(player: Player, plotId: str
 	-- Play Feedback Sound
 	pcall(function()
 		local sound = Instance.new("Sound")
-		sound.SoundId = "rbxassetid://9114223179" -- Magic Chime SFX
+		sound.SoundId = "rbxassetid://6023565860" -- Valid Magic Chime SFX
 		sound.Volume = 1
 		sound.Parent = char.PrimaryPart
 		sound:Play()
