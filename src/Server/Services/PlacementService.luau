@@ -2,6 +2,7 @@
 
 local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
 
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)

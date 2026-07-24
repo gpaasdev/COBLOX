@@ -49,9 +49,7 @@ function Maid:DoCleaning()
 			task()
 		elseif typeof(task) == "RBXScriptConnection" then
 			task:Disconnect()
-		elseif type(task) == "table" and type(task.Destroy) == "function" then
-			task:Destroy()
-		elseif typeof(task) == "Instance" then
+		elseif typeof(task) == "Instance" or (type(task) == "table" and type(task.Destroy) == "function") then
 			task:Destroy()
 		elseif type(task) == "table" and type(task.DoCleaning) == "function" then
 			task:DoCleaning()

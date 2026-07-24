@@ -1,3 +1,4 @@
+--!strict
 -- PartCache (Object Pooling)
 -- Custom Implementation tailored for COBLOX LGBOS v11.0
 -- Avoids Instance.new() lag by pre-allocating parts and moving them out of bounds.
