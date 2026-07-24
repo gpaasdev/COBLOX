@@ -63,13 +63,14 @@ function PetRenderController.Start()
 
 				local sideOffset = (i % 2 == 0 and -3.5 or 3.5) * (1 + math.floor((i - 1) / 2) * 0.5)
 				local sineBobbing = math.sin(time() * 3.5 + i * 0.8) * 0.75
-				local offset = Vector3.new(sideOffset, 2.5 + sineBobbing, 4 + math.floor((i - 1) / 2) * 2)
+				local offset = Vector3.new(sideOffset, 2.5 + sineBobbing, 3.5 + math.floor((i - 1) / 2) * 2)
 				
 				local targetCFrame = hrpCFrame * CFrame.new(offset) * CFrame.Angles(0, 0, turnTilt)
 				
-				-- Spring & Lerp smooth motion
+				-- Smooth CFrame movement using PivotTo (prevents gravity void falling)
+				local currentCFrame = companionModel:GetPivot()
 				local lerpSpeed = math.clamp(dt * 9.5, 0, 1)
-				companionModel.PrimaryPart.CFrame = companionModel.PrimaryPart.CFrame:Lerp(targetCFrame, lerpSpeed)
+				companionModel:PivotTo(currentCFrame:Lerp(targetCFrame, lerpSpeed))
 			end
 		end
 	end)
@@ -77,8 +78,13 @@ end
 
 function PetRenderController.SpawnSpiritCompanion(spiritId: string): Model
 	local companionModel = CreatureBuilder.BuildCyberPet(spiritId)
+	
+	-- Anchor PrimaryPart so gravity does not pull it into the void before RenderStepped
+	if companionModel.PrimaryPart then
+		companionModel.PrimaryPart.Anchored = true
+	end
+	
 	companionModel.Parent = Workspace
-
 	table.insert(activeSpiritCompanions, companionModel)
 
 	print("[PetRenderController] Rendered Cybernetic Organic Pet: " .. spiritId)
@@ -116,92 +122,62 @@ function PetRenderController.MountNeonCrocodile(enable: boolean)
 	body.Color = Color3.fromRGB(16, 185, 129) -- Vibrant Neon Emerald
 	body.Material = Enum.Material.Neon
 	body.CanCollide = false
-	body.Anchored = false
+	body.Anchored = true
 	body.Parent = mount
 
 	-- Head
 	local head = Instance.new("Part")
 	head.Name = "MountHead"
 	head.Size = Vector3.new(3.2, 2, 4)
-	head.Position = body.Position + Vector3.new(0, 0.5, -5.5)
 	head.Color = Color3.fromRGB(56, 189, 248) -- Cyan Glow Snout
 	head.Material = Enum.Material.Neon
 	head.CanCollide = false
-	head.Anchored = false
+	head.Anchored = true
 	head.Parent = mount
+
+	-- Glowing Tail
+	local tail = Instance.new("Part")
+	tail.Name = "MountTail"
+	tail.Size = Vector3.new(2, 1.8, 6)
+	tail.Color = Color3.fromRGB(168, 85, 247) -- Purple Glow Tail
+	tail.Material = Enum.Material.Neon
+	tail.CanCollide = false
+	tail.Anchored = true
+	tail.Parent = mount
+
+	mount.PrimaryPart = body
+	mount:PivotTo(hrp.CFrame * CFrame.new(0, -2.2, 0))
+	
+	-- Unanchor and weld to HRP
+	body.Anchored = false
+	head.Anchored = false
+	tail.Anchored = false
 
 	local headWeld = Instance.new("WeldConstraint")
 	headWeld.Part0 = body
 	headWeld.Part1 = head
 	headWeld.Parent = body
 
-	-- Glowing Tail
-	local tail = Instance.new("Part")
-	tail.Name = "MountTail"
-	tail.Size = Vector3.new(2, 1.8, 6)
-	tail.Position = body.Position + Vector3.new(0, -0.2, 6.5)
-	tail.Color = Color3.fromRGB(168, 85, 247) -- Purple Glow Tail
-	tail.Material = Enum.Material.Neon
-	tail.CanCollide = false
-	tail.Anchored = false
-	tail.Parent = mount
-
 	local tailWeld = Instance.new("WeldConstraint")
 	tailWeld.Part0 = body
 	tailWeld.Part1 = tail
 	tailWeld.Parent = body
 
-	-- Seat Assembly
-	local seat = Instance.new("Seat")
-	seat.Name = "MountSeat"
-	seat.Size = Vector3.new(2, 1, 2)
-	seat.Position = body.Position + Vector3.new(0, 1.6, 0)
-	seat.Color = Color3.fromRGB(30, 41, 59)
-	seat.Material = Enum.Material.Metal
-	seat.CanCollide = false
-	seat.Anchored = false
-	seat.Parent = mount
-
-	local seatWeld = Instance.new("WeldConstraint")
-	seatWeld.Part0 = body
-	seatWeld.Part1 = seat
-	seatWeld.Parent = body
-
-	-- Aura Ribbon Trail Emitter
-	local trailAtt0 = Instance.new("Attachment")
-	trailAtt0.Position = Vector3.new(-1.8, 0, 4)
-	trailAtt0.Parent = body
-
-	local trailAtt1 = Instance.new("Attachment")
-	trailAtt1.Position = Vector3.new(1.8, 0, 4)
-	trailAtt1.Parent = body
-
-	local trail = Instance.new("Trail")
-	trail.Attachment0 = trailAtt0
-	trail.Attachment1 = trailAtt1
-	trail.Color = ColorSequence.new(Color3.fromRGB(16, 185, 129), Color3.fromRGB(56, 189, 248))
-	trail.Lifetime = 1.2
-	trail.MinLength = 0.1
-	trail.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.2), NumberSequenceKeypoint.new(1, 1)})
-	trail.LightEmission = 0.9
-	trail.Parent = body
-
-	mount.PrimaryPart = body
-	mount.Parent = Workspace
-
-	-- Weld Mount Body to Character Root Part
 	local mountWeld = Instance.new("WeldConstraint")
 	mountWeld.Part0 = hrp
 	mountWeld.Part1 = body
 	mountWeld.Parent = hrp
 
-	body.CFrame = hrp.CFrame * CFrame.new(0, -1.8, 0)
+	mount.Parent = Workspace
 
-	-- Apply Speed Boost & Seat Player
+	-- Apply Speed Boost
 	if humanoid then
 		humanoid.WalkSpeed = 28 -- 75% Speed Boost!
-		seat:Sit(humanoid)
 	end
+
+	activeMountModel = mount
+	print("[PetRenderController] 🐊 Mounted Giant Neon Alligator Mount with Speed Boost & Aura Trail!")
+end
 
 	activeMountModel = mount
 	print("[PetRenderController] 🐊 Mounted Giant Neon Alligator Mount with Speed Boost & Aura Trail!")
