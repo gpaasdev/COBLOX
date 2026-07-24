@@ -6,45 +6,97 @@
   <title>Media Kit & Press Assets | COBLOX</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
   <header>
-    <a href="index.html" class="logo">✨ COBLOX</a>
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-flask-vial"></i> COBLOX
+    </a>
     <nav>
-      <a href="index.html">Beranda</a>
-      <a href="codex.html">Buku Resep & Spirit</a>
-      <a href="developers.html">Portal Pengembang</a>
-      <a href="media-kit.html" class="active">Media Kit</a>
-      <a href="https://www.roblox.com" target="_blank" class="btn-play">🎮 PLAY ON ROBLOX</a>
+      <a href="index.html"><i class="fa-solid fa-house"></i> Beranda</a>
+      <a href="codex.html"><i class="fa-solid fa-book-bookmark"></i> Resep & Spirit</a>
+      <a href="developers.html"><i class="fa-solid fa-code"></i> Pengembang</a>
+      <a href="media-kit.html" class="active"><i class="fa-solid fa-photo-film"></i> Media Kit</a>
+      <a href="https://www.roblox.com" target="_blank" class="btn-play"><i class="fa-solid fa-gamepad"></i> PLAY ON ROBLOX</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>🎨 Media Kit & Branding Assets</h1>
-    <p>Aset resmi logo, palet warna, dan tangkapan layar 4K untuk Kreator Konten, Streamer, dan Pers.</p>
+    <div class="badge"><i class="fa-solid fa-camera"></i> CREATOR & PRESS KIT</div>
+    <h1>Media Kit & Branding Assets</h1>
+    <p>Aset resmi logo transparan, palet warna resmi 1-click copy, screenshot studio 4K, dan panduan pers untuk streamer YouTube & TikTok.</p>
   </section>
 
+  <!-- Interactive Brand Swatches -->
+  <h2 class="section-title">🎨 Palet Warna Resmi (Klik Untuk Salin Hex)</h2>
+  <div class="grid">
+    <div class="card" onclick="copyColor('#F59E0B')">
+      <div class="swatch" style="background: #F59E0B;">#F59E0B</div>
+      <h3>Aura Gold</h3>
+      <p>Warna utama untuk tombol CTA, aksen bejana alkimia, dan logo utama.</p>
+    </div>
+
+    <div class="card" onclick="copyColor('#06B6D4')">
+      <div class="swatch" style="background: #06B6D4;">#06B6D4</div>
+      <h3>Spark Cyan</h3>
+      <p>Warna aksen kedua untuk indikator Mana, efek glowing, dan tautan aktif.</p>
+    </div>
+
+    <div class="card" onclick="copyColor('#A855F7')">
+      <div class="swatch" style="background: #A855F7; color: #fff;">#A855F7</div>
+      <h3>Astral Purple</h3>
+      <p>Warna kelangkaan *Legendary Spirit* dan racikan ramuan tier tinggi.</p>
+    </div>
+
+    <div class="card" onclick="copyColor('#10B981')">
+      <div class="swatch" style="background: #10B981;">#10B981</div>
+      <h3>Emerald Green</h3>
+      <p>Warna indikator status server online, *uptime*, dan *success notification*.</p>
+    </div>
+  </div>
+
+  <!-- Downloadable Creator Assets -->
+  <h2 class="section-title">📸 Aset Downloadable 4K</h2>
   <div class="grid">
     <div class="card">
-      <h3>🎨 Brand Palette</h3>
-      <p><strong>Aura Gold:</strong> #F59E0B<br><strong>Spark Cyan:</strong> #06B6D4<br><strong>Slate Dark:</strong> #0F172A<br><strong>Accent Purple:</strong> #A855F7</p>
+      <h3><i class="fa-solid fa-image" style="color: var(--color-cyan);"></i> Official 4K Screenshots</h3>
+      <p>Koleksi tangkapan layar resolusi tinggi Sanctum Grid 3x3, Alchemists Lab, dan Grand Obelisk siap pakai untuk thumbnail.</p>
+      <a href="https://github.com/gpaasdev/COBLOX" class="btn-play" style="display: inline-block; margin-top: 1rem; font-size: 0.85rem;">
+        <i class="fa-solid fa-download"></i> UNDUH PAKET 4K (ZIP)
+      </a>
     </div>
+
     <div class="card">
-      <h3>📸 4K Studio Screenshots</h3>
-      <p>Koleksi tangkapan layar resmi area Sanctum Grid, Alchemist Lab, dan Grand Obelisk siap unduh untuk thumbnail YouTube/TikTok.</p>
+      <h3><i class="fa-solid fa-vector-square" style="color: var(--color-gold);"></i> Logo Vector & Icon Pack</h3>
+      <p>Logo transparan format SVG dan PNG resolusi 4000x4000px dengan varian *Light* dan *Dark mode*.</p>
+      <a href="https://github.com/gpaasdev/COBLOX" class="btn-play" style="display: inline-block; margin-top: 1rem; font-size: 0.85rem;">
+        <i class="fa-solid fa-download"></i> UNDUH LOGO (SVG/PNG)
+      </a>
     </div>
+
     <div class="card">
-      <h3>✨ Official Logos</h3>
-      <p>Logo transparan SVG & PNG resolusi tinggi untuk keperluan promosi dan kerjasama media.</p>
+      <h3><i class="fa-solid fa-newspaper" style="color: var(--color-purple);"></i> Official Press Release</h3>
+      <p>Rangkuman lembar fakta teknis (*Fact Sheet*), profil pengembang, serta rincian peluncuran *Closed Alpha* COBLOX 2026.</p>
+      <a href="https://github.com/gpaasdev/COBLOX" class="btn-play" style="display: inline-block; margin-top: 1rem; font-size: 0.85rem;">
+        <i class="fa-solid fa-file-pdf"></i> UNDUH PRESS RELEASE
+      </a>
     </div>
   </div>
 
   <footer>
-    <p>© 2026 COBLOX Official Creator Assets.</p>
+    <p>© 2026 <strong>COBLOX Official Creator Assets</strong>. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    function copyColor(hex) {
+      navigator.clipboard.writeText(hex);
+      alert('Kode warna ' + hex + ' berhasil disalin ke clipboard!');
+    }
+  </script>
 
 </body>
 </html>

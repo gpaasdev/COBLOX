@@ -3,52 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buku Resep & Spirit Codex | COBLOX</title>
+  <title>Buku Resep Transmutasi & Spirit Codex | COBLOX</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
   <header>
-    <a href="index.html" class="logo">✨ COBLOX</a>
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-flask-vial"></i> COBLOX
+    </a>
     <nav>
-      <a href="index.html">Beranda</a>
-      <a href="codex.html" class="active">Buku Resep & Spirit</a>
-      <a href="developers.html">Portal Pengembang</a>
-      <a href="media-kit.html">Media Kit</a>
-      <a href="https://www.roblox.com" target="_blank" class="btn-play">🎮 PLAY ON ROBLOX</a>
+      <a href="index.html"><i class="fa-solid fa-house"></i> Beranda</a>
+      <a href="codex.html" class="active"><i class="fa-solid fa-book-bookmark"></i> Resep & Spirit</a>
+      <a href="developers.html"><i class="fa-solid fa-code"></i> Pengembang</a>
+      <a href="media-kit.html"><i class="fa-solid fa-photo-film"></i> Media Kit</a>
+      <a href="https://www.roblox.com" target="_blank" class="btn-play"><i class="fa-solid fa-gamepad"></i> PLAY ON ROBLOX</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>📖 Buku Resep Transmutasi & Spirit Codex</h1>
-    <p>Panduan resmi bahan alkimia, kombinasi matriks 3x3, serta daftar kelangkaan Spirit Companion.</p>
+  <section class="hero" style="padding-bottom: 1.5rem;">
+    <h1>📖 Buku Resep & Spirit Codex</h1>
+    <p>Database interaktif resep transmutasi alkimia 3x3, kalkulator bonus *yield multiplier*, serta katalog *Spirit Companions*.</p>
   </section>
 
-  <div class="grid">
-    <div class="card">
-      <h3>🧪 Pyro Buff Potion</h3>
-      <p><strong>Bahan:</strong> 3x PyroEssence + 1x Quartz<br><strong>Bonus Elemen:</strong> +50% Yield Multiplier<br><strong>Tier:</strong> Tier 2 Consumable</p>
+  <!-- Interactive 3x3 Recipe Simulator Widget -->
+  <h2 class="section-title">🧪 Simulator Transmutasi 3x3</h2>
+  <div class="matrix-container">
+    <p style="color: var(--text-muted); font-size: 0.95rem;">Klik slot di bawah untuk memasukkan bahan elemen dasar dan mensimulasikan hasil racikan ramuan:</p>
+    
+    <div class="matrix-grid" id="matrixGrid">
+      <div class="matrix-slot filled" onclick="toggleSlot(this)">🔥</div>
+      <div class="matrix-slot filled" onclick="toggleSlot(this)">🔥</div>
+      <div class="matrix-slot filled" onclick="toggleSlot(this)">🔥</div>
+      <div class="matrix-slot" onclick="toggleSlot(this)">+</div>
+      <div class="matrix-slot filled" onclick="toggleSlot(this)">💎</div>
+      <div class="matrix-slot" onclick="toggleSlot(this)">+</div>
+      <div class="matrix-slot" onclick="toggleSlot(this)">+</div>
+      <div class="matrix-slot" onclick="toggleSlot(this)">+</div>
+      <div class="matrix-slot" onclick="toggleSlot(this)">+</div>
     </div>
-    <div class="card">
-      <h3>💧 Hydro Growth Elixir</h3>
-      <p><strong>Bahan:</strong> 3x HydroCrystal + 2x AstralIron<br><strong>Bonus Elemen:</strong> +25% Speed Multiplier<br><strong>Tier:</strong> Tier 1 Consumable</p>
+
+    <div class="result-box" id="resultBox">
+      <i class="fa-solid fa-wand-magic-sparkles"></i> Hasil Prediksi: <strong>Pyro Elixir Tier 2 (+50% Yield Multiplier)</strong>
     </div>
-    <div class="card">
-      <h3>🐉 Genesis Neon Spirit</h3>
-      <p><strong>Rarity:</strong> Legendary (Rarity 2%)<br><strong>Stats:</strong> +75% Speed Mount Buff<br><strong>Elemen:</strong> Cosmic Aura</p>
+  </div>
+
+  <!-- Interactive Category Filter Bar -->
+  <h2 class="section-title">📚 Katalog Codex & Spirit</h2>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterCategory('all')"><i class="fa-solid fa-border-all"></i> Semua Item</button>
+    <button class="filter-btn" onclick="filterCategory('potions')"><i class="fa-solid fa-vial"></i> Ramuan Alkimia</button>
+    <button class="filter-btn" onclick="filterCategory('spirits')"><i class="fa-solid fa-dragon"></i> Spirit Companion</button>
+    <button class="filter-btn" onclick="filterCategory('beacons')"><i class="fa-solid fa-tower-broadcast"></i> Bejana Aura</button>
+  </div>
+
+  <div class="grid" id="codexGrid">
+    <!-- Item Cards -->
+    <div class="card item-card potions">
+      <h3><i class="fa-solid fa-fire-flame-curved" style="color: var(--color-gold);"></i> Pyro Yield Elixir</h3>
+      <p><strong>Bahan:</strong> 3x PyroEssence + 1x Quartz<br>
+      <strong>Bonus Multiplier:</strong> +50% Yield Sanctum<br>
+      <strong>Kelangkaan:</strong> Tier 2 Uncommon</p>
     </div>
-    <div class="card">
-      <h3>🦊 Ember Fox Companion</h3>
-      <p><strong>Rarity:</strong> Rare (Rarity 15%)<br><strong>Stats:</strong> +20% Auto-Collect Speed<br><strong>Elemen:</strong> Pyro Fire</p>
+
+    <div class="card item-card potions">
+      <h3><i class="fa-solid fa-droplet" style="color: var(--color-cyan);"></i> Hydro Growth Tonic</h3>
+      <p><strong>Bahan:</strong> 3x HydroCrystal + 2x AstralIron<br>
+      <strong>Bonus Multiplier:</strong> +35% Production Speed<br>
+      <strong>Kelangkaan:</strong> Tier 1 Common</p>
+    </div>
+
+    <div class="card item-card spirits">
+      <h3><i class="fa-solid fa-khanda" style="color: var(--color-purple);"></i> Genesis Neon Spirit</h3>
+      <p><strong>Status:</strong> Legendary Companion (Rarity 2%)<br>
+      <strong>Stats Buff:</strong> +75% Speed Mount + Automatic Collector<br>
+      <strong>Elemen:</strong> Cosmic Aura</p>
+    </div>
+
+    <div class="card item-card spirits">
+      <h3><i class="fa-solid fa-paw" style="color: var(--color-gold);"></i> Ember Fox Spirit</h3>
+      <p><strong>Status:</strong> Rare Companion (Rarity 12%)<br>
+      <strong>Stats Buff:</strong> +25% Auto-Harvest Aura Radius<br>
+      <strong>Elemen:</strong> Pyro Essence</p>
+    </div>
+
+    <div class="card item-card beacons">
+      <h3><i class="fa-solid fa-monument" style="color: var(--color-emerald);"></i> Astral Bejana Tier 3</h3>
+      <p><strong>Fungsi:</strong> Menampung hingga 50,000 unit Aura Mana per menit secara otomatis.<br>
+      <strong>Syarat Upgrade:</strong> Rebirth Level 2 + 10x Astral Crystal</p>
+    </div>
+
+    <div class="card item-card beacons">
+      <h3><i class="fa-solid fa-bolt" style="color: var(--color-gold);"></i> Overclock Reactor</h3>
+      <p><strong>Fungsi:</strong> Mempercepat kecepatan produksi seluruh Sanctum sebesar 2x lipat selama 10 menit.<br>
+      <strong>Bahan Bakar:</strong> 1x Celestial Core</p>
     </div>
   </div>
 
   <footer>
-    <p>© 2026 COBLOX Studio. Official Recipe Database.</p>
+    <p>© 2026 <strong>COBLOX Recipe & Codex Database</strong>. Interactive Player Guide.</p>
   </footer>
+
+  <script>
+    // Interactive Matrix Simulator Logic
+    const elements = ['🔥', '💧', '💎', '⚡', '+'];
+    function toggleSlot(slot) {
+      if (slot.innerText === '+') {
+        slot.innerText = '🔥';
+        slot.classList.add('filled');
+      } else if (slot.innerText === '🔥') {
+        slot.innerText = '💧';
+      } else if (slot.innerText === '💧') {
+        slot.innerText = '💎';
+      } else {
+        slot.innerText = '+';
+        slot.classList.remove('filled');
+      }
+      updateRecipeResult();
+    }
+
+    function updateRecipeResult() {
+      const filledCount = document.querySelectorAll('.matrix-slot.filled').length;
+      const resultBox = document.getElementById('resultBox');
+      if (filledCount >= 4) {
+        resultBox.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Hasil Prediksi: <strong>Celestial Overclock Elixir (+100% Yield)</strong>';
+      } else if (filledCount >= 2) {
+        resultBox.innerHTML = '<i class="fa-solid fa-flask"></i> Hasil Prediksi: <strong>Pyro Yield Elixir (+50% Yield)</strong>';
+      } else {
+        resultBox.innerHTML = '<i class="fa-solid fa-circle-question"></i> Masukkan minimal 2 elemen pada grid 3x3 untuk melihat hasil.';
+      }
+    }
+
+    // Category Filter Logic
+    function filterCategory(category) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      document.querySelectorAll('.item-card').forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
