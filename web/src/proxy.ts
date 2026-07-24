@@ -2,16 +2,16 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const { pathname } = req.nextUrl;
 
   // Protect /admin routes
   if (pathname.startsWith("/admin")) {
     if (!token) {
-      // Redirect unauthenticated users to home landing page
+      // Redirect unauthenticated users to NextAuth signin page
       const url = req.nextUrl.clone();
-      url.pathname = "/";
+      url.pathname = "/api/auth/signin";
       return NextResponse.redirect(url);
     }
   }
