@@ -3,24 +3,7 @@
 local RunService = game:GetService("RunService")
 local DataStoreService = game:GetService("DataStoreService")
 
-local hideoutStore = {}
-if not RunService:IsStudio() then
-	local realStore = DataStoreService:GetDataStore("CovenHideouts_v1")
-	function hideoutStore:SetAsync(key, value)
-		realStore:SetAsync(key, value)
-	end
-	function hideoutStore:GetAsync(key)
-		return realStore:GetAsync(key)
-	end
-else
-	local mockStoreData = {}
-	function hideoutStore:SetAsync(key, value)
-		mockStoreData[key] = value
-	end
-	function hideoutStore:GetAsync(key)
-		return mockStoreData[key]
-	end
-end
+local hideoutStore = DataStoreService:GetDataStore("CovenHideouts_v1")
 
 local CovenHideoutDataService = {}
 

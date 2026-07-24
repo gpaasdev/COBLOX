@@ -1,14 +1,31 @@
 # COBLOX: Multiverse Alchemy Sanctum
 
-![COBLOX Official Key Art](docs/assets/game_thumbnail_16x9.png)
+<p align="center">
+  <img src=".github/assets/game_thumbnail_16x9.png" width="800" alt="COBLOX Official Key Art">
+</p>
 
-[![Play on Roblox](https://img.shields.io/badge/Roblox-Play%20Now%20(Official%20Link)-FF0000?style=for-the-badge&logo=roblox&logoColor=white)](https://www.roblox.com/join/qkced)
-[![CI/CD Build Status](https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml/badge.svg)](https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-emerald?style=for-the-badge&logo=github)](https://gpaasdev.github.io/COBLOX/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge)](LICENSE)
-[![Engine: Roblox Luau](https://img.shields.io/badge/Engine-Roblox%20Luau--strict-000000?style=for-the-badge&logo=roblox)](https://luau-lang.org/)
+<p align="center">
+  <a href="https://www.roblox.com/join/qkced"><img src="https://img.shields.io/badge/Roblox-Play%20Now%20(Official%20Link)-FF0000?style=for-the-badge&logo=roblox&logoColor=white" alt="Play on Roblox"></a>
+  <a href="https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml"><img src="https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml/badge.svg" alt="CI/CD Build Status"></a>
+  <a href="https://gpaasdev.github.io/COBLOX/"><img src="https://img.shields.io/badge/Web-Vercel%20Live-000000?style=for-the-badge&logo=vercel" alt="Vercel Live"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge" alt="License: MIT"></a>
+  <a href="https://luau-lang.org/"><img src="https://img.shields.io/badge/Engine-Roblox%20Luau--strict-000000?style=for-the-badge&logo=roblox" alt="Engine: Roblox Luau"></a>
+</p>
 
 Pengalaman **Hybrid Pet Tycoon & Social Action Alkimia** terdepan di Roblox 2026. Susun Bejana Aura otomatis, racik elemen magis dalam matriks 3x3, tetaskan Spirit Companion legendaris, dan berkumpul bersama teman dalam klan alkemis (*Coven Order*).
+
+---
+
+## 📑 Daftar Isi (Table of Contents)
+- [🌟 Fitur Utama & Sistem Terbaru](#-fitur-utama--sistem-terbaru)
+- [🛠️ Tech Stack & Ekosistem](#️-tech-stack--ekosistem)
+- [🚀 Getting Started (Panduan Pengembang)](#-getting-started-panduan-pengembang)
+- [💻 Penggunaan & Perintah](#-penggunaan--perintah-usage-examples)
+- [🧪 Pengujian (Testing)](#-pengujian-testing)
+- [🌐 Publikasi & Web Portal (Deployment)](#-publikasi--web-portal-deployment)
+- [📄 Lisensi](#-lisensi)
+
+---
 
 ---
 

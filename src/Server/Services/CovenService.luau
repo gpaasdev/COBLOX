@@ -47,7 +47,6 @@ function CovenService.Init()
         end
     end)
 
-    CovenService._AssembleCovenHideoutZone()
     print("🏰 CovenService Initialized (Instanced Hideouts Enabled)")
 end
 
@@ -196,29 +195,19 @@ function CovenService.TeleportPlayerToHideout(player: Player)
 
     print("[CovenService] Preparing Teleport for " .. player.Name .. " to Hideout (" .. tostring(coven.HideoutPlaceId) .. ")")
 
-    if RunService:IsStudio() then
-        -- Studio Mock Teleport: Move character locally to Studio Mock Zone
-        local character = player.Character
-        if character and character:FindFirstChild("HumanoidRootPart") then
-            local root = character.HumanoidRootPart :: BasePart
-            root.CFrame = CFrame.new(CovenConfig.STUDIO_MOCK_ZONE_POSITION)
-            print("[CovenService] Studio Simulation: Player local-teleported to Coven Mock Zone " .. tostring(CovenConfig.STUDIO_MOCK_ZONE_POSITION))
-        end
+    if coven.HideoutPlaceId then
+        local teleportOptions = Instance.new("TeleportOptions")
+        teleportOptions:SetTeleportData({
+            CovenId = coven.Id,
+            CovenName = coven.Name,
+            IsGuest = (coven.LeaderId ~= player.UserId and not table.find(coven.Members, player.UserId))
+        })
+        
+        pcall(function()
+            TeleportService:TeleportAsync(coven.HideoutPlaceId, {player}, teleportOptions)
+        end)
     else
-        if coven.HideoutPlaceId then
-            local teleportOptions = Instance.new("TeleportOptions")
-            teleportOptions:SetTeleportData({
-                CovenId = coven.Id,
-                CovenName = coven.Name,
-                IsGuest = (coven.LeaderId ~= player.UserId and not table.find(coven.Members, player.UserId))
-            })
-            
-            pcall(function()
-                TeleportService:TeleportAsync(coven.HideoutPlaceId, {player}, teleportOptions)
-            end)
-        else
-            warn("[CovenService] Hideout Place ID not available for teleportation.")
-        end
+        warn("[CovenService] Hideout Place ID not available for teleportation.")
     end
 end
 

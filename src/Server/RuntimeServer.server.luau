@@ -59,7 +59,7 @@ local services = {
 	AdminService,
 	CombatService,
 	MobService,
-	-- CovenService, -- Disabled for Closed Alpha (Mock Memory Store)
+	CovenService,
 	ExpeditionService,
 	QuestManager,
 	OnboardingService,

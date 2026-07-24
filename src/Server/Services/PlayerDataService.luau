@@ -77,13 +77,12 @@ local defaultProfile: PlayerProfile = {
 local DataStoreService = game:GetService("DataStoreService")
 local PlayerStore = ProfileStore.New("COBLOX_DataStore_LGBOS_v11", defaultProfile)
 
--- Live production uses real DataStoreService; Studio safely falls back to Mock if API is disabled
 local isDataStoreAvailable = pcall(function()
 	DataStoreService:GetDataStore("__COBLOX_HealthCheck"):GetAsync("__test")
 end)
 
 if not isDataStoreAvailable then
-	PlayerStore = PlayerStore.Mock
+	warn("[PlayerDataService] CRITICAL ERROR: DataStoreService API is disabled or inaccessible! Proceeding with caution.")
 end
 
 local profilesBuffer: { [Player]: any } = {}

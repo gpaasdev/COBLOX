@@ -43,3 +43,8 @@ Thumbs.db
 scratch/*.tmp
 *.log
 *.zip
+
+# Security & Private Documentation
+.agents/
+docs/
+

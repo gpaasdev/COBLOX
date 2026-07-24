@@ -3,28 +3,6 @@
 local RunService = game:GetService("RunService")
 local MessagingService = game:GetService("MessagingService")
 
-local GlobalMessaging = {}
-if not RunService:IsStudio() then
-	function GlobalMessaging:SubscribeAsync(topic, callback)
-		return MessagingService:SubscribeAsync(topic, callback)
-	end
-	function GlobalMessaging:PublishAsync(topic, message)
-		return MessagingService:PublishAsync(topic, message)
-	end
-else
-	local mockEvent = Instance.new("BindableEvent")
-	function GlobalMessaging:SubscribeAsync(topic, callback)
-		local connection = mockEvent.Event:Connect(function(t, m)
-			if t == topic then
-				task.spawn(callback, {Data = m})
-			end
-		end)
-		return connection
-	end
-	function GlobalMessaging:PublishAsync(topic, message)
-		mockEvent:Fire(topic, message)
-	end
-end
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -43,7 +21,7 @@ end
 function GlobalBroadcastService.Start()
 	-- Subscribe to cross-server MessagingService
 	pcall(function()
-		GlobalMessaging:SubscribeAsync(TOPIC_NAME, function(message)
+		MessagingService:SubscribeAsync(TOPIC_NAME, function(message)
 			local data = message.Data
 			if data and data.Text then
 				GlobalBroadcastService.FireClientBanner(data.Text, data.ColorR, data.ColorG, data.ColorB)
@@ -62,7 +40,7 @@ function GlobalBroadcastService.Broadcast(text: string, colorR: number?, colorG:
 
 	-- Publish to other servers via MessagingService
 	pcall(function()
-		GlobalMessaging:PublishAsync(TOPIC_NAME, {
+		MessagingService:PublishAsync(TOPIC_NAME, {
 			Text = text,
 			ColorR = cR,
 			ColorG = cG,
