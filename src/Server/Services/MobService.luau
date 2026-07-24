@@ -39,7 +39,28 @@ function MobService.Init()
 end
 
 function MobService.SpawnMob(id: string, position: Vector3)
-	local mobModel = CreatureBuilder.BuildShadowWraith("CorruptedElemental", position)
+	local mobModel: Model
+	if string.find(id, "Golem") or string.find(id, "Tank") then
+		mobModel = CreatureBuilder.BuildCrystalGolem("CrystalGolem_" .. id, position)
+	elseif string.find(id, "Pyro") or string.find(id, "Beast") then
+		mobModel = CreatureBuilder.BuildPyroBeast("PyroBeast_" .. id, position)
+	elseif string.find(id, "Spectre") or string.find(id, "Ghost") then
+		mobModel = CreatureBuilder.BuildAstralSpectre("AstralSpectre_" .. id, position)
+	elseif string.find(id, "Titan") or string.find(id, "Boss") then
+		mobModel = CreatureBuilder.BuildVoidTitan("VoidTitan_" .. id, position)
+	else
+		-- Default / Varied monster selection based on id string length hash
+		local index = (#id % 4) + 1
+		if index == 1 then
+			mobModel = CreatureBuilder.BuildShadowWraith("ShadowWraith_" .. id, position)
+		elseif index == 2 then
+			mobModel = CreatureBuilder.BuildCrystalGolem("CrystalGolem_" .. id, position)
+		elseif index == 3 then
+			mobModel = CreatureBuilder.BuildPyroBeast("PyroBeast_" .. id, position)
+		else
+			mobModel = CreatureBuilder.BuildAstralSpectre("AstralSpectre_" .. id, position)
+		end
+	end
 	mobModel:SetAttribute("MobId", id)
 	
 	local hrp = mobModel.PrimaryPart

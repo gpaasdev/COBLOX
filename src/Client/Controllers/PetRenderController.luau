@@ -36,10 +36,12 @@ function PetRenderController.Start()
 		end
 	end)
 	
-	-- For testing/demo purposes, spawn a pet on startup
+	-- Spawn active Spirit Companions on startup for player squad
 	task.spawn(function()
 		task.wait(2)
-		PetRenderController.SpawnSpiritCompanion("FoxCompanion")
+		PetRenderController.SpawnSpiritCompanion("KitsuneFox")
+		PetRenderController.SpawnSpiritCompanion("MizuchiWater")
+		PetRenderController.SpawnSpiritCompanion("ThunderDragon")
 	end)
 	
 	-- Render loop for floating Spirit Companions behind character

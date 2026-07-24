@@ -1,188 +1,249 @@
 --!strict
 -- ReplicatedStorage/Shared/Modules/Render/CreatureBuilder.luau
--- Procedural Low-Poly Creature Kitbashing Engine for COBLOX: Multiverse Alchemy Sanctum
+-- Procedural Low-Poly & Cyber-Organic Creature Kitbashing Engine for COBLOX
 
 local Workspace = game:GetService("Workspace")
 
 local CreatureBuilder = {}
 
--- Creates a Shadow Wraith (Monster) with an Anime/Humanoid anatomical form (R6 style)
+-- Helper to create a welded part
+local function createSubPart(parentModel: Model, rootPart: Part, name: string, size: Vector3, offset: Vector3, color: Color3, mat: Enum.Material): Part
+	local p = Instance.new("Part")
+	p.Name = name
+	p.Size = size
+	p.CFrame = rootPart.CFrame * CFrame.new(offset)
+	p.Color = color
+	p.Material = mat
+	p.Anchored = false
+	p.CanCollide = false
+	p.Parent = parentModel
+
+	local w = Instance.new("WeldConstraint")
+	w.Part0 = rootPart
+	w.Part1 = p
+	w.Parent = rootPart
+	return p
+end
+
+--------------------------------------------------------------------------------
+-- 🧟 MONSTER BUILDERS (5 Diverse Types)
+--------------------------------------------------------------------------------
+
+-- 1. Shadow Wraith (Standard Dark Humanoid)
 function CreatureBuilder.BuildShadowWraith(name: string, position: Vector3): Model
 	local model = Instance.new("Model")
 	model.Name = name
 
-	-- Void Material and Colors
 	local skinColor = Color3.fromRGB(15, 23, 42)
 	local auraColor = Color3.fromRGB(239, 68, 68)
 
-	-- 1. Torso
 	local torso = Instance.new("Part")
-	torso.Name = "HumanoidRootPart" -- Serves as HRP
-	torso.Size = Vector3.new(2, 2, 1)
+	torso.Name = "HumanoidRootPart"
+	torso.Size = Vector3.new(2, 2.5, 1.2)
 	torso.Position = position + Vector3.new(0, 3, 0)
 	torso.Color = skinColor
 	torso.Material = Enum.Material.SmoothPlastic
-	torso.Anchored = true
+	torso.Anchored = false
 	torso.CanCollide = true
 	torso.Parent = model
+
+	createSubPart(model, torso, "LeftArm", Vector3.new(1, 2.2, 1), Vector3.new(-1.6, 0, 0), skinColor, Enum.Material.SmoothPlastic)
+	createSubPart(model, torso, "RightArm", Vector3.new(1, 2.2, 1), Vector3.new(1.6, 0, 0), skinColor, Enum.Material.SmoothPlastic)
+	createSubPart(model, torso, "LeftLeg", Vector3.new(1, 2.2, 1), Vector3.new(-0.6, -2.2, 0), skinColor, Enum.Material.SmoothPlastic)
+	createSubPart(model, torso, "RightLeg", Vector3.new(1, 2.2, 1), Vector3.new(0.6, -2.2, 0), skinColor, Enum.Material.SmoothPlastic)
+
+	local head = createSubPart(model, torso, "Head", Vector3.new(1.3, 1.3, 1.3), Vector3.new(0, 1.8, 0), skinColor, Enum.Material.SmoothPlastic)
 	
-	-- Function to add limbs
-	local function addLimb(limbName: string, size: Vector3, offset: Vector3): Part
-		local limb = Instance.new("Part")
-		limb.Name = limbName
-		limb.Size = size
-		limb.CFrame = torso.CFrame * CFrame.new(offset)
-		limb.Color = skinColor
-		limb.Material = Enum.Material.SmoothPlastic
-		limb.Anchored = false
-		limb.CanCollide = false
-		limb.Parent = model
-
-		local weld = Instance.new("WeldConstraint")
-		weld.Part0 = torso
-		weld.Part1 = limb
-		weld.Parent = torso
-		return limb
-	end
-
-	-- 2. Limbs (Anime/Humanoid Form)
-	addLimb("LeftArm", Vector3.new(1, 2, 1), Vector3.new(-1.5, 0, 0))
-	addLimb("RightArm", Vector3.new(1, 2, 1), Vector3.new(1.5, 0, 0))
-	addLimb("LeftLeg", Vector3.new(1, 2, 1), Vector3.new(-0.5, -2, 0))
-	addLimb("RightLeg", Vector3.new(1, 2, 1), Vector3.new(0.5, -2, 0))
-
-	-- 3. Head
-	local head = addLimb("Head", Vector3.new(1.2, 1.2, 1.2), Vector3.new(0, 1.6, 0))
-
-	-- 4. Anime Glowing Eyes (EyesCore for WINDUP)
-	local eyesCore = Instance.new("Part")
-	eyesCore.Name = "EyesCore"
-	eyesCore.Size = Vector3.new(0.8, 0.2, 0.1)
-	eyesCore.CFrame = head.CFrame * CFrame.new(0, 0.2, -0.65)
-	eyesCore.Color = auraColor
-	eyesCore.Material = Enum.Material.Neon
-	eyesCore.Anchored = false
-	eyesCore.CanCollide = false
-	eyesCore.Parent = model
-
-	local eyeWeld = Instance.new("WeldConstraint")
-	eyeWeld.Part0 = head
-	eyeWeld.Part1 = eyesCore
-	eyeWeld.Parent = head
-
-	-- 5. Dark Corruption Aura on Torso
-	local aura = Instance.new("ParticleEmitter")
-	aura.Name = "CorruptionAura"
-	aura.Texture = "rbxassetid://6835619379"
-	aura.Color = ColorSequence.new(auraColor, skinColor)
-	aura.Size = NumberSequence.new({NumberSequenceKeypoint.new(0, 1.5), NumberSequenceKeypoint.new(1, 0)})
-	aura.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.4), NumberSequenceKeypoint.new(1, 1)})
-	aura.Rate = 25
-	aura.Lifetime = NumberRange.new(0.8, 1.2)
-	aura.Speed = NumberRange.new(0.5, 1.5)
-	aura.LightEmission = 0.5
-	aura.Parent = torso
+	local visor = createSubPart(model, torso, "EyesCore", Vector3.new(0.9, 0.25, 0.1), Vector3.new(0, 1.8, -0.61), auraColor, Enum.Material.Neon)
 
 	model.PrimaryPart = torso
 	return model
 end
 
--- Creates an Organic Pet (Dog/Cat form) with Cybernetic Armor & Glow Accents
-function CreatureBuilder.BuildCyberPet(petId: string, petType: string?): Model
+-- 2. Crystal Golem (Heavy Tank Monster)
+function CreatureBuilder.BuildCrystalGolem(name: string, position: Vector3): Model
 	local model = Instance.new("Model")
-	model.Name = "Pet_" .. petId
+	model.Name = name
 
-	local furColor = Color3.fromRGB(249, 115, 22) -- Fox/Shiba Orange
-	local armorColor = Color3.fromRGB(30, 41, 59)
-	local neonColor = Color3.fromRGB(56, 189, 248)
+	local bodyColor = Color3.fromRGB(30, 41, 59)
+	local crystalColor = Color3.fromRGB(6, 182, 212)
 
-	-- 1. Main Torso (Horizontal Quadruped Body)
 	local torso = Instance.new("Part")
 	torso.Name = "HumanoidRootPart"
-	torso.Size = Vector3.new(1.2, 1.2, 2.4)
-	torso.Position = Vector3.new(0, 3, 0)
-	torso.Color = furColor
-	torso.Material = Enum.Material.SmoothPlastic
-	torso.Anchored = true
+	torso.Size = Vector3.new(3.5, 3.5, 2.5)
+	torso.Position = position + Vector3.new(0, 4, 0)
+	torso.Color = bodyColor
+	torso.Material = Enum.Material.Granite
+	torso.Anchored = false
+	torso.CanCollide = true
+	torso.Parent = model
+
+	-- Giant Shoulder Crystal Spikes
+	createSubPart(model, torso, "LeftSpike", Vector3.new(1.2, 2.5, 1.2), Vector3.new(-2.2, 1.5, 0), crystalColor, Enum.Material.Neon)
+	createSubPart(model, torso, "RightSpike", Vector3.new(1.2, 2.5, 1.2), Vector3.new(2.2, 1.5, 0), crystalColor, Enum.Material.Neon)
+	createSubPart(model, torso, "HeadCrystal", Vector3.new(1.5, 1.5, 1.5), Vector3.new(0, 2.2, -0.5), crystalColor, Enum.Material.Neon)
+
+	createSubPart(model, torso, "LeftArm", Vector3.new(1.8, 3, 1.8), Vector3.new(-2.8, -0.5, 0), bodyColor, Enum.Material.Granite)
+	createSubPart(model, torso, "RightArm", Vector3.new(1.8, 3, 1.8), Vector3.new(2.8, -0.5, 0), bodyColor, Enum.Material.Granite)
+
+	model.PrimaryPart = torso
+	return model
+end
+
+-- 3. Pyro Beast (Aggressive Fiery Crawler)
+function CreatureBuilder.BuildPyroBeast(name: string, position: Vector3): Model
+	local model = Instance.new("Model")
+	model.Name = name
+
+	local bodyColor = Color3.fromRGB(120, 20, 20)
+	local flameColor = Color3.fromRGB(245, 158, 11)
+
+	local torso = Instance.new("Part")
+	torso.Name = "HumanoidRootPart"
+	torso.Size = Vector3.new(2.2, 1.5, 3.2)
+	torso.Position = position + Vector3.new(0, 2.5, 0)
+	torso.Color = bodyColor
+	torso.Material = Enum.Material.Basalt
+	torso.Anchored = false
+	torso.CanCollide = true
+	torso.Parent = model
+
+	-- Fiery Horns & Tail
+	createSubPart(model, torso, "Head", Vector3.new(1.5, 1.2, 1.5), Vector3.new(0, 0.5, -2), flameColor, Enum.Material.Neon)
+	createSubPart(model, torso, "SpineFlames", Vector3.new(0.6, 1.2, 2.5), Vector3.new(0, 1.2, 0), flameColor, Enum.Material.Neon)
+
+	model.PrimaryPart = torso
+	return model
+end
+
+-- 4. Astral Spectre (Floating Arcane Phantom)
+function CreatureBuilder.BuildAstralSpectre(name: string, position: Vector3): Model
+	local model = Instance.new("Model")
+	model.Name = name
+
+	local ghostColor = Color3.fromRGB(168, 85, 247)
+
+	local torso = Instance.new("Part")
+	torso.Name = "HumanoidRootPart"
+	torso.Size = Vector3.new(1.8, 3.2, 1.2)
+	torso.Position = position + Vector3.new(0, 4.5, 0)
+	torso.Color = ghostColor
+	torso.Material = Enum.Material.ForceField
+	torso.Anchored = false
 	torso.CanCollide = false
 	torso.Parent = model
 
-	local function addPart(pName: string, size: Vector3, offset: Vector3, color: Color3, mat: Enum.Material): Part
-		local p = Instance.new("Part")
-		p.Name = pName
-		p.Size = size
-		p.CFrame = torso.CFrame * CFrame.new(offset)
-		p.Color = color
-		p.Material = mat
-		p.Anchored = false
-		p.CanCollide = false
-		p.Parent = model
+	createSubPart(model, torso, "Crown", Vector3.new(1.4, 0.4, 1.4), Vector3.new(0, 2, 0), ghostColor, Enum.Material.Neon)
 
-		local w = Instance.new("WeldConstraint")
-		w.Part0 = torso
-		w.Part1 = p
-		w.Parent = torso
-		return p
+	model.PrimaryPart = torso
+	return model
+end
+
+-- 5. Void Titan (Raid Boss Unit)
+function CreatureBuilder.BuildVoidTitan(name: string, position: Vector3): Model
+	local model = Instance.new("Model")
+	model.Name = name
+
+	local armorColor = Color3.fromRGB(9, 13, 22)
+	local goldColor = Color3.fromRGB(245, 158, 11)
+
+	local torso = Instance.new("Part")
+	torso.Name = "HumanoidRootPart"
+	torso.Size = Vector3.new(4.5, 6, 3)
+	torso.Position = position + Vector3.new(0, 6, 0)
+	torso.Color = armorColor
+	torso.Material = Enum.Material.SmoothPlastic
+	torso.Anchored = false
+	torso.CanCollide = true
+	torso.Parent = model
+
+	createSubPart(model, torso, "TitanCrown", Vector3.new(3, 1, 2), Vector3.new(0, 3.8, 0), goldColor, Enum.Material.Neon)
+	createSubPart(model, torso, "CoreOrb", Vector3.new(2, 2, 2), Vector3.new(0, 0.5, -1.6), goldColor, Enum.Material.Neon)
+
+	model.PrimaryPart = torso
+	return model
+end
+
+--------------------------------------------------------------------------------
+-- 🐉 SPIRIT COMPANION BUILDERS (8 Distinct Spirit Types)
+--------------------------------------------------------------------------------
+
+-- Universal Builder dispatcher based on Spirit Id/Rarity
+function CreatureBuilder.BuildCyberPet(spiritId: string, petType: string?): Model
+	local model = Instance.new("Model")
+	model.Name = "Spirit_" .. spiritId
+
+	local furColor = Color3.fromRGB(245, 158, 11) -- Default Gold
+	local neonColor = Color3.fromRGB(6, 182, 212) -- Default Cyan
+
+	if string.find(spiritId, "Cat") then
+		furColor = Color3.fromRGB(251, 146, 60)
+	elseif string.find(spiritId, "Dog") then
+		furColor = Color3.fromRGB(234, 179, 8)
+	elseif string.find(spiritId, "Water") or string.find(spiritId, "Mizuchi") then
+		furColor = Color3.fromRGB(14, 165, 233)
+		neonColor = Color3.fromRGB(186, 230, 253)
+	elseif string.find(spiritId, "Bear") then
+		furColor = Color3.fromRGB(120, 53, 15)
+	elseif string.find(spiritId, "Unicorn") then
+		furColor = Color3.fromRGB(244, 114, 182)
+		neonColor = Color3.fromRGB(253, 224, 71)
+	elseif string.find(spiritId, "Dragon") then
+		furColor = Color3.fromRGB(168, 85, 247)
+		neonColor = Color3.fromRGB(245, 158, 11)
+	elseif string.find(spiritId, "Phoenix") then
+		furColor = Color3.fromRGB(239, 68, 68)
+		neonColor = Color3.fromRGB(251, 191, 36)
+	elseif string.find(spiritId, "Fox") or string.find(spiritId, "Kitsune") then
+		furColor = Color3.fromRGB(249, 115, 22)
+		neonColor = Color3.fromRGB(168, 85, 247)
 	end
 
-	-- 2. Legs (4 Legs like a real animal)
-	addPart("FrontLeftLeg", Vector3.new(0.4, 1.2, 0.4), Vector3.new(-0.4, -0.6, -0.8), furColor, Enum.Material.SmoothPlastic)
-	addPart("FrontRightLeg", Vector3.new(0.4, 1.2, 0.4), Vector3.new(0.4, -0.6, -0.8), furColor, Enum.Material.SmoothPlastic)
-	addPart("BackLeftLeg", Vector3.new(0.4, 1.2, 0.4), Vector3.new(-0.4, -0.6, 0.8), furColor, Enum.Material.SmoothPlastic)
-	addPart("BackRightLeg", Vector3.new(0.4, 1.2, 0.4), Vector3.new(0.4, -0.6, 0.8), furColor, Enum.Material.SmoothPlastic)
+	-- 1. Main Torso Body (Root Part MUST BE UNANCHORED for Physics/Lerp welds)
+	local torso = Instance.new("Part")
+	torso.Name = "HumanoidRootPart"
+	torso.Size = Vector3.new(1.2, 1.2, 2.2)
+	torso.Position = Vector3.new(0, 4, 0)
+	torso.Color = furColor
+	torso.Material = Enum.Material.SmoothPlastic
+	torso.Anchored = false
+	torso.CanCollide = false
+	torso.Parent = model
 
-	-- 3. Tail
-	addPart("Tail", Vector3.new(0.3, 0.3, 1), Vector3.new(0, 0.4, 1.5), furColor, Enum.Material.SmoothPlastic)
+	-- 2. Legs
+	createSubPart(model, torso, "LegFL", Vector3.new(0.35, 1, 0.35), Vector3.new(-0.4, -0.6, -0.7), furColor, Enum.Material.SmoothPlastic)
+	createSubPart(model, torso, "LegFR", Vector3.new(0.35, 1, 0.35), Vector3.new(0.4, -0.6, -0.7), furColor, Enum.Material.SmoothPlastic)
+	createSubPart(model, torso, "LegBL", Vector3.new(0.35, 1, 0.35), Vector3.new(-0.4, -0.6, 0.7), furColor, Enum.Material.SmoothPlastic)
+	createSubPart(model, torso, "LegBR", Vector3.new(0.35, 1, 0.35), Vector3.new(0.4, -0.6, 0.7), furColor, Enum.Material.SmoothPlastic)
 
-	-- 4. Head and Snout
-	local head = addPart("Head", Vector3.new(1.2, 1.2, 1.2), Vector3.new(0, 0.6, -1.5), furColor, Enum.Material.SmoothPlastic)
-	local snout = Instance.new("Part")
-	snout.Size = Vector3.new(0.6, 0.5, 0.6)
-	snout.CFrame = head.CFrame * CFrame.new(0, -0.2, -0.8)
-	snout.Color = Color3.fromRGB(255, 237, 213) -- Lighter snout
-	snout.Anchored = false
-	snout.CanCollide = false
-	snout.Parent = model
-	local snoutWeld = Instance.new("WeldConstraint")
-	snoutWeld.Part0 = head
-	snoutWeld.Part1 = snout
-	snoutWeld.Parent = head
+	-- 3. Head & Glowing Ears / Horns
+	local head = createSubPart(model, torso, "Head", Vector3.new(1.1, 1.1, 1.1), Vector3.new(0, 0.6, -1.3), furColor, Enum.Material.SmoothPlastic)
+	createSubPart(model, torso, "Visor", Vector3.new(1.2, 0.35, 0.15), Vector3.new(0, 0.7, -1.86), neonColor, Enum.Material.Neon)
+	createSubPart(model, torso, "LeftEar", Vector3.new(0.3, 0.7, 0.3), Vector3.new(-0.4, 1.3, -1.3), neonColor, Enum.Material.Neon)
+	createSubPart(model, torso, "RightEar", Vector3.new(0.3, 0.7, 0.3), Vector3.new(0.4, 1.3, -1.3), neonColor, Enum.Material.Neon)
 
-	-- 5. Cybernetic Back Plate / Armor
-	addPart("CyberArmor", Vector3.new(1.4, 0.4, 1.8), Vector3.new(0, 0.7, 0), armorColor, Enum.Material.DiamondPlate)
+	-- 4. Glowing Spirit Wings (For Legendary/Mythic Spirits)
+	if string.find(spiritId, "Dragon") or string.find(spiritId, "Phoenix") or string.find(spiritId, "Unicorn") then
+		createSubPart(model, torso, "LeftWing", Vector3.new(2, 0.1, 1), Vector3.new(-1.6, 0.6, 0), neonColor, Enum.Material.Neon)
+		createSubPart(model, torso, "RightWing", Vector3.new(2, 0.1, 1), Vector3.new(1.6, 0.6, 0), neonColor, Enum.Material.Neon)
+	end
 
-	-- 6. Cybernetic Visor (Anime style scouter/glasses)
-	local visor = Instance.new("Part")
-	visor.Size = Vector3.new(1.3, 0.4, 0.2)
-	visor.CFrame = head.CFrame * CFrame.new(0, 0.2, -0.61)
-	visor.Color = neonColor
-	visor.Material = Enum.Material.Neon
-	visor.Anchored = false
-	visor.CanCollide = false
-	visor.Parent = model
-	local visorWeld = Instance.new("WeldConstraint")
-	visorWeld.Part0 = head
-	visorWeld.Part1 = visor
-	visorWeld.Parent = head
+	-- 5. Tail
+	createSubPart(model, torso, "Tail", Vector3.new(0.3, 0.3, 1.2), Vector3.new(0, 0.4, 1.5), furColor, Enum.Material.SmoothPlastic)
 
-	-- 7. Aura Ribbon Trail
-	local trailAtt0 = Instance.new("Attachment")
-	trailAtt0.Position = Vector3.new(-0.6, 0, 1.2)
-	trailAtt0.Parent = torso
+	-- 6. Aura Light Particle & Trail
+	local attachment = Instance.new("Attachment")
+	attachment.Name = "AuraAttachment"
+	attachment.Parent = torso
 
-	local trailAtt1 = Instance.new("Attachment")
-	trailAtt1.Position = Vector3.new(0.6, 0, 1.2)
-	trailAtt1.Parent = torso
-
-	local trail = Instance.new("Trail")
-	trail.Attachment0 = trailAtt0
-	trail.Attachment1 = trailAtt1
-	trail.Color = ColorSequence.new(neonColor, Color3.fromRGB(168, 85, 247))
-	trail.Lifetime = 0.8
-	trail.MinLength = 0.1
-	trail.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.2), NumberSequenceKeypoint.new(1, 1)})
-	trail.LightEmission = 0.8
-	trail.Parent = torso
+	local particle = Instance.new("ParticleEmitter")
+	particle.Texture = "rbxassetid://243098098"
+	particle.Color = ColorSequence.new(neonColor)
+	particle.Size = NumberSequence.new(0.4, 0)
+	particle.Lifetime = NumberRange.new(0.5, 1)
+	particle.Rate = 12
+	particle.Speed = NumberRange.new(1, 3)
+	particle.Parent = attachment
 
 	model.PrimaryPart = torso
 	return model
