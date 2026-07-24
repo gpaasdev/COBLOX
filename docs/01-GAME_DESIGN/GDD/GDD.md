@@ -7,10 +7,10 @@
 # SECTION 1: VISION, MISSION & PRODUCT PHILOSOPHY
 
 ## 1. Vision Statement
-Menjadikan **COBLOX: Multiverse Alchemy Sanctum** sebagai pengalaman *Hybrid Pet Tycoon & Social Action Experience* terdepan, berkinerja tinggi (*zero-lag*), dan paling terpercaya di platform Roblox pada tahun 2026. COBLOX menghadirkan perpaduan unik antara pembangunan Sanctum otomatis, pengumpulan pet elemental, pertarungan PVE aksi, serta sistem perdagangan antar pemain yang aman (*Zero-Trust Escrow*).
+COBLOX: Multiverse Alchemy Sanctum adalah permainan Hybrid Pet Tycoon & Social Action. Pemain membangun Sanctum otomatis, mengumpulkan pet elemental, bertarung dalam PVE aksi, dan berdagang dalam ekosistem ekonomi Zero-Trust Escrow.
 
 ## 2. Mission Statement
-Membangun pengalaman Roblox bermodular tinggi dan berotoritas server (*Server-Authoritative*) yang dioptimalkan secara ekstrem untuk performa lintas platform (termasuk seluler dan perangkat berspesifikasi rendah), didukung oleh alur kerja pengembang berbasis AI (*Agentic Coding System*) dan batasan domain yang tegas.
+Membangun pengalaman Roblox berotoritas server (Server-Authoritative) bermodular tinggi yang mendukung perangkat berspesifikasi rendah, menggunakan alur kerja Agentic Coding System.
 
 ## 3. Core Values & Product Philosophy
 - **Player Empowerment First:** Menghargai waktu pemain melalui progres yang bermakna, tingkat drop yang adil, serta antarmuka dwibahasa (*Indonesian-First & Global-Ready*) tanpa penyerapan iklan/popup yang mengganggu (*Zero Intrusive Popups*).
@@ -52,8 +52,8 @@ Membangun pengalaman Roblox bermodular tinggi dan berotoritas server (*Server-Au
 
 ## 2. Master Gameplay Loops & Real Life Hyper-Reality Loop
 
-### A. The Core Gameplay Loop (Real-Life Dynamics via Gen Z / Anime Hype Metaphor)
-Siklus permainan COBLOX merefleksikan dinamika psikologi dunia nyata (bisnis, sosial, risiko-imbalan, dan status) yang dibungkus dalam bahasa **Gen Z / Alpha Slang & Anime Vibe** yang seru, trendi, etis, dan menghibur (bebas dari glorifikasi kriminalitas):
+### A. The Core Gameplay Loop
+Siklus permainan utama COBLOX terdiri dari:
 
 1. **PASSIVE INCOME & SETOR AURA (Ekonomi & Investasi Pasif):** Dropper Alkimia mengumpulkan energi kristal murni di bejana Markas. Saat kapasitas penuh (50,000 Energy), suar aura neon memancar. Pemain mengangkut muatan kristal energi (efek beban: *WalkSpeed* -15%) menuju *Obelisk Pusat* untuk **🚚 Setor Aura** dan dicairkan jadi Koin bersih.
 2. **CRAFT ALCHEMY & OVERCLOCK MODE (Manajemen Sumber Daya & Transmutation):** Pemain memutar modal energi untuk meracik ramuan di *Lab Racik* dan memasang jebakan pertahanan Markas. Meminum ramuan memicu efek instan magis (**⚡ Overclock Mode Speed 45 + Screen Shake**, atau **Mode Raksasa Scale 2.5x + 500% HP**).
@@ -133,7 +133,7 @@ graph TD
 # SECTION 6: PLAYER KNOWLEDGE BASE & GAMEPLAY MANUAL
 
 ## 📜 1. Lore & Kisah Latar Belakang
-Di pusat alam semesta multiversal, terdapat **Alchemy Sanctum** — sebuah sanctum kuno tempat energi murni yang disebut **Aura Energy** dan **ChronoSparks** bersatu. Para Master Alkemis berkumpul di sanctum ini untuk mensintesis elemen ajaib, menetaskan makhluk elemental (*Spirit Pets*), dan menjaga keseimbangan energi antar dimensi.
+Di pusat alam semesta multiversal, terdapat Alchemy Sanctum tempat energi murni Aura Energy dan ChronoSparks bersatu. Pemain berperan sebagai Alkemis yang mensintesis elemen ajaib, menetaskan makhluk elemental (Spirit Pets), dan menjaga keseimbangan energi antar dimensi.
 
 ## 🎮 2. Panduan Fitur & Mekanik Utama
 - **Sistem Pertarungan:** Gunakan Klik Kiri (*LMB*) untuk menebas, *Q* untuk menghindar (*Dash*), dan *F* untuk menangkis (*Parry* dengan window 0.3 detik).
@@ -384,7 +384,7 @@ Setiap mutasi nilai pada Karma Gems / ChronoSparks wajib melewati pencatatan gan
                 └── NetChannels.luau (Central Remote Binding)
 ```
 
-Dengan ditambahkan bab-bab di atas, seluruh Master Game Design Document (GDD) & Architectural Specification untuk game COBLOX telah selesai dirancang.
+```
 
 ---
 
@@ -433,12 +433,7 @@ gantt
 | **Harian (24 Jam)** | Rotasi Toko Alkemis & Daily Quest Reset | Deterministic UNIX Seed: $\lfloor \text{UNIX} / 86400 \rfloor$ |
 | **Mingguan (Akhir Pekan)** | Weekend Overdrive (+50% Rate Boost) | Multiplier Provider otomatis aktif Jumat 17:00 - Minggu 23:59 UTC |
 | **Dua Mingguan (Bi-Weekly)** | Rotasi Flash Sale & Pet Banner Baru | RemoteConfig Live Update tanpa restart server |
-| **Bulanan (Monthly)** | Season Battle Pass & Reset Leaderboard Coven | Sync otomatis via Cloud DataStore Ledger |
-| **Triwulanan (Seasonal)** | Expansion World Baru & Major Update Feature | Rilis patch biner Rojo & update asset mesh |
-
----
-
-Dengan Peta Rencana Konten Pembaruan (LiveOps Content Roadmap) ini, game COBLOX memiliki skenario keberlanjutan jangka panjang yang terstruktur, aman dari inflasi, dan siap menghibur pemain secara komersial!
-
-
-
+| **Mingguan (Akhir Pekan)** | Weekend Overdrive (+50% Rate Boost) | Multiplier Provider aktif Jumat 17:00 - Minggu 23:59 UTC |
+| **Dua Mingguan (Bi-Weekly)** | Rotasi Flash Sale & Pet Banner Baru | RemoteConfig Live Update |
+| **Bulanan (Monthly)** | Season Battle Pass & Reset Leaderboard Coven | Sync via Cloud DataStore Ledger |
+| **Triwulanan (Seasonal)** | Expansion World Baru & Major Update Feature | Rilis patch Rojo & update asset mesh |
