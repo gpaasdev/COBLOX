@@ -12,6 +12,7 @@ local PET_REGISTRY: { [string]: PetConfig } = {
 		Rarity = "Common",
 		BaseMultiplier = 1.2,
 		ModelAssetId = 0,
+		Description = "Spirit kucing imut yang mendengung lembut untuk menenangkan aura ramuan.",
 	},
 	["Pet_Uncommon_Dog"] = {
 		Id = "Pet_Uncommon_Dog",
@@ -19,6 +20,7 @@ local PET_REGISTRY: { [string]: PetConfig } = {
 		Rarity = "Uncommon",
 		BaseMultiplier = 1.5,
 		ModelAssetId = 0,
+		Description = "Spirit anjing lincah yang selalu bersemangat mencari serbuk percikan energi.",
 	},
 	["WaterBender_Spirit"] = {
 		Id = "WaterBender_Spirit",
@@ -26,6 +28,7 @@ local PET_REGISTRY: { [string]: PetConfig } = {
 		Rarity = "Rare",
 		BaseMultiplier = 2.5,
 		ModelAssetId = 0,
+		Description = "Spirit naga air misterius pembawa keberkahan embun samudra kosmis.",
 	},
 	["Pet_Rare_Bear"] = {
 		Id = "Pet_Rare_Bear",
@@ -33,6 +36,7 @@ local PET_REGISTRY: { [string]: PetConfig } = {
 		Rarity = "Rare",
 		BaseMultiplier = 2.8,
 		ModelAssetId = 0,
+		Description = "Spirit beruang pelindung yang kokoh dan memberikan rasa aman saat meracik.",
 	},
 	["Pet_Epic_Unicorn"] = {
 		Id = "Pet_Epic_Unicorn",
@@ -40,6 +44,7 @@ local PET_REGISTRY: { [string]: PetConfig } = {
 		Rarity = "Epic",
 		BaseMultiplier = 3.5,
 		ModelAssetId = 0,
+		Description = "Spirit kuda bertanduk ajaib yang memancarkan cahaya starlight indah.",
 	},
 	["Pet_Legendary_Dragon"] = {
 		Id = "Pet_Legendary_Dragon",
@@ -47,6 +52,7 @@ local PET_REGISTRY: { [string]: PetConfig } = {
 		Rarity = "Legendary",
 		BaseMultiplier = 7.0,
 		ModelAssetId = 0,
+		Description = "Spirit naga petir legendaris yang menguasai keajaiban langit Aetheria.",
 	},
 	["Pet_Mythic_Phoenix"] = {
 		Id = "Pet_Mythic_Phoenix",
@@ -54,6 +60,7 @@ local PET_REGISTRY: { [string]: PetConfig } = {
 		Rarity = "Mythic",
 		BaseMultiplier = 15.0,
 		ModelAssetId = 0,
+		Description = "Spirit feniks suci yang terlahir kembali dari kehangatan mentari kosmis.",
 	},
 	["NineTailed_Fox"] = {
 		Id = "NineTailed_Fox",

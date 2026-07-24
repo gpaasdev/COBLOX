@@ -51,7 +51,7 @@ function OfflineEarningsController.ShowWelcomeModal()
 	header.Size = UDim2.new(0.9, 0, 0.2, 0)
 	header.Position = UDim2.new(0.05, 0, 0.08, 0)
 	header.BackgroundTransparency = 1
-	header.Text = "🎉 SAMBUTAN HANGAT (AFK EARNINGS)"
+	header.Text = "✨ BERKAH KAWAN SPIRIT"
 	header.TextColor3 = Color3.fromRGB(245, 158, 11)
 	header.Font = Enum.Font.FredokaOne
 	header.TextSize = 22
@@ -61,7 +61,7 @@ function OfflineEarningsController.ShowWelcomeModal()
 	desc.Size = UDim2.new(0.9, 0, 0.35, 0)
 	desc.Position = UDim2.new(0.05, 0, 0.3, 0)
 	desc.BackgroundTransparency = 1
-	desc.Text = "Markas Alkemismu tetap berproduksi saat kamu tidur!\nKamu mendapatkan +36,000 KOIN GRATIS!"
+	desc.Text = "Spirit Companion milikmu telah memanen Mana dan merawat tempat meracik ramuan saat kamu beristirahat!\n\nKamu mendapatkan +36,000 Koin Magis!"
 	desc.TextColor3 = Color3.fromRGB(255, 255, 255)
 	desc.Font = Enum.Font.GothamMedium
 	desc.TextSize = 14
@@ -73,7 +73,7 @@ function OfflineEarningsController.ShowWelcomeModal()
 	claimBtn.Size = UDim2.new(0.7, 0, 0.22, 0)
 	claimBtn.Position = UDim2.new(0.15, 0, 0.7, 0)
 	claimBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	claimBtn.Text = "✨ KLAIM KOIN AFK!"
+	claimBtn.Text = "✨ KLAIM HASIL PANEN MAGIS"
 	claimBtn.TextColor3 = Color3.fromRGB(15, 23, 42)
 	claimBtn.Font = Enum.Font.FredokaOne
 	claimBtn.TextSize = 20
