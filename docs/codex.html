@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panduan Rahasia & Spirit Companion | COBLOX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-flask-vial"></i> COBLOX
+    </a>
+    <nav>
+      <a href="index.html"><i class="fa-solid fa-sparkles"></i> Beranda</a>
+      <a href="codex.html" class="active"><i class="fa-solid fa-book-open-cover"></i> Panduan & Spirit</a>
+      <a href="developers.html"><i class="fa-solid fa-code"></i> Arsitektur Code</a>
+      <a href="media-kit.html"><i class="fa-solid fa-palette"></i> Media Kit</a>
+      <a href="https://github.com/gpaasdev/COBLOX" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://www.roblox.com/join/qkced" target="_blank" class="btn-play"><i class="fa-solid fa-gamepad"></i> MAIN DI ROBLOX</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="padding-bottom: 1.5rem;">
+    <h1>📖 Catatan Rahasia Resep Magis</h1>
+    <p>Temukan rahasia racikan elemen misterius dan kenali karakter imut para *Spirit Companion* yang siap menemanimu!</p>
+  </section>
+
+  <!-- Interactive 3x3 Recipe Simulator Widget -->
+  <h2 class="section-title">🧪 Uji Coba Racikan Magis</h2>
+  <div class="matrix-container">
+    <p style="color: var(--text-muted); font-size: 0.95rem;">Sentuh slot di bawah untuk menaruh kristal elemen dan lihat reaksi magis yang dihasilkan:</p>
+    
+    <div class="matrix-grid" id="matrixGrid">
+      <div class="matrix-slot filled" onclick="toggleSlot(this)">🔥</div>
+      <div class="matrix-slot filled" onclick="toggleSlot(this)">🔥</div>
+      <div class="matrix-slot filled" onclick="toggleSlot(this)">🔥</div>
+      <div class="matrix-slot" onclick="toggleSlot(this)">+</div>
+      <div class="matrix-slot filled" onclick="toggleSlot(this)">💎</div>
+      <div class="matrix-slot" onclick="toggleSlot(this)">+</div>
+      <div class="matrix-slot" onclick="toggleSlot(this)">+</div>
+      <div class="matrix-slot" onclick="toggleSlot(this)">+</div>
+      <div class="matrix-slot" onclick="toggleSlot(this)">+</div>
+    </div>
+
+    <div class="result-box" id="resultBox">
+      <i class="fa-solid fa-wand-magic-sparkles"></i> Hasil Reaksi: <strong>Ramuan Api Keemasan (Bonus Hasil Memuaskan)</strong>
+    </div>
+  </div>
+
+  <!-- Interactive Category Filter Bar -->
+  <h2 class="section-title">📚 Koleksi Resep & Teman Magis</h2>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterCategory('all')"><i class="fa-solid fa-border-all"></i> Semua Koleksi</button>
+    <button class="filter-btn" onclick="filterCategory('potions')"><i class="fa-solid fa-vial"></i> Ramuan Magis</button>
+    <button class="filter-btn" onclick="filterCategory('spirits')"><i class="fa-solid fa-cat"></i> Spirit Companion</button>
+    <button class="filter-btn" onclick="filterCategory('beacons')"><i class="fa-solid fa-gem"></i> Kristal Aura</button>
+  </div>
+
+  <div class="grid" id="codexGrid">
+    <!-- Item Cards -->
+    <div class="card item-card potions">
+      <h3><i class="fa-solid fa-fire-flame-curved" style="color: var(--color-gold);"></i> Ramuan Api Kilaubintang</h3>
+      <p><strong>Bahan:</strong> 3x Kristal Api + 1x Batu Kuarsa<br>
+      <strong>Efek:</strong> Membuat tempat meracikmu bersinar terang dan bekerja lebih cepat!<br>
+      <strong>Kelangkaan:</strong> Langka (Tier 2)</p>
+    </div>
+
+    <div class="card item-card potions">
+      <h3><i class="fa-solid fa-droplet" style="color: var(--color-cyan);"></i> Elixir Embun Samudra</h3>
+      <p><strong>Bahan:</strong> 3x Kristal Air + 2x Biji Astral<br>
+      <strong>Efek:</strong> Memberikan efek kesegaran yang mempercepat panen bahan magis.<br>
+      <strong>Kelangkaan:</strong> Biasa (Tier 1)</p>
+    </div>
+
+    <div class="card item-card spirits">
+      <h3><i class="fa-solid fa-dragon" style="color: var(--color-purple);"></i> Genesis Spirit Neon</h3>
+      <p><strong>Karakter:</strong> Spirit naga magis legendaris dengan aura berkilau.<br>
+      <strong>Keutamaan:</strong> Berlari sangat cepat saat dinaiki dan membantu mengumpulkan bahan otomatis.<br>
+      <strong>Tingkat Kelangkaan:</strong> Sangat Langka (Mythical)</p>
+    </div>
+
+    <div class="card item-card spirits">
+      <h3><i class="fa-solid fa-paw" style="color: var(--color-gold);"></i> Ember Fox Spirit</h3>
+      <p><strong>Karakter:</strong> Rubah mungil hangat yang selalu setia membuntutimu.<br>
+      <strong>Keutamaan:</strong> Memperluas jangkauan pengambilan bahan magis di sekitarmu.<br>
+      <strong>Tingkat Kelangkaan:</strong> Imut & Langka (Rare)</p>
+    </div>
+
+    <div class="card item-card beacons">
+      <h3><i class="fa-solid fa-monument" style="color: var(--color-emerald);"></i> Bejana Kristal Astral</h3>
+      <p><strong>Fungsi:</strong> Tempat menampung pancaran aura ajaib yang sangat indah dan menenangkan.<br>
+      <strong>Kesan:</strong> Menjadikan sudut ruangan Sanctum milikmu semakin estetik!</p>
+    </div>
+
+    <div class="card item-card beacons">
+      <h3><i class="fa-solid fa-bolt" style="color: var(--color-gold);"></i> Reaktor Kecepatan Magis</h3>
+      <p><strong>Fungsi:</strong> Memberikan dorongan energi magis sementara saat meracik ramuan bersama teman.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 <strong>COBLOX Player Guide</strong>. Dibuat agar petualanganmu semakin seru!</p>
+  </footer>
+
+  <script>
+    function toggleSlot(slot) {
+      if (slot.innerText === '+') {
+        slot.innerText = '🔥';
+        slot.classList.add('filled');
+      } else if (slot.innerText === '🔥') {
+        slot.innerText = '💧';
+      } else if (slot.innerText === '💧') {
+        slot.innerText = '💎';
+      } else {
+        slot.innerText = '+';
+        slot.classList.remove('filled');
+      }
+      updateRecipeResult();
+    }
+
+    function updateRecipeResult() {
+      const filledCount = document.querySelectorAll('.matrix-slot.filled').length;
+      const resultBox = document.getElementById('resultBox');
+      if (filledCount >= 4) {
+        resultBox.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Hasil Reaksi: <strong>Elixir Magis Bintang (Sangat Hebat!)</strong>';
+      } else if (filledCount >= 2) {
+        resultBox.innerHTML = '<i class="fa-solid fa-flask"></i> Hasil Reaksi: <strong>Ramuan Api Kilaubintang (Berhasil!)</strong>';
+      } else {
+        resultBox.innerHTML = '<i class="fa-solid fa-circle-question"></i> Masukkan minimal 2 bahan kristal untuk mencoba racikan.';
+      }
+    }
+
+    function filterCategory(category) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      document.querySelectorAll('.item-card').forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

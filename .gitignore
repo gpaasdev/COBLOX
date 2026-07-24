@@ -46,5 +46,4 @@ scratch/*.tmp
 
 # Security & Private Documentation
 .agents/
-docs/
 
