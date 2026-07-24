@@ -1,0 +1,33 @@
+name: Roblox pSEO Real Data Ingestion Cron
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Run every 6 hours
+  workflow_dispatch:
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'web/package-lock.json'
+
+      - name: Install Dependencies
+        run: cd web && npm ci
+
+      - name: Generate Prisma Client
+        run: cd web && npx prisma generate
+
+      - name: Run Ingestion Script (RoZod + Prisma)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL }}
+          ROBLOX_API_KEY: ${{ secrets.ROBLOX_API_KEY }}
+        run: cd web && npx tsx scripts/ingest.ts

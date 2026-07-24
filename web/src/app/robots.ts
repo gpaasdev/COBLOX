@@ -16,7 +16,7 @@ export default function robots(): MetadataRoute.Robots {
       // Targeted rules for Generative AI Scrapers (AEO/GEO optimization)
       ...aiBots.map((bot) => ({
         userAgent: bot,
-        allow: ["/llms.txt", "/llms-full.txt", "/leaderboard/"],
+        allow: ["/llms.txt", "/llms-full.txt", "/leaderboard/", "/market/", "/recipes/", "/spirits/", "/badges/"],
         disallow: ["/api/", "/admin/", "/private/"],
       })),
     ],

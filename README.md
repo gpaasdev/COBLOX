@@ -7,6 +7,7 @@
 <p align="center">
   <a href="https://www.roblox.com/join/qkced"><img src="https://img.shields.io/badge/Roblox-Play%20Now%20(Official%20Link)-FF0000?style=for-the-badge&logo=roblox&logoColor=white" alt="Play on Roblox"></a>
   <a href="https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml"><img src="https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml/badge.svg" alt="CI/CD Build Status"></a>
+  <a href="https://hycoblox.vercel.app/"><img src="https://img.shields.io/badge/pSEO%20Platform-Hycoblox-000000?style=for-the-badge&logo=vercel" alt="Hycoblox pSEO Platform"></a>
   <a href="https://gpaasdev.github.io/COBLOX/"><img src="https://img.shields.io/badge/Web-Vercel%20Live-000000?style=for-the-badge&logo=vercel" alt="Vercel Live"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge" alt="License: MIT"></a>
   <a href="https://luau-lang.org/"><img src="https://img.shields.io/badge/Engine-Roblox%20Luau--strict-000000?style=for-the-badge&logo=roblox" alt="Engine: Roblox Luau"></a>
@@ -125,6 +126,10 @@ Web Portal resmi COBLOX secara otomatis di-deploy ke GitHub Pages setiap ada *pu
 - **Web Portal Live:** [https://gpaasdev.github.io/COBLOX/](https://gpaasdev.github.io/COBLOX/)
 - **Buku Resep & Spirit Codex:** [https://gpaasdev.github.io/COBLOX/codex.html](https://gpaasdev.github.io/COBLOX/codex.html)
 - **Portal Pengembang:** [https://gpaasdev.github.io/COBLOX/developers.html](https://gpaasdev.github.io/COBLOX/developers.html)
+
+### 📈 Hycoblox: pSEO Aggregator & Developer Resources
+Kami juga mengembangkan **[Hycoblox](https://hycoblox.vercel.app/)**, sebuah platform *programmatic SEO (pSEO)* dan agregator komunitas untuk ekosistem Roblox. Platform ini mengumpulkan **game statistics** real-time, **Roblox developer resources**, open-source Luau scripts, serta UI assets untuk mendukung komunitas kreator.
+- Kunjungi **[Hycoblox pSEO Platform](https://hycoblox.vercel.app/)** untuk sumber daya developer terbaik.
 
 ---
 

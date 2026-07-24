@@ -1,24 +1,11 @@
-import { neon } from '@neondatabase/serverless';
+import { PrismaClient } from '@prisma/client';
 
-export async function checkDatabaseConnection() {
-  try {
-    const dbUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL;
-    if (!dbUrl) {
-      console.log('Database URL not configured (Hobby/Free Tier mode)');
-      return false;
-    }
-    const sql = neon(dbUrl);
-    const result = await sql`SELECT NOW()`;
-    console.log('Database connected successfully:', result[0]);
-    return true;
-  } catch (error) {
-    console.error('Database connection failed:', error);
-    return false;
-  }
-}
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
-export function getSqlClient() {
-  const dbUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL;
-  if (!dbUrl) return null;
-  return neon(dbUrl);
-}
+export const prisma =
+  globalForPrisma.prisma ||
+  new PrismaClient({
+    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+  });
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;

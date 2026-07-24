@@ -61,12 +61,36 @@ export default async function PlayerLeaderboardPage({ params }: PageProps) {
     },
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Beranda",
+      "item": baseUrl
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Leaderboard",
+      "item": `${baseUrl}/leaderboard`
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": player.username
+    }]
+  };
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 font-sans selection:bg-emerald-500/30 p-8">
+    <div className="flex-grow bg-slate-950 p-8">
       {/* Schema Injection */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
       <div className="max-w-4xl mx-auto">

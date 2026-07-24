@@ -1,0 +1,103 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model RobloxGame {
+  id            String       @id @default(uuid())
+  universeId    BigInt       @unique @map("universe_id")
+  gameName      String       @map("game_name")
+  slug          String       @unique
+  activePlayers Int          @default(0) @map("active_players")
+  visitCount    BigInt       @default(0) @map("visit_count")
+  creatorName   String       @map("creator_name")
+  isPromoted    Boolean      @default(false) @map("is_promoted")
+  updatedAt     DateTime     @updatedAt @map("updated_at")
+  codes         PlayerCode[]
+
+  @@map("roblox_games")
+}
+
+model DevResource {
+  id               String   @id @default(uuid())
+  assetName        String   @map("asset_name")
+  category         String   // e.g., 'Luau Script', 'UI', 'Mesh', 'Framework'
+  slug             String   @unique
+  codeContent      String   @db.Text @map("code_content")
+  rawSourceUrl     String   @map("raw_source_url")
+  interactionStats Int      @default(0) @map("interaction_stats")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@map("dev_resources")
+}
+
+model PlayerCode {
+  id                String     @id @default(uuid())
+  gameUniverseId    BigInt     @map("game_universe_id")
+  codeText          String     @map("code_text")
+  rewardDescription String     @map("reward_description")
+  isActive          Boolean    @default(true) @map("is_active")
+  lastVerified      DateTime   @default(now()) @map("last_verified")
+  game              RobloxGame @relation(fields: [gameUniverseId], references: [universeId], onDelete: Cascade)
+
+  @@map("player_codes")
+}
+
+model MarketAsset {
+  id          String   @id @default(uuid())
+  assetId     BigInt   @unique @map("asset_id")
+  name        String
+  description String   @db.Text
+  price       Int      @default(0)
+  currency    String   @default("Robux")
+  category    String   // 'Gamepass' or 'Developer Product'
+  slug        String   @unique
+  imageUrl    String   @map("image_url")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("market_assets")
+}
+
+model Recipe {
+  id          String   @id @default(uuid())
+  recipeId    String   @unique @map("recipe_id")
+  name        String
+  description String   @db.Text
+  ingredients String   // JSON string of array
+  outputType  String   @map("output_type")
+  slug        String   @unique
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("recipes")
+}
+
+model Spirit {
+  id          String   @id @default(uuid())
+  spiritId    String   @unique @map("spirit_id")
+  name        String
+  description String   @db.Text
+  rarity      String
+  element     String
+  dropRate    String   @map("drop_rate")
+  slug        String   @unique
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("spirits")
+}
+
+model Badge {
+  id            String   @id @default(uuid())
+  badgeId       BigInt   @unique @map("badge_id")
+  name          String
+  description   String   @db.Text
+  rarityPercent Float    @default(0.0) @map("rarity_percent")
+  slug          String   @unique
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("badges")
+}

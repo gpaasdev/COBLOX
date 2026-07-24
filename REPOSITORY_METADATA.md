@@ -13,14 +13,19 @@ Dokumen ini menyediakan data siap salin (*copy-pasteable*) untuk dikonfigurasi d
 Copy-paste kata kunci di bawah ini pada bidang **Topics** di GitHub repository settings:
 
 ```text
-roblox, luau, rojo, selene, alchemy, tycoon, profilestore, opencloud-api, github-pages, game-development, live-ops, zero-trust, CI-CD, soundpool, launchdata, premium-payouts
+roblox, luau, rojo, selene, alchemy, tycoon, profilestore, opencloud-api, github-pages, game-development, live-ops, zero-trust, CI-CD, soundpool, launchdata, premium-payouts, pseo, programmatic-seo, roblox-developer-resources, game-statistics, roblox-aggregator
 ```
 
 ---
 
 ## 🌐 Website URL & Official Share Link
-Salin tautan ini ke bagian **Website** pada GitHub UI:
+Salin tautan ini ke bagian **Website** pada GitHub UI (Fokus pSEO Aggregator):
 
+```text
+https://hycoblox.vercel.app/
+```
+
+Alternatif Web Portal:
 ```text
 https://gpaasdev.github.io/COBLOX/
 ```
