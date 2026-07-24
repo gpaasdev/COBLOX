@@ -491,7 +491,7 @@ function UIController._CreateHUD()
 	end
 end
 
-local hotbarSlotsDataRef = {}
+local hotbarSlotsData: {{[string]: any}} = {}
 
 function UIController.AddItemToHotbar(itemName: string, itemType: string)
 	local iconMap = {

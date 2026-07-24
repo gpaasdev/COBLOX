@@ -35,7 +35,7 @@ function VFXEngine.CreateFloatingText(position: Vector3, text: string, color: Co
 	label.Parent = bb
 
 	-- Float up & Fade out tween
-	local tweenInfo = TweenInfo.new(1.2, Enum.EasingStyle.OutQuad, Enum.EasingDirection.Out)
+	local tweenInfo = TweenInfo.new(1.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 	local moveTween = TweenService:Create(part, tweenInfo, { Position = part.Position + Vector3.new(0, 4, 0) })
 	local fadeTween = TweenService:Create(label, tweenInfo, { TextTransparency = 1, TextStrokeTransparency = 1 })
 

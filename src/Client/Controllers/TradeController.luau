@@ -1,6 +1,7 @@
 --!strict
 
 local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)

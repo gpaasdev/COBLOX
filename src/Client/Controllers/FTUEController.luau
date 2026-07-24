@@ -16,6 +16,7 @@ local questHUD: Frame
 local milestone1: TextLabel
 local milestone2: TextLabel
 local milestone3: TextLabel
+local milestone4: TextLabel
 
 local hasClaimedPlot = false
 local hasBoughtDropper = false
