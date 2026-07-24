@@ -64,9 +64,6 @@ const jsonLd = {
   image: "https://raw.githubusercontent.com/gpaasdev/COBLOX/main/.github/assets/game_thumbnail_16x9.png",
 };
 
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -83,12 +80,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-50">
-        <Header />
-        <main className="flex-grow flex flex-col">
-          {children}
-        </main>
-        <Footer />
+      <body className="min-h-full flex flex-col">
+        {children}
         <Analytics />
         <SpeedInsights />
       </body>
