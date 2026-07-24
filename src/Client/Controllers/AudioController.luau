@@ -36,4 +36,16 @@ function AudioController.PlaySound(soundId: string, volume: number?)
 	end)
 end
 
+function AudioController.PlayCraftingChime()
+	AudioController.PlaySound("rbxassetid://6023565860", 0.9)
+end
+
+function AudioController.PlayButtonClick()
+	AudioController.PlaySound("rbxassetid://6023565860", 0.5)
+end
+
+function AudioController.PlaySuccessFanfare()
+	AudioController.PlaySound("rbxassetid://6023565860", 1.0)
+end
+
 return AudioController
