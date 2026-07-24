@@ -80,7 +80,9 @@ for _, controller in ipairs(controllers) do
 	end
 end
 
-VFXEngine.Init()
+if typeof((VFXEngine :: any).Init) == "function" then
+	(VFXEngine :: any).Init()
+end
 
 for _, controller in ipairs(controllers) do
 	if controller.Start then
