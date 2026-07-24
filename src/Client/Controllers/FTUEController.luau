@@ -306,7 +306,7 @@ function FTUEController._CreateQuestBar()
 	milestone1 = Instance.new("TextLabel")
 	milestone1.Size = UDim2.new(0.22, 0, 0.8, 0)
 	milestone1.BackgroundTransparency = 1
-	milestone1.Text = "⬜ Klaim Plot Pabrik"
+	milestone1.Text = "✨ Buka Sanctum"
 	milestone1.TextColor3 = Color3.fromRGB(248, 250, 252)
 	milestone1.Font = Enum.Font.GothamBold
 	milestone1.TextScaled = true
@@ -315,7 +315,7 @@ function FTUEController._CreateQuestBar()
 	milestone2 = Instance.new("TextLabel")
 	milestone2.Size = UDim2.new(0.22, 0, 0.8, 0)
 	milestone2.BackgroundTransparency = 1
-	milestone2.Text = "⬜ Beli Upgrade Pertama"
+	milestone2.Text = "⚡ Bejana Aura"
 	milestone2.TextColor3 = Color3.fromRGB(148, 163, 184) -- Slate 400 (locked look)
 	milestone2.Font = Enum.Font.GothamBold
 	milestone2.TextScaled = true
@@ -324,7 +324,7 @@ function FTUEController._CreateQuestBar()
 	milestone3 = Instance.new("TextLabel")
 	milestone3.Size = UDim2.new(0.22, 0, 0.8, 0)
 	milestone3.BackgroundTransparency = 1
-	milestone3.Text = "⬜ Tetas Telur Pertama"
+	milestone3.Text = "🐉 Panggil Spirit"
 	milestone3.TextColor3 = Color3.fromRGB(148, 163, 184)
 	milestone3.Font = Enum.Font.GothamBold
 	milestone3.TextScaled = true
