@@ -42,6 +42,15 @@ local EggConfigs = {
 			{ PetId = "GoldenDragon", Weight = 20 },
 		},
 	},
+	VIPGodTierEgg = {
+		CostCoins = 0,
+		CostGems = 500,
+		IsPaidRobuxEgg = false,
+		IsVIPExclusive = true,
+		Pool = {
+			{ PetId = "Pet_GodTier_VIP", Weight = 100 },
+		},
+	},
 }
 
 function EggService.Init()
@@ -91,17 +100,51 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 			Retryable = false,
 		}
 	end
+	
+	local resProfile = PlayerDataService.GetProfile(player)
 
-	local deductRes = EconomyService.DeductCoins(player, config.CostCoins, "HatchEgg_" .. eggId)
-	if not deductRes.Success then
-		return {
-			Success = false,
-			Category = "Validation",
-			ErrorCode = "INSUFFICIENT_COINS",
-			Message = "Not enough coins to hatch egg",
-			Data = nil,
-			Retryable = false,
-		}
+	if config.IsVIPExclusive then
+		if not resProfile.Success or not resProfile.Data or not resProfile.Data.Monetization.PremiumUnlocked then
+			return {
+				Success = false,
+				Category = "Validation",
+				ErrorCode = "VIP_ONLY",
+				Message = "This egg is exclusive to VIP players.",
+				Data = nil,
+				Retryable = false,
+			}
+		end
+	end
+
+	if config.CostCoins > 0 then
+		local deductRes = EconomyService.DeductCoins(player, config.CostCoins, "HatchEgg_" .. eggId)
+		if not deductRes.Success then
+			return {
+				Success = false,
+				Category = "Validation",
+				ErrorCode = "INSUFFICIENT_COINS",
+				Message = "Not enough coins to hatch egg",
+				Data = nil,
+				Retryable = false,
+			}
+		end
+	end
+
+	if config.CostGems > 0 then
+		local deductRes = EconomyService.DeductGems(player, config.CostGems, "HatchEgg_" .. eggId)
+		if not deductRes.Success then
+			if config.CostCoins > 0 then
+				EconomyService.AddCurrency(player, "Coins", config.CostCoins, "HatchRefund")
+			end
+			return {
+				Success = false,
+				Category = "Validation",
+				ErrorCode = "INSUFFICIENT_GEMS",
+				Message = "Not enough gems to hatch egg",
+				Data = nil,
+				Retryable = false,
+			}
+		end
 	end
 
 	local resProfile = PlayerDataService.GetProfile(player)
@@ -144,8 +187,13 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 	-- Create Pet
 	local createRes = PetService.CreatePet(player, selectedPetId)
 	if not createRes.Success or not createRes.Data then
-		-- Refund coins on inventory failure
-		EconomyService.AddCoins(player, config.CostCoins, "HatchRefund")
+		-- Refund coins and gems on inventory failure
+		if config.CostCoins > 0 then
+			EconomyService.AddCurrency(player, "Coins", config.CostCoins, "HatchRefund")
+		end
+		if config.CostGems > 0 then
+			EconomyService.AddCurrency(player, "Gems", config.CostGems, "HatchRefund")
+		end
 		return createRes
 	end
 

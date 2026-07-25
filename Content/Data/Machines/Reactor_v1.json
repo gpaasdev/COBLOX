@@ -1,0 +1,6 @@
+{
+  "Id": "Reactor_v1",
+  "Name": "Industrial Reactor Mark 1",
+  "PowerConsumption": 100,
+  "MaxTemperature": 750
+}

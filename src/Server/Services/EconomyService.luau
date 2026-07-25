@@ -6,6 +6,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)
 local EconomyConfig = require(ReplicatedStorage.Shared.Configuration.EconomyConfig)
+local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
 local PlayerDataService = require(script.Parent.PlayerDataService)
 local RemoteConfigService = require(ServerScriptService.Server.Services.RemoteConfigService)
 local Signal = require(ReplicatedStorage.Shared.Utility.Signal)
@@ -94,7 +95,7 @@ function EconomyService.CalculateQuantumVaultBalance(player: Player): ServiceRes
 	}
 end
 
-function EconomyService.AddCoins(player: Player, amount: number, reason: string): ServiceResult<number>
+function EconomyService.AddCurrency(player: Player, currencyType: string, amount: number, reason: string?): ServiceResult<number>
 	local res = PlayerDataService.GetProfile(player)
 	if not res.Success or not res.Data then
 		return {
@@ -108,44 +109,63 @@ function EconomyService.AddCoins(player: Player, amount: number, reason: string)
 	end
 
 	local wallet = res.Data.Wallet
-	wallet.Coins += amount
-	EconomyService.CoinsChanged:Fire(player, wallet.Coins, amount, reason)
-	EconomyService._SyncClient(player, wallet)
+	local initialBalance = (currencyType == "Gems" or currencyType == "ChronoSparks") and (wallet[currencyType] or 0) or 0
 
-	return {
-		Success = true,
-		Category = nil,
-		ErrorCode = nil,
-		Message = "Coins added successfully",
-		Data = wallet.Coins,
-		Retryable = false,
-	}
-end
-
-function EconomyService.AddGems(player: Player, amount: number, reason: string): ServiceResult<number>
-	local res = PlayerDataService.GetProfile(player)
-	if not res.Success or not res.Data then
-		return {
-			Success = false,
-			Category = "Infrastructure",
-			ErrorCode = "PROFILE_ERROR",
-			Message = "Failed to load player wallet profile",
-			Data = nil,
-			Retryable = true,
-		}
+	if currencyType == "AuraEnergy" then
+		wallet.AuraEnergy += amount
+	elseif currencyType == "ChronoSparks" then
+		wallet.ChronoSparks += amount
+	elseif currencyType == "QuantumBadges" then
+		wallet.QuantumBadges += amount
+	elseif currencyType == "Coins" then
+		wallet.Coins += amount
+		EconomyService.CoinsChanged:Fire(player, wallet.Coins, amount, reason or "AddCurrency")
+	elseif currencyType == "Gems" then
+		wallet.Gems += amount
+		EconomyService.GemsChanged:Fire(player, wallet.Gems, amount, reason or "AddCurrency")
 	end
 
-	local wallet = res.Data.Wallet
-	wallet.Gems += amount
-	EconomyService.GemsChanged:Fire(player, wallet.Gems, amount, reason)
+	-- Hard Currency Double-Entry Ledger Logging per GDD Section 11
+	if currencyType == "Gems" or currencyType == "ChronoSparks" then
+		local finalBalance = wallet[currencyType]
+		if (initialBalance + amount) ~= finalBalance then
+			warn(string.format("[SECURITY ALERT] Hard currency mismatch for player %s! Flagging account.", player.Name))
+			res.Data.AdminFlagged = true
+			wallet[currencyType] = initialBalance -- Rollback transaction
+			return {
+				Success = false,
+				Category = "Validation",
+				ErrorCode = "CURRENCY_MISMATCH",
+				Message = "Hard currency transaction failed validation",
+				Data = nil,
+				Retryable = false,
+			}
+		end
+
+		if not res.Data.Ledger then
+			res.Data.Ledger = {}
+		end
+
+		local HttpService = game:GetService("HttpService")
+		local ledgerEntry = {
+			TimestampUTC = DateTime.now():ToIsoDate(),
+			TransactionId = HttpService:GenerateGUID(false),
+			AmountChange = amount,
+			FinalBalance = finalBalance,
+			Reason = reason or "SystemMutation",
+		}
+		table.insert(res.Data.Ledger, ledgerEntry)
+		print(string.format("[Ledger] Logged %s mutation for %s: %+d (Final: %d)", currencyType, player.Name, amount, finalBalance))
+	end
+
 	EconomyService._SyncClient(player, wallet)
 
 	return {
 		Success = true,
 		Category = nil,
 		ErrorCode = nil,
-		Message = "Gems added successfully",
-		Data = wallet.Gems,
+		Message = currencyType .. " added successfully",
+		Data = wallet[currencyType],
 		Retryable = false,
 	}
 end

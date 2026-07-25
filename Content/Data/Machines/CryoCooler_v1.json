@@ -1,0 +1,6 @@
+{
+  "Id": "CryoCooler_v1",
+  "Name": "Cryogenic Cooling Chamber",
+  "PowerConsumption": 1200,
+  "MaxTemperature": 500
+}

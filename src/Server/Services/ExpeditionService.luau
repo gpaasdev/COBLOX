@@ -112,8 +112,8 @@ function ExpeditionService.CompleteFloor(player: Player, floorNumber: number): S
 	local sparksReward = 10 * floorNumber
 	local badgesReward = 1 * floorNumber
 
-	PlayerDataService.AddCurrency(player, "ChronoSparks", sparksReward)
-	PlayerDataService.AddCurrency(player, "QuantumBadges", badgesReward)
+	EconomyService.AddCurrency(player, "ChronoSparks", sparksReward)
+	EconomyService.AddCurrency(player, "QuantumBadges", badgesReward)
 
 	session.Floor = floorNumber + 1
 	DomainEventBus.Publish("ExpeditionFloorCompleted", player, { Floor = floorNumber, Sparks = sparksReward, Badges = badgesReward })

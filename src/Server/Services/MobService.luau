@@ -155,6 +155,7 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	
 	-- Ensure Unanchored for Physics
 	hrp.Anchored = false
+	hrp:SetNetworkOwner(nil) -- Force Server Ownership for AlignPosition to work!
 
 	local mobActor = Instance.new("Actor")
 	mobActor.Name = "MobActor"
@@ -218,7 +219,7 @@ function MobService.TakeDamage(id: string, amount: number, attacker: Player?)
 			-- Award loot drop
 			if attacker then
 				local EconomyService = require(script.Parent.EconomyService)
-				EconomyService.AddCoins(attacker, 50, "MobLoot")
+				EconomyService.AddCurrency(attacker, "Coins", 50, "MobLoot")
 				print(string.format("[MobService] Player %s defeated mob %s (+50 Coins)", attacker.Name, id))
 			end
 
@@ -244,18 +245,27 @@ function MobService.Tick(dt: number)
 		local timeInState = now - mob.StateTime
 		
 		if mob.State == "IDLE" then
+			-- Proximity Aggro Detection (AGGRO_RADIUS = 30)
+			for _, player in ipairs(Players:GetPlayers()) do
+				if player.Character and player.Character.PrimaryPart then
+					local dist = (player.Character.PrimaryPart.Position - hrp.Position).Magnitude
+					if dist <= AGGRO_RADIUS and not MobService._IsPlayerInSafeZone(player) then
+						mob.Target = player
+						mob.State = "CHASE"
+						mob.StateTime = now
+						print(string.format("[MobService] Mob %s aggroed on player %s!", id, player.Name))
+						break
+					end
+				end
+			end
+
 			-- Gentle Idle Patrol around central nest spawn point
-			if timeInState > 4 then
+			if mob.State == "IDLE" and timeInState > 4 then
 				local randomAngle = math.rad(math.random(0, 360))
 				local patrolTarget = mob.SpawnPosition + Vector3.new(math.cos(randomAngle) * 10, 0, math.sin(randomAngle) * 10)
-				local distToPatrol = (patrolTarget - hrp.Position).Magnitude
-				
 				alignPos.Position = patrolTarget
 				alignOri.CFrame = CFrame.lookAt(hrp.Position, patrolTarget)
-				
-				if distToPatrol < 2 then
-					mob.StateTime = now
-				end
+				mob.StateTime = now
 			end
 			
 		elseif mob.State == "CHASE" then

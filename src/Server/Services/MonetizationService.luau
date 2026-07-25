@@ -127,37 +127,37 @@ function MonetizationService._ProcessReceipt(receiptInfo: { PlayerId: number, Pr
 
 	local success = false
 	if productId == MonetizationService.DevProducts.CoinsSmall then
-		EconomyService.AddCoins(player, 5000, "Purchase_CoinsSmall")
+		EconomyService.AddCurrency(player, "Coins", 5000, "Purchase_CoinsSmall")
 		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 5000, Currency = "Coins" })
 		MonetizationService._SendWebhook(player, productId, 5000, "Coins")
 		success = true
 	elseif productId == MonetizationService.DevProducts.CoinsLarge then
-		EconomyService.AddCoins(player, 50000, "Purchase_CoinsLarge")
+		EconomyService.AddCurrency(player, "Coins", 50000, "Purchase_CoinsLarge")
 		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 50000, Currency = "Coins" })
 		MonetizationService._SendWebhook(player, productId, 50000, "Coins")
 		success = true
 	elseif productId == MonetizationService.DevProducts.GemsSmall then
-		EconomyService.AddGems(player, 100, "Purchase_GemsSmall")
+		EconomyService.AddCurrency(player, "Gems", 100, "Purchase_GemsSmall")
 		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 100, Currency = "Gems" })
 		MonetizationService._SendWebhook(player, productId, 100, "Gems")
 		success = true
 	elseif productId == MonetizationService.DevProducts.GemsLarge then
-		EconomyService.AddGems(player, 1000, "Purchase_GemsLarge")
+		EconomyService.AddCurrency(player, "Gems", 1000, "Purchase_GemsLarge")
 		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 1000, Currency = "Gems" })
 		MonetizationService._SendWebhook(player, productId, 1000, "Gems")
 		success = true
 	elseif productId == MonetizationService.DevProducts.AuraBoostMedium then
-		PlayerDataService.AddCurrency(player, "AuraEnergy", 2500)
+		EconomyService.AddCurrency(player, "AuraEnergy", 2500)
 		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 2500, Currency = "AuraEnergy" })
 		MonetizationService._SendWebhook(player, productId, 2500, "AuraEnergy")
 		success = true
 	elseif productId == MonetizationService.DevProducts.ChronoSparksPack then
-		PlayerDataService.AddCurrency(player, "ChronoSparks", 100)
+		EconomyService.AddCurrency(player, "ChronoSparks", 100)
 		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 100, Currency = "ChronoSparks" })
 		MonetizationService._SendWebhook(player, productId, 100, "ChronoSparks")
 		success = true
 	elseif productId == MonetizationService.DevProducts.RebirthSkipToken then
-		PlayerDataService.AddCurrency(player, "RebirthTokens", 1)
+		EconomyService.AddCurrency(player, "RebirthTokens", 1)
 		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 1, Currency = "RebirthTokens" })
 		MonetizationService._SendWebhook(player, productId, 1, "RebirthTokens")
 		success = true
@@ -168,6 +168,16 @@ function MonetizationService._ProcessReceipt(receiptInfo: { PlayerId: number, Pr
 			PlayerDataService.SavePlayerProfile(player)
 		end)
 		processedReceipts[receiptId] = true
+		
+		-- Fire Toast Notification to Client
+		local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
+		if syncRemote then
+			local profileRes = PlayerDataService.GetProfile(player)
+			if profileRes.Success and profileRes.Data and profileRes.Data.Wallet then
+				syncRemote:FireClient(player, profileRes.Data.Wallet)
+			end
+		end
+		
 		print(string.format("[MonetizationService] Purchase %s successfully granted & persisted for %s.", receiptId, player.Name))
 		return Enum.ProductPurchaseDecision.PurchaseGranted
 	end

@@ -6,6 +6,8 @@ local EggData = {
 		CostCoins = 50,
 		CostGems = 0,
 		HatchTimeSeconds = 1.0,
+		ModelAssetId = 1471714120, -- Basic Egg Mesh
+		IconId = "rbxassetid://1471714120",
 		Pool = {
 			{ PetId = "Pet_Common_Cat", Weight = 50 },
 			{ PetId = "Pet_Uncommon_Dog", Weight = 30 },
@@ -19,6 +21,8 @@ local EggData = {
 		CostCoins = 500,
 		CostGems = 0,
 		HatchTimeSeconds = 1.5,
+		ModelAssetId = 1471714121, -- Forest Egg Mesh
+		IconId = "rbxassetid://1471714121",
 		Pool = {
 			{ PetId = "Pet_Uncommon_Dog", Weight = 40 },
 			{ PetId = "Pet_Rare_Fox", Weight = 30 },
@@ -32,6 +36,8 @@ local EggData = {
 		CostCoins = 5000,
 		CostGems = 0,
 		HatchTimeSeconds = 2.0,
+		ModelAssetId = 1471714122, -- Ocean Egg Mesh
+		IconId = "rbxassetid://1471714122",
 		Pool = {
 			{ PetId = "Pet_Rare_Bear", Weight = 45 },
 			{ PetId = "Pet_Epic_Unicorn", Weight = 30 },
@@ -45,6 +51,8 @@ local EggData = {
 		CostCoins = 50000,
 		CostGems = 100,
 		HatchTimeSeconds = 3.0,
+		ModelAssetId = 1471714123, -- Celestial Egg Mesh
+		IconId = "rbxassetid://1471714123",
 		Pool = {
 			{ PetId = "Pet_Epic_Pegasus", Weight = 50 },
 			{ PetId = "Pet_Legendary_Dragon", Weight = 30 },

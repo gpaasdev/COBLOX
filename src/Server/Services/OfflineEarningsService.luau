@@ -4,6 +4,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
 local PlayerDataService = require(script.Parent.PlayerDataService :: any)
 
 local OfflineEarningsService = {}
@@ -21,7 +22,7 @@ function OfflineEarningsService.Init()
 		claimRemoteFunc.OnServerInvoke = function(player: Player)
 			local pending = pendingOfflineEarnings[player] or 0
 			if pending > 0 then
-				PlayerDataService.AddCurrency(player, "Coins", pending)
+				EconomyService.AddCurrency(player, "Coins", pending)
 				pendingOfflineEarnings[player] = 0
 				print(string.format("[OfflineEarningsService] %s claimed %d AFK Coins!", player.Name, pending))
 				return { Success = true, ClaimedCoins = pending }

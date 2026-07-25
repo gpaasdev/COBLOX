@@ -1,0 +1,19 @@
+[
+  {
+    "Id": "TitaniumAlloy",
+    "Name": "Titanium Alloy",
+    "Category": "Synthetic",
+    "BaseValue": 2000,
+    "Properties": {
+      "Density": 4.5,
+      "Conductivity": 0.4,
+      "Hardness": 9.8,
+      "Elasticity": 110,
+      "CorrosionResistance": 9.9,
+      "HeatResistance": 1941,
+      "RadiationResistance": 7.5,
+      "MagneticProperty": 0.0,
+      "ChemicalStability": 9.5
+    }
+  }
+]

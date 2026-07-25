@@ -1,6 +1,7 @@
 --!strict
 local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 local QuestRegistry = require(ReplicatedStorage.Shared.Configuration.QuestRegistry)
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
@@ -73,7 +74,16 @@ function QuestManager.IncrementProgress(player: Player, questType: string, amoun
 			if currentProgress >= questDef.Target then
 				profile.DailyQuests.Completed[questId] = true
 				if questDef.Reward.AuraEnergy then
-					PlayerDataService.AddCurrency(player, "AuraEnergy", questDef.Reward.AuraEnergy)
+					EconomyService.AddCurrency(player, "AuraEnergy", questDef.Reward.AuraEnergy)
+				end
+				if questDef.Reward.ChronoSparks then
+					EconomyService.AddCurrency(player, "ChronoSparks", questDef.Reward.ChronoSparks)
+				end
+				if questDef.Reward.Coins then
+					EconomyService.AddCurrency(player, "Coins", questDef.Reward.Coins)
+				end
+				if questDef.Reward.Gems then
+					EconomyService.AddCurrency(player, "Gems", questDef.Reward.Gems)
 				end
 				if questDef.Reward.SeasonXP then
 					profile.Monetization.SeasonXP += questDef.Reward.SeasonXP

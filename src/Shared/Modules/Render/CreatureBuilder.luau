@@ -5,6 +5,27 @@
 local Workspace = game:GetService("Workspace")
 
 local CreatureBuilder = {}
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local PartCache = require(ReplicatedStorage.Shared.Modules.PartCache)
+
+local auraTemplate = Instance.new("Part")
+auraTemplate.Size = Vector3.new(0.1, 0.1, 0.1)
+auraTemplate.Transparency = 1
+auraTemplate.CanCollide = false
+auraTemplate.Anchored = false
+local attach = Instance.new("Attachment")
+attach.Name = "AuraAttachment"
+attach.Parent = auraTemplate
+local particle = Instance.new("ParticleEmitter")
+particle.Name = "AuraEmitter"
+particle.Texture = "rbxassetid://243098098"
+particle.Size = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.5), NumberSequenceKeypoint.new(1, 0)})
+particle.Lifetime = NumberRange.new(0.6, 1.2)
+particle.Rate = 16
+particle.Speed = NumberRange.new(1, 3.5)
+particle.Enabled = false
+particle.Parent = attach
+local auraCache = PartCache.new(auraTemplate, 30)
 
 -- Helper to create a welded sub-part
 local function createSubPart(parentModel: Model, rootPart: Part, name: string, size: Vector3, offset: Vector3, color: Color3, mat: Enum.Material): Part
@@ -188,97 +209,49 @@ function CreatureBuilder.BuildCyberPet(spiritId: string, petType: string?): Mode
 		neonColor = Color3.fromRGB(168, 85, 247)
 	end
 
-	-- 1. Main Torso Body
-	local torso = Instance.new("Part")
+	-- 1. Main Torso Body (Replaced with MeshPart for Visual Fidelity)
+	local torso = Instance.new("MeshPart")
 	torso.Name = "HumanoidRootPart"
-	torso.Size = Vector3.new(1.3, 1.3, 2.4)
+	torso.Size = Vector3.new(2, 2, 2.5)
 	torso.Position = Vector3.new(0, 4, 0)
+	
+	-- Fallback Mesh IDs (Mock Final Assets)
+	if string.find(spiritId, "Dragon") then
+		torso.MeshId = "rbxassetid://6820845347" -- Placeholder Dragon Mesh
+	elseif string.find(spiritId, "Cat") then
+		torso.MeshId = "rbxassetid://6820845348"
+	elseif string.find(spiritId, "Fox") then
+		torso.MeshId = "rbxassetid://6820845349"
+	else
+		torso.MeshId = "rbxassetid://6820845350"
+	end
+	
 	torso.Color = mainColor
 	torso.Material = Enum.Material.SmoothPlastic
 	torso.Anchored = false
 	torso.CanCollide = false
 	torso.Parent = model
 
-	-- 2. Legs (4 Anatomical Paws)
-	createSubPart(model, torso, "LegFL", Vector3.new(0.35, 1.1, 0.35), Vector3.new(-0.45, -0.6, -0.7), mainColor, Enum.Material.SmoothPlastic)
-	createSubPart(model, torso, "LegFR", Vector3.new(0.35, 1.1, 0.35), Vector3.new(0.45, -0.6, -0.7), mainColor, Enum.Material.SmoothPlastic)
-	createSubPart(model, torso, "LegBL", Vector3.new(0.35, 1.1, 0.35), Vector3.new(-0.45, -0.6, 0.7), mainColor, Enum.Material.SmoothPlastic)
-	createSubPart(model, torso, "LegBR", Vector3.new(0.35, 1.1, 0.35), Vector3.new(0.45, -0.6, 0.7), mainColor, Enum.Material.SmoothPlastic)
+	-- 5. Swirling Mana Aura Light Particle & Trail Emitter (Object Pooled)
+	local auraPart = auraCache:GetPart()
+	auraPart.Position = torso.Position
+	
+	local weld = Instance.new("WeldConstraint")
+	weld.Part0 = torso
+	weld.Part1 = auraPart
+	weld.Parent = torso
 
-	-- 3. Head & Snout
-	local head = createSubPart(model, torso, "Head", Vector3.new(1.2, 1.2, 1.2), Vector3.new(0, 0.6, -1.3), mainColor, Enum.Material.SmoothPlastic)
-	createSubPart(model, torso, "Visor", Vector3.new(1.25, 0.35, 0.15), Vector3.new(0, 0.7, -1.86), neonColor, Enum.Material.Neon)
-
-	-- 4. SPECIES SPECIFIC HIGH-JUICE ANATOMY & KITS:
-	if string.find(spiritId, "Fox") or string.find(spiritId, "Kitsune") then
-		-- 9 Kitsune Tails Fan
-		for t = -4, 4 do
-			createSubPart(model, torso, "KitsuneTail_" .. tostring(t), Vector3.new(0.35, 0.35, 1.8), Vector3.new(t * 0.3, 0.6, 1.8), neonColor, Enum.Material.Neon)
-		end
-		-- Chakra Forehead Gem
-		createSubPart(model, torso, "ChakraGem", Vector3.new(0.4, 0.4, 0.3), Vector3.new(0, 1.2, -1.95), neonColor, Enum.Material.Neon)
-		
-		-- Add Trail to Kitsune
-		local trailAttach0 = Instance.new("Attachment")
-		trailAttach0.Position = Vector3.new(0, 0.5, 2.5)
-		trailAttach0.Parent = torso
-		local trailAttach1 = Instance.new("Attachment")
-		trailAttach1.Position = Vector3.new(0, -0.5, 2.5)
-		trailAttach1.Parent = torso
-		
-		local trail = Instance.new("Trail")
-		trail.Attachment0 = trailAttach0
-		trail.Attachment1 = trailAttach1
-		trail.Color = ColorSequence.new(neonColor)
-		trail.Lifetime = 0.5
-		trail.Transparency = NumberSequence.new(0.2, 1)
-		trail.Parent = torso
-
-	elseif string.find(spiritId, "Dragon") or string.find(spiritId, "Water") or string.find(spiritId, "Mizuchi") then
-		-- Dual Dragon Wings & Asymmetric Crystal Horns
-		createSubPart(model, torso, "LeftWing", Vector3.new(2.4, 0.1, 1.2), Vector3.new(-1.8, 0.8, 0), neonColor, Enum.Material.Neon)
-		createSubPart(model, torso, "RightWing", Vector3.new(2.4, 0.1, 1.2), Vector3.new(1.8, 0.8, 0), neonColor, Enum.Material.Neon)
-		createSubPart(model, torso, "LeftHorn", Vector3.new(0.4, 1.6, 0.4), Vector3.new(-0.5, 1.8, -1.3), neonColor, Enum.Material.Neon)
-		createSubPart(model, torso, "RightHorn", Vector3.new(0.3, 1.2, 0.3), Vector3.new(0.5, 1.5, -1.2), neonColor, Enum.Material.Neon)
-
-	elseif string.find(spiritId, "Phoenix") then
-		-- Wide Flame Wings & Triple Flame Tail Feathers (Enlarged Proportions)
-		createSubPart(model, torso, "PhoenixWingL", Vector3.new(4.2, 0.2, 2.1), Vector3.new(-2.8, 1.2, -0.2), neonColor, Enum.Material.Neon)
-		createSubPart(model, torso, "PhoenixWingR", Vector3.new(4.2, 0.2, 2.1), Vector3.new(2.8, 1.2, -0.2), neonColor, Enum.Material.Neon)
-		createSubPart(model, torso, "TailFeather1", Vector3.new(0.5, 0.3, 2.7), Vector3.new(-0.6, 0.8, 2.2), neonColor, Enum.Material.Neon)
-		createSubPart(model, torso, "TailFeather2", Vector3.new(0.6, 0.3, 3.3), Vector3.new(0, 0.9, 2.5), neonColor, Enum.Material.Neon)
-		createSubPart(model, torso, "TailFeather3", Vector3.new(0.5, 0.3, 2.7), Vector3.new(0.6, 0.8, 2.2), neonColor, Enum.Material.Neon)
-
-	elseif string.find(spiritId, "Unicorn") then
-		-- Golden Spiral Horn & Starlight Mane
-		createSubPart(model, torso, "UnicornHorn", Vector3.new(0.25, 1.4, 0.25), Vector3.new(0, 1.6, -1.6), Color3.fromRGB(253, 224, 71), Enum.Material.Neon)
-		createSubPart(model, torso, "StarlightMane", Vector3.new(0.3, 0.8, 1.6), Vector3.new(0, 1.1, -0.5), neonColor, Enum.Material.Neon)
-
-	elseif string.find(spiritId, "Cat") then
-		-- Floating Halo Ring & Triple Tail
-		createSubPart(model, torso, "CatHalo", Vector3.new(1.4, 0.1, 1.4), Vector3.new(0, 1.8, -1.3), neonColor, Enum.Material.Neon)
-		createSubPart(model, torso, "CatTail1", Vector3.new(0.2, 0.2, 1.2), Vector3.new(-0.2, 0.5, 1.4), mainColor, Enum.Material.SmoothPlastic)
-		createSubPart(model, torso, "CatTail2", Vector3.new(0.2, 0.2, 1.2), Vector3.new(0.2, 0.5, 1.4), mainColor, Enum.Material.SmoothPlastic)
-
-	else
-		-- Standard Tail & Cyber Collar
-		createSubPart(model, torso, "Tail", Vector3.new(0.3, 0.3, 1.2), Vector3.new(0, 0.4, 1.5), mainColor, Enum.Material.SmoothPlastic)
-		createSubPart(model, torso, "CyberCollar", Vector3.new(1.3, 0.25, 1.3), Vector3.new(0, 0.2, -0.8), neonColor, Enum.Material.Neon)
+	local emitter = auraPart:FindFirstChild("AuraAttachment"):FindFirstChild("AuraEmitter")
+	if emitter then
+		emitter.Color = ColorSequence.new(neonColor)
+		emitter.Enabled = true
 	end
-
-	-- 5. Swirling Mana Aura Light Particle & Trail Emitter
-	local attachment = Instance.new("Attachment")
-	attachment.Name = "AuraAttachment"
-	attachment.Parent = torso
-
-	local particle = Instance.new("ParticleEmitter")
-	particle.Texture = "rbxassetid://243098098"
-	particle.Color = ColorSequence.new(neonColor)
-	particle.Size = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.5), NumberSequenceKeypoint.new(1, 0)})
-	particle.Lifetime = NumberRange.new(0.6, 1.2)
-	particle.Rate = 16
-	particle.Speed = NumberRange.new(1, 3.5)
-	particle.Parent = attachment
+	
+	-- When torso is destroyed, return aura to pool
+	torso.Destroying:Connect(function()
+		if emitter then emitter.Enabled = false end
+		auraCache:ReturnPart(auraPart)
+	end)
 
 	model.PrimaryPart = torso
 	return model

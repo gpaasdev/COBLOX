@@ -1,5 +1,6 @@
 --!strict
 local ServerScriptService = game:GetService("ServerScriptService")
+local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 
 local OnboardingService = {}
@@ -53,7 +54,7 @@ function OnboardingService.TriggerState(player: Player, stateIndex: number)
 	if ftue.Completed then return end
 
 	if stateIndex == 1 and ftue.Step == 0 then
-		PlayerDataService.AddCurrency(player, "AuraEnergy", 250)
+		EconomyService.AddCurrency(player, "AuraEnergy", 250)
 		ftue.Step = 1
 	elseif stateIndex == 2 and ftue.Step == 1 then
 		ftue.Step = 2

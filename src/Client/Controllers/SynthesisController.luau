@@ -234,14 +234,62 @@ function SynthesisController._CreateModal()
 	btnShadow.Thickness = 3
 	btnShadow.Parent = transmuteBtn
 
+	local isCrafting = false
+	local lastCraftTime = 0
+	local CRAFT_COOLDOWN = 1.5
+
 	transmuteBtn.MouseButton1Click:Connect(function()
-		local response = ClientRemotes.RequestCraft:InvokeServer(gridData)
+		if isCrafting then return end
+		
+		local currentTime = os.clock()
+		if currentTime - lastCraftTime < CRAFT_COOLDOWN then
+			local controllersFolder = script.Parent
+			local UIController = require(controllersFolder:WaitForChild("UIController") :: any)
+			UIController.ShowNotification(string.format("⚠️ Harap tunggu %.1fs sebelum meracik lagi!", CRAFT_COOLDOWN - (currentTime - lastCraftTime)))
+			return
+		end
+		lastCraftTime = currentTime
+		
+		-- Check if grid has at least 1 material
+		local hasMaterial = false
+		for i = 1, 9 do
+			if gridData[i] ~= "" then
+				hasMaterial = true
+				break
+			end
+		end
+
+		if not hasMaterial then
+			if resultPreviewLabel then
+				resultPreviewLabel.Text = "⚠️ Letakkan minimal 1 bahan alkimia pada grid 3x3!"
+			end
+			return
+		end
+
+		isCrafting = true
+		transmuteBtn.Text = "⏳ MERACIK..."
+
+		local response = nil
+		pcall(function()
+			response = ClientRemotes.RequestCraft:InvokeServer(gridData)
+		end)
+
+		isCrafting = false
+		transmuteBtn.Text = "⚡ RACIK SEKARANG!"
+
 		if response and response.Success and response.Data then
 			local resultItem = response.Data.ItemResult
 			local itemType = response.Data.ItemType or "Consumable"
 			local multiplier = response.Data.YieldMultiplier or 1.0
 
-			-- Format technical name (e.g. PyroBuffPotion_Tier2 -> Pyro Buff Potion Tier 2)
+			-- Play CraftSuccess Chime
+			local controllersFolder = script.Parent
+			local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)
+			pcall(function()
+				AudioController.PlaySound("rbxassetid://138677306", 1.0)
+			end)
+
+			-- Format technical name
 			local cleanName = tostring(resultItem):gsub("_", " "):gsub("(%l)(%w*)", function(a,b) return a:upper()..b end)
 
 			if resultPreviewLabel then
@@ -249,7 +297,6 @@ function SynthesisController._CreateModal()
 			end
 
 			-- Notify UIController to put item into Hotbar & show top toast notification
-			local controllersFolder = script.Parent
 			local UIController = require(controllersFolder:WaitForChild("UIController") :: any)
 			UIController.AddItemToHotbar(resultItem, itemType)
 			UIController.ShowNotification("✨ Berhasil Meracik: " .. cleanName .. "!")

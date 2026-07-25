@@ -1,0 +1,6 @@
+{
+  "Id": "Tech_BasicFusion",
+  "Name": "Basic Fusion Science",
+  "RequiredDiscoveries": ["Iron", "AetherCrystal"],
+  "Cost": 500
+}

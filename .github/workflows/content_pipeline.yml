@@ -1,0 +1,72 @@
+name: Content Pipeline & Validation
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate_and_generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          
+      - name: Validate & Generate Content Registries
+        run: uv run tools/content_pipeline.py
+
+      - name: Check for Uncommitted Registry Changes
+        run: |
+          git diff --exit-code src/Shared/Config/Generated*.luau || (echo "Generated registries are out of sync. Please run uv run tools/content_pipeline.py and commit the results." && exit 1)
+
+  luau_checks:
+    runs-on: ubuntu-latest
+    needs: validate_and_generate
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Aftman
+        uses: ok-nick/setup-aftman@v0.4.2
+      - name: Install Dependencies
+        run: wally install
+      - name: Selene Linter
+        run: selene src/
+      - name: Type Check (Luau)
+        run: luau-lsp analyze --sourcemap=sourcemap.json --ignore="Packages/**" src/
+        
+  build_rojo:
+    runs-on: ubuntu-latest
+    needs: luau_checks
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Aftman
+        uses: ok-nick/setup-aftman@v0.4.2
+      - name: Build Rojo
+        run: rojo build -o test.rbxl
+
+  web_checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci
+      - name: Type Check (TypeScript)
+        run: npx tsc --noEmit
+      - name: Lint
+        run: npm run lint
+      - name: Build Next.js
+        run: npm run build

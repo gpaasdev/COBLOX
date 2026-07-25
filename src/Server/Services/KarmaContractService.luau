@@ -127,7 +127,7 @@ function KarmaContractService.ExecuteRetribution(victim: Player, targetUserId: n
 		syncKarmaRemote:FireClient(victim, { Active = false })
 	end
 
-	EconomyService.AddCoins(victim, reward, "KarmaRetributionReward")
+	EconomyService.AddCurrency(victim, "Coins", reward, "KarmaRetributionReward")
 
 	-- Global Broadcast
 	GlobalBroadcastService.Broadcast(

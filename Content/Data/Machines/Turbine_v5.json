@@ -1,0 +1,6 @@
+{
+  "Id": "Turbine_v5",
+  "Name": "Industrial Turbine Mark 5",
+  "PowerConsumption": 500,
+  "MaxTemperature": 1750
+}

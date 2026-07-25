@@ -19,7 +19,7 @@ PlayerDataService.ProfileReleasing = Signal.new()
 local PROFILE_KEY_PREFIX = "COBLOX_LGBOS_v11_"
 
 local defaultProfile: PlayerProfile = {
-	SchemaVersion = 3,
+	SchemaVersion = 4,
 	Wallet = {
 		Coins = 1000,
 		Gems = 50,
@@ -102,6 +102,34 @@ function PlayerDataService._LoadPlayerProfile(player: Player)
 	if profile ~= nil then
 		profile:AddUserId(player.UserId)
 		profile:Reconcile()
+		
+		-- DataStore Sanitation / Schema Auto-Reconcile (Zero Nil Crash)
+		if not profile.Data.Wallet then profile.Data.Wallet = defaultProfile.Wallet end
+		profile.Data.Wallet.Coins = profile.Data.Wallet.Coins or 1000
+		profile.Data.Wallet.Gems = profile.Data.Wallet.Gems or 50
+		profile.Data.Wallet.AuraEnergy = profile.Data.Wallet.AuraEnergy or 250
+		profile.Data.Wallet.ChronoSparks = profile.Data.Wallet.ChronoSparks or 10
+		profile.Data.Wallet.QuantumBadges = profile.Data.Wallet.QuantumBadges or 0
+		profile.Data.Wallet.RebirthTokens = profile.Data.Wallet.RebirthTokens or 0
+
+		if type(profile.Data.SchemaVersion) ~= "number" or profile.Data.SchemaVersion < 4 then
+			print("[PlayerDataService] Migrating player data to SchemaVersion 4 for " .. player.Name)
+			-- Clean up legacy procedural pets if any
+			if profile.Data.Inventory and type(profile.Data.Inventory.Pets) == "table" then
+				for k, pet in pairs(profile.Data.Inventory.Pets) do
+					if type(pet) == "table" and type(pet.PetId) ~= "string" then
+						profile.Data.Inventory.Pets[k] = nil
+					end
+				end
+			end
+			profile.Data.SchemaVersion = 4
+		end
+
+		-- Sync to OrderedDataStore Leaderboard on join
+		task.spawn(function()
+			PlayerDataService.FlushLeaderboardScore(player)
+		end)
+
 		profile.OnSessionEnd:Connect(function()
 			PlayerDataService.ProfileReleasing:Fire(player)
 			profilesBuffer[player] = nil
@@ -119,9 +147,28 @@ function PlayerDataService._LoadPlayerProfile(player: Player)
 	end
 end
 
+function PlayerDataService.FlushLeaderboardScore(player: Player)
+	local profile = profilesBuffer[player]
+	if not profile or not profile.Data or not profile.Data.Wallet then return end
+
+	local score = profile.Data.Wallet.Gems or 0
+	local success, err = pcall(function()
+		local orderedDS = DataStoreService:GetOrderedDataStore("COBLOX_Leaderboard_Gems_v11")
+		orderedDS:SetAsync(tostring(player.UserId), score)
+	end)
+	if success then
+		print(string.format("[PlayerDataService] Leaderboard synced for %s (UserId: %d): %d Gems", player.Name, player.UserId, score))
+	else
+		warn(string.format("[PlayerDataService] Failed to sync leaderboard for %s: %s", player.Name, tostring(err)))
+	end
+end
+
 function PlayerDataService._UnloadPlayerProfile(player: Player)
 	local profile = profilesBuffer[player]
 	if profile ~= nil then
+		pcall(function()
+			PlayerDataService.FlushLeaderboardScore(player)
+		end)
 		PlayerDataService.ProfileReleasing:Fire(player)
 		profile:EndSession()
 		profilesBuffer[player] = nil
@@ -153,54 +200,6 @@ end
 
 function PlayerDataService.GetRawProfile(player: Player)
 	return profilesBuffer[player]
-end
-
-function PlayerDataService.AddCurrency(player: Player, currencyType: string, amount: number, reason: string?)
-	local res = PlayerDataService.GetProfile(player)
-	if res.Success and res.Data then
-		local wallet = res.Data.Wallet
-		local initialBalance = (currencyType == "Gems" or currencyType == "ChronoSparks") and (wallet[currencyType] or 0) or 0
-
-		if currencyType == "AuraEnergy" then
-			wallet.AuraEnergy += amount
-		elseif currencyType == "ChronoSparks" then
-			wallet.ChronoSparks += amount
-		elseif currencyType == "QuantumBadges" then
-			wallet.QuantumBadges += amount
-		elseif currencyType == "Coins" then
-			wallet.Coins += amount
-		elseif currencyType == "Gems" then
-			wallet.Gems += amount
-		end
-
-		-- Hard Currency Double-Entry Ledger Logging per GDD Section 11
-		if currencyType == "Gems" or currencyType == "ChronoSparks" then
-			local finalBalance = wallet[currencyType]
-			if (initialBalance + amount) ~= finalBalance then
-				warn(string.format("[SECURITY ALERT] Hard currency mismatch for player %s! Flagging account.", player.Name))
-				res.Data.AdminFlagged = true
-				wallet[currencyType] = initialBalance -- Rollback transaction
-				return
-			end
-
-			if not res.Data.Ledger then
-				res.Data.Ledger = {}
-			end
-
-			local ledgerEntry = {
-				TimestampUTC = DateTime.now():ToIsoDate(),
-				TransactionId = game:GetService("HttpService"):GenerateGUID(false),
-				AmountChange = amount,
-				FinalBalance = finalBalance,
-				Reason = reason or "SystemMutation",
-			}
-			table.insert(res.Data.Ledger, ledgerEntry)
-			print(string.format("[Ledger] Logged %s mutation for %s: %+d (Final: %d)", currencyType, player.Name, amount, finalBalance))
-		end
-
-		local EconomyService = require(ServerScriptService.Server.Services.EconomyService)
-		EconomyService.SyncWallet(player)
-	end
 end
 
 function PlayerDataService.ReleaseProfile(player: Player)

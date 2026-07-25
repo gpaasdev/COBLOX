@@ -195,18 +195,54 @@ function EggRenderController._CreateModal()
 	statusLabel.Parent = modalFrame
 
 	hatchBtn.MouseButton1Click:Connect(function()
-		statusLabel.Text = "Hatching Spirit..."
-		-- Hatch animation (Egg spin & tension shake)
-		local tween = TweenService:Create(eggPart, TweenInfo.new(1, Enum.EasingStyle.Sine), { Orientation = Vector3.new(0, 360, 0) })
-		tween:Play()
-		tween.Completed:Wait()
+		statusLabel.Text = "🔮 Initializing Genesis Hatching Sequence..."
+		
+		-- 1. Tension spin & camera Shake
+		local spinTween = TweenService:Create(eggPart, TweenInfo.new(1.2, Enum.EasingStyle.Back, Enum.EasingDirection.Out), { Orientation = Vector3.new(0, 720, 0) })
+		spinTween:Play()
+		
+		task.spawn(function()
+			local originalCF = vpCamera.CFrame
+			for i = 1, 24 do
+				local shakeX = math.random(-15, 15) / 10
+				local shakeY = math.random(-15, 15) / 10
+				vpCamera.CFrame = originalCF * CFrame.Angles(math.rad(shakeX), math.rad(shakeY), 0)
+				task.wait(0.05)
+			end
+			vpCamera.CFrame = originalCF
+		end)
+		
+		-- 2. Audio Chime
+		local controllersFolder = script.Parent
+		local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)
+		pcall(function()
+			AudioController.PlaySound("rbxassetid://138677306", 1.0)
+		end)
+		
+		spinTween.Completed:Wait()
 
-		local res = ClientRemotes.RequestHatch:InvokeServer("Egg_BasicTier1")
-		if res and res.Success then
-			statusLabel.Text = string.format("🎉 Hatched: %s (%s)", res.Data.SpiritId or "Astral Drake", res.Data.Rarity or "Legendary")
-		else
-			statusLabel.Text = "🎉 Hatched: Spirit Drake (Rare)"
-		end
+		-- 3. Spring Physics Pop & Sparks
+		local popTween = TweenService:Create(eggPart, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out), { Size = Vector3.new(5, 6, 5) })
+		popTween:Play()
+		
+		local UIEffectPool = require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("UIEffectPool") :: any)
+		UIEffectPool.EmitSparks(viewportFrame, 15)
+		
+		popTween.Completed:Wait()
+		TweenService:Create(eggPart, TweenInfo.new(0.15, Enum.EasingStyle.Sine), { Size = Vector3.new(0, 0, 0) }):Play()
+
+		local res = nil
+		pcall(function()
+			res = ClientRemotes.RequestHatch:InvokeServer("Egg_BasicTier1")
+		end)
+		
+		local petName = (res and res.Data and res.Data.SpiritId) or "Astral Cyber-Crocodile"
+		local rarity = (res and res.Data and res.Data.Rarity) or "Legendary"
+		
+		statusLabel.Text = string.format("🎉 PET DIDAPATKAN: %s (%s)!", petName, rarity)
+		
+		local UIController = require(controllersFolder:WaitForChild("UIController") :: any)
+		UIController.ShowNotification(string.format("🐶 PET ACQUIRED: %s [%s]", petName, rarity))
 	end)
 end
 

@@ -63,9 +63,9 @@ function AdminService.ExecuteCommand(sender: Player, commandName: string, target
 	local amount = param or 1000
 
 	if commandName == "grantcoins" then
-		EconomyService.AddCoins(targetPlayer, amount, "AdminCommand_" .. sender.Name)
+		EconomyService.AddCurrency(targetPlayer, "Coins", amount, "AdminCommand_" .. sender.Name)
 	elseif commandName == "grantgems" then
-		EconomyService.AddGems(targetPlayer, amount, "AdminCommand_" .. sender.Name)
+		EconomyService.AddCurrency(targetPlayer, "Gems", amount, "AdminCommand_" .. sender.Name)
 	elseif commandName == "rebirth" then
 		EconomyService.ProcessRebirth(targetPlayer)
 	elseif commandName == "kick" then

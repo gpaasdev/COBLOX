@@ -1,0 +1,8 @@
+{
+  "Id": "Tech_Thermodynamics_16",
+  "Name": "Thermodynamics Specialization Level 16",
+  "RequiredDiscoveries": [
+    "Iron_Ore"
+  ],
+  "Cost": 1600
+}

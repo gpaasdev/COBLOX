@@ -6,6 +6,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local RateLimitService = require(script.Parent.RateLimitService :: any)
+local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
 local PlayerDataService = require(script.Parent.PlayerDataService :: any)
 local PotionVaultService = require(script.Parent.PotionVaultService :: any)
 local GlobalBroadcastService = require(script.Parent.GlobalBroadcastService :: any)
@@ -126,7 +127,7 @@ function ShadowRaidService.Init()
 				end
 
 				-- Award Raid Bonus Coins (5,000 Coins)
-				PlayerDataService.AddCurrency(raider, "Coins", 5000)
+				EconomyService.AddCurrency(raider, "Coins", 5000)
 				return { Success = true, BonusCoins = 5000 }
 			end
 			return { Success = false }

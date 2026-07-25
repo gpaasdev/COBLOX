@@ -6,6 +6,8 @@ local Players = game:GetService("Players")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local ResourceConfig = require(Shared:WaitForChild("Configuration"):WaitForChild("ResourceConfig"))
 local NetChannels = require(Shared:WaitForChild("Network"):WaitForChild("NetChannels"))
+local PlayerDataService = require(script.Parent.PlayerDataService)
+local DiscoveryService = require(script.Parent.DiscoveryService)
 
 local ResourceService = {}
 ResourceService.__index = ResourceService
@@ -104,6 +106,21 @@ function ResourceService.ProcessHarvestRequest(player: Player, payload: any)
 				local baseQty = math.random(loot.MinQuantity, loot.MaxQuantity)
 				local finalQty = math.floor(baseQty * yieldMultiplier)
 				itemsObtained[loot.ItemId] = (itemsObtained[loot.ItemId] or 0) + math.max(1, finalQty)
+			end
+		end
+
+		-- PERSIST TO PLAYER INVENTORY & TRIGGER DISCOVERY
+		local profileRes = PlayerDataService.GetProfile(player)
+		if profileRes.Success and profileRes.Data then
+			if not profileRes.Data.Inventory then
+				profileRes.Data.Inventory = {}
+			end
+			for itemId, qty in pairs(itemsObtained) do
+				profileRes.Data.Inventory[itemId] = (profileRes.Data.Inventory[itemId] or 0) + qty
+				-- Trigger Discovery Loop
+				pcall(function()
+					DiscoveryService.RecordDiscovery(player, "Material", itemId)
+				end)
 			end
 		end
 

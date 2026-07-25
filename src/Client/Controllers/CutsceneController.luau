@@ -3,8 +3,10 @@
 local TweenService = game:GetService("TweenService")
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
+local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+local WorldConfig = require(ReplicatedStorage.Shared.Configuration.WorldConfig)
 
 local CutsceneController = {}
 CutsceneController.Name = "CutsceneController"
@@ -31,6 +33,28 @@ function CutsceneController.Start()
 			-- Implement story visuals here when ready
 		end)
 	end
+end
+
+function CutsceneController.TransitionBiomeLighting(zoneId: string, transitionDuration: number?)
+	local zoneData = WorldConfig.Zones[zoneId]
+	if not zoneData or not zoneData.AmbientLighting then return end
+	
+	local lightingData = zoneData.AmbientLighting
+	local duration = transitionDuration or 2.5
+	
+	local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+	
+	local props = {
+		Brightness = lightingData.Brightness,
+		ClockTime = lightingData.ClockTime,
+		OutdoorAmbient = lightingData.OutdoorAmbient,
+		FogColor = lightingData.FogColor,
+		FogEnd = lightingData.FogEnd
+	}
+	
+	local lightingTween = TweenService:Create(Lighting, tweenInfo, props)
+	lightingTween:Play()
+	print("[CutsceneController] Transitioning Biome Lighting to: " .. zoneId)
 end
 
 function CutsceneController.PlayChapterIntroCutscene(targetCFrame: CFrame, durationSeconds: number, onComplete: () -> ()?)

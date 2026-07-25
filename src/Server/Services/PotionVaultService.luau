@@ -4,6 +4,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
 local PlayerDataService = require(script.Parent.PlayerDataService :: any)
 
 local PotionVaultService = {}
@@ -55,7 +56,7 @@ function PotionVaultService.Start()
 					end
 
 					if totalYield > 0 then
-						PlayerDataService.AddCurrency(player, "Coins", totalYield)
+						EconomyService.AddCurrency(player, "Coins", totalYield)
 					end
 				end
 			end

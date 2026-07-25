@@ -2,6 +2,7 @@
 local MarketplaceService = game:GetService("MarketplaceService")
 local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 local MonetizationConfig = require(ReplicatedStorage.Shared.Configuration.MonetizationConfig)
 local Signal = require(ReplicatedStorage.Shared.Utility.Signal)
@@ -77,8 +78,8 @@ function StoreService.ProcessReceipt(receiptInfo: { [string]: any }): Enum.Produ
 
 	if productId == MonetizationConfig.Products.ImpulseStarterPack.ProductId then
 		local rewards = MonetizationConfig.Products.ImpulseStarterPack.Rewards
-		PlayerDataService.AddCurrency(player, "AuraEnergy", rewards.AuraEnergy)
-		PlayerDataService.AddCurrency(player, "ChronoSparks", rewards.ChronoSparks)
+		EconomyService.AddCurrency(player, "AuraEnergy", rewards.AuraEnergy)
+		EconomyService.AddCurrency(player, "ChronoSparks", rewards.ChronoSparks)
 		print("[StoreService] Impulse Starter Pack granted to " .. player.Name)
 		return Enum.ProductPurchaseDecision.PurchaseGranted
 	end

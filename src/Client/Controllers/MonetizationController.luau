@@ -8,19 +8,19 @@ local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local MonetizationController = {}
 MonetizationController.Name = "MonetizationController"
 
+local MonetizationConfig = require(ReplicatedStorage.Shared.Configuration.MonetizationConfig)
+
 local localPlayer = Players.LocalPlayer
 
--- Local IDs (Should match MonetizationService once configured)
-local PASS_AUTO_HATCH = 1925292405
-local PASS_EXTRA_INVENTORY = 1924818406
-local PASS_SUPER_LUCK = 1924362417
-local PASS_VIP = 1923436403
-local PASS_FREE_TRAIL = 1923484423
+local PASS_AUTO_HATCH = MonetizationConfig.GamePasses.AutoHatch
+local PASS_EXTRA_INVENTORY = MonetizationConfig.GamePasses.Plus50Slots
+local PASS_SUPER_LUCK = MonetizationConfig.GamePasses.DoubleLuck
+local PASS_VIP = MonetizationConfig.GamePasses.VIP_Pass
 
-local PRODUCT_COINS_SMALL = 3611126655
-local PRODUCT_COINS_LARGE = 3611126895
-local PRODUCT_GEMS_SMALL = 3611126819
-local PRODUCT_GEMS_LARGE = 3611126995
+local PRODUCT_COINS_SMALL = MonetizationConfig.DeveloperProducts.Coins_Small
+local PRODUCT_COINS_LARGE = MonetizationConfig.DeveloperProducts.Coins_Large
+local PRODUCT_GEMS_SMALL = MonetizationConfig.DeveloperProducts.Gems_Small
+local PRODUCT_GEMS_LARGE = MonetizationConfig.DeveloperProducts.Gems_Large
 
 local manualHatchCount = 0
 
@@ -60,6 +60,18 @@ function MonetizationController.PromptAutoHatchRecommendation()
 	print("[MonetizationController] Context Trigger: High-frequency manual hatch. Suggesting Auto-Hatch GamePass.")
 	pcall(function()
 		MarketplaceService:PromptGamePassPurchase(localPlayer, PASS_AUTO_HATCH)
+	end)
+end
+
+function MonetizationController.PromptProduct(productId: number)
+	pcall(function()
+		MarketplaceService:PromptProductPurchase(localPlayer, productId)
+	end)
+end
+
+function MonetizationController.PromptGamePass(passId: number)
+	pcall(function()
+		MarketplaceService:PromptGamePassPurchase(localPlayer, passId)
 	end)
 end
 

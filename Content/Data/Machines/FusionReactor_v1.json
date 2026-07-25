@@ -1,0 +1,6 @@
+{
+  "Id": "FusionReactor_v1",
+  "Name": "Basic Fusion Reactor",
+  "PowerConsumption": 500,
+  "MaxTemperature": 3000
+}

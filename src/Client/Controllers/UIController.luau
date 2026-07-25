@@ -40,15 +40,6 @@ function UIController.Init()
 	
 	UIController._CreateHUD()
 
-	-- Connect economy listener
-	task.spawn(function()
-		local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
-		if syncRemote then
-			syncRemote.OnClientEvent:Connect(function(data: { Coins: number, Gems: number })
-				UIController.UpdateWallet(data.Coins, data.Gems)
-			end)
-		end
-	end)
 end
 
 function UIController.Start()
@@ -112,6 +103,10 @@ function UIController._CreateHUD()
 	questStroke.Thickness = 2
 	questStroke.Parent = questBanner
 
+	local questAspect = Instance.new("UIAspectRatioConstraint")
+	questAspect.AspectRatio = 3.5
+	questAspect.Parent = questBanner
+
 	local questTitle = Instance.new("TextLabel")
 	questTitle.Name = "QuestTitle"
 	questTitle.Size = UDim2.new(0.9, 0, 0.45, 0)
@@ -124,17 +119,27 @@ function UIController._CreateHUD()
 	questTitle.TextXAlignment = Enum.TextXAlignment.Left
 	questTitle.Parent = questBanner
 
+	local questTitleStroke = Instance.new("UIStroke")
+	questTitleStroke.Color = Color3.fromRGB(0, 0, 0)
+	questTitleStroke.Thickness = 1.5
+	questTitleStroke.Parent = questTitle
+
 	local questDesc = Instance.new("TextLabel")
 	questDesc.Name = "QuestDesc"
 	questDesc.Size = UDim2.new(0.9, 0, 0.4, 0)
 	questDesc.Position = UDim2.new(0.05, 0, 0.52, 0)
 	questDesc.BackgroundTransparency = 1
-	questDesc.Text = "🎯 Kunjungi Markas & Racik Ramuan Pertamamu!"
+	questDesc.Text = LocalizationController.Get("FTUE_VISIT_SANCTUM")
 	questDesc.TextColor3 = COLOR_SPARK_CYAN
 	questDesc.Font = Enum.Font.GothamMedium
 	questDesc.TextSize = 11
 	questDesc.TextXAlignment = Enum.TextXAlignment.Left
 	questDesc.Parent = questBanner
+
+	local questDescStroke = Instance.new("UIStroke")
+	questDescStroke.Color = Color3.fromRGB(0, 0, 0)
+	questDescStroke.Thickness = 1.2
+	questDescStroke.Parent = questDesc
 
 	-- 1. Top Bar (Aura Energy & Chrono Sparks)
 	-- Aura Pill
@@ -168,6 +173,11 @@ function UIController._CreateHUD()
 	walletAuraLabel.Text = LocalizationController.Get("HUD_AURA", 0)
 	walletAuraLabel.Parent = auraBar
 
+	local auraTextStroke = Instance.new("UIStroke")
+	auraTextStroke.Color = Color3.fromRGB(0, 0, 0)
+	auraTextStroke.Thickness = 1.5
+	auraTextStroke.Parent = walletAuraLabel
+
 	-- Sparks Pill
 	local sparksBar = Instance.new("Frame")
 	sparksBar.Name = "SparksBar"
@@ -199,6 +209,11 @@ function UIController._CreateHUD()
 	walletSparksLabel.Text = LocalizationController.Get("HUD_SPARKS", 0)
 	walletSparksLabel.Parent = sparksBar
 
+	local sparksTextStroke = Instance.new("UIStroke")
+	sparksTextStroke.Color = Color3.fromRGB(0, 0, 0)
+	sparksTextStroke.Thickness = 1.5
+	sparksTextStroke.Parent = walletSparksLabel
+
 	-- LiveOps TopBar Event Indicator Banner
 	liveOpsBanner = Instance.new("TextLabel")
 	liveOpsBanner.Name = "LiveOpsBanner"
@@ -215,6 +230,11 @@ function UIController._CreateHUD()
 	local bannerCorner = Instance.new("UICorner")
 	bannerCorner.CornerRadius = UDim.new(0, 6)
 	bannerCorner.Parent = liveOpsBanner
+
+	local bannerStroke = Instance.new("UIStroke")
+	bannerStroke.Color = Color3.fromRGB(0, 0, 0)
+	bannerStroke.Thickness = 1.2
+	bannerStroke.Parent = liveOpsBanner
 
 	-- Hamburger Toggle Button
 	local menuBtn = Instance.new("TextButton")
@@ -267,13 +287,14 @@ function UIController._CreateHUD()
 	listLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	listLayout.Parent = sideDrawer
 
-	local drawerButtons = { "Markas Saya", "Lab Racik", "Panggil Spirit", "Klan Player", "Buku Resep & Spirit" }
+	local drawerButtons = { "Markas Saya", "Lab Racik", "Panggil Spirit", "Klan Player", "Buku Resep & Spirit", "Toko Premium" }
 	local drawerKeys = {
 		["Markas Saya"] = "SIDE_SANCTUM_GRID",
 		["Lab Racik"] = "SIDE_SYNTHESIS_VESSEL",
 		["Panggil Spirit"] = "SIDE_SPIRIT_HATCHERY",
 		["Klan Player"] = "SIDE_COVEN_ORDER",
 		["Buku Resep & Spirit"] = "SIDE_CODEX",
+		["Toko Premium"] = "SIDE_STORE",
 	}
 
 	for i, btnName in ipairs(drawerButtons) do
@@ -291,6 +312,11 @@ function UIController._CreateHUD()
 		local btnCorner = Instance.new("UICorner")
 		btnCorner.CornerRadius = UDim.new(0, 8)
 		btnCorner.Parent = btn
+
+		local btnTextStroke = Instance.new("UIStroke")
+		btnTextStroke.Color = Color3.fromRGB(0, 0, 0)
+		btnTextStroke.Thickness = 1.5
+		btnTextStroke.Parent = btn
 
 		VFXEngine.ApplySpringAnimation(btn)
 
@@ -313,6 +339,9 @@ function UIController._CreateHUD()
 			elseif btnName == "Markas Saya" or text == "Markas Saya" or text == "My Sanctum" or text == "Sanctum Grid" then
 				local PlacementController = require(controllersFolder:WaitForChild("PlacementController") :: any)
 				PlacementController.TogglePlacementMode()
+			elseif btnName == "Toko Premium" or text == "Toko Premium" or text == "Premium Store" or text == "Store" then
+				local StoreController = require(controllersFolder:WaitForChild("StoreController") :: any)
+				StoreController.ToggleModal()
 			else
 				UIController.ShowNotification("Buka: " .. text)
 			end
@@ -363,6 +392,10 @@ function UIController._CreateHUD()
 	bottomStroke.Thickness = 1.5
 	bottomStroke.Parent = bottomBar
 
+	local bottomAspect = Instance.new("UIAspectRatioConstraint")
+	bottomAspect.AspectRatio = 4.5
+	bottomAspect.Parent = bottomBar
+
 	-- Action Pill Buttons Row (SEEDS / GARDEN / PETS / SELL)
 	local actionRow = Instance.new("Frame")
 	actionRow.Name = "ActionPillsRow"
@@ -397,6 +430,11 @@ function UIController._CreateHUD()
 		pill.Text = act.Name
 		pill.Parent = actionRow
 
+		local pillTextStroke = Instance.new("UIStroke")
+		pillTextStroke.Color = Color3.fromRGB(0, 0, 0)
+		pillTextStroke.Thickness = 1.2
+		pillTextStroke.Parent = pill
+
 		local pillCorner = Instance.new("UICorner")
 		pillCorner.CornerRadius = UDim.new(0, 8)
 		pillCorner.Parent = pill
@@ -418,16 +456,13 @@ function UIController._CreateHUD()
 					-- Tactile Audio & Visual Polish
 					local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)
 					pcall(function()
-						AudioController.PlaySound("rbxassetid://4606776100", 0.8) -- Valid Dash swoosh SFX
+						AudioController.PlaySound("rbxassetid://12222204", 0.8) -- Valid Dash swoosh SFX
 					end)
 					
 					UIController.ShowNotification("⚡ Dash Activated!")
 				end
 			elseif act.Name == "🐶 PETS" then
-				isMounted = not isMounted
-				local PetRenderController = require(controllersFolder:WaitForChild("PetRenderController") :: any)
-				PetRenderController.MountNeonCrocodile(isMounted)
-				UIController.ShowNotification(isMounted and "🐊 Menunggangi Giant Neon Alligator Mount (+75% Speed)!" or "🚶 Dismounted Neon Mount.")
+				UIController.ShowNotification("Menu Inventory Pet akan segera hadir!")
 			elseif act.Name == "🌱 ELEMEN" then
 				local SynthesisController = require(controllersFolder:WaitForChild("SynthesisController") :: any)
 				SynthesisController.ToggleModal()
@@ -580,7 +615,7 @@ function UIController.ShowNotification(msg: string)
 		local controllersFolder = script.Parent
 		local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)
 		pcall(function()
-			AudioController.PlaySound("rbxassetid://6895079853", 1.0) -- Crisp UI pop chime
+			AudioController.PlaySound("rbxassetid://12222076", 1.0) -- Crisp UI pop chime
 		end)
         
         -- Haptic Feedback (Juiciness)

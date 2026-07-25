@@ -1,0 +1,8 @@
+{
+  "Id": "Tech_Engineering_29",
+  "Name": "Engineering Specialization Level 29",
+  "RequiredDiscoveries": [
+    "Iron_Ore"
+  ],
+  "Cost": 2900
+}

@@ -1,6 +1,6 @@
 --!strict
 
-export type RarityTier = "Common" | "Uncommon" | "Rare" | "Epic" | "Legendary" | "Mythic" | "Secret"
+export type RarityTier = "Common" | "Uncommon" | "Rare" | "Epic" | "Legendary" | "Mythic" | "Secret" | "GodTier"
 
 export type PetConfig = {
 	Id: string,
@@ -8,6 +8,8 @@ export type PetConfig = {
 	Rarity: RarityTier,
 	BaseMultiplier: number,
 	ModelAssetId: number,
+	Description: string?,
+	IsVIPExclusive: boolean?,
 }
 
 export type PetInstance = {

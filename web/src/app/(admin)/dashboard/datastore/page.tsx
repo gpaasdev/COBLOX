@@ -1,16 +1,19 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, Edit2 } from "lucide-react";
-import { getDatastoreEntries, updatePlayerData } from "@/app/actions/opencloud";
+import { Search, Edit2, ShieldAlert, ShieldCheck } from "lucide-react";
+import { getDatastoreEntries, updatePlayerData, updateUserRestriction } from "@/app/actions/opencloud";
 
 export default function DatastorePage() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedPlayer, setSelectedPlayer] = useState<any>(null);
+  const [banPlayer, setBanPlayer] = useState<any>(null);
+  const [banLoading, setBanLoading] = useState(false);
   
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const banDialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     fetchData();
@@ -28,6 +31,11 @@ export default function DatastorePage() {
     dialogRef.current?.showModal();
   };
 
+  const handleBanClick = (player: any) => {
+    setBanPlayer(player);
+    banDialogRef.current?.showModal();
+  };
+
   const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -41,6 +49,30 @@ export default function DatastorePage() {
       await fetchData();
     }
     dialogRef.current?.close();
+  };
+
+  const handleBanSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!banPlayer) return;
+    setBanLoading(true);
+    
+    const formData = new FormData(e.currentTarget);
+    const action = formData.get("actionType") as string;
+    const active = action === "ban";
+    const duration = parseInt(formData.get("duration") as string, 10) || 3600;
+    const displayReason = formData.get("displayReason") as string || "Pelanggaran Aturan Game COBLOX";
+    const privateReason = formData.get("privateReason") as string || "Diban dari Dashboard Admin";
+
+    try {
+      await updateUserRestriction(banPlayer.id, active, active ? duration : undefined, active ? displayReason : undefined, active ? privateReason : undefined);
+      alert(`Berhasil ${active ? "memblokir" : "membuka blokir"} pemain @${banPlayer.username}`);
+      await fetchData();
+    } catch (err: any) {
+      alert(`Gagal memproses pembatasan: ${err.message}`);
+    } finally {
+      setBanLoading(false);
+      banDialogRef.current?.close();
+    }
   };
 
   return (
@@ -123,13 +155,24 @@ export default function DatastorePage() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <button
-                        onClick={() => handleEditClick(player)}
-                        className="inline-flex items-center justify-center rounded-md p-2 text-slate-400 transition-colors hover:bg-blue-50 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        aria-label={`Edit ${player.username}`}
-                      >
-                        <Edit2 className="h-4 w-4" />
-                      </button>
+                      <div className="flex items-center justify-end gap-1">
+                        <button
+                          onClick={() => handleEditClick(player)}
+                          className="inline-flex items-center justify-center rounded-md p-2 text-slate-400 transition-colors hover:bg-blue-50 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          title="Edit Player Data"
+                          aria-label={`Edit ${player.username}`}
+                        >
+                          <Edit2 className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => handleBanClick(player)}
+                          className="inline-flex items-center justify-center rounded-md p-2 text-rose-400 transition-colors hover:bg-rose-50 hover:text-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                          title="Ban / Restrict Player"
+                          aria-label={`Ban ${player.username}`}
+                        >
+                          <ShieldAlert className="h-4 w-4" />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))
@@ -218,6 +261,85 @@ export default function DatastorePage() {
               className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Save Changes to Open Cloud
+            </button>
+          </div>
+        </form>
+      </dialog>
+
+      {/* Ban / User Restriction Modal Dialog */}
+      <dialog
+        ref={banDialogRef}
+        className="backdrop:bg-slate-900/50 open:animate-in open:fade-in-0 open:zoom-in-95 rounded-xl border border-slate-200 bg-white p-6 shadow-xl w-full max-w-md m-auto"
+        onClose={() => setBanPlayer(null)}
+      >
+        <div className="flex items-center gap-2 text-rose-600 font-bold text-lg">
+          <ShieldAlert className="h-5 w-5" />
+          <span>User Restriction & Moderation</span>
+        </div>
+        <p className="mt-1 text-sm text-slate-500">Kelola status larangan akses Roblox Open Cloud untuk <strong className="text-slate-900">@{banPlayer?.username}</strong></p>
+        
+        <form onSubmit={handleBanSubmit} className="mt-5 flex flex-col gap-4">
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="actionType" className="text-xs font-semibold text-slate-700">Tindakan Moderasi</label>
+            <select
+              id="actionType"
+              name="actionType"
+              className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500"
+            >
+              <option value="ban">🔒 Berlakukan Ban (Tutup Akses)</option>
+              <option value="unban">🔓 Buka Ban (Pulihkan Akses)</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="duration" className="text-xs font-semibold text-slate-700">Durasi Ban (Detik)</label>
+            <input
+              id="duration"
+              name="duration"
+              type="number"
+              min="60"
+              defaultValue={86400}
+              placeholder="3600 = 1 Jam, 86400 = 24 Jam"
+              className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="displayReason" className="text-xs font-semibold text-slate-700">Alasan Publik (Terlihat oleh Pemain)</label>
+            <input
+              id="displayReason"
+              name="displayReason"
+              type="text"
+              defaultValue="Pelanggaran Aturan Game & Eksploitasi COBLOX."
+              className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="privateReason" className="text-xs font-semibold text-slate-700">Catatan Internal Admin (Privat)</label>
+            <textarea
+              id="privateReason"
+              name="privateReason"
+              rows={2}
+              defaultValue="Eksploitasi duplikasi elemen alkimia terdeteksi oleh sistem."
+              className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500"
+            />
+          </div>
+
+          <div className="mt-4 flex justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => banDialogRef.current?.close()}
+              className="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-200"
+            >
+              Batal
+            </button>
+            <button
+              type="submit"
+              disabled={banLoading}
+              className="rounded-lg bg-rose-600 px-4 py-2 text-sm font-medium text-white hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 disabled:opacity-50"
+            >
+              {banLoading ? "Memproses..." : "Eksekusi Moderasi"}
             </button>
           </div>
         </form>

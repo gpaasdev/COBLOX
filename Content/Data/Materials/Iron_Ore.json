@@ -1,0 +1,7 @@
+{
+  "Id": "Iron_Ore",
+  "Name": "Iron Ore",
+  "Density": 1000.0,
+  "Conductivity": 10.0,
+  "Value": 10
+}

@@ -1,0 +1,8 @@
+{
+  "Id": "Tech_Automation_2",
+  "Name": "Automation Specialization Level 2",
+  "RequiredDiscoveries": [
+    "Iron_Ore"
+  ],
+  "Cost": 200
+}

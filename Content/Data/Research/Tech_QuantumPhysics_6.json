@@ -1,0 +1,8 @@
+{
+  "Id": "Tech_QuantumPhysics_6",
+  "Name": "QuantumPhysics Specialization Level 6",
+  "RequiredDiscoveries": [
+    "Iron_Ore"
+  ],
+  "Cost": 600
+}

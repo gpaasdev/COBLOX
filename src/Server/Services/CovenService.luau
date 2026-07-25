@@ -50,47 +50,6 @@ function CovenService.Init()
     print("🏰 CovenService Initialized (Instanced Hideouts Enabled)")
 end
 
-function CovenService._AssembleCovenHideoutZone()
-    local map = workspace:FindFirstChild("Map") or workspace
-    local covenZone = map:FindFirstChild("CovenMockZone")
-    if not covenZone then
-        covenZone = Instance.new("Folder")
-        covenZone.Name = "CovenMockZone"
-        covenZone.Parent = map
-    end
-
-    -- 3D Floating Sanctum Island Platform at (0, 500, 0)
-    local island = Instance.new("Part")
-    island.Name = "CovenIslandBase"
-    island.Size = Vector3.new(80, 8, 80)
-    island.Position = CovenConfig.STUDIO_MOCK_ZONE_POSITION
-    island.Anchored = true
-    island.Color = Color3.fromRGB(15, 23, 42)
-    island.Material = Enum.Material.SmoothPlastic
-    island.Parent = covenZone
-
-    -- Altar Core Ring
-    local altarRing = Instance.new("Part")
-    altarRing.Name = "CovenAltarRing"
-    altarRing.Shape = Enum.PartType.Cylinder
-    altarRing.Size = Vector3.new(1.5, 20, 20)
-    altarRing.CFrame = CFrame.new(island.Position + Vector3.new(0, 4.5, 0)) * CFrame.Angles(0, 0, math.rad(90))
-    altarRing.Anchored = true
-    altarRing.Color = Color3.fromRGB(168, 85, 247) -- Purple Neon
-    altarRing.Material = Enum.Material.Neon
-    altarRing.Parent = island
-
-    -- Floating Mana Crystal
-    local crystal = Instance.new("Part")
-    crystal.Name = "CovenManaCrystal"
-    crystal.Size = Vector3.new(4, 8, 4)
-    crystal.Position = island.Position + Vector3.new(0, 10, 0)
-    crystal.Anchored = true
-    crystal.Color = Color3.fromRGB(192, 132, 252)
-    crystal.Material = Enum.Material.Glass
-    crystal.Transparency = 0.2
-    crystal.Parent = island
-end
 
 function CovenService.CreateCoven(player: Player, rawName: string)
     if playerCovenMap[player.UserId] then
@@ -257,7 +216,7 @@ function CovenService.WithdrawFromCoven(player: Player, amount: number)
     if coven.TreasuryCoins >= amount then
         coven.TreasuryCoins -= amount
         local EconomyService = require(script.Parent.EconomyService)
-        EconomyService.AddCoins(player, amount, "CovenWithdrawal")
+        EconomyService.AddCurrency(player, "Coins", amount, "CovenWithdrawal")
         NetChannels.GetRemoteEvent("CovenEvent"):FireClient(player, "Sync", coven)
     end
 end

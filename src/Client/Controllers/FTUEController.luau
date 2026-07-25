@@ -52,10 +52,17 @@ function FTUEController.Start()
 				FTUEController.GuideToFurnace()
 			end
 		end)
+	-- Connect to real DiscoveryService remote event
+	local discoveryEvents = ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Events"):FindFirstChild("DiscoveryEvents")
+	local onDiscoveryRemote = discoveryEvents and discoveryEvents:FindFirstChild("OnDiscoveryMade") :: RemoteEvent?
+	if onDiscoveryRemote then
+		onDiscoveryRemote.OnClientEvent:Connect(function(discoveryType: string, id: string, isFirstDiscovery: boolean)
+			if not hasCraftedCrystal then
+				hasCraftedCrystal = true
+				FTUEController.UpdateMilestone(milestone4, "✅ First Discovery Completed: " .. tostring(id))
+			end
+		end)
 	end
-	
-	-- Mock remote for crafting detection since it's server authoritative
-	local craftRemote = NetChannels.GetRemoteFunction("RequestCraft")
 	-- Scan the workspace to check if the plot is claimed or droppers bought
 	RunService.Heartbeat:Connect(function()
 		if not hasClaimedPlot then
@@ -98,7 +105,7 @@ function FTUEController.Start()
 					end
 				end
 			elseif not hasCraftedCrystal and hasHatchedEgg then
-				-- Scan backpack or local stats (mocked check for FTUE purposes)
+				-- Scan backpack or local stats
 				if localPlayer:GetAttribute("HasCraftedCrystal") then
 					hasCraftedCrystal = true
 					FTUEController.UpdateMilestone(milestone4, "✅ First Crystal Crafted")
@@ -340,7 +347,7 @@ function FTUEController.UpdateMilestone(label: TextLabel, text: string)
 	
 	-- Play a quick pop sound for positive reinforcement
 	local sound = Instance.new("Sound")
-	sound.SoundId = "rbxassetid://6895079853"
+	sound.SoundId = "rbxassetid://138677306"
 	sound.Parent = Workspace
 	sound:Play()
 	task.delay(1, function()

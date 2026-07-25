@@ -180,7 +180,7 @@ function CrystalPurificationService.PurifyCrystal(player: Player): { Success: bo
 	end
 
 	-- Deposit into economy wallet
-	EconomyService.AddCoins(player, amount, "CrystalPurificationDeposit")
+	EconomyService.AddCurrency(player, "Coins", amount, "CrystalPurificationDeposit")
 
 	-- 1. Shared Aura Resonance Buff (+5% WalkSpeed for 10s to nearby players)
 	local map = workspace:FindFirstChild("Map")

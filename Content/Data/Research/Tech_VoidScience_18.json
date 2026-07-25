@@ -1,0 +1,8 @@
+{
+  "Id": "Tech_VoidScience_18",
+  "Name": "VoidScience Specialization Level 18",
+  "RequiredDiscoveries": [
+    "Iron_Ore"
+  ],
+  "Cost": 1800
+}

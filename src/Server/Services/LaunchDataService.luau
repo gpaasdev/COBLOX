@@ -7,6 +7,7 @@ local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 local ServerScriptService = game:GetService("ServerScriptService")
 
+local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 local AnalyticsService = require(ServerScriptService.Server.Services.AnalyticsService)
 
@@ -46,13 +47,13 @@ local function processPayload(player: Player, payload: LaunchDataPayload)
 
 		-- Handle bonus currency rewards
 		if payload.bonus_crystals and payload.bonus_crystals > 0 then
-			PlayerDataService.AddCurrency(player, "AuraEnergy", payload.bonus_crystals)
+			EconomyService.AddCurrency(player, "AuraEnergy", payload.bonus_crystals)
 			print(`[LaunchDataService] Granted {payload.bonus_crystals} AuraEnergy to {player.Name} from campaign '{campaignName}'`)
 		end
 
 		-- Handle specific rewards
 		if payload.reward == "starter_pack" or payload.reward == "starter_alchemy_pack" then
-			PlayerDataService.AddCurrency(player, "AuraEnergy", 500)
+			EconomyService.AddCurrency(player, "AuraEnergy", 500)
 			print(`[LaunchDataService] Granted Starter Alchemy Pack to {player.Name}`)
 		end
 	end)

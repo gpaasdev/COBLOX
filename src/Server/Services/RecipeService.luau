@@ -115,6 +115,8 @@ function RecipeService.CraftGrid3x3(player: Player, grid: { [number]: string }):
 	end
 	profile.Inventory[craftedItem] = (profile.Inventory[craftedItem] or 0) + 1
 
+	player:SetAttribute("HasCraftedCrystal", true)
+
 	RecipeService.RecipeCrafted:Fire(player, craftedItem, yieldMultiplier)
 	print(string.format("[RecipeService] Player %s crafted %s (%s) via 3x3 Grid (Yield: %.1fx)", player.Name, craftedItem, itemType, yieldMultiplier))
 

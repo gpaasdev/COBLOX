@@ -193,12 +193,12 @@ function TradeService.ExecuteAtomicSwap(sessionId: string): ServiceResult<boolea
 	-- Atomic execution buffer swap
 	if session.OfferA.Coins > 0 then
 		EconomyService.DeductCoins(session.PlayerA, session.OfferA.Coins, "TradeSwap")
-		EconomyService.AddCoins(session.PlayerB, session.OfferA.Coins, "TradeReceive")
+		EconomyService.AddCurrency(session.PlayerB, "Coins", session.OfferA.Coins, "TradeReceive")
 	end
 
 	if session.OfferB.Coins > 0 then
 		EconomyService.DeductCoins(session.PlayerB, session.OfferB.Coins, "TradeSwap")
-		EconomyService.AddCoins(session.PlayerA, session.OfferB.Coins, "TradeSwap")
+		EconomyService.AddCurrency(session.PlayerA, "Coins", session.OfferB.Coins, "TradeSwap")
 	end
 
 	-- Swap Pet ownership

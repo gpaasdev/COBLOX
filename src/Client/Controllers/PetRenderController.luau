@@ -38,14 +38,7 @@ function PetRenderController.Start()
 		end
 	end)
 	
-	-- Spawn active Spirit Companions on startup for player squad
-	task.spawn(function()
-		task.wait(2)
-		PetRenderController.SpawnSpiritCompanion("KitsuneFox")
-		PetRenderController.SpawnSpiritCompanion("MizuchiWater")
-		PetRenderController.SpawnSpiritCompanion("ThunderDragon")
-	end)
-	
+	-- Pets will be spawned dynamically from server data in the future
 	-- Render loop for floating Spirit Companions behind character
 	RunService.RenderStepped:Connect(function(dt)
 		if not localPlayer.Character or not localPlayer.Character:FindFirstChild("HumanoidRootPart") then return end

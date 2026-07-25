@@ -1,21 +1,36 @@
-> **[🏠 Master Index](../MASTER_INDEX.md) | [⬅️ Back to Docs](../README.md)**
+# COBLOX Vision & Core Identity
+**Genre:** Sci-Fantasy Industrial Sandbox
+**Tagline:** "Mine the Void. Engineer the Aether. Master the Economy."
 
-# 00 — VISION, MISSION & PRODUCT PHILOSOPHY
+## 1. Visi Utama
+COBLOX bukanlah game pet simulator atau tycoon tradisional. COBLOX adalah sebuah simulasi rantai pasokan (supply chain) yang digerakkan oleh **Hukum Pertukaran Setara (Equivalent Exchange)**. Pemain berperan sebagai teknopreneur dan penjelajah dunia sihir modern, menambang sumber daya langka, merakit mesin otomatisasi, dan mengendalikan pasar global.
 
-## 1. Vision Statement
-Menjadikan **COBLOX: Multiverse Alchemy Sanctum** sebagai pengalaman *Hybrid Pet Tycoon & Social Action Experience* terdepan, berkinerja tinggi (*zero-lag*), dan paling terpercaya di platform Roblox pada tahun 2026. COBLOX menghadirkan perpaduan unik antara pembangunan Sanctum otomatis, pengumpulan pet elemental, pertarungan PVE aksi, serta sistem perdagangan antar pemain yang aman (*Zero-Trust Escrow*).
+## 2. Core Demographics & Play Sessions
+- **Target Audiens Utama (Platform Rating):** Usia 13+ (Kekerasan fantasi ringan dan interaksi trading dinamis).
+- **Core Demographic (Sertifikasi):** Usia 16+ (Mekanisme ekonomi kompleks, min-maxing termodinamika Sanctum, dan persaingan politik Coven Guild).
+- **Sesi Pendek (5–15 Menit):** Pemeliharaan mesin, mengatur *export*, menambang *node* material murni.
+- **Sesi Panjang (30–90 Menit):** Penataan Sanctum Grid, pertarungan "Void Gate" (Ekspedisi Dimensi), dan menguji *blind experimentation* untuk Sistem *Discovery*.
 
-## 2. Mission Statement
-Membangun pengalaman Roblox bermodular tinggi dan berotoritas server (*Server-Authoritative*) yang dioptimalkan secara ekstrem untuk performa lintas platform (termasuk seluler dan perangkat berspesifikasi rendah), didukung oleh alur kerja pengembang berbasis AI (*Agentic Coding System*) dan batasan domain yang tegas.
+## 3. Identitas Visual & Estetika
+- **Sci-Fantasy Urban**: Menjauh dari estetika penyihir berjubah (Medieval Mage). Pemain mengenakan **Techwear** (tactical jacket, cargo pants, respirator) dengan nuansa *Chemical Engineer + Hunter + Scientist*.
+- **AR Lens UI**: Antarmuka di dalam game bukan sekadar *overlay* HUD 2D, melainkan holografik *Augmented Reality* yang menyatu dengan dunia (Scanning material, melihat detak *Entropy* pada mesin).
 
-## 3. Core Values & Product Philosophy
-- **Player Empowerment First:** Menghargai waktu pemain melalui progres yang bermakna, tingkat drop yang adil, serta antarmuka dwibahasa (*Indonesian-First & Global-Ready*) tanpa penyerapan iklan/popup yang mengganggu (*Zero Intrusive Popups*).
-- **Zero-Trust Security & Idempotency:** Menjamin 100% keamanan aset dan mata uang dari upaya eksploitasi dan duplikasi item melalui validasi jarak fisik ($\le 15$ studs), AABB boundary checks, dan *Idempotent Marketplace Processing*.
-- **Technical Excellence:** Mempertahankan anggaran performa ketat ($\le 20$ partikel aktif, memori $<6\text{ GB}$ RAM) untuk menjamin kelancaran permainan di semua perangkat.
-- **Continuous LiveOps & Community:** Menyajikan konten segar secara berkala, sistem Ordo Alkemis (Coven), serta event LiveOps otomatis di akhir pekan.
+## 4. Mekanik Utama (Core Loop)
+**Mine -> Analyze -> Transmute -> Automate -> Defend -> Expand -> Discover**
+1. **Equivalent Exchange (Fisika Alkimia)**: `Input Energy + Input Matter = Output Matter + Entropy (Heat/Instability)`. Kesalahan perhitungan berujung pada mesin meledak atau limbah *Slag*.
+2. **Global Discovery**: Bereksperimen dengan elemen yang tidak diketahui. Pemain pertama yang menemukan resep rahasia di dunia akan dicatat secara permanen di Codex Web Portal.
+3. **Masyarakat Tersembunyi (Hidden Society)**: Aktivitas berpusat pada Sanctum bawah tanah, Quantum Railways, dan Void Tunnels di bawah permukaan kota yang tampak normal.
+4. **Pasar Gelap (Black Market)**: Transaksi ilegal untuk profit ekstra atau material langka, dengan risiko ditipu NPC (Scam), reputasi jatuh, atau digerebek (Raid).
 
-## 4. Target Audience & Play Sessions
-- **Target Audiens Utama (Platform Rating):** Usia 13+ (Menyesuaikan pedoman Roblox untuk kekerasan fantasi ringan pada Action Combat dan interaksi sosial/Trading).
-- **Core Demographic (Hasil Survei/Sertifikasi):** Usia 16+ (Mekanisme ekonomi kompleks, *min-maxing* pertumbuhan Sanctum, dan manajemen Coven Guild lebih menarik bagi pemain remaja yang lebih dewasa).
-- **Sesi Pendek Target (5–15 Menit):** Login harian (*Daily Streak*), klaim hasil tambang pet, dan penetasan cepat.
-- **Sesi Panjang Target (30–90 Menit):** Penataan Sanctum Grid, pertarungan PVE & Ekspedisi Dimensi, donasi Coven Guild, serta perdagangan *Trade Escrow*.
+## 5. Fraksi (Coven Guilds)
+- **Preservationists**: Mengusung konsep Biomancy dan Sustainability (Keahlian Regenerasi, Mutasi Tanaman, Reaktor Efisien).
+- **Industrialists**: Mengusung konsep Mekanisasi Massal (Keahlian Conveyor Belt, Drone Penambang, Turret Pertahanan).
+- **Void Walkers**: Mengusung penelitian terlarang dan Risiko Chaos (Keahlian Sihir Korupsi, Teleportasi, Rift Tech).
+
+## 6. Portal Web (Companion App)
+Pengalaman COBLOX diperluas melalui Web Portal resmi yang menyediakan:
+- **Codex & Ensiklopedia Lore**
+- **Crafting & Entropy Calculator**
+- **Sanctum Build Planner**
+- **Market Tracker (Real-time Supply/Demand Harga Komoditas)**
+- **Global Leaderboards (Kekayaan & First Discoveries)**

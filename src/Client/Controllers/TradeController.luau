@@ -139,27 +139,82 @@ function TradeController._CreateTradeModal()
 
 	-- Countdown Display removed for Quick Accept
 	
-	-- Quick Accept Trade Button (Replaces Lock & Confirm)
-	local confirmBtn = Instance.new("TextButton")
-	confirmBtn.Size = UDim2.new(0.92, 0, 0.12, 0)
-	confirmBtn.Position = UDim2.new(0.04, 0, 0.84, 0)
-	confirmBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94)
-	confirmBtn.Text = "⚡ QUICK ACCEPT"
-	confirmBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-	confirmBtn.Font = Enum.Font.GothamBold
-	confirmBtn.TextSize = 16
-	confirmBtn.Parent = modalFrame
+	-- 2-Step Anti-Scam Trade Action Container
+	local actionContainer = Instance.new("Frame")
+	actionContainer.Size = UDim2.new(0.92, 0, 0.14, 0)
+	actionContainer.Position = UDim2.new(0.04, 0, 0.83, 0)
+	actionContainer.BackgroundTransparency = 1
+	actionContainer.Parent = modalFrame
 
-	local confirmCorner = Instance.new("UICorner")
-	confirmCorner.CornerRadius = UDim.new(0, 8)
-	confirmCorner.Parent = confirmBtn
+	local lockBtn = Instance.new("TextButton")
+	lockBtn.Size = UDim2.new(0.48, 0, 1, 0)
+	lockBtn.Position = UDim2.new(0, 0, 0, 0)
+	lockBtn.BackgroundColor3 = Color3.fromRGB(234, 179, 8) -- Yellow 500
+	lockBtn.Text = "🔒 KUNCI PENAWARAN"
+	lockBtn.TextColor3 = Color3.fromRGB(15, 23, 42)
+	lockBtn.Font = Enum.Font.FredokaOne
+	lockBtn.TextSize = 14
+	lockBtn.Parent = actionContainer
 
-	confirmBtn.MouseButton1Click:Connect(function()
-		print("[TradeController] Quick Accept! Firing server verification...")
+	local lockCorner = Instance.new("UICorner")
+	lockCorner.CornerRadius = UDim.new(0, 8)
+	lockCorner.Parent = lockBtn
+
+	local acceptBtn = Instance.new("TextButton")
+	acceptBtn.Size = UDim2.new(0.48, 0, 1, 0)
+	acceptBtn.Position = UDim2.new(0.52, 0, 0, 0)
+	acceptBtn.BackgroundColor3 = Color3.fromRGB(71, 85, 105) -- Disabled slate
+	acceptBtn.Text = "✅ KONFIRMASI FINAL"
+	acceptBtn.TextColor3 = Color3.fromRGB(148, 163, 184)
+	acceptBtn.Font = Enum.Font.FredokaOne
+	acceptBtn.TextSize = 14
+	acceptBtn.Active = false
+	acceptBtn.Parent = actionContainer
+
+	local acceptCorner = Instance.new("UICorner")
+	acceptCorner.CornerRadius = UDim.new(0, 8)
+	acceptCorner.Parent = acceptBtn
+
+	local isLocked = false
+	local isCountingDown = false
+
+	lockBtn.MouseButton1Click:Connect(function()
+		if isCountingDown then return end
 		
-		-- Play Tactile Audio Feedback
+		isLocked = not isLocked
+		if isLocked then
+			lockBtn.Text = "🔓 BUKA KUNCI"
+			lockBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68) -- Red to unlock
+			
+			isCountingDown = true
+			for remaining = 3, 1, -1 do
+				acceptBtn.Text = string.format("⏳ TUNGGU (%ds)", remaining)
+				task.wait(1)
+			end
+			isCountingDown = false
+
+			acceptBtn.Text = "✅ KONFIRMASI FINAL"
+			acceptBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94) -- Active Green
+			acceptBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+			acceptBtn.Active = true
+		else
+			lockBtn.Text = "🔒 KUNCI PENAWARAN"
+			lockBtn.BackgroundColor3 = Color3.fromRGB(234, 179, 8)
+			acceptBtn.Text = "✅ KONFIRMASI FINAL"
+			acceptBtn.BackgroundColor3 = Color3.fromRGB(71, 85, 105)
+			acceptBtn.TextColor3 = Color3.fromRGB(148, 163, 184)
+			acceptBtn.Active = false
+		end
+	end)
+
+	acceptBtn.MouseButton1Click:Connect(function()
+		if not isLocked or not acceptBtn.Active then return end
+		
+		print("[TradeController] Trade confirmed! Executing secure trade exchange...")
 		local AudioController = require(script.Parent:WaitForChild("AudioController") :: any)
-		AudioController.PlaySound("rbxassetid://138677306", 1.0) -- Success Chime
+		pcall(function()
+			AudioController.PlaySound("rbxassetid://138677306", 1.0)
+		end)
 		
 		TradeController.ToggleModal()
 	end)

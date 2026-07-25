@@ -1,0 +1,6 @@
+{
+  "Id": "Tech_CryoCooling",
+  "Name": "Advanced Cryogenics",
+  "RequiredDiscoveries": ["AetherCrystal"],
+  "Cost": 1200
+}

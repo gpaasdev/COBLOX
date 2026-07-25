@@ -2,28 +2,28 @@
 
 local AudioEvents = {
 	UI = {
-		Hover = "rbxassetid://6895079853",
-		Click = "rbxassetid://6895079853",
-		ButtonPressed = "rbxassetid://6895079855",
-		TabSwitch = "rbxassetid://6895079856",
+		Hover = "rbxassetid://12222076", -- Standard Pop
+		Click = "rbxassetid://12222216", -- Clean click
+		ButtonPressed = "rbxassetid://12222253", -- Soft tap
+		TabSwitch = "rbxassetid://12222253",
 	},
 	Gameplay = {
-		LevelUp = "rbxassetid://6895079860",
-		QuestCompleted = "rbxassetid://6895079861",
-		CraftSuccess = "rbxassetid://6895079862",
-		PetLegendary = "rbxassetid://6895079863",
-		PetSecret = "rbxassetid://6895079864",
+		LevelUp = "rbxassetid://138677306", -- Success chime
+		QuestCompleted = "rbxassetid://138677306",
+		CraftSuccess = "rbxassetid://138677306",
+		PetLegendary = "rbxassetid://138677306",
+		PetSecret = "rbxassetid://138677306",
 	},
 	Store = {
-		PurchaseSuccess = "rbxassetid://6895079870",
-		PurchaseFailed = "rbxassetid://6895079871",
+		PurchaseSuccess = "rbxassetid://138677306",
+		PurchaseFailed = "rbxassetid://12222076",
 	},
 	System = {
-		Error = "rbxassetid://6895079880",
-		Notification = "rbxassetid://6895079881",
+		Error = "rbxassetid://12222076",
+		Notification = "rbxassetid://12222076",
 	},
 	Social = {
-		TradeRequest = "rbxassetid://6895079890",
+		TradeRequest = "rbxassetid://12222216",
 	},
 }
 

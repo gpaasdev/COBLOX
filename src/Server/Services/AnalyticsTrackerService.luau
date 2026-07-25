@@ -36,4 +36,22 @@ function AnalyticsTrackerService.LogGachaPull(player: Player, eggId: string, obt
 	end
 end
 
+function AnalyticsTrackerService.LogDiscoveryEvent(player: Player, discoveryType: string, discoveryId: string, isFirst: boolean)
+	pcall(function()
+		AnalyticsService:LogCustomEvent(player, "DiscoveryMade", isFirst and 10 or 1, {
+			Type = discoveryType,
+			Id = discoveryId,
+			IsFirstDiscovery = tostring(isFirst),
+		})
+	end)
+end
+
+function AnalyticsTrackerService.LogAutomationMilestone(player: Player, machineId: string, totalOutput: number)
+	pcall(function()
+		AnalyticsService:LogCustomEvent(player, "AutomationMilestone", totalOutput, {
+			MachineId = machineId,
+		})
+	end)
+end
+
 return AnalyticsTrackerService
