@@ -259,6 +259,17 @@ export async function updatePlayerData(id: string, updates: { gems?: number; coi
   }
 
   const currentData = await entryRes.json();
+  const isOnline = currentData.MetaData && currentData.MetaData.ActiveSession;
+
+  if (isOnline) {
+    // Player is currently online. We cannot mutate DataStore directly because of ProfileStore Session Lock.
+    // Delegate to MessagingService so the active server can handle it.
+    await sendLiveOpsMessage("Web_DataUpdate", { 
+      userId: id.replace("COBLOX_LGBOS_v11_", ""), 
+      updates 
+    });
+    return { success: true, message: `Player is online. Update dispatched via MessagingService for ${id}` };
+  }
 
   if (currentData.Data && currentData.Data.Wallet) {
     if (updates.gems !== undefined) currentData.Data.Wallet.Gems = updates.gems;
@@ -284,7 +295,7 @@ export async function updatePlayerData(id: string, updates: { gems?: number; coi
   }
 
   revalidatePath("/dashboard/datastore");
-  return { success: true, message: `Updated player stats for ${id}` };
+  return { success: true, message: `Updated player stats offline for ${id}` };
 }
 
 export async function deleteDatastoreEntry(entryKey: string, datastoreName: string = DEFAULT_DATASTORE_NAME, scope: string = "global") {

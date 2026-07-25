@@ -39,3 +39,15 @@ jobs:
             raw.json
             metrics.json
           retention-days: 7
+
+      - name: Commit LiveOps Data to Web Portal
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p web/src/data
+          cp metrics.json web/src/data/liveops.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add web/src/data/liveops.json
+          git commit -m "chore: sync liveops metrics to web portal" || echo "No changes to commit"
+          git push
