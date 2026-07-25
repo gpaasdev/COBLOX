@@ -1,0 +1,29 @@
+name: 03 Build Web
+
+on:
+  workflow_run:
+    workflows: ["02 Generate Registries"]
+    types:
+      - completed
+
+jobs:
+  build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Download Registry Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: registry-bundle
+          path: web/src/data/registry/
+      - name: Install Dependencies
+        working-directory: ./web
+        run: npm ci
+      - name: Build Next.js
+        working-directory: ./web
+        run: npm run build

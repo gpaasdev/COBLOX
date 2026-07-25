@@ -1,0 +1,28 @@
+name: 04 Publish Registry
+
+on:
+  workflow_run:
+    workflows: ["03 Build Web"]
+    types:
+      - completed
+
+jobs:
+  publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Download Registry Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: registry-bundle
+          path: web/src/data/registry/
+      - name: Publish to Roblox Open Cloud
+        run: node scripts/opencloud_runner.js publish-registry-snapshot
+        env:
+          ROBLOX_OPEN_CLOUD_API_KEY: ${{ secrets.ROBLOX_OPEN_CLOUD_API_KEY }}
+          ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_UNIVERSE_ID }}

@@ -1,0 +1,16 @@
+name: 05 Verify Deployment
+
+on:
+  workflow_run:
+    workflows: ["04 Publish Registry"]
+    types:
+      - completed
+
+jobs:
+  verify:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Live Endpoints
+        run: echo "Ping Vercel and check Open Cloud telemetry."

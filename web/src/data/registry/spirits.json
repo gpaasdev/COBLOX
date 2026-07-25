@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "SP_VOID_DRAGON",
+    "Name": "Void Dragon",
+    "Description": "A legendary entity born from the abyss.",
+    "Rarity": "Legendary",
+    "Element": "Void",
+    "DropRate": "0.1%"
+  }
+]

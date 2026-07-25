@@ -1,14 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import registryData from "@/data/registry_bundle.json";
-import JsonLd from "@/components/JsonLd";
+import MATERIALS_DATA from "@/data/registry/materials.json";
 
 export const metadata = {
-  title: "Material Science Registry | COBLOX Companion",
-  description: "Official Data-Driven Material Science Registry for COBLOX. Explores density, hardness, conductivity, and thermal properties.",
+  title: "Materials Registry | COBLOX Companion",
+  description: "Data-Driven Material Registry for COBLOX.",
 };
-
-const MATERIALS_DATA = registryData.materials || [];
 
 export default function MaterialsRegistryPage() {
   return (

@@ -1,13 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import registryData from "@/data/registry_bundle.json";
+import REACTIONS_DATA from "@/data/registry/reactions.json";
 
 export const metadata = {
   title: "Chemical & Alchemical Reactions Registry | COBLOX Companion",
   description: "Data-Driven Reaction Registry for COBLOX. Displays input materials, thermal thresholds, pressure requirements, products, and entropy rates.",
 };
-
-const REACTIONS_DATA = registryData.reactions || [];
 
 export default function ReactionsRegistryPage() {
   return (

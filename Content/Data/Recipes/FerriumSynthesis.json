@@ -1,0 +1,7 @@
+{
+  "Id": "RCP_FERRIUM",
+  "Name": "Ferrium Alloy Synthesis",
+  "Description": "Basic synthesis for creating industrial-grade Ferrium.",
+  "Ingredients": ["Iron", "Carbon", "Heat"],
+  "OutputType": "Material"
+}

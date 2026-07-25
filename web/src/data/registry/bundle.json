@@ -1,0 +1,12 @@
+{
+  "materials": "materials.json",
+  "reactions": "reactions.json",
+  "machines": "machines.json",
+  "research": "research.json",
+  "biomes": "biomes.json",
+  "creatures": "creatures.json",
+  "spirits": "spirits.json",
+  "badges": "badges.json",
+  "recipes": "recipes.json",
+  "market": "market.json"
+}

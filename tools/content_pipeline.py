@@ -7,8 +7,11 @@
 import os
 import json
 import glob
-from pydantic import BaseModel, Field, field_validator
-from typing import Dict, Optional, List
+import hashlib
+import datetime
+import subprocess
+from pydantic import BaseModel, Field
+from typing import Dict, Optional, List, Any
 
 # --- SCHEMAS ---
 
@@ -45,36 +48,56 @@ class ResearchSchema(BaseModel):
     RequiredDiscoveries: List[str]
     Cost: int
 
-class CreatureSchema(BaseModel):
-    Id: str
-    Name: str
-    Health: int
-
 class BiomeSchema(BaseModel):
     Id: str
     Name: str
     Temperature: float
 
-class QuestSchema(BaseModel):
+class CreatureSchema(BaseModel):
     Id: str
     Name: str
+    Health: int
 
-class AchievementSchema(BaseModel):
+class SpiritSchema(BaseModel):
     Id: str
     Name: str
+    Description: str
+    Rarity: str
+    Element: str
+    DropRate: str
 
-class FactionSchema(BaseModel):
+class BadgeSchema(BaseModel):
     Id: str
     Name: str
+    Description: str
+    RarityPercent: float
 
-class LoreSchema(BaseModel):
-    Id: str
-    Title: str
-
-class BlueprintSchema(BaseModel):
+class RecipeSchema(BaseModel):
     Id: str
     Name: str
-    Materials: Dict[str, float]
+    Description: str
+    Ingredients: List[str]
+    OutputType: str
+
+class MarketAssetSchema(BaseModel):
+    Id: str
+    Name: str
+    Description: str
+    Price: int
+    Currency: str
+    Category: str
+    ImageUrl: str
+
+# --- UTILS ---
+
+def get_git_commit():
+    try:
+        return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
+    except Exception:
+        return "unknown"
+
+def compute_hash(data: str) -> str:
+    return hashlib.sha256(data.encode('utf-8')).hexdigest()
 
 # --- VALIDATION & GENERATION ---
 
@@ -111,21 +134,10 @@ function {registry_name}.GetAll(): {{ [string]: {registry_name}Definition }}
 end
 
 """
-    
-    for item in items:
-        json_str = item.model_dump_json(exclude_none=True)
-        # Convert JSON string roughly to Luau table syntax for simple types
-        # Note: robust implementation requires proper serialization, this is a simplified version for the proof of concept.
-        # We will use a more precise luau generation approach.
-        pass
-
-    # Simplified generator for demonstration of the pipeline
     luau_entries = []
     items = sorted(items, key=lambda x: x.Id)
     for item in items:
-        # Pydantic dump to dict
         data = item.model_dump(exclude_none=True)
-        
         entry = f'{registry_name}["{data["Id"]}"] = {{\n'
         for k, v in data.items():
             if isinstance(v, dict):
@@ -137,7 +149,9 @@ end
                 array_str = ", ".join([f'"{x}"' if isinstance(x, str) else str(x) for x in v])
                 entry += f'\t{k} = {{{array_str}}},\n'
             elif isinstance(v, str):
-                entry += f'\t{k} = "{v}",\n'
+                # Escape quotes
+                safe_str = v.replace('"', '\\"')
+                entry += f'\t{k} = "{safe_str}",\n'
             else:
                 entry += f'\t{k} = {v},\n'
         entry += '}\n'
@@ -151,98 +165,121 @@ end
         f.write(luau_content)
     print(f"🚀 Generated Luau Registry: {output_path}")
 
+def export_json(data: Any, path: str):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+
 def main():
     base_path = "Content/Data"
+    registry_dir = "web/src/data/registry"
     
-    # 1. Materials
-    print("--- Validating Materials ---")
+    print("--- Validating Content ---")
+    
     materials = load_and_validate(f"{base_path}/Materials/*.json", MaterialSchema)
+    reactions = load_and_validate(f"{base_path}/Reactions/*.json", ReactionSchema)
+    machines = load_and_validate(f"{base_path}/Machines/*.json", MachineSchema)
+    research = load_and_validate(f"{base_path}/Research/*.json", ResearchSchema)
+    biomes = load_and_validate(f"{base_path}/Biomes/*.json", BiomeSchema)
+    creatures = load_and_validate(f"{base_path}/Creatures/*.json", CreatureSchema)
+    spirits = load_and_validate(f"{base_path}/Spirits/*.json", SpiritSchema)
+    badges = load_and_validate(f"{base_path}/Badges/*.json", BadgeSchema)
+    recipes = load_and_validate(f"{base_path}/Recipes/*.json", RecipeSchema)
+    market = load_and_validate(f"{base_path}/Market/*.json", MarketAssetSchema)
     
-    mat_type_def = """export type MaterialRegistryDefinition = {
-	Id: string,
-	Name: string,
-	Density: number,
-	Conductivity: number,
-	Value: number,
-}"""
+    print("--- Generating Luau Registries ---")
+    
+    mat_type_def = """export type MaterialRegistryDefinition = { Id: string, Name: string, Density: number, Conductivity: number, Value: number }"""
     generate_luau_registry(materials, "src/Shared/Config/GeneratedMaterialRegistry.luau", "MaterialRegistry", mat_type_def)
 
-    # 2. Reactions
-    print("--- Validating Reactions ---")
-    reactions = load_and_validate(f"{base_path}/Reactions/*.json", ReactionSchema)
-    
-    rxn_type_def = """export type ReactionRegistryDefinition = {
-	Id: string,
-	Name: string,
-	RequiredMaterials: { [string]: number },
-	Catalyst: string?,
-	MinTemperature: number,
-	MaxTemperature: number,
-	MinPressure: number,
-	Product: string,
-	YieldRatio: number,
-	EnergyRequired: number,
-	EntropyGenerated: number,
-	DiscoveryRequirement: string?,
-}"""
+    rxn_type_def = """export type ReactionRegistryDefinition = { Id: string, Name: string, RequiredMaterials: {[string]: number}, Catalyst: string?, MinTemperature: number, MaxTemperature: number, MinPressure: number, Product: string, YieldRatio: number, EnergyRequired: number, EntropyGenerated: number, DiscoveryRequirement: string? }"""
     generate_luau_registry(reactions, "src/Shared/Config/GeneratedReactionRegistry.luau", "ReactionRegistry", rxn_type_def)
     
-    print("--- Validating Machines ---")
-    machines = load_and_validate(f"{base_path}/Machines/*.json", MachineSchema)
-    
-    mach_type_def = """export type MachineRegistryDefinition = {
-	Id: string,
-	Name: string,
-	PowerConsumption: number,
-	MaxTemperature: number,
-}"""
+    mach_type_def = """export type MachineRegistryDefinition = { Id: string, Name: string, PowerConsumption: number, MaxTemperature: number }"""
     generate_luau_registry(machines, "src/Shared/Config/GeneratedMachineRegistry.luau", "MachineRegistry", mach_type_def)
 
-    print("--- Validating Research ---")
-    research = load_and_validate(f"{base_path}/Research/*.json", ResearchSchema)
-    
-    res_type_def = """export type ResearchRegistryDefinition = {
-	Id: string,
-	Name: string,
-	RequiredDiscoveries: { string },
-	Cost: number,
-}"""
+    res_type_def = """export type ResearchRegistryDefinition = { Id: string, Name: string, RequiredDiscoveries: {string}, Cost: number }"""
     generate_luau_registry(research, "src/Shared/Config/GeneratedResearchRegistry.luau", "ResearchRegistry", res_type_def)
 
-    print("--- Validating Biomes ---")
-    biomes = load_and_validate(f"{base_path}/Biomes/*.json", BiomeSchema)
-    biome_type_def = """export type BiomeRegistryDefinition = {
-	Id: string,
-	Name: string,
-	Temperature: number,
-}"""
+    biome_type_def = """export type BiomeRegistryDefinition = { Id: string, Name: string, Temperature: number }"""
     generate_luau_registry(biomes, "src/Shared/Config/GeneratedBiomeRegistry.luau", "BiomeRegistry", biome_type_def)
 
-    print("--- Validating Creatures ---")
-    creatures = load_and_validate(f"{base_path}/Creatures/*.json", CreatureSchema)
-    creature_type_def = """export type CreatureRegistryDefinition = {
-	Id: string,
-	Name: string,
-	Health: number,
-}"""
+    creature_type_def = """export type CreatureRegistryDefinition = { Id: string, Name: string, Health: number }"""
     generate_luau_registry(creatures, "src/Shared/Config/GeneratedCreatureRegistry.luau", "CreatureRegistry", creature_type_def)
 
-    # EXPORT BUNDLE FOR WEB COMPANION (Priority B / Shared Data)
-    web_bundle_path = "web/src/data/registry_bundle.json"
-    os.makedirs(os.path.dirname(web_bundle_path), exist_ok=True)
-    bundle_data = {
-        "materials": [m.model_dump() for m in materials],
-        "reactions": [r.model_dump() for r in reactions],
-        "machines": [mc.model_dump() for mc in machines],
-        "research": [rs.model_dump() for rs in research],
-        "biomes": [b.model_dump() for b in biomes],
-        "creatures": [c.model_dump() for c in creatures],
-    }
-    with open(web_bundle_path, "w", encoding="utf-8") as f:
-        json.dump(bundle_data, f, indent=2)
-    print(f"🌐 Exported Shared Web Bundle: {web_bundle_path}")
+    spirit_type_def = """export type SpiritRegistryDefinition = { Id: string, Name: string, Description: string, Rarity: string, Element: string, DropRate: string }"""
+    generate_luau_registry(spirits, "src/Shared/Config/GeneratedSpiritRegistry.luau", "SpiritRegistry", spirit_type_def)
 
-    print("✅ Content Supply Chain execution complete.")
+    badge_type_def = """export type BadgeRegistryDefinition = { Id: string, Name: string, Description: string, RarityPercent: number }"""
+    generate_luau_registry(badges, "src/Shared/Config/GeneratedBadgeRegistry.luau", "BadgeRegistry", badge_type_def)
+
+    recipe_type_def = """export type RecipeRegistryDefinition = { Id: string, Name: string, Description: string, Ingredients: {string}, OutputType: string }"""
+    generate_luau_registry(recipes, "src/Shared/Config/GeneratedRecipeRegistry.luau", "RecipeRegistry", recipe_type_def)
+
+    market_type_def = """export type MarketRegistryDefinition = { Id: string, Name: string, Description: string, Price: number, Currency: string, Category: string, ImageUrl: string }"""
+    generate_luau_registry(market, "src/Shared/Config/GeneratedMarketRegistry.luau", "MarketRegistry", market_type_def)
+
+    print("--- Exporting Modular JSON Registries ---")
+
+    export_json([m.model_dump() for m in materials], f"{registry_dir}/materials.json")
+    export_json([r.model_dump() for r in reactions], f"{registry_dir}/reactions.json")
+    export_json([m.model_dump() for m in machines], f"{registry_dir}/machines.json")
+    export_json([r.model_dump() for r in research], f"{registry_dir}/research.json")
+    export_json([b.model_dump() for b in biomes], f"{registry_dir}/biomes.json")
+    export_json([c.model_dump() for c in creatures], f"{registry_dir}/creatures.json")
+    export_json([s.model_dump() for s in spirits], f"{registry_dir}/spirits.json")
+    export_json([b.model_dump() for b in badges], f"{registry_dir}/badges.json")
+    export_json([r.model_dump() for r in recipes], f"{registry_dir}/recipes.json")
+    export_json([m.model_dump() for m in market], f"{registry_dir}/market.json")
+
+    # Generate Bundle
+    bundle_data = {
+        "materials": "materials.json",
+        "reactions": "reactions.json",
+        "machines": "machines.json",
+        "research": "research.json",
+        "biomes": "biomes.json",
+        "creatures": "creatures.json",
+        "spirits": "spirits.json",
+        "badges": "badges.json",
+        "recipes": "recipes.json",
+        "market": "market.json"
+    }
+    export_json(bundle_data, f"{registry_dir}/bundle.json")
+
+    # Generate Manifest
+    raw_content = json.dumps(bundle_data, sort_keys=True)
+    # Combine hashes of all files
+    content_hash = hashlib.sha256()
+    for filename in bundle_data.values():
+        path = f"{registry_dir}/{filename}"
+        if os.path.exists(path):
+            with open(path, "rb") as f:
+                content_hash.update(f.read())
+    
+    manifest = {
+        "version": "1.0.0",
+        "generated_at": datetime.datetime.now(datetime.UTC).isoformat() + "Z",
+        "git_commit": get_git_commit(),
+        "content_hash": content_hash.hexdigest(),
+        "schema_version": "v11",
+        "pipeline_version": "1.0",
+        "entity_counts": {
+            "materials": len(materials),
+            "reactions": len(reactions),
+            "machines": len(machines),
+            "research": len(research),
+            "biomes": len(biomes),
+            "creatures": len(creatures),
+            "spirits": len(spirits),
+            "badges": len(badges),
+            "recipes": len(recipes),
+            "market": len(market),
+        }
+    }
+    export_json(manifest, f"{registry_dir}/manifest.json")
+    
+    print(f"🌐 Content Pipeline Completed. Content Hash: {manifest['content_hash']}")
 
 if __name__ == "__main__":
     main()

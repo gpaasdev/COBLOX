@@ -18,6 +18,7 @@
  *   node scripts/opencloud_runner.js restart-servers
  *   node scripts/opencloud_runner.js build-and-publish-place
  *   node scripts/opencloud_runner.js upload-asset <filePath> <assetType> <displayName> [description]
+ *   node scripts/opencloud_runner.js publish-registry-snapshot
  */
 
 const fs = require('fs');
@@ -213,6 +214,98 @@ async function run() {
           const finalRes = await pollLRO(initialRes.path);
           console.log("LRO Polling Final Result:", finalRes);
         }
+        break;
+      }
+      case "publish-registry-snapshot": {
+        const crypto = require('crypto');
+        const md5 = crypto.createHash('md5');
+        
+        // 1. Read Manifest
+        const manifestPath = path.join(__dirname, '../web/src/data/registry/manifest.json');
+        if (!fs.existsSync(manifestPath)) {
+          throw new Error("Manifest not found! Please run the content pipeline first.");
+        }
+        const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+        const contentHash = manifest.content_hash;
+        console.log(`[Publisher] Target Registry Snapshot Hash: ${contentHash}`);
+
+        // 2. Fetch Latest Hash from DataStore
+        const dsName = "COBLOX_RegistrySnapshots";
+        const readUrl = `https://apis.roblox.com/datastores/v1/universes/${universeId}/standard-datastores/datastore/entries/entry?datastoreName=${dsName}&entryKey=LatestHash`;
+        
+        let currentHash = null;
+        try {
+          const res = await fetch(readUrl, { headers });
+          if (res.ok) {
+            const currentHashJson = await res.json();
+            if (currentHashJson && currentHashJson.hash) {
+              currentHash = currentHashJson.hash;
+            }
+          }
+        } catch (e) {
+          console.log("[Publisher] Could not fetch LatestHash, assuming empty/first publish.");
+        }
+
+        console.log(`[Publisher] Current Roblox Hash: ${currentHash || 'None'}`);
+
+        if (currentHash === contentHash) {
+          console.log("[Publisher] ✅ No change detected. Skipping publish.");
+          break;
+        }
+
+        // 3. Assemble Full Payload
+        const bundlePath = path.join(__dirname, '../web/src/data/registry/bundle.json');
+        const bundleRefs = JSON.parse(fs.readFileSync(bundlePath, 'utf8'));
+        const fullPayload = {
+           _manifest: manifest
+        };
+        for (const [key, filename] of Object.entries(bundleRefs)) {
+           const partPath = path.join(__dirname, '../web/src/data/registry', filename);
+           fullPayload[key] = JSON.parse(fs.readFileSync(partPath, 'utf8'));
+        }
+        
+        const payloadStr = JSON.stringify(fullPayload);
+        const checksum = md5.update(payloadStr).digest("base64");
+
+        // 4. Publish to Snapshot Key
+        console.log(`[Publisher] Publishing Snapshot Payload (${payloadStr.length} bytes)...`);
+        const snapshotKey = `Snapshot_${contentHash.substring(0,32)}`;
+        const publishUrl = `https://apis.roblox.com/datastores/v1/universes/${universeId}/standard-datastores/datastore/entries/entry?datastoreName=${dsName}&entryKey=${snapshotKey}`;
+        
+        const pubRes = await fetch(publishUrl, {
+          method: "POST",
+          headers: {
+            "x-api-key": apiKey,
+            "Content-Type": "application/json",
+            "content-md5": checksum
+          },
+          body: payloadStr
+        });
+
+        if (!pubRes.ok) {
+           throw new Error(`[Publisher] Failed to upload snapshot: ${await pubRes.text()}`);
+        }
+        
+        // 5. Update LatestHash Pointer
+        const pointerPayload = JSON.stringify({ hash: contentHash, timestamp: Date.now() });
+        const pointerChecksum = crypto.createHash('md5').update(pointerPayload).digest("base64");
+        
+        console.log(`[Publisher] Updating LatestHash pointer...`);
+        const pointerRes = await fetch(readUrl, {
+          method: "POST",
+          headers: {
+            "x-api-key": apiKey,
+            "Content-Type": "application/json",
+            "content-md5": pointerChecksum
+          },
+          body: pointerPayload
+        });
+
+        if (!pointerRes.ok) {
+           throw new Error(`[Publisher] Failed to update LatestHash: ${await pointerRes.text()}`);
+        }
+
+        console.log("[Publisher] 🚀 Successfully published new registry snapshot to Roblox Open Cloud.");
         break;
       }
       default:

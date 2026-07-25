@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-07-25T05:52:40.427724+00:00Z",
+  "git_commit": "e0915e7555962f68e59d9af99f0e1ad295f23079",
+  "content_hash": "a5598e3f729d46ffbeeb725d663d4c8e6a235737baa60c1ffa76caee3cc58f6d",
+  "schema_version": "v11",
+  "pipeline_version": "1.0",
+  "entity_counts": {
+    "materials": 104,
+    "reactions": 1,
+    "machines": 62,
+    "research": 152,
+    "biomes": 41,
+    "creatures": 81,
+    "spirits": 1,
+    "badges": 1,
+    "recipes": 1,
+    "market": 1
+  }
+}

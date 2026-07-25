@@ -1,0 +1,374 @@
+[
+  {
+    "Id": "Smelter_v6",
+    "Name": "Industrial Smelter Mark 6",
+    "PowerConsumption": 600.0,
+    "MaxTemperature": 2000.0
+  },
+  {
+    "Id": "Cooler_v1",
+    "Name": "Industrial Cooler Mark 1",
+    "PowerConsumption": 100.0,
+    "MaxTemperature": 750.0
+  },
+  {
+    "Id": "Synthesizer_v9",
+    "Name": "Industrial Synthesizer Mark 9",
+    "PowerConsumption": 900.0,
+    "MaxTemperature": 2750.0
+  },
+  {
+    "Id": "Refinery_v8",
+    "Name": "Industrial Refinery Mark 8",
+    "PowerConsumption": 800.0,
+    "MaxTemperature": 2500.0
+  },
+  {
+    "Id": "Turbine_v5",
+    "Name": "Industrial Turbine Mark 5",
+    "PowerConsumption": 500.0,
+    "MaxTemperature": 1750.0
+  },
+  {
+    "Id": "Reactor_v3",
+    "Name": "Industrial Reactor Mark 3",
+    "PowerConsumption": 300.0,
+    "MaxTemperature": 1250.0
+  },
+  {
+    "Id": "Synthesizer_v5",
+    "Name": "Industrial Synthesizer Mark 5",
+    "PowerConsumption": 500.0,
+    "MaxTemperature": 1750.0
+  },
+  {
+    "Id": "Refinery_v4",
+    "Name": "Industrial Refinery Mark 4",
+    "PowerConsumption": 400.0,
+    "MaxTemperature": 1500.0
+  },
+  {
+    "Id": "Turbine_v9",
+    "Name": "Industrial Turbine Mark 9",
+    "PowerConsumption": 900.0,
+    "MaxTemperature": 2750.0
+  },
+  {
+    "Id": "Turbine_v8",
+    "Name": "Industrial Turbine Mark 8",
+    "PowerConsumption": 800.0,
+    "MaxTemperature": 2500.0
+  },
+  {
+    "Id": "Refinery_v5",
+    "Name": "Industrial Refinery Mark 5",
+    "PowerConsumption": 500.0,
+    "MaxTemperature": 1750.0
+  },
+  {
+    "Id": "Synthesizer_v4",
+    "Name": "Industrial Synthesizer Mark 4",
+    "PowerConsumption": 400.0,
+    "MaxTemperature": 1500.0
+  },
+  {
+    "Id": "FusionReactor_v1",
+    "Name": "Basic Fusion Reactor",
+    "PowerConsumption": 500.0,
+    "MaxTemperature": 3000.0
+  },
+  {
+    "Id": "Reactor_v2",
+    "Name": "Industrial Reactor Mark 2",
+    "PowerConsumption": 200.0,
+    "MaxTemperature": 1000.0
+  },
+  {
+    "Id": "Turbine_v4",
+    "Name": "Industrial Turbine Mark 4",
+    "PowerConsumption": 400.0,
+    "MaxTemperature": 1500.0
+  },
+  {
+    "Id": "Refinery_v9",
+    "Name": "Industrial Refinery Mark 9",
+    "PowerConsumption": 900.0,
+    "MaxTemperature": 2750.0
+  },
+  {
+    "Id": "Synthesizer_v8",
+    "Name": "Industrial Synthesizer Mark 8",
+    "PowerConsumption": 800.0,
+    "MaxTemperature": 2500.0
+  },
+  {
+    "Id": "Smelter_v7",
+    "Name": "Industrial Smelter Mark 7",
+    "PowerConsumption": 700.0,
+    "MaxTemperature": 2250.0
+  },
+  {
+    "Id": "Reactor_v5",
+    "Name": "Industrial Reactor Mark 5",
+    "PowerConsumption": 500.0,
+    "MaxTemperature": 1750.0
+  },
+  {
+    "Id": "Synthesizer_v3",
+    "Name": "Industrial Synthesizer Mark 3",
+    "PowerConsumption": 300.0,
+    "MaxTemperature": 1250.0
+  },
+  {
+    "Id": "Refinery_v2",
+    "Name": "Industrial Refinery Mark 2",
+    "PowerConsumption": 200.0,
+    "MaxTemperature": 1000.0
+  },
+  {
+    "Id": "Cooler_v7",
+    "Name": "Industrial Cooler Mark 7",
+    "PowerConsumption": 700.0,
+    "MaxTemperature": 2250.0
+  },
+  {
+    "Id": "Reactor_v9",
+    "Name": "Industrial Reactor Mark 9",
+    "PowerConsumption": 900.0,
+    "MaxTemperature": 2750.0
+  },
+  {
+    "Id": "Turbine_v3",
+    "Name": "Industrial Turbine Mark 3",
+    "PowerConsumption": 300.0,
+    "MaxTemperature": 1250.0
+  },
+  {
+    "Id": "Turbine_v2",
+    "Name": "Industrial Turbine Mark 2",
+    "PowerConsumption": 200.0,
+    "MaxTemperature": 1000.0
+  },
+  {
+    "Id": "Cooler_v6",
+    "Name": "Industrial Cooler Mark 6",
+    "PowerConsumption": 600.0,
+    "MaxTemperature": 2000.0
+  },
+  {
+    "Id": "Reactor_v8",
+    "Name": "Industrial Reactor Mark 8",
+    "PowerConsumption": 800.0,
+    "MaxTemperature": 2500.0
+  },
+  {
+    "Id": "Smelter_v1",
+    "Name": "Industrial Smelter Mark 1",
+    "PowerConsumption": 100.0,
+    "MaxTemperature": 750.0
+  },
+  {
+    "Id": "Refinery_v3",
+    "Name": "Industrial Refinery Mark 3",
+    "PowerConsumption": 300.0,
+    "MaxTemperature": 1250.0
+  },
+  {
+    "Id": "Synthesizer_v2",
+    "Name": "Industrial Synthesizer Mark 2",
+    "PowerConsumption": 200.0,
+    "MaxTemperature": 1000.0
+  },
+  {
+    "Id": "Reactor_v4",
+    "Name": "Industrial Reactor Mark 4",
+    "PowerConsumption": 400.0,
+    "MaxTemperature": 1500.0
+  },
+  {
+    "Id": "Synthesizer_v1",
+    "Name": "Industrial Synthesizer Mark 1",
+    "PowerConsumption": 100.0,
+    "MaxTemperature": 750.0
+  },
+  {
+    "Id": "Turbine_v10",
+    "Name": "Industrial Turbine Mark 10",
+    "PowerConsumption": 1000.0,
+    "MaxTemperature": 3000.0
+  },
+  {
+    "Id": "Reactor_v7",
+    "Name": "Industrial Reactor Mark 7",
+    "PowerConsumption": 700.0,
+    "MaxTemperature": 2250.0
+  },
+  {
+    "Id": "Cooler_v9",
+    "Name": "Industrial Cooler Mark 9",
+    "PowerConsumption": 900.0,
+    "MaxTemperature": 2750.0
+  },
+  {
+    "Id": "Turbine_v1",
+    "Name": "Industrial Turbine Mark 1",
+    "PowerConsumption": 100.0,
+    "MaxTemperature": 750.0
+  },
+  {
+    "Id": "Reactor_v10",
+    "Name": "Industrial Reactor Mark 10",
+    "PowerConsumption": 1000.0,
+    "MaxTemperature": 3000.0
+  },
+  {
+    "Id": "Cooler_v5",
+    "Name": "Industrial Cooler Mark 5",
+    "PowerConsumption": 500.0,
+    "MaxTemperature": 1750.0
+  },
+  {
+    "Id": "Smelter_v2",
+    "Name": "Industrial Smelter Mark 2",
+    "PowerConsumption": 200.0,
+    "MaxTemperature": 1000.0
+  },
+  {
+    "Id": "Smelter_v3",
+    "Name": "Industrial Smelter Mark 3",
+    "PowerConsumption": 300.0,
+    "MaxTemperature": 1250.0
+  },
+  {
+    "Id": "Cooler_v4",
+    "Name": "Industrial Cooler Mark 4",
+    "PowerConsumption": 400.0,
+    "MaxTemperature": 1500.0
+  },
+  {
+    "Id": "Reactor_v6",
+    "Name": "Industrial Reactor Mark 6",
+    "PowerConsumption": 600.0,
+    "MaxTemperature": 2000.0
+  },
+  {
+    "Id": "Cooler_v8",
+    "Name": "Industrial Cooler Mark 8",
+    "PowerConsumption": 800.0,
+    "MaxTemperature": 2500.0
+  },
+  {
+    "Id": "Refinery_v1",
+    "Name": "Industrial Refinery Mark 1",
+    "PowerConsumption": 100.0,
+    "MaxTemperature": 750.0
+  },
+  {
+    "Id": "CryoCooler_v1",
+    "Name": "Cryogenic Cooling Chamber",
+    "PowerConsumption": 1200.0,
+    "MaxTemperature": 500.0
+  },
+  {
+    "Id": "Turbine_v7",
+    "Name": "Industrial Turbine Mark 7",
+    "PowerConsumption": 700.0,
+    "MaxTemperature": 2250.0
+  },
+  {
+    "Id": "Cooler_v3",
+    "Name": "Industrial Cooler Mark 3",
+    "PowerConsumption": 300.0,
+    "MaxTemperature": 1250.0
+  },
+  {
+    "Id": "Smelter_v4",
+    "Name": "Industrial Smelter Mark 4",
+    "PowerConsumption": 400.0,
+    "MaxTemperature": 1500.0
+  },
+  {
+    "Id": "Refinery_v6",
+    "Name": "Industrial Refinery Mark 6",
+    "PowerConsumption": 600.0,
+    "MaxTemperature": 2000.0
+  },
+  {
+    "Id": "Synthesizer_v7",
+    "Name": "Industrial Synthesizer Mark 7",
+    "PowerConsumption": 700.0,
+    "MaxTemperature": 2250.0
+  },
+  {
+    "Id": "Reactor_v1",
+    "Name": "Industrial Reactor Mark 1",
+    "PowerConsumption": 100.0,
+    "MaxTemperature": 750.0
+  },
+  {
+    "Id": "Smelter_v8",
+    "Name": "Industrial Smelter Mark 8",
+    "PowerConsumption": 800.0,
+    "MaxTemperature": 2500.0
+  },
+  {
+    "Id": "Smelter_v9",
+    "Name": "Industrial Smelter Mark 9",
+    "PowerConsumption": 900.0,
+    "MaxTemperature": 2750.0
+  },
+  {
+    "Id": "Synthesizer_v6",
+    "Name": "Industrial Synthesizer Mark 6",
+    "PowerConsumption": 600.0,
+    "MaxTemperature": 2000.0
+  },
+  {
+    "Id": "Smelter_v10",
+    "Name": "Industrial Smelter Mark 10",
+    "PowerConsumption": 1000.0,
+    "MaxTemperature": 3000.0
+  },
+  {
+    "Id": "Refinery_v7",
+    "Name": "Industrial Refinery Mark 7",
+    "PowerConsumption": 700.0,
+    "MaxTemperature": 2250.0
+  },
+  {
+    "Id": "Smelter_v5",
+    "Name": "Industrial Smelter Mark 5",
+    "PowerConsumption": 500.0,
+    "MaxTemperature": 1750.0
+  },
+  {
+    "Id": "Cooler_v10",
+    "Name": "Industrial Cooler Mark 10",
+    "PowerConsumption": 1000.0,
+    "MaxTemperature": 3000.0
+  },
+  {
+    "Id": "Cooler_v2",
+    "Name": "Industrial Cooler Mark 2",
+    "PowerConsumption": 200.0,
+    "MaxTemperature": 1000.0
+  },
+  {
+    "Id": "Refinery_v10",
+    "Name": "Industrial Refinery Mark 10",
+    "PowerConsumption": 1000.0,
+    "MaxTemperature": 3000.0
+  },
+  {
+    "Id": "Synthesizer_v10",
+    "Name": "Industrial Synthesizer Mark 10",
+    "PowerConsumption": 1000.0,
+    "MaxTemperature": 3000.0
+  },
+  {
+    "Id": "Turbine_v6",
+    "Name": "Industrial Turbine Mark 6",
+    "PowerConsumption": 600.0,
+    "MaxTemperature": 2000.0
+  }
+]

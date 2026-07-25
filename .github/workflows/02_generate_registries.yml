@@ -1,0 +1,23 @@
+name: 02 Generate Registries
+
+on:
+  workflow_run:
+    workflows: ["01 Validate Content"]
+    types:
+      - completed
+
+jobs:
+  generate:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+      - name: Run Pipeline
+        run: uv run tools/content_pipeline.py
+      - name: Upload Registry Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: registry-bundle
+          path: web/src/data/registry/

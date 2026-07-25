@@ -1,0 +1,19 @@
+[
+  {
+    "Id": "FerriumFusion",
+    "Name": "Ferrium Alloy Fusion",
+    "RequiredMaterials": {
+      "Iron": 5.0,
+      "AetherCrystal": 1.0
+    },
+    "Catalyst": null,
+    "MinTemperature": 1500.0,
+    "MaxTemperature": 2500.0,
+    "MinPressure": 1.0,
+    "Product": "FerriumAlloy",
+    "YieldRatio": 1.0,
+    "EnergyRequired": 100.0,
+    "EntropyGenerated": 0.05,
+    "DiscoveryRequirement": null
+  }
+]

@@ -1,13 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import registryData from "@/data/registry_bundle.json";
+import MACHINES_DATA from "@/data/registry/machines.json";
 
 export const metadata = {
-  title: "Machine & Equipment Registry | COBLOX Companion",
-  description: "Data-Driven Machine & Equipment Registry for COBLOX. Displays power consumption, heat generation, max heat thresholds, and efficiency.",
+  title: "Machines Registry | COBLOX Companion",
+  description: "Data-Driven Machine Registry for COBLOX.",
 };
-
-const MACHINES_DATA = registryData.machines || [];
 
 export default function MachinesRegistryPage() {
   return (
