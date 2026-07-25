@@ -30,35 +30,31 @@ export default function MaterialsRegistryPage() {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {MATERIALS_DATA.map((mat) => (
+          {MATERIALS_DATA.map((mat: any) => (
             <div
-              key={mat.id}
+              key={mat.Id}
               className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-emerald-500/50 transition-all"
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded">
-                  {mat.category}
+                  MATERIAL
                 </span>
-                <span className="text-xs font-mono text-slate-400">ID: {mat.id}</span>
+                <span className="text-xs font-mono text-slate-400">ID: {mat.Id}</span>
               </div>
-              <h2 className="text-xl font-bold text-white mt-3">{mat.name}</h2>
+              <h2 className="text-xl font-bold text-white mt-3">{mat.Name}</h2>
               
               <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-slate-800/80 text-xs font-mono">
                 <div>
                   <span className="text-slate-400">Density:</span>{" "}
-                  <span className="text-slate-200">{mat.density} g/cm³</span>
+                  <span className="text-slate-200">{mat.Density} g/cm³</span>
                 </div>
                 <div>
                   <span className="text-slate-400">Conductivity:</span>{" "}
-                  <span className="text-slate-200">{mat.conductivity * 100}%</span>
+                  <span className="text-slate-200">{mat.Conductivity * 100}%</span>
                 </div>
                 <div>
-                  <span className="text-slate-400">Hardness:</span>{" "}
-                  <span className="text-slate-200">{mat.hardness}</span>
-                </div>
-                <div>
-                  <span className="text-slate-400">Thermal Limit:</span>{" "}
-                  <span className="text-emerald-400">{mat.heatResistance}</span>
+                  <span className="text-slate-400">Value:</span>{" "}
+                  <span className="text-slate-200">{mat.Value}</span>
                 </div>
               </div>
             </div>
