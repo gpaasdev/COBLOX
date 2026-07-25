@@ -1,0 +1,48 @@
+name: 03 - LiveOps Report
+
+on:
+  workflow_run:
+    workflows: ["02 - LiveOps Analyze"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download Derived Metrics Artifact
+        if: ${{ github.event_name == 'workflow_run' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh run download ${{ github.event.workflow_run.id }} -n derived-metrics || echo "Failed to download derived-metrics. Ensure the artifact exists."
+
+      - name: Generate Intelligence Report
+        run: |
+          python3 tools/liveops/report.py
+          
+      - name: Publish to Job Summary
+        run: |
+          if [ -f report.md ]; then
+            cat report.md >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload Final Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: intelligence-report
+          path: |
+            raw.json
+            metrics.json
+            report.md
+          retention-days: 7

@@ -1,3 +1,4 @@
+[🏠 Master Index](../README.md)
 # COBLOX Release Notes — v1.0.0-beta.1
 Date: 2026-07-25
 

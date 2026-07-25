@@ -1,3 +1,4 @@
+[🏠 Master Index](../README.md)
 # Roblox Open Cloud & Engine API Master Manual
 **Project**: COBLOX Multiverse Sanctum (LGBOS v11.0)  
 **Status**: Production & Live Released  

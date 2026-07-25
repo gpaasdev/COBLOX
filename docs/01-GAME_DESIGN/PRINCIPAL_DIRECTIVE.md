@@ -1,3 +1,4 @@
+[🏠 Master Index](../README.md)
 # COBLOX Principal Engineering Directive — Shift from Feature Expansion to Platform Integration
 
 The current implementation has reached an important milestone. The architecture is now sufficiently mature (Registry-driven content, Simulation Services, Open Cloud synchronization, Web Companion, Authoring Pipeline, Client Bootstrap, AR Lens, Validation Pipeline).

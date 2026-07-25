@@ -1,0 +1,41 @@
+name: 02 - LiveOps Analyze
+
+on:
+  workflow_run:
+    workflows: ["01 - LiveOps Collect"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download Raw Evidence Artifact
+        if: ${{ github.event_name == 'workflow_run' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh run download ${{ github.event.workflow_run.id }} -n raw-evidence || echo "Failed to download raw-evidence. Ensure the artifact exists."
+
+      - name: Run Evidence Analysis
+        run: |
+          python3 tools/liveops/analyze.py
+
+      - name: Upload Metrics
+        uses: actions/upload-artifact@v4
+        with:
+          name: derived-metrics
+          path: |
+            raw.json
+            metrics.json
+          retention-days: 7

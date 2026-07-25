@@ -21,7 +21,7 @@ jobs:
           python-version: "3.11"
           
       - name: Validate & Generate Content Registries
-        run: uv run tools/content_pipeline.py
+        run: uv run --with pydantic tools/content_pipeline.py
 
       - name: Check for Uncommitted Registry Changes
         run: |

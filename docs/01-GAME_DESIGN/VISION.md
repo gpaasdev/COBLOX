@@ -1,3 +1,4 @@
+[🏠 Master Index](../README.md)
 # COBLOX Vision & Core Identity
 **Genre:** Sci-Fantasy Industrial Sandbox
 **Tagline:** "Mine the Void. Engineer the Aether. Master the Economy."

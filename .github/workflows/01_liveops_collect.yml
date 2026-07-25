@@ -1,0 +1,34 @@
+name: 01 - LiveOps Collect
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Every 6 hours
+  workflow_dispatch:
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Evidence Collection
+        env:
+          ROBLOX_OPEN_CLOUD_API_KEY: ${{ secrets.ROBLOX_OPEN_CLOUD_API_KEY }}
+          ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_UNIVERSE_ID }}
+          ROBLOX_PLACE_ID: ${{ secrets.ROBLOX_PLACE_ID }}
+          ROBLOX_DATASTORE: ${{ secrets.ROBLOX_DATASTORE }}
+        run: |
+          python3 tools/liveops/collect.py
+
+      - name: Upload Raw Evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-evidence
+          path: raw.json
+          retention-days: 7
