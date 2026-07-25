@@ -6,7 +6,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local EconomyService = require(ServerScriptService.Server.Services.EconomyService)
+local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 local DomainEventBus = require(ReplicatedStorage.Shared.Events.DomainEventBus)
+local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
 local MonetizationService = {}
 MonetizationService.Name = "MonetizationService"

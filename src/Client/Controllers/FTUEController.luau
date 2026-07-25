@@ -52,6 +52,8 @@ function FTUEController.Start()
 				FTUEController.GuideToFurnace()
 			end
 		end)
+	end
+	
 	-- Connect to real DiscoveryService remote event
 	local discoveryEvents = ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Events"):FindFirstChild("DiscoveryEvents")
 	local onDiscoveryRemote = discoveryEvents and discoveryEvents:FindFirstChild("OnDiscoveryMade") :: RemoteEvent?

@@ -1,5 +1,8 @@
 std = "roblox"
 
+[config]
+globals = ["describe", "it", "expect"]
+
 [rules]
 shadowing = "allow"
 roblox_incorrect_roblox_api = "allow"

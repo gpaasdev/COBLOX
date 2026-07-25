@@ -19,1068 +19,1068 @@ function ResearchRegistry.GetAll(): { [string]: ResearchRegistryDefinition }
 	return ResearchRegistry
 end
 
-ResearchRegistry["Tech_VoidScience_15"] = {
-	Id = "Tech_VoidScience_15",
-	Name = "VoidScience Specialization Level 15",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1500,
+ResearchRegistry["Tech_Automation_1"] = {
+	Id = "Tech_Automation_1",
+	Name = "Automation Specialization Level 1",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 100,
 }
 
-ResearchRegistry["Tech_Engineering_21"] = {
-	Id = "Tech_Engineering_21",
-	Name = "Engineering Specialization Level 21",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2100,
+ResearchRegistry["Tech_Automation_10"] = {
+	Id = "Tech_Automation_10",
+	Name = "Automation Specialization Level 10",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1000,
 }
 
-ResearchRegistry["Tech_QuantumPhysics_14"] = {
-	Id = "Tech_QuantumPhysics_14",
-	Name = "QuantumPhysics Specialization Level 14",
-	RequiredDiscoveries = ['Iron_Ore'],
+ResearchRegistry["Tech_Automation_11"] = {
+	Id = "Tech_Automation_11",
+	Name = "Automation Specialization Level 11",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1100,
+}
+
+ResearchRegistry["Tech_Automation_12"] = {
+	Id = "Tech_Automation_12",
+	Name = "Automation Specialization Level 12",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1200,
+}
+
+ResearchRegistry["Tech_Automation_13"] = {
+	Id = "Tech_Automation_13",
+	Name = "Automation Specialization Level 13",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1300,
+}
+
+ResearchRegistry["Tech_Automation_14"] = {
+	Id = "Tech_Automation_14",
+	Name = "Automation Specialization Level 14",
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 1400,
+}
+
+ResearchRegistry["Tech_Automation_15"] = {
+	Id = "Tech_Automation_15",
+	Name = "Automation Specialization Level 15",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1500,
 }
 
 ResearchRegistry["Tech_Automation_16"] = {
 	Id = "Tech_Automation_16",
 	Name = "Automation Specialization Level 16",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 1600,
 }
 
-ResearchRegistry["Tech_Engineering_1"] = {
-	Id = "Tech_Engineering_1",
-	Name = "Engineering Specialization Level 1",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 100,
+ResearchRegistry["Tech_Automation_17"] = {
+	Id = "Tech_Automation_17",
+	Name = "Automation Specialization Level 17",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1700,
 }
 
-ResearchRegistry["Tech_Thermodynamics_10"] = {
-	Id = "Tech_Thermodynamics_10",
-	Name = "Thermodynamics Specialization Level 10",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1000,
+ResearchRegistry["Tech_Automation_18"] = {
+	Id = "Tech_Automation_18",
+	Name = "Automation Specialization Level 18",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1800,
 }
 
-ResearchRegistry["Tech_Automation_3"] = {
-	Id = "Tech_Automation_3",
-	Name = "Automation Specialization Level 3",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 300,
+ResearchRegistry["Tech_Automation_19"] = {
+	Id = "Tech_Automation_19",
+	Name = "Automation Specialization Level 19",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1900,
 }
 
-ResearchRegistry["Tech_QuantumPhysics_4"] = {
-	Id = "Tech_QuantumPhysics_4",
-	Name = "QuantumPhysics Specialization Level 4",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 400,
-}
-
-ResearchRegistry["Tech_VoidScience_2"] = {
-	Id = "Tech_VoidScience_2",
-	Name = "VoidScience Specialization Level 2",
-	RequiredDiscoveries = ['Iron_Ore'],
+ResearchRegistry["Tech_Automation_2"] = {
+	Id = "Tech_Automation_2",
+	Name = "Automation Specialization Level 2",
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 200,
 }
 
 ResearchRegistry["Tech_Automation_20"] = {
 	Id = "Tech_Automation_20",
 	Name = "Automation Specialization Level 20",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 2000,
-}
-
-ResearchRegistry["Tech_Thermodynamics_30"] = {
-	Id = "Tech_Thermodynamics_30",
-	Name = "Thermodynamics Specialization Level 30",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 3000,
-}
-
-ResearchRegistry["Tech_Thermodynamics_3"] = {
-	Id = "Tech_Thermodynamics_3",
-	Name = "Thermodynamics Specialization Level 3",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 300,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_22"] = {
-	Id = "Tech_QuantumPhysics_22",
-	Name = "QuantumPhysics Specialization Level 22",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2200,
-}
-
-ResearchRegistry["Tech_BasicFusion"] = {
-	Id = "Tech_BasicFusion",
-	Name = "Basic Fusion Science",
-	RequiredDiscoveries = ['Iron', 'AetherCrystal'],
-	Cost = 500,
-}
-
-ResearchRegistry["Tech_VoidScience_19"] = {
-	Id = "Tech_VoidScience_19",
-	Name = "VoidScience Specialization Level 19",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1900,
-}
-
-ResearchRegistry["Tech_Thermodynamics_26"] = {
-	Id = "Tech_Thermodynamics_26",
-	Name = "Thermodynamics Specialization Level 26",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2600,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_18"] = {
-	Id = "Tech_QuantumPhysics_18",
-	Name = "QuantumPhysics Specialization Level 18",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1800,
-}
-
-ResearchRegistry["Tech_Engineering_17"] = {
-	Id = "Tech_Engineering_17",
-	Name = "Engineering Specialization Level 17",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1700,
-}
-
-ResearchRegistry["Tech_VoidScience_23"] = {
-	Id = "Tech_VoidScience_23",
-	Name = "VoidScience Specialization Level 23",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2300,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_8"] = {
-	Id = "Tech_QuantumPhysics_8",
-	Name = "QuantumPhysics Specialization Level 8",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 800,
-}
-
-ResearchRegistry["Tech_VoidScience_22"] = {
-	Id = "Tech_VoidScience_22",
-	Name = "VoidScience Specialization Level 22",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2200,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_9"] = {
-	Id = "Tech_QuantumPhysics_9",
-	Name = "QuantumPhysics Specialization Level 9",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 900,
-}
-
-ResearchRegistry["Tech_Engineering_16"] = {
-	Id = "Tech_Engineering_16",
-	Name = "Engineering Specialization Level 16",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1600,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_19"] = {
-	Id = "Tech_QuantumPhysics_19",
-	Name = "QuantumPhysics Specialization Level 19",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1900,
-}
-
-ResearchRegistry["Tech_Thermodynamics_27"] = {
-	Id = "Tech_Thermodynamics_27",
-	Name = "Thermodynamics Specialization Level 27",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2700,
-}
-
-ResearchRegistry["Tech_CryoCooling"] = {
-	Id = "Tech_CryoCooling",
-	Name = "Advanced Cryogenics",
-	RequiredDiscoveries = ['AetherCrystal'],
-	Cost = 1200,
-}
-
-ResearchRegistry["Tech_VoidScience_18"] = {
-	Id = "Tech_VoidScience_18",
-	Name = "VoidScience Specialization Level 18",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1800,
-}
-
-ResearchRegistry["Tech_Thermodynamics_2"] = {
-	Id = "Tech_Thermodynamics_2",
-	Name = "Thermodynamics Specialization Level 2",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 200,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_23"] = {
-	Id = "Tech_QuantumPhysics_23",
-	Name = "QuantumPhysics Specialization Level 23",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2300,
-}
-
-ResearchRegistry["Tech_VoidScience_3"] = {
-	Id = "Tech_VoidScience_3",
-	Name = "VoidScience Specialization Level 3",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 300,
 }
 
 ResearchRegistry["Tech_Automation_21"] = {
 	Id = "Tech_Automation_21",
 	Name = "Automation Specialization Level 21",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 2100,
 }
 
-ResearchRegistry["Tech_Automation_2"] = {
-	Id = "Tech_Automation_2",
-	Name = "Automation Specialization Level 2",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 200,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_5"] = {
-	Id = "Tech_QuantumPhysics_5",
-	Name = "QuantumPhysics Specialization Level 5",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 500,
-}
-
-ResearchRegistry["Tech_Thermodynamics_11"] = {
-	Id = "Tech_Thermodynamics_11",
-	Name = "Thermodynamics Specialization Level 11",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1100,
-}
-
-ResearchRegistry["Tech_Automation_17"] = {
-	Id = "Tech_Automation_17",
-	Name = "Automation Specialization Level 17",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1700,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_15"] = {
-	Id = "Tech_QuantumPhysics_15",
-	Name = "QuantumPhysics Specialization Level 15",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1500,
-}
-
-ResearchRegistry["Tech_Engineering_20"] = {
-	Id = "Tech_Engineering_20",
-	Name = "Engineering Specialization Level 20",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2000,
-}
-
-ResearchRegistry["Tech_VoidScience_14"] = {
-	Id = "Tech_VoidScience_14",
-	Name = "VoidScience Specialization Level 14",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1400,
-}
-
-ResearchRegistry["Tech_Automation_26"] = {
-	Id = "Tech_Automation_26",
-	Name = "Automation Specialization Level 26",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2600,
-}
-
-ResearchRegistry["Tech_VoidScience_4"] = {
-	Id = "Tech_VoidScience_4",
-	Name = "VoidScience Specialization Level 4",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 400,
-}
-
-ResearchRegistry["Tech_Thermodynamics_5"] = {
-	Id = "Tech_Thermodynamics_5",
-	Name = "Thermodynamics Specialization Level 5",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 500,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_24"] = {
-	Id = "Tech_QuantumPhysics_24",
-	Name = "QuantumPhysics Specialization Level 24",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2400,
-}
-
-ResearchRegistry["Tech_Automation_30"] = {
-	Id = "Tech_Automation_30",
-	Name = "Automation Specialization Level 30",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 3000,
-}
-
-ResearchRegistry["Tech_Thermodynamics_20"] = {
-	Id = "Tech_Thermodynamics_20",
-	Name = "Thermodynamics Specialization Level 20",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2000,
-}
-
-ResearchRegistry["Tech_Engineering_11"] = {
-	Id = "Tech_Engineering_11",
-	Name = "Engineering Specialization Level 11",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1100,
-}
-
-ResearchRegistry["Tech_VoidScience_25"] = {
-	Id = "Tech_VoidScience_25",
-	Name = "VoidScience Specialization Level 25",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2500,
-}
-
-ResearchRegistry["Tech_Automation_9"] = {
-	Id = "Tech_Automation_9",
-	Name = "Automation Specialization Level 9",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 900,
-}
-
-ResearchRegistry["Tech_Thermodynamics_9"] = {
-	Id = "Tech_Thermodynamics_9",
-	Name = "Thermodynamics Specialization Level 9",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 900,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_28"] = {
-	Id = "Tech_QuantumPhysics_28",
-	Name = "QuantumPhysics Specialization Level 28",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2800,
-}
-
-ResearchRegistry["Tech_VoidScience_8"] = {
-	Id = "Tech_VoidScience_8",
-	Name = "VoidScience Specialization Level 8",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 800,
-}
-
-ResearchRegistry["Tech_VoidScience_13"] = {
-	Id = "Tech_VoidScience_13",
-	Name = "VoidScience Specialization Level 13",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1300,
-}
-
-ResearchRegistry["Tech_Engineering_27"] = {
-	Id = "Tech_Engineering_27",
-	Name = "Engineering Specialization Level 27",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2700,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_12"] = {
-	Id = "Tech_QuantumPhysics_12",
-	Name = "QuantumPhysics Specialization Level 12",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1200,
-}
-
-ResearchRegistry["Tech_Automation_10"] = {
-	Id = "Tech_Automation_10",
-	Name = "Automation Specialization Level 10",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1000,
-}
-
-ResearchRegistry["Tech_Engineering_7"] = {
-	Id = "Tech_Engineering_7",
-	Name = "Engineering Specialization Level 7",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 700,
-}
-
-ResearchRegistry["Tech_Thermodynamics_16"] = {
-	Id = "Tech_Thermodynamics_16",
-	Name = "Thermodynamics Specialization Level 16",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1600,
-}
-
-ResearchRegistry["Tech_Automation_5"] = {
-	Id = "Tech_Automation_5",
-	Name = "Automation Specialization Level 5",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 500,
-}
-
-ResearchRegistry["Tech_VoidScience_29"] = {
-	Id = "Tech_VoidScience_29",
-	Name = "VoidScience Specialization Level 29",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2900,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_2"] = {
-	Id = "Tech_QuantumPhysics_2",
-	Name = "QuantumPhysics Specialization Level 2",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 200,
-}
-
-ResearchRegistry["Tech_Automation_4"] = {
-	Id = "Tech_Automation_4",
-	Name = "Automation Specialization Level 4",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 400,
-}
-
-ResearchRegistry["Tech_VoidScience_28"] = {
-	Id = "Tech_VoidScience_28",
-	Name = "VoidScience Specialization Level 28",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2800,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_3"] = {
-	Id = "Tech_QuantumPhysics_3",
-	Name = "QuantumPhysics Specialization Level 3",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 300,
-}
-
-ResearchRegistry["Tech_Thermodynamics_17"] = {
-	Id = "Tech_Thermodynamics_17",
-	Name = "Thermodynamics Specialization Level 17",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1700,
-}
-
-ResearchRegistry["Tech_Engineering_6"] = {
-	Id = "Tech_Engineering_6",
-	Name = "Engineering Specialization Level 6",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 600,
-}
-
-ResearchRegistry["Tech_Automation_11"] = {
-	Id = "Tech_Automation_11",
-	Name = "Automation Specialization Level 11",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1100,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_13"] = {
-	Id = "Tech_QuantumPhysics_13",
-	Name = "QuantumPhysics Specialization Level 13",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1300,
-}
-
-ResearchRegistry["Tech_Engineering_26"] = {
-	Id = "Tech_Engineering_26",
-	Name = "Engineering Specialization Level 26",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2600,
-}
-
-ResearchRegistry["Tech_VoidScience_12"] = {
-	Id = "Tech_VoidScience_12",
-	Name = "VoidScience Specialization Level 12",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1200,
-}
-
-ResearchRegistry["Tech_VoidScience_9"] = {
-	Id = "Tech_VoidScience_9",
-	Name = "VoidScience Specialization Level 9",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 900,
-}
-
-ResearchRegistry["Tech_Engineering_30"] = {
-	Id = "Tech_Engineering_30",
-	Name = "Engineering Specialization Level 30",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 3000,
-}
-
-ResearchRegistry["Tech_Thermodynamics_8"] = {
-	Id = "Tech_Thermodynamics_8",
-	Name = "Thermodynamics Specialization Level 8",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 800,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_29"] = {
-	Id = "Tech_QuantumPhysics_29",
-	Name = "QuantumPhysics Specialization Level 29",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2900,
-}
-
-ResearchRegistry["Tech_VoidScience_24"] = {
-	Id = "Tech_VoidScience_24",
-	Name = "VoidScience Specialization Level 24",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2400,
-}
-
-ResearchRegistry["Tech_Automation_8"] = {
-	Id = "Tech_Automation_8",
-	Name = "Automation Specialization Level 8",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 800,
-}
-
-ResearchRegistry["Tech_Engineering_10"] = {
-	Id = "Tech_Engineering_10",
-	Name = "Engineering Specialization Level 10",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1000,
-}
-
-ResearchRegistry["Tech_Thermodynamics_21"] = {
-	Id = "Tech_Thermodynamics_21",
-	Name = "Thermodynamics Specialization Level 21",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2100,
-}
-
-ResearchRegistry["Tech_Thermodynamics_4"] = {
-	Id = "Tech_Thermodynamics_4",
-	Name = "Thermodynamics Specialization Level 4",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 400,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_25"] = {
-	Id = "Tech_QuantumPhysics_25",
-	Name = "QuantumPhysics Specialization Level 25",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2500,
-}
-
-ResearchRegistry["Tech_Automation_27"] = {
-	Id = "Tech_Automation_27",
-	Name = "Automation Specialization Level 27",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2700,
-}
-
-ResearchRegistry["Tech_VoidScience_5"] = {
-	Id = "Tech_VoidScience_5",
-	Name = "VoidScience Specialization Level 5",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 500,
-}
-
-ResearchRegistry["Tech_VoidScience_27"] = {
-	Id = "Tech_VoidScience_27",
-	Name = "VoidScience Specialization Level 27",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2700,
-}
-
-ResearchRegistry["Tech_Engineering_9"] = {
-	Id = "Tech_Engineering_9",
-	Name = "Engineering Specialization Level 9",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 900,
-}
-
-ResearchRegistry["Tech_Thermodynamics_18"] = {
-	Id = "Tech_Thermodynamics_18",
-	Name = "Thermodynamics Specialization Level 18",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1800,
-}
-
-ResearchRegistry["Tech_Engineering_13"] = {
-	Id = "Tech_Engineering_13",
-	Name = "Engineering Specialization Level 13",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1300,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_30"] = {
-	Id = "Tech_QuantumPhysics_30",
-	Name = "QuantumPhysics Specialization Level 30",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 3000,
-}
-
-ResearchRegistry["Tech_Thermodynamics_22"] = {
-	Id = "Tech_Thermodynamics_22",
-	Name = "Thermodynamics Specialization Level 22",
-	RequiredDiscoveries = ['Iron_Ore'],
+ResearchRegistry["Tech_Automation_22"] = {
+	Id = "Tech_Automation_22",
+	Name = "Automation Specialization Level 22",
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 2200,
 }
 
-ResearchRegistry["Tech_Engineering_29"] = {
-	Id = "Tech_Engineering_29",
-	Name = "Engineering Specialization Level 29",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2900,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_26"] = {
-	Id = "Tech_QuantumPhysics_26",
-	Name = "QuantumPhysics Specialization Level 26",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2600,
-}
-
-ResearchRegistry["Tech_Thermodynamics_7"] = {
-	Id = "Tech_Thermodynamics_7",
-	Name = "Thermodynamics Specialization Level 7",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 700,
+ResearchRegistry["Tech_Automation_23"] = {
+	Id = "Tech_Automation_23",
+	Name = "Automation Specialization Level 23",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2300,
 }
 
 ResearchRegistry["Tech_Automation_24"] = {
 	Id = "Tech_Automation_24",
 	Name = "Automation Specialization Level 24",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 2400,
 }
 
-ResearchRegistry["Tech_VoidScience_6"] = {
-	Id = "Tech_VoidScience_6",
-	Name = "VoidScience Specialization Level 6",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 600,
-}
-
-ResearchRegistry["Tech_Automation_7"] = {
-	Id = "Tech_Automation_7",
-	Name = "Automation Specialization Level 7",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 700,
-}
-
-ResearchRegistry["Tech_Thermodynamics_14"] = {
-	Id = "Tech_Thermodynamics_14",
-	Name = "Thermodynamics Specialization Level 14",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1400,
-}
-
-ResearchRegistry["Tech_Engineering_5"] = {
-	Id = "Tech_Engineering_5",
-	Name = "Engineering Specialization Level 5",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 500,
-}
-
-ResearchRegistry["Tech_Automation_12"] = {
-	Id = "Tech_Automation_12",
-	Name = "Automation Specialization Level 12",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1200,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_10"] = {
-	Id = "Tech_QuantumPhysics_10",
-	Name = "QuantumPhysics Specialization Level 10",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1000,
-}
-
-ResearchRegistry["Tech_Engineering_25"] = {
-	Id = "Tech_Engineering_25",
-	Name = "Engineering Specialization Level 25",
-	RequiredDiscoveries = ['Iron_Ore'],
+ResearchRegistry["Tech_Automation_25"] = {
+	Id = "Tech_Automation_25",
+	Name = "Automation Specialization Level 25",
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 2500,
 }
 
-ResearchRegistry["Tech_VoidScience_11"] = {
-	Id = "Tech_VoidScience_11",
-	Name = "VoidScience Specialization Level 11",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1100,
+ResearchRegistry["Tech_Automation_26"] = {
+	Id = "Tech_Automation_26",
+	Name = "Automation Specialization Level 26",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2600,
+}
+
+ResearchRegistry["Tech_Automation_27"] = {
+	Id = "Tech_Automation_27",
+	Name = "Automation Specialization Level 27",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2700,
 }
 
 ResearchRegistry["Tech_Automation_28"] = {
 	Id = "Tech_Automation_28",
 	Name = "Automation Specialization Level 28",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 2800,
 }
 
 ResearchRegistry["Tech_Automation_29"] = {
 	Id = "Tech_Automation_29",
 	Name = "Automation Specialization Level 29",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 2900,
 }
 
-ResearchRegistry["Tech_VoidScience_10"] = {
-	Id = "Tech_VoidScience_10",
-	Name = "VoidScience Specialization Level 10",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1000,
+ResearchRegistry["Tech_Automation_3"] = {
+	Id = "Tech_Automation_3",
+	Name = "Automation Specialization Level 3",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 300,
 }
 
-ResearchRegistry["Tech_Engineering_24"] = {
-	Id = "Tech_Engineering_24",
-	Name = "Engineering Specialization Level 24",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2400,
+ResearchRegistry["Tech_Automation_30"] = {
+	Id = "Tech_Automation_30",
+	Name = "Automation Specialization Level 30",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 3000,
 }
 
-ResearchRegistry["Tech_QuantumPhysics_11"] = {
-	Id = "Tech_QuantumPhysics_11",
-	Name = "QuantumPhysics Specialization Level 11",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1100,
-}
-
-ResearchRegistry["Tech_Automation_13"] = {
-	Id = "Tech_Automation_13",
-	Name = "Automation Specialization Level 13",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1300,
-}
-
-ResearchRegistry["Tech_Engineering_4"] = {
-	Id = "Tech_Engineering_4",
-	Name = "Engineering Specialization Level 4",
-	RequiredDiscoveries = ['Iron_Ore'],
+ResearchRegistry["Tech_Automation_4"] = {
+	Id = "Tech_Automation_4",
+	Name = "Automation Specialization Level 4",
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 400,
 }
 
-ResearchRegistry["Tech_Thermodynamics_15"] = {
-	Id = "Tech_Thermodynamics_15",
-	Name = "Thermodynamics Specialization Level 15",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1500,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_1"] = {
-	Id = "Tech_QuantumPhysics_1",
-	Name = "QuantumPhysics Specialization Level 1",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 100,
+ResearchRegistry["Tech_Automation_5"] = {
+	Id = "Tech_Automation_5",
+	Name = "Automation Specialization Level 5",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 500,
 }
 
 ResearchRegistry["Tech_Automation_6"] = {
 	Id = "Tech_Automation_6",
 	Name = "Automation Specialization Level 6",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 600,
 }
 
-ResearchRegistry["Tech_Automation_25"] = {
-	Id = "Tech_Automation_25",
-	Name = "Automation Specialization Level 25",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2500,
-}
-
-ResearchRegistry["Tech_VoidScience_7"] = {
-	Id = "Tech_VoidScience_7",
-	Name = "VoidScience Specialization Level 7",
-	RequiredDiscoveries = ['Iron_Ore'],
+ResearchRegistry["Tech_Automation_7"] = {
+	Id = "Tech_Automation_7",
+	Name = "Automation Specialization Level 7",
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 700,
 }
 
-ResearchRegistry["Tech_QuantumPhysics_27"] = {
-	Id = "Tech_QuantumPhysics_27",
-	Name = "QuantumPhysics Specialization Level 27",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2700,
+ResearchRegistry["Tech_Automation_8"] = {
+	Id = "Tech_Automation_8",
+	Name = "Automation Specialization Level 8",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 800,
 }
 
-ResearchRegistry["Tech_Thermodynamics_6"] = {
-	Id = "Tech_Thermodynamics_6",
-	Name = "Thermodynamics Specialization Level 6",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 600,
+ResearchRegistry["Tech_Automation_9"] = {
+	Id = "Tech_Automation_9",
+	Name = "Automation Specialization Level 9",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 900,
 }
 
-ResearchRegistry["Tech_Thermodynamics_23"] = {
-	Id = "Tech_Thermodynamics_23",
-	Name = "Thermodynamics Specialization Level 23",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2300,
+ResearchRegistry["Tech_BasicFusion"] = {
+	Id = "Tech_BasicFusion",
+	Name = "Basic Fusion Science",
+	RequiredDiscoveries = {"Iron", "AetherCrystal"},
+	Cost = 500,
 }
 
-ResearchRegistry["Tech_Engineering_28"] = {
-	Id = "Tech_Engineering_28",
-	Name = "Engineering Specialization Level 28",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2800,
+ResearchRegistry["Tech_CryoCooling"] = {
+	Id = "Tech_CryoCooling",
+	Name = "Advanced Cryogenics",
+	RequiredDiscoveries = {"AetherCrystal"},
+	Cost = 1200,
 }
 
-ResearchRegistry["Tech_VoidScience_30"] = {
-	Id = "Tech_VoidScience_30",
-	Name = "VoidScience Specialization Level 30",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 3000,
+ResearchRegistry["Tech_Engineering_1"] = {
+	Id = "Tech_Engineering_1",
+	Name = "Engineering Specialization Level 1",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 100,
 }
 
-ResearchRegistry["Tech_Thermodynamics_19"] = {
-	Id = "Tech_Thermodynamics_19",
-	Name = "Thermodynamics Specialization Level 19",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1900,
+ResearchRegistry["Tech_Engineering_10"] = {
+	Id = "Tech_Engineering_10",
+	Name = "Engineering Specialization Level 10",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1000,
+}
+
+ResearchRegistry["Tech_Engineering_11"] = {
+	Id = "Tech_Engineering_11",
+	Name = "Engineering Specialization Level 11",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1100,
 }
 
 ResearchRegistry["Tech_Engineering_12"] = {
 	Id = "Tech_Engineering_12",
 	Name = "Engineering Specialization Level 12",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 1200,
 }
 
-ResearchRegistry["Tech_Engineering_8"] = {
-	Id = "Tech_Engineering_8",
-	Name = "Engineering Specialization Level 8",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 800,
-}
-
-ResearchRegistry["Tech_VoidScience_26"] = {
-	Id = "Tech_VoidScience_26",
-	Name = "VoidScience Specialization Level 26",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2600,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_6"] = {
-	Id = "Tech_QuantumPhysics_6",
-	Name = "QuantumPhysics Specialization Level 6",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 600,
-}
-
-ResearchRegistry["Tech_Automation_1"] = {
-	Id = "Tech_Automation_1",
-	Name = "Automation Specialization Level 1",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 100,
-}
-
-ResearchRegistry["Tech_Thermodynamics_12"] = {
-	Id = "Tech_Thermodynamics_12",
-	Name = "Thermodynamics Specialization Level 12",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1200,
-}
-
-ResearchRegistry["Tech_Engineering_19"] = {
-	Id = "Tech_Engineering_19",
-	Name = "Engineering Specialization Level 19",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1900,
-}
-
-ResearchRegistry["Tech_Engineering_3"] = {
-	Id = "Tech_Engineering_3",
-	Name = "Engineering Specialization Level 3",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 300,
-}
-
-ResearchRegistry["Tech_Automation_14"] = {
-	Id = "Tech_Automation_14",
-	Name = "Automation Specialization Level 14",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1400,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_16"] = {
-	Id = "Tech_QuantumPhysics_16",
-	Name = "QuantumPhysics Specialization Level 16",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1600,
-}
-
-ResearchRegistry["Tech_Thermodynamics_28"] = {
-	Id = "Tech_Thermodynamics_28",
-	Name = "Thermodynamics Specialization Level 28",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2800,
-}
-
-ResearchRegistry["Tech_Engineering_23"] = {
-	Id = "Tech_Engineering_23",
-	Name = "Engineering Specialization Level 23",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2300,
-}
-
-ResearchRegistry["Tech_VoidScience_17"] = {
-	Id = "Tech_VoidScience_17",
-	Name = "VoidScience Specialization Level 17",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1700,
-}
-
-ResearchRegistry["Tech_VoidScience_21"] = {
-	Id = "Tech_VoidScience_21",
-	Name = "VoidScience Specialization Level 21",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2100,
-}
-
-ResearchRegistry["Tech_Engineering_15"] = {
-	Id = "Tech_Engineering_15",
-	Name = "Engineering Specialization Level 15",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1500,
-}
-
-ResearchRegistry["Tech_Automation_18"] = {
-	Id = "Tech_Automation_18",
-	Name = "Automation Specialization Level 18",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1800,
-}
-
-ResearchRegistry["Tech_Thermodynamics_24"] = {
-	Id = "Tech_Thermodynamics_24",
-	Name = "Thermodynamics Specialization Level 24",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2400,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_20"] = {
-	Id = "Tech_QuantumPhysics_20",
-	Name = "QuantumPhysics Specialization Level 20",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2000,
-}
-
-ResearchRegistry["Tech_Thermodynamics_1"] = {
-	Id = "Tech_Thermodynamics_1",
-	Name = "Thermodynamics Specialization Level 1",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 100,
-}
-
-ResearchRegistry["Tech_Automation_22"] = {
-	Id = "Tech_Automation_22",
-	Name = "Automation Specialization Level 22",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2200,
-}
-
-ResearchRegistry["Tech_VoidScience_1"] = {
-	Id = "Tech_VoidScience_1",
-	Name = "VoidScience Specialization Level 1",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 100,
-}
-
-ResearchRegistry["Tech_Automation_23"] = {
-	Id = "Tech_Automation_23",
-	Name = "Automation Specialization Level 23",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2300,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_21"] = {
-	Id = "Tech_QuantumPhysics_21",
-	Name = "QuantumPhysics Specialization Level 21",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2100,
-}
-
-ResearchRegistry["Tech_Thermodynamics_25"] = {
-	Id = "Tech_Thermodynamics_25",
-	Name = "Thermodynamics Specialization Level 25",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2500,
-}
-
-ResearchRegistry["Tech_Automation_19"] = {
-	Id = "Tech_Automation_19",
-	Name = "Automation Specialization Level 19",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1900,
+ResearchRegistry["Tech_Engineering_13"] = {
+	Id = "Tech_Engineering_13",
+	Name = "Engineering Specialization Level 13",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1300,
 }
 
 ResearchRegistry["Tech_Engineering_14"] = {
 	Id = "Tech_Engineering_14",
 	Name = "Engineering Specialization Level 14",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 1400,
 }
 
-ResearchRegistry["Tech_VoidScience_20"] = {
-	Id = "Tech_VoidScience_20",
-	Name = "VoidScience Specialization Level 20",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2000,
-}
-
-ResearchRegistry["Tech_VoidScience_16"] = {
-	Id = "Tech_VoidScience_16",
-	Name = "VoidScience Specialization Level 16",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1600,
-}
-
-ResearchRegistry["Tech_Thermodynamics_29"] = {
-	Id = "Tech_Thermodynamics_29",
-	Name = "Thermodynamics Specialization Level 29",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2900,
-}
-
-ResearchRegistry["Tech_Engineering_22"] = {
-	Id = "Tech_Engineering_22",
-	Name = "Engineering Specialization Level 22",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 2200,
-}
-
-ResearchRegistry["Tech_QuantumPhysics_17"] = {
-	Id = "Tech_QuantumPhysics_17",
-	Name = "QuantumPhysics Specialization Level 17",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1700,
-}
-
-ResearchRegistry["Tech_Automation_15"] = {
-	Id = "Tech_Automation_15",
-	Name = "Automation Specialization Level 15",
-	RequiredDiscoveries = ['Iron_Ore'],
+ResearchRegistry["Tech_Engineering_15"] = {
+	Id = "Tech_Engineering_15",
+	Name = "Engineering Specialization Level 15",
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 1500,
 }
 
-ResearchRegistry["Tech_Engineering_2"] = {
-	Id = "Tech_Engineering_2",
-	Name = "Engineering Specialization Level 2",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 200,
+ResearchRegistry["Tech_Engineering_16"] = {
+	Id = "Tech_Engineering_16",
+	Name = "Engineering Specialization Level 16",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1600,
 }
 
-ResearchRegistry["Tech_Thermodynamics_13"] = {
-	Id = "Tech_Thermodynamics_13",
-	Name = "Thermodynamics Specialization Level 13",
-	RequiredDiscoveries = ['Iron_Ore'],
-	Cost = 1300,
+ResearchRegistry["Tech_Engineering_17"] = {
+	Id = "Tech_Engineering_17",
+	Name = "Engineering Specialization Level 17",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1700,
 }
 
 ResearchRegistry["Tech_Engineering_18"] = {
 	Id = "Tech_Engineering_18",
 	Name = "Engineering Specialization Level 18",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 1800,
+}
+
+ResearchRegistry["Tech_Engineering_19"] = {
+	Id = "Tech_Engineering_19",
+	Name = "Engineering Specialization Level 19",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1900,
+}
+
+ResearchRegistry["Tech_Engineering_2"] = {
+	Id = "Tech_Engineering_2",
+	Name = "Engineering Specialization Level 2",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 200,
+}
+
+ResearchRegistry["Tech_Engineering_20"] = {
+	Id = "Tech_Engineering_20",
+	Name = "Engineering Specialization Level 20",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2000,
+}
+
+ResearchRegistry["Tech_Engineering_21"] = {
+	Id = "Tech_Engineering_21",
+	Name = "Engineering Specialization Level 21",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2100,
+}
+
+ResearchRegistry["Tech_Engineering_22"] = {
+	Id = "Tech_Engineering_22",
+	Name = "Engineering Specialization Level 22",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2200,
+}
+
+ResearchRegistry["Tech_Engineering_23"] = {
+	Id = "Tech_Engineering_23",
+	Name = "Engineering Specialization Level 23",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2300,
+}
+
+ResearchRegistry["Tech_Engineering_24"] = {
+	Id = "Tech_Engineering_24",
+	Name = "Engineering Specialization Level 24",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2400,
+}
+
+ResearchRegistry["Tech_Engineering_25"] = {
+	Id = "Tech_Engineering_25",
+	Name = "Engineering Specialization Level 25",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2500,
+}
+
+ResearchRegistry["Tech_Engineering_26"] = {
+	Id = "Tech_Engineering_26",
+	Name = "Engineering Specialization Level 26",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2600,
+}
+
+ResearchRegistry["Tech_Engineering_27"] = {
+	Id = "Tech_Engineering_27",
+	Name = "Engineering Specialization Level 27",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2700,
+}
+
+ResearchRegistry["Tech_Engineering_28"] = {
+	Id = "Tech_Engineering_28",
+	Name = "Engineering Specialization Level 28",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2800,
+}
+
+ResearchRegistry["Tech_Engineering_29"] = {
+	Id = "Tech_Engineering_29",
+	Name = "Engineering Specialization Level 29",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2900,
+}
+
+ResearchRegistry["Tech_Engineering_3"] = {
+	Id = "Tech_Engineering_3",
+	Name = "Engineering Specialization Level 3",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 300,
+}
+
+ResearchRegistry["Tech_Engineering_30"] = {
+	Id = "Tech_Engineering_30",
+	Name = "Engineering Specialization Level 30",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 3000,
+}
+
+ResearchRegistry["Tech_Engineering_4"] = {
+	Id = "Tech_Engineering_4",
+	Name = "Engineering Specialization Level 4",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 400,
+}
+
+ResearchRegistry["Tech_Engineering_5"] = {
+	Id = "Tech_Engineering_5",
+	Name = "Engineering Specialization Level 5",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 500,
+}
+
+ResearchRegistry["Tech_Engineering_6"] = {
+	Id = "Tech_Engineering_6",
+	Name = "Engineering Specialization Level 6",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 600,
+}
+
+ResearchRegistry["Tech_Engineering_7"] = {
+	Id = "Tech_Engineering_7",
+	Name = "Engineering Specialization Level 7",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 700,
+}
+
+ResearchRegistry["Tech_Engineering_8"] = {
+	Id = "Tech_Engineering_8",
+	Name = "Engineering Specialization Level 8",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 800,
+}
+
+ResearchRegistry["Tech_Engineering_9"] = {
+	Id = "Tech_Engineering_9",
+	Name = "Engineering Specialization Level 9",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 900,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_1"] = {
+	Id = "Tech_QuantumPhysics_1",
+	Name = "QuantumPhysics Specialization Level 1",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 100,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_10"] = {
+	Id = "Tech_QuantumPhysics_10",
+	Name = "QuantumPhysics Specialization Level 10",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1000,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_11"] = {
+	Id = "Tech_QuantumPhysics_11",
+	Name = "QuantumPhysics Specialization Level 11",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1100,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_12"] = {
+	Id = "Tech_QuantumPhysics_12",
+	Name = "QuantumPhysics Specialization Level 12",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1200,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_13"] = {
+	Id = "Tech_QuantumPhysics_13",
+	Name = "QuantumPhysics Specialization Level 13",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1300,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_14"] = {
+	Id = "Tech_QuantumPhysics_14",
+	Name = "QuantumPhysics Specialization Level 14",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1400,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_15"] = {
+	Id = "Tech_QuantumPhysics_15",
+	Name = "QuantumPhysics Specialization Level 15",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1500,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_16"] = {
+	Id = "Tech_QuantumPhysics_16",
+	Name = "QuantumPhysics Specialization Level 16",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1600,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_17"] = {
+	Id = "Tech_QuantumPhysics_17",
+	Name = "QuantumPhysics Specialization Level 17",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1700,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_18"] = {
+	Id = "Tech_QuantumPhysics_18",
+	Name = "QuantumPhysics Specialization Level 18",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1800,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_19"] = {
+	Id = "Tech_QuantumPhysics_19",
+	Name = "QuantumPhysics Specialization Level 19",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1900,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_2"] = {
+	Id = "Tech_QuantumPhysics_2",
+	Name = "QuantumPhysics Specialization Level 2",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 200,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_20"] = {
+	Id = "Tech_QuantumPhysics_20",
+	Name = "QuantumPhysics Specialization Level 20",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2000,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_21"] = {
+	Id = "Tech_QuantumPhysics_21",
+	Name = "QuantumPhysics Specialization Level 21",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2100,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_22"] = {
+	Id = "Tech_QuantumPhysics_22",
+	Name = "QuantumPhysics Specialization Level 22",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2200,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_23"] = {
+	Id = "Tech_QuantumPhysics_23",
+	Name = "QuantumPhysics Specialization Level 23",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2300,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_24"] = {
+	Id = "Tech_QuantumPhysics_24",
+	Name = "QuantumPhysics Specialization Level 24",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2400,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_25"] = {
+	Id = "Tech_QuantumPhysics_25",
+	Name = "QuantumPhysics Specialization Level 25",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2500,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_26"] = {
+	Id = "Tech_QuantumPhysics_26",
+	Name = "QuantumPhysics Specialization Level 26",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2600,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_27"] = {
+	Id = "Tech_QuantumPhysics_27",
+	Name = "QuantumPhysics Specialization Level 27",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2700,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_28"] = {
+	Id = "Tech_QuantumPhysics_28",
+	Name = "QuantumPhysics Specialization Level 28",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2800,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_29"] = {
+	Id = "Tech_QuantumPhysics_29",
+	Name = "QuantumPhysics Specialization Level 29",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2900,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_3"] = {
+	Id = "Tech_QuantumPhysics_3",
+	Name = "QuantumPhysics Specialization Level 3",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 300,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_30"] = {
+	Id = "Tech_QuantumPhysics_30",
+	Name = "QuantumPhysics Specialization Level 30",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 3000,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_4"] = {
+	Id = "Tech_QuantumPhysics_4",
+	Name = "QuantumPhysics Specialization Level 4",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 400,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_5"] = {
+	Id = "Tech_QuantumPhysics_5",
+	Name = "QuantumPhysics Specialization Level 5",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 500,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_6"] = {
+	Id = "Tech_QuantumPhysics_6",
+	Name = "QuantumPhysics Specialization Level 6",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 600,
 }
 
 ResearchRegistry["Tech_QuantumPhysics_7"] = {
 	Id = "Tech_QuantumPhysics_7",
 	Name = "QuantumPhysics Specialization Level 7",
-	RequiredDiscoveries = ['Iron_Ore'],
+	RequiredDiscoveries = {"Iron_Ore"},
 	Cost = 700,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_8"] = {
+	Id = "Tech_QuantumPhysics_8",
+	Name = "QuantumPhysics Specialization Level 8",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 800,
+}
+
+ResearchRegistry["Tech_QuantumPhysics_9"] = {
+	Id = "Tech_QuantumPhysics_9",
+	Name = "QuantumPhysics Specialization Level 9",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 900,
+}
+
+ResearchRegistry["Tech_Thermodynamics_1"] = {
+	Id = "Tech_Thermodynamics_1",
+	Name = "Thermodynamics Specialization Level 1",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 100,
+}
+
+ResearchRegistry["Tech_Thermodynamics_10"] = {
+	Id = "Tech_Thermodynamics_10",
+	Name = "Thermodynamics Specialization Level 10",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1000,
+}
+
+ResearchRegistry["Tech_Thermodynamics_11"] = {
+	Id = "Tech_Thermodynamics_11",
+	Name = "Thermodynamics Specialization Level 11",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1100,
+}
+
+ResearchRegistry["Tech_Thermodynamics_12"] = {
+	Id = "Tech_Thermodynamics_12",
+	Name = "Thermodynamics Specialization Level 12",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1200,
+}
+
+ResearchRegistry["Tech_Thermodynamics_13"] = {
+	Id = "Tech_Thermodynamics_13",
+	Name = "Thermodynamics Specialization Level 13",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1300,
+}
+
+ResearchRegistry["Tech_Thermodynamics_14"] = {
+	Id = "Tech_Thermodynamics_14",
+	Name = "Thermodynamics Specialization Level 14",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1400,
+}
+
+ResearchRegistry["Tech_Thermodynamics_15"] = {
+	Id = "Tech_Thermodynamics_15",
+	Name = "Thermodynamics Specialization Level 15",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1500,
+}
+
+ResearchRegistry["Tech_Thermodynamics_16"] = {
+	Id = "Tech_Thermodynamics_16",
+	Name = "Thermodynamics Specialization Level 16",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1600,
+}
+
+ResearchRegistry["Tech_Thermodynamics_17"] = {
+	Id = "Tech_Thermodynamics_17",
+	Name = "Thermodynamics Specialization Level 17",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1700,
+}
+
+ResearchRegistry["Tech_Thermodynamics_18"] = {
+	Id = "Tech_Thermodynamics_18",
+	Name = "Thermodynamics Specialization Level 18",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1800,
+}
+
+ResearchRegistry["Tech_Thermodynamics_19"] = {
+	Id = "Tech_Thermodynamics_19",
+	Name = "Thermodynamics Specialization Level 19",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1900,
+}
+
+ResearchRegistry["Tech_Thermodynamics_2"] = {
+	Id = "Tech_Thermodynamics_2",
+	Name = "Thermodynamics Specialization Level 2",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 200,
+}
+
+ResearchRegistry["Tech_Thermodynamics_20"] = {
+	Id = "Tech_Thermodynamics_20",
+	Name = "Thermodynamics Specialization Level 20",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2000,
+}
+
+ResearchRegistry["Tech_Thermodynamics_21"] = {
+	Id = "Tech_Thermodynamics_21",
+	Name = "Thermodynamics Specialization Level 21",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2100,
+}
+
+ResearchRegistry["Tech_Thermodynamics_22"] = {
+	Id = "Tech_Thermodynamics_22",
+	Name = "Thermodynamics Specialization Level 22",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2200,
+}
+
+ResearchRegistry["Tech_Thermodynamics_23"] = {
+	Id = "Tech_Thermodynamics_23",
+	Name = "Thermodynamics Specialization Level 23",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2300,
+}
+
+ResearchRegistry["Tech_Thermodynamics_24"] = {
+	Id = "Tech_Thermodynamics_24",
+	Name = "Thermodynamics Specialization Level 24",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2400,
+}
+
+ResearchRegistry["Tech_Thermodynamics_25"] = {
+	Id = "Tech_Thermodynamics_25",
+	Name = "Thermodynamics Specialization Level 25",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2500,
+}
+
+ResearchRegistry["Tech_Thermodynamics_26"] = {
+	Id = "Tech_Thermodynamics_26",
+	Name = "Thermodynamics Specialization Level 26",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2600,
+}
+
+ResearchRegistry["Tech_Thermodynamics_27"] = {
+	Id = "Tech_Thermodynamics_27",
+	Name = "Thermodynamics Specialization Level 27",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2700,
+}
+
+ResearchRegistry["Tech_Thermodynamics_28"] = {
+	Id = "Tech_Thermodynamics_28",
+	Name = "Thermodynamics Specialization Level 28",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2800,
+}
+
+ResearchRegistry["Tech_Thermodynamics_29"] = {
+	Id = "Tech_Thermodynamics_29",
+	Name = "Thermodynamics Specialization Level 29",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2900,
+}
+
+ResearchRegistry["Tech_Thermodynamics_3"] = {
+	Id = "Tech_Thermodynamics_3",
+	Name = "Thermodynamics Specialization Level 3",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 300,
+}
+
+ResearchRegistry["Tech_Thermodynamics_30"] = {
+	Id = "Tech_Thermodynamics_30",
+	Name = "Thermodynamics Specialization Level 30",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 3000,
+}
+
+ResearchRegistry["Tech_Thermodynamics_4"] = {
+	Id = "Tech_Thermodynamics_4",
+	Name = "Thermodynamics Specialization Level 4",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 400,
+}
+
+ResearchRegistry["Tech_Thermodynamics_5"] = {
+	Id = "Tech_Thermodynamics_5",
+	Name = "Thermodynamics Specialization Level 5",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 500,
+}
+
+ResearchRegistry["Tech_Thermodynamics_6"] = {
+	Id = "Tech_Thermodynamics_6",
+	Name = "Thermodynamics Specialization Level 6",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 600,
+}
+
+ResearchRegistry["Tech_Thermodynamics_7"] = {
+	Id = "Tech_Thermodynamics_7",
+	Name = "Thermodynamics Specialization Level 7",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 700,
+}
+
+ResearchRegistry["Tech_Thermodynamics_8"] = {
+	Id = "Tech_Thermodynamics_8",
+	Name = "Thermodynamics Specialization Level 8",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 800,
+}
+
+ResearchRegistry["Tech_Thermodynamics_9"] = {
+	Id = "Tech_Thermodynamics_9",
+	Name = "Thermodynamics Specialization Level 9",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 900,
+}
+
+ResearchRegistry["Tech_VoidScience_1"] = {
+	Id = "Tech_VoidScience_1",
+	Name = "VoidScience Specialization Level 1",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 100,
+}
+
+ResearchRegistry["Tech_VoidScience_10"] = {
+	Id = "Tech_VoidScience_10",
+	Name = "VoidScience Specialization Level 10",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1000,
+}
+
+ResearchRegistry["Tech_VoidScience_11"] = {
+	Id = "Tech_VoidScience_11",
+	Name = "VoidScience Specialization Level 11",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1100,
+}
+
+ResearchRegistry["Tech_VoidScience_12"] = {
+	Id = "Tech_VoidScience_12",
+	Name = "VoidScience Specialization Level 12",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1200,
+}
+
+ResearchRegistry["Tech_VoidScience_13"] = {
+	Id = "Tech_VoidScience_13",
+	Name = "VoidScience Specialization Level 13",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1300,
+}
+
+ResearchRegistry["Tech_VoidScience_14"] = {
+	Id = "Tech_VoidScience_14",
+	Name = "VoidScience Specialization Level 14",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1400,
+}
+
+ResearchRegistry["Tech_VoidScience_15"] = {
+	Id = "Tech_VoidScience_15",
+	Name = "VoidScience Specialization Level 15",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1500,
+}
+
+ResearchRegistry["Tech_VoidScience_16"] = {
+	Id = "Tech_VoidScience_16",
+	Name = "VoidScience Specialization Level 16",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1600,
+}
+
+ResearchRegistry["Tech_VoidScience_17"] = {
+	Id = "Tech_VoidScience_17",
+	Name = "VoidScience Specialization Level 17",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1700,
+}
+
+ResearchRegistry["Tech_VoidScience_18"] = {
+	Id = "Tech_VoidScience_18",
+	Name = "VoidScience Specialization Level 18",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1800,
+}
+
+ResearchRegistry["Tech_VoidScience_19"] = {
+	Id = "Tech_VoidScience_19",
+	Name = "VoidScience Specialization Level 19",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 1900,
+}
+
+ResearchRegistry["Tech_VoidScience_2"] = {
+	Id = "Tech_VoidScience_2",
+	Name = "VoidScience Specialization Level 2",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 200,
+}
+
+ResearchRegistry["Tech_VoidScience_20"] = {
+	Id = "Tech_VoidScience_20",
+	Name = "VoidScience Specialization Level 20",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2000,
+}
+
+ResearchRegistry["Tech_VoidScience_21"] = {
+	Id = "Tech_VoidScience_21",
+	Name = "VoidScience Specialization Level 21",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2100,
+}
+
+ResearchRegistry["Tech_VoidScience_22"] = {
+	Id = "Tech_VoidScience_22",
+	Name = "VoidScience Specialization Level 22",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2200,
+}
+
+ResearchRegistry["Tech_VoidScience_23"] = {
+	Id = "Tech_VoidScience_23",
+	Name = "VoidScience Specialization Level 23",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2300,
+}
+
+ResearchRegistry["Tech_VoidScience_24"] = {
+	Id = "Tech_VoidScience_24",
+	Name = "VoidScience Specialization Level 24",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2400,
+}
+
+ResearchRegistry["Tech_VoidScience_25"] = {
+	Id = "Tech_VoidScience_25",
+	Name = "VoidScience Specialization Level 25",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2500,
+}
+
+ResearchRegistry["Tech_VoidScience_26"] = {
+	Id = "Tech_VoidScience_26",
+	Name = "VoidScience Specialization Level 26",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2600,
+}
+
+ResearchRegistry["Tech_VoidScience_27"] = {
+	Id = "Tech_VoidScience_27",
+	Name = "VoidScience Specialization Level 27",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2700,
+}
+
+ResearchRegistry["Tech_VoidScience_28"] = {
+	Id = "Tech_VoidScience_28",
+	Name = "VoidScience Specialization Level 28",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2800,
+}
+
+ResearchRegistry["Tech_VoidScience_29"] = {
+	Id = "Tech_VoidScience_29",
+	Name = "VoidScience Specialization Level 29",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 2900,
+}
+
+ResearchRegistry["Tech_VoidScience_3"] = {
+	Id = "Tech_VoidScience_3",
+	Name = "VoidScience Specialization Level 3",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 300,
+}
+
+ResearchRegistry["Tech_VoidScience_30"] = {
+	Id = "Tech_VoidScience_30",
+	Name = "VoidScience Specialization Level 30",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 3000,
+}
+
+ResearchRegistry["Tech_VoidScience_4"] = {
+	Id = "Tech_VoidScience_4",
+	Name = "VoidScience Specialization Level 4",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 400,
+}
+
+ResearchRegistry["Tech_VoidScience_5"] = {
+	Id = "Tech_VoidScience_5",
+	Name = "VoidScience Specialization Level 5",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 500,
+}
+
+ResearchRegistry["Tech_VoidScience_6"] = {
+	Id = "Tech_VoidScience_6",
+	Name = "VoidScience Specialization Level 6",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 600,
+}
+
+ResearchRegistry["Tech_VoidScience_7"] = {
+	Id = "Tech_VoidScience_7",
+	Name = "VoidScience Specialization Level 7",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 700,
+}
+
+ResearchRegistry["Tech_VoidScience_8"] = {
+	Id = "Tech_VoidScience_8",
+	Name = "VoidScience Specialization Level 8",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 800,
+}
+
+ResearchRegistry["Tech_VoidScience_9"] = {
+	Id = "Tech_VoidScience_9",
+	Name = "VoidScience Specialization Level 9",
+	RequiredDiscoveries = {"Iron_Ore"},
+	Cost = 900,
 }
 
 return ResearchRegistry

@@ -121,6 +121,7 @@ end
 
     # Simplified generator for demonstration of the pipeline
     luau_entries = []
+    items = sorted(items, key=lambda x: x.Id)
     for item in items:
         # Pydantic dump to dict
         data = item.model_dump(exclude_none=True)
@@ -132,6 +133,9 @@ end
                 for dk, dv in v.items():
                     entry += f'\t\t{dk} = {dv},\n'
                 entry += '\t},\n'
+            elif isinstance(v, list):
+                array_str = ", ".join([f'"{x}"' if isinstance(x, str) else str(x) for x in v])
+                entry += f'\t{k} = {{{array_str}}},\n'
             elif isinstance(v, str):
                 entry += f'\t{k} = "{v}",\n'
             else:
