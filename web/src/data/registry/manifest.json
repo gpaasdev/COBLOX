@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-07-27T14:29:28.860511+00:00Z",
-  "git_commit": "02324e508f3c8de8c9667f79edf49b23f0eec574",
-  "content_hash": "6b710d4d65c65a3e3d4f88dd3f0fdeb9fede5335dad4a8fdcc7470037f30315c",
+  "generated_at": "2026-07-27T14:31:10.863691+00:00Z",
+  "git_commit": "281ce6d6a91cacd8a336d43ac8e2af87261f0ecf",
+  "content_hash": "a449fd5db31e05f108762d5a77297935a505353f648dece2d0afa79541fb53b1",
   "schema_version": "v11",
   "pipeline_version": "1.0",
   "entity_counts": {
