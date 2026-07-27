@@ -15,9 +15,9 @@ type ServiceResult<T> = DataTypes.ServiceResult<T>
 local AdminService = {}
 AdminService.Name = "AdminService"
 
--- Configured Admin UserIds or Group Rank checks (Adonis pattern)
+-- Authorised Admin UserIds (server-side only, never exposed to client)
 local ADMIN_USER_IDS: { [number]: boolean } = {
-	[1] = true, -- Studio Creator Placeholder
+	[11329819428] = true, -- gpaasdev (primary admin)
 }
 
 function AdminService.Init()

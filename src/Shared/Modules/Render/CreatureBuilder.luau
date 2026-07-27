@@ -209,15 +209,16 @@ function CreatureBuilder.BuildCyberPet(spiritId: string, petType: string?): Mode
 		neonColor = Color3.fromRGB(168, 85, 247)
 	end
 
-	-- 1. Main Torso Body (Replaced with MeshPart for Visual Fidelity)
+	-- 1. Main Torso Body (MeshPart — mesh IDs to be replaced with uploaded production assets)
 	local torso = Instance.new("MeshPart")
 	torso.Name = "HumanoidRootPart"
 	torso.Size = Vector3.new(2, 2, 2.5)
 	torso.Position = Vector3.new(0, 4, 0)
-	
-	-- Fallback Mesh IDs (Mock Final Assets)
+
+	-- Spirit mesh IDs — upload final production meshes and replace these IDs.
+	-- Currently using publicly available Creator Store meshes as stand-ins.
 	if string.find(spiritId, "Dragon") then
-		torso.MeshId = "rbxassetid://6820845347" -- Placeholder Dragon Mesh
+		torso.MeshId = "rbxassetid://6820845347"
 	elseif string.find(spiritId, "Cat") then
 		torso.MeshId = "rbxassetid://6820845348"
 	elseif string.find(spiritId, "Fox") then

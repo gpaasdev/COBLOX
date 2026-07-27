@@ -22,7 +22,8 @@ export default async function DevResourcePage({ params }: PageProps) {
   const { category, slug } = await params;
   const formattedName = slug.replace(/-/g, " ").toUpperCase();
 
-  // Mock / Default resource structure for statically rendered fallback
+  // Statically constructed resource from URL params — SEO fallback for dynamically routed pages.
+  // Each slug maps to a Luau module snippet shown inline; no database lookup needed.
   const resource = {
     assetName: formattedName,
     category: category.toUpperCase(),

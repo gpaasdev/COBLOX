@@ -39,7 +39,9 @@ function WeekendProvider:GetRewards(): { [string]: any }
 end
 
 function WeekendProvider:GetBanner(): string?
-	return "rbxassetid://1234567890" -- Weekend Boost Banner
+	-- Return nil until the actual Weekend Boost banner asset is uploaded to Roblox.
+	-- Replace with the real rbxassetid once uploaded via Creator Dashboard or asset pipeline.
+	return nil
 end
 
 function WeekendProvider:GetNotifications(): { string }?

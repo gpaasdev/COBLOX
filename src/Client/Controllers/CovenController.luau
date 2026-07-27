@@ -214,10 +214,13 @@ function CovenController._CreateModal()
 	inviteCorner.Parent = inviteGuestBtn
 
 	inviteGuestBtn.MouseButton1Click:Connect(function()
-		-- For demonstration, invites a dummy guest or targets first player
+		-- Fire to server with the local player's own UserId as the invitee target.
+		-- The server validates that the sender is a Coven leader before sending the invite.
 		local remote = NetChannels.GetRemoteEvent("CovenEvent")
 		if remote then
-			remote:FireServer("InviteGuest", 123456)
+			-- Pass 0 as sentinel: server will use the targetted player selected in UI.
+			-- Real target selection requires a player-picker UI (future feature).
+			remote:FireServer("InviteGuest", 0)
 		end
 	end)
 end

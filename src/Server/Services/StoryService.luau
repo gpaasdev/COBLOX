@@ -14,9 +14,12 @@ local StoryService = {}
 StoryService.Name = "StoryService"
 
 -- Story Tape / Lore Fragment Catalog
+-- AudioIds must be uploaded to Roblox and the real asset IDs inserted here.
+-- Until official audio assets are uploaded, AudioId is left as "" so the
+-- client gracefully shows text-only lore without attempting to play audio.
 local LoreCatalog = {
-	Tape_01 = { Title = "The Incident at Sanctum Vault 4", AudioId = "rbxassetid://12345678", Description = "A recorded voice log left by Arch-Alchemist Vane." },
-	Tape_02 = { Title = "Forbidden Transmutation Notes", AudioId = "rbxassetid://87654321", Description = "Decoded notes warning of the Void Essence." },
+	Tape_01 = { Title = "The Incident at Sanctum Vault 4", AudioId = "", Description = "A recorded voice log left by Arch-Alchemist Vane." },
+	Tape_02 = { Title = "Forbidden Transmutation Notes", AudioId = "", Description = "Decoded notes warning of the Void Essence." },
 	Journal_01 = { Title = "Diary of the Last Keeper", AudioId = "", Description = "The final entry before the catacombs collapsed." },
 }
 
