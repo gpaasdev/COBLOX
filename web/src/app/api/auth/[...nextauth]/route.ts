@@ -6,17 +6,27 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "Admin Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "admin" },
+        username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Dummy verification for demonstration (Hobby/Free Tier Setup)
-        // In a real scenario, compare with Vercel Postgres DB
+        const adminUsername = process.env.ADMIN_USERNAME;
+        const adminPassword = process.env.ADMIN_PASSWORD;
+
+        if (!adminUsername || !adminPassword) {
+          console.error("[Auth] ADMIN_USERNAME or ADMIN_PASSWORD env vars not configured.");
+          return null;
+        }
+
         if (
-          credentials?.username === process.env.ADMIN_USERNAME &&
-          credentials?.password === process.env.ADMIN_PASSWORD
+          credentials?.username === adminUsername &&
+          credentials?.password === adminPassword
         ) {
-          return { id: "1", name: "COBLOX Admin", email: "admin@coblox.local" };
+          return {
+            id: process.env.ADMIN_USER_ID ?? "admin",
+            name: "COBLOX Admin",
+            email: process.env.ADMIN_EMAIL ?? "admin@coblox.gg",
+          };
         }
         return null;
       },

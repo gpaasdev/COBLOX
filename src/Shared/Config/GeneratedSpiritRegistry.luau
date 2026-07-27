@@ -14,6 +14,249 @@ function SpiritRegistry.GetAll(): { [string]: SpiritRegistryDefinition }
 	return SpiritRegistry
 end
 
+SpiritRegistry["SP_ABYSSAL_KRAKEN"] = {
+	Id = "SP_ABYSSAL_KRAKEN",
+	Name = "Abyssal Kraken",
+	Description = "Penguasa laut dalam Sanctum.",
+	Rarity = "Epic",
+	Element = "Water",
+	DropRate = "1.5%",
+}
+
+SpiritRegistry["SP_AETHER_WRAITH"] = {
+	Id = "SP_AETHER_WRAITH",
+	Name = "Aether Wraith",
+	Description = "Setengah ada, setengah bayangan.",
+	Rarity = "Epic",
+	Element = "Void",
+	DropRate = "2.0%",
+}
+
+SpiritRegistry["SP_ASH_PUFF"] = {
+	Id = "SP_ASH_PUFF",
+	Name = "Ash Puff",
+	Description = "Sisa pembakaran alkimia.",
+	Rarity = "Common",
+	Element = "Fire",
+	DropRate = "7.0%",
+}
+
+SpiritRegistry["SP_BRONZE_DRAKE"] = {
+	Id = "SP_BRONZE_DRAKE",
+	Name = "Bronze Drake",
+	Description = "Cakar perunggu yang kuat.",
+	Rarity = "Uncommon",
+	Element = "Fire",
+	DropRate = "7.0%",
+}
+
+SpiritRegistry["SP_CLAY_PUP"] = {
+	Id = "SP_CLAY_PUP",
+	Name = "Clay Pup",
+	Description = "Anak anjing dari tanah liat.",
+	Rarity = "Common",
+	Element = "Earth",
+	DropRate = "10.0%",
+}
+
+SpiritRegistry["SP_COAL_SPRITE"] = {
+	Id = "SP_COAL_SPRITE",
+	Name = "Coal Sprite",
+	Description = "Panas dan bandel.",
+	Rarity = "Common",
+	Element = "Fire",
+	DropRate = "10.0%",
+}
+
+SpiritRegistry["SP_COPPER_WISP"] = {
+	Id = "SP_COPPER_WISP",
+	Name = "Copper Wisp",
+	Description = "Berkilat lemah saat marah.",
+	Rarity = "Common",
+	Element = "Lightning",
+	DropRate = "12.0%",
+}
+
+SpiritRegistry["SP_CRYSTAL_BEAR"] = {
+	Id = "SP_CRYSTAL_BEAR",
+	Name = "Crystal Bear",
+	Description = "Tubuh penuh kristal bening.",
+	Rarity = "Rare",
+	Element = "Ice",
+	DropRate = "3.0%",
+}
+
+SpiritRegistry["SP_FLAME_CAT"] = {
+	Id = "SP_FLAME_CAT",
+	Name = "Flame Cat",
+	Description = "Kucing berbulu api.",
+	Rarity = "Uncommon",
+	Element = "Fire",
+	DropRate = "5.0%",
+}
+
+SpiritRegistry["SP_GLOW_MUSH"] = {
+	Id = "SP_GLOW_MUSH",
+	Name = "Glow Mush",
+	Description = "Menyinari rawa-rawa gelap.",
+	Rarity = "Uncommon",
+	Element = "Nature",
+	DropRate = "5.0%",
+}
+
+SpiritRegistry["SP_ICE_CUBE"] = {
+	Id = "SP_ICE_CUBE",
+	Name = "Ice Cube",
+	Description = "Tidak pernah meleleh.",
+	Rarity = "Uncommon",
+	Element = "Water",
+	DropRate = "5.0%",
+}
+
+SpiritRegistry["SP_IRON_IMP"] = {
+	Id = "SP_IRON_IMP",
+	Name = "Iron Imp",
+	Description = "Lahir dari serpihan besi tua.",
+	Rarity = "Common",
+	Element = "Earth",
+	DropRate = "15.0%",
+}
+
+SpiritRegistry["SP_LEAF_BUG"] = {
+	Id = "SP_LEAF_BUG",
+	Name = "Leaf Bug",
+	Description = "Penjaga tanaman alami.",
+	Rarity = "Common",
+	Element = "Nature",
+	DropRate = "7.0%",
+}
+
+SpiritRegistry["SP_MAGMA_SLIME"] = {
+	Id = "SP_MAGMA_SLIME",
+	Name = "Magma Slime",
+	Description = "Slime bersuhu tinggi.",
+	Rarity = "Uncommon",
+	Element = "Fire",
+	DropRate = "5.0%",
+}
+
+SpiritRegistry["SP_MYTHRIL_SERPENT"] = {
+	Id = "SP_MYTHRIL_SERPENT",
+	Name = "Mythril Serpent",
+	Description = "Bersinar dalam kegelapan.",
+	Rarity = "Epic",
+	Element = "Aether",
+	DropRate = "3.0%",
+}
+
+SpiritRegistry["SP_OBSIDIAN_PHOENIX"] = {
+	Id = "SP_OBSIDIAN_PHOENIX",
+	Name = "Obsidian Phoenix",
+	Description = "Terlahir dari lava dan abu.",
+	Rarity = "Rare",
+	Element = "Fire",
+	DropRate = "5.0%",
+}
+
+SpiritRegistry["SP_QUANTUM_HYDRA"] = {
+	Id = "SP_QUANTUM_HYDRA",
+	Name = "Quantum Hydra",
+	Description = "Bergerak antara dimensi.",
+	Rarity = "Legendary",
+	Element = "Quantum",
+	DropRate = "1.9%",
+}
+
+SpiritRegistry["SP_SAND_GOLEM"] = {
+	Id = "SP_SAND_GOLEM",
+	Name = "Sand Golem",
+	Description = "Terbentuk dari pasir gurun.",
+	Rarity = "Uncommon",
+	Element = "Earth",
+	DropRate = "5.0%",
+}
+
+SpiritRegistry["SP_SHADOW_FOX"] = {
+	Id = "SP_SHADOW_FOX",
+	Name = "Shadow Fox",
+	Description = "Menghilang di bayangan.",
+	Rarity = "Rare",
+	Element = "Dark",
+	DropRate = "3.0%",
+}
+
+SpiritRegistry["SP_SILVER_SYLPH"] = {
+	Id = "SP_SILVER_SYLPH",
+	Name = "Silver Sylph",
+	Description = "Gesit dan tak terduga.",
+	Rarity = "Uncommon",
+	Element = "Wind",
+	DropRate = "8.0%",
+}
+
+SpiritRegistry["SP_SOLAR_DRAGON"] = {
+	Id = "SP_SOLAR_DRAGON",
+	Name = "Solar Dragon",
+	Description = "Naga pemakan energi bintang.",
+	Rarity = "Epic",
+	Element = "Fire",
+	DropRate = "1.5%",
+}
+
+SpiritRegistry["SP_SPARK_BUG"] = {
+	Id = "SP_SPARK_BUG",
+	Name = "Spark Bug",
+	Description = "Mengeluarkan letupan kecil.",
+	Rarity = "Common",
+	Element = "Lightning",
+	DropRate = "7.0%",
+}
+
+SpiritRegistry["SP_STONE_GOBLIN"] = {
+	Id = "SP_STONE_GOBLIN",
+	Name = "Stone Goblin",
+	Description = "Suka menyembunyikan ore.",
+	Rarity = "Common",
+	Element = "Earth",
+	DropRate = "8.0%",
+}
+
+SpiritRegistry["SP_STORM_ELEMENTAL"] = {
+	Id = "SP_STORM_ELEMENTAL",
+	Name = "Storm Elemental",
+	Description = "Wujud fisik dari badai petir.",
+	Rarity = "Rare",
+	Element = "Lightning",
+	DropRate = "2.0%",
+}
+
+SpiritRegistry["SP_SUN_LION"] = {
+	Id = "SP_SUN_LION",
+	Name = "Sun Lion",
+	Description = "Memancarkan cahaya matahari.",
+	Rarity = "Rare",
+	Element = "Light",
+	DropRate = "3.0%",
+}
+
+SpiritRegistry["SP_THUNDER_BIRD"] = {
+	Id = "SP_THUNDER_BIRD",
+	Name = "Thunder Bird",
+	Description = "Membawa badai kecil.",
+	Rarity = "Uncommon",
+	Element = "Lightning",
+	DropRate = "5.0%",
+}
+
+SpiritRegistry["SP_TITANIUM_WYVERN"] = {
+	Id = "SP_TITANIUM_WYVERN",
+	Name = "Titanium Wyvern",
+	Description = "Sayap titanium yang tak bisa ditembus.",
+	Rarity = "Rare",
+	Element = "Metal",
+	DropRate = "4.0%",
+}
+
 SpiritRegistry["SP_VOID_DRAGON"] = {
 	Id = "SP_VOID_DRAGON",
 	Name = "Void Dragon",
@@ -21,6 +264,24 @@ SpiritRegistry["SP_VOID_DRAGON"] = {
 	Rarity = "Legendary",
 	Element = "Void",
 	DropRate = "0.1%",
+}
+
+SpiritRegistry["SP_WATER_DRIP"] = {
+	Id = "SP_WATER_DRIP",
+	Name = "Water Drip",
+	Description = "Bentuk seperti tetesan air murni.",
+	Rarity = "Common",
+	Element = "Water",
+	DropRate = "8.0%",
+}
+
+SpiritRegistry["SP_WIND_FLYER"] = {
+	Id = "SP_WIND_FLYER",
+	Name = "Wind Flyer",
+	Description = "Melayang ditiup angin.",
+	Rarity = "Common",
+	Element = "Wind",
+	DropRate = "8.0%",
 }
 
 return SpiritRegistry

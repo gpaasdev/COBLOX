@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_MYTHRIL_SHARD",
+  "Name": "Mythril Shard Synthesis",
+  "Description": "Crystallise Mythril Ore under high pressure into Mythril Shards.",
+  "Ingredients": [
+    "Mythril_Ore",
+    "Iron_Crystal"
+  ],
+  "OutputType": "Material"
+}

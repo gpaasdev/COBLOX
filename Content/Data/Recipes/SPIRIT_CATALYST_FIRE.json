@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_SPIRIT_CATALYST_FIRE",
+  "Name": "Fire Spirit Catalyst",
+  "Description": "Forge a Fire Catalyst from volcanic materials for Fire Spirit hatching.",
+  "Ingredients": [
+    "Obsidian_Ore",
+    "Gold_Shard",
+    "Aether_Vapor"
+  ],
+  "OutputType": "Catalyst"
+}

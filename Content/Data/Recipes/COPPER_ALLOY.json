@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_COPPER_ALLOY",
+  "Name": "Copper Alloy Casting",
+  "Description": "Cast Copper Shards and Iron Refined into Copper Alloy ingots.",
+  "Ingredients": [
+    "Copper_Shard",
+    "Iron_Refined"
+  ],
+  "OutputType": "Material"
+}

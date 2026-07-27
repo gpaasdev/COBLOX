@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_ABYSSAL_PASS",
+  "Name": "Abyssal Biome Pass",
+  "Description": "Forge a pass for entry into Abyssal-tier biomes.",
+  "Ingredients": [
+    "Obsidian_Singularity",
+    "Adamantite_Alloy"
+  ],
+  "OutputType": "BiomePass"
+}

@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_QUANTUM_ESSENCE",
+  "Name": "Quantum Essence Synthesis",
+  "Description": "Synthesise Quantum Essence by collapsing multiple Singularities together.",
+  "Ingredients": [
+    "Aether_Singularity",
+    "Adamantite_Singularity",
+    "Mythril_Singularity"
+  ],
+  "OutputType": "Research"
+}

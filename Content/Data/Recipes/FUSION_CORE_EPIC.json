@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_FUSION_CORE_EPIC",
+  "Name": "Epic Fusion Core",
+  "Description": "Core for fusing two Rare Spirits into an Epic Spirit.",
+  "Ingredients": [
+    "Adamantite_Crystal",
+    "Aether_Matrix",
+    "Mythril_Matrix"
+  ],
+  "OutputType": "FusionCore"
+}

@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_AETHER_ESSENCE",
+  "Name": "Aether Essence Distillation",
+  "Description": "Distil Aether Crystal into pure Aether Essence for advanced reactions.",
+  "Ingredients": [
+    "Aether_Crystal",
+    "Copper_Vapor"
+  ],
+  "OutputType": "Material"
+}

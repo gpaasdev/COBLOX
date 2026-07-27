@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_SHADOW_RAID_TOKEN",
+  "Name": "Shadow Raid Token",
+  "Description": "Token required to initiate a Shadow Raid expedition.",
+  "Ingredients": [
+    "Void_Crystal_Compound",
+    "Iron_Matrix"
+  ],
+  "OutputType": "RaidToken"
+}

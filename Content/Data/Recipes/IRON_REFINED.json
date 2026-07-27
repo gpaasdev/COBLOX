@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_IRON_REFINED",
+  "Name": "Iron Refinement",
+  "Description": "Smelt Iron Ore into purified Iron Refined ingots.",
+  "Ingredients": [
+    "Iron_Ore",
+    "Coal"
+  ],
+  "OutputType": "Material"
+}

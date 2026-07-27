@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_SMELTER_UPGRADE",
+  "Name": "Smelter Efficiency Upgrade",
+  "Description": "Upgrade a Smelter using Adamantite Alloy and Gold Crystal components.",
+  "Ingredients": [
+    "Adamantite_Alloy",
+    "Gold_Crystal"
+  ],
+  "OutputType": "Machine"
+}

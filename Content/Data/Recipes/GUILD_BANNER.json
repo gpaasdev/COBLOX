@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_GUILD_BANNER",
+  "Name": "Guild Banner",
+  "Description": "A decorative banner for displaying Coven identity in the Sanctum.",
+  "Ingredients": [
+    "Gold_Alloy",
+    "Mythril_Alloy",
+    "Copper_Alloy"
+  ],
+  "OutputType": "Decoration"
+}

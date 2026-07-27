@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_SANCTUM_TOKEN",
+  "Name": "Sanctum Token",
+  "Description": "Forge a Sanctum Token redeemable in the Battlepass reward track.",
+  "Ingredients": [
+    "Gold_Refined",
+    "Mythril_Alloy"
+  ],
+  "OutputType": "Currency"
+}

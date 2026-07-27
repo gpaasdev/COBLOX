@@ -1,9 +1,9 @@
 {
   "Id": "MKT_VIP_PASS",
   "Name": "Sanctum VIP Pass",
-  "Description": "Gain exclusive access to the upper Sanctum floors and a 20% synthesis speed boost.",
+  "Description": "Dapatkan akses eksklusif ke lantai atas Sanctum, +20% Synthesis Speed, dan bonus aura harian. Dukung COBLOX!",
   "Price": 500,
   "Currency": "Robux",
   "Category": "Gamepass",
-  "ImageUrl": "rbxassetid://12345678"
+  "ImageUrl": "rbxassetid://1923436403"
 }

@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_REACTOR_CORE",
+  "Name": "Reactor Core Assembly",
+  "Description": "Assemble a Reactor Core from refined metals and an Aether Matrix.",
+  "Ingredients": [
+    "Iron_Refined",
+    "Copper_Alloy",
+    "Aether_Matrix"
+  ],
+  "OutputType": "Machine"
+}

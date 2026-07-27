@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_PURIFICATION_CRYSTAL",
+  "Name": "Purification Crystal",
+  "Description": "Craft a Purification Crystal for depositing Coins into the Aura Vault.",
+  "Ingredients": [
+    "Gold_Crystal",
+    "Mythril_Crystal",
+    "Aether_Crystal"
+  ],
+  "OutputType": "Currency"
+}

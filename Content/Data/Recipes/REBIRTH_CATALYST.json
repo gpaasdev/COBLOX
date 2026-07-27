@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_REBIRTH_CATALYST",
+  "Name": "Rebirth Catalyst",
+  "Description": "A powerful catalyst that enables Rebirth without spending tokens.",
+  "Ingredients": [
+    "Aether_Singularity",
+    "Adamantite_Singularity",
+    "Gold_Singularity"
+  ],
+  "OutputType": "Consumable"
+}

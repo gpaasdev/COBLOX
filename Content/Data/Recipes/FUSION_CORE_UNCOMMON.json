@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_FUSION_CORE_UNCOMMON",
+  "Name": "Uncommon Fusion Core",
+  "Description": "Core required for fusing two Common Spirits into an Uncommon.",
+  "Ingredients": [
+    "Iron_Crystal",
+    "Copper_Crystal",
+    "Gold_Shard"
+  ],
+  "OutputType": "FusionCore"
+}

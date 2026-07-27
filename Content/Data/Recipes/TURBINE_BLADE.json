@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_TURBINE_BLADE",
+  "Name": "Turbine Blade Forging",
+  "Description": "Forge high-efficiency Turbine Blades from Obsidian and Adamantite.",
+  "Ingredients": [
+    "Obsidian_Refined",
+    "Adamantite_Crystal"
+  ],
+  "OutputType": "Machine"
+}

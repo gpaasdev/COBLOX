@@ -1,0 +1,8 @@
+{
+  "Id": "SP_WATER_DRIP",
+  "Name": "Water Drip",
+  "Rarity": "Common",
+  "Element": "Water",
+  "DropRate": "8.0%",
+  "Description": "Bentuk seperti tetesan air murni."
+}

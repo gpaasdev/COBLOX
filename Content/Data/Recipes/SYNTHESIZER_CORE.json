@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_SYNTHESIZER_CORE",
+  "Name": "Synthesizer Core",
+  "Description": "Build a Synthesizer Core from Mythril Matrix and Aether Essence.",
+  "Ingredients": [
+    "Mythril_Matrix",
+    "Aether_Essence",
+    "Copper_Refined"
+  ],
+  "OutputType": "Machine"
+}

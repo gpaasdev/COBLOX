@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_AURA_POTION_MAJOR",
+  "Name": "Major Aura Potion",
+  "Description": "A potent Aura Energy potion from rare refined essences.",
+  "Ingredients": [
+    "Gold_Essence",
+    "Mythril_Essence",
+    "Aether_Essence"
+  ],
+  "OutputType": "Consumable"
+}

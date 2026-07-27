@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_OBSIDIAN_CRYSTAL",
+  "Name": "Obsidian Crystal Growth",
+  "Description": "Grow Obsidian Crystals from volcanic ore and AetherCrystal substrate.",
+  "Ingredients": [
+    "Obsidian_Ore",
+    "AetherCrystal"
+  ],
+  "OutputType": "Material"
+}

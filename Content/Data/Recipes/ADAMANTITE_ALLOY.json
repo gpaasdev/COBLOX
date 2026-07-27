@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_ADAMANTITE_ALLOY",
+  "Name": "Adamantite Alloy Forge",
+  "Description": "Forge the hardest known alloy from Adamantite shards and Mythril dust.",
+  "Ingredients": [
+    "Adamantite_Shard",
+    "Mythril_Dust"
+  ],
+  "OutputType": "Material"
+}

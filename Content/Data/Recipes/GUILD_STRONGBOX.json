@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_GUILD_STRONGBOX",
+  "Name": "Guild Strongbox",
+  "Description": "A secure container for Coven shared resources.",
+  "Ingredients": [
+    "Adamantite_Alloy",
+    "Iron_Refined",
+    "Obsidian_Crystal"
+  ],
+  "OutputType": "Decoration"
+}

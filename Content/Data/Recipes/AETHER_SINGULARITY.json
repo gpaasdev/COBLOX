@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_AETHER_SINGULARITY",
+  "Name": "Aether Singularity Collapse",
+  "Description": "Collapse an Aether Matrix into a dense Aether Singularity node.",
+  "Ingredients": [
+    "Aether_Matrix",
+    "Obsidian_Crystal"
+  ],
+  "OutputType": "Material"
+}

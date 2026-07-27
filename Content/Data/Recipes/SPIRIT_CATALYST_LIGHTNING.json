@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_SPIRIT_CATALYST_LIGHTNING",
+  "Name": "Lightning Spirit Catalyst",
+  "Description": "Generate a Lightning Catalyst from high-conductivity alloys.",
+  "Ingredients": [
+    "Copper_Alloy",
+    "Gold_Alloy",
+    "Aether_Shard"
+  ],
+  "OutputType": "Catalyst"
+}

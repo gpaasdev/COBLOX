@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_COPPER_SHARD",
+  "Name": "Copper Shard Extraction",
+  "Description": "Refine raw Copper Ore into Copper Shards via controlled heating.",
+  "Ingredients": [
+    "Copper_Ore",
+    "Heat"
+  ],
+  "OutputType": "Material"
+}

@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_FUSION_CORE_LEGENDARY",
+  "Name": "Legendary Fusion Core",
+  "Description": "The rarest core — fuse two Epic Spirits into a Legendary.",
+  "Ingredients": [
+    "Aether_Singularity",
+    "Adamantite_Singularity",
+    "Mythril_Singularity"
+  ],
+  "OutputType": "FusionCore"
+}

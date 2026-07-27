@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_CELESTIAL_KEYSTONE",
+  "Name": "Celestial Keystone",
+  "Description": "Craft a Keystone to unlock Celestial Sector 5 biomes.",
+  "Ingredients": [
+    "Aether_Singularity",
+    "Gold_Singularity",
+    "Mythril_Singularity"
+  ],
+  "OutputType": "BiomePass"
+}

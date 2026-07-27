@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_VOID_CRYSTAL_COMPOUND",
+  "Name": "Void Crystal Compound",
+  "Description": "Combine Void-tier materials into a compound for Shadow Raid entry.",
+  "Ingredients": [
+    "Obsidian_Matrix",
+    "Adamantite_Matrix",
+    "Aether_Vapor"
+  ],
+  "OutputType": "Research"
+}

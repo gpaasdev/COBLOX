@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_AETHER_MATRIX",
+  "Name": "Aether Matrix Weaving",
+  "Description": "Weave Aether Essence and Iron Matrix into a stable dimensional fabric.",
+  "Ingredients": [
+    "Aether_Essence",
+    "Iron_Matrix"
+  ],
+  "OutputType": "Material"
+}

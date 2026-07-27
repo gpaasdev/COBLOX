@@ -9,7 +9,7 @@ class Config:
     ROBLOX_API_KEY = os.environ.get("ROBLOX_OPEN_CLOUD_API_KEY", "")
     ROBLOX_UNIVERSE_ID = os.environ.get("ROBLOX_UNIVERSE_ID", "")
     ROBLOX_PLACE_ID = os.environ.get("ROBLOX_PLACE_ID", "")
-    ROBLOX_DATASTORE = os.environ.get("ROBLOX_DATASTORE", "PlayerData_v1")
+    ROBLOX_DATASTORE = os.environ.get("ROBLOX_DATASTORE", "COBLOX_DataStore_LGBOS_v11")
     OPEN_CLOUD_ENDPOINT = os.environ.get("OPEN_CLOUD_ENDPOINT", "https://apis.roblox.com/cloud/v2")
     
     # Optional integrations

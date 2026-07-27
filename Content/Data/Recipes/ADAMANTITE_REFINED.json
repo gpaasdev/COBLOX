@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_ADAMANTITE_REFINED",
+  "Name": "Adamantite Refinement",
+  "Description": "Refine Adamantite Ore through extreme heat and pressure.",
+  "Ingredients": [
+    "Adamantite_Ore",
+    "Gold_Vapor",
+    "Iron_Crystal"
+  ],
+  "OutputType": "Material"
+}

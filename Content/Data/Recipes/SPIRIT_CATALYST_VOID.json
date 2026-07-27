@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_SPIRIT_CATALYST_VOID",
+  "Name": "Void Spirit Catalyst",
+  "Description": "Forge a Void Catalyst from Obsidian Singularity and Aether Matrix.",
+  "Ingredients": [
+    "Obsidian_Singularity",
+    "Aether_Matrix",
+    "Adamantite_Essence"
+  ],
+  "OutputType": "Catalyst"
+}

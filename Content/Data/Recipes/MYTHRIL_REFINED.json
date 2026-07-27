@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_MYTHRIL_REFINED",
+  "Name": "Mythril Refinement",
+  "Description": "Refine Mythril Ore with Aether Dust to produce purified Mythril.",
+  "Ingredients": [
+    "Mythril_Ore",
+    "Aether_Dust"
+  ],
+  "OutputType": "Material"
+}

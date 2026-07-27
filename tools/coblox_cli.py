@@ -144,8 +144,8 @@ def cmd_trigger_event(args, api_key, universe_id, place_id):
 
 # --- DataStore API Commands ---
 def cmd_inspect_player(args, api_key, universe_id, place_id):
-    datastore_name = args.datastore or "COBLOX_PlayerData_v1"
-    key_name = f"Player_{args.user_id}"
+    datastore_name = args.datastore or "COBLOX_DataStore_LGBOS_v11"
+    key_name = f"COBLOX_LGBOS_v11_{args.user_id}"
     
     url = f"https://apis.roblox.com/datastores/v1/universes/{universe_id}/standard-datastores/datastore/entries/entry"
     params = {"datastoreName": datastore_name, "entryKey": key_name}
@@ -164,8 +164,8 @@ def cmd_inspect_player(args, api_key, universe_id, place_id):
         print(f"❌ DataStore fetch failed ({response.status_code}): {response.text}")
 
 def cmd_set_player_data(args, api_key, universe_id, place_id):
-    datastore_name = args.datastore or "COBLOX_PlayerData_v1"
-    key_name = f"Player_{args.user_id}"
+    datastore_name = args.datastore or "COBLOX_DataStore_LGBOS_v11"
+    key_name = f"COBLOX_LGBOS_v11_{args.user_id}"
     
     url = f"https://apis.roblox.com/datastores/v1/universes/{universe_id}/standard-datastores/datastore/entries/entry"
     params = {"datastoreName": datastore_name, "entryKey": key_name}
@@ -189,7 +189,7 @@ def cmd_set_player_data(args, api_key, universe_id, place_id):
         print(f"❌ DataStore write failed ({response.status_code}): {response.text}")
 
 def cmd_list_datastore_keys(args, api_key, universe_id, place_id):
-    datastore_name = args.datastore or "COBLOX_PlayerData_v1"
+    datastore_name = args.datastore or "COBLOX_DataStore_LGBOS_v11"
     url = f"https://apis.roblox.com/datastores/v1/universes/{universe_id}/standard-datastores/datastore/entries"
     params = {"datastoreName": datastore_name, "limit": args.limit or 25}
     headers = {"x-api-key": api_key}
@@ -296,15 +296,15 @@ def main():
     # DataStore Commands
     inspect_parser = subparsers.add_parser("inspect-player", help="Inspect player DataStore profile")
     inspect_parser.add_argument("--user-id", "-u", required=True, help="Roblox User ID")
-    inspect_parser.add_argument("--datastore", default="COBLOX_PlayerData_v1", help="DataStore name")
+    inspect_parser.add_argument("--datastore", default="COBLOX_DataStore_LGBOS_v11", help="DataStore name")
     
     set_data_parser = subparsers.add_parser("set-player-data", help="Set/Update DataStore profile")
     set_data_parser.add_argument("--user-id", "-u", required=True, help="Roblox User ID")
     set_data_parser.add_argument("--data", "-d", required=True, help="JSON string data payload")
-    set_data_parser.add_argument("--datastore", default="COBLOX_PlayerData_v1", help="DataStore name")
+    set_data_parser.add_argument("--datastore", default="COBLOX_DataStore_LGBOS_v11", help="DataStore name")
     
     list_keys_parser = subparsers.add_parser("list-datastore-keys", help="List entry keys in DataStore")
-    list_keys_parser.add_argument("--datastore", default="COBLOX_PlayerData_v1", help="DataStore name")
+    list_keys_parser.add_argument("--datastore", default="COBLOX_DataStore_LGBOS_v11", help="DataStore name")
     list_keys_parser.add_argument("--limit", type=int, default=25, help="Number of keys to fetch")
     
     # MemoryStore Commands

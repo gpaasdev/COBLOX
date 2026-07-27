@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_AETHER_CRYSTAL",
+  "Name": "Aether Crystal Condensation",
+  "Description": "Condense raw Aether energy into a stable crystal matrix.",
+  "Ingredients": [
+    "Aether_Ore",
+    "Gold_Essence"
+  ],
+  "OutputType": "Material"
+}

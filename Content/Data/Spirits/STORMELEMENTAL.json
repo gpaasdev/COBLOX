@@ -1,0 +1,8 @@
+{
+  "Id": "SP_STORM_ELEMENTAL",
+  "Name": "Storm Elemental",
+  "Rarity": "Rare",
+  "Element": "Lightning",
+  "DropRate": "2.0%",
+  "Description": "Wujud fisik dari badai petir."
+}

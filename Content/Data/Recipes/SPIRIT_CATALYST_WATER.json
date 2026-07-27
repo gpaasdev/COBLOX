@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_SPIRIT_CATALYST_WATER",
+  "Name": "Water Spirit Catalyst",
+  "Description": "Synthesise a Water Catalyst from Aether and cooling minerals.",
+  "Ingredients": [
+    "Aether_Crystal",
+    "Copper_Refined",
+    "Iron_Vapor"
+  ],
+  "OutputType": "Catalyst"
+}

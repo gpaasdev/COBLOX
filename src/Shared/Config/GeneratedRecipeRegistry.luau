@@ -14,12 +14,324 @@ function RecipeRegistry.GetAll(): { [string]: RecipeRegistryDefinition }
 	return RecipeRegistry
 end
 
-RecipeRegistry["RCP_FERRIUM"] = {
-	Id = "RCP_FERRIUM",
-	Name = "Ferrium Alloy Synthesis",
-	Description = "Basic synthesis for creating industrial-grade Ferrium.",
-	Ingredients = {"Iron", "Carbon", "Heat"},
+RecipeRegistry["RCP_ABYSSAL_PASS"] = {
+	Id = "RCP_ABYSSAL_PASS",
+	Name = "Abyssal Biome Pass",
+	Description = "Forge a pass for entry into Abyssal-tier biomes.",
+	Ingredients = {"Obsidian_Singularity", "Adamantite_Alloy"},
+	OutputType = "BiomePass",
+}
+
+RecipeRegistry["RCP_ADAMANTITE_ALLOY"] = {
+	Id = "RCP_ADAMANTITE_ALLOY",
+	Name = "Adamantite Alloy Forge",
+	Description = "Forge the hardest known alloy from Adamantite shards and Mythril dust.",
+	Ingredients = {"Adamantite_Shard", "Mythril_Dust"},
 	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_ADAMANTITE_REFINED"] = {
+	Id = "RCP_ADAMANTITE_REFINED",
+	Name = "Adamantite Refinement",
+	Description = "Refine Adamantite Ore through extreme heat and pressure.",
+	Ingredients = {"Adamantite_Ore", "Gold_Vapor", "Iron_Crystal"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_AETHER_CRYSTAL"] = {
+	Id = "RCP_AETHER_CRYSTAL",
+	Name = "Aether Crystal Condensation",
+	Description = "Condense raw Aether energy into a stable crystal matrix.",
+	Ingredients = {"Aether_Ore", "Gold_Essence"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_AETHER_ESSENCE"] = {
+	Id = "RCP_AETHER_ESSENCE",
+	Name = "Aether Essence Distillation",
+	Description = "Distil Aether Crystal into pure Aether Essence for advanced reactions.",
+	Ingredients = {"Aether_Crystal", "Copper_Vapor"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_AETHER_MATRIX"] = {
+	Id = "RCP_AETHER_MATRIX",
+	Name = "Aether Matrix Weaving",
+	Description = "Weave Aether Essence and Iron Matrix into a stable dimensional fabric.",
+	Ingredients = {"Aether_Essence", "Iron_Matrix"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_AETHER_SINGULARITY"] = {
+	Id = "RCP_AETHER_SINGULARITY",
+	Name = "Aether Singularity Collapse",
+	Description = "Collapse an Aether Matrix into a dense Aether Singularity node.",
+	Ingredients = {"Aether_Matrix", "Obsidian_Crystal"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_AURA_POTION_MAJOR"] = {
+	Id = "RCP_AURA_POTION_MAJOR",
+	Name = "Major Aura Potion",
+	Description = "A potent Aura Energy potion from rare refined essences.",
+	Ingredients = {"Gold_Essence", "Mythril_Essence", "Aether_Essence"},
+	OutputType = "Consumable",
+}
+
+RecipeRegistry["RCP_AURA_POTION_MINOR"] = {
+	Id = "RCP_AURA_POTION_MINOR",
+	Name = "Minor Aura Potion",
+	Description = "A small Aura Energy potion crafted from common materials.",
+	Ingredients = {"Iron_Essence", "Copper_Essence"},
+	OutputType = "Consumable",
+}
+
+RecipeRegistry["RCP_CELESTIAL_KEYSTONE"] = {
+	Id = "RCP_CELESTIAL_KEYSTONE",
+	Name = "Celestial Keystone",
+	Description = "Craft a Keystone to unlock Celestial Sector 5 biomes.",
+	Ingredients = {"Aether_Singularity", "Gold_Singularity", "Mythril_Singularity"},
+	OutputType = "BiomePass",
+}
+
+RecipeRegistry["RCP_COPPER_ALLOY"] = {
+	Id = "RCP_COPPER_ALLOY",
+	Name = "Copper Alloy Casting",
+	Description = "Cast Copper Shards and Iron Refined into Copper Alloy ingots.",
+	Ingredients = {"Copper_Shard", "Iron_Refined"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_COPPER_SHARD"] = {
+	Id = "RCP_COPPER_SHARD",
+	Name = "Copper Shard Extraction",
+	Description = "Refine raw Copper Ore into Copper Shards via controlled heating.",
+	Ingredients = {"Copper_Ore", "Heat"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_CRYO_REAGENT"] = {
+	Id = "RCP_CRYO_REAGENT",
+	Name = "Cryo Reagent",
+	Description = "Produce a Cryo Reagent for CryoCooler and low-temperature reactions.",
+	Ingredients = {"Iron_Vapor", "Copper_Vapor", "Gold_Vapor"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_FERRIUM_ALLOY"] = {
+	Id = "RCP_FERRIUM_ALLOY",
+	Name = "Ferrium Alloy Synthesis",
+	Description = "Fuse Iron and AetherCrystal to produce industrial-grade Ferrium Alloy.",
+	Ingredients = {"Iron", "AetherCrystal"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_FUSION_CORE_EPIC"] = {
+	Id = "RCP_FUSION_CORE_EPIC",
+	Name = "Epic Fusion Core",
+	Description = "Core for fusing two Rare Spirits into an Epic Spirit.",
+	Ingredients = {"Adamantite_Crystal", "Aether_Matrix", "Mythril_Matrix"},
+	OutputType = "FusionCore",
+}
+
+RecipeRegistry["RCP_FUSION_CORE_LEGENDARY"] = {
+	Id = "RCP_FUSION_CORE_LEGENDARY",
+	Name = "Legendary Fusion Core",
+	Description = "The rarest core — fuse two Epic Spirits into a Legendary.",
+	Ingredients = {"Aether_Singularity", "Adamantite_Singularity", "Mythril_Singularity"},
+	OutputType = "FusionCore",
+}
+
+RecipeRegistry["RCP_FUSION_CORE_RARE"] = {
+	Id = "RCP_FUSION_CORE_RARE",
+	Name = "Rare Fusion Core",
+	Description = "Core for fusing two Uncommon Spirits into a Rare Spirit.",
+	Ingredients = {"Mythril_Crystal", "Aether_Crystal", "Obsidian_Shard"},
+	OutputType = "FusionCore",
+}
+
+RecipeRegistry["RCP_FUSION_CORE_UNCOMMON"] = {
+	Id = "RCP_FUSION_CORE_UNCOMMON",
+	Name = "Uncommon Fusion Core",
+	Description = "Core required for fusing two Common Spirits into an Uncommon.",
+	Ingredients = {"Iron_Crystal", "Copper_Crystal", "Gold_Shard"},
+	OutputType = "FusionCore",
+}
+
+RecipeRegistry["RCP_GOLD_ALLOY"] = {
+	Id = "RCP_GOLD_ALLOY",
+	Name = "Gold Alloy Fusion",
+	Description = "Combine Gold Ore with Aether Dust for a luminous alloy.",
+	Ingredients = {"Gold_Ore", "Aether_Dust"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_GUILD_BANNER"] = {
+	Id = "RCP_GUILD_BANNER",
+	Name = "Guild Banner",
+	Description = "A decorative banner for displaying Coven identity in the Sanctum.",
+	Ingredients = {"Gold_Alloy", "Mythril_Alloy", "Copper_Alloy"},
+	OutputType = "Decoration",
+}
+
+RecipeRegistry["RCP_GUILD_STRONGBOX"] = {
+	Id = "RCP_GUILD_STRONGBOX",
+	Name = "Guild Strongbox",
+	Description = "A secure container for Coven shared resources.",
+	Ingredients = {"Adamantite_Alloy", "Iron_Refined", "Obsidian_Crystal"},
+	OutputType = "Decoration",
+}
+
+RecipeRegistry["RCP_IRON_REFINED"] = {
+	Id = "RCP_IRON_REFINED",
+	Name = "Iron Refinement",
+	Description = "Smelt Iron Ore into purified Iron Refined ingots.",
+	Ingredients = {"Iron_Ore", "Coal"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_MYTHRIL_REFINED"] = {
+	Id = "RCP_MYTHRIL_REFINED",
+	Name = "Mythril Refinement",
+	Description = "Refine Mythril Ore with Aether Dust to produce purified Mythril.",
+	Ingredients = {"Mythril_Ore", "Aether_Dust"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_MYTHRIL_SHARD"] = {
+	Id = "RCP_MYTHRIL_SHARD",
+	Name = "Mythril Shard Synthesis",
+	Description = "Crystallise Mythril Ore under high pressure into Mythril Shards.",
+	Ingredients = {"Mythril_Ore", "Iron_Crystal"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_OBSIDIAN_CRYSTAL"] = {
+	Id = "RCP_OBSIDIAN_CRYSTAL",
+	Name = "Obsidian Crystal Growth",
+	Description = "Grow Obsidian Crystals from volcanic ore and AetherCrystal substrate.",
+	Ingredients = {"Obsidian_Ore", "AetherCrystal"},
+	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_PURIFICATION_CRYSTAL"] = {
+	Id = "RCP_PURIFICATION_CRYSTAL",
+	Name = "Purification Crystal",
+	Description = "Craft a Purification Crystal for depositing Coins into the Aura Vault.",
+	Ingredients = {"Gold_Crystal", "Mythril_Crystal", "Aether_Crystal"},
+	OutputType = "Currency",
+}
+
+RecipeRegistry["RCP_QUANTUM_ESSENCE"] = {
+	Id = "RCP_QUANTUM_ESSENCE",
+	Name = "Quantum Essence Synthesis",
+	Description = "Synthesise Quantum Essence by collapsing multiple Singularities together.",
+	Ingredients = {"Aether_Singularity", "Adamantite_Singularity", "Mythril_Singularity"},
+	OutputType = "Research",
+}
+
+RecipeRegistry["RCP_REACTOR_CORE"] = {
+	Id = "RCP_REACTOR_CORE",
+	Name = "Reactor Core Assembly",
+	Description = "Assemble a Reactor Core from refined metals and an Aether Matrix.",
+	Ingredients = {"Iron_Refined", "Copper_Alloy", "Aether_Matrix"},
+	OutputType = "Machine",
+}
+
+RecipeRegistry["RCP_REBIRTH_CATALYST"] = {
+	Id = "RCP_REBIRTH_CATALYST",
+	Name = "Rebirth Catalyst",
+	Description = "A powerful catalyst that enables Rebirth without spending tokens.",
+	Ingredients = {"Aether_Singularity", "Adamantite_Singularity", "Gold_Singularity"},
+	OutputType = "Consumable",
+}
+
+RecipeRegistry["RCP_SANCTUM_TOKEN"] = {
+	Id = "RCP_SANCTUM_TOKEN",
+	Name = "Sanctum Token",
+	Description = "Forge a Sanctum Token redeemable in the Battlepass reward track.",
+	Ingredients = {"Gold_Refined", "Mythril_Alloy"},
+	OutputType = "Currency",
+}
+
+RecipeRegistry["RCP_SHADOW_RAID_TOKEN"] = {
+	Id = "RCP_SHADOW_RAID_TOKEN",
+	Name = "Shadow Raid Token",
+	Description = "Token required to initiate a Shadow Raid expedition.",
+	Ingredients = {"Void_Crystal_Compound", "Iron_Matrix"},
+	OutputType = "RaidToken",
+}
+
+RecipeRegistry["RCP_SMELTER_UPGRADE"] = {
+	Id = "RCP_SMELTER_UPGRADE",
+	Name = "Smelter Efficiency Upgrade",
+	Description = "Upgrade a Smelter using Adamantite Alloy and Gold Crystal components.",
+	Ingredients = {"Adamantite_Alloy", "Gold_Crystal"},
+	OutputType = "Machine",
+}
+
+RecipeRegistry["RCP_SPIRIT_CATALYST_EARTH"] = {
+	Id = "RCP_SPIRIT_CATALYST_EARTH",
+	Name = "Earth Spirit Catalyst",
+	Description = "Bind Earth element energies into a catalyst for Earth Spirit hatching.",
+	Ingredients = {"Iron_Crystal", "Copper_Crystal", "Obsidian_Dust"},
+	OutputType = "Catalyst",
+}
+
+RecipeRegistry["RCP_SPIRIT_CATALYST_FIRE"] = {
+	Id = "RCP_SPIRIT_CATALYST_FIRE",
+	Name = "Fire Spirit Catalyst",
+	Description = "Forge a Fire Catalyst from volcanic materials for Fire Spirit hatching.",
+	Ingredients = {"Obsidian_Ore", "Gold_Shard", "Aether_Vapor"},
+	OutputType = "Catalyst",
+}
+
+RecipeRegistry["RCP_SPIRIT_CATALYST_LIGHTNING"] = {
+	Id = "RCP_SPIRIT_CATALYST_LIGHTNING",
+	Name = "Lightning Spirit Catalyst",
+	Description = "Generate a Lightning Catalyst from high-conductivity alloys.",
+	Ingredients = {"Copper_Alloy", "Gold_Alloy", "Aether_Shard"},
+	OutputType = "Catalyst",
+}
+
+RecipeRegistry["RCP_SPIRIT_CATALYST_VOID"] = {
+	Id = "RCP_SPIRIT_CATALYST_VOID",
+	Name = "Void Spirit Catalyst",
+	Description = "Forge a Void Catalyst from Obsidian Singularity and Aether Matrix.",
+	Ingredients = {"Obsidian_Singularity", "Aether_Matrix", "Adamantite_Essence"},
+	OutputType = "Catalyst",
+}
+
+RecipeRegistry["RCP_SPIRIT_CATALYST_WATER"] = {
+	Id = "RCP_SPIRIT_CATALYST_WATER",
+	Name = "Water Spirit Catalyst",
+	Description = "Synthesise a Water Catalyst from Aether and cooling minerals.",
+	Ingredients = {"Aether_Crystal", "Copper_Refined", "Iron_Vapor"},
+	OutputType = "Catalyst",
+}
+
+RecipeRegistry["RCP_SYNTHESIZER_CORE"] = {
+	Id = "RCP_SYNTHESIZER_CORE",
+	Name = "Synthesizer Core",
+	Description = "Build a Synthesizer Core from Mythril Matrix and Aether Essence.",
+	Ingredients = {"Mythril_Matrix", "Aether_Essence", "Copper_Refined"},
+	OutputType = "Machine",
+}
+
+RecipeRegistry["RCP_TURBINE_BLADE"] = {
+	Id = "RCP_TURBINE_BLADE",
+	Name = "Turbine Blade Forging",
+	Description = "Forge high-efficiency Turbine Blades from Obsidian and Adamantite.",
+	Ingredients = {"Obsidian_Refined", "Adamantite_Crystal"},
+	OutputType = "Machine",
+}
+
+RecipeRegistry["RCP_VOID_CRYSTAL_COMPOUND"] = {
+	Id = "RCP_VOID_CRYSTAL_COMPOUND",
+	Name = "Void Crystal Compound",
+	Description = "Combine Void-tier materials into a compound for Shadow Raid entry.",
+	Ingredients = {"Obsidian_Matrix", "Adamantite_Matrix", "Aether_Vapor"},
+	OutputType = "Research",
 }
 
 return RecipeRegistry

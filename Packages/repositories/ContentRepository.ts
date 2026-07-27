@@ -1,91 +1,96 @@
-import { MarketAsset, Recipe, Spirit, Badge, LeaderboardPlayer } from "./types";
-import latestRegistry from "../../registry/latest.json";
+/**
+ * ContentRepository.ts
+ * Server-side data layer for COBLOX content.
+ * Reads from the web/src/data/registry/ directory which is the authoritative
+ * output of tools/content_pipeline.py.
+ *
+ * Import this file from Next.js server components/routes ONLY (Node.js env).
+ * The registry path is resolved relative to the project root at runtime.
+ */
+
+import { MarketAsset, Recipe, Spirit, Badge } from "./types";
 import fs from "fs";
 import path from "path";
 
-const ROBLOX_UNIVERSE_ID = process.env.ROBLOX_UNIVERSE_ID || "10545905192";
-const ROBLOX_OPEN_CLOUD_API_KEY = process.env.ROBLOX_OPEN_CLOUD_API_KEY || process.env.ROBLOX_OPENCLOUD_API_KEY;
-
-function loadLatestSnapshotLocal() {
-  try {
-    const snapshotFile = latestRegistry.snapshot_file;
-    const snapshotPath = path.join(process.cwd(), "registry", "snapshots", snapshotFile);
-    if (fs.existsSync(snapshotPath)) {
-      const data = fs.readFileSync(snapshotPath, "utf-8");
-      return JSON.parse(data);
-    }
-  } catch (err) {
-    console.warn("Failed to load local registry snapshot, falling back...", err);
+// Registry lives at web/src/data/registry/ relative to monorepo root.
+// When running inside Next.js (cwd = web/), resolve accordingly.
+function getRegistryDir(): string {
+  const candidates = [
+    path.join(process.cwd(), "src", "data", "registry"),          // next dev/build inside web/
+    path.join(process.cwd(), "web", "src", "data", "registry"),   // scripts run from repo root
+  ];
+  for (const dir of candidates) {
+    if (fs.existsSync(dir)) return dir;
   }
-  return null;
+  // Fallback: resolve relative to this file's location
+  return path.join(__dirname, "..", "..", "web", "src", "data", "registry");
+}
+
+function loadRegistry<T>(filename: string): T[] {
+  const registryDir = getRegistryDir();
+  const filePath = path.join(registryDir, filename);
+  try {
+    if (!fs.existsSync(filePath)) {
+      console.warn(`[ContentRepository] Registry file not found: ${filePath}`);
+      return [];
+    }
+    const raw = fs.readFileSync(filePath, "utf-8");
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    console.error(`[ContentRepository] Failed to load ${filename}:`, err);
+    return [];
+  }
 }
 
 export class ContentRepository {
   static async getMarketAssets(limit: number = 50): Promise<MarketAsset[]> {
-    const snapshot = loadLatestSnapshotLocal();
-    const items = snapshot?.market || [
-      {
-        Id: "MKT_VIP_PASS",
-        Name: "Sanctum VIP Pass",
-        Description: "Gain exclusive access to the upper Sanctum floors.",
-        Price: 500,
-        Currency: "Robux",
-        Category: "Gamepass",
-        ImageUrl: "rbxassetid://105075159736246"
-      }
-    ];
-
-    return items.slice(0, limit).map((m: any, idx: number) => ({
-      id: 500000 + idx,
+    const items = loadRegistry<any>("market.json");
+    return items.slice(0, limit).map((m, idx) => ({
+      id: m.Id ?? idx,
       name: m.Name,
       description: m.Description,
       price: m.Price,
       currency: m.Currency,
       category: m.Category,
-      slug: m.Id.toLowerCase().replace(/_/g, "-"),
-      imageUrl: m.ImageUrl
+      slug: String(m.Id).toLowerCase().replace(/_/g, "-"),
+      imageUrl: m.ImageUrl,
     }));
   }
 
   static async getRecipes(limit: number = 50): Promise<Recipe[]> {
-    const snapshot = loadLatestSnapshotLocal();
-    const recipes = snapshot?.recipes || [];
-
-    return recipes.slice(0, limit).map((r: any) => ({
+    const items = loadRegistry<any>("recipes.json");
+    return items.slice(0, limit).map((r) => ({
       id: r.Id,
       name: r.Name,
-      description: r.Description || "Synthesis recipe for transmutation.",
-      ingredients: r.Ingredients || [],
-      outputType: r.OutputType || "Material",
-      slug: r.Id.toLowerCase().replace(/_/g, "-")
+      description: r.Description ?? "",
+      ingredients: r.Ingredients ?? [],
+      outputType: r.OutputType ?? "Material",
+      slug: String(r.Id).toLowerCase().replace(/_/g, "-"),
     }));
   }
 
   static async getSpirits(limit: number = 50): Promise<Spirit[]> {
-    const snapshot = loadLatestSnapshotLocal();
-    const spirits = snapshot?.spirits || [];
-
-    return spirits.slice(0, limit).map((s: any) => ({
+    const items = loadRegistry<any>("spirits.json");
+    return items.slice(0, limit).map((s) => ({
       id: s.Id,
       name: s.Name,
       description: s.Description,
       rarity: s.Rarity,
       element: s.Element,
       dropRate: s.DropRate,
-      slug: s.Id.toLowerCase().replace(/_/g, "-")
+      slug: String(s.Id).toLowerCase().replace(/_/g, "-"),
     }));
   }
 
   static async getBadges(limit: number = 50): Promise<Badge[]> {
-    const snapshot = loadLatestSnapshotLocal();
-    const badges = snapshot?.badges || [];
-
-    return badges.slice(0, limit).map((b: any, idx: number) => ({
+    const items = loadRegistry<any>("badges.json");
+    return items.slice(0, limit).map((b) => ({
       id: b.Id,
       name: b.Name,
       description: b.Description,
       rarityPercent: b.RarityPercent,
-      slug: b.Id.toLowerCase().replace(/_/g, "-")
+      slug: String(b.Id).toLowerCase().replace(/_/g, "-"),
     }));
   }
 }

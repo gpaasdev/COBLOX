@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_GOLD_ALLOY",
+  "Name": "Gold Alloy Fusion",
+  "Description": "Combine Gold Ore with Aether Dust for a luminous alloy.",
+  "Ingredients": [
+    "Gold_Ore",
+    "Aether_Dust"
+  ],
+  "OutputType": "Material"
+}

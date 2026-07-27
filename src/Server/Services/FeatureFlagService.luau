@@ -53,11 +53,18 @@ function FeatureFlagService.IsBooleanFlagEnabled(flagName: string): boolean
 end
 
 function FeatureFlagService.IsDeveloper(userId: number): boolean
-	if userId <= 0 or (game.CreatorId > 0 and userId == game.CreatorId) then
+	-- Always grant developer access to the universe creator
+	if userId <= 0 then
+		return false
+	end
+	if game.CreatorId > 0 and userId == game.CreatorId then
 		return true
 	end
-	local devIds = { [1] = true, [2] = true }
-	return devIds[userId] or false
+	-- Authorised developer user IDs for COBLOX
+	local devIds: { [number]: boolean } = {
+		[11329819428] = true, -- gpaasdev (primary developer)
+	}
+	return devIds[userId] == true
 end
 
 return FeatureFlagService

@@ -158,6 +158,18 @@ function MonetizationService._ProcessReceipt(receiptInfo: { PlayerId: number, Pr
 		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 100, Currency = "ChronoSparks" })
 		MonetizationService._SendWebhook(player, productId, 100, "ChronoSparks")
 		success = true
+	elseif productId == MonetizationService.DevProducts.InstantEggHatch then
+		-- Trigger an instant hatch on the player's active egg slot
+		local EggService = require(ServerScriptService.Server.Services.EggService)
+		local hatchResult = EggService.InstantHatch(player)
+		if hatchResult then
+			DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 1, Currency = "EggHatch" })
+			MonetizationService._SendWebhook(player, productId, 1, "EggHatch")
+			success = true
+		else
+			-- No active egg or hatch failed — do not grant, let Roblox retry
+			return Enum.ProductPurchaseDecision.NotProcessedYet
+		end
 	elseif productId == MonetizationService.DevProducts.RebirthSkipToken then
 		EconomyService.AddCurrency(player, "RebirthTokens", 1)
 		DomainEventBus.Publish("PurchaseCompleted", player, { ProductId = productId, Amount = 1, Currency = "RebirthTokens" })

@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_SPIRIT_CATALYST_EARTH",
+  "Name": "Earth Spirit Catalyst",
+  "Description": "Bind Earth element energies into a catalyst for Earth Spirit hatching.",
+  "Ingredients": [
+    "Iron_Crystal",
+    "Copper_Crystal",
+    "Obsidian_Dust"
+  ],
+  "OutputType": "Catalyst"
+}

@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_CRYO_REAGENT",
+  "Name": "Cryo Reagent",
+  "Description": "Produce a Cryo Reagent for CryoCooler and low-temperature reactions.",
+  "Ingredients": [
+    "Iron_Vapor",
+    "Copper_Vapor",
+    "Gold_Vapor"
+  ],
+  "OutputType": "Material"
+}

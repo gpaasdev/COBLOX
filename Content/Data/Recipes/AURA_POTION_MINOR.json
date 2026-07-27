@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_AURA_POTION_MINOR",
+  "Name": "Minor Aura Potion",
+  "Description": "A small Aura Energy potion crafted from common materials.",
+  "Ingredients": [
+    "Iron_Essence",
+    "Copper_Essence"
+  ],
+  "OutputType": "Consumable"
+}

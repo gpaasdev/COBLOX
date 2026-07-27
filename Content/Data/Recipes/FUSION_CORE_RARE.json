@@ -1,0 +1,11 @@
+{
+  "Id": "RCP_FUSION_CORE_RARE",
+  "Name": "Rare Fusion Core",
+  "Description": "Core for fusing two Uncommon Spirits into a Rare Spirit.",
+  "Ingredients": [
+    "Mythril_Crystal",
+    "Aether_Crystal",
+    "Obsidian_Shard"
+  ],
+  "OutputType": "FusionCore"
+}

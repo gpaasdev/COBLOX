@@ -1,0 +1,10 @@
+{
+  "Id": "RCP_FERRIUM_ALLOY",
+  "Name": "Ferrium Alloy Synthesis",
+  "Description": "Fuse Iron and AetherCrystal to produce industrial-grade Ferrium Alloy.",
+  "Ingredients": [
+    "Iron",
+    "AetherCrystal"
+  ],
+  "OutputType": "Material"
+}
