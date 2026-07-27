@@ -55,6 +55,8 @@ local EggConfigs = {
 
 function EggService.Init()
 	print("[EggService] Initializing Server-Authoritative Hatching Engine with RemoteConfig & LiveOps Luck Modifiers...")
+	-- Pre-create the EggHatchedVisual unreliable remote so clients don't time out waiting for it
+	NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 end
 
 function EggService.Start()
@@ -209,8 +211,10 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 	EggService.EggHatched:Fire(player, eggId, createRes.Data)
 	
 	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
-	local visualRemote = NetChannels.GetRemoteEvent("EggHatchedVisual")
-	visualRemote:FireClient(player, createRes.Data, PetData[selectedPetId])
+	local visualRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
+	if visualRemote then
+		visualRemote:FireClient(player, createRes.Data, PetData[selectedPetId])
+	end
 
 	return {
 		Success = true,

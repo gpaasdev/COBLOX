@@ -9,12 +9,15 @@ local localPlayer = Players.LocalPlayer
 function StreamingController.Init()
 	print("[StreamingController] Initializing Mobile Streaming & Integrity Manager...")
 
-	-- Listen for Workspace Streaming Pause events
-	Workspace.ItemChanged:Connect(function(property)
-		if property == "StreamingPauseMode" then
+	-- Listen for Workspace Streaming Pause events (wrapped in pcall since StreamingPauseMode is not scriptable on all platforms)
+	local ok = pcall(function()
+		Workspace:GetPropertyChangedSignal("StreamingPauseMode"):Connect(function()
 			print("[StreamingController] Workspace Streaming Mode update detected.")
-		end
+		end)
 	end)
+	if not ok then
+		warn("[StreamingController] StreamingPauseMode signal unavailable on this platform, skipping listener.")
+	end
 end
 
 function StreamingController.RequestRegionStream(targetPosition: Vector3): boolean

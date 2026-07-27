@@ -30,7 +30,7 @@ end
 
 function MonetizationController.Start()
 	-- Listen for local hatch triggers to track auto-hatch recommendation
-	local hatchRemote = NetChannels.GetRemoteEvent("EggHatchedVisual")
+	local hatchRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 	if hatchRemote then
 		hatchRemote.OnClientEvent:Connect(function(eggId: string, petId: string)
 			manualHatchCount += 1

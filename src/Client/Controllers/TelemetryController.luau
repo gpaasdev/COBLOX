@@ -22,7 +22,26 @@ function TelemetryController.Init(Registry: any)
 end
 
 function TelemetryController.Start(Registry: any)
-	print("[TelemetryController] Started tracking telemetry.")
+	local UserInputService = game:GetService("UserInputService")
+	local GuiService = game:GetService("GuiService")
+	local ReplicatedStorage = game:GetService("ReplicatedStorage")
+	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+	
+	local deviceType = "Desktop"
+	if GuiService:IsTenFootInterface() then
+		deviceType = "Console"
+	elseif UserInputService.TouchEnabled and not UserInputService.MouseEnabled then
+		deviceType = "Mobile"
+	elseif UserInputService.VREnabled then
+		deviceType = "VR"
+	end
+
+	local handshakeEvent = NetChannels.GetRemoteEvent("ClientHandshake")
+	if handshakeEvent then
+		handshakeEvent:FireServer(deviceType)
+	end
+	
+	print("[TelemetryController] Started tracking telemetry. Device:", deviceType)
 end
 
 function TelemetryController.Track(category: string, action: string, label: string?, value: number?)

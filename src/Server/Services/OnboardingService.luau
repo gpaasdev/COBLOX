@@ -38,9 +38,13 @@ function OnboardingService.Start()
 
 	-- Handle FTUE advancement from client
 	local advanceRemote = NetChannels.GetRemoteEvent("AdvanceFTUE")
+	local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
 	if advanceRemote then
 		advanceRemote.OnServerEvent:Connect(function(player, stateIndex)
 			if type(stateIndex) ~= "number" then return end
+			if stateIndex < 1 or stateIndex > #stepNames then return end
+			if not RateLimitService.CheckRateLimit(player, "AdvanceFTUE", 1) then return end
+			
 			OnboardingService.TriggerState(player, stateIndex)
 		end)
 	end

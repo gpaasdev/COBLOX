@@ -16,6 +16,13 @@ local startupOrder = {
 	"LightingController",
 	"ActionMenuController",
 	"ARLensController",
+	"UIController",
+	"LocalizationController",
+	"TopbarController",
+	"AudioController",
+	"CombatController",
+	"GraphicsOptimizationController",
+	"FTUEController",
 }
 
 -- 1. Register Controllers
@@ -30,6 +37,39 @@ ControllerRegistry.RegisterController("UIController", require(controllersFolder.
 ControllerRegistry.RegisterController("TopbarController", require(controllersFolder.TopbarController))
 ControllerRegistry.RegisterController("AudioController", require(controllersFolder.AudioController))
 ControllerRegistry.RegisterController("CombatController", require(controllersFolder.CombatController))
+ControllerRegistry.RegisterController("LocalizationController", require(controllersFolder.LocalizationController))
+ControllerRegistry.RegisterController("GraphicsOptimizationController", require(controllersFolder.GraphicsOptimizationController))
+ControllerRegistry.RegisterController("AdminDashboardController", require(controllersFolder.AdminDashboardController))
+ControllerRegistry.RegisterController("AlchemyController", require(controllersFolder.AlchemyController))
+ControllerRegistry.RegisterController("BroadcastBannerController", require(controllersFolder.BroadcastBannerController))
+ControllerRegistry.RegisterController("CodexController", require(controllersFolder.CodexController))
+ControllerRegistry.RegisterController("CovenController", require(controllersFolder.CovenController))
+ControllerRegistry.RegisterController("CutsceneController", require(controllersFolder.CutsceneController))
+ControllerRegistry.RegisterController("DomainExpansionController", require(controllersFolder.DomainExpansionController))
+ControllerRegistry.RegisterController("EggRenderController", require(controllersFolder.EggRenderController))
+ControllerRegistry.RegisterController("FTUEController", require(controllersFolder.FTUEController))
+ControllerRegistry.RegisterController("InteractionController", require(controllersFolder.InteractionController))
+ControllerRegistry.RegisterController("KarmaContractController", require(controllersFolder.KarmaContractController))
+ControllerRegistry.RegisterController("LODRenderController", require(controllersFolder.LODRenderController))
+ControllerRegistry.RegisterController("MiscEventsController", require(controllersFolder.MiscEventsController))
+ControllerRegistry.RegisterController("MonetizationController", require(controllersFolder.MonetizationController))
+ControllerRegistry.RegisterController("MutationController", require(controllersFolder.MutationController))
+ControllerRegistry.RegisterController("OfflineEarningsController", require(controllersFolder.OfflineEarningsController))
+ControllerRegistry.RegisterController("PerformanceMonitorController", require(controllersFolder.PerformanceMonitorController))
+ControllerRegistry.RegisterController("PetRenderController", require(controllersFolder.PetRenderController))
+ControllerRegistry.RegisterController("PlacementController", require(controllersFolder.PlacementController))
+ControllerRegistry.RegisterController("PolicyComplianceController", require(controllersFolder.PolicyComplianceController))
+ControllerRegistry.RegisterController("PotionVaultController", require(controllersFolder.PotionVaultController))
+ControllerRegistry.RegisterController("QuestController", require(controllersFolder.QuestController))
+ControllerRegistry.RegisterController("ResourceController", require(controllersFolder.ResourceController))
+ControllerRegistry.RegisterController("ShadowRaidController", require(controllersFolder.ShadowRaidController))
+ControllerRegistry.RegisterController("StealController", require(controllersFolder.StealController))
+ControllerRegistry.RegisterController("StoreController", require(controllersFolder.StoreController))
+ControllerRegistry.RegisterController("StreamingController", require(controllersFolder.StreamingController))
+ControllerRegistry.RegisterController("SynthesisController", require(controllersFolder.SynthesisController))
+ControllerRegistry.RegisterController("TradeController", require(controllersFolder.TradeController))
+ControllerRegistry.RegisterController("TutorialController", require(controllersFolder.TutorialController))
+ControllerRegistry.RegisterController("TycoonRenderController", require(controllersFolder.TycoonRenderController))
 
 print("==================================================")
 print("[COBLOX Client Bootstrap] Initializing Controllers via ControllerRegistry...")

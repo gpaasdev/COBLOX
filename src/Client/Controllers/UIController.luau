@@ -94,6 +94,16 @@ function UIController._CreateHUD()
 	questBanner.ZIndex = 55
 	questBanner.Parent = mainScreenGui
 
+	local questGradient = Instance.new(\"UIGradient\")
+	questGradient.Rotation = 90
+	questGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	questGradient.Parent = questBanner
+
+	local questPadding = Instance.new(\"UIPadding\")
+	questPadding.PaddingLeft = UDim.new(0, 10)
+	questPadding.PaddingRight = UDim.new(0, 10)
+	questPadding.Parent = questBanner
+
 	local questCorner = Instance.new("UICorner")
 	questCorner.CornerRadius = UDim.new(0, 10)
 	questCorner.Parent = questBanner
@@ -154,6 +164,11 @@ function UIController._CreateHUD()
 	auraBar.ZIndex = 50
 	auraBar.Parent = mainScreenGui
 
+	local auraGradient = Instance.new(\"UIGradient\")
+	auraGradient.Rotation = 90
+	auraGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	auraGradient.Parent = auraBar
+
 	local auraCorner = Instance.new("UICorner")
 	auraCorner.CornerRadius = UDim.new(0, 12)
 	auraCorner.Parent = auraBar
@@ -189,6 +204,11 @@ function UIController._CreateHUD()
 	sparksBar.BorderSizePixel = 0
 	sparksBar.ZIndex = 50
 	sparksBar.Parent = mainScreenGui
+
+	local sparksGradient = Instance.new(\"UIGradient\")
+	sparksGradient.Rotation = 90
+	sparksGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	sparksGradient.Parent = sparksBar
 
 	local sparksCorner = Instance.new("UICorner")
 	sparksCorner.CornerRadius = UDim.new(0, 12)
@@ -363,6 +383,11 @@ function UIController._CreateHUD()
 	notificationLabel.Visible = false
 	notificationLabel.Parent = mainScreenGui
 
+	local notifGradient = Instance.new(\"UIGradient\")
+	notifGradient.Rotation = 90
+	notifGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	notifGradient.Parent = notificationLabel
+
 	local notifCorner = Instance.new("UICorner")
 	notifCorner.CornerRadius = UDim.new(0, 10)
 	notifCorner.Parent = notificationLabel
@@ -451,7 +476,7 @@ function UIController._CreateHUD()
 				local char = localPlayer.Character
 				if char and char:FindFirstChild("HumanoidRootPart") then
 					local hrp = char.HumanoidRootPart
-					hrp.Velocity = hrp.CFrame.LookVector * 100 -- Propel forward
+					hrp.AssemblyLinearVelocity = hrp.CFrame.LookVector * 100 -- Propel forward
 					
 					-- Tactile Audio & Visual Polish
 					local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)

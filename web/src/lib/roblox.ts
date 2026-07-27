@@ -208,59 +208,20 @@ export async function getTopPlayers(limit: number = 50): Promise<LeaderboardPlay
 /**
  * Fetch Market Assets (Gamepasses/Products) for pSEO
  */
+import { ContentRepository } from "../../../packages/repositories/ContentRepository";
+
 export async function getMarketAssets(limit: number = 50): Promise<MarketAsset[]> {
-  // In a real implementation, this would fetch from Roblox Catalog API or Open Cloud
-  // For now, we mock the pSEO data structure
-  return Array.from({ length: limit }).map((_, idx) => ({
-    id: 500000 + idx,
-    name: idx === 0 ? "Celestial Phoenix VIP" : `Exclusive Asset ${idx + 1}`,
-    description: `Dapatkan keuntungan eksklusif di COBLOX dengan ${idx === 0 ? "Celestial Phoenix VIP" : `Exclusive Asset ${idx + 1}`}.`,
-    price: (idx + 1) * 100,
-    currency: "Robux",
-    category: idx % 2 === 0 ? "Gamepass" : "Developer Product",
-    slug: idx === 0 ? "celestial-phoenix-vip" : `exclusive-asset-${idx + 1}`,
-    imageUrl: "https://raw.githubusercontent.com/gpaasdev/COBLOX/main/.github/assets/game_thumbnail_16x9.png",
-  }));
+  return ContentRepository.getMarketAssets(limit);
 }
 
-/**
- * Fetch Recipes for pSEO
- */
 export async function getRecipes(limit: number = 50): Promise<Recipe[]> {
-  return Array.from({ length: limit }).map((_, idx) => ({
-    id: `REC-${idx + 1}`,
-    name: idx === 0 ? "Ramuan Aura Murni" : `Resep Rahasia ${idx + 1}`,
-    description: `Cara membuat ${idx === 0 ? "Ramuan Aura Murni" : `Resep Rahasia ${idx + 1}`} menggunakan kombinasi elemen langka.`,
-    ingredients: ["2x Kristal Air", "1x Api Abadi", "50 Gold"],
-    outputType: "Potion",
-    slug: idx === 0 ? "ramuan-aura-murni" : `resep-rahasia-${idx + 1}`,
-  }));
+  return ContentRepository.getRecipes(limit);
 }
 
-/**
- * Fetch Spirits/Pets for pSEO
- */
 export async function getSpirits(limit: number = 50): Promise<Spirit[]> {
-  return Array.from({ length: limit }).map((_, idx) => ({
-    id: `SPR-${idx + 1}`,
-    name: idx === 0 ? "Void Dragon" : `Spirit Mistis ${idx + 1}`,
-    description: `Kawan magis legendaris yang akan membantumu mengekstrak aura lebih cepat.`,
-    rarity: idx % 5 === 0 ? "Mythical" : "Rare",
-    element: idx % 2 === 0 ? "Dark" : "Light",
-    dropRate: idx % 5 === 0 ? "0.1%" : "5.0%",
-    slug: idx === 0 ? "void-dragon" : `spirit-mistis-${idx + 1}`,
-  }));
+  return ContentRepository.getSpirits(limit);
 }
 
-/**
- * Fetch Badges for pSEO
- */
 export async function getBadges(limit: number = 50): Promise<Badge[]> {
-  return Array.from({ length: limit }).map((_, idx) => ({
-    id: 212450000 + idx,
-    name: idx === 0 ? "Alchemist Tertinggi" : `Pencapaian Rahasia ${idx + 1}`,
-    description: `Diberikan kepada pemain yang berhasil menyelesaikan tantangan alkimia tingkat akhir.`,
-    rarityPercent: idx === 0 ? 0.05 : 10 + idx,
-    slug: idx === 0 ? "alchemist-tertinggi" : `pencapaian-rahasia-${idx + 1}`,
-  }));
+  return ContentRepository.getBadges(limit);
 }

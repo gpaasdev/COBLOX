@@ -77,31 +77,55 @@ function AudioController.PlayBGM(soundKey: string, fadeTime: number?)
 		return
 	end
 
+	-- FASE 6 FIX: Reuse 2 fixed BGM slots instead of Instance.new() every call
+	-- Slot A = currentBGMSound, Slot B = _bgmNextSlot
+	-- This prevents a new Sound instance being created on every scene transition.
+	if not AudioController._bgmSlotA then
+		AudioController._bgmSlotA = Instance.new("Sound")
+		AudioController._bgmSlotA.Name = "BGM_SlotA"
+		AudioController._bgmSlotA.Looped = true
+		AudioController._bgmSlotA.Volume = 0
+		AudioController._bgmSlotA.SoundGroup = bgmGroup
+		AudioController._bgmSlotA.Parent = SoundService
+	end
+	if not AudioController._bgmSlotB then
+		AudioController._bgmSlotB = Instance.new("Sound")
+		AudioController._bgmSlotB.Name = "BGM_SlotB"
+		AudioController._bgmSlotB.Looped = true
+		AudioController._bgmSlotB.Volume = 0
+		AudioController._bgmSlotB.SoundGroup = bgmGroup
+		AudioController._bgmSlotB.Parent = SoundService
+	end
+
+	-- Pick the inactive slot for the new BGM
 	local oldSound = currentBGMSound
+	local newSound = if currentBGMSound == AudioController._bgmSlotA
+		then AudioController._bgmSlotB
+		else AudioController._bgmSlotA
+
+	-- Assign new track to the inactive slot and play
+	newSound.SoundId = soundId
+	newSound.Volume = 0
+	newSound:Stop()
+	newSound:Play()
+
+	-- Crossfade: fade out old, fade in new
 	if oldSound then
 		local fadeOutTween = TweenService:Create(oldSound, TweenInfo.new(duration, Enum.EasingStyle.Sine), { Volume = 0 })
 		fadeOutTween:Play()
 		fadeOutTween.Completed:Connect(function()
 			oldSound:Stop()
-			oldSound:Destroy()
+			-- Don't Destroy — reuse on next call
 		end)
 	end
 
-	local newSound = Instance.new("Sound")
-	newSound.Name = string.format("BGM_%s", soundKey)
-	newSound.SoundId = soundId
-	newSound.Volume = 0
-	newSound.Looped = true
-	newSound.SoundGroup = bgmGroup
-	newSound.Parent = SoundService
+	local fadeInTween = TweenService:Create(newSound, TweenInfo.new(duration, Enum.EasingStyle.Sine), { Volume = 0.7 })
+	fadeInTween:Play()
 
 	currentBGMSound = newSound
 	currentBGMKey = soundKey
-	newSound:Play()
-
-	local fadeInTween = TweenService:Create(newSound, TweenInfo.new(duration, Enum.EasingStyle.Sine), { Volume = 0.7 })
-	fadeInTween:Play()
 end
+
 
 function AudioController.PlayCraftingChime()
 	local soundId = AssetRegistry.GetAudioId("SFX", "CoinPurchase")

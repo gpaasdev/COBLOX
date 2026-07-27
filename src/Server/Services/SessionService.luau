@@ -25,25 +25,32 @@ function SessionService.Init()
 end
 
 function SessionService.Start()
+	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+	local handshakeEvent = NetChannels.GetRemoteEvent("ClientHandshake")
+	
 	Players.PlayerAdded:Connect(function(player: Player)
 		local sessionId = HttpService:GenerateGUID(false)
 		
-		-- Simplified device detection based on UserInputService info (if forwarded), otherwise mock it
-		-- In a real scenario, this involves a client handshake.
-		local device = "Desktop" 
-		
+		-- Device will be set when handshake is received
 		activeSessions[player.UserId] = {
 			sessionId = sessionId,
 			start = os.time(),
-			device = device,
+			device = "Unknown",
 			serverId = SERVER_ID
 		}
-		
-		-- DomainEventBus.Publish handled by AnalyticsService mostly, but we can emit a rich session start here
-		DomainEventBus.Publish("PlayerSessionStarted", player, {
-			sessionId = sessionId,
-			serverId = SERVER_ID
-		})
+	end)
+
+	handshakeEvent.OnServerEvent:Connect(function(player, deviceType: string)
+		local session = activeSessions[player.UserId]
+		if session then
+			session.device = type(deviceType) == "string" and deviceType or "Unknown"
+			
+			DomainEventBus.Publish("PlayerSessionStarted", player, {
+				sessionId = session.sessionId,
+				serverId = SERVER_ID,
+				device = session.device
+			})
+		end
 	end)
 
 	Players.PlayerRemoving:Connect(function(player: Player)

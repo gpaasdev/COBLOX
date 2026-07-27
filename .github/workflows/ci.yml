@@ -24,3 +24,12 @@ jobs:
           python3 scripts/validate_rgs_compliance.py
           python3 scripts/analyze_luau.py
           python3 scripts/analyze_remotes.py
+
+      - name: Secret Scanning Gate
+        run: |
+          echo "🔍 Checking for exposed secrets..."
+          if grep -rn --include="*.luau" "discord.com/api/webhooks" src/; then
+            echo "❌ ERROR: Hardcoded Discord Webhook found in src/" && exit 1
+          fi
+          echo "✅ Secret Scanning Passed."
+

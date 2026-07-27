@@ -7,6 +7,7 @@ local PlayerDataService = require(ServerScriptService.Server.Services.PlayerData
 local RecipeConfig = require(ReplicatedStorage.Shared.Configuration.RecipeConfig)
 local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)
 local Signal = require(ReplicatedStorage.Shared.Utility.Signal)
+local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
 
 type ServiceResult<T> = DataTypes.ServiceResult<T>
 
@@ -109,11 +110,26 @@ function RecipeService.CraftGrid3x3(player: Player, grid: { [number]: string }):
 		itemType = "Consumable"
 	end
 
-	local profile = res.Data
-	if not profile.Inventory then
-		profile.Inventory = {}
+	local updateResult = ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
+		if not profileData.Inventory then
+			profileData.Inventory = {}
+		end
+		-- Items sub-table for consumables/structures
+		if not profileData.Inventory.Items then
+			profileData.Inventory.Items = {}
+		end
+		profileData.Inventory.Items[craftedItem] = (profileData.Inventory.Items[craftedItem] or 0) + 1
+	end)
+	if not updateResult.Success then
+		return {
+			Success = false,
+			Category = "Infrastructure",
+			ErrorCode = "PROFILE_UPDATE_FAILED",
+			Message = "Failed to persist crafted item: " .. (updateResult.ErrorCode or "UNKNOWN"),
+			Data = nil,
+			Retryable = true,
+		}
 	end
-	profile.Inventory[craftedItem] = (profile.Inventory[craftedItem] or 0) + 1
 
 	player:SetAttribute("HasCraftedCrystal", true)
 

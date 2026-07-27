@@ -161,11 +161,11 @@ function WorldAssemblyService._AssembleWorld()
 		pillar.Anchored = true
 		pillar.CanCollide = false
 		pillar.Material = Enum.Material.Neon
-		pillar.Color = zoneData.AmbientLighting.OutdoorAmbient
 		pillar.Transparency = 0.5
 		pillar.Parent = zoneFolder
 
 		i += 1
+		if i % 2 == 0 then task.wait() end
 	end
 
 	-- 3. Build 6 Tycoon Plots in Zone 1

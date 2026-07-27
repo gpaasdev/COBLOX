@@ -27,7 +27,7 @@ function AlchemyController.RequestCraft(recipeId: string)
 	
 	print("[AlchemyController] Meminta Server untuk meracik:", recipe.Name)
 	
-	local craftRecipeEvent = NetChannels.GetRemoteFunction("CraftRecipe")
+	local craftRecipeEvent = NetChannels.GetRemoteFunction("RequestCraft")
 	if craftRecipeEvent then
 		local result = craftRecipeEvent:InvokeServer(recipeId)
 		
@@ -39,7 +39,7 @@ function AlchemyController.RequestCraft(recipeId: string)
 			-- Show error on UI
 		end
 	else
-		warn("[AlchemyController] RemoteFunction CraftRecipe tidak ditemukan.")
+		warn("[AlchemyController] RemoteFunction RequestCraft tidak ditemukan.")
 	end
 end
 

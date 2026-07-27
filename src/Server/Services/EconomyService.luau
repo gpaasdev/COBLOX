@@ -6,7 +6,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)
 local EconomyConfig = require(ReplicatedStorage.Shared.Configuration.EconomyConfig)
-local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
 local PlayerDataService = require(script.Parent.PlayerDataService)
 local RemoteConfigService = require(ServerScriptService.Server.Services.RemoteConfigService)
 local Signal = require(ReplicatedStorage.Shared.Utility.Signal)
@@ -128,7 +127,7 @@ function EconomyService.AddCurrency(player: Player, currencyType: string, amount
 	-- Hard Currency Double-Entry Ledger Logging per GDD Section 11
 	if currencyType == "Gems" or currencyType == "ChronoSparks" then
 		local finalBalance = wallet[currencyType]
-		if (initialBalance + amount) ~= finalBalance then
+		if math.abs((initialBalance + amount) - finalBalance) > 0.001 then
 			warn(string.format("[SECURITY ALERT] Hard currency mismatch for player %s! Flagging account.", player.Name))
 			res.Data.AdminFlagged = true
 			wallet[currencyType] = initialBalance -- Rollback transaction

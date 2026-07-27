@@ -41,7 +41,7 @@ function FTUEController.Start()
 	end)
 
 	-- 2. Local loops/events to check milestones
-	local hatchRemote = NetChannels.GetRemoteEvent("EggHatchedVisual")
+	local hatchRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 	if hatchRemote then
 		hatchRemote.OnClientEvent:Connect(function()
 			if not hasHatchedEgg then
@@ -254,7 +254,7 @@ function FTUEController.PlayCinematicIntro()
 	throwBtn.TextColor3 = Color3.fromRGB(255,255,255)
 	throwBtn.Font = Enum.Font.GothamBold
 	throwBtn.TextScaled = true
-	throwBtn.Parent = localPlayer:WaitForChild("PlayerGui"):WaitForChild("COBLOX_MainHUD")
+	throwBtn.Parent = localPlayer:WaitForChild("PlayerGui"):FindFirstChild("COBLOX_AlchemyHUD") or localPlayer:WaitForChild("PlayerGui")
 	
 	throwBtn.MouseButton1Click:Connect(function()
 		throwBtn:Destroy()
@@ -280,7 +280,11 @@ local milestone4: TextLabel
 
 function FTUEController._CreateQuestBar()
 	local playerGui = localPlayer:WaitForChild("PlayerGui")
-	local mainHUD = playerGui:WaitForChild("COBLOX_AlchemyHUD")
+	local mainHUD = playerGui:WaitForChild("COBLOX_AlchemyHUD", 10)
+	if not mainHUD then
+		warn("[FTUEController] COBLOX_AlchemyHUD not found after 10s, skipping quest bar creation")
+		return
+	end
 	
 	questHUD = Instance.new("Frame")
 	questHUD.Name = "FTUE_QuestBar"

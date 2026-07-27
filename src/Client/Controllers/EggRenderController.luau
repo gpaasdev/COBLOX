@@ -30,7 +30,7 @@ function EggRenderController.Init()
 end
 
 function EggRenderController.Start()
-	local hatchRemote = NetChannels.GetRemoteEvent("EggHatchedVisual")
+	local hatchRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 	if hatchRemote then
 		hatchRemote.OnClientEvent:Connect(function(podId: string, spiritId: string)
 			EggRenderController.PlayGenesisPodCutscene(podId, spiritId)

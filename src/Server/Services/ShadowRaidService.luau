@@ -141,7 +141,7 @@ function ShadowRaidService.Start()
 	end)
 
 	task.spawn(function()
-		local syncShieldStatusRemote = NetChannels.GetRemoteEvent("SyncShieldStatus")
+		local syncShieldStatusRemote = NetChannels.GetUnreliableRemoteEvent("SyncShieldStatus") -- Fase 10: visual-only sync
 		while true do
 			task.wait(5)
 			for _, player in ipairs(Players:GetPlayers()) do

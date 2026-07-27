@@ -23,7 +23,7 @@ PetService.PetAwakened = Signal.new()
 
 function PetService.Init()
 	print("[PetService] Initializing Pet Engine with Pet Awakening & Fusion Systems (Adopt Me/Blox Fruits Benchmark)...")
-	NetChannels.GetRemoteEvent("PetMiningEvent") -- Pre-register for Client
+	NetChannels.GetUnreliableRemoteEvent("PetMiningEvent") -- Pre-register (Fase 10: visual-only, no ordering guarantee needed)
 end
 
 function PetService.Start()
@@ -77,10 +77,10 @@ function PetService.AutoMiningLoop()
 							
 							-- Simulate mining yield
 							local yield = math.floor(10 * totalMultiplier)
-							EconomyService.GrantCoins(player, yield, "PetAutoMining")
+							EconomyService.AddCurrency(player, "Coins", yield, "PetAutoMining")
 							
-							-- Fire visual event
-							NetChannels.GetRemoteEvent("PetMiningEvent"):FireClient(player, nearestNode, equippedPets)
+							-- Fire visual event (Fase 10: UnreliableRemoteEvent for visual-only fire)
+							NetChannels.GetUnreliableRemoteEvent("PetMiningEvent"):FireClient(player, nearestNode, equippedPets)
 							
 							-- Active Mining in the Wild triggers Monster Aggro!
 							local MobService = require(script.Parent.MobService)
@@ -124,7 +124,7 @@ function PetService.CreatePet(player: Player, petId: string): ServiceResult<PetI
 		currentCount += 1
 	end
 
-	if currentCount >= inventory.MaxStorage then
+            if currentCount >= inventory.MaxInventorySlots then
 		return {
 			Success = false,
 			Category = "Validation",

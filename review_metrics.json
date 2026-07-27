@@ -1,10 +1,11 @@
 {
-  "total_luau_files": 179,
-  "total_web_files": 40,
-  "total_doc_files": 48,
+  "total_luau_files": 191,
+  "total_web_files": 55,
+  "total_doc_files": 54,
   "server_services": [
     "ExperimentService.luau",
     "RateLimitService.luau",
+    "LeaderboardService.luau",
     "KarmaContractService.luau",
     "AccessoryOptimizationService.luau",
     "TycoonService.luau",
@@ -113,13 +114,23 @@
     "MonetizationController.luau"
   ],
   "shared_configs": [
+    "GeneratedMarketRegistry.luau",
     "LODConfig.luau",
+    "GeneratedBiomeRegistry.luau",
+    "GeneratedSpiritRegistry.luau",
+    "GeneratedBadgeRegistry.luau",
+    "GeneratedReactionRegistry.luau",
+    "GeneratedMaterialRegistry.luau",
+    "GeneratedRecipeRegistry.luau",
+    "GeneratedResearchRegistry.luau",
+    "GeneratedMachineRegistry.luau",
     "MachineRegistry.luau",
     "Materials.luau",
     "MaterialRegistry.luau",
     "ReactionRegistry.luau",
     "CovenConfig.luau",
     "ClientConfig.luau",
-    "ResearchRegistry.luau"
+    "ResearchRegistry.luau",
+    "GeneratedCreatureRegistry.luau"
   ]
 }

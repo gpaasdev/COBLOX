@@ -15,7 +15,7 @@ function MutationController.Init()
 end
 
 function MutationController.Start()
-	local syncShakeRemote = NetChannels.GetRemoteEvent("TriggerScreenShake")
+	local syncShakeRemote = NetChannels.GetUnreliableRemoteEvent("TriggerScreenShake") -- Fase 10: visual-only
 	if syncShakeRemote then
 		syncShakeRemote.OnClientEvent:Connect(function(data: { Duration: number, Intensity: number })
 			MutationController.ApplyScreenShake(data.Duration or 5, data.Intensity or 1.0)

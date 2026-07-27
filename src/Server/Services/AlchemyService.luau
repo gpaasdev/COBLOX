@@ -9,7 +9,9 @@ local RecipeConfig = require(Shared:WaitForChild("Configuration"):WaitForChild("
 local NetChannels = require(Shared:WaitForChild("Network"):WaitForChild("NetChannels"))
 
 local PlayerDataService = require(script.Parent:WaitForChild("PlayerDataService"))
-local BroadcastService = require(script.Parent:WaitForChild("BroadcastService"))
+local ProfileStoreAdapter = require(script.Parent:WaitForChild("ProfileStoreAdapter"))
+local GlobalBroadcastService = require(script.Parent:WaitForChild("GlobalBroadcastService"))
+local AnalyticsService = require(script.Parent:WaitForChild("AnalyticsService"))
 
 local AlchemyService = {}
 
@@ -64,17 +66,22 @@ function AlchemyService.HandleCraftRequest(player: Player, recipeId: string): Ty
 	end
 	
 	-- Consume ingredients
-	for ingredientName, requiredAmount in pairs(recipe.Ingredients) do
-		inventory.Items[ingredientName] -= requiredAmount
-	end
-	
-	-- Add result to inventory based on ResultType
-	if recipe.ResultType == "Spirit" then
-		inventory.Spirits[recipe.Result] = { Level = 1, Experience = 0, AcquiredAt = os.time() }
-	else
-		-- Consumable or Potion goes to Items
-		local currentResultAmount = inventory.Items[recipe.Result] or 0
-		inventory.Items[recipe.Result] = currentResultAmount + 1
+	local updateResult = ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
+		local inventory = profileData.Inventory
+		-- Consume ingredients
+		for ingredientName, requiredAmount in pairs(recipe.Ingredients) do
+			inventory.Items[ingredientName] -= requiredAmount
+		end
+		-- Add result to inventory based on ResultType
+		if recipe.ResultType == "Spirit" then
+			inventory.Spirits[recipe.Result] = { Level = 1, Experience = 0, AcquiredAt = os.time() }
+		else
+			local currentResultAmount = inventory.Items[recipe.Result] or 0
+			inventory.Items[recipe.Result] = currentResultAmount + 1
+		end
+	end)
+	if not updateResult.Success then
+		return updateResult
 	end
 	
 	-- Open Cloud & Cross-Server Announcement for Legendary/Mythic
@@ -85,19 +92,30 @@ function AlchemyService.HandleCraftRequest(player: Player, recipeId: string): Ty
 			Rarity = recipe.Rarity,
 			Timestamp = os.time()
 		}
-		
+
+		-- Real telemetry via AnalyticsService (Fase 8)
+		AnalyticsService.LogEvent("alchemy.legendary_craft", {
+			playerId   = player.UserId,
+			playerName = player.Name,
+			recipeId   = recipeId,
+			rarity     = recipe.Rarity,
+			timestamp  = os.time(),
+		}, player.UserId)
+
 		-- Use MessagingService directly to trigger cross server broadcast
 		local success, err = pcall(function()
 			MessagingService:PublishAsync("GlobalLegendaryCraft", messagePayload)
 		end)
 		if success then
-			print("[MessagingService] Successfully published GlobalBroadcast for Legendary Crafting!")
+			print("[MessagingService] Published GlobalLegendaryCraft for", player.Name)
 		else
-			warn("[MessagingService] Failed to publish:", err)
+			-- Fallback to in-server broadcast
+			warn("[AlchemyService] MessagingService failed:", tostring(err))
+			GlobalBroadcastService.Broadcast(
+				string.format("⚗️ %s crafted a %s %s!", player.Name, recipe.Rarity, recipe.Name),
+				255, 215, 0
+			)
 		end
-		
-		-- Emulate DataStore update for Vercel pSEO Analytics (will be read via Open Cloud API)
-		print("[DataStore] Successfully updated GlobalAnalytics for Vercel!")
 	end
 	
 	return {

@@ -1,5 +1,6 @@
 --!strict
 local HttpService = game:GetService("HttpService")
+local DataStoreService = game:GetService("DataStoreService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local AssetService = game:GetService("AssetService")
@@ -26,6 +27,21 @@ type CovenData = {
 
 local activeCovens: {[string]: CovenData} = {}
 local playerCovenMap: {[number]: string} = {} -- Maps UserId to CovenId
+
+-- Fase 9: Dedicated DataStore for Coven persistence (Q2: independent schema)
+local CovenStore = DataStoreService:GetDataStore("COBLOX_Covens_v1")
+
+-- Internal helper: persist a single coven to DataStore with pcall wrapping
+local function _PersistCoven(covenId: string)
+	local covenData = activeCovens[covenId]
+	if not covenData then return end
+	local ok, err = pcall(function()
+		CovenStore:SetAsync(covenId, covenData)
+	end)
+	if not ok then
+		warn("[CovenService] DataStore persist FAILED for coven", covenId, ":", err)
+	end
+end
 
 function CovenService.Init()
     local covenEvent = NetChannels.GetRemoteEvent("CovenEvent")
@@ -112,6 +128,8 @@ function CovenService.CreateCoven(player: Player, rawName: string)
     playerCovenMap[player.UserId] = covenId
     print("[CovenService] Coven Created: " .. newCoven.Name)
     NetChannels.GetRemoteEvent("CovenEvent"):FireClient(player, "Sync", newCoven)
+    -- Persist to DataStore
+    task.defer(_PersistCoven, covenId)
 end
 
 function CovenService.InviteGuest(leaderPlayer: Player, guestUserId: number)
@@ -198,8 +216,11 @@ function CovenService.DonateToCoven(player: Player, amount: number)
         })
 
         NetChannels.GetRemoteEvent("CovenEvent"):FireClient(player, "Sync", coven)
+        -- Persist updated coven state (treasury + level)
+        task.defer(_PersistCoven, covenId)
     end
 end
+
 
 function CovenService.WithdrawFromCoven(player: Player, amount: number)
     local covenId = playerCovenMap[player.UserId]
@@ -218,6 +239,8 @@ function CovenService.WithdrawFromCoven(player: Player, amount: number)
         local EconomyService = require(script.Parent.EconomyService)
         EconomyService.AddCurrency(player, "Coins", amount, "CovenWithdrawal")
         NetChannels.GetRemoteEvent("CovenEvent"):FireClient(player, "Sync", coven)
+        -- Persist updated treasury
+        task.defer(_PersistCoven, covenId)
     end
 end
 
@@ -231,5 +254,12 @@ function CovenService.GetGlobalMultiplier(player: Player): number
     -- Logarithmic Global Multiplier Buff: 1 + (0.15 * ln(Level + 1))
     return 1.0 + (0.15 * math.log(coven.Level + 1))
 end
+
+-- Mass-persist all active covens on server shutdown
+game:BindToClose(function()
+	for covenId in pairs(activeCovens) do
+		_PersistCoven(covenId)
+	end
+end)
 
 return CovenService

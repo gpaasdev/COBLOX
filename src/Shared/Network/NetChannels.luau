@@ -12,7 +12,10 @@ if not remotesFolder then
 		remotesFolder.Name = "Remotes"
 		remotesFolder.Parent = ReplicatedStorage
 	else
-		remotesFolder = ReplicatedStorage:WaitForChild("Remotes")
+		remotesFolder = ReplicatedStorage:WaitForChild("Remotes", 10)
+		if not remotesFolder then
+			warn("[NetChannels] Remotes folder not created by server after 10s timeout")
+		end
 	end
 end
 
@@ -49,6 +52,24 @@ function NetChannels.GetRemoteFunction(name: string): RemoteFunction?
 			remote = remotesFolder:WaitForChild(name, 15)
 		end
 		return remote :: RemoteFunction?
+	end
+end
+
+function NetChannels.GetUnreliableRemoteEvent(name: string): UnreliableRemoteEvent?
+	if RunService:IsServer() then
+		local remote = remotesFolder:FindFirstChild(name)
+		if not remote then
+			remote = Instance.new("UnreliableRemoteEvent")
+			remote.Name = name
+			remote.Parent = remotesFolder
+		end
+		return remote :: UnreliableRemoteEvent
+	else
+		local remote = remotesFolder:FindFirstChild(name)
+		if not remote then
+			remote = remotesFolder:WaitForChild(name, 15)
+		end
+		return remote :: UnreliableRemoteEvent?
 	end
 end
 

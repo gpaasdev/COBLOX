@@ -1,11 +1,13 @@
 --!strict
 
+local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local DomainEventBus = require(ReplicatedStorage.Shared.Events.DomainEventBus)
+local RemoteConfig = require(ServerScriptService.Server.Services.RemoteConfig)
 
 local FeedbackService = {}
 FeedbackService.Name = "FeedbackService"
@@ -14,18 +16,18 @@ local feedbackQueue = {}
 local BATCH_FLUSH_INTERVAL = 30.0
 local MAX_QUEUE_SIZE = 50
 
--- Webhook URL should be stored in secrets, using a placeholder for now
-local DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1530317961330425857/SJeWebeyB5fDhZZMYGQSpNAPoQpmIyDGnyS2xsJ_TTd4Yy1WO-PNJWau6yjeD0Nsm_eN"
-
 function FeedbackService.Init()
-	print("[FeedbackService] Initializing Player Feedback Pipeline...")
+	print("[FeedbackService] Initializing Zero-Trust User Feedback Engine...")
 end
 
 function FeedbackService.Start()
 	local submitRemote = NetChannels.GetRemoteEvent("SubmitFeedback")
+	local RateLimitService = require(script.Parent.RateLimitService)
 	if submitRemote then
 		submitRemote.OnServerEvent:Connect(function(player: Player, data: any)
-			-- Rate limit could be added here (e.g., 1 per 3 mins)
+			if not RateLimitService.CheckRateLimit(player, "SubmitFeedback", 180) then -- 1 per 3 minutes
+				return
+			end
 			FeedbackService.ProcessFeedback(player, data)
 		end)
 	end
@@ -98,9 +100,9 @@ function FeedbackService.FlushQueue()
 			return
 		end
 		
-		local ENABLE_WEBHOOK = true -- Webhook is now active
-		if not ENABLE_WEBHOOK or DISCORD_WEBHOOK_URL:find("PLACEHOLDER") then
-			print(string.format("[FeedbackService] Webhook disabled or URL placeholder. Processed %d feedbacks locally.", #batch))
+		local webhookUrl = RemoteConfig.Get("DiscordWebhookUrl") or ""
+		if webhookUrl == "" or webhookUrl:find("PLACEHOLDER") then
+			print(string.format("[FeedbackService] Webhook disabled or URL not configured. Processed %d feedbacks locally.", #batch))
 			return
 		end
 
@@ -112,7 +114,7 @@ function FeedbackService.FlushQueue()
 				}
 				
 				HttpService:PostAsync(
-					DISCORD_WEBHOOK_URL,
+					webhookUrl,
 					HttpService:JSONEncode(payload),
 					Enum.HttpContentType.ApplicationJson
 				)

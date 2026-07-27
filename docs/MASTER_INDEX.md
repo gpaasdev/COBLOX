@@ -37,3 +37,24 @@
 - **[KB.md](04-KNOWLEDGE_AND_TEMPLATES/KB/KB.md)** - Basis pengetahuan internal untuk pengembang.
 - **[ROBLOX_ECOSYSTEM_INDEX.md](04-KNOWLEDGE_AND_TEMPLATES/KB/ROBLOX_ECOSYSTEM_INDEX.md)** - Daftar API Roblox OpenCloud yang didukung.
 - **[DEVELOPER_KNOWLEDGE_BASE_AND_TUTORIAL.md](04-KNOWLEDGE_AND_TEMPLATES/DEVELOPER_KNOWLEDGE_BASE_AND_TUTORIAL.md)** - Tutorial onboarding untuk programmer baru.
+
+## 5. Product Experience & Creative OS (Phase 8-9)
+### Product & Design
+- **[DESIGN_SYSTEM.md](03-PRODUCT_AND_DESIGN/DESIGN_SYSTEM.md)** - Sistem desain, palet warna, dan tipografi.
+- **[STYLE_GUIDE.md](03-PRODUCT_AND_DESIGN/STYLE_GUIDE.md)** - Implementasi grid, radius, shadow, dan naming.
+- **[UI_COMPONENT_LIBRARY.md](03-PRODUCT_AND_DESIGN/UI_COMPONENT_LIBRARY.md)** - Inventaris komponen antarmuka (UI).
+
+### UX & Audio
+- **[UX_AND_AUDIO_GUIDE.md](04-UX_AND_AUDIO/UX_AND_AUDIO_GUIDE.md)** - Panduan umpan balik taktil dan audio.
+- **[PLAYER_EXPERIENCE_MAP.md](04-UX_AND_AUDIO/PLAYER_EXPERIENCE_MAP.md)** - Peta perjalanan emosional pemain (Funnel).
+- **[ACCESSIBILITY_STANDARD.md](04-UX_AND_AUDIO/ACCESSIBILITY_STANDARD.md)** - Standar aksesibilitas (kontras, remapping, dsb).
+
+### Creative & Marketing
+- **[CREATIVE_BIBLE.md](05-CREATIVE_AND_MARKETING/CREATIVE_BIBLE.md)** - "Konstitusi" identitas COBLOX (visi, filosofi).
+- **[CONTENT_BIBLE.md](05-CREATIVE_AND_MARKETING/CONTENT_BIBLE.md)** - Standar data item, raritas, lore, dan balancing.
+- **[NARRATIVE_BIBLE.md](05-CREATIVE_AND_MARKETING/NARRATIVE_BIBLE.md)** - Sejarah dunia, elemen sihir, dan fraksi (Sanctum vs Coven).
+- **[LIVEOPS_BIBLE.md](05-CREATIVE_AND_MARKETING/LIVEOPS_BIBLE.md)** - Aturan event, patch cadence, dan Battle Pass.
+- **[AI_CREATIVE_WORKFLOW.md](05-CREATIVE_AND_MARKETING/AI_CREATIVE_WORKFLOW.md)** - Prosedur standar kerja (SOP) agen AI IDE.
+
+### Arsitektur Tambahan
+- **[PERFORMANCE_VISUAL_GUIDE.md](02-ARCHITECTURE_AND_SPECS/PERFORMANCE_VISUAL_GUIDE.md)** - Anggaran visual (triangles, texture, memory) untuk performa lintas platform.

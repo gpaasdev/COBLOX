@@ -1,0 +1,3380 @@
+{
+  "materials": [
+    {
+      "Id": "Mat_1",
+      "Name": "Material 1",
+      "Value": 10
+    },
+    {
+      "Id": "Mat_2",
+      "Name": "Material 2",
+      "Value": 20
+    },
+    {
+      "Id": "Mat_3",
+      "Name": "Material 3",
+      "Value": 30
+    },
+    {
+      "Id": "Mat_4",
+      "Name": "Material 4",
+      "Value": 40
+    },
+    {
+      "Id": "Mat_5",
+      "Name": "Material 5",
+      "Value": 50
+    },
+    {
+      "Id": "Mat_6",
+      "Name": "Material 6",
+      "Value": 60
+    },
+    {
+      "Id": "Mat_7",
+      "Name": "Material 7",
+      "Value": 70
+    },
+    {
+      "Id": "Mat_8",
+      "Name": "Material 8",
+      "Value": 80
+    },
+    {
+      "Id": "Mat_9",
+      "Name": "Material 9",
+      "Value": 90
+    },
+    {
+      "Id": "Mat_10",
+      "Name": "Material 10",
+      "Value": 100
+    },
+    {
+      "Id": "Mat_11",
+      "Name": "Material 11",
+      "Value": 110
+    },
+    {
+      "Id": "Mat_12",
+      "Name": "Material 12",
+      "Value": 120
+    },
+    {
+      "Id": "Mat_13",
+      "Name": "Material 13",
+      "Value": 130
+    },
+    {
+      "Id": "Mat_14",
+      "Name": "Material 14",
+      "Value": 140
+    },
+    {
+      "Id": "Mat_15",
+      "Name": "Material 15",
+      "Value": 150
+    },
+    {
+      "Id": "Mat_16",
+      "Name": "Material 16",
+      "Value": 160
+    },
+    {
+      "Id": "Mat_17",
+      "Name": "Material 17",
+      "Value": 170
+    },
+    {
+      "Id": "Mat_18",
+      "Name": "Material 18",
+      "Value": 180
+    },
+    {
+      "Id": "Mat_19",
+      "Name": "Material 19",
+      "Value": 190
+    },
+    {
+      "Id": "Mat_20",
+      "Name": "Material 20",
+      "Value": 200
+    },
+    {
+      "Id": "Mat_21",
+      "Name": "Material 21",
+      "Value": 210
+    },
+    {
+      "Id": "Mat_22",
+      "Name": "Material 22",
+      "Value": 220
+    },
+    {
+      "Id": "Mat_23",
+      "Name": "Material 23",
+      "Value": 230
+    },
+    {
+      "Id": "Mat_24",
+      "Name": "Material 24",
+      "Value": 240
+    },
+    {
+      "Id": "Mat_25",
+      "Name": "Material 25",
+      "Value": 250
+    },
+    {
+      "Id": "Mat_26",
+      "Name": "Material 26",
+      "Value": 260
+    },
+    {
+      "Id": "Mat_27",
+      "Name": "Material 27",
+      "Value": 270
+    },
+    {
+      "Id": "Mat_28",
+      "Name": "Material 28",
+      "Value": 280
+    },
+    {
+      "Id": "Mat_29",
+      "Name": "Material 29",
+      "Value": 290
+    },
+    {
+      "Id": "Mat_30",
+      "Name": "Material 30",
+      "Value": 300
+    },
+    {
+      "Id": "Mat_31",
+      "Name": "Material 31",
+      "Value": 310
+    },
+    {
+      "Id": "Mat_32",
+      "Name": "Material 32",
+      "Value": 320
+    },
+    {
+      "Id": "Mat_33",
+      "Name": "Material 33",
+      "Value": 330
+    },
+    {
+      "Id": "Mat_34",
+      "Name": "Material 34",
+      "Value": 340
+    },
+    {
+      "Id": "Mat_35",
+      "Name": "Material 35",
+      "Value": 350
+    },
+    {
+      "Id": "Mat_36",
+      "Name": "Material 36",
+      "Value": 360
+    },
+    {
+      "Id": "Mat_37",
+      "Name": "Material 37",
+      "Value": 370
+    },
+    {
+      "Id": "Mat_38",
+      "Name": "Material 38",
+      "Value": 380
+    },
+    {
+      "Id": "Mat_39",
+      "Name": "Material 39",
+      "Value": 390
+    },
+    {
+      "Id": "Mat_40",
+      "Name": "Material 40",
+      "Value": 400
+    },
+    {
+      "Id": "Mat_41",
+      "Name": "Material 41",
+      "Value": 410
+    },
+    {
+      "Id": "Mat_42",
+      "Name": "Material 42",
+      "Value": 420
+    },
+    {
+      "Id": "Mat_43",
+      "Name": "Material 43",
+      "Value": 430
+    },
+    {
+      "Id": "Mat_44",
+      "Name": "Material 44",
+      "Value": 440
+    },
+    {
+      "Id": "Mat_45",
+      "Name": "Material 45",
+      "Value": 450
+    },
+    {
+      "Id": "Mat_46",
+      "Name": "Material 46",
+      "Value": 460
+    },
+    {
+      "Id": "Mat_47",
+      "Name": "Material 47",
+      "Value": 470
+    },
+    {
+      "Id": "Mat_48",
+      "Name": "Material 48",
+      "Value": 480
+    },
+    {
+      "Id": "Mat_49",
+      "Name": "Material 49",
+      "Value": 490
+    },
+    {
+      "Id": "Mat_50",
+      "Name": "Material 50",
+      "Value": 500
+    },
+    {
+      "Id": "Mat_51",
+      "Name": "Material 51",
+      "Value": 510
+    },
+    {
+      "Id": "Mat_52",
+      "Name": "Material 52",
+      "Value": 520
+    },
+    {
+      "Id": "Mat_53",
+      "Name": "Material 53",
+      "Value": 530
+    },
+    {
+      "Id": "Mat_54",
+      "Name": "Material 54",
+      "Value": 540
+    },
+    {
+      "Id": "Mat_55",
+      "Name": "Material 55",
+      "Value": 550
+    },
+    {
+      "Id": "Mat_56",
+      "Name": "Material 56",
+      "Value": 560
+    },
+    {
+      "Id": "Mat_57",
+      "Name": "Material 57",
+      "Value": 570
+    },
+    {
+      "Id": "Mat_58",
+      "Name": "Material 58",
+      "Value": 580
+    },
+    {
+      "Id": "Mat_59",
+      "Name": "Material 59",
+      "Value": 590
+    },
+    {
+      "Id": "Mat_60",
+      "Name": "Material 60",
+      "Value": 600
+    },
+    {
+      "Id": "Mat_61",
+      "Name": "Material 61",
+      "Value": 610
+    },
+    {
+      "Id": "Mat_62",
+      "Name": "Material 62",
+      "Value": 620
+    },
+    {
+      "Id": "Mat_63",
+      "Name": "Material 63",
+      "Value": 630
+    },
+    {
+      "Id": "Mat_64",
+      "Name": "Material 64",
+      "Value": 640
+    },
+    {
+      "Id": "Mat_65",
+      "Name": "Material 65",
+      "Value": 650
+    },
+    {
+      "Id": "Mat_66",
+      "Name": "Material 66",
+      "Value": 660
+    },
+    {
+      "Id": "Mat_67",
+      "Name": "Material 67",
+      "Value": 670
+    },
+    {
+      "Id": "Mat_68",
+      "Name": "Material 68",
+      "Value": 680
+    },
+    {
+      "Id": "Mat_69",
+      "Name": "Material 69",
+      "Value": 690
+    },
+    {
+      "Id": "Mat_70",
+      "Name": "Material 70",
+      "Value": 700
+    },
+    {
+      "Id": "Mat_71",
+      "Name": "Material 71",
+      "Value": 710
+    },
+    {
+      "Id": "Mat_72",
+      "Name": "Material 72",
+      "Value": 720
+    },
+    {
+      "Id": "Mat_73",
+      "Name": "Material 73",
+      "Value": 730
+    },
+    {
+      "Id": "Mat_74",
+      "Name": "Material 74",
+      "Value": 740
+    },
+    {
+      "Id": "Mat_75",
+      "Name": "Material 75",
+      "Value": 750
+    },
+    {
+      "Id": "Mat_76",
+      "Name": "Material 76",
+      "Value": 760
+    },
+    {
+      "Id": "Mat_77",
+      "Name": "Material 77",
+      "Value": 770
+    },
+    {
+      "Id": "Mat_78",
+      "Name": "Material 78",
+      "Value": 780
+    },
+    {
+      "Id": "Mat_79",
+      "Name": "Material 79",
+      "Value": 790
+    },
+    {
+      "Id": "Mat_80",
+      "Name": "Material 80",
+      "Value": 800
+    },
+    {
+      "Id": "Mat_81",
+      "Name": "Material 81",
+      "Value": 810
+    },
+    {
+      "Id": "Mat_82",
+      "Name": "Material 82",
+      "Value": 820
+    },
+    {
+      "Id": "Mat_83",
+      "Name": "Material 83",
+      "Value": 830
+    },
+    {
+      "Id": "Mat_84",
+      "Name": "Material 84",
+      "Value": 840
+    },
+    {
+      "Id": "Mat_85",
+      "Name": "Material 85",
+      "Value": 850
+    },
+    {
+      "Id": "Mat_86",
+      "Name": "Material 86",
+      "Value": 860
+    },
+    {
+      "Id": "Mat_87",
+      "Name": "Material 87",
+      "Value": 870
+    },
+    {
+      "Id": "Mat_88",
+      "Name": "Material 88",
+      "Value": 880
+    },
+    {
+      "Id": "Mat_89",
+      "Name": "Material 89",
+      "Value": 890
+    },
+    {
+      "Id": "Mat_90",
+      "Name": "Material 90",
+      "Value": 900
+    },
+    {
+      "Id": "Mat_91",
+      "Name": "Material 91",
+      "Value": 910
+    },
+    {
+      "Id": "Mat_92",
+      "Name": "Material 92",
+      "Value": 920
+    },
+    {
+      "Id": "Mat_93",
+      "Name": "Material 93",
+      "Value": 930
+    },
+    {
+      "Id": "Mat_94",
+      "Name": "Material 94",
+      "Value": 940
+    },
+    {
+      "Id": "Mat_95",
+      "Name": "Material 95",
+      "Value": 950
+    },
+    {
+      "Id": "Mat_96",
+      "Name": "Material 96",
+      "Value": 960
+    },
+    {
+      "Id": "Mat_97",
+      "Name": "Material 97",
+      "Value": 970
+    },
+    {
+      "Id": "Mat_98",
+      "Name": "Material 98",
+      "Value": 980
+    },
+    {
+      "Id": "Mat_99",
+      "Name": "Material 99",
+      "Value": 990
+    },
+    {
+      "Id": "Mat_100",
+      "Name": "Material 100",
+      "Value": 1000
+    },
+    {
+      "Id": "Mat_101",
+      "Name": "Material 101",
+      "Value": 1010
+    },
+    {
+      "Id": "Mat_102",
+      "Name": "Material 102",
+      "Value": 1020
+    },
+    {
+      "Id": "Mat_103",
+      "Name": "Material 103",
+      "Value": 1030
+    },
+    {
+      "Id": "Mat_104",
+      "Name": "Material 104",
+      "Value": 1040
+    }
+  ],
+  "machines": [
+    {
+      "Id": "Machine_1",
+      "Name": "Machine Mark 1",
+      "PowerConsumption": 50
+    },
+    {
+      "Id": "Machine_2",
+      "Name": "Machine Mark 2",
+      "PowerConsumption": 100
+    },
+    {
+      "Id": "Machine_3",
+      "Name": "Machine Mark 3",
+      "PowerConsumption": 150
+    },
+    {
+      "Id": "Machine_4",
+      "Name": "Machine Mark 4",
+      "PowerConsumption": 200
+    },
+    {
+      "Id": "Machine_5",
+      "Name": "Machine Mark 5",
+      "PowerConsumption": 250
+    },
+    {
+      "Id": "Machine_6",
+      "Name": "Machine Mark 6",
+      "PowerConsumption": 300
+    },
+    {
+      "Id": "Machine_7",
+      "Name": "Machine Mark 7",
+      "PowerConsumption": 350
+    },
+    {
+      "Id": "Machine_8",
+      "Name": "Machine Mark 8",
+      "PowerConsumption": 400
+    },
+    {
+      "Id": "Machine_9",
+      "Name": "Machine Mark 9",
+      "PowerConsumption": 450
+    },
+    {
+      "Id": "Machine_10",
+      "Name": "Machine Mark 10",
+      "PowerConsumption": 500
+    },
+    {
+      "Id": "Machine_11",
+      "Name": "Machine Mark 11",
+      "PowerConsumption": 550
+    },
+    {
+      "Id": "Machine_12",
+      "Name": "Machine Mark 12",
+      "PowerConsumption": 600
+    },
+    {
+      "Id": "Machine_13",
+      "Name": "Machine Mark 13",
+      "PowerConsumption": 650
+    },
+    {
+      "Id": "Machine_14",
+      "Name": "Machine Mark 14",
+      "PowerConsumption": 700
+    },
+    {
+      "Id": "Machine_15",
+      "Name": "Machine Mark 15",
+      "PowerConsumption": 750
+    },
+    {
+      "Id": "Machine_16",
+      "Name": "Machine Mark 16",
+      "PowerConsumption": 800
+    },
+    {
+      "Id": "Machine_17",
+      "Name": "Machine Mark 17",
+      "PowerConsumption": 850
+    },
+    {
+      "Id": "Machine_18",
+      "Name": "Machine Mark 18",
+      "PowerConsumption": 900
+    },
+    {
+      "Id": "Machine_19",
+      "Name": "Machine Mark 19",
+      "PowerConsumption": 950
+    },
+    {
+      "Id": "Machine_20",
+      "Name": "Machine Mark 20",
+      "PowerConsumption": 1000
+    },
+    {
+      "Id": "Machine_21",
+      "Name": "Machine Mark 21",
+      "PowerConsumption": 1050
+    },
+    {
+      "Id": "Machine_22",
+      "Name": "Machine Mark 22",
+      "PowerConsumption": 1100
+    },
+    {
+      "Id": "Machine_23",
+      "Name": "Machine Mark 23",
+      "PowerConsumption": 1150
+    },
+    {
+      "Id": "Machine_24",
+      "Name": "Machine Mark 24",
+      "PowerConsumption": 1200
+    },
+    {
+      "Id": "Machine_25",
+      "Name": "Machine Mark 25",
+      "PowerConsumption": 1250
+    },
+    {
+      "Id": "Machine_26",
+      "Name": "Machine Mark 26",
+      "PowerConsumption": 1300
+    },
+    {
+      "Id": "Machine_27",
+      "Name": "Machine Mark 27",
+      "PowerConsumption": 1350
+    },
+    {
+      "Id": "Machine_28",
+      "Name": "Machine Mark 28",
+      "PowerConsumption": 1400
+    },
+    {
+      "Id": "Machine_29",
+      "Name": "Machine Mark 29",
+      "PowerConsumption": 1450
+    },
+    {
+      "Id": "Machine_30",
+      "Name": "Machine Mark 30",
+      "PowerConsumption": 1500
+    },
+    {
+      "Id": "Machine_31",
+      "Name": "Machine Mark 31",
+      "PowerConsumption": 1550
+    },
+    {
+      "Id": "Machine_32",
+      "Name": "Machine Mark 32",
+      "PowerConsumption": 1600
+    },
+    {
+      "Id": "Machine_33",
+      "Name": "Machine Mark 33",
+      "PowerConsumption": 1650
+    },
+    {
+      "Id": "Machine_34",
+      "Name": "Machine Mark 34",
+      "PowerConsumption": 1700
+    },
+    {
+      "Id": "Machine_35",
+      "Name": "Machine Mark 35",
+      "PowerConsumption": 1750
+    },
+    {
+      "Id": "Machine_36",
+      "Name": "Machine Mark 36",
+      "PowerConsumption": 1800
+    },
+    {
+      "Id": "Machine_37",
+      "Name": "Machine Mark 37",
+      "PowerConsumption": 1850
+    },
+    {
+      "Id": "Machine_38",
+      "Name": "Machine Mark 38",
+      "PowerConsumption": 1900
+    },
+    {
+      "Id": "Machine_39",
+      "Name": "Machine Mark 39",
+      "PowerConsumption": 1950
+    },
+    {
+      "Id": "Machine_40",
+      "Name": "Machine Mark 40",
+      "PowerConsumption": 2000
+    },
+    {
+      "Id": "Machine_41",
+      "Name": "Machine Mark 41",
+      "PowerConsumption": 2050
+    },
+    {
+      "Id": "Machine_42",
+      "Name": "Machine Mark 42",
+      "PowerConsumption": 2100
+    },
+    {
+      "Id": "Machine_43",
+      "Name": "Machine Mark 43",
+      "PowerConsumption": 2150
+    },
+    {
+      "Id": "Machine_44",
+      "Name": "Machine Mark 44",
+      "PowerConsumption": 2200
+    },
+    {
+      "Id": "Machine_45",
+      "Name": "Machine Mark 45",
+      "PowerConsumption": 2250
+    },
+    {
+      "Id": "Machine_46",
+      "Name": "Machine Mark 46",
+      "PowerConsumption": 2300
+    },
+    {
+      "Id": "Machine_47",
+      "Name": "Machine Mark 47",
+      "PowerConsumption": 2350
+    },
+    {
+      "Id": "Machine_48",
+      "Name": "Machine Mark 48",
+      "PowerConsumption": 2400
+    },
+    {
+      "Id": "Machine_49",
+      "Name": "Machine Mark 49",
+      "PowerConsumption": 2450
+    },
+    {
+      "Id": "Machine_50",
+      "Name": "Machine Mark 50",
+      "PowerConsumption": 2500
+    },
+    {
+      "Id": "Machine_51",
+      "Name": "Machine Mark 51",
+      "PowerConsumption": 2550
+    },
+    {
+      "Id": "Machine_52",
+      "Name": "Machine Mark 52",
+      "PowerConsumption": 2600
+    },
+    {
+      "Id": "Machine_53",
+      "Name": "Machine Mark 53",
+      "PowerConsumption": 2650
+    },
+    {
+      "Id": "Machine_54",
+      "Name": "Machine Mark 54",
+      "PowerConsumption": 2700
+    },
+    {
+      "Id": "Machine_55",
+      "Name": "Machine Mark 55",
+      "PowerConsumption": 2750
+    },
+    {
+      "Id": "Machine_56",
+      "Name": "Machine Mark 56",
+      "PowerConsumption": 2800
+    },
+    {
+      "Id": "Machine_57",
+      "Name": "Machine Mark 57",
+      "PowerConsumption": 2850
+    },
+    {
+      "Id": "Machine_58",
+      "Name": "Machine Mark 58",
+      "PowerConsumption": 2900
+    },
+    {
+      "Id": "Machine_59",
+      "Name": "Machine Mark 59",
+      "PowerConsumption": 2950
+    },
+    {
+      "Id": "Machine_60",
+      "Name": "Machine Mark 60",
+      "PowerConsumption": 3000
+    },
+    {
+      "Id": "Machine_61",
+      "Name": "Machine Mark 61",
+      "PowerConsumption": 3050
+    },
+    {
+      "Id": "Machine_62",
+      "Name": "Machine Mark 62",
+      "PowerConsumption": 3100
+    }
+  ],
+  "research": [
+    {
+      "Id": "Tech_1",
+      "Name": "Research Node 1",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 100
+    },
+    {
+      "Id": "Tech_2",
+      "Name": "Research Node 2",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 200
+    },
+    {
+      "Id": "Tech_3",
+      "Name": "Research Node 3",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 300
+    },
+    {
+      "Id": "Tech_4",
+      "Name": "Research Node 4",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 400
+    },
+    {
+      "Id": "Tech_5",
+      "Name": "Research Node 5",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 500
+    },
+    {
+      "Id": "Tech_6",
+      "Name": "Research Node 6",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 600
+    },
+    {
+      "Id": "Tech_7",
+      "Name": "Research Node 7",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 700
+    },
+    {
+      "Id": "Tech_8",
+      "Name": "Research Node 8",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 800
+    },
+    {
+      "Id": "Tech_9",
+      "Name": "Research Node 9",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 900
+    },
+    {
+      "Id": "Tech_10",
+      "Name": "Research Node 10",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 1000
+    },
+    {
+      "Id": "Tech_11",
+      "Name": "Research Node 11",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 1100
+    },
+    {
+      "Id": "Tech_12",
+      "Name": "Research Node 12",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 1200
+    },
+    {
+      "Id": "Tech_13",
+      "Name": "Research Node 13",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 1300
+    },
+    {
+      "Id": "Tech_14",
+      "Name": "Research Node 14",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 1400
+    },
+    {
+      "Id": "Tech_15",
+      "Name": "Research Node 15",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 1500
+    },
+    {
+      "Id": "Tech_16",
+      "Name": "Research Node 16",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 1600
+    },
+    {
+      "Id": "Tech_17",
+      "Name": "Research Node 17",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 1700
+    },
+    {
+      "Id": "Tech_18",
+      "Name": "Research Node 18",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 1800
+    },
+    {
+      "Id": "Tech_19",
+      "Name": "Research Node 19",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 1900
+    },
+    {
+      "Id": "Tech_20",
+      "Name": "Research Node 20",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 2000
+    },
+    {
+      "Id": "Tech_21",
+      "Name": "Research Node 21",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 2100
+    },
+    {
+      "Id": "Tech_22",
+      "Name": "Research Node 22",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 2200
+    },
+    {
+      "Id": "Tech_23",
+      "Name": "Research Node 23",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 2300
+    },
+    {
+      "Id": "Tech_24",
+      "Name": "Research Node 24",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 2400
+    },
+    {
+      "Id": "Tech_25",
+      "Name": "Research Node 25",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 2500
+    },
+    {
+      "Id": "Tech_26",
+      "Name": "Research Node 26",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 2600
+    },
+    {
+      "Id": "Tech_27",
+      "Name": "Research Node 27",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 2700
+    },
+    {
+      "Id": "Tech_28",
+      "Name": "Research Node 28",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 2800
+    },
+    {
+      "Id": "Tech_29",
+      "Name": "Research Node 29",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 2900
+    },
+    {
+      "Id": "Tech_30",
+      "Name": "Research Node 30",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 3000
+    },
+    {
+      "Id": "Tech_31",
+      "Name": "Research Node 31",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 3100
+    },
+    {
+      "Id": "Tech_32",
+      "Name": "Research Node 32",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 3200
+    },
+    {
+      "Id": "Tech_33",
+      "Name": "Research Node 33",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 3300
+    },
+    {
+      "Id": "Tech_34",
+      "Name": "Research Node 34",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 3400
+    },
+    {
+      "Id": "Tech_35",
+      "Name": "Research Node 35",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 3500
+    },
+    {
+      "Id": "Tech_36",
+      "Name": "Research Node 36",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 3600
+    },
+    {
+      "Id": "Tech_37",
+      "Name": "Research Node 37",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 3700
+    },
+    {
+      "Id": "Tech_38",
+      "Name": "Research Node 38",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 3800
+    },
+    {
+      "Id": "Tech_39",
+      "Name": "Research Node 39",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 3900
+    },
+    {
+      "Id": "Tech_40",
+      "Name": "Research Node 40",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 4000
+    },
+    {
+      "Id": "Tech_41",
+      "Name": "Research Node 41",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 4100
+    },
+    {
+      "Id": "Tech_42",
+      "Name": "Research Node 42",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 4200
+    },
+    {
+      "Id": "Tech_43",
+      "Name": "Research Node 43",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 4300
+    },
+    {
+      "Id": "Tech_44",
+      "Name": "Research Node 44",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 4400
+    },
+    {
+      "Id": "Tech_45",
+      "Name": "Research Node 45",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 4500
+    },
+    {
+      "Id": "Tech_46",
+      "Name": "Research Node 46",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 4600
+    },
+    {
+      "Id": "Tech_47",
+      "Name": "Research Node 47",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 4700
+    },
+    {
+      "Id": "Tech_48",
+      "Name": "Research Node 48",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 4800
+    },
+    {
+      "Id": "Tech_49",
+      "Name": "Research Node 49",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 4900
+    },
+    {
+      "Id": "Tech_50",
+      "Name": "Research Node 50",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 5000
+    },
+    {
+      "Id": "Tech_51",
+      "Name": "Research Node 51",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 5100
+    },
+    {
+      "Id": "Tech_52",
+      "Name": "Research Node 52",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 5200
+    },
+    {
+      "Id": "Tech_53",
+      "Name": "Research Node 53",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 5300
+    },
+    {
+      "Id": "Tech_54",
+      "Name": "Research Node 54",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 5400
+    },
+    {
+      "Id": "Tech_55",
+      "Name": "Research Node 55",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 5500
+    },
+    {
+      "Id": "Tech_56",
+      "Name": "Research Node 56",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 5600
+    },
+    {
+      "Id": "Tech_57",
+      "Name": "Research Node 57",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 5700
+    },
+    {
+      "Id": "Tech_58",
+      "Name": "Research Node 58",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 5800
+    },
+    {
+      "Id": "Tech_59",
+      "Name": "Research Node 59",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 5900
+    },
+    {
+      "Id": "Tech_60",
+      "Name": "Research Node 60",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 6000
+    },
+    {
+      "Id": "Tech_61",
+      "Name": "Research Node 61",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 6100
+    },
+    {
+      "Id": "Tech_62",
+      "Name": "Research Node 62",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 6200
+    },
+    {
+      "Id": "Tech_63",
+      "Name": "Research Node 63",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 6300
+    },
+    {
+      "Id": "Tech_64",
+      "Name": "Research Node 64",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 6400
+    },
+    {
+      "Id": "Tech_65",
+      "Name": "Research Node 65",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 6500
+    },
+    {
+      "Id": "Tech_66",
+      "Name": "Research Node 66",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 6600
+    },
+    {
+      "Id": "Tech_67",
+      "Name": "Research Node 67",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 6700
+    },
+    {
+      "Id": "Tech_68",
+      "Name": "Research Node 68",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 6800
+    },
+    {
+      "Id": "Tech_69",
+      "Name": "Research Node 69",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 6900
+    },
+    {
+      "Id": "Tech_70",
+      "Name": "Research Node 70",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 7000
+    },
+    {
+      "Id": "Tech_71",
+      "Name": "Research Node 71",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 7100
+    },
+    {
+      "Id": "Tech_72",
+      "Name": "Research Node 72",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 7200
+    },
+    {
+      "Id": "Tech_73",
+      "Name": "Research Node 73",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 7300
+    },
+    {
+      "Id": "Tech_74",
+      "Name": "Research Node 74",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 7400
+    },
+    {
+      "Id": "Tech_75",
+      "Name": "Research Node 75",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 7500
+    },
+    {
+      "Id": "Tech_76",
+      "Name": "Research Node 76",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 7600
+    },
+    {
+      "Id": "Tech_77",
+      "Name": "Research Node 77",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 7700
+    },
+    {
+      "Id": "Tech_78",
+      "Name": "Research Node 78",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 7800
+    },
+    {
+      "Id": "Tech_79",
+      "Name": "Research Node 79",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 7900
+    },
+    {
+      "Id": "Tech_80",
+      "Name": "Research Node 80",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 8000
+    },
+    {
+      "Id": "Tech_81",
+      "Name": "Research Node 81",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 8100
+    },
+    {
+      "Id": "Tech_82",
+      "Name": "Research Node 82",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 8200
+    },
+    {
+      "Id": "Tech_83",
+      "Name": "Research Node 83",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 8300
+    },
+    {
+      "Id": "Tech_84",
+      "Name": "Research Node 84",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 8400
+    },
+    {
+      "Id": "Tech_85",
+      "Name": "Research Node 85",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 8500
+    },
+    {
+      "Id": "Tech_86",
+      "Name": "Research Node 86",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 8600
+    },
+    {
+      "Id": "Tech_87",
+      "Name": "Research Node 87",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 8700
+    },
+    {
+      "Id": "Tech_88",
+      "Name": "Research Node 88",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 8800
+    },
+    {
+      "Id": "Tech_89",
+      "Name": "Research Node 89",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 8900
+    },
+    {
+      "Id": "Tech_90",
+      "Name": "Research Node 90",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 9000
+    },
+    {
+      "Id": "Tech_91",
+      "Name": "Research Node 91",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 9100
+    },
+    {
+      "Id": "Tech_92",
+      "Name": "Research Node 92",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 9200
+    },
+    {
+      "Id": "Tech_93",
+      "Name": "Research Node 93",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 9300
+    },
+    {
+      "Id": "Tech_94",
+      "Name": "Research Node 94",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 9400
+    },
+    {
+      "Id": "Tech_95",
+      "Name": "Research Node 95",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 9500
+    },
+    {
+      "Id": "Tech_96",
+      "Name": "Research Node 96",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 9600
+    },
+    {
+      "Id": "Tech_97",
+      "Name": "Research Node 97",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 9700
+    },
+    {
+      "Id": "Tech_98",
+      "Name": "Research Node 98",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 9800
+    },
+    {
+      "Id": "Tech_99",
+      "Name": "Research Node 99",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 9900
+    },
+    {
+      "Id": "Tech_100",
+      "Name": "Research Node 100",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 10000
+    },
+    {
+      "Id": "Tech_101",
+      "Name": "Research Node 101",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 10100
+    },
+    {
+      "Id": "Tech_102",
+      "Name": "Research Node 102",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 10200
+    },
+    {
+      "Id": "Tech_103",
+      "Name": "Research Node 103",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 10300
+    },
+    {
+      "Id": "Tech_104",
+      "Name": "Research Node 104",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 10400
+    },
+    {
+      "Id": "Tech_105",
+      "Name": "Research Node 105",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 10500
+    },
+    {
+      "Id": "Tech_106",
+      "Name": "Research Node 106",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 10600
+    },
+    {
+      "Id": "Tech_107",
+      "Name": "Research Node 107",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 10700
+    },
+    {
+      "Id": "Tech_108",
+      "Name": "Research Node 108",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 10800
+    },
+    {
+      "Id": "Tech_109",
+      "Name": "Research Node 109",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 10900
+    },
+    {
+      "Id": "Tech_110",
+      "Name": "Research Node 110",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 11000
+    },
+    {
+      "Id": "Tech_111",
+      "Name": "Research Node 111",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 11100
+    },
+    {
+      "Id": "Tech_112",
+      "Name": "Research Node 112",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 11200
+    },
+    {
+      "Id": "Tech_113",
+      "Name": "Research Node 113",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 11300
+    },
+    {
+      "Id": "Tech_114",
+      "Name": "Research Node 114",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 11400
+    },
+    {
+      "Id": "Tech_115",
+      "Name": "Research Node 115",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 11500
+    },
+    {
+      "Id": "Tech_116",
+      "Name": "Research Node 116",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 11600
+    },
+    {
+      "Id": "Tech_117",
+      "Name": "Research Node 117",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 11700
+    },
+    {
+      "Id": "Tech_118",
+      "Name": "Research Node 118",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 11800
+    },
+    {
+      "Id": "Tech_119",
+      "Name": "Research Node 119",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 11900
+    },
+    {
+      "Id": "Tech_120",
+      "Name": "Research Node 120",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 12000
+    },
+    {
+      "Id": "Tech_121",
+      "Name": "Research Node 121",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 12100
+    },
+    {
+      "Id": "Tech_122",
+      "Name": "Research Node 122",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 12200
+    },
+    {
+      "Id": "Tech_123",
+      "Name": "Research Node 123",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 12300
+    },
+    {
+      "Id": "Tech_124",
+      "Name": "Research Node 124",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 12400
+    },
+    {
+      "Id": "Tech_125",
+      "Name": "Research Node 125",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 12500
+    },
+    {
+      "Id": "Tech_126",
+      "Name": "Research Node 126",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 12600
+    },
+    {
+      "Id": "Tech_127",
+      "Name": "Research Node 127",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 12700
+    },
+    {
+      "Id": "Tech_128",
+      "Name": "Research Node 128",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 12800
+    },
+    {
+      "Id": "Tech_129",
+      "Name": "Research Node 129",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 12900
+    },
+    {
+      "Id": "Tech_130",
+      "Name": "Research Node 130",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 13000
+    },
+    {
+      "Id": "Tech_131",
+      "Name": "Research Node 131",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 13100
+    },
+    {
+      "Id": "Tech_132",
+      "Name": "Research Node 132",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 13200
+    },
+    {
+      "Id": "Tech_133",
+      "Name": "Research Node 133",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 13300
+    },
+    {
+      "Id": "Tech_134",
+      "Name": "Research Node 134",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 13400
+    },
+    {
+      "Id": "Tech_135",
+      "Name": "Research Node 135",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 13500
+    },
+    {
+      "Id": "Tech_136",
+      "Name": "Research Node 136",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 13600
+    },
+    {
+      "Id": "Tech_137",
+      "Name": "Research Node 137",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 13700
+    },
+    {
+      "Id": "Tech_138",
+      "Name": "Research Node 138",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 13800
+    },
+    {
+      "Id": "Tech_139",
+      "Name": "Research Node 139",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 13900
+    },
+    {
+      "Id": "Tech_140",
+      "Name": "Research Node 140",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 14000
+    },
+    {
+      "Id": "Tech_141",
+      "Name": "Research Node 141",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 14100
+    },
+    {
+      "Id": "Tech_142",
+      "Name": "Research Node 142",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 14200
+    },
+    {
+      "Id": "Tech_143",
+      "Name": "Research Node 143",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 14300
+    },
+    {
+      "Id": "Tech_144",
+      "Name": "Research Node 144",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 14400
+    },
+    {
+      "Id": "Tech_145",
+      "Name": "Research Node 145",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 14500
+    },
+    {
+      "Id": "Tech_146",
+      "Name": "Research Node 146",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 14600
+    },
+    {
+      "Id": "Tech_147",
+      "Name": "Research Node 147",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 14700
+    },
+    {
+      "Id": "Tech_148",
+      "Name": "Research Node 148",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 14800
+    },
+    {
+      "Id": "Tech_149",
+      "Name": "Research Node 149",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 14900
+    },
+    {
+      "Id": "Tech_150",
+      "Name": "Research Node 150",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 15000
+    },
+    {
+      "Id": "Tech_151",
+      "Name": "Research Node 151",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 15100
+    },
+    {
+      "Id": "Tech_152",
+      "Name": "Research Node 152",
+      "RequiredDiscoveries": [
+        "Iron_Ore"
+      ],
+      "Cost": 15200
+    }
+  ],
+  "biomes": [
+    {
+      "Id": "Biome_1",
+      "Name": "Sector Biome 1",
+      "Temperature": 255
+    },
+    {
+      "Id": "Biome_2",
+      "Name": "Sector Biome 2",
+      "Temperature": 260
+    },
+    {
+      "Id": "Biome_3",
+      "Name": "Sector Biome 3",
+      "Temperature": 265
+    },
+    {
+      "Id": "Biome_4",
+      "Name": "Sector Biome 4",
+      "Temperature": 270
+    },
+    {
+      "Id": "Biome_5",
+      "Name": "Sector Biome 5",
+      "Temperature": 275
+    },
+    {
+      "Id": "Biome_6",
+      "Name": "Sector Biome 6",
+      "Temperature": 280
+    },
+    {
+      "Id": "Biome_7",
+      "Name": "Sector Biome 7",
+      "Temperature": 285
+    },
+    {
+      "Id": "Biome_8",
+      "Name": "Sector Biome 8",
+      "Temperature": 290
+    },
+    {
+      "Id": "Biome_9",
+      "Name": "Sector Biome 9",
+      "Temperature": 295
+    },
+    {
+      "Id": "Biome_10",
+      "Name": "Sector Biome 10",
+      "Temperature": 300
+    },
+    {
+      "Id": "Biome_11",
+      "Name": "Sector Biome 11",
+      "Temperature": 305
+    },
+    {
+      "Id": "Biome_12",
+      "Name": "Sector Biome 12",
+      "Temperature": 310
+    },
+    {
+      "Id": "Biome_13",
+      "Name": "Sector Biome 13",
+      "Temperature": 315
+    },
+    {
+      "Id": "Biome_14",
+      "Name": "Sector Biome 14",
+      "Temperature": 320
+    },
+    {
+      "Id": "Biome_15",
+      "Name": "Sector Biome 15",
+      "Temperature": 325
+    },
+    {
+      "Id": "Biome_16",
+      "Name": "Sector Biome 16",
+      "Temperature": 330
+    },
+    {
+      "Id": "Biome_17",
+      "Name": "Sector Biome 17",
+      "Temperature": 335
+    },
+    {
+      "Id": "Biome_18",
+      "Name": "Sector Biome 18",
+      "Temperature": 340
+    },
+    {
+      "Id": "Biome_19",
+      "Name": "Sector Biome 19",
+      "Temperature": 345
+    },
+    {
+      "Id": "Biome_20",
+      "Name": "Sector Biome 20",
+      "Temperature": 350
+    },
+    {
+      "Id": "Biome_21",
+      "Name": "Sector Biome 21",
+      "Temperature": 355
+    },
+    {
+      "Id": "Biome_22",
+      "Name": "Sector Biome 22",
+      "Temperature": 360
+    },
+    {
+      "Id": "Biome_23",
+      "Name": "Sector Biome 23",
+      "Temperature": 365
+    },
+    {
+      "Id": "Biome_24",
+      "Name": "Sector Biome 24",
+      "Temperature": 370
+    },
+    {
+      "Id": "Biome_25",
+      "Name": "Sector Biome 25",
+      "Temperature": 375
+    },
+    {
+      "Id": "Biome_26",
+      "Name": "Sector Biome 26",
+      "Temperature": 380
+    },
+    {
+      "Id": "Biome_27",
+      "Name": "Sector Biome 27",
+      "Temperature": 385
+    },
+    {
+      "Id": "Biome_28",
+      "Name": "Sector Biome 28",
+      "Temperature": 390
+    },
+    {
+      "Id": "Biome_29",
+      "Name": "Sector Biome 29",
+      "Temperature": 395
+    },
+    {
+      "Id": "Biome_30",
+      "Name": "Sector Biome 30",
+      "Temperature": 400
+    },
+    {
+      "Id": "Biome_31",
+      "Name": "Sector Biome 31",
+      "Temperature": 405
+    },
+    {
+      "Id": "Biome_32",
+      "Name": "Sector Biome 32",
+      "Temperature": 410
+    },
+    {
+      "Id": "Biome_33",
+      "Name": "Sector Biome 33",
+      "Temperature": 415
+    },
+    {
+      "Id": "Biome_34",
+      "Name": "Sector Biome 34",
+      "Temperature": 420
+    },
+    {
+      "Id": "Biome_35",
+      "Name": "Sector Biome 35",
+      "Temperature": 425
+    },
+    {
+      "Id": "Biome_36",
+      "Name": "Sector Biome 36",
+      "Temperature": 430
+    },
+    {
+      "Id": "Biome_37",
+      "Name": "Sector Biome 37",
+      "Temperature": 435
+    },
+    {
+      "Id": "Biome_38",
+      "Name": "Sector Biome 38",
+      "Temperature": 440
+    },
+    {
+      "Id": "Biome_39",
+      "Name": "Sector Biome 39",
+      "Temperature": 445
+    },
+    {
+      "Id": "Biome_40",
+      "Name": "Sector Biome 40",
+      "Temperature": 450
+    },
+    {
+      "Id": "Biome_41",
+      "Name": "Sector Biome 41",
+      "Temperature": 455
+    }
+  ],
+  "creatures": [
+    {
+      "Id": "Creature_1",
+      "Name": "Creature Level 1",
+      "Health": 100
+    },
+    {
+      "Id": "Creature_2",
+      "Name": "Creature Level 2",
+      "Health": 200
+    },
+    {
+      "Id": "Creature_3",
+      "Name": "Creature Level 3",
+      "Health": 300
+    },
+    {
+      "Id": "Creature_4",
+      "Name": "Creature Level 4",
+      "Health": 400
+    },
+    {
+      "Id": "Creature_5",
+      "Name": "Creature Level 5",
+      "Health": 500
+    },
+    {
+      "Id": "Creature_6",
+      "Name": "Creature Level 6",
+      "Health": 600
+    },
+    {
+      "Id": "Creature_7",
+      "Name": "Creature Level 7",
+      "Health": 700
+    },
+    {
+      "Id": "Creature_8",
+      "Name": "Creature Level 8",
+      "Health": 800
+    },
+    {
+      "Id": "Creature_9",
+      "Name": "Creature Level 9",
+      "Health": 900
+    },
+    {
+      "Id": "Creature_10",
+      "Name": "Creature Level 10",
+      "Health": 1000
+    },
+    {
+      "Id": "Creature_11",
+      "Name": "Creature Level 11",
+      "Health": 1100
+    },
+    {
+      "Id": "Creature_12",
+      "Name": "Creature Level 12",
+      "Health": 1200
+    },
+    {
+      "Id": "Creature_13",
+      "Name": "Creature Level 13",
+      "Health": 1300
+    },
+    {
+      "Id": "Creature_14",
+      "Name": "Creature Level 14",
+      "Health": 1400
+    },
+    {
+      "Id": "Creature_15",
+      "Name": "Creature Level 15",
+      "Health": 1500
+    },
+    {
+      "Id": "Creature_16",
+      "Name": "Creature Level 16",
+      "Health": 1600
+    },
+    {
+      "Id": "Creature_17",
+      "Name": "Creature Level 17",
+      "Health": 1700
+    },
+    {
+      "Id": "Creature_18",
+      "Name": "Creature Level 18",
+      "Health": 1800
+    },
+    {
+      "Id": "Creature_19",
+      "Name": "Creature Level 19",
+      "Health": 1900
+    },
+    {
+      "Id": "Creature_20",
+      "Name": "Creature Level 20",
+      "Health": 2000
+    },
+    {
+      "Id": "Creature_21",
+      "Name": "Creature Level 21",
+      "Health": 2100
+    },
+    {
+      "Id": "Creature_22",
+      "Name": "Creature Level 22",
+      "Health": 2200
+    },
+    {
+      "Id": "Creature_23",
+      "Name": "Creature Level 23",
+      "Health": 2300
+    },
+    {
+      "Id": "Creature_24",
+      "Name": "Creature Level 24",
+      "Health": 2400
+    },
+    {
+      "Id": "Creature_25",
+      "Name": "Creature Level 25",
+      "Health": 2500
+    },
+    {
+      "Id": "Creature_26",
+      "Name": "Creature Level 26",
+      "Health": 2600
+    },
+    {
+      "Id": "Creature_27",
+      "Name": "Creature Level 27",
+      "Health": 2700
+    },
+    {
+      "Id": "Creature_28",
+      "Name": "Creature Level 28",
+      "Health": 2800
+    },
+    {
+      "Id": "Creature_29",
+      "Name": "Creature Level 29",
+      "Health": 2900
+    },
+    {
+      "Id": "Creature_30",
+      "Name": "Creature Level 30",
+      "Health": 3000
+    },
+    {
+      "Id": "Creature_31",
+      "Name": "Creature Level 31",
+      "Health": 3100
+    },
+    {
+      "Id": "Creature_32",
+      "Name": "Creature Level 32",
+      "Health": 3200
+    },
+    {
+      "Id": "Creature_33",
+      "Name": "Creature Level 33",
+      "Health": 3300
+    },
+    {
+      "Id": "Creature_34",
+      "Name": "Creature Level 34",
+      "Health": 3400
+    },
+    {
+      "Id": "Creature_35",
+      "Name": "Creature Level 35",
+      "Health": 3500
+    },
+    {
+      "Id": "Creature_36",
+      "Name": "Creature Level 36",
+      "Health": 3600
+    },
+    {
+      "Id": "Creature_37",
+      "Name": "Creature Level 37",
+      "Health": 3700
+    },
+    {
+      "Id": "Creature_38",
+      "Name": "Creature Level 38",
+      "Health": 3800
+    },
+    {
+      "Id": "Creature_39",
+      "Name": "Creature Level 39",
+      "Health": 3900
+    },
+    {
+      "Id": "Creature_40",
+      "Name": "Creature Level 40",
+      "Health": 4000
+    },
+    {
+      "Id": "Creature_41",
+      "Name": "Creature Level 41",
+      "Health": 4100
+    },
+    {
+      "Id": "Creature_42",
+      "Name": "Creature Level 42",
+      "Health": 4200
+    },
+    {
+      "Id": "Creature_43",
+      "Name": "Creature Level 43",
+      "Health": 4300
+    },
+    {
+      "Id": "Creature_44",
+      "Name": "Creature Level 44",
+      "Health": 4400
+    },
+    {
+      "Id": "Creature_45",
+      "Name": "Creature Level 45",
+      "Health": 4500
+    },
+    {
+      "Id": "Creature_46",
+      "Name": "Creature Level 46",
+      "Health": 4600
+    },
+    {
+      "Id": "Creature_47",
+      "Name": "Creature Level 47",
+      "Health": 4700
+    },
+    {
+      "Id": "Creature_48",
+      "Name": "Creature Level 48",
+      "Health": 4800
+    },
+    {
+      "Id": "Creature_49",
+      "Name": "Creature Level 49",
+      "Health": 4900
+    },
+    {
+      "Id": "Creature_50",
+      "Name": "Creature Level 50",
+      "Health": 5000
+    },
+    {
+      "Id": "Creature_51",
+      "Name": "Creature Level 51",
+      "Health": 5100
+    },
+    {
+      "Id": "Creature_52",
+      "Name": "Creature Level 52",
+      "Health": 5200
+    },
+    {
+      "Id": "Creature_53",
+      "Name": "Creature Level 53",
+      "Health": 5300
+    },
+    {
+      "Id": "Creature_54",
+      "Name": "Creature Level 54",
+      "Health": 5400
+    },
+    {
+      "Id": "Creature_55",
+      "Name": "Creature Level 55",
+      "Health": 5500
+    },
+    {
+      "Id": "Creature_56",
+      "Name": "Creature Level 56",
+      "Health": 5600
+    },
+    {
+      "Id": "Creature_57",
+      "Name": "Creature Level 57",
+      "Health": 5700
+    },
+    {
+      "Id": "Creature_58",
+      "Name": "Creature Level 58",
+      "Health": 5800
+    },
+    {
+      "Id": "Creature_59",
+      "Name": "Creature Level 59",
+      "Health": 5900
+    },
+    {
+      "Id": "Creature_60",
+      "Name": "Creature Level 60",
+      "Health": 6000
+    },
+    {
+      "Id": "Creature_61",
+      "Name": "Creature Level 61",
+      "Health": 6100
+    },
+    {
+      "Id": "Creature_62",
+      "Name": "Creature Level 62",
+      "Health": 6200
+    },
+    {
+      "Id": "Creature_63",
+      "Name": "Creature Level 63",
+      "Health": 6300
+    },
+    {
+      "Id": "Creature_64",
+      "Name": "Creature Level 64",
+      "Health": 6400
+    },
+    {
+      "Id": "Creature_65",
+      "Name": "Creature Level 65",
+      "Health": 6500
+    },
+    {
+      "Id": "Creature_66",
+      "Name": "Creature Level 66",
+      "Health": 6600
+    },
+    {
+      "Id": "Creature_67",
+      "Name": "Creature Level 67",
+      "Health": 6700
+    },
+    {
+      "Id": "Creature_68",
+      "Name": "Creature Level 68",
+      "Health": 6800
+    },
+    {
+      "Id": "Creature_69",
+      "Name": "Creature Level 69",
+      "Health": 6900
+    },
+    {
+      "Id": "Creature_70",
+      "Name": "Creature Level 70",
+      "Health": 7000
+    },
+    {
+      "Id": "Creature_71",
+      "Name": "Creature Level 71",
+      "Health": 7100
+    },
+    {
+      "Id": "Creature_72",
+      "Name": "Creature Level 72",
+      "Health": 7200
+    },
+    {
+      "Id": "Creature_73",
+      "Name": "Creature Level 73",
+      "Health": 7300
+    },
+    {
+      "Id": "Creature_74",
+      "Name": "Creature Level 74",
+      "Health": 7400
+    },
+    {
+      "Id": "Creature_75",
+      "Name": "Creature Level 75",
+      "Health": 7500
+    },
+    {
+      "Id": "Creature_76",
+      "Name": "Creature Level 76",
+      "Health": 7600
+    },
+    {
+      "Id": "Creature_77",
+      "Name": "Creature Level 77",
+      "Health": 7700
+    },
+    {
+      "Id": "Creature_78",
+      "Name": "Creature Level 78",
+      "Health": 7800
+    },
+    {
+      "Id": "Creature_79",
+      "Name": "Creature Level 79",
+      "Health": 7900
+    },
+    {
+      "Id": "Creature_80",
+      "Name": "Creature Level 80",
+      "Health": 8000
+    },
+    {
+      "Id": "Creature_81",
+      "Name": "Creature Level 81",
+      "Health": 8100
+    }
+  ],
+  "spirits": [
+    {
+      "Id": "SP_IRON_IMP",
+      "Name": "Iron Imp",
+      "Rarity": "Common",
+      "Element": "Earth",
+      "DropRate": "15.0%",
+      "Description": "Lahir dari serpihan besi tua."
+    },
+    {
+      "Id": "SP_COPPER_WISP",
+      "Name": "Copper Wisp",
+      "Rarity": "Common",
+      "Element": "Lightning",
+      "DropRate": "12.0%",
+      "Description": "Berkilat lemah saat marah."
+    },
+    {
+      "Id": "SP_COAL_SPRITE",
+      "Name": "Coal Sprite",
+      "Rarity": "Common",
+      "Element": "Fire",
+      "DropRate": "10.0%",
+      "Description": "Panas dan bandel."
+    },
+    {
+      "Id": "SP_STONE_GOBLIN",
+      "Name": "Stone Goblin",
+      "Rarity": "Common",
+      "Element": "Earth",
+      "DropRate": "8.0%",
+      "Description": "Suka menyembunyikan ore."
+    },
+    {
+      "Id": "SP_WATER_DRIP",
+      "Name": "Water Drip",
+      "Rarity": "Common",
+      "Element": "Water",
+      "DropRate": "8.0%",
+      "Description": "Bentuk seperti tetesan air murni."
+    },
+    {
+      "Id": "SP_WIND_FLYER",
+      "Name": "Wind Flyer",
+      "Rarity": "Common",
+      "Element": "Wind",
+      "DropRate": "8.0%",
+      "Description": "Melayang ditiup angin."
+    },
+    {
+      "Id": "SP_LEAF_BUG",
+      "Name": "Leaf Bug",
+      "Rarity": "Common",
+      "Element": "Nature",
+      "DropRate": "7.0%",
+      "Description": "Penjaga tanaman alami."
+    },
+    {
+      "Id": "SP_ASH_PUFF",
+      "Name": "Ash Puff",
+      "Rarity": "Common",
+      "Element": "Fire",
+      "DropRate": "7.0%",
+      "Description": "Sisa pembakaran alkimia."
+    },
+    {
+      "Id": "SP_SPARK_BUG",
+      "Name": "Spark Bug",
+      "Rarity": "Common",
+      "Element": "Lightning",
+      "DropRate": "7.0%",
+      "Description": "Mengeluarkan letupan kecil."
+    },
+    {
+      "Id": "SP_CLAY_PUP",
+      "Name": "Clay Pup",
+      "Rarity": "Common",
+      "Element": "Earth",
+      "DropRate": "10.0%",
+      "Description": "Anak anjing dari tanah liat."
+    },
+    {
+      "Id": "SP_SILVER_SYLPH",
+      "Name": "Silver Sylph",
+      "Rarity": "Uncommon",
+      "Element": "Wind",
+      "DropRate": "8.0%",
+      "Description": "Gesit dan tak terduga."
+    },
+    {
+      "Id": "SP_BRONZE_DRAKE",
+      "Name": "Bronze Drake",
+      "Rarity": "Uncommon",
+      "Element": "Fire",
+      "DropRate": "7.0%",
+      "Description": "Cakar perunggu yang kuat."
+    },
+    {
+      "Id": "SP_ICE_CUBE",
+      "Name": "Ice Cube",
+      "Rarity": "Uncommon",
+      "Element": "Water",
+      "DropRate": "5.0%",
+      "Description": "Tidak pernah meleleh."
+    },
+    {
+      "Id": "SP_MAGMA_SLIME",
+      "Name": "Magma Slime",
+      "Rarity": "Uncommon",
+      "Element": "Fire",
+      "DropRate": "5.0%",
+      "Description": "Slime bersuhu tinggi."
+    },
+    {
+      "Id": "SP_GLOW_MUSH",
+      "Name": "Glow Mush",
+      "Rarity": "Uncommon",
+      "Element": "Nature",
+      "DropRate": "5.0%",
+      "Description": "Menyinari rawa-rawa gelap."
+    },
+    {
+      "Id": "SP_SAND_GOLEM",
+      "Name": "Sand Golem",
+      "Rarity": "Uncommon",
+      "Element": "Earth",
+      "DropRate": "5.0%",
+      "Description": "Terbentuk dari pasir gurun."
+    },
+    {
+      "Id": "SP_FLAME_CAT",
+      "Name": "Flame Cat",
+      "Rarity": "Uncommon",
+      "Element": "Fire",
+      "DropRate": "5.0%",
+      "Description": "Kucing berbulu api."
+    },
+    {
+      "Id": "SP_THUNDER_BIRD",
+      "Name": "Thunder Bird",
+      "Rarity": "Uncommon",
+      "Element": "Lightning",
+      "DropRate": "5.0%",
+      "Description": "Membawa badai kecil."
+    },
+    {
+      "Id": "SP_OBSIDIAN_PHOENIX",
+      "Name": "Obsidian Phoenix",
+      "Rarity": "Rare",
+      "Element": "Fire",
+      "DropRate": "5.0%",
+      "Description": "Terlahir dari lava dan abu."
+    },
+    {
+      "Id": "SP_TITANIUM_WYVERN",
+      "Name": "Titanium Wyvern",
+      "Rarity": "Rare",
+      "Element": "Metal",
+      "DropRate": "4.0%",
+      "Description": "Sayap titanium yang tak bisa ditembus."
+    },
+    {
+      "Id": "SP_CRYSTAL_BEAR",
+      "Name": "Crystal Bear",
+      "Rarity": "Rare",
+      "Element": "Ice",
+      "DropRate": "3.0%",
+      "Description": "Tubuh penuh kristal bening."
+    },
+    {
+      "Id": "SP_SHADOW_FOX",
+      "Name": "Shadow Fox",
+      "Rarity": "Rare",
+      "Element": "Dark",
+      "DropRate": "3.0%",
+      "Description": "Menghilang di bayangan."
+    },
+    {
+      "Id": "SP_SUN_LION",
+      "Name": "Sun Lion",
+      "Rarity": "Rare",
+      "Element": "Light",
+      "DropRate": "3.0%",
+      "Description": "Mancarkan cahaya matahari."
+    },
+    {
+      "Id": "SP_STORM_ELEMENTAL",
+      "Name": "Storm Elemental",
+      "Rarity": "Rare",
+      "Element": "Lightning",
+      "DropRate": "2.0%",
+      "Description": "Wujud fisik dari badai petir."
+    },
+    {
+      "Id": "SP_MYTHRIL_SERPENT",
+      "Name": "Mythril Serpent",
+      "Rarity": "Epic",
+      "Element": "Aether",
+      "DropRate": "3.0%",
+      "Description": "Bersinar dalam kegelapan."
+    },
+    {
+      "Id": "SP_AETHER_WRAITH",
+      "Name": "Aether Wraith",
+      "Rarity": "Epic",
+      "Element": "Void",
+      "DropRate": "2.0%",
+      "Description": "Setengah ada, setengah bayangan."
+    },
+    {
+      "Id": "SP_SOLAR_DRAGON",
+      "Name": "Solar Dragon",
+      "Rarity": "Epic",
+      "Element": "Fire",
+      "DropRate": "1.5%",
+      "Description": "Naga pemakan energi bintang."
+    },
+    {
+      "Id": "SP_ABYSSAL_KRAKEN",
+      "Name": "Abyssal Kraken",
+      "Rarity": "Epic",
+      "Element": "Water",
+      "DropRate": "1.5%",
+      "Description": "Penguasa laut dalam Sanctum."
+    },
+    {
+      "Id": "SP_QUANTUM_HYDRA",
+      "Name": "Quantum Hydra",
+      "Rarity": "Legendary",
+      "Element": "Quantum",
+      "DropRate": "1.9%",
+      "Description": "Bergerak antara dimensi."
+    },
+    {
+      "Id": "SP_VOID_DRAGON",
+      "Name": "Void Dragon",
+      "Rarity": "Legendary",
+      "Element": "Void",
+      "DropRate": "0.1%",
+      "Description": "Entitas legendaris dari jurang abadi."
+    }
+  ],
+  "badges": [
+    {
+      "Id": "BDG_PIONEER",
+      "Name": "Alchemist Pioneer",
+      "Description": "Synthesize a Tier 3 material.",
+      "RarityPercent": 1.2
+    },
+    {
+      "Id": "BDG_FIRST_CRAFT",
+      "Name": "First Synthesis",
+      "Description": "Complete your first alchemical synthesis.",
+      "RarityPercent": 85.0
+    },
+    {
+      "Id": "BDG_SOUL_BONDER",
+      "Name": "Soul Bonder",
+      "Description": "Hatch your first Spirit companion.",
+      "RarityPercent": 60.0
+    },
+    {
+      "Id": "BDG_BIOME_WALKER",
+      "Name": "Biome Walker",
+      "Description": "Visit 5 different biomes.",
+      "RarityPercent": 40.0
+    },
+    {
+      "Id": "BDG_COVEN_FOUNDER",
+      "Name": "Coven Founder",
+      "Description": "Create or join a Coven.",
+      "RarityPercent": 20.0
+    },
+    {
+      "Id": "BDG_SHADOW_VETERAN",
+      "Name": "Shadow Veteran",
+      "Description": "Complete 10 Shadow Raids.",
+      "RarityPercent": 10.0
+    },
+    {
+      "Id": "BDG_SANCTUM_BUILDER",
+      "Name": "Sanctum Builder",
+      "Description": "Place 10 structures in your Sanctum.",
+      "RarityPercent": 30.0
+    },
+    {
+      "Id": "BDG_DAILY_STREAK",
+      "Name": "Dedicated Alchemist",
+      "Description": "Complete daily quests 7 days in a row.",
+      "RarityPercent": 15.0
+    },
+    {
+      "Id": "BDG_VETERAN",
+      "Name": "Seasoned Veteran",
+      "Description": "Reach 100 hours of total playtime.",
+      "RarityPercent": 5.0
+    },
+    {
+      "Id": "BDG_LEGENDARY_HATCH",
+      "Name": "Legend Caller",
+      "Description": "Hatch a Legendary Spirit.",
+      "RarityPercent": 0.5
+    },
+    {
+      "Id": "BDG_QUANTUM_MASTER",
+      "Name": "Quantum Master",
+      "Description": "Synthesize a Quantum Essence.",
+      "RarityPercent": 2.0
+    },
+    {
+      "Id": "BDG_MONSTER_SLAYER",
+      "Name": "Creature Conqueror",
+      "Description": "Defeat 100 hostile creatures.",
+      "RarityPercent": 25.0
+    },
+    {
+      "Id": "BDG_RESEARCHER",
+      "Name": "Grand Scholar",
+      "Description": "Unlock 50 research nodes.",
+      "RarityPercent": 8.0
+    },
+    {
+      "Id": "BDG_MASTER_SMITH",
+      "Name": "Forge Lord",
+      "Description": "Upgrade a Machine to Mark 10.",
+      "RarityPercent": 3.0
+    },
+    {
+      "Id": "BDG_MULTIVERSE_TRAVELER",
+      "Name": "Multiverse Explorer",
+      "Description": "Enter Sector 5 of any Biome.",
+      "RarityPercent": 1.0
+    }
+  ],
+  "recipes": [
+    {
+      "Id": "RCP_1",
+      "Name": "Synthesis Recipe 1",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_2",
+      "Name": "Synthesis Recipe 2",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_3",
+      "Name": "Synthesis Recipe 3",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_4",
+      "Name": "Synthesis Recipe 4",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_5",
+      "Name": "Synthesis Recipe 5",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_6",
+      "Name": "Synthesis Recipe 6",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_7",
+      "Name": "Synthesis Recipe 7",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_8",
+      "Name": "Synthesis Recipe 8",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_9",
+      "Name": "Synthesis Recipe 9",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_10",
+      "Name": "Synthesis Recipe 10",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_11",
+      "Name": "Synthesis Recipe 11",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_12",
+      "Name": "Synthesis Recipe 12",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_13",
+      "Name": "Synthesis Recipe 13",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_14",
+      "Name": "Synthesis Recipe 14",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_15",
+      "Name": "Synthesis Recipe 15",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_16",
+      "Name": "Synthesis Recipe 16",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_17",
+      "Name": "Synthesis Recipe 17",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_18",
+      "Name": "Synthesis Recipe 18",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_19",
+      "Name": "Synthesis Recipe 19",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_20",
+      "Name": "Synthesis Recipe 20",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_21",
+      "Name": "Synthesis Recipe 21",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_22",
+      "Name": "Synthesis Recipe 22",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_23",
+      "Name": "Synthesis Recipe 23",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_24",
+      "Name": "Synthesis Recipe 24",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_25",
+      "Name": "Synthesis Recipe 25",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_26",
+      "Name": "Synthesis Recipe 26",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_27",
+      "Name": "Synthesis Recipe 27",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_28",
+      "Name": "Synthesis Recipe 28",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_29",
+      "Name": "Synthesis Recipe 29",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_30",
+      "Name": "Synthesis Recipe 30",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_31",
+      "Name": "Synthesis Recipe 31",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_32",
+      "Name": "Synthesis Recipe 32",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_33",
+      "Name": "Synthesis Recipe 33",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_34",
+      "Name": "Synthesis Recipe 34",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_35",
+      "Name": "Synthesis Recipe 35",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_36",
+      "Name": "Synthesis Recipe 36",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_37",
+      "Name": "Synthesis Recipe 37",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_38",
+      "Name": "Synthesis Recipe 38",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_39",
+      "Name": "Synthesis Recipe 39",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    },
+    {
+      "Id": "RCP_40",
+      "Name": "Synthesis Recipe 40",
+      "Ingredients": [
+        "Material_1",
+        "Material_2"
+      ],
+      "OutputType": "Material"
+    }
+  ],
+  "market": [
+    {
+      "Id": "MKT_VIP_PASS",
+      "Name": "Sanctum VIP Pass",
+      "Price": 500,
+      "Currency": "Robux",
+      "Category": "Gamepass",
+      "ImageUrl": "rbxassetid://105075159736246"
+    }
+  ],
+  "_manifest": {
+    "version": "v11.0-immutable",
+    "generated_at": "2026-07-27T06:20:22Z",
+    "snapshot_hash": "abd483fde048afaa",
+    "snapshot_file": "20260727062022_abd483fde048afaa.json"
+  }
+}

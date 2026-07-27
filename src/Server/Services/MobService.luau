@@ -2,10 +2,13 @@
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+local ServerScriptService = game:GetService("ServerScriptService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local CreatureBuilder = require(ReplicatedStorage.Shared.Modules.Render.CreatureBuilder)
+local GameConfig = require(ReplicatedStorage.Shared.Configuration.GameConfig)
 local CombatEvent = NetChannels.GetRemoteEvent("CombatEvent")
+local MobWindupVFX = NetChannels.GetUnreliableRemoteEvent("MobWindupVFX") -- Fase 10: visual-only windup telegraph
 
 local MobService = {}
 
@@ -21,11 +24,12 @@ export type Mob = {
 }
 
 local activeMobs: { [string]: Mob } = {}
-local MOB_SPEED = 14
-local AGGRO_RADIUS = 30
-local ATTACK_RANGE = 6
-local LEASH_DISTANCE = 45
-local WINDUP_DURATION = 1.0
+-- Use GameConfig for all mob constants (no magic numbers)
+local MOB_SPEED        = GameConfig.Combat.MobSpeed
+local AGGRO_RADIUS     = GameConfig.Combat.MobAggroRadius
+local ATTACK_RANGE     = GameConfig.Combat.MobAttackRange
+local LEASH_DISTANCE   = GameConfig.Combat.MobLeashDistance
+local WINDUP_DURATION  = GameConfig.Combat.MobWindupDuration
 
 function MobService.Init()
 	-- Tick-Rate Driven AI Loop (0.5 second pulse for performance budget < 2.5 GB RAM)
@@ -90,10 +94,12 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	uiStroke.Thickness = 1 -- Thinner stroke for premium look
 	uiStroke.Parent = card
 
+	-- Dynamic mob name from model name (derived from CreatureBuilder)
+	local mobDisplayName = mobModel.Name or id
 	local nameLbl = Instance.new("TextLabel")
 	nameLbl.Size = UDim2.new(1, -6, 0, 18)
 	nameLbl.Position = UDim2.new(0, 3, 0, 2)
-	nameLbl.Text = "<b>👻 SHADOW WRAITH</b>"
+	nameLbl.Text = "<b>" .. mobDisplayName .. "</b>"
 	nameLbl.RichText = true
 	nameLbl.BackgroundTransparency = 1
 	nameLbl.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text for better contrast
@@ -128,7 +134,7 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	hpBarCorner.Parent = hpBar
 
 	bb.Parent = hrp
-	mobModel.Parent = workspace
+	mobModel.Parent = workspace:FindFirstChild("Mobs") or workspace
 	
 	-- Physics Movers for Smooth Interpolation
 	local attachment = Instance.new("Attachment")
@@ -212,22 +218,75 @@ function MobService.TakeDamage(id: string, amount: number, attacker: Player?)
 	if mob and mob.State ~= "DEAD" and mob.State ~= "RETURN" then -- Invulnerable during RETURN
 		mob.Health -= amount
 		if mob.Health <= 0 then
+			-- RACE CONDITION FIX: capture lootTier and spawnPos BEFORE removing from activeMobs
+			local lootTier = if string.find(id, "Boss") or string.find(id, "Titan") then "Boss" else "Default"
+			local savedSpawnPos = mob.SpawnPosition
 			mob.State = "DEAD"
 			mob.Model:Destroy()
 			activeMobs[id] = nil
 
-			-- Award loot drop
+			-- Weighted loot drop via _RollLoot
 			if attacker then
-				local EconomyService = require(script.Parent.EconomyService)
-				EconomyService.AddCurrency(attacker, "Coins", 50, "MobLoot")
-				print(string.format("[MobService] Player %s defeated mob %s (+50 Coins)", attacker.Name, id))
+				local lootEntry = MobService._RollLoot(lootTier)
+				if lootEntry then
+					MobService._GrantLoot(attacker, lootEntry)
+					print(string.format("[MobService] Player %s defeated mob %s (Loot: %s x%s)",
+						attacker.Name, id, lootEntry[2], tostring(lootEntry[3])))
+				end
+				-- Track combat stats
+				local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
+				ProfileStoreAdapter.SafeUpdateProfile(attacker, function(profileData)
+					if not profileData.CombatStats then
+						profileData.CombatStats = { TotalMobsKilled = 0, TotalDamageDealt = 0 }
+					end
+					profileData.CombatStats.TotalMobsKilled += 1
+					profileData.CombatStats.TotalDamageDealt += amount
+				end)
 			end
 
 			-- Respawn mob after delay
 			task.delay(10, function()
-				MobService.SpawnMob(id, mob.SpawnPosition)
+				MobService.SpawnMob(id, savedSpawnPos)
 			end)
 		end
+	end
+end
+
+-- Weighted random loot roll from GameConfig.MobLootTable
+function MobService._RollLoot(tier: string): { string | number }?
+	local table_ref = GameConfig.MobLootTable[tier] or GameConfig.MobLootTable.Default
+	local totalWeight = 0
+	for _, entry in ipairs(table_ref) do
+		totalWeight += entry[4] :: number
+	end
+	local roll = math.random() * totalWeight
+	local accumulated = 0
+	for _, entry in ipairs(table_ref) do
+		accumulated += entry[4] :: number
+		if roll <= accumulated then
+			return entry
+		end
+	end
+	return table_ref[1] -- fallback
+end
+
+-- Atomic loot grant via ProfileStore session lock
+function MobService._GrantLoot(player: Player, lootEntry: { string | number })
+	local lootType = lootEntry[1] :: string
+	local itemId   = lootEntry[2] :: string
+	local amount   = lootEntry[3] :: number
+
+	if lootType == "Currency" then
+		local EconomyService = require(ServerScriptService.Server.Services.EconomyService)
+		EconomyService.AddCurrency(player, itemId, amount, "MobLoot")
+	else
+		-- Item loot → atomic write to LootDrops sub-field
+		local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
+		ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
+			if not profileData.Inventory then profileData.Inventory = {} end
+			if not profileData.Inventory.LootDrops then profileData.Inventory.LootDrops = {} end
+			profileData.Inventory.LootDrops[itemId] = (profileData.Inventory.LootDrops[itemId] or 0) + amount
+		end)
 	end
 end
 
@@ -305,7 +364,7 @@ function MobService.Tick(dt: number)
 					end)
 				end
 
-				CombatEvent:FireAllClients("MobWindup", mob.Id, targetPos)
+				MobWindupVFX:FireAllClients(mob.Id, targetPos) -- Fase 10: dedicated unreliable VFX channel
 			else
 				-- Physics follow target
 				alignPos.Position = targetPos

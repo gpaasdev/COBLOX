@@ -54,7 +54,7 @@ function ConsumableMutationService.ConsumePotion(player: Player, potionName: str
 		return { Success = false, Message = "Humanoid missing!" }
 	end
 
-	local syncScreenShake = NetChannels.GetRemoteEvent("TriggerScreenShake")
+	local syncScreenShake = NetChannels.GetUnreliableRemoteEvent("TriggerScreenShake") -- Fase 10: visual-only, unreliable ok
 
 	if potionName == "ElixirSurge" or potionName == "Quartz" then
 		-- Elixir Surge (formerly Caffeine Overdose): +180% WalkSpeed (45), 10s duration + Screen Shake

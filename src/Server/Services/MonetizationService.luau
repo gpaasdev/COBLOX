@@ -167,7 +167,7 @@ function MonetizationService._ProcessReceipt(receiptInfo: { PlayerId: number, Pr
 
 	if success then
 		pcall(function()
-			PlayerDataService.SavePlayerProfile(player)
+			-- ProfileStore handles persistence automatically via EndSession()
 		end)
 		processedReceipts[receiptId] = true
 		

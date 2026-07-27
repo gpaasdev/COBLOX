@@ -21,10 +21,10 @@ local syncKarmaContractRemote = NetChannels.GetRemoteEvent("SyncKarmaContract")
 
 local requestConsumePotionRemoteFunc = NetChannels.GetRemoteFunction("RequestConsumePotion")
 local requestFlexEffectRemoteFunc = NetChannels.GetRemoteFunction("RequestFlexEffect")
-local syncShieldStatusRemote = NetChannels.GetRemoteEvent("SyncShieldStatus")
+local syncShieldStatusRemote = NetChannels.GetUnreliableRemoteEvent("SyncShieldStatus") -- Fase 10: visual-only
 local claimOfflineEarningsRemoteFunc = NetChannels.GetRemoteFunction("ClaimOfflineEarnings")
 local broadcastServerMessageRemote = NetChannels.GetRemoteEvent("BroadcastServerMessage")
-local eggHatchedVisualRemote = NetChannels.GetRemoteEvent("EggHatchedVisual")
+local eggHatchedVisualRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 
 -- Dummy connection to prevent "invocation queue exhausted" warning
 if syncShieldStatusRemote then

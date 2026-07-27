@@ -9,6 +9,7 @@ local PlayerDataService = require(ServerScriptService.Server.Services.PlayerData
 local EconomyService = require(ServerScriptService.Server.Services.EconomyService)
 local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
 local PayloadValidator = require(ReplicatedStorage.Shared.Network.PayloadValidator)
+local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
 
 local CrystalPurificationService = {}
 CrystalPurificationService.Name = "CrystalPurificationService"
@@ -179,8 +180,32 @@ function CrystalPurificationService.PurifyCrystal(player: Player): { Success: bo
 		end
 	end
 
-	-- Deposit into economy wallet
-	EconomyService.AddCurrency(player, "Coins", amount, "CrystalPurificationDeposit")
+	-- Atomic deposit into economy wallet via ProfileStore session lock
+	local updateResult = ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
+		local wallet = profileData.Wallet
+		if not wallet then error("WALLET_MISSING") end
+		wallet.Coins = (wallet.Coins or 0) + amount
+		-- Hard currency ledger entry (Coins is soft but track large deposits)
+		if not profileData.Ledger then profileData.Ledger = {} end
+		local HttpSvc = game:GetService("HttpService")
+		table.insert(profileData.Ledger, {
+			TimestampUTC = DateTime.now():ToIsoDate(),
+			TransactionId = HttpSvc:GenerateGUID(false),
+			AmountChange = amount,
+			FinalBalance = wallet.Coins,
+			Reason = "CrystalPurificationDeposit",
+		})
+		-- Rolling window: max 100 entries
+		if #profileData.Ledger > 100 then
+			table.remove(profileData.Ledger, 1)
+		end
+	end)
+	if not updateResult.Success then
+		warn("[CrystalPurificationService] Atomic deposit FAILED for", player.Name, updateResult.ErrorCode)
+		return { Success = false, Amount = 0 }
+	end
+	-- Sync client economy display
+	EconomyService._SyncClient(player)
 
 	-- 1. Shared Aura Resonance Buff (+5% WalkSpeed for 10s to nearby players)
 	local map = workspace:FindFirstChild("Map")

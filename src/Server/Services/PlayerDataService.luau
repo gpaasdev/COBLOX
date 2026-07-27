@@ -48,6 +48,7 @@ local defaultProfile: PlayerProfile = {
 	},
 	FTUE = {
 		Completed = false,
+		State = "WELCOME",
 		Step = 0,
 		FirstCraftTimestamp = 0,
 	},

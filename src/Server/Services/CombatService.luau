@@ -3,9 +3,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+local GameConfig = require(ReplicatedStorage.Shared.Configuration.GameConfig)
 
 local CombatService = {}
-local COMBAT_RANGE = 15
 
 local stunRecords = {}
 local parryWindows = {}
@@ -62,42 +62,17 @@ function CombatService.ProcessHit(player: Player, targetId: string)
     
     if mob and mob.Model and mob.Model.PrimaryPart then
         local distance = (hrp.Position - mob.Model.PrimaryPart.Position).Magnitude
-        if distance <= COMBAT_RANGE then
-            local damage = 10
-            local hitStun = 0.5
-            
-            -- Apply Ruleset Modifiers
-            if zone == "Wilderness" then
-                damage = 15 -- High Stakes
-                hitStun = 1.2 -- Soulslike heavy stun
-            elseif zone == "Arena" then
-                damage = 8
-                hitStun = 0.2 -- Fast paced
-            elseif zone == "FactionWars" then
-                damage = 25 -- AoE scaled down
-                hitStun = 0.4
-            end
+        if distance <= GameConfig.Combat.CombatRange then
+            -- Config-driven zone damage & hit stun (replaces hardcoded 10/15/25)
+            local mods = GameConfig.Combat.ZoneModifiers[zone]
+            local damage = GameConfig.Combat.BaseDamage * (mods and mods.damage or 1.0)
+            local hitStun = mods and mods.hitStun or 0.5
+            _ = hitStun -- reserved for stun system
             
             MobService.TakeDamage(targetId, damage, player)
             
-            -- PvP Check (Mocked for future Player vs Player extension)
-            local targetPlayer = Players:GetPlayerByUserId(tonumber(targetId) or 0)
-            if targetPlayer and targetPlayer.Character then
-                if zone == "FactionWars" then
-                    -- Check faction (assuming faction is stored as attribute)
-                    if targetPlayer:GetAttribute("Faction") == player:GetAttribute("Faction") then
-                        return -- No friendly fire
-                    end
-                end
-                
-                if targetPlayer.Character:FindFirstChild("Humanoid") then
-                    targetPlayer.Character.Humanoid:TakeDamage(damage)
-                    if targetPlayer.Character.Humanoid.Health <= 0 and zone == "Wilderness" then
-                        -- Loot Drop Consequence
-                        print("[CombatService] PVP Kill in Wilderness. Dropping Loot for " .. player.Name)
-                    end
-                end
-            end
+            -- PvP is currently disabled until Phase B (Combat Update)
+            -- Only PvE logic remains.
         end
     end
 end

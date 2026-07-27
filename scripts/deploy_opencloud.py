@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 """
-Roblox Open Cloud Deployment Script for COBLOX
-Builds project using Rojo and uploads .rbxl directly to Roblox Open Cloud API.
+scripts/deploy_opencloud.py
+Roblox Open Cloud Deployment Script for COBLOX using OpenCloudClient abstraction.
 """
 
 import os
 import sys
 import subprocess
-import requests
+
+# Ensure Packages directory is on Python path for local module resolution
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_PACKAGES_DIR = os.path.join(_ROOT, "Packages")
+if _PACKAGES_DIR not in sys.path:
+    sys.path.insert(0, _PACKAGES_DIR)
+
+from opencloud.client import OpenCloudClient
 
 def load_env(env_path=".env"):
     env_vars = {}
@@ -22,13 +29,8 @@ def load_env(env_path=".env"):
 
 def main():
     env = load_env()
-    api_key = env.get("ROBLOX_OPEN_CLOUD_API_KEY") or env.get("ROBLOX_OPENCLOUD_API_KEY")
-    universe_id = env.get("ROBLOX_UNIVERSE_ID")
-    place_id = env.get("ROBLOX_PLACE_ID")
-
-    if not api_key or not universe_id or not place_id:
-        print("❌ Error: Missing ROBLOX_OPEN_CLOUD_API_KEY, ROBLOX_UNIVERSE_ID, or ROBLOX_PLACE_ID in .env")
-        sys.exit(1)
+    for k, v in env.items():
+        os.environ[k] = v
 
     print("🔨 Building project with Rojo...")
     build_result = subprocess.run(["rojo", "build", "-o", "test.rbxl"], capture_output=True, text=True)
@@ -37,40 +39,16 @@ def main():
         sys.exit(1)
 
     print("✅ Rojo build successful (test.rbxl).")
-    print(f"🚀 Publishing to Roblox Open Cloud (Universe: {universe_id}, Place: {place_id})...")
 
-    url = f"https://apis.roblox.com/universes/v1/{universe_id}/places/{place_id}/versions?versionType=Published"
-    headers = {
-        "x-api-key": api_key,
-        "Content-Type": "application/octet-stream"
-    }
-
-    for attempt in range(1, 6):
-        try:
-            with open("test.rbxl", "rb") as f:
-                file_data = f.read()
-
-            print(f"🔄 Attempt #{attempt} sending upload request...")
-            response = requests.post(url, headers=headers, data=file_data)
-            
-            if response.status_code == 200:
-                data = response.json()
-                print(f"🎉 SUCCESS! Published Version #{data.get('versionNumber')} to Roblox Open Cloud!")
-                return
-            elif response.status_code == 409:
-                print(f"⚠️ 409 Conflict (Server Busy). Retrying in 5 seconds... ({attempt}/5)")
-                import time
-                time.sleep(5)
-            else:
-                print(f"❌ Deployment failed with status code {response.status_code}:")
-                print(response.text)
-                sys.exit(1)
-        except Exception as e:
-            print(f"❌ Exception during deployment: {e}")
-            sys.exit(1)
-
-    print("❌ Failed after 5 retries due to Roblox Open Cloud rate-limiting / server busy.")
-    sys.exit(1)
+    try:
+        client = OpenCloudClient()
+        print(f"🚀 Publishing via Open Cloud v2 (Universe: {client.universe_id}, Place: {client.place_id})...")
+        result = client.publish_place("test.rbxl")
+        print(f"🎉 SUCCESS! Published version via Open Cloud v2 API!")
+        print(result)
+    except Exception as e:
+        print(f"❌ Exception during deployment: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

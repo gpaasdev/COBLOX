@@ -15,8 +15,10 @@ function WeekendProvider.new(): ILiveOpsProvider
 end
 
 function WeekendProvider:IsActive(): boolean
-	-- Check if current UTC day is Friday, Saturday, or Sunday (or force active for demo)
-	return true
+	-- Check if current UTC day is Friday (6), Saturday (7), or Sunday (1)
+	local dateTable = os.date("!*t") -- UTC
+	local weekday = dateTable.wday
+	return weekday == 1 or weekday == 6 or weekday == 7
 end
 
 function WeekendProvider:GetPriority(): number
