@@ -62,7 +62,8 @@ function AudioController.PlaySound(soundId: string, volume: number?, pitch: numb
 		group = masterGroup
 	end
 
-	return SoundPool.Play(soundId, group, volume, pitch)
+	local cat: string = if channel == "UI" then "UI" elseif channel == "Ambient" then "Ambient" else "SFX"
+	return SoundPool.Play(soundId, cat :: any, group, volume, pitch)
 end
 
 function AudioController.PlayBGM(soundKey: string, fadeTime: number?)
