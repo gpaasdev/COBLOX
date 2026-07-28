@@ -122,6 +122,11 @@ local SocialEngagementService = require(ServerScriptService.Server.Services.Soci
 local SubscriptionService = require(ServerScriptService.Server.Services.SubscriptionService)
 
 -- ============================================================
+-- TIER 6 — Gameplay Systems [NEW — Phase A]
+-- ============================================================
+local WeaponService = require(ServerScriptService.Server.Services.WeaponService)
+
+-- ============================================================
 -- BOOT ORDER — services{} table with tier comments
 -- ============================================================
 local services = {
@@ -205,6 +210,9 @@ local services = {
 
 	-- TIER 5.5 — Subscription [NEW — Phase 3]
 	SubscriptionService,
+
+	-- TIER 6 — Gameplay Systems [NEW — Phase A]
+	WeaponService,
 }
 
 -- ============================================================

@@ -96,6 +96,9 @@ local GameConfig = {
 
 		-- Tier 5.5 (Subscription — Pending Dashboard Setup)
 		SubscriptionService = true, -- Production: Monthly Alchemist $4.99/mo
+
+		-- Tier 6 (Gameplay Systems — Phase A)
+		WeaponService = true, -- Production: Weapon tiers & progression
 	},
 }
 

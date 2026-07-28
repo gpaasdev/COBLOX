@@ -4,6 +4,7 @@ local Players = game:GetService("Players")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local GameConfig = require(ReplicatedStorage.Shared.Configuration.GameConfig)
+local WeaponConfig = require(ReplicatedStorage.Shared.Configuration.WeaponConfig)
 
 local CombatService = {}
 
@@ -44,9 +45,6 @@ function CombatService.Init()
 	print("⚔️ CombatService Initialized")
 end
 
-local WEAPON_DAMAGE = { Fist = 10, Sword = 25, Staff = 35 }
-local WEAPON_RANGE = { Fist = 8, Sword = 14, Staff = 20 }
-
 function CombatService.ProcessHit(player: Player, targetId: string, weaponType: string?)
 	local char = player.Character
 	if not char then
@@ -69,16 +67,18 @@ function CombatService.ProcessHit(player: Player, targetId: string, weaponType: 
 
 	if mob and mob.Model and mob.Model.PrimaryPart then
 		local distance = (hrp.Position - mob.Model.PrimaryPart.Position).Magnitude
-		local wType = if typeof(weaponType) == "string" and WEAPON_DAMAGE[weaponType] then weaponType else "Fist"
-		local maxRange = WEAPON_RANGE[wType]
+		local weaponDef = if typeof(weaponType) == "string" then WeaponConfig.Get(weaponType) else nil
+		if not weaponDef then
+			weaponDef = WeaponConfig.Get("Fist")
+		end
 
-		if distance <= maxRange then
+		if distance <= (weaponDef and weaponDef.Range or 8) then
 			local mods = GameConfig.Combat.ZoneModifiers[zone]
-			local baseDmg = WEAPON_DAMAGE[wType]
+			local baseDmg = weaponDef and weaponDef.Damage or 10
 			local damage = baseDmg * (mods and mods.damage or 1.0)
 
 			MobService.TakeDamage(targetId, math.floor(damage), player)
-			print(string.format("[CombatService] %s dealt %d damage to %s (weapon: %s, zone: %s)", player.Name, math.floor(damage), targetId, wType, zone))
+			print(string.format("[CombatService] %s dealt %d damage to %s (weapon: %s, zone: %s)", player.Name, math.floor(damage), targetId, weaponDef and weaponDef.Id or "Fist", zone))
 		end
 	end
 end

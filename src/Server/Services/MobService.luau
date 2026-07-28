@@ -182,10 +182,9 @@ function MobService.SpawnMob(id: string, position: Vector3)
 end
 
 function MobService.Start()
-	-- Auto-spawn initial mobs in central wild nest area (0, 5, 0)
-	MobService.SpawnMob("Mob_1", Vector3.new(0, 5, 0))
-	MobService.SpawnMob("Mob_2", Vector3.new(-12, 5, 12))
-	MobService.SpawnMob("Mob_3", Vector3.new(12, 5, -12))
+	-- Default spawns removed — WorldAssemblyService handles mob placement.
+	-- If WorldAssembly is disabled, these 3 test mobs serve as fallback.
+	print("[MobService] Mob spawn zones managed by WorldAssemblyService.")
 end
 
 function MobService.TriggerAggro(player: Player, mobId: string?)

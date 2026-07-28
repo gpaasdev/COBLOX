@@ -413,7 +413,31 @@ function WorldAssemblyService._AssembleWorld()
 		end)
 	end
 
-	-- 7. Spawn Stylized Anime Nature & Floating Sky Islands
+	-- 7. Enhanced Mob Spawn Zones
+	local spawnLayouts = {
+		{ "ShadowWraith", Vector3.new(-40, 5, -40), 2 },
+		{ "CrystalGolem", Vector3.new(50, 5, -30), 2 },
+		{ "PyroBeast", Vector3.new(-30, 5, 50), 2 },
+		{ "AstralSpectre", Vector3.new(40, 5, 40), 2 },
+		{ "ShadowWraith", Vector3.new(-60, 5, 20), 1 },
+		{ "CrystalGolem", Vector3.new(60, 5, 20), 1 },
+		{ "PyroBeast", Vector3.new(-20, 5, -60), 1 },
+		{ "AstralSpectre", Vector3.new(20, 5, 60), 1 },
+		{ "VoidTitan", Vector3.new(0, 5, -100), 1 },
+	}
+	local MobService = require(ServerScriptService.Server.Services.MobService)
+	for zi, layout in ipairs(spawnLayouts) do
+		local zoneName, zonePos, zoneCount = layout[1], layout[2], layout[3]
+		for i = 1, zoneCount do
+			local offset = Vector3.new(math.random(-10, 10), 0, math.random(-10, 10))
+			local mobId = string.format("%s_Zone%d_%d", zoneName, zi, i)
+			task.delay(i * 0.3, function()
+				MobService.SpawnMob(mobId, zonePos + offset)
+			end)
+		end
+	end
+
+	-- 8. Spawn Stylized Anime Nature & Floating Sky Islands
 	WorldAssemblyService._AssembleAnimeNature(mapFolder)
 
 	print("[WorldAssemblyService] ✨ Advanced Cyber & Anime Nature Environment Ready!")

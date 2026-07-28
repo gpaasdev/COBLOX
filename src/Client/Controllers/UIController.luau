@@ -304,13 +304,13 @@ function UIController._CreateHUD()
 	listLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	listLayout.Parent = sideDrawer
 
-	local drawerButtons = { "Markas Saya", "Lab Racik", "Panggil Spirit", "Klan Player", "Buku Resep & Spirit", "Toko Premium" }
+	local drawerButtons = { "Markas Saya", "Lab Racik", "Panggil Spirit", "Klan Player", "Senjata", "Toko Premium" }
 	local drawerKeys = {
 		["Markas Saya"] = "SIDE_SANCTUM_GRID",
 		["Lab Racik"] = "SIDE_SYNTHESIS_VESSEL",
 		["Panggil Spirit"] = "SIDE_SPIRIT_HATCHERY",
 		["Klan Player"] = "SIDE_COVEN_ORDER",
-		["Buku Resep & Spirit"] = "SIDE_CODEX",
+		["Senjata"] = "SIDE_WEAPON_SHOP",
 		["Toko Premium"] = "SIDE_STORE",
 	}
 
@@ -356,6 +356,8 @@ function UIController._CreateHUD()
 			elseif btnName == "Markas Saya" or text == "Markas Saya" or text == "My Sanctum" or text == "Sanctum Grid" then
 				local PlacementController = require(controllersFolder:WaitForChild("PlacementController") :: any)
 				PlacementController.TogglePlacementMode()
+			elseif btnName == "Senjata" or text == "Senjata" or text == "Weapon Shop" or text == "Sword" then
+				UIController._OpenWeaponShop()
 			elseif btnName == "Toko Premium" or text == "Toko Premium" or text == "Premium Store" or text == "Store" then
 				local StoreController = require(controllersFolder:WaitForChild("StoreController") :: any)
 				StoreController.ToggleModal()
@@ -364,6 +366,9 @@ function UIController._CreateHUD()
 			end
 		end)
 	end
+
+	-- 2.75 Weapon Shop Modal (Hidden by default)
+	UIController._CreateWeaponShopUI()
 
 	-- 3. Notification Banner (Toast)
 	notificationLabel = Instance.new("TextLabel")
@@ -589,6 +594,120 @@ function UIController._CreateHUD()
 			end
 		end)
 	end
+end
+
+local weaponShopGui: ScreenGui? = nil
+local weaponShopOpen = false
+
+function UIController._CreateWeaponShopUI()
+	weaponShopGui = Instance.new("ScreenGui")
+	weaponShopGui.Name = "WeaponShop"
+	weaponShopGui.Enabled = false
+	weaponShopGui.IgnoreGuiInset = true
+	weaponShopGui.Parent = playerGui
+
+	local backdrop = Instance.new("Frame")
+	backdrop.Size = UDim2.new(1, 0, 1, 0)
+	backdrop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	backdrop.BackgroundTransparency = 0.6
+	backdrop.Parent = weaponShopGui
+
+	backdrop.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+			UIController._ToggleWeaponShop()
+		end
+	end)
+
+	local container = Instance.new("Frame")
+	container.Size = UDim2.new(0, 380, 0, 320)
+	container.Position = UDim2.new(0.5, -190, 0.5, -160)
+	container.BackgroundColor3 = Color3.fromRGB(30, 27, 75)
+	container.BackgroundTransparency = 0.1
+	container.BorderSizePixel = 0
+	container.Parent = weaponShopGui
+
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0, 14)
+	corner.Parent = container
+
+	local title = Instance.new("TextLabel")
+	title.Size = UDim2.new(1, 0, 0, 36)
+	title.Position = UDim2.new(0, 0, 0, 8)
+	title.BackgroundTransparency = 1
+	title.Text = "Weapon Shop"
+	title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	title.Font = Enum.Font.GothamBold
+	title.TextSize = 20
+	title.Parent = container
+
+	local weapons = {
+		{ Name = "Fist", DMG = 10, Range = 8, Cost = "Free", Color = Color3.fromRGB(148, 163, 184) },
+		{ Name = "Iron Sword", DMG = 25, Range = 14, Cost = "5,000 Coins", Color = Color3.fromRGB(168, 162, 158) },
+		{ Name = "Flame Saber", DMG = 45, Range = 16, Cost = "25,000 Coins / 79 R$", Color = Color3.fromRGB(251, 146, 60) },
+		{ Name = "Aether Blade", DMG = 75, Range = 18, Cost = "100,000 Coins / 199 R$", Color = Color3.fromRGB(56, 189, 248) },
+		{ Name = "Void Greatsword", DMG = 120, Range = 22, Cost = "500,000 Coins / 499 R$", Color = Color3.fromRGB(139, 92, 246) },
+	}
+
+	local yOff = 50
+	for _, w in ipairs(weapons) do
+		local row = Instance.new("Frame")
+		row.Size = UDim2.new(0.92, 0, 0, 44)
+		row.Position = UDim2.new(0.04, 0, 0, yOff)
+		row.BackgroundColor3 = w.Color
+		row.BackgroundTransparency = 0.7
+		row.Parent = container
+
+		local rCorner = Instance.new("UICorner")
+		rCorner.CornerRadius = UDim.new(0, 8)
+		rCorner.Parent = row
+
+		local nameLbl = Instance.new("TextLabel")
+		nameLbl.Size = UDim2.new(0.35, 0, 1, 0)
+		nameLbl.Position = UDim2.new(0, 8, 0, 0)
+		nameLbl.BackgroundTransparency = 1
+		nameLbl.Text = w.Name
+		nameLbl.TextColor3 = Color3.fromRGB(255, 255, 255)
+		nameLbl.Font = Enum.Font.GothamBold
+		nameLbl.TextSize = 14
+		nameLbl.TextXAlignment = Enum.TextXAlignment.Left
+		nameLbl.Parent = row
+
+		local statsLbl = Instance.new("TextLabel")
+		statsLbl.Size = UDim2.new(0.35, 0, 1, 0)
+		statsLbl.Position = UDim2.new(0.35, 0, 0, 0)
+		statsLbl.BackgroundTransparency = 1
+		statsLbl.Text = string.format("DMG:%d RNG:%d", w.DMG, w.Range)
+		statsLbl.TextColor3 = Color3.fromRGB(200, 200, 200)
+		statsLbl.Font = Enum.Font.GothamMedium
+		statsLbl.TextSize = 12
+		statsLbl.TextXAlignment = Enum.TextXAlignment.Center
+		statsLbl.Parent = row
+
+		local costLbl = Instance.new("TextLabel")
+		costLbl.Size = UDim2.new(0.3, 0, 1, 0)
+		costLbl.Position = UDim2.new(0.7, 0, 0, 0)
+		costLbl.BackgroundTransparency = 1
+		costLbl.Text = w.Cost
+		costLbl.TextColor3 = Color3.fromRGB(255, 215, 0)
+		costLbl.Font = Enum.Font.GothamBold
+		costLbl.TextSize = 11
+		costLbl.TextXAlignment = Enum.TextXAlignment.Center
+		costLbl.Parent = row
+
+		yOff += 50
+	end
+end
+
+function UIController._ToggleWeaponShop()
+	weaponShopOpen = not weaponShopOpen
+	if weaponShopGui then
+		weaponShopGui.Enabled = weaponShopOpen
+	end
+	UIController.ShowNotification(if weaponShopOpen then "🔪 Weapon Shop opened" else "Weapon Shop closed")
+end
+
+function UIController._OpenWeaponShop()
+	UIController._ToggleWeaponShop()
 end
 
 local hotbarSlotsData: {{[string]: any}} = {}
