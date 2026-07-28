@@ -21,14 +21,20 @@ end
 
 function NetChannels.GetRemoteEvent(name: string): RemoteEvent?
 	if RunService:IsServer() then
-		local remote = remotesFolder:FindFirstChild(name)
-		if not remote then
+		local remote = remotesFolder and remotesFolder:FindFirstChild(name)
+		if not remote and remotesFolder then
 			remote = Instance.new("RemoteEvent")
 			remote.Name = name
 			remote.Parent = remotesFolder
 		end
-		return remote :: RemoteEvent
+		return remote :: RemoteEvent?
 	else
+		if not remotesFolder then
+			remotesFolder = ReplicatedStorage:FindFirstChild("Remotes")
+		end
+		if not remotesFolder then
+			return nil
+		end
 		local remote = remotesFolder:FindFirstChild(name)
 		if not remote then
 			remote = remotesFolder:WaitForChild(name, 15)
@@ -39,14 +45,23 @@ end
 
 function NetChannels.GetRemoteFunction(name: string): RemoteFunction?
 	if RunService:IsServer() then
+		if not remotesFolder then
+			return nil
+		end
 		local remote = remotesFolder:FindFirstChild(name)
 		if not remote then
 			remote = Instance.new("RemoteFunction")
 			remote.Name = name
 			remote.Parent = remotesFolder
 		end
-		return remote :: RemoteFunction
+		return remote :: RemoteFunction?
 	else
+		if not remotesFolder then
+			remotesFolder = ReplicatedStorage:FindFirstChild("Remotes")
+		end
+		if not remotesFolder then
+			return nil
+		end
 		local remote = remotesFolder:FindFirstChild(name)
 		if not remote then
 			remote = remotesFolder:WaitForChild(name, 15)
@@ -57,14 +72,23 @@ end
 
 function NetChannels.GetUnreliableRemoteEvent(name: string): UnreliableRemoteEvent?
 	if RunService:IsServer() then
+		if not remotesFolder then
+			return nil
+		end
 		local remote = remotesFolder:FindFirstChild(name)
 		if not remote then
 			remote = Instance.new("UnreliableRemoteEvent")
 			remote.Name = name
 			remote.Parent = remotesFolder
 		end
-		return remote :: UnreliableRemoteEvent
+		return remote :: UnreliableRemoteEvent?
 	else
+		if not remotesFolder then
+			remotesFolder = ReplicatedStorage:FindFirstChild("Remotes")
+		end
+		if not remotesFolder then
+			return nil
+		end
 		local remote = remotesFolder:FindFirstChild(name)
 		if not remote then
 			remote = remotesFolder:WaitForChild(name, 15)
