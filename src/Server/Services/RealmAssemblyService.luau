@@ -179,7 +179,7 @@ function RealmAssemblyService._AssembleFairytaleWorld(preset: RealmConfig.RealmC
 
 		local adPortal = Instance.new("AdPortal")
 		adPortal.Name = "AdPortal"
-		adPortal.Parent = mapFolder
+		adPortal.Parent = adPart
 
 		local adGui = Instance.new("SurfaceGui")
 		adGui.Name = "AdGui"

@@ -344,7 +344,7 @@ function WorldAssemblyService._AssembleWorld()
 
 	local adPortal = Instance.new("AdPortal")
 	adPortal.Name = "AdPortal"
-	adPortal.Parent = mapFolder
+	adPortal.Parent = adPart
 
 	local adBillboard = Instance.new("SurfaceGui")
 	adBillboard.Name = "AdGui"
