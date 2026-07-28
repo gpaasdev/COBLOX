@@ -2,6 +2,8 @@
 
 local DataStoreService = game:GetService("DataStoreService")
 local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
@@ -17,14 +19,37 @@ function LeaderboardService.Init()
 end
 
 function LeaderboardService.Start()
+	local lbFunc = NetChannels.GetRemoteFunction("GetLeaderboardData")
+	if lbFunc then
+		lbFunc.OnServerInvoke = function(player: Player, category: string?, count: number?)
+			local cat = if typeof(category) == "string" and category ~= "" then category else "Gems"
+			local maxCount = math.min(typeof(count) == "number" and count or 10, 50)
+			local entries = if cat == "Gems" then LeaderboardService.GetTopGems(maxCount) else LeaderboardService.GetTopCoins(maxCount)
+			local result: { { Name: string, Score: number } } = {}
+			for _, e in ipairs(entries) do
+				local p = Players:GetPlayerByUserId(tonumber(e.userId) or 0)
+				table.insert(result, {
+					Name = if p then p.Name else "Player " .. e.userId,
+					Score = e.score,
+				})
+			end
+			return result
+		end
+	end
+
 	Players.PlayerRemoving:Connect(function(player: Player)
-		local profile = PlayerDataService.GetProfile(player)
-		if not profile then
+		local result = PlayerDataService.GetProfile(player)
+		if not result or not result.Success or not result.Data then
 			return
 		end
 
-		local gems = profile.Data.Wallet.Gems or 0
-		local coins = profile.Data.Wallet.Coins or 0
+		local wallet = result.Data.Wallet
+		if not wallet then
+			return
+		end
+
+		local gems = wallet.Gems or 0
+		local coins = wallet.Coins or 0
 
 		pcall(function()
 			ODS_Gems:SetAsync(tostring(player.UserId), math.floor(gems))

@@ -23,6 +23,7 @@ local startupOrder = {
 	"CombatController",
 	"GraphicsOptimizationController",
 	"FTUEController",
+	"LeaderboardUIController",
 }
 
 -- 1. Register Controllers
@@ -86,6 +87,9 @@ ControllerRegistry.RegisterController("SocialInviteController", require(controll
 
 -- Tier 2.75 — Realm (Phase 1)
 ControllerRegistry.RegisterController("RealmEntryController", require(controllersFolder.RealmEntryController))
+
+-- Tier 6 — Gameplay Systems (Phase A)
+ControllerRegistry.RegisterController("LeaderboardUIController", require(controllersFolder.LeaderboardUIController))
 
 print("==================================================")
 print("[COBLOX Client Bootstrap] Initializing Controllers via ControllerRegistry...")
