@@ -65,7 +65,7 @@ function SanctumBuilder.CreateAlchemicalAltar(position: Vector3): Model
 	-- 4. Floating Quantum Gem (High-Poly Base Model Placeholder for LOD Engine)
 	local highModel = Instance.new("Model")
 	highModel.Name = "HighPoly"
-	
+
 	local gemHigh = Instance.new("Part")
 	gemHigh.Name = "QuantumGemHigh"
 	gemHigh.Size = Vector3.new(2, 3, 2)

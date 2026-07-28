@@ -14,6 +14,15 @@ function MaterialRegistry.GetAll(): { [string]: MaterialRegistryDefinition }
 	return MaterialRegistry
 end
 
+-- Backward-compatible aliases (legacy API)
+function MaterialRegistry.GetMaterial(id: string): MaterialRegistryDefinition?
+	return MaterialRegistry[id]
+end
+
+function MaterialRegistry.GetAllMaterial(): { [string]: MaterialRegistryDefinition }
+	return MaterialRegistry
+end
+
 MaterialRegistry["Adamantite_Alloy"] = {
 	Id = "Adamantite_Alloy",
 	Name = "Adamantite Alloy",

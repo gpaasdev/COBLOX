@@ -33,7 +33,7 @@ function LODManager.Register(id: string, highPolyModel: Model, lowPolyModel: Mod
 	end
 
 	local pivot = highPolyModel:GetPivot()
-	
+
 	-- Inisialisasi status awal: Sembunyikan LowPoly dari Scene Graph
 	lowPolyModel.Parent = nil
 	highPolyModel.Parent = Workspace
@@ -51,29 +51,39 @@ end
 function LODManager.Unregister(id: string): ()
 	local item = lodRegistry[id]
 	if item then
-		if item.HighPoly then item.HighPoly.Parent = nil end
-		if item.LowPoly then item.LowPoly.Parent = nil end
+		if item.HighPoly then
+			item.HighPoly.Parent = nil
+		end
+		if item.LowPoly then
+			item.LowPoly.Parent = nil
+		end
 		lodRegistry[id] = nil
 	end
 end
 
 function LODManager.StartUpdateLoop(): ()
-	if renderConnection then return end
-	
+	if renderConnection then
+		return
+	end
+
 	renderConnection = RunService.Heartbeat:Connect(function()
 		frameCounter += 1
-		if frameCounter % LODConfig.CheckIntervalFrames ~= 0 then return end
-		
+		if frameCounter % LODConfig.CheckIntervalFrames ~= 0 then
+			return
+		end
+
 		if not camera then
 			camera = Workspace.CurrentCamera
-			if not camera then return end
+			if not camera then
+				return
+			end
 		end
-		
+
 		local camPos = camera.CFrame.Position
-		
+
 		for id, group in lodRegistry do
 			local dist = (camPos - group.Position).Magnitude
-			
+
 			if dist > group.Threshold and group.CurrentLOD ~= "Low" then
 				-- Jarak jauh: Hilangkan HighPoly (Parent = nil) dan Pasang LowPoly
 				group.HighPoly.Parent = nil

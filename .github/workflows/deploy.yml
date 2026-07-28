@@ -24,6 +24,6 @@ jobs:
         run: |
           curl -X POST \
             "https://apis.roblox.com/universes/v1/${{ secrets.ROBLOX_UNIVERSE_ID }}/places/${{ secrets.ROBLOX_PLACE_ID }}/versions?versionType=Published" \
-            -H "x-api-key: ${{ secrets.ROBLOX_OPEN_CLOUD_KEY }}" \
+            -H "x-api-key: ${{ secrets.ROBLOX_OPEN_CLOUD_API_KEY }}" \
             -H "Content-Type: application/octet-stream" \
             --data-binary @COBLOX_Production.rbxl

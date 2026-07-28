@@ -25,7 +25,7 @@ local GeneratedMaterialRegistry = require(script.Parent.GeneratedMaterialRegistr
 
 -- Default Data-Driven Material Content (Now loaded from generated pipeline)
 for id, def in pairs(GeneratedMaterialRegistry.GetAll()) do
-	-- Convert flat properties to nested properties if required, though the current 
+	-- Convert flat properties to nested properties if required, though the current
 	-- generator just dumps the object. For simplicity, we just register it.
 	-- In production, the schema should match exactly.
 	MaterialRegistry.RegisterMaterial(def)

@@ -35,32 +35,38 @@ function QuestManager.Start()
 	claimRemote.OnServerInvoke = function(player, questId)
 		return QuestManager.ClaimQuest(player, questId)
 	end
-    
-    -- Automated Daily Quest Rotation Engine
-    task.spawn(function()
-        while true do
-            -- Rotate quests every 24 hours (simulated as 1 hour for testing)
-            task.wait(3600)
-            print("[QuestManager] Rotating Daily Quests for all active players...")
-            for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
-                local res = PlayerDataService.GetProfile(player)
-                if res.Success and res.Data then
-                    -- Reset daily quest progress
-                    res.Data.DailyQuests.Progress = {}
-                    res.Data.DailyQuests.Completed = {}
-                    -- In a full implementation, we'd pick new random quests from QuestRegistry
-                    QuestManager.SyncClient(player, res.Data.DailyQuests)
-                end
-            end
-            local GlobalBroadcastService = require(game:GetService("ServerScriptService").Server.Services.GlobalBroadcastService)
-            GlobalBroadcastService.Broadcast("📜 Daily Quests have been reset!", 147, 197, 253)
-        end
-    end)
+
+	-- Automated Daily Quest Rotation Engine
+	task.spawn(function()
+		while true do
+			-- Rotate quests every 24 hours (simulated as 1 hour for testing)
+			task.wait(3600)
+			print("[QuestManager] Rotating Daily Quests for all active players...")
+			local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
+			for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
+				local res = PlayerDataService.GetProfile(player)
+				if res.Success and res.Data then
+					-- Reset daily quest progress (atomic mutation)
+					ProfileStoreAdapter.SafeUpdateProfile(player, function(data)
+						data.DailyQuests.Progress = {}
+						data.DailyQuests.Completed = {}
+					end)
+					-- In a full implementation, we'd pick new random quests from QuestRegistry
+					QuestManager.SyncClient(player, res.Data.DailyQuests)
+				end
+			end
+			local GlobalBroadcastService =
+				require(game:GetService("ServerScriptService").Server.Services.GlobalBroadcastService)
+			GlobalBroadcastService.Broadcast("📜 Daily Quests have been reset!", 147, 197, 253)
+		end
+	end)
 end
 
 function QuestManager.IncrementProgress(player: Player, questType: string, amount: number)
 	local res = PlayerDataService.GetProfile(player)
-	if not res.Success or not res.Data then return end
+	if not res.Success or not res.Data then
+		return
+	end
 
 	local profile = res.Data
 
@@ -104,7 +110,9 @@ end
 function QuestManager.ClaimQuest(player: Player, questId: string)
 	-- Automatic claim happens in IncrementProgress, this just returns true if completed
 	local res = PlayerDataService.GetProfile(player)
-	if not res.Success or not res.Data then return false end
+	if not res.Success or not res.Data then
+		return false
+	end
 	local profile = res.Data
 	if profile.DailyQuests.Completed[questId] then
 		return true

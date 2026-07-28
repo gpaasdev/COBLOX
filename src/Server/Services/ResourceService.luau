@@ -6,10 +6,15 @@ local Players = game:GetService("Players")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local ResourceConfig = require(Shared:WaitForChild("Configuration"):WaitForChild("ResourceConfig"))
 local NetChannels = require(Shared:WaitForChild("Network"):WaitForChild("NetChannels"))
+local EconomyConfig = require(Shared:WaitForChild("Configuration"):WaitForChild("EconomyConfig"))
+local GameConfig = require(Shared:WaitForChild("Configuration"):WaitForChild("GameConfig"))
 local PlayerDataService = require(script.Parent.PlayerDataService)
+local ProfileStoreAdapter = require(script.Parent.ProfileStoreAdapter)
 local DiscoveryService = require(script.Parent.DiscoveryService)
 
 local ResourceService = {}
+ResourceService.Name = "ResourceService"
+ResourceService.ServiceStatus = "Production"
 ResourceService.__index = ResourceService
 
 local activeNodes: { [string]: { NodeId: string, CurrentHealth: number, Position: Vector3, IsDepleted: boolean } } = {}
@@ -43,7 +48,11 @@ function ResourceService.RegisterNode(instanceId: string, nodeId: string, positi
 end
 
 function ResourceService.ProcessHarvestRequest(player: Player, payload: any)
-	if typeof(payload) ~= "table" or typeof(payload.NodeInstanceId) ~= "string" or typeof(payload.HitPosition) ~= "Vector3" then
+	if
+		typeof(payload) ~= "table"
+		or typeof(payload.NodeInstanceId) ~= "string"
+		or typeof(payload.HitPosition) ~= "Vector3"
+	then
 		warn("[ResourceService] Invalid payload received from player:", player.Name)
 		return
 	end
@@ -57,7 +66,9 @@ function ResourceService.ProcessHarvestRequest(player: Player, payload: any)
 	end
 
 	local nodeDef = ResourceConfig.Nodes[nodeState.NodeId]
-	if not nodeDef then return end
+	if not nodeDef then
+		return
+	end
 
 	-- 1. Zero-Trust Security: Rate Limit Check (max 2 hits/sec)
 	local now = os.clock()
@@ -70,11 +81,19 @@ function ResourceService.ProcessHarvestRequest(player: Player, payload: any)
 
 	-- 2. Zero-Trust Security: Physical Distance Check (<= 15 studs)
 	local character = player.Character
-	if not character or not character:FindFirstChild("HumanoidRootPart") then return end
+	if not character or not character:FindFirstChild("HumanoidRootPart") then
+		return
+	end
 	local rootPart = character.HumanoidRootPart :: BasePart
 	local distance = (rootPart.Position - nodeState.Position).Magnitude
 	if distance > 15 then
-		warn(string.format("[ResourceService] Security Alert: Distance violation (%f studs) by %s", distance, player.Name))
+		warn(
+			string.format(
+				"[ResourceService] Security Alert: Distance violation (%f studs) by %s",
+				distance,
+				player.Name
+			)
+		)
 		return
 	end
 
@@ -110,19 +129,29 @@ function ResourceService.ProcessHarvestRequest(player: Player, payload: any)
 		end
 
 		-- PERSIST TO PLAYER INVENTORY & TRIGGER DISCOVERY
-		local profileRes = PlayerDataService.GetProfile(player)
-		if profileRes.Success and profileRes.Data then
-			if not profileRes.Data.Inventory then
-				profileRes.Data.Inventory = {}
+		ProfileStoreAdapter.SafeUpdateProfile(player, function(data)
+			local inv = data.Inventory
+			if not inv then
+				data.Inventory = {
+					Items = {},
+					EquippedUUIDs = {},
+					MaxInventorySlots = EconomyConfig.MAX_BASE_INVENTORY_SLOTS,
+					MaxPetStorage = GameConfig.Pet.MaxPetStorage,
+					PityCounter = 0,
+				}
+				inv = data.Inventory
 			end
+			if not inv.Items then
+				inv.Items = {}
+			end
+
 			for itemId, qty in pairs(itemsObtained) do
-				profileRes.Data.Inventory[itemId] = (profileRes.Data.Inventory[itemId] or 0) + qty
-				-- Trigger Discovery Loop
+				inv.Items[itemId] = (inv.Items[itemId] or 0) + qty
 				pcall(function()
 					DiscoveryService.RecordDiscovery(player, "Material", itemId)
 				end)
 			end
-		end
+		end)
 
 		print(string.format("[ResourceService] Player %s harvested %s successfully!", player.Name, nodeDef.Name))
 

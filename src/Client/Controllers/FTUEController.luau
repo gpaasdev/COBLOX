@@ -47,15 +47,16 @@ function FTUEController.Start()
 			if not hasHatchedEgg then
 				hasHatchedEgg = true
 				FTUEController.UpdateMilestone(milestone3, "✅ Tetas Telur Pertama")
-				
+
 				-- Start guiding to Furnace for the final step
 				FTUEController.GuideToFurnace()
 			end
 		end)
 	end
-	
+
 	-- Connect to real DiscoveryService remote event
-	local discoveryEvents = ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Events"):FindFirstChild("DiscoveryEvents")
+	local discoveryEvents =
+		ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Events"):FindFirstChild("DiscoveryEvents")
 	local onDiscoveryRemote = discoveryEvents and discoveryEvents:FindFirstChild("OnDiscoveryMade") :: RemoteEvent?
 	if onDiscoveryRemote then
 		onDiscoveryRemote.OnClientEvent:Connect(function(discoveryType: string, id: string, isFirstDiscovery: boolean)
@@ -120,8 +121,10 @@ end
 function FTUEController.GuideToFurnace()
 	local map = Workspace:FindFirstChild("Map")
 	local plots = map and map:FindFirstChild("Plots")
-	if not plots then return end
-	
+	if not plots then
+		return
+	end
+
 	local myPlot = nil
 	for _, plot in ipairs(plots:GetChildren()) do
 		local claimPad = plot:FindFirstChild("ClaimPad")
@@ -134,7 +137,7 @@ function FTUEController.GuideToFurnace()
 			end
 		end
 	end
-	
+
 	if myPlot then
 		local furnace = myPlot:FindFirstChild("Furnace_Tier1") or myPlot:FindFirstChild("AlchemyFurnace")
 		if furnace then
@@ -142,8 +145,10 @@ function FTUEController.GuideToFurnace()
 			local hrp = character and character:FindFirstChild("HumanoidRootPart")
 			if hrp then
 				local beam = Instance.new("Beam")
-				local att0 = Instance.new("Attachment"); att0.Parent = hrp
-				local att1 = Instance.new("Attachment"); att1.Parent = furnace
+				local att0 = Instance.new("Attachment")
+				att0.Parent = hrp
+				local att1 = Instance.new("Attachment")
+				att1.Parent = furnace
 				beam.Attachment0 = att0
 				beam.Attachment1 = att1
 				beam.FaceCamera = true
@@ -151,12 +156,12 @@ function FTUEController.GuideToFurnace()
 				beam.Width1 = 1
 				beam.Color = ColorSequence.new(Color3.fromRGB(250, 204, 21)) -- Yellow-400
 				beam.Parent = hrp
-				
+
 				local bb = Instance.new("BillboardGui")
 				bb.Size = UDim2.new(0, 200, 0, 50)
 				bb.StudsOffset = Vector3.new(0, 5, 0)
 				bb.AlwaysOnTop = true
-				
+
 				local lbl = Instance.new("TextLabel")
 				lbl.Size = UDim2.new(1, 0, 1, 0)
 				lbl.BackgroundTransparency = 1
@@ -166,10 +171,12 @@ function FTUEController.GuideToFurnace()
 				lbl.TextScaled = true
 				lbl.Parent = bb
 				bb.Parent = furnace
-				
+
 				-- Cleanup once crafted
 				task.spawn(function()
-					while not hasCraftedCrystal do task.wait(1) end
+					while not hasCraftedCrystal do
+						task.wait(1)
+					end
 					beam:Destroy()
 					bb:Destroy()
 					att0:Destroy()
@@ -183,10 +190,12 @@ end
 function FTUEController.GuideToClaimPad()
 	local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
 	local hrp = character:WaitForChild("HumanoidRootPart") :: BasePart
-	
+
 	local map = Workspace:FindFirstChild("Map")
 	local plots = map and map:FindFirstChild("Plots")
-	if not plots then return end
+	if not plots then
+		return
+	end
 
 	local nearestPad: BasePart? = nil
 	local shortestDist = math.huge
@@ -210,15 +219,20 @@ function FTUEController.GuideToClaimPad()
 			-- Smooth temporary pan to the claim pad
 			local originalCFrame = camera.CFrame
 			camera.CameraType = Enum.CameraType.Scriptable
-			
+
 			local targetCFrame = CFrame.lookAt(hrp.Position + Vector3.new(0, 15, 20), nearestPad.Position)
-			local tween = TweenService:Create(camera, TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { CFrame = targetCFrame })
+			local tween = TweenService:Create(
+				camera,
+				TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+				{ CFrame = targetCFrame }
+			)
 			tween:Play()
 			tween.Completed:Wait()
-			
+
 			task.wait(1)
-			
-			local returnTween = TweenService:Create(camera, TweenInfo.new(1.0, Enum.EasingStyle.Quad), { CFrame = originalCFrame })
+
+			local returnTween =
+				TweenService:Create(camera, TweenInfo.new(1.0, Enum.EasingStyle.Quad), { CFrame = originalCFrame })
 			returnTween:Play()
 			returnTween.Completed:Wait()
 			camera.CameraType = Enum.CameraType.Custom
@@ -230,46 +244,54 @@ function FTUEController.PlayCinematicIntro()
 	local camera = Workspace.CurrentCamera
 	local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
 	local hrp = character:WaitForChild("HumanoidRootPart") :: BasePart
-	
+
 	-- Lock movement
-	ContextActionService:BindAction("FreezeMovement", function() return Enum.ContextActionResult.Sink end, false, unpack(Enum.PlayerActions:GetEnumItems()))
-	
+	ContextActionService:BindAction("FreezeMovement", function()
+		return Enum.ContextActionResult.Sink
+	end, false, unpack(Enum.PlayerActions:GetEnumItems()))
+
 	local originalCFrame = camera.CFrame
 	camera.CameraType = Enum.CameraType.Scriptable
-	
+
 	-- Pan up
 	local targetCFrame = CFrame.lookAt(hrp.Position + Vector3.new(0, 30, -30), hrp.Position)
-	local tween = TweenService:Create(camera, TweenInfo.new(3.0, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { CFrame = targetCFrame })
+	local tween = TweenService:Create(
+		camera,
+		TweenInfo.new(3.0, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+		{ CFrame = targetCFrame }
+	)
 	tween:Play()
-	
+
 	-- Show Master Alchemist Dialogue
 	print("[FTUE] Master Alchemist: Welcome to the Multiverse Alchemy Sanctum! We must melt this ice barrier!")
-	
+
 	-- Prompt Throw Potion
 	local throwBtn = Instance.new("TextButton")
 	throwBtn.Size = UDim2.new(0.3, 0, 0.1, 0)
 	throwBtn.Position = UDim2.new(0.35, 0, 0.8, 0)
 	throwBtn.Text = "Throw Pyro Potion!"
 	throwBtn.BackgroundColor3 = Color3.fromRGB(220, 38, 38)
-	throwBtn.TextColor3 = Color3.fromRGB(255,255,255)
+	throwBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 	throwBtn.Font = Enum.Font.GothamBold
 	throwBtn.TextScaled = true
-	throwBtn.Parent = localPlayer:WaitForChild("PlayerGui"):FindFirstChild("COBLOX_AlchemyHUD") or localPlayer:WaitForChild("PlayerGui")
-	
+	throwBtn.Parent = localPlayer:WaitForChild("PlayerGui"):FindFirstChild("COBLOX_AlchemyHUD")
+		or localPlayer:WaitForChild("PlayerGui")
+
 	throwBtn.MouseButton1Click:Connect(function()
 		throwBtn:Destroy()
 		print("[VFX] Pyro Potion Explodes! Ice Wall Melted!")
 		-- Unlock movement
 		ContextActionService:UnbindAction("FreezeMovement")
-		
+
 		-- Advance FTUE state on server
 		local advanceRemote = NetChannels.GetRemoteEvent("AdvanceFTUE")
 		if advanceRemote then
 			advanceRemote:FireServer(3)
 		end
-		
+
 		-- Return camera
-		local returnTween = TweenService:Create(camera, TweenInfo.new(1.0, Enum.EasingStyle.Quad), { CFrame = originalCFrame })
+		local returnTween =
+			TweenService:Create(camera, TweenInfo.new(1.0, Enum.EasingStyle.Quad), { CFrame = originalCFrame })
 		returnTween:Play()
 		returnTween.Completed:Wait()
 		camera.CameraType = Enum.CameraType.Custom
@@ -285,7 +307,7 @@ function FTUEController._CreateQuestBar()
 		warn("[FTUEController] COBLOX_AlchemyHUD not found after 10s, skipping quest bar creation")
 		return
 	end
-	
+
 	questHUD = Instance.new("Frame")
 	questHUD.Name = "FTUE_QuestBar"
 	questHUD.Size = UDim2.new(0.5, 0, 0.08, 0)
@@ -293,16 +315,16 @@ function FTUEController._CreateQuestBar()
 	questHUD.BackgroundColor3 = Color3.fromRGB(15, 23, 42) -- Slate 900
 	questHUD.BorderSizePixel = 0
 	questHUD.Parent = mainHUD
-	
+
 	local corner = Instance.new("UICorner")
 	corner.CornerRadius = UDim.new(0, 10)
 	corner.Parent = questHUD
-	
+
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = Color3.fromRGB(13, 148, 136) -- Teal 600
 	stroke.Thickness = 2
 	stroke.Parent = questHUD
-	
+
 	local layout = Instance.new("UIListLayout")
 	layout.FillDirection = Enum.FillDirection.Horizontal
 	layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
@@ -350,7 +372,7 @@ end
 function FTUEController.UpdateMilestone(label: TextLabel, text: string)
 	label.Text = text
 	label.TextColor3 = Color3.fromRGB(34, 197, 94) -- Green 500
-	
+
 	-- Play a quick pop sound for positive reinforcement
 	local sound = Instance.new("Sound")
 	sound.SoundId = "rbxassetid://138677306"
@@ -359,16 +381,17 @@ function FTUEController.UpdateMilestone(label: TextLabel, text: string)
 	task.delay(1, function()
 		sound:Destroy()
 	end)
-	
+
 	-- Small bounce animation
 	local originalSize = label.Size
 	local tweenGrow = TweenService:Create(label, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-		Size = UDim2.new(label.Size.X.Scale * 1.2, 0, label.Size.Y.Scale * 1.2, 0)
+		Size = UDim2.new(label.Size.X.Scale * 1.2, 0, label.Size.Y.Scale * 1.2, 0),
 	})
-	local tweenShrink = TweenService:Create(label, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
-		Size = originalSize
-	})
-	
+	local tweenShrink =
+		TweenService:Create(label, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+			Size = originalSize,
+		})
+
 	tweenGrow:Play()
 	tweenGrow.Completed:Wait()
 	tweenShrink:Play()

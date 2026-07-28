@@ -14,6 +14,15 @@ function BadgeRegistry.GetAll(): { [string]: BadgeRegistryDefinition }
 	return BadgeRegistry
 end
 
+-- Backward-compatible aliases (legacy API)
+function BadgeRegistry.GetBadge(id: string): BadgeRegistryDefinition?
+	return BadgeRegistry[id]
+end
+
+function BadgeRegistry.GetAllBadge(): { [string]: BadgeRegistryDefinition }
+	return BadgeRegistry
+end
+
 BadgeRegistry["BDG_BIOME_WALKER"] = {
 	Id = "BDG_BIOME_WALKER",
 	Name = "Biome Walker",
@@ -74,13 +83,6 @@ BadgeRegistry["BDG_PIONEER"] = {
 	Id = "BDG_PIONEER",
 	Name = "Alchemist Pioneer",
 	Description = "Awarded to the first 10,000 players who synthesize a Tier 3 material.",
-	RarityPercent = 1.2,
-}
-
-BadgeRegistry["BDG_PIONEER"] = {
-	Id = "BDG_PIONEER",
-	Name = "Alchemist Pioneer",
-	Description = "Synthesize a Tier 3 material.",
 	RarityPercent = 1.2,
 }
 

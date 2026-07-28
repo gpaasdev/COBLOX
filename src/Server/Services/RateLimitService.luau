@@ -11,26 +11,24 @@ function RateLimitService.Init()
 	end)
 end
 
-function RateLimitService.Start()
-end
+function RateLimitService.Start() end
 
 local BURST_CONFIG = {
-    CombatEvent_Attack          = { max = 5,  window = 1 },
-    CovenEvent_Create           = { max = 1,  window = 60 },
-    CovenEvent_Donate           = { max = 5,  window = 10 },
-    RequestGrab                 = { max = 3,  window = 2 },
-    RequestThrow                = { max = 3,  window = 2 },
-    CraftRecipe                 = { max = 2,  window = 1 },
-    RequestCrystalPurification  = { max = 1,  window = 5 },
-	RequestPlacement   = { max = 3,  window = 1 },
-	CraftItem          = { max = 2,  window = 1 },
-	SubmitFeedback     = { max = 1,  window = 30 },
-	PetMiningEvent     = { max = 20, window = 1 },
+	CombatEvent_Attack = { max = 5, window = 1 },
+	CovenEvent_Create = { max = 1, window = 60 },
+	CovenEvent_Donate = { max = 5, window = 10 },
+	RequestGrab = { max = 3, window = 2 },
+	RequestThrow = { max = 3, window = 2 },
+	CraftRecipe = { max = 2, window = 1 },
+	RequestCrystalPurification = { max = 1, window = 5 },
+	RequestPlacement = { max = 3, window = 1 },
+	CraftItem = { max = 2, window = 1 },
+	SubmitFeedback = { max = 1, window = 30 },
+	PetMiningEvent = { max = 20, window = 1 },
 	TriggerScreenShake = { max = 10, window = 1 },
-	EggHatchedVisual   = { max = 5,  window = 1 },
-	SyncShieldStatus   = { max = 10, window = 1 },
+	EggHatchedVisual = { max = 5, window = 1 },
+	SyncShieldStatus = { max = 10, window = 1 },
 }
-
 
 local burstCounts: { [number]: { [string]: { count: number, windowStart: number } } } = {}
 

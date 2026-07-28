@@ -29,7 +29,12 @@ end
 function GraphicsOptimizationController.EvaluateQuality(fps: number)
 	if fps < 30 then
 		-- Low Performance Device detected: Throttle visual effects
-		print(string.format("[GraphicsOptimizationController] Low FPS detected (%d). Scaling down particle density & lighting.", fps))
+		print(
+			string.format(
+				"[GraphicsOptimizationController] Low FPS detected (%d). Scaling down particle density & lighting.",
+				fps
+			)
+		)
 	elseif fps >= 55 then
 		-- High Performance Device: Enable full visual fidelity
 		print(string.format("[GraphicsOptimizationController] High FPS detected (%d). Optimal performance.", fps))

@@ -8,7 +8,7 @@ PartCache.__index = PartCache
 
 function PartCache.new(template: BasePart, numPreallocated: number)
 	assert(template, "PartCache needs a template!")
-	
+
 	local self = setmetatable({}, PartCache)
 	self.Template = template
 	self.Open = {}
@@ -19,11 +19,11 @@ function PartCache.new(template: BasePart, numPreallocated: number)
 
 	-- The "Far away" CFrame for unused parts
 	self.FarAway = CFrame.new(0, 10e8, 0)
-	
+
 	for _ = 1, numPreallocated do
 		self:_createPart()
 	end
-	
+
 	return self
 end
 
@@ -52,7 +52,7 @@ function PartCache:ReturnPart(part: BasePart)
 		table.insert(self.Open, part)
 		part.CFrame = self.FarAway
 		part.Anchored = true
-		
+
 		-- Turn off trails/particles to reset state
 		for _, descendant in ipairs(part:GetDescendants()) do
 			if descendant:IsA("Trail") or descendant:IsA("ParticleEmitter") or descendant:IsA("Beam") then

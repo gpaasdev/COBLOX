@@ -107,7 +107,7 @@ function Potion3DBuilder.BuildPotionFlask(potionName: string, position: Vector3)
 	local pe = Instance.new("ParticleEmitter")
 	pe.Texture = "rbxassetid://243098098"
 	pe.Color = ColorSequence.new(liquidColor)
-	pe.Size = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.3), NumberSequenceKeypoint.new(1, 0)})
+	pe.Size = NumberSequence.new({ NumberSequenceKeypoint.new(0, 0.3), NumberSequenceKeypoint.new(1, 0) })
 	pe.Lifetime = NumberRange.new(0.8, 1.4)
 	pe.Rate = 10
 	pe.Speed = NumberRange.new(0.5, 1.5)

@@ -10,12 +10,12 @@ export type Maid = {
 	DoCleaning: (self: Maid) -> (),
 	Destroy: (self: Maid) -> (),
 	[number]: Task,
-	_tasks: {Task},
+	_tasks: { Task },
 }
 
 function Maid.new(): Maid
 	return setmetatable({
-		_tasks = {}
+		_tasks = {},
 	}, Maid) :: any
 end
 
@@ -23,16 +23,16 @@ function Maid:GiveTask(task: Task): number
 	if not task then
 		error("Task cannot be false or nil", 2)
 	end
-	
+
 	local taskId = #self._tasks + 1
 	self._tasks[taskId] = task
-	
+
 	return taskId
 end
 
 function Maid:DoCleaning()
 	local tasks = self._tasks
-	
+
 	-- Disconnect all events first as we know this is safe
 	for index, task in pairs(tasks) do
 		if typeof(task) == "RBXScriptConnection" then
@@ -40,7 +40,7 @@ function Maid:DoCleaning()
 			task:Disconnect()
 		end
 	end
-	
+
 	-- Clear out tasks table completely
 	local index, task = next(tasks)
 	while task ~= nil do

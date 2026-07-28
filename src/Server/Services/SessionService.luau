@@ -27,16 +27,16 @@ end
 function SessionService.Start()
 	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 	local handshakeEvent = NetChannels.GetRemoteEvent("ClientHandshake")
-	
+
 	Players.PlayerAdded:Connect(function(player: Player)
 		local sessionId = HttpService:GenerateGUID(false)
-		
+
 		-- Device will be set when handshake is received
 		activeSessions[player.UserId] = {
 			sessionId = sessionId,
 			start = os.time(),
 			device = "Unknown",
-			serverId = SERVER_ID
+			serverId = SERVER_ID,
 		}
 	end)
 
@@ -44,11 +44,11 @@ function SessionService.Start()
 		local session = activeSessions[player.UserId]
 		if session then
 			session.device = type(deviceType) == "string" and deviceType or "Unknown"
-			
+
 			DomainEventBus.Publish("PlayerSessionStarted", player, {
 				sessionId = session.sessionId,
 				serverId = SERVER_ID,
-				device = session.device
+				device = session.device,
 			})
 		end
 	end)
@@ -57,13 +57,13 @@ function SessionService.Start()
 		local session = activeSessions[player.UserId]
 		if session then
 			local duration = os.time() - session.start
-			
+
 			DomainEventBus.Publish("PlayerSessionEnded", player, {
 				sessionId = session.sessionId,
 				duration = duration,
-				serverId = SERVER_ID
+				serverId = SERVER_ID,
 			})
-			
+
 			activeSessions[player.UserId] = nil
 		end
 	end)

@@ -15,9 +15,24 @@ local isVisible = false
 local typewriterLabel: TextLabel? = nil
 
 local LORE_ITEMS = {
-	{ Id = "Tape_01", Title = "Sanctum Vault Incident", Text = "Voice Log: 'Arch-Alchemist Vane recorded this before the breach...'", Unlocked = true },
-	{ Id = "Tape_02", Title = "Forbidden Transmutation", Text = "Notes: 'Void essence dissolves all solid matter into pure energy...'", Unlocked = false },
-	{ Id = "Journal_01", Title = "Last Keeper Diary", Text = "Entry: 'The catacombs are collapsing, take the spirit pods!'", Unlocked = true },
+	{
+		Id = "Tape_01",
+		Title = "Sanctum Vault Incident",
+		Text = "Voice Log: 'Arch-Alchemist Vane recorded this before the breach...'",
+		Unlocked = true,
+	},
+	{
+		Id = "Tape_02",
+		Title = "Forbidden Transmutation",
+		Text = "Notes: 'Void essence dissolves all solid matter into pure energy...'",
+		Unlocked = false,
+	},
+	{
+		Id = "Journal_01",
+		Title = "Last Keeper Diary",
+		Text = "Entry: 'The catacombs are collapsing, take the spirit pods!'",
+		Unlocked = true,
+	},
 }
 
 function CodexController.Init()
@@ -157,7 +172,9 @@ function CodexController._CreateModal()
 end
 
 function CodexController.PlayTypewriterText(fullText: string)
-	if not typewriterLabel then return end
+	if not typewriterLabel then
+		return
+	end
 
 	task.spawn(function()
 		for i = 1, #fullText do

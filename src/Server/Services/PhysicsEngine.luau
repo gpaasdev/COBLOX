@@ -16,7 +16,7 @@ function PhysicsEngine.UpdateEnclosure(state: PhysicsTypes.PhysicsState, volume:
 	if volume > 0 then
 		state.Pressure = (state.Mass * GAS_CONSTANT * state.Heat) / volume
 	end
-	
+
 	-- Cooling (Radiative heat loss to environment assuming 293K room temp)
 	if state.Heat > 293 then
 		local heatLoss = (state.Heat - 293) * 0.05 * deltaTime
@@ -30,7 +30,7 @@ function PhysicsEngine.UpdateTurbine(state: PhysicsTypes.PhysicsState, efficienc
 	if state.Pressure > 1 then
 		local generatedPower = (state.Pressure - 1) * efficiency * 100 * deltaTime
 		state.Electricity += generatedPower
-		
+
 		-- Turbine extracts energy, reducing pressure and heat slightly
 		state.Pressure *= 0.95
 		state.Heat *= 0.98
@@ -48,7 +48,12 @@ function PhysicsEngine.ApplyCooling(state: PhysicsTypes.PhysicsState, coolingPow
 end
 
 -- Simulates Thermal Conduction between two adjacent enclosures (Emergent Simulation)
-function PhysicsEngine.TransferHeat(stateA: PhysicsTypes.PhysicsState, stateB: PhysicsTypes.PhysicsState, thermalConductivity: number, deltaTime: number)
+function PhysicsEngine.TransferHeat(
+	stateA: PhysicsTypes.PhysicsState,
+	stateB: PhysicsTypes.PhysicsState,
+	thermalConductivity: number,
+	deltaTime: number
+)
 	local tempDiff = stateA.Heat - stateB.Heat
 	if math.abs(tempDiff) > 0.1 then
 		local heatFlow = tempDiff * thermalConductivity * 0.1 * deltaTime

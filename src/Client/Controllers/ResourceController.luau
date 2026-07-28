@@ -34,16 +34,20 @@ function ResourceController.RequestHarvest(nodeInstanceId: string, hitPosition: 
 end
 
 function ResourceController.PlayHitAnimation(nodePart: BasePart)
-	if not nodePart then return end
+	if not nodePart then
+		return
+	end
 
 	local originalSize = nodePart.Size
-	local expandTween = TweenService:Create(nodePart, TweenInfo.new(0.08, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-		Size = originalSize * 1.15
-	})
+	local expandTween =
+		TweenService:Create(nodePart, TweenInfo.new(0.08, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+			Size = originalSize * 1.15,
+		})
 
-	local resetTween = TweenService:Create(nodePart, TweenInfo.new(0.15, Enum.EasingStyle.Elastic, Enum.EasingDirection.Out), {
-		Size = originalSize
-	})
+	local resetTween =
+		TweenService:Create(nodePart, TweenInfo.new(0.15, Enum.EasingStyle.Elastic, Enum.EasingDirection.Out), {
+			Size = originalSize,
+		})
 
 	expandTween:Play()
 	expandTween.Completed:Connect(function()
@@ -52,7 +56,9 @@ function ResourceController.PlayHitAnimation(nodePart: BasePart)
 end
 
 function ResourceController.OnHarvestResponse(payload: any)
-	if not payload or not payload.Success or not payload.ItemsObtained then return end
+	if not payload or not payload.Success or not payload.ItemsObtained then
+		return
+	end
 
 	print("[ResourceController] Loot Received!")
 	for itemId, qty in pairs(payload.ItemsObtained) do

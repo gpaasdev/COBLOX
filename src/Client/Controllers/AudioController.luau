@@ -4,7 +4,8 @@ local SoundService = game:GetService("SoundService")
 local TweenService = game:GetService("TweenService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local AudioEventBus = require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("Audio"):WaitForChild("AudioEventBus") :: any)
+local AudioEventBus =
+	require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("Audio"):WaitForChild("AudioEventBus") :: any)
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local SoundPool = require(Shared:WaitForChild("Utility"):WaitForChild("SoundPool") :: any)
 local AssetsFolder = Shared:WaitForChild("Assets")
@@ -23,9 +24,8 @@ local currentBGMKey: string? = nil
 
 function AudioController.Init()
 	print("[AudioController] Initializing 4-Channel SoundGroups (Master, BGM, SFX, UI)...")
-	
-	masterGroup = SoundService:FindFirstChild("COBLOX_Master") :: SoundGroup
-		or Instance.new("SoundGroup")
+
+	masterGroup = SoundService:FindFirstChild("COBLOX_Master") :: SoundGroup or Instance.new("SoundGroup")
 	masterGroup.Name = "COBLOX_Master"
 	masterGroup.Volume = 0.8
 	masterGroup.Parent = SoundService
@@ -111,7 +111,8 @@ function AudioController.PlayBGM(soundKey: string, fadeTime: number?)
 
 	-- Crossfade: fade out old, fade in new
 	if oldSound then
-		local fadeOutTween = TweenService:Create(oldSound, TweenInfo.new(duration, Enum.EasingStyle.Sine), { Volume = 0 })
+		local fadeOutTween =
+			TweenService:Create(oldSound, TweenInfo.new(duration, Enum.EasingStyle.Sine), { Volume = 0 })
 		fadeOutTween:Play()
 		fadeOutTween.Completed:Connect(function()
 			oldSound:Stop()
@@ -125,7 +126,6 @@ function AudioController.PlayBGM(soundKey: string, fadeTime: number?)
 	currentBGMSound = newSound
 	currentBGMKey = soundKey
 end
-
 
 function AudioController.PlayCraftingChime()
 	local soundId = AssetRegistry.GetAudioId("SFX", "CoinPurchase")

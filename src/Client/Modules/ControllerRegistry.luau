@@ -44,11 +44,15 @@ function ControllerRegistry.InitializeController(name: string)
 		return
 	end
 	if initStack[name] then
-		error(string.format("⛔ [ControllerRegistry] Circular initialization dependency detected involving '%s'!", name))
+		error(
+			string.format("⛔ [ControllerRegistry] Circular initialization dependency detected involving '%s'!", name)
+		)
 	end
 
 	local controller = registeredControllers[name]
-	if not controller then return end
+	if not controller then
+		return
+	end
 
 	initStack[name] = true
 
@@ -65,7 +69,7 @@ function ControllerRegistry.InitializeController(name: string)
 	initializedControllers[name] = true
 end
 
-function ControllerRegistry.InitializeAll(startupOrder: {string}?)
+function ControllerRegistry.InitializeAll(startupOrder: { string }?)
 	if startupOrder then
 		for _, name in ipairs(startupOrder) do
 			if registeredControllers[name] then
@@ -82,9 +86,11 @@ function ControllerRegistry.InitializeAll(startupOrder: {string}?)
 	end
 end
 
-function ControllerRegistry.StartAll(startupOrder: {string}?)
+function ControllerRegistry.StartAll(startupOrder: { string }?)
 	local function startController(name: string)
-		if startedControllers[name] then return end
+		if startedControllers[name] then
+			return
+		end
 		local controller = registeredControllers[name]
 		if controller and controller.Start then
 			local success, err = pcall(function()

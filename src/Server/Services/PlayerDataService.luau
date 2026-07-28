@@ -36,9 +36,11 @@ local defaultProfile: PlayerProfile = {
 			["Water Element"] = 10,
 			["Fire Element"] = 5,
 		},
+		LootDrops = {},
 		EquippedUUIDs = {},
 		MaxEquipSlots = 3,
 		MaxInventorySlots = 50,
+		MaxPetStorage = 50,
 	},
 	Sanctum = {
 		UnlockedGridSize = 10,
@@ -83,7 +85,9 @@ local isDataStoreAvailable = pcall(function()
 end)
 
 if not isDataStoreAvailable then
-	warn("[PlayerDataService] CRITICAL ERROR: DataStoreService API is disabled or inaccessible! Proceeding with caution.")
+	warn(
+		"[PlayerDataService] CRITICAL ERROR: DataStoreService API is disabled or inaccessible! Proceeding with caution."
+	)
 end
 
 local profilesBuffer: { [Player]: any } = {}
@@ -103,9 +107,11 @@ function PlayerDataService._LoadPlayerProfile(player: Player)
 	if profile ~= nil then
 		profile:AddUserId(player.UserId)
 		profile:Reconcile()
-		
+
 		-- DataStore Sanitation / Schema Auto-Reconcile (Zero Nil Crash)
-		if not profile.Data.Wallet then profile.Data.Wallet = defaultProfile.Wallet end
+		if not profile.Data.Wallet then
+			profile.Data.Wallet = defaultProfile.Wallet
+		end
 		profile.Data.Wallet.Coins = profile.Data.Wallet.Coins or 1000
 		profile.Data.Wallet.Gems = profile.Data.Wallet.Gems or 50
 		profile.Data.Wallet.AuraEnergy = profile.Data.Wallet.AuraEnergy or 250
@@ -150,7 +156,9 @@ end
 
 function PlayerDataService.FlushLeaderboardScore(player: Player)
 	local profile = profilesBuffer[player]
-	if not profile or not profile.Data or not profile.Data.Wallet then return end
+	if not profile or not profile.Data or not profile.Data.Wallet then
+		return
+	end
 
 	local score = profile.Data.Wallet.Gems or 0
 	local success, err = pcall(function()
@@ -158,7 +166,14 @@ function PlayerDataService.FlushLeaderboardScore(player: Player)
 		orderedDS:SetAsync(tostring(player.UserId), score)
 	end)
 	if success then
-		print(string.format("[PlayerDataService] Leaderboard synced for %s (UserId: %d): %d Gems", player.Name, player.UserId, score))
+		print(
+			string.format(
+				"[PlayerDataService] Leaderboard synced for %s (UserId: %d): %d Gems",
+				player.Name,
+				player.UserId,
+				score
+			)
+		)
 	else
 		warn(string.format("[PlayerDataService] Failed to sync leaderboard for %s: %s", player.Name, tostring(err)))
 	end

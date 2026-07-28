@@ -29,7 +29,9 @@ end
 function BroadcastBannerController.ShowAnnouncement(messageText: string, color: Color3)
 	local playerGui = localPlayer:WaitForChild("PlayerGui")
 	local mainHUD = playerGui:FindFirstChild("COBLOX_AlchemyHUD")
-	if not mainHUD then return end
+	if not mainHUD then
+		return
+	end
 
 	if not bannerFrame then
 		bannerFrame = Instance.new("Frame")
@@ -64,7 +66,7 @@ function BroadcastBannerController.ShowAnnouncement(messageText: string, color: 
 	if bannerText and bannerFrame then
 		bannerText.Text = messageText
 		bannerFrame.Visible = true
-		
+
 		local stroke = bannerFrame:FindFirstChild("BannerStroke") :: UIStroke?
 		if stroke then
 			stroke.Color = color

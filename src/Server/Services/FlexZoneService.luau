@@ -66,7 +66,9 @@ function FlexZoneService.TriggerFlex(player: Player, effectType: string): { Succ
 
 		GlobalBroadcastService.Broadcast(
 			string.format("💸 FLEX ALERT! %s IS RAINING 100,000 COINS ACROSS THE SERVER!", player.Name),
-			245, 158, 11
+			245,
+			158,
+			11
 		)
 
 		task.spawn(function()
@@ -84,7 +86,6 @@ function FlexZoneService.TriggerFlex(player: Player, effectType: string): { Succ
 		end)
 
 		return { Success = true, Message = "Server Money Rain Activated!" }
-
 	elseif effectType == "SkyOverride" then
 		-- Cost: 50,000 Coins
 		local deductRes = EconomyService.DeductCoins(player, 50000, "Flex_SkyOverride")
@@ -94,7 +95,9 @@ function FlexZoneService.TriggerFlex(player: Player, effectType: string): { Succ
 
 		GlobalBroadcastService.Broadcast(
 			string.format("✨ FLEX ALERT! %s OVERRODE THE SERVER SKY TO GOLDEN ALCHEMY!", player.Name),
-			139, 92, 246
+			139,
+			92,
+			246
 		)
 
 		local origColor = Lighting.OutdoorAmbient

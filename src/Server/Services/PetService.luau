@@ -22,7 +22,9 @@ PetService.PetEquipped = Signal.new()
 PetService.PetAwakened = Signal.new()
 
 function PetService.Init()
-	print("[PetService] Initializing Pet Engine with Pet Awakening & Fusion Systems (Adopt Me/Blox Fruits Benchmark)...")
+	print(
+		"[PetService] Initializing Pet Engine with Pet Awakening & Fusion Systems (Adopt Me/Blox Fruits Benchmark)..."
+	)
 	NetChannels.GetUnreliableRemoteEvent("PetMiningEvent") -- Pre-register (Fase 10: visual-only, no ordering guarantee needed)
 end
 
@@ -64,7 +66,7 @@ function PetService.AutoMiningLoop()
 								end
 							end
 						end
-						
+
 						if nearestNode then
 							-- Pet mines the node, giving coins based on multipliers
 							local totalMultiplier = 0
@@ -74,14 +76,15 @@ function PetService.AutoMiningLoop()
 									totalMultiplier += pet.Multiplier
 								end
 							end
-							
+
 							-- Simulate mining yield
 							local yield = math.floor(10 * totalMultiplier)
 							EconomyService.AddCurrency(player, "Coins", yield, "PetAutoMining")
-							
+
 							-- Fire visual event (Fase 10: UnreliableRemoteEvent for visual-only fire)
-							NetChannels.GetUnreliableRemoteEvent("PetMiningEvent"):FireClient(player, nearestNode, equippedPets)
-							
+							NetChannels.GetUnreliableRemoteEvent("PetMiningEvent")
+								:FireClient(player, nearestNode, equippedPets)
+
 							-- Active Mining in the Wild triggers Monster Aggro!
 							local MobService = require(script.Parent.MobService)
 							MobService.TriggerAggro(player)
@@ -124,7 +127,7 @@ function PetService.CreatePet(player: Player, petId: string): ServiceResult<PetI
 		currentCount += 1
 	end
 
-            if currentCount >= inventory.MaxInventorySlots then
+	if currentCount >= inventory.MaxInventorySlots then
 		return {
 			Success = false,
 			Category = "Validation",
@@ -211,7 +214,11 @@ function PetService.EquipPet(player: Player, petUUID: string): ServiceResult<boo
 	}
 end
 
-function PetService.AwakenPet(player: Player, primaryUUID: string, sacrificeUUIDs: { string }): ServiceResult<PetInstance>
+function PetService.AwakenPet(
+	player: Player,
+	primaryUUID: string,
+	sacrificeUUIDs: { string }
+): ServiceResult<PetInstance>
 	if #sacrificeUUIDs < 2 then
 		return {
 			Success = false,
@@ -263,7 +270,14 @@ function PetService.AwakenPet(player: Player, primaryUUID: string, sacrificeUUID
 
 	PetService.PetAwakened:Fire(player, primaryPet)
 
-	print(string.format("[PetService] Pet %s awakened for %s | New Multiplier: %d", primaryUUID, player.Name, primaryPet.Multiplier))
+	print(
+		string.format(
+			"[PetService] Pet %s awakened for %s | New Multiplier: %d",
+			primaryUUID,
+			player.Name,
+			primaryPet.Multiplier
+		)
+	)
 
 	return {
 		Success = true,

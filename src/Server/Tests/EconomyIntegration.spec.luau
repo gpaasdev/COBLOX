@@ -14,12 +14,12 @@ return function()
 				Purity = 1.0,
 				Energy = 200,
 				ReactionTime = 10,
-				Initiator = nil -- Normally a Player, but nil for headless tests
+				Initiator = nil, -- Normally a Player, but nil for headless tests
 			}
-			
+
 			-- When
 			local output = ReactionEngine.SimulateReaction(mockInput)
-			
+
 			-- Then
 			expect(output.Success).to.be.equal(true)
 			expect(output.Products["FerriumAlloy"]).to.be.equal(1)

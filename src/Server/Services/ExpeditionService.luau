@@ -17,7 +17,9 @@ ExpeditionService.Name = "ExpeditionService"
 local activeSessions: { [number]: { Floor: number, StartTime: number, Active: boolean } } = {}
 
 function ExpeditionService.Init()
-	print("[ExpeditionService] Initializing 5-Minute Roguelite Floor Expeditions Engine (Doors/Dandy's World Benchmark)...")
+	print(
+		"[ExpeditionService] Initializing 5-Minute Roguelite Floor Expeditions Engine (Doors/Dandy's World Benchmark)..."
+	)
 	ExpeditionService._AssembleExpeditionArena()
 end
 
@@ -96,7 +98,10 @@ function ExpeditionService.StartExpedition(player: Player): ServiceResult<{ Floo
 	}
 end
 
-function ExpeditionService.CompleteFloor(player: Player, floorNumber: number): ServiceResult<{ SparksReward: number, BadgesReward: number }>
+function ExpeditionService.CompleteFloor(
+	player: Player,
+	floorNumber: number
+): ServiceResult<{ SparksReward: number, BadgesReward: number }>
 	local session = activeSessions[player.UserId]
 	if not session or not session.Active then
 		return {
@@ -116,9 +121,21 @@ function ExpeditionService.CompleteFloor(player: Player, floorNumber: number): S
 	EconomyService.AddCurrency(player, "QuantumBadges", badgesReward)
 
 	session.Floor = floorNumber + 1
-	DomainEventBus.Publish("ExpeditionFloorCompleted", player, { Floor = floorNumber, Sparks = sparksReward, Badges = badgesReward })
+	DomainEventBus.Publish(
+		"ExpeditionFloorCompleted",
+		player,
+		{ Floor = floorNumber, Sparks = sparksReward, Badges = badgesReward }
+	)
 
-	print(string.format("[ExpeditionService] Player %s completed Floor %d (+%d Sparks, +%d Badges)", player.Name, floorNumber, sparksReward, badgesReward))
+	print(
+		string.format(
+			"[ExpeditionService] Player %s completed Floor %d (+%d Sparks, +%d Badges)",
+			player.Name,
+			floorNumber,
+			sparksReward,
+			badgesReward
+		)
+	)
 
 	return {
 		Success = true,

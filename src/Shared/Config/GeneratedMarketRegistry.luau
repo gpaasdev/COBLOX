@@ -14,6 +14,15 @@ function MarketRegistry.GetAll(): { [string]: MarketRegistryDefinition }
 	return MarketRegistry
 end
 
+-- Backward-compatible aliases (legacy API)
+function MarketRegistry.GetMarket(id: string): MarketRegistryDefinition?
+	return MarketRegistry[id]
+end
+
+function MarketRegistry.GetAllMarket(): { [string]: MarketRegistryDefinition }
+	return MarketRegistry
+end
+
 MarketRegistry["MKT_VIP_PASS"] = {
 	Id = "MKT_VIP_PASS",
 	Name = "Sanctum VIP Pass",

@@ -23,10 +23,10 @@ function OnboardingService.Start()
 		local ftue = profileData.FTUE
 		if not ftue.Completed and ftue.Step == 0 and not player:GetAttribute("FTUEStarted") then
 			player:SetAttribute("FTUEStarted", true)
-			
+
 			local RemoteConfigRepository = require(ServerScriptService.Server.Services.RemoteConfigRepository)
 			local config = RemoteConfigRepository.GetDefaultConfig()
-			
+
 			if config and config.FeatureFlags and config.FeatureFlags.SkipCinematic then
 				-- Automatically advance to Step 3 (Cinematic Skipped)
 				OnboardingService.TriggerState(player, 3)
@@ -41,10 +41,16 @@ function OnboardingService.Start()
 	local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
 	if advanceRemote then
 		advanceRemote.OnServerEvent:Connect(function(player, stateIndex)
-			if type(stateIndex) ~= "number" then return end
-			if stateIndex < 1 or stateIndex > #stepNames then return end
-			if not RateLimitService.CheckRateLimit(player, "AdvanceFTUE", 1) then return end
-			
+			if type(stateIndex) ~= "number" then
+				return
+			end
+			if stateIndex < 1 or stateIndex > #stepNames then
+				return
+			end
+			if not RateLimitService.CheckRateLimit(player, "AdvanceFTUE", 1) then
+				return
+			end
+
 			OnboardingService.TriggerState(player, stateIndex)
 		end)
 	end
@@ -52,10 +58,14 @@ end
 
 function OnboardingService.TriggerState(player: Player, stateIndex: number)
 	local res = PlayerDataService.GetProfile(player)
-	if not res.Success or not res.Data then return end
+	if not res.Success or not res.Data then
+		return
+	end
 
 	local ftue = res.Data.FTUE
-	if ftue.Completed then return end
+	if ftue.Completed then
+		return
+	end
 
 	if stateIndex == 1 and ftue.Step == 0 then
 		EconomyService.AddCurrency(player, "AuraEnergy", 250)

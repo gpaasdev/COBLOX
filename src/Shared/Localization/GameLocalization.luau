@@ -7,7 +7,7 @@ local GameLocalization = {
 		["HUD_AURA"] = "🌟 Aura: %d",
 		["HUD_SPARKS"] = "✨ Sparks: %d",
 		["LIVEOPS_BOOST_ACTIVE"] = "🔥 Event LiveOps Aktif! (+50% Rate Drop)",
-		
+
 		-- Side Drawer Menu Buttons
 		["SIDE_SANCTUM_GRID"] = "🏰 Markas Saya",
 		["SIDE_SYNTHESIS_VESSEL"] = "🧪 Lab Racik",
@@ -43,7 +43,7 @@ local GameLocalization = {
 		["HUD_AURA"] = "🌟 Aura: %d",
 		["HUD_SPARKS"] = "✨ Sparks: %d",
 		["LIVEOPS_BOOST_ACTIVE"] = "🔥 LiveOps Boost Event Active! (+50% Drop Rate)",
-		
+
 		-- Side Drawer Menu Buttons
 		["SIDE_SANCTUM_GRID"] = "🏰 My Sanctum",
 		["SIDE_SYNTHESIS_VESSEL"] = "🧪 Alchemist Lab",
@@ -71,7 +71,7 @@ local GameLocalization = {
 		-- Combat & Parry Tutorial
 		["PARRY_HINT"] = "🛡️ PRESS [F] / SHIELD TO PARRY MONSTER ATTACK!",
 		["PARRY_SUCCESS"] = "⚡ PERFECT PARRY! Monster Stunned!",
-	}
+	},
 }
 
 return GameLocalization

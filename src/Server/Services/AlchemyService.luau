@@ -14,10 +14,12 @@ local GlobalBroadcastService = require(script.Parent:WaitForChild("GlobalBroadca
 local AnalyticsService = require(script.Parent:WaitForChild("AnalyticsService"))
 
 local AlchemyService = {}
+AlchemyService.Name = "AlchemyService"
+AlchemyService.ServiceStatus = "Production"
 
 function AlchemyService.Init()
 	local craftRecipeEvent = NetChannels.GetRemoteFunction("CraftRecipe")
-	
+
 	if craftRecipeEvent then
 		craftRecipeEvent.OnServerInvoke = function(player: Player, recipeId: string)
 			return AlchemyService.HandleCraftRequest(player, recipeId)
@@ -27,7 +29,7 @@ end
 
 function AlchemyService.HandleCraftRequest(player: Player, recipeId: string): Types.ServiceResult<string>
 	local recipe = RecipeConfig.Recipes[recipeId]
-	
+
 	if not recipe then
 		return {
 			Success = false,
@@ -37,7 +39,7 @@ function AlchemyService.HandleCraftRequest(player: Player, recipeId: string): Ty
 			Retryable = false,
 		}
 	end
-	
+
 	local playerProfile = PlayerDataService.GetProfile(player)
 	if not playerProfile then
 		return {
@@ -48,9 +50,9 @@ function AlchemyService.HandleCraftRequest(player: Player, recipeId: string): Ty
 			Retryable = true,
 		}
 	end
-	
+
 	local inventory = playerProfile.Data.Inventory
-	
+
 	-- Zero-Trust Validation: Check if player has all ingredients
 	for ingredientName, requiredAmount in pairs(recipe.Ingredients) do
 		local currentAmount = inventory.Items[ingredientName] or 0
@@ -64,7 +66,7 @@ function AlchemyService.HandleCraftRequest(player: Player, recipeId: string): Ty
 			}
 		end
 	end
-	
+
 	-- Consume ingredients
 	local updateResult = ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
 		local inventory = profileData.Inventory
@@ -83,23 +85,23 @@ function AlchemyService.HandleCraftRequest(player: Player, recipeId: string): Ty
 	if not updateResult.Success then
 		return updateResult
 	end
-	
+
 	-- Open Cloud & Cross-Server Announcement for Legendary/Mythic
 	if recipe.Rarity == "Legendary" or recipe.Rarity == "Mythic" then
 		local messagePayload = {
 			PlayerName = player.Name,
 			ItemName = recipe.Name,
 			Rarity = recipe.Rarity,
-			Timestamp = os.time()
+			Timestamp = os.time(),
 		}
 
 		-- Real telemetry via AnalyticsService (Fase 8)
 		AnalyticsService.LogEvent("alchemy.legendary_craft", {
-			playerId   = player.UserId,
+			playerId = player.UserId,
 			playerName = player.Name,
-			recipeId   = recipeId,
-			rarity     = recipe.Rarity,
-			timestamp  = os.time(),
+			recipeId = recipeId,
+			rarity = recipe.Rarity,
+			timestamp = os.time(),
 		}, player.UserId)
 
 		-- Use MessagingService directly to trigger cross server broadcast
@@ -113,11 +115,13 @@ function AlchemyService.HandleCraftRequest(player: Player, recipeId: string): Ty
 			warn("[AlchemyService] MessagingService failed:", tostring(err))
 			GlobalBroadcastService.Broadcast(
 				string.format("⚗️ %s crafted a %s %s!", player.Name, recipe.Rarity, recipe.Name),
-				255, 215, 0
+				255,
+				215,
+				0
 			)
 		end
 	end
-	
+
 	return {
 		Success = true,
 		Data = recipe.Result,

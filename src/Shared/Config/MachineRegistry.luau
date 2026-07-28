@@ -42,7 +42,7 @@ MachineRegistry.RegisterMachine({
 		Efficiency = 0.85,
 		Durability = 100,
 		MaxDurability = 100,
-	}
+	},
 })
 
 MachineRegistry.RegisterMachine({
@@ -57,7 +57,7 @@ MachineRegistry.RegisterMachine({
 		Efficiency = 0.95,
 		Durability = 80,
 		MaxDurability = 80,
-	}
+	},
 })
 
 MachineRegistry.RegisterMachine({
@@ -72,7 +72,7 @@ MachineRegistry.RegisterMachine({
 		Efficiency = 0.90,
 		Durability = 120,
 		MaxDurability = 120,
-	}
+	},
 })
 
 return MachineRegistry

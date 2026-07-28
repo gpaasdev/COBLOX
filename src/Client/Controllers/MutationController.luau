@@ -37,7 +37,9 @@ end
 
 function MutationController.ApplyScreenShake(duration: number, intensity: number)
 	local camera = workspace.CurrentCamera
-	if not camera then return end
+	if not camera then
+		return
+	end
 
 	local startTime = os.clock()
 	local conn: RBXScriptConnection?
@@ -45,7 +47,9 @@ function MutationController.ApplyScreenShake(duration: number, intensity: number
 	conn = RunService.RenderStepped:Connect(function()
 		local elapsed = os.clock() - startTime
 		if elapsed >= duration then
-			if conn then conn:Disconnect() end
+			if conn then
+				conn:Disconnect()
+			end
 			return
 		end
 

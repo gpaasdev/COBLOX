@@ -11,7 +11,9 @@ AccessoryOptimizationService.Name = "AccessoryOptimizationService"
 
 local function OptimizeCharacterAccessories(character: Model)
 	local humanoid = character:WaitForChild("Humanoid", 5) :: Humanoid?
-	if not humanoid then return end
+	if not humanoid then
+		return
+	end
 
 	for _, child in ipairs(character:GetChildren()) do
 		if child:IsA("Accessory") then

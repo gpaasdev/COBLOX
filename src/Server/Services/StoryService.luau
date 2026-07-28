@@ -18,9 +18,21 @@ StoryService.Name = "StoryService"
 -- Until official audio assets are uploaded, AudioId is left as "" so the
 -- client gracefully shows text-only lore without attempting to play audio.
 local LoreCatalog = {
-	Tape_01 = { Title = "The Incident at Sanctum Vault 4", AudioId = "", Description = "A recorded voice log left by Arch-Alchemist Vane." },
-	Tape_02 = { Title = "Forbidden Transmutation Notes", AudioId = "", Description = "Decoded notes warning of the Void Essence." },
-	Journal_01 = { Title = "Diary of the Last Keeper", AudioId = "", Description = "The final entry before the catacombs collapsed." },
+	Tape_01 = {
+		Title = "The Incident at Sanctum Vault 4",
+		AudioId = "",
+		Description = "A recorded voice log left by Arch-Alchemist Vane.",
+	},
+	Tape_02 = {
+		Title = "Forbidden Transmutation Notes",
+		AudioId = "",
+		Description = "Decoded notes warning of the Void Essence.",
+	},
+	Journal_01 = {
+		Title = "Diary of the Last Keeper",
+		AudioId = "",
+		Description = "The final entry before the catacombs collapsed.",
+	},
 }
 
 function StoryService.Init()
@@ -32,7 +44,7 @@ function StoryService.Init()
 			if not RateLimitService.CheckRateLimit(player, "StoryEvent_" .. tostring(action), 0.5) then
 				return
 			end
-			
+
 			if action == "CollectLore" and type(data) == "string" then
 				StoryService.CollectLoreFragment(player, data)
 			elseif action == "UnlockMemory" and type(data) == "string" then
@@ -46,7 +58,10 @@ function StoryService.Start()
 	-- Connect event listeners
 end
 
-function StoryService.CollectLoreFragment(player: Player, loreId: string): ServiceResult<{ LoreTitle: string, AudioId: string }>
+function StoryService.CollectLoreFragment(
+	player: Player,
+	loreId: string
+): ServiceResult<{ LoreTitle: string, AudioId: string }>
 	local lore = LoreCatalog[loreId]
 	if not lore then
 		return {
@@ -110,7 +125,9 @@ function StoryService.SetStoryFlag(player: Player, flagName: string, value: bool
 	end
 
 	metadata.StoryFlags[flagName] = value
-	print(string.format("[StoryService] Story Flag '%s' set to %s for player %s", flagName, tostring(value), player.Name))
+	print(
+		string.format("[StoryService] Story Flag '%s' set to %s for player %s", flagName, tostring(value), player.Name)
+	)
 
 	return {
 		Success = true,
@@ -134,23 +151,23 @@ function StoryService.UnlockSpiritMemory(player: Player, elementType: string): S
 			Retryable = true,
 		}
 	end
-	
+
 	local metadata = res.Data.Metadata
 	if not metadata.UnlockedMemories then
 		metadata.UnlockedMemories = {}
 	end
-	
+
 	if not metadata.UnlockedMemories[elementType] then
 		metadata.UnlockedMemories[elementType] = true
 		print(string.format("[StoryService] Player %s unlocked Spirit Memory: %s", player.Name, elementType))
-		
+
 		-- Fire cutscene to client
 		local remote = NetChannels.GetRemoteEvent("PlaySpiritMemory")
 		if remote then
 			remote:FireClient(player, elementType)
 		end
 	end
-	
+
 	return {
 		Success = true,
 		Category = nil,

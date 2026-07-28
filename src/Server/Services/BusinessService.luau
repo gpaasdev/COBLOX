@@ -6,6 +6,7 @@ local BusinessService = {}
 local MacroEconomyService = require(script.Parent.MacroEconomyService)
 local PlayerDataService = require(script.Parent.PlayerDataService)
 local EconomyService = require(script.Parent.EconomyService)
+local ProfileStoreAdapter = require(script.Parent.ProfileStoreAdapter)
 
 export type EnterpriseNode = {
 	Id: string,
@@ -16,46 +17,46 @@ export type EnterpriseNode = {
 }
 
 function BusinessService.RegisterEnterpriseNode(player: Player, nodeType: string): boolean
-	local res = PlayerDataService.GetProfile(player)
-	if not res.Success or not res.Data then return false end
-	
-	if not res.Data.Enterprise then
-		res.Data.Enterprise = {}
-	end
-	
 	local HttpService = game:GetService("HttpService")
 	local id = HttpService:GenerateGUID(false)
-	
-	res.Data.Enterprise[id] = {
-		Id = id,
-		Type = nodeType,
-		Level = 1,
-		Efficiency = 1.0,
-		UpkeepCost = 5, -- 5 Coins per tick
-	}
-	
-	return true
+
+	local result = ProfileStoreAdapter.SafeUpdateProfile(player, function(data)
+		if not data.Enterprise then
+			data.Enterprise = {}
+		end
+
+		data.Enterprise[id] = {
+			Id = id,
+			Type = nodeType,
+			Level = 1,
+			Efficiency = 1.0,
+			UpkeepCost = 5,
+		}
+	end)
+
+	return result.Success
 end
 
 function BusinessService.TickPlayerEnterprise(player: Player, deltaTime: number)
 	local res = PlayerDataService.GetProfile(player)
-	if not res.Success or not res.Data or not res.Data.Enterprise then return end
-	
+	if not res.Success or not res.Data or not res.Data.Enterprise then
+		return
+	end
+
 	local totalUpkeep = 0
-	
 	for _, node in pairs(res.Data.Enterprise) do
 		totalUpkeep += node.UpkeepCost * deltaTime
 	end
-	
+
 	if totalUpkeep > 0 then
-		local wallet = res.Data.Wallet
-		if wallet.Coins >= totalUpkeep then
-			wallet.Coins -= totalUpkeep
-			-- Nodes are active, logic for automated production chain could run here
-		else
-			-- Not enough money to run the enterprise, nodes shut down
-			print(string.format("[BUSINESS] %s ran out of funds. Enterprise nodes halted.", player.Name))
-		end
+		ProfileStoreAdapter.SafeUpdateProfile(player, function(data)
+			local wallet = data.Wallet
+			if wallet.Coins >= totalUpkeep then
+				wallet.Coins -= totalUpkeep
+			else
+				print(string.format("[BUSINESS] %s ran out of funds. Enterprise nodes halted.", player.Name))
+			end
+		end)
 	end
 end
 
@@ -63,13 +64,13 @@ end
 function BusinessService.ExportGoods(player: Player, commodityId: string, amount: number, useBlackMarket: boolean)
 	local pricePerUnit = MacroEconomyService.GetMarketPrice(commodityId, useBlackMarket)
 	local totalProfit = pricePerUnit * amount
-	
+
 	-- Record trade impacts global supply/demand
 	MacroEconomyService.RecordTrade(commodityId, amount, false)
-	
+
 	-- Add funds to player
 	EconomyService.AddCurrency(player, "Coins", totalProfit, "BusinessExport")
-	
+
 	return totalProfit
 end
 

@@ -75,7 +75,9 @@ function TradeService.CreateTradeSession(playerA: Player, playerB: Player): Serv
 
 	local ServerScriptService = game:GetService("ServerScriptService")
 	local PolicyComplianceService = require(ServerScriptService.Server.Services.PolicyComplianceService)
-	if not PolicyComplianceService:CanTradePaidItems(playerA) or not PolicyComplianceService:CanTradePaidItems(playerB) then
+	if
+		not PolicyComplianceService:CanTradePaidItems(playerA) or not PolicyComplianceService:CanTradePaidItems(playerB)
+	then
 		return {
 			Success = false,
 			Category = "Compliance",
@@ -117,7 +119,14 @@ function TradeService.CreateTradeSession(playerA: Player, playerB: Player): Serv
 	playerToSession[playerB.UserId] = sessionId
 
 	TradeService.TradeStarted:Fire(sessionId, playerA, playerB)
-	print(string.format("[TradeService] Trade session %s created between %s and %s", sessionId, playerA.Name, playerB.Name))
+	print(
+		string.format(
+			"[TradeService] Trade session %s created between %s and %s",
+			sessionId,
+			playerA.Name,
+			playerB.Name
+		)
+	)
 
 	return {
 		Success = true,
@@ -240,10 +249,14 @@ end
 
 function TradeService.IsUUIDQuarantined(player: Player, petUUID: string): boolean
 	local sessionId = playerToSession[player.UserId]
-	if not sessionId then return false end
+	if not sessionId then
+		return false
+	end
 
 	local session = activeSessions[sessionId]
-	if not session then return false end
+	if not session then
+		return false
+	end
 
 	-- Check if item is locked in offer during active trade session
 	local isOfferA = session.PlayerA == player and table.find(session.OfferA.PetUUIDs, petUUID) ~= nil

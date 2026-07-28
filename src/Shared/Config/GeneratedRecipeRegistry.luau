@@ -14,6 +14,15 @@ function RecipeRegistry.GetAll(): { [string]: RecipeRegistryDefinition }
 	return RecipeRegistry
 end
 
+-- Backward-compatible aliases (legacy API)
+function RecipeRegistry.GetRecipe(id: string): RecipeRegistryDefinition?
+	return RecipeRegistry[id]
+end
+
+function RecipeRegistry.GetAllRecipe(): { [string]: RecipeRegistryDefinition }
+	return RecipeRegistry
+end
+
 RecipeRegistry["RCP_ABYSSAL_PASS"] = {
 	Id = "RCP_ABYSSAL_PASS",
 	Name = "Abyssal Biome Pass",

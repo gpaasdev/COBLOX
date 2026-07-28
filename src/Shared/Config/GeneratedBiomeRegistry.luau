@@ -14,6 +14,15 @@ function BiomeRegistry.GetAll(): { [string]: BiomeRegistryDefinition }
 	return BiomeRegistry
 end
 
+-- Backward-compatible aliases (legacy API)
+function BiomeRegistry.GetBiome(id: string): BiomeRegistryDefinition?
+	return BiomeRegistry[id]
+end
+
+function BiomeRegistry.GetAllBiome(): { [string]: BiomeRegistryDefinition }
+	return BiomeRegistry
+end
+
 BiomeRegistry["Biome_Abyssal_1"] = {
 	Id = "Biome_Abyssal_1",
 	Name = "Abyssal Wastes Sector 1",

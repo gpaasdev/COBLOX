@@ -18,7 +18,9 @@ RecipeService.RecipeCrafted = Signal.new()
 RecipeService.SmeltingCompleted = Signal.new()
 
 function RecipeService.Init()
-	print("[RecipeService] Initializing Minecraft 3x3 Grid Crafting, Smelting Furnace & Genshin Elemental Reactions Engine...")
+	print(
+		"[RecipeService] Initializing Minecraft 3x3 Grid Crafting, Smelting Furnace & Genshin Elemental Reactions Engine..."
+	)
 end
 
 function RecipeService.Start()
@@ -53,7 +55,9 @@ function RecipeService.CalculateElementalReactionMultiplier(elem1: string, elem2
 end
 
 function RecipeService.ValidateCraftDistance(player: Player, altarPosition: Vector3?): (boolean, string?)
-	if not altarPosition then return true, nil end
+	if not altarPosition then
+		return true, nil
+	end
 	local character = player.Character
 	if not character or not character.PrimaryPart then
 		return false, "Player character unavailable for distance check"
@@ -65,7 +69,10 @@ function RecipeService.ValidateCraftDistance(player: Player, altarPosition: Vect
 	return true, nil
 end
 
-function RecipeService.CraftGrid3x3(player: Player, grid: { [number]: string }): ServiceResult<{ ItemResult: string, YieldMultiplier: number }>
+function RecipeService.CraftGrid3x3(
+	player: Player,
+	grid: { [number]: string }
+): ServiceResult<{ ItemResult: string, YieldMultiplier: number }>
 	-- Validate 3x3 grid crafting (Minecraft benchmark)
 	local res = PlayerDataService.GetProfile(player)
 	if not res.Success or not res.Data then
@@ -134,7 +141,15 @@ function RecipeService.CraftGrid3x3(player: Player, grid: { [number]: string }):
 	player:SetAttribute("HasCraftedCrystal", true)
 
 	RecipeService.RecipeCrafted:Fire(player, craftedItem, yieldMultiplier)
-	print(string.format("[RecipeService] Player %s crafted %s (%s) via 3x3 Grid (Yield: %.1fx)", player.Name, craftedItem, itemType, yieldMultiplier))
+	print(
+		string.format(
+			"[RecipeService] Player %s crafted %s (%s) via 3x3 Grid (Yield: %.1fx)",
+			player.Name,
+			craftedItem,
+			itemType,
+			yieldMultiplier
+		)
+	)
 
 	return {
 		Success = true,
@@ -163,7 +178,15 @@ function RecipeService.SmeltOre(player: Player, rawOreItem: string, fuelItem: st
 	local refinedResult = "Refined_" .. rawOreItem
 	RecipeService.SmeltingCompleted:Fire(player, rawOreItem, refinedResult)
 
-	print(string.format("[RecipeService] Smelted %s into %s using %s fuel for %s", rawOreItem, refinedResult, fuelItem, player.Name))
+	print(
+		string.format(
+			"[RecipeService] Smelted %s into %s using %s fuel for %s",
+			rawOreItem,
+			refinedResult,
+			fuelItem,
+			player.Name
+		)
+	)
 
 	return {
 		Success = true,

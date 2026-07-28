@@ -19,7 +19,7 @@ export type HologramUIOptions = {
 
 function HologramUIEngine.Create(adornment: Instance, options: HologramUIOptions): BillboardGui
 	local accentColor = options.AccentColor or Color3.fromRGB(0, 240, 255)
-	
+
 	-- 0. Check for Studio Template UI Prefab in ReplicatedStorage.Prefabs.UI
 	local prefabsFolder = ReplicatedStorage:FindFirstChild("Prefabs")
 	if prefabsFolder then
@@ -30,13 +30,17 @@ function HologramUIEngine.Create(adornment: Instance, options: HologramUIOptions
 				local cloned = template:Clone() :: BillboardGui
 				cloned.Adornee = adornment:IsA("PVInstance") and adornment or nil
 				cloned.Parent = adornment
-				
+
 				local mainFrame = cloned:FindFirstChild("MainFrame") :: Frame?
 				if mainFrame then
 					local titleLabel = mainFrame:FindFirstChild("TitleLabel") :: TextLabel?
-					if titleLabel then titleLabel.Text = options.Title end
+					if titleLabel then
+						titleLabel.Text = options.Title
+					end
 					local subLabel = mainFrame:FindFirstChild("SubLabel") :: TextLabel?
-					if subLabel and options.Subtitle then subLabel.Text = options.Subtitle end
+					if subLabel and options.Subtitle then
+						subLabel.Text = options.Subtitle
+					end
 				end
 				return cloned
 			end
@@ -122,13 +126,13 @@ function HologramUIEngine.Create(adornment: Instance, options: HologramUIOptions
 	if RunService:IsClient() then
 		local initialOffset = billboard.StudsOffset
 		local tweenInfo = TweenInfo.new(1.8, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true)
-		
+
 		local bobbingTween = TweenService:Create(billboard, tweenInfo, {
-			StudsOffset = initialOffset + Vector3.new(0, 0.4, 0)
+			StudsOffset = initialOffset + Vector3.new(0, 0.4, 0),
 		})
-		
+
 		local strokeTween = TweenService:Create(uiStroke, tweenInfo, {
-			Transparency = 0.6
+			Transparency = 0.6,
 		})
 
 		bobbingTween:Play()

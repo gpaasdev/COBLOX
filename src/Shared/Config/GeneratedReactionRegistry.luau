@@ -14,6 +14,15 @@ function ReactionRegistry.GetAll(): { [string]: ReactionRegistryDefinition }
 	return ReactionRegistry
 end
 
+-- Backward-compatible aliases (legacy API)
+function ReactionRegistry.GetReaction(id: string): ReactionRegistryDefinition?
+	return ReactionRegistry[id]
+end
+
+function ReactionRegistry.GetAllReaction(): { [string]: ReactionRegistryDefinition }
+	return ReactionRegistry
+end
+
 ReactionRegistry["FerriumFusion"] = {
 	Id = "FerriumFusion",
 	Name = "Ferrium Alloy Fusion",

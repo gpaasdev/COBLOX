@@ -27,7 +27,13 @@ function RetentionService.Start()
 			if profile then
 				local rewardGems = math.random(5, 50)
 				profile.Wallet.ChronoSparks += rewardGems
-				print(string.format("[RetentionService] Player %s spun the wheel and won %d Gems!", player.Name, rewardGems))
+				print(
+					string.format(
+						"[RetentionService] Player %s spun the wheel and won %d Gems!",
+						player.Name,
+						rewardGems
+					)
+				)
 			end
 		end
 	end)
@@ -47,14 +53,14 @@ end
 function RetentionService.CalculateStreak(currentStreak: number, lastResetTimestamp: number): (number, boolean)
 	local now = os.time()
 	local timeDiff = now - lastResetTimestamp
-	
+
 	-- If logged in within 48 hours, streak continues, otherwise reset to 1
 	if timeDiff > (SECONDS_PER_DAY * 2) then
 		return 1, true -- Reset streak
 	elseif timeDiff >= SECONDS_PER_DAY then
 		return currentStreak + 1, false -- Incremented streak
 	end
-	
+
 	return currentStreak, false -- Same day login
 end
 
@@ -74,17 +80,24 @@ function RetentionService.ProcessLoginRewards(player: Player, profile: PlayerPro
 			ResetOccurred = resetOccurred,
 		})
 
-		print(string.format("[RetentionService] Processed daily login for %s | New Streak: %d (Reset: %s)", player.Name, newStreak, tostring(resetOccurred)))
+		print(
+			string.format(
+				"[RetentionService] Processed daily login for %s | New Streak: %d (Reset: %s)",
+				player.Name,
+				newStreak,
+				tostring(resetOccurred)
+			)
+		)
 	end
 end
 
 function RetentionService.CalculateOfflineSynthesis(player: Player, profile: PlayerProfile): number
 	local now = os.time()
-	local lastLogout = (profile and (profile :: any).Metadata and (profile :: any).Metadata.LastLogoutTimestamp) 
-		or (profile and profile.Analytics and profile.Analytics.FirstJoin) 
+	local lastLogout = (profile and (profile :: any).Metadata and (profile :: any).Metadata.LastLogoutTimestamp)
+		or (profile and profile.Analytics and profile.Analytics.FirstJoin)
 		or now
 	local timeElapsed = math.max(0, now - lastLogout)
-	
+
 	local cappedSeconds = math.min(timeElapsed, MAX_OFFLINE_SYNTHESIS_HOURS * 3600)
 	local hoursOffline = cappedSeconds / 3600
 
@@ -92,7 +105,14 @@ function RetentionService.CalculateOfflineSynthesis(player: Player, profile: Pla
 	local offlineAuraYield = math.floor(hoursOffline * 250)
 	if offlineAuraYield > 0 then
 		profile.Wallet.Coins += offlineAuraYield
-		print(string.format("[RetentionService] Offline Synthesis applied for %s | Hours: %.2f | Aura Claimed: +%d", player.Name, hoursOffline, offlineAuraYield))
+		print(
+			string.format(
+				"[RetentionService] Offline Synthesis applied for %s | Hours: %.2f | Aura Claimed: +%d",
+				player.Name,
+				hoursOffline,
+				offlineAuraYield
+			)
+		)
 	end
 
 	return offlineAuraYield

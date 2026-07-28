@@ -21,7 +21,9 @@ function StreamingController.Init()
 end
 
 function StreamingController.RequestRegionStream(targetPosition: Vector3): boolean
-	if not localPlayer then return false end
+	if not localPlayer then
+		return false
+	end
 
 	local success, err = pcall(function()
 		localPlayer:RequestStreamAroundAsync(targetPosition, 5)

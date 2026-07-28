@@ -13,8 +13,8 @@ export type SoundCategory = "SFX" | "UI" | "Ambient"
 
 -- Per-category pool sizes
 local CATEGORY_SIZES: { [SoundCategory]: number } = {
-	SFX     = 20,
-	UI      = 8,
+	SFX = 20,
+	UI = 8,
 	Ambient = 4,
 }
 
@@ -69,11 +69,12 @@ function SoundPool.Play(
 
 	-- Safety cleanup fallback (max 10s)
 	task.delay(10, function()
-		if conn then cleanup() end
+		if conn then
+			cleanup()
+		end
 	end)
 
 	return soundObj
 end
 
 return SoundPool
-

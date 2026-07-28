@@ -50,11 +50,12 @@ local sparkTemplate = Instance.new("Part")
 sparkTemplate.Transparency = 1
 sparkTemplate.CanCollide = false
 sparkTemplate.Anchored = true
-local attach = Instance.new("Attachment"); attach.Parent = sparkTemplate
+local attach = Instance.new("Attachment")
+attach.Parent = sparkTemplate
 local emitter = Instance.new("ParticleEmitter")
 emitter.Name = "SparkEmitter"
 emitter.Texture = "rbxassetid://13837943485"
-emitter.Size = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.5), NumberSequenceKeypoint.new(1, 0)})
+emitter.Size = NumberSequence.new({ NumberSequenceKeypoint.new(0, 0.5), NumberSequenceKeypoint.new(1, 0) })
 emitter.Speed = NumberRange.new(15, 30)
 emitter.SpreadAngle = Vector2.new(360, 360)
 emitter.Drag = 5
@@ -66,7 +67,7 @@ local sparkCache = PartCache.new(sparkTemplate, 20)
 function VFXEngine.CreateFloatingText(position: Vector3, text: string, color: Color3?)
 	local part = floatingTextCache:GetPart()
 	part.Position = position + Vector3.new(0, 2, 0)
-	
+
 	local label = part.BB.TextLabel
 	label.Text = text
 	label.TextColor3 = color or Color3.fromRGB(245, 158, 11)
@@ -98,7 +99,7 @@ function VFXEngine.CreateShockwave(position: Vector3, maxRadius: number?, color:
 	local tweenInfo = TweenInfo.new(0.8, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
 	local expandTween = TweenService:Create(wave, tweenInfo, {
 		Size = Vector3.new(0.2, radius * 2, radius * 2),
-		Transparency = 1
+		Transparency = 1,
 	})
 
 	expandTween:Play()
@@ -110,7 +111,9 @@ end
 -- 3. Camera Shake Effect
 function VFXEngine.PlayCameraShake(intensity: number?, duration: number?)
 	local camera = Workspace.CurrentCamera
-	if not camera then return end
+	if not camera then
+		return
+	end
 
 	local shakeIntensity = intensity or 0.3
 	local shakeDuration = duration or 0.4
@@ -129,30 +132,34 @@ end
 -- 3b. Cinematic Screen Punch (Juicy Impact)
 function VFXEngine.ScreenPunch(intensity: number?)
 	local camera = Workspace.CurrentCamera
-	if not camera then return end
-	
+	if not camera then
+		return
+	end
+
 	local punch = intensity or 0.5
 	local originalFOV = camera.FieldOfView
-	
+
 	-- Bloom Pulse
 	local bloom = Instance.new("BloomEffect")
 	bloom.Intensity = 1.5 * punch
 	bloom.Size = 24
 	bloom.Threshold = 0.8
 	bloom.Parent = Lighting
-	
+
 	-- FOV Punch
 	TweenService:Create(camera, TweenInfo.new(0.05, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
-		FieldOfView = originalFOV - (punch * 10)
+		FieldOfView = originalFOV - (punch * 10),
 	}):Play()
-	
+
 	task.delay(0.05, function()
 		TweenService:Create(camera, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-			FieldOfView = originalFOV
+			FieldOfView = originalFOV,
 		}):Play()
-		
-		TweenService:Create(bloom, TweenInfo.new(0.4), {Intensity = 0}):Play()
-		task.delay(0.4, function() bloom:Destroy() end)
+
+		TweenService:Create(bloom, TweenInfo.new(0.4), { Intensity = 0 }):Play()
+		task.delay(0.4, function()
+			bloom:Destroy()
+		end)
 	end)
 end
 
@@ -160,12 +167,12 @@ end
 function VFXEngine.EmitImpactSparks(position: Vector3, color: Color3?)
 	local part = sparkCache:GetPart()
 	part.Position = position
-	
+
 	local emitter = part.Attachment.SparkEmitter
 	emitter.Color = ColorSequence.new(color or Color3.fromRGB(245, 158, 11))
 	emitter.Enabled = true
 	emitter:Emit(20)
-	
+
 	task.delay(1, function()
 		emitter.Enabled = false
 		sparkCache:ReturnPart(part)
@@ -200,13 +207,13 @@ function VFXEngine.ApplySpringAnimation(button: GuiObject)
 			end
 		end)
 		buttonMotors[button] = motor
-		
+
 		button.Destroying:Connect(function()
 			buttonMotors[button] = nil
 			motor:stop()
 		end)
 	end
-	
+
 	button.MouseEnter:Connect(function()
 		motor:setGoal(Flipper.Spring.new(1.06, { frequency = 4, dampingRatio = 0.5 }))
 	end)

@@ -1,14 +1,18 @@
 --!strict
-local MarketplaceService = game:GetService("MarketplaceService")
+-- RC-2 2026-07-28: ProcessReceipt removed from Start() — absorbed by MonetizationService ReceiptRegistry.
+-- GetAvailableCatalogItems() added with PENDING_ASSETS guard.
+local MarketplaceService = game:GetService("MarketplaceService") -- kept for future use
 local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 local MonetizationConfig = require(ReplicatedStorage.Shared.Configuration.MonetizationConfig)
+local AvatarCatalogConfig = require(ReplicatedStorage.Shared.Configuration.AvatarCatalogConfig)
 local Signal = require(ReplicatedStorage.Shared.Utility.Signal)
 
 local StoreService = {}
 StoreService.Name = "StoreService"
+StoreService.ServiceStatus = "Production"
 
 StoreService.FlashRestockTriggered = Signal.new()
 
@@ -19,12 +23,64 @@ local flashStockInventory = {
 
 local lastRestockTimestamp = os.time()
 
+-- Catalog moderation guard (RC-2 Gate A-4)
+-- AssetIds that are Pending review: isAvailable = false, badge = "Coming Soon"
+-- AssetIds that are Blocked: removed from AvatarCatalogConfig.Items entirely
+local PENDING_ASSETS: { [number]: string } = {
+	[13837943488] = "Coming Soon", -- Chrono-Void Plasma Wings (Roblox moderation: Pending, 2026-07-28)
+}
+
+export type CatalogItemPayload = {
+	Id: string,
+	Name: string,
+	Category: string,
+	Description: string,
+	AssetId: number,
+	IconImageId: string,
+	Currency: string,
+	Price: number,
+	IsVIPExclusive: boolean,
+	StatBuff: { [string]: number }?,
+	isAvailable: boolean,
+	badge: string?,
+}
+
+-- Returns all catalog items with server-side moderation flags applied.
+-- Clients MUST call this — never trust client-side filtering.
+function StoreService.GetAvailableCatalogItems(category: string?): { CatalogItemPayload }
+	local result: { CatalogItemPayload } = {}
+	for _, item in ipairs(AvatarCatalogConfig.Items) do
+		if category and item.Category ~= category then
+			continue
+		end
+		local pendingLabel = PENDING_ASSETS[item.AssetId]
+		local payload: CatalogItemPayload = {
+			Id = item.Id,
+			Name = item.Name,
+			Category = item.Category,
+			Description = item.Description,
+			AssetId = item.AssetId,
+			IconImageId = item.IconImageId,
+			Currency = item.Currency,
+			Price = item.Price,
+			IsVIPExclusive = item.IsVIPExclusive,
+			StatBuff = item.StatBuff,
+			isAvailable = pendingLabel == nil,
+			badge = pendingLabel or nil,
+		}
+		table.insert(result, payload)
+	end
+	return result
+end
+
 function StoreService.Init()
-	print("[StoreService] Initializing Failover-Safe Receipt Processing & 5-Min Flash Restock Engine...")
+	print("[StoreService] Initializing Flash Restock Engine & Catalog Guard...")
 end
 
 function StoreService.Start()
-	MarketplaceService.ProcessReceipt = StoreService.ProcessReceipt
+	-- ProcessReceipt is NO LONGER assigned here (RC-2 C-NEW-1 fix).
+	-- ImpulseStarterPack receipt handling is registered in MonetizationService.Init()
+	-- via MonetizationService.RegisterProduct(starterPackId, handler).
 
 	-- 5-minute flash restock loop
 	task.spawn(function()
@@ -41,11 +97,16 @@ function StoreService.RestockFlashShop()
 	flashStockInventory.AstralCrystal = math.random(1, 5)
 
 	StoreService.FlashRestockTriggered:Fire(flashStockInventory)
-	print(string.format("[StoreService] ⚡ 5-Minute Flash Shop Restocked! Seeds: %d, Crystals: %d", flashStockInventory.QuantumSeed, flashStockInventory.AstralCrystal))
+	print(
+		string.format(
+			"[StoreService] ⚡ Flash Shop Restocked! Seeds: %d, Crystals: %d",
+			flashStockInventory.QuantumSeed,
+			flashStockInventory.AstralCrystal
+		)
+	)
 end
 
 function StoreService.GetDailyShopSeed(): number
-	-- Pseudo-Random Generation Seeding Formula: Seed = floor(UNIX Timestamp / 86400)
 	return math.floor(os.time() / 86400)
 end
 
@@ -62,28 +123,12 @@ function StoreService.GetFlashStock(): ({ [string]: number }, number)
 	return flashStockInventory, lastRestockTimestamp
 end
 
+-- [DEPRECATED RC-2] ImpulseStarterPack logic moved to MonetizationService.Init() ReceiptRegistry.
+-- Kept for reference; this function is never called by ProcessReceipt anymore.
 function StoreService.ProcessReceipt(receiptInfo: { [string]: any }): Enum.ProductPurchaseDecision
-	local player = game.Players:GetPlayerByUserId(receiptInfo.PlayerId)
-	if not player then
-		return Enum.ProductPurchaseDecision.NotProcessedYet
-	end
-
-	local res = PlayerDataService.GetProfile(player)
-	if not res.Success or not res.Data then
-		warn("[StoreService] Profile not loaded for " .. player.UserId .. ", deferring purchase.")
-		return Enum.ProductPurchaseDecision.NotProcessedYet
-	end
-
-	local productId = receiptInfo.ProductId
-
-	if productId == MonetizationConfig.Products.ImpulseStarterPack.ProductId then
-		local rewards = MonetizationConfig.Products.ImpulseStarterPack.Rewards
-		EconomyService.AddCurrency(player, "AuraEnergy", rewards.AuraEnergy)
-		EconomyService.AddCurrency(player, "ChronoSparks", rewards.ChronoSparks)
-		print("[StoreService] Impulse Starter Pack granted to " .. player.Name)
-		return Enum.ProductPurchaseDecision.PurchaseGranted
-	end
-
+	warn(
+		"[StoreService] ProcessReceipt() called directly — this is a no-op. See MonetizationService ReceiptRegistry."
+	)
 	return Enum.ProductPurchaseDecision.NotProcessedYet
 end
 

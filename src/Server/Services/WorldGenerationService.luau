@@ -13,7 +13,7 @@ export type TerrainChunk = {
 	X: number,
 	Z: number,
 	HeightMap: { [number]: { [number]: number } },
-	Resources: { [number]: { [number]: string } } -- X, Z -> MaterialId
+	Resources: { [number]: { [number]: string } }, -- X, Z -> MaterialId
 }
 
 -- Config
@@ -28,7 +28,7 @@ function WorldGenerationService.GenerateChunk(chunkX: number, chunkZ: number): T
 		X = chunkX,
 		Z = chunkZ,
 		HeightMap = {},
-		Resources = {}
+		Resources = {},
 	}
 
 	for x = 1, CHUNK_SIZE do
@@ -40,14 +40,19 @@ function WorldGenerationService.GenerateChunk(chunkX: number, chunkZ: number): T
 
 			-- 1. Heightmap Generation via FBM
 			local height = MathUtil.FractalBrownianMotion2D(
-				globalX, globalZ, WORLD_SEED,
-				OCTAVES, PERSISTENCE, LACUNARITY, NOISE_SCALE
+				globalX,
+				globalZ,
+				WORLD_SEED,
+				OCTAVES,
+				PERSISTENCE,
+				LACUNARITY,
+				NOISE_SCALE
 			)
 			chunk.HeightMap[x][z] = height
 
 			-- 2. Resource Clustering via independent noise maps
 			local resourceNoise = MathUtil.Noise2D(globalX, globalZ, WORLD_SEED + 100, NOISE_SCALE * 2)
-			
+
 			-- Only spawn resources on "peaks" of the resource noise (density gradients)
 			if resourceNoise > 0.6 then
 				chunk.Resources[x][z] = "AetherCrystal"

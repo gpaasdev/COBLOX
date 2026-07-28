@@ -19,7 +19,7 @@ function AnnouncementService.BroadcastToServer(message: string, duration: number
 	duration = duration or 5.0
 	DomainEventBus.Publish("ServerAnnouncement", nil, {
 		message = message,
-		duration = duration
+		duration = duration,
 	})
 	print(string.format("[Announcement] %s", message))
 end

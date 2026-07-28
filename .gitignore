@@ -49,3 +49,8 @@ scratch/*.tmp
 
 .vercel
 scratch/
+
+# Internal Planning & Archive Docs (not for public repo)
+docs/archive/
+UEFN/
+roblox-opencloud-mcp-server/

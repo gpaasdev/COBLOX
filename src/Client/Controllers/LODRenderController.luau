@@ -15,7 +15,7 @@ local spatialIndex = SpatialOctree.new(Vector3.new(0, 0, 0), Vector3.new(2048, 5
 
 function LODRenderController.Init(): ()
 	LODManager.StartUpdateLoop()
-	
+
 	-- Listen ke tempat objek modular di-stream atau di-place di Workspace
 	local sanctumsFolder = Workspace:FindFirstChild("Sanctums") or Workspace
 	sanctumsFolder.ChildAdded:Connect(function(child: Instance)
@@ -23,7 +23,7 @@ function LODRenderController.Init(): ()
 			local id = child.Name .. "_" .. tostring(math.random(1, 1000000))
 			local high = child:FindFirstChild("HighPoly") :: Model
 			local low = child:FindFirstChild("LowPoly") :: Model
-			
+
 			LODManager.Register(id, high, low, nil)
 			spatialIndex:Insert(high:GetPivot().Position, id)
 		end

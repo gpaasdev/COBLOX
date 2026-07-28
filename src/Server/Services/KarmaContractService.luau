@@ -39,7 +39,7 @@ function KarmaContractService.Start()
 	if karmaRemote then
 		karmaRemote.OnServerInvoke = function(victim: Player, targetUserId: any)
 			-- Zero-Trust Payload Validation
-			local ok, validTargetUserId = PayloadValidator.Validate({targetUserId}, {"number"})
+			local ok, validTargetUserId = PayloadValidator.Validate({ targetUserId }, { "number" })
 			if not ok then
 				warn("[Security] Payload validation failed for RequestKarmaContract from", victim.Name)
 				return { Success = false, Message = "Invalid payload", RetributionReward = nil }
@@ -77,10 +77,20 @@ function KarmaContractService.IssueContract(victim: Player, target: Player, poti
 		})
 	end
 
-	print(string.format("[KarmaContractService] ⚖️ Issued Karma Contract for %s against %s (%s)", victim.Name, target.Name, potionName))
+	print(
+		string.format(
+			"[KarmaContractService] ⚖️ Issued Karma Contract for %s against %s (%s)",
+			victim.Name,
+			target.Name,
+			potionName
+		)
+	)
 end
 
-function KarmaContractService.ExecuteRetribution(victim: Player, targetUserId: number): { Success: boolean, Message: string, RetributionReward: number? }
+function KarmaContractService.ExecuteRetribution(
+	victim: Player,
+	targetUserId: number
+): { Success: boolean, Message: string, RetributionReward: number? }
 	if not RateLimitService.CheckRateLimit(victim, "ExecuteRetribution", 1.0) then
 		return { Success = false, Message = "Rate limit exceeded!", RetributionReward = nil }
 	end
@@ -103,7 +113,11 @@ function KarmaContractService.ExecuteRetribution(victim: Player, targetUserId: n
 
 	local dist = (victimChar.PrimaryPart.Position - targetChar.PrimaryPart.Position).Magnitude
 	if dist > RETRIBUTION_DIST_LIMIT then
-		return { Success = false, Message = string.format("Target is too far away! (%.1f > %d studs)", dist, RETRIBUTION_DIST_LIMIT), RetributionReward = nil }
+		return {
+			Success = false,
+			Message = string.format("Target is too far away! (%.1f > %d studs)", dist, RETRIBUTION_DIST_LIMIT),
+			RetributionReward = nil,
+		}
 	end
 
 	-- Execute Karma Retribution: Award 1.5x Reward
@@ -131,11 +145,25 @@ function KarmaContractService.ExecuteRetribution(victim: Player, targetUserId: n
 
 	-- Global Broadcast
 	GlobalBroadcastService.Broadcast(
-		string.format("🎯 KENA KARMA! %s BERHASIL MEMBALAS BEGALAN DARI %s (+%d KOIN)!", victim.Name, target.Name, reward),
-		255, 215, 0
+		string.format(
+			"🎯 KENA KARMA! %s BERHASIL MEMBALAS BEGALAN DARI %s (+%d KOIN)!",
+			victim.Name,
+			target.Name,
+			reward
+		),
+		255,
+		215,
+		0
 	)
 
-	print(string.format("[KarmaContractService] 🎯 %s successfully executed retribution against %s for %d Coins!", victim.Name, target.Name, reward))
+	print(
+		string.format(
+			"[KarmaContractService] 🎯 %s successfully executed retribution against %s for %d Coins!",
+			victim.Name,
+			target.Name,
+			reward
+		)
+	)
 	return { Success = true, Message = "Karma Retribution Executed!", RetributionReward = reward }
 end
 

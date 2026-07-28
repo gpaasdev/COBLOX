@@ -27,17 +27,27 @@ function PlacementService.Start()
 	local RateLimitService = require(script.Parent.RateLimitService)
 	local PayloadValidator = require(ReplicatedStorage.Shared.Network.PayloadValidator)
 	if placeRemote then
-		placeRemote.OnServerEvent:Connect(function(player: Player, structureId: any, gridIndex: any, targetPosition: any)
-			local valid, cleanStructId, cleanGridIndex, cleanPos = PayloadValidator.Validate({ structureId, gridIndex, targetPosition }, { "string", "string", "Vector3" })
-			if not valid or not PayloadValidator.IsWithinBounds(cleanPos) then
-				warn(string.format("[PlacementService Security Alert] Invalid payload received from player %s", player.Name))
-				return
+		placeRemote.OnServerEvent:Connect(
+			function(player: Player, structureId: any, gridIndex: any, targetPosition: any)
+				local valid, cleanStructId, cleanGridIndex, cleanPos = PayloadValidator.Validate(
+					{ structureId, gridIndex, targetPosition },
+					{ "string", "string", "Vector3" }
+				)
+				if not valid or not PayloadValidator.IsWithinBounds(cleanPos) then
+					warn(
+						string.format(
+							"[PlacementService Security Alert] Invalid payload received from player %s",
+							player.Name
+						)
+					)
+					return
+				end
+				if not RateLimitService.CheckRateLimit(player, "PlacementEvent", 0.5) then
+					return
+				end
+				PlacementService.PlaceStructure(player, cleanStructId, cleanGridIndex, cleanPos)
 			end
-			if not RateLimitService.CheckRateLimit(player, "PlacementEvent", 0.5) then
-				return
-			end
-			PlacementService.PlaceStructure(player, cleanStructId, cleanGridIndex, cleanPos)
-		end)
+		)
 	end
 end
 
@@ -74,7 +84,13 @@ function PlacementService.PlaceStructure(
 	local distance = (playerPosition - targetPosition).Magnitude
 
 	if distance > MAX_INTERACTION_DISTANCE_STUDS then
-		warn(string.format("[PlacementService Security Alert] Player %s attempted placement out of range: %.2f studs (> 15)", player.Name, distance))
+		warn(
+			string.format(
+				"[PlacementService Security Alert] Player %s attempted placement out of range: %.2f studs (> 15)",
+				player.Name,
+				distance
+			)
+		)
 		return {
 			Success = false,
 			Category = "Security",
@@ -131,12 +147,12 @@ function PlacementService.PlaceStructure(
 	-- Spatial Query (AABB Collision Validation)
 	local overlapParams = OverlapParams.new()
 	overlapParams.FilterType = Enum.RaycastFilterType.Include
-	overlapParams.FilterDescendantsInstances = {Workspace} -- only check placed models or plots, adjust as needed
+	overlapParams.FilterDescendantsInstances = { Workspace } -- only check placed models or plots, adjust as needed
 
 	-- assuming 3x3 studs bounding box for standard structures
 	local collisionBoxCFrame = CFrame.new(targetPosition)
 	local collisionBoxSize = Vector3.new(2.9, 10, 2.9) -- slightly smaller to allow edge adjacency
-	
+
 	local intersectingParts = Workspace:GetPartBoundsInBox(collisionBoxCFrame, collisionBoxSize, overlapParams)
 	if #intersectingParts > 0 then
 		return {
@@ -157,10 +173,18 @@ function PlacementService.PlaceStructure(
 	local placedModel = SanctumBuilder.CreateAlchemicalAltar(targetPosition)
 	placedModel.Name = "Placed_" .. structureId .. "_" .. gridIndex
 
-
 	PlacementService.StructurePlaced:Fire(player, gridIndex, structureData, grid.CozyRating)
 
-	print(string.format("[PlacementService] %s placed %s at grid %s (Distance: %.2f studs, Cozy Rating: %d)", player.Name, structureId, gridIndex, distance, grid.CozyRating))
+	print(
+		string.format(
+			"[PlacementService] %s placed %s at grid %s (Distance: %.2f studs, Cozy Rating: %d)",
+			player.Name,
+			structureId,
+			gridIndex,
+			distance,
+			grid.CozyRating
+		)
+	)
 
 	return {
 		Success = true,

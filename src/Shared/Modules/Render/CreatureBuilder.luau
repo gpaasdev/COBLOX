@@ -19,7 +19,7 @@ attach.Parent = auraTemplate
 local particle = Instance.new("ParticleEmitter")
 particle.Name = "AuraEmitter"
 particle.Texture = "rbxassetid://243098098"
-particle.Size = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.5), NumberSequenceKeypoint.new(1, 0)})
+particle.Size = NumberSequence.new({ NumberSequenceKeypoint.new(0, 0.5), NumberSequenceKeypoint.new(1, 0) })
 particle.Lifetime = NumberRange.new(0.6, 1.2)
 particle.Rate = 16
 particle.Speed = NumberRange.new(1, 3.5)
@@ -28,7 +28,15 @@ particle.Parent = attach
 local auraCache = PartCache.new(auraTemplate, 30)
 
 -- Helper to create a welded sub-part
-local function createSubPart(parentModel: Model, rootPart: Part, name: string, size: Vector3, offset: Vector3, color: Color3, mat: Enum.Material): Part
+local function createSubPart(
+	parentModel: Model,
+	rootPart: Part,
+	name: string,
+	size: Vector3,
+	offset: Vector3,
+	color: Color3,
+	mat: Enum.Material
+): Part
 	local p = Instance.new("Part")
 	p.Name = name
 	p.Size = size
@@ -66,13 +74,61 @@ function CreatureBuilder.BuildShadowWraith(name: string, position: Vector3): Mod
 	torso.CanCollide = true
 	torso.Parent = model
 
-	createSubPart(model, torso, "LeftArm", Vector3.new(1, 2.2, 1), Vector3.new(-1.6, 0, 0), skinColor, Enum.Material.SmoothPlastic)
-	createSubPart(model, torso, "RightArm", Vector3.new(1, 2.2, 1), Vector3.new(1.6, 0, 0), skinColor, Enum.Material.SmoothPlastic)
-	createSubPart(model, torso, "LeftLeg", Vector3.new(1, 2.2, 1), Vector3.new(-0.6, -2.2, 0), skinColor, Enum.Material.SmoothPlastic)
-	createSubPart(model, torso, "RightLeg", Vector3.new(1, 2.2, 1), Vector3.new(0.6, -2.2, 0), skinColor, Enum.Material.SmoothPlastic)
+	createSubPart(
+		model,
+		torso,
+		"LeftArm",
+		Vector3.new(1, 2.2, 1),
+		Vector3.new(-1.6, 0, 0),
+		skinColor,
+		Enum.Material.SmoothPlastic
+	)
+	createSubPart(
+		model,
+		torso,
+		"RightArm",
+		Vector3.new(1, 2.2, 1),
+		Vector3.new(1.6, 0, 0),
+		skinColor,
+		Enum.Material.SmoothPlastic
+	)
+	createSubPart(
+		model,
+		torso,
+		"LeftLeg",
+		Vector3.new(1, 2.2, 1),
+		Vector3.new(-0.6, -2.2, 0),
+		skinColor,
+		Enum.Material.SmoothPlastic
+	)
+	createSubPart(
+		model,
+		torso,
+		"RightLeg",
+		Vector3.new(1, 2.2, 1),
+		Vector3.new(0.6, -2.2, 0),
+		skinColor,
+		Enum.Material.SmoothPlastic
+	)
 
-	local head = createSubPart(model, torso, "Head", Vector3.new(1.3, 1.3, 1.3), Vector3.new(0, 1.8, 0), skinColor, Enum.Material.SmoothPlastic)
-	createSubPart(model, torso, "EyesCore", Vector3.new(0.9, 0.25, 0.1), Vector3.new(0, 1.8, -0.61), auraColor, Enum.Material.Neon)
+	local head = createSubPart(
+		model,
+		torso,
+		"Head",
+		Vector3.new(1.3, 1.3, 1.3),
+		Vector3.new(0, 1.8, 0),
+		skinColor,
+		Enum.Material.SmoothPlastic
+	)
+	createSubPart(
+		model,
+		torso,
+		"EyesCore",
+		Vector3.new(0.9, 0.25, 0.1),
+		Vector3.new(0, 1.8, -0.61),
+		auraColor,
+		Enum.Material.Neon
+	)
 
 	model.PrimaryPart = torso
 	return model
@@ -94,11 +150,51 @@ function CreatureBuilder.BuildCrystalGolem(name: string, position: Vector3): Mod
 	torso.CanCollide = true
 	torso.Parent = model
 
-	createSubPart(model, torso, "LeftSpike", Vector3.new(1.2, 2.5, 1.2), Vector3.new(-2.2, 1.5, 0), crystalColor, Enum.Material.Neon)
-	createSubPart(model, torso, "RightSpike", Vector3.new(1.2, 2.5, 1.2), Vector3.new(2.2, 1.5, 0), crystalColor, Enum.Material.Neon)
-	createSubPart(model, torso, "HeadCrystal", Vector3.new(1.5, 1.5, 1.5), Vector3.new(0, 2.2, -0.5), crystalColor, Enum.Material.Neon)
-	createSubPart(model, torso, "LeftArm", Vector3.new(1.8, 3, 1.8), Vector3.new(-2.8, -0.5, 0), bodyColor, Enum.Material.Granite)
-	createSubPart(model, torso, "RightArm", Vector3.new(1.8, 3, 1.8), Vector3.new(2.8, -0.5, 0), bodyColor, Enum.Material.Granite)
+	createSubPart(
+		model,
+		torso,
+		"LeftSpike",
+		Vector3.new(1.2, 2.5, 1.2),
+		Vector3.new(-2.2, 1.5, 0),
+		crystalColor,
+		Enum.Material.Neon
+	)
+	createSubPart(
+		model,
+		torso,
+		"RightSpike",
+		Vector3.new(1.2, 2.5, 1.2),
+		Vector3.new(2.2, 1.5, 0),
+		crystalColor,
+		Enum.Material.Neon
+	)
+	createSubPart(
+		model,
+		torso,
+		"HeadCrystal",
+		Vector3.new(1.5, 1.5, 1.5),
+		Vector3.new(0, 2.2, -0.5),
+		crystalColor,
+		Enum.Material.Neon
+	)
+	createSubPart(
+		model,
+		torso,
+		"LeftArm",
+		Vector3.new(1.8, 3, 1.8),
+		Vector3.new(-2.8, -0.5, 0),
+		bodyColor,
+		Enum.Material.Granite
+	)
+	createSubPart(
+		model,
+		torso,
+		"RightArm",
+		Vector3.new(1.8, 3, 1.8),
+		Vector3.new(2.8, -0.5, 0),
+		bodyColor,
+		Enum.Material.Granite
+	)
 
 	model.PrimaryPart = torso
 	return model
@@ -120,8 +216,24 @@ function CreatureBuilder.BuildPyroBeast(name: string, position: Vector3): Model
 	torso.CanCollide = true
 	torso.Parent = model
 
-	createSubPart(model, torso, "Head", Vector3.new(1.5, 1.2, 1.5), Vector3.new(0, 0.5, -2), flameColor, Enum.Material.Neon)
-	createSubPart(model, torso, "SpineFlames", Vector3.new(0.6, 1.2, 2.5), Vector3.new(0, 1.2, 0), flameColor, Enum.Material.Neon)
+	createSubPart(
+		model,
+		torso,
+		"Head",
+		Vector3.new(1.5, 1.2, 1.5),
+		Vector3.new(0, 0.5, -2),
+		flameColor,
+		Enum.Material.Neon
+	)
+	createSubPart(
+		model,
+		torso,
+		"SpineFlames",
+		Vector3.new(0.6, 1.2, 2.5),
+		Vector3.new(0, 1.2, 0),
+		flameColor,
+		Enum.Material.Neon
+	)
 
 	model.PrimaryPart = torso
 	return model
@@ -142,7 +254,15 @@ function CreatureBuilder.BuildAstralSpectre(name: string, position: Vector3): Mo
 	torso.CanCollide = false
 	torso.Parent = model
 
-	createSubPart(model, torso, "Crown", Vector3.new(1.4, 0.4, 1.4), Vector3.new(0, 2, 0), ghostColor, Enum.Material.Neon)
+	createSubPart(
+		model,
+		torso,
+		"Crown",
+		Vector3.new(1.4, 0.4, 1.4),
+		Vector3.new(0, 2, 0),
+		ghostColor,
+		Enum.Material.Neon
+	)
 
 	model.PrimaryPart = torso
 	return model
@@ -164,8 +284,24 @@ function CreatureBuilder.BuildVoidTitan(name: string, position: Vector3): Model
 	torso.CanCollide = true
 	torso.Parent = model
 
-	createSubPart(model, torso, "TitanCrown", Vector3.new(3, 1, 2), Vector3.new(0, 3.8, 0), goldColor, Enum.Material.Neon)
-	createSubPart(model, torso, "CoreOrb", Vector3.new(2, 2, 2), Vector3.new(0, 0.5, -1.6), goldColor, Enum.Material.Neon)
+	createSubPart(
+		model,
+		torso,
+		"TitanCrown",
+		Vector3.new(3, 1, 2),
+		Vector3.new(0, 3.8, 0),
+		goldColor,
+		Enum.Material.Neon
+	)
+	createSubPart(
+		model,
+		torso,
+		"CoreOrb",
+		Vector3.new(2, 2, 2),
+		Vector3.new(0, 0.5, -1.6),
+		goldColor,
+		Enum.Material.Neon
+	)
 
 	model.PrimaryPart = torso
 	return model
@@ -226,7 +362,7 @@ function CreatureBuilder.BuildCyberPet(spiritId: string, petType: string?): Mode
 	else
 		torso.MeshId = "rbxassetid://6820845350"
 	end
-	
+
 	torso.Color = mainColor
 	torso.Material = Enum.Material.SmoothPlastic
 	torso.Anchored = false
@@ -236,7 +372,7 @@ function CreatureBuilder.BuildCyberPet(spiritId: string, petType: string?): Mode
 	-- 5. Swirling Mana Aura Light Particle & Trail Emitter (Object Pooled)
 	local auraPart = auraCache:GetPart()
 	auraPart.Position = torso.Position
-	
+
 	local weld = Instance.new("WeldConstraint")
 	weld.Part0 = torso
 	weld.Part1 = auraPart
@@ -247,10 +383,12 @@ function CreatureBuilder.BuildCyberPet(spiritId: string, petType: string?): Mode
 		emitter.Color = ColorSequence.new(neonColor)
 		emitter.Enabled = true
 	end
-	
+
 	-- When torso is destroyed, return aura to pool
 	torso.Destroying:Connect(function()
-		if emitter then emitter.Enabled = false end
+		if emitter then
+			emitter.Enabled = false
+		end
 		auraCache:ReturnPart(auraPart)
 	end)
 

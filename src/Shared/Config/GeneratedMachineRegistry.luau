@@ -14,6 +14,15 @@ function MachineRegistry.GetAll(): { [string]: MachineRegistryDefinition }
 	return MachineRegistry
 end
 
+-- Backward-compatible aliases (legacy API)
+function MachineRegistry.GetMachine(id: string): MachineRegistryDefinition?
+	return MachineRegistry[id]
+end
+
+function MachineRegistry.GetAllMachine(): { [string]: MachineRegistryDefinition }
+	return MachineRegistry
+end
+
 MachineRegistry["Cooler_v1"] = {
 	Id = "Cooler_v1",
 	Name = "Industrial Cooler Mark 1",

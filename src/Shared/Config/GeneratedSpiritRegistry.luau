@@ -14,6 +14,15 @@ function SpiritRegistry.GetAll(): { [string]: SpiritRegistryDefinition }
 	return SpiritRegistry
 end
 
+-- Backward-compatible aliases (legacy API)
+function SpiritRegistry.GetSpirit(id: string): SpiritRegistryDefinition?
+	return SpiritRegistry[id]
+end
+
+function SpiritRegistry.GetAllSpirit(): { [string]: SpiritRegistryDefinition }
+	return SpiritRegistry
+end
+
 SpiritRegistry["SP_ABYSSAL_KRAKEN"] = {
 	Id = "SP_ABYSSAL_KRAKEN",
 	Name = "Abyssal Kraken",

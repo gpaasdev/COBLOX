@@ -27,7 +27,14 @@ end
 
 function QuestController.Start()
 	syncQuestRemote.OnClientEvent:Connect(function(questNode: QuestNode)
-		print(string.format("[QuestController] Quest Progress Updated: %s (%d/%d)", questNode.Id, questNode.Progress, questNode.Target))
+		print(
+			string.format(
+				"[QuestController] Quest Progress Updated: %s (%d/%d)",
+				questNode.Id,
+				questNode.Progress,
+				questNode.Target
+			)
+		)
 		QuestController.QuestProgressUpdated:Fire(questNode)
 	end)
 end

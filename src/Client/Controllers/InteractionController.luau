@@ -26,10 +26,20 @@ function InteractionController.Init()
 end
 
 function InteractionController.Start()
-	ContextActionService:BindAction("InteractAction", InteractionController._HandleInput, false, Enum.UserInputType.MouseButton1, Enum.KeyCode.E)
+	ContextActionService:BindAction(
+		"InteractAction",
+		InteractionController._HandleInput,
+		false,
+		Enum.UserInputType.MouseButton1,
+		Enum.KeyCode.E
+	)
 end
 
-function InteractionController._HandleInput(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject)
+function InteractionController._HandleInput(
+	actionName: string,
+	inputState: Enum.UserInputState,
+	inputObject: InputObject
+)
 	if inputState == Enum.UserInputState.Begin then
 		if isHolding then
 			-- Start charge throw
@@ -44,7 +54,7 @@ function InteractionController._HandleInput(actionName: string, inputState: Enum
 			local chargeDuration = tick() - chargeStartTime
 			local maxChargeTime = 2.0
 			local throwPower = math.clamp(chargeDuration / maxChargeTime, 0.2, 1.0)
-			
+
 			if chargeDuration < 0.2 then
 				-- Just a quick toss/drop
 				InteractionController._RequestThrow(0.1)
@@ -59,13 +69,13 @@ end
 function InteractionController._TryGrab()
 	local mousePos = game:GetService("UserInputService"):GetMouseLocation()
 	local rayRadius = CAMERA:ViewportPointToRay(mousePos.X, mousePos.Y)
-	
+
 	local raycastParams = RaycastParams.new()
 	raycastParams.FilterType = Enum.RaycastFilterType.Exclude
-	raycastParams.FilterDescendantsInstances = {Players.LocalPlayer.Character}
-	
+	raycastParams.FilterDescendantsInstances = { Players.LocalPlayer.Character }
+
 	local raycastResult = workspace:Raycast(rayRadius.Origin, rayRadius.Direction * MAX_GRAB_DISTANCE, raycastParams)
-	
+
 	if raycastResult and raycastResult.Instance then
 		local part = raycastResult.Instance
 		if CollectionService:HasTag(part, "Interactable") then
@@ -98,17 +108,21 @@ end
 
 function InteractionController._StartHoldingLoop()
 	local char = Players.LocalPlayer.Character
-	if not char or not char.PrimaryPart then return end
-	
+	if not char or not char.PrimaryPart then
+		return
+	end
+
 	local holdAttachment = char.PrimaryPart:WaitForChild("HoldAttachment", 5) :: Attachment
-	if not holdAttachment then return end
+	if not holdAttachment then
+		return
+	end
 
 	-- 1. Setup Client Camera Tracking
 	controllerMaid:GiveTask(RunService.RenderStepped:Connect(function()
 		if isHolding and currentTarget then
 			local lookVector = CAMERA.CFrame.LookVector
 			local offset = Vector3.new(0, 0, -4) -- 4 studs in front
-			
+
 			-- We update the attachment CFrame based on camera view
 			-- Since attachment is inside HumanoidRootPart, we need to map World to Object space
 			local targetWorldPos = CAMERA.CFrame.Position + (lookVector * 6)
@@ -127,9 +141,9 @@ function InteractionController._StartHoldingLoop()
 		ikControl.Target = currentTarget
 		ikControl.Weight = 0.8
 		ikControl.Parent = humanoid
-		
+
 		controllerMaid:GiveTask(ikControl)
-		
+
 		-- Also for Left Arm (Optional based on R6 vs R15)
 		local ikControlLeft = Instance.new("IKControl")
 		ikControlLeft.Name = "InteractionIKLeft"
@@ -139,7 +153,7 @@ function InteractionController._StartHoldingLoop()
 		ikControlLeft.Target = currentTarget
 		ikControlLeft.Weight = 0.8
 		ikControlLeft.Parent = humanoid
-		
+
 		controllerMaid:GiveTask(ikControlLeft)
 	end
 end

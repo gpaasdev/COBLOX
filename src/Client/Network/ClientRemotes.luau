@@ -52,7 +52,12 @@ return setmetatable({
 	EggHatchedVisual = eggHatchedVisualRemote,
 }, {
 	__index = function(self, key)
-		warn(string.format("[ClientRemotes] WARNING: Remote '%s' is nil (server may not have created it yet)", tostring(key)))
+		warn(
+			string.format(
+				"[ClientRemotes] WARNING: Remote '%s' is nil (server may not have created it yet)",
+				tostring(key)
+			)
+		)
 		return nil
-	end
+	end,
 })

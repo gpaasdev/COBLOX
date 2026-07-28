@@ -22,7 +22,7 @@ local EXPERIMENT_REGISTRY = {
 		Owner = "ProductTeam",
 		Description = "Tests if 2x FTUE reward improves D1 Retention",
 		SuccessMetric = "ftue.completed rate",
-		Rollback = "A" -- Default variant
+		Rollback = "A", -- Default variant
 	},
 	["EXP_SHOP_PRICE"] = {
 		Status = "Draft",
@@ -31,8 +31,8 @@ local EXPERIMENT_REGISTRY = {
 		Owner = "EconomyTeam",
 		Description = "Tests -20% shop price vs base price",
 		SuccessMetric = "ARPDAU",
-		Rollback = "A"
-	}
+		Rollback = "A",
+	},
 }
 
 -- Simple deterministic hash function for bucketing
@@ -50,14 +50,18 @@ function RemoteConfigService.Init()
 
 	local ok, snapshot = false, nil
 	if not RunService:IsStudio() then
-		ok, snapshot = pcall(function() return ConfigService:GetConfigAsync() end)
+		ok, snapshot = pcall(function()
+			return ConfigService:GetConfigAsync()
+		end)
 	end
 
 	if ok and snapshot then
 		configSnapshot = snapshot
 		pcall(function()
 			configSnapshot.UpdateAvailable:Connect(function()
-				pcall(function() configSnapshot:Refresh() end)
+				pcall(function()
+					configSnapshot:Refresh()
+				end)
 			end)
 		end)
 	end
@@ -70,12 +74,18 @@ end
 function RemoteConfigService.GetTuningValue(key: string, fallback: number): number
 	if configSnapshot then
 		local val = nil
-		pcall(function() val = configSnapshot:GetValue(key) end)
-		if val ~= nil and type(val) == "number" then return val end
+		pcall(function()
+			val = configSnapshot:GetValue(key)
+		end)
+		if val ~= nil and type(val) == "number" then
+			return val
+		end
 	end
 
 	local val = activeConfig.Tuning[key]
-	if val == nil then return fallback end
+	if val == nil then
+		return fallback
+	end
 	return val
 end
 
@@ -85,10 +95,10 @@ function RemoteConfigService.GetExperimentVariant(player: Player, experimentId: 
 	if not experiment or experiment.Status ~= "Active" then
 		return experiment and experiment.Rollback or "A"
 	end
-	
+
 	local hashInput = tostring(player.UserId) .. experimentId
 	local hashValue = getHash(hashInput)
-	
+
 	-- Return A (Control) or B (Variant) based on 50/50 split
 	if hashValue % 2 == 0 then
 		return "A"

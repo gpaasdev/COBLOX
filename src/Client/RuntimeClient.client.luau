@@ -38,7 +38,10 @@ ControllerRegistry.RegisterController("TopbarController", require(controllersFol
 ControllerRegistry.RegisterController("AudioController", require(controllersFolder.AudioController))
 ControllerRegistry.RegisterController("CombatController", require(controllersFolder.CombatController))
 ControllerRegistry.RegisterController("LocalizationController", require(controllersFolder.LocalizationController))
-ControllerRegistry.RegisterController("GraphicsOptimizationController", require(controllersFolder.GraphicsOptimizationController))
+ControllerRegistry.RegisterController(
+	"GraphicsOptimizationController",
+	require(controllersFolder.GraphicsOptimizationController)
+)
 ControllerRegistry.RegisterController("AdminDashboardController", require(controllersFolder.AdminDashboardController))
 ControllerRegistry.RegisterController("AlchemyController", require(controllersFolder.AlchemyController))
 ControllerRegistry.RegisterController("BroadcastBannerController", require(controllersFolder.BroadcastBannerController))
@@ -55,10 +58,16 @@ ControllerRegistry.RegisterController("MiscEventsController", require(controller
 ControllerRegistry.RegisterController("MonetizationController", require(controllersFolder.MonetizationController))
 ControllerRegistry.RegisterController("MutationController", require(controllersFolder.MutationController))
 ControllerRegistry.RegisterController("OfflineEarningsController", require(controllersFolder.OfflineEarningsController))
-ControllerRegistry.RegisterController("PerformanceMonitorController", require(controllersFolder.PerformanceMonitorController))
+ControllerRegistry.RegisterController(
+	"PerformanceMonitorController",
+	require(controllersFolder.PerformanceMonitorController)
+)
 ControllerRegistry.RegisterController("PetRenderController", require(controllersFolder.PetRenderController))
 ControllerRegistry.RegisterController("PlacementController", require(controllersFolder.PlacementController))
-ControllerRegistry.RegisterController("PolicyComplianceController", require(controllersFolder.PolicyComplianceController))
+ControllerRegistry.RegisterController(
+	"PolicyComplianceController",
+	require(controllersFolder.PolicyComplianceController)
+)
 ControllerRegistry.RegisterController("PotionVaultController", require(controllersFolder.PotionVaultController))
 ControllerRegistry.RegisterController("QuestController", require(controllersFolder.QuestController))
 ControllerRegistry.RegisterController("ResourceController", require(controllersFolder.ResourceController))

@@ -24,7 +24,7 @@ function ConsumableMutationService.Start()
 	if consumeRemote then
 		consumeRemote.OnServerInvoke = function(player: Player, potionName: any)
 			-- Zero-Trust Payload Validation
-			local ok, validPotionName = PayloadValidator.Validate({potionName}, {"string"})
+			local ok, validPotionName = PayloadValidator.Validate({ potionName }, { "string" })
 			if not ok then
 				warn("[Security] Payload validation failed for RequestConsumePotion from", player.Name)
 				return { Success = false, Message = "Invalid payload" }
@@ -39,7 +39,10 @@ function ConsumableMutationService.Start()
 	end)
 end
 
-function ConsumableMutationService.ConsumePotion(player: Player, potionName: string): { Success: boolean, Message: string }
+function ConsumableMutationService.ConsumePotion(
+	player: Player,
+	potionName: string
+): { Success: boolean, Message: string }
 	if not RateLimitService.CheckRateLimit(player, "ConsumePotion", 2.0) then
 		return { Success = false, Message = "Rate limit exceeded!" }
 	end
@@ -76,12 +79,11 @@ function ConsumableMutationService.ConsumePotion(player: Player, potionName: str
 
 		print(string.format("[ConsumableMutationService] %s consumed Elixir Surge! WalkSpeed set to 45.", player.Name))
 		return { Success = true, Message = "Consumed Elixir Surge! ⚡ WalkSpeed boosted!" }
-
 	elseif potionName == "ColossalTransmutation" or potionName == "MythicElixir" then
 		-- Colossal Transmutation (formerly Inflation Potion): 2.5x Scale, 500% HP
 		humanoid.MaxHealth = 500
 		humanoid.Health = 500
-		
+
 		-- Apply Model Scaling
 		pcall(function()
 			char:ScaleTo(2.5)
@@ -104,7 +106,12 @@ function ConsumableMutationService.ConsumePotion(player: Player, potionName: str
 			end
 		end)
 
-		print(string.format("[ConsumableMutationService] 🎈 %s consumed Colossal Transmutation! HP set to 500.", player.Name))
+		print(
+			string.format(
+				"[ConsumableMutationService] 🎈 %s consumed Colossal Transmutation! HP set to 500.",
+				player.Name
+			)
+		)
 		return { Success = true, Message = "Consumed Colossal Transmutation! 🎈 MaxHealth boosted to 500!" }
 	end
 

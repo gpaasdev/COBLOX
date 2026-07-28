@@ -9,7 +9,9 @@ local localPlayer = Players.LocalPlayer
 local isActive = false
 
 function DomainExpansionController.Init()
-	print("[DomainExpansionController] Initializing 15-Second Screen Vignette & Visual Overdrive Engine (Solo Leveling / JJK Meta)...")
+	print(
+		"[DomainExpansionController] Initializing 15-Second Screen Vignette & Visual Overdrive Engine (Solo Leveling / JJK Meta)..."
+	)
 end
 
 function DomainExpansionController.Start()
@@ -17,10 +19,18 @@ function DomainExpansionController.Start()
 end
 
 function DomainExpansionController.TriggerOverdrive(durationSeconds: number)
-	if isActive then return end
+	if isActive then
+		return
+	end
 	isActive = true
 
-	print(string.format("[DomainExpansionController] ⚡ DOMAIN EXPANSION ACTIVATED for %s! 3x Speed & Aura Overdrive for %ds", localPlayer.Name, durationSeconds))
+	print(
+		string.format(
+			"[DomainExpansionController] ⚡ DOMAIN EXPANSION ACTIVATED for %s! 3x Speed & Aura Overdrive for %ds",
+			localPlayer.Name,
+			durationSeconds
+		)
+	)
 
 	task.delay(durationSeconds, function()
 		isActive = false

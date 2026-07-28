@@ -7,7 +7,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local ClientRemotes = require(script.Parent.Parent:WaitForChild("Network"):WaitForChild("ClientRemotes") :: any)
-local VFXEngine = require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("VFXEngine") :: any)
+local VFXEngine =
+	require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("VFXEngine") :: any)
 
 local localPlayer = Players.LocalPlayer
 local mouse = localPlayer:GetMouse()
@@ -28,8 +29,12 @@ end
 
 function PlacementController.Start()
 	UserInputService.InputBegan:Connect(function(input, gameProcessed)
-		if not isPlacementActive then return end
-		if UserInputService:GetFocusedTextBox() then return end
+		if not isPlacementActive then
+			return
+		end
+		if UserInputService:GetFocusedTextBox() then
+			return
+		end
 
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			PlacementController.ConfirmPlacement()
@@ -78,7 +83,9 @@ function PlacementController.StartPlacementPreview()
 	end
 
 	activeConnection = RunService.RenderStepped:Connect(function()
-		if not previewHologram then return end
+		if not previewHologram then
+			return
+		end
 
 		local ray = Workspace.CurrentCamera:ScreenPointToRay(mouse.X, mouse.Y)
 		local raycastParams = RaycastParams.new()
@@ -105,8 +112,9 @@ function PlacementController.StartPlacementPreview()
 					local overlapParams = OverlapParams.new()
 					overlapParams.FilterType = Enum.RaycastFilterType.Exclude
 					overlapParams.FilterDescendantsInstances = { character, previewHologram, Workspace.Terrain }
-					local bounds = Workspace:GetPartBoundsInBox(previewHologram.CFrame, previewHologram.Size, overlapParams)
-					
+					local bounds =
+						Workspace:GetPartBoundsInBox(previewHologram.CFrame, previewHologram.Size, overlapParams)
+
 					if #bounds > 0 then
 						isValid = false -- Overlapping with something
 					else
@@ -114,7 +122,7 @@ function PlacementController.StartPlacementPreview()
 					end
 				end
 			end
-			
+
 			if isValid then
 				previewHologram.Color = Color3.fromRGB(34, 197, 94) -- Valid Green
 			else
@@ -136,7 +144,9 @@ function PlacementController.StopPlacementPreview()
 end
 
 function PlacementController.ConfirmPlacement()
-	if not previewHologram then return end
+	if not previewHologram then
+		return
+	end
 
 	if previewHologram.Color == Color3.fromRGB(239, 68, 68) then
 		-- Invalid Placement Feedback
@@ -151,8 +161,16 @@ function PlacementController.ConfirmPlacement()
 	local remote = ClientRemotes.RequestPlacement
 	if remote then
 		remote:FireServer(currentStructureId, "Grid_" .. tostring(os.time()), pos)
-		print(string.format("[PlacementController] Fired RequestPlacement for %s at (%.1f, %.1f, %.1f)", currentStructureId, pos.X, pos.Y, pos.Z))
-		
+		print(
+			string.format(
+				"[PlacementController] Fired RequestPlacement for %s at (%.1f, %.1f, %.1f)",
+				currentStructureId,
+				pos.X,
+				pos.Y,
+				pos.Z
+			)
+		)
+
 		-- Success feedback
 		VFXEngine.EmitImpactSparks(pos, Color3.fromRGB(34, 197, 94))
 	end
@@ -165,7 +183,9 @@ end
 function PlacementController._ShowControlHUD(show: boolean)
 	local playerGui = localPlayer:WaitForChild("PlayerGui")
 	local mainHUD = playerGui:FindFirstChild("COBLOX_AlchemyHUD")
-	if not mainHUD then return end
+	if not mainHUD then
+		return
+	end
 
 	if show then
 		if not hudOverlayFrame then

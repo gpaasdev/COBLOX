@@ -19,10 +19,13 @@ type OctreeNode<T> = {
 local SpatialOctree = {}
 SpatialOctree.__index = SpatialOctree
 
-export type Octree<T> = typeof(setmetatable({} :: {
-	Root: OctreeNode<T>,
-	MaxDepth: number,
-}, SpatialOctree))
+export type Octree<T> = typeof(setmetatable(
+	{} :: {
+		Root: OctreeNode<T>,
+		MaxDepth: number,
+	},
+	SpatialOctree
+))
 
 local MAX_DEPTH = 6
 local NODE_CAPACITY = 8
@@ -39,9 +42,12 @@ local function createNode<T>(center: Vector3, size: Vector3, depth: number): Oct
 end
 
 local function containsPoint(center: Vector3, halfSize: Vector3, point: Vector3): boolean
-	return point.X >= center.X - halfSize.X and point.X <= center.X + halfSize.X
-		and point.Y >= center.Y - halfSize.Y and point.Y <= center.Y + halfSize.Y
-		and point.Z >= center.Z - halfSize.Z and point.Z <= center.Z + halfSize.Z
+	return point.X >= center.X - halfSize.X
+		and point.X <= center.X + halfSize.X
+		and point.Y >= center.Y - halfSize.Y
+		and point.Y <= center.Y + halfSize.Y
+		and point.Z >= center.Z - halfSize.Z
+		and point.Z <= center.Z + halfSize.Z
 end
 
 function SpatialOctree.new<T>(center: Vector3, size: Vector3, maxDepth: number?): Octree<T>
@@ -111,7 +117,7 @@ local function queryRadius<T>(node: OctreeNode<T>, center: Vector3, radius: numb
 	local closeY = math.clamp(center.Y, node.BoundsCenter.Y - half.Y, node.BoundsCenter.Y + half.Y)
 	local closeZ = math.clamp(center.Z, node.BoundsCenter.Z - half.Z, node.BoundsCenter.Z + half.Z)
 	local distSq = (center - Vector3.new(closeX, closeY, closeZ)).Magnitude
-	
+
 	if distSq > radius then
 		return
 	end

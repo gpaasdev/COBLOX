@@ -3,6 +3,8 @@
 local Players = game:GetService("Players")
 
 local DailyLoginService = {}
+DailyLoginService.Name = "DailyLoginService"
+DailyLoginService.ServiceStatus = "Stub"
 
 local LOGIN_REWARDS = {
 	[1] = { Coins = 100, Gems = 0 },

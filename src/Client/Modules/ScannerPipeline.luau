@@ -7,7 +7,16 @@ local Players = game:GetService("Players")
 
 local ScannerPipeline = {}
 
-export type EntityType = "OreNode" | "Machine" | "NPC" | "Monster" | "DroppedItem" | "FactionTerminal" | "ResearchTerminal" | "Portal" | "Unknown"
+export type EntityType =
+	"OreNode"
+	| "Machine"
+	| "NPC"
+	| "Monster"
+	| "DroppedItem"
+	| "FactionTerminal"
+	| "ResearchTerminal"
+	| "Portal"
+	| "Unknown"
 
 export type TargetMetadata = {
 	Title: string,
@@ -17,16 +26,22 @@ export type TargetMetadata = {
 
 -- 1. Validator
 function ScannerPipeline.Validate(target: Instance, localCharacter: Model?): boolean
-	if not target or not target.Parent then return false end
-	if localCharacter and target:IsDescendantOf(localCharacter) then return false end
-	if target:IsA("BasePart") and target.Transparency >= 0.95 then return false end
+	if not target or not target.Parent then
+		return false
+	end
+	if localCharacter and target:IsDescendantOf(localCharacter) then
+		return false
+	end
+	if target:IsA("BasePart") and target.Transparency >= 0.95 then
+		return false
+	end
 	return true
 end
 
 -- 2. Resolver
 function ScannerPipeline.Resolve(target: Instance): (EntityType, Instance)
 	local model = target:FindFirstAncestorWhichIsA("Model") or target
-	
+
 	if CollectionService:HasTag(model, "MachineNode") or CollectionService:HasTag(target, "MachineNode") then
 		return "Machine", model
 	elseif CollectionService:HasTag(model, "ResourceNode") or CollectionService:HasTag(target, "ResourceNode") then
@@ -37,19 +52,27 @@ function ScannerPipeline.Resolve(target: Instance): (EntityType, Instance)
 		return "NPC", model
 	elseif CollectionService:HasTag(model, "DroppedItem") or CollectionService:HasTag(target, "DroppedItem") then
 		return "DroppedItem", model
-	elseif CollectionService:HasTag(model, "FactionTerminal") or CollectionService:HasTag(target, "FactionTerminal") then
+	elseif
+		CollectionService:HasTag(model, "FactionTerminal") or CollectionService:HasTag(target, "FactionTerminal")
+	then
 		return "FactionTerminal", model
-	elseif CollectionService:HasTag(model, "ResearchTerminal") or CollectionService:HasTag(target, "ResearchTerminal") then
+	elseif
+		CollectionService:HasTag(model, "ResearchTerminal") or CollectionService:HasTag(target, "ResearchTerminal")
+	then
 		return "ResearchTerminal", model
 	elseif CollectionService:HasTag(model, "Portal") or CollectionService:HasTag(target, "Portal") then
 		return "Portal", model
 	end
-	
+
 	return "Unknown", model
 end
 
 -- 3. Metadata Provider
-function ScannerPipeline.ProvideMetadata(entityType: EntityType, entity: Instance, isDiscovered: boolean): TargetMetadata
+function ScannerPipeline.ProvideMetadata(
+	entityType: EntityType,
+	entity: Instance,
+	isDiscovered: boolean
+): TargetMetadata
 	if not isDiscovered and (entityType == "OreNode" or entityType == "Machine") then
 		return {
 			Title = "??? [UNKNOWN MATERIAL]",
@@ -58,7 +81,7 @@ function ScannerPipeline.ProvideMetadata(entityType: EntityType, entity: Instanc
 				["Scan Progress"] = "12%",
 				["Research Status"] = "Unanalyzed",
 				["Codex Requirement"] = "Requires Aether Lens Level 1",
-			}
+			},
 		}
 	end
 
@@ -73,7 +96,7 @@ function ScannerPipeline.ProvideMetadata(entityType: EntityType, entity: Instanc
 				["Efficiency"] = "94%",
 				["Entropy"] = "Low (0.02)",
 				["Status"] = "Optimal",
-			}
+			},
 		}
 	elseif entityType == "OreNode" then
 		return {
@@ -85,7 +108,7 @@ function ScannerPipeline.ProvideMetadata(entityType: EntityType, entity: Instanc
 				["Hardness"] = "8.5 Mohs",
 				["Instability"] = "Medium",
 				["Extraction Time"] = "14 sec",
-			}
+			},
 		}
 	elseif entityType == "Monster" then
 		return {
@@ -96,7 +119,7 @@ function ScannerPipeline.ProvideMetadata(entityType: EntityType, entity: Instanc
 				["Weakness"] = "Cryo / Kinetic",
 				["Armor"] = "45",
 				["Primary Drop"] = "Void Bone",
-			}
+			},
 		}
 	elseif entityType == "NPC" then
 		return {
@@ -106,7 +129,7 @@ function ScannerPipeline.ProvideMetadata(entityType: EntityType, entity: Instanc
 				["Faction"] = "Industrialists",
 				["Trust Level"] = "Neutral (50%)",
 				["Reputation"] = "+120",
-			}
+			},
 		}
 	end
 
@@ -115,7 +138,7 @@ function ScannerPipeline.ProvideMetadata(entityType: EntityType, entity: Instanc
 		IsDiscovered = true,
 		Fields = {
 			["Category"] = "Uncategorized",
-		}
+		},
 	}
 end
 

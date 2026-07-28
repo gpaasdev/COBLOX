@@ -17,7 +17,7 @@ function MiscEventsController.Start()
 			print("[MiscEventsController] Received ExpeditionEvent:", eventData)
 		end)
 	end
-	
+
 	local retentionRemote = NetChannels.GetRemoteEvent("RetentionEvent")
 	if retentionRemote then
 		retentionRemote.OnClientEvent:Connect(function(eventData)

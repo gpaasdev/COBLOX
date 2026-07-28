@@ -35,7 +35,7 @@ type AnalyticsSchema = {
 	sessionId: string?,
 	version: string,
 	platform: string,
-	payload: any
+	payload: any,
 }
 
 function AnalyticsService.Init()
@@ -51,9 +51,11 @@ function AnalyticsService.Start()
 				local coreGui = game:GetService("CoreGui")
 				return scriptInstance and scriptInstance:IsDescendantOf(coreGui)
 			end)
-			if ok and isCore then return end
+			if ok and isCore then
+				return
+			end
 		end
-		
+
 		AnalyticsService.LogEvent("system.error", {
 			severity = "Error",
 			message = message,
@@ -64,19 +66,19 @@ function AnalyticsService.Start()
 		})
 	end)
 
-function AnalyticsService._HandleFTUEStep(player: Player, stepIndex: number, stepName: string)
-	AnalyticsService.LogEvent("ftue.step", {
-		step = stepIndex,
-		name = stepName,
-	}, player.UserId)
-end
+	function AnalyticsService._HandleFTUEStep(player: Player, stepIndex: number, stepName: string)
+		AnalyticsService.LogEvent("ftue.step", {
+			step = stepIndex,
+			name = stepName,
+		}, player.UserId)
+	end
 
 	-- 2. DomainEventBus Hooks (Event Taxonomy Mapping)
 	DomainEventBus.Subscribe(function(event: DomainEvent)
 		local payload = event.Data or {}
 		local playerId = event.Player and event.Player.UserId or nil
 		local sessionId = nil -- Will be populated by SessionService later
-		
+
 		local taxonomyMap = {
 			["PlayerJoined"] = "session.started",
 			["PlayerLeft"] = "session.ended",
@@ -85,7 +87,7 @@ end
 			["PurchaseCompleted"] = "purchase.completed",
 			["CovenDonated"] = "guild.donated",
 		}
-		
+
 		local safeName = event.Name or "unknown"
 		local eventName = taxonomyMap[safeName] or safeName:lower()
 		AnalyticsService.LogEvent(eventName, payload, playerId)
@@ -94,18 +96,20 @@ end
 	-- 3. Economy Service Hooks
 	local EconomyService = require(ServerScriptService.Server.Services.EconomyService)
 	EconomyService.CoinsChanged:Connect(function(player: Player, balance: number, delta: number, reason: string)
-		if delta == 0 then return end
+		if delta == 0 then
+			return
+		end
 		AnalyticsService.LogEvent("economy.transaction", {
 			currency = "Coins",
 			delta = delta,
 			balance = balance,
-			reason = reason
+			reason = reason,
 		}, player.UserId)
 	end)
 
 	EconomyService.RebirthCompleted:Connect(function(player: Player, tokenCount: number)
 		AnalyticsService.LogEvent("rebirth.completed", {
-			tokens = tokenCount
+			tokens = tokenCount,
 		}, player.UserId)
 	end)
 
@@ -134,18 +138,20 @@ function AnalyticsService.LogEvent(eventName: string, payload: any, playerId: nu
 		sessionId = "TBD", -- Integrated with SessionService
 		version = BUILD_METADATA.buildVersion,
 		platform = "Unknown", -- Server cannot easily know client platform without handshake, will be augmented by SessionService
-		payload = payload
+		payload = payload,
 	}
 
 	table.insert(eventBatchQueue, eventData)
-	
+
 	if #eventBatchQueue >= MAX_BATCH_SIZE then
 		AnalyticsService.FlushBatchQueue()
 	end
 end
 
 function AnalyticsService.FlushBatchQueue()
-	if #eventBatchQueue == 0 then return end
+	if #eventBatchQueue == 0 then
+		return
+	end
 
 	local batchToFlush = eventBatchQueue
 	eventBatchQueue = {} -- Reset queue
@@ -155,12 +161,12 @@ function AnalyticsService.FlushBatchQueue()
 		local ok, err = pcall(function()
 			-- In a real production scenario, this sends to a Data Lake (e.g. AWS Kinesis/PlayFab)
 			-- For now, we simulate flushing the batched schema to RobloxAnalytics Custom Event as JSON (to bypass field limits)
-			
+
 			if RunService:IsStudio() then
 				print(string.format("[Telemetry] Flushed %d events to Sink", #batchToFlush))
 				return
 			end
-			
+
 			-- We only sample the first event into Roblox Analytics due to their API limits,
 			-- but a real external sink would accept the full JSON batch array.
 			local sample = batchToFlush[1]
@@ -170,12 +176,12 @@ function AnalyticsService.FlushBatchQueue()
 					local jsonPayload = HttpService:JSONEncode(sample.payload)
 					RobloxAnalytics:LogCustomEvent(player, sample.event, 1, {
 						Version = sample.version,
-						PayloadData = string.sub(jsonPayload, 1, 100) -- Roblox restricts custom string lengths
+						PayloadData = string.sub(jsonPayload, 1, 100), -- Roblox restricts custom string lengths
 					})
 				end
 			end
 		end)
-		
+
 		if not ok then
 			warn("[AnalyticsService] Failed to flush telemetry batch. Gameplay continues securely. Err: ", err)
 		end

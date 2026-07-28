@@ -21,16 +21,16 @@ function AlchemyController.RequestCraft(recipeId: string)
 		warn("[AlchemyController] Resep tidak valid:", recipeId)
 		return
 	end
-	
+
 	-- Play Cauldron VFX
 	AlchemyController.PlayCauldronAnimation(recipe.VFXEffect)
-	
+
 	print("[AlchemyController] Meminta Server untuk meracik:", recipe.Name)
-	
+
 	local craftRecipeEvent = NetChannels.GetRemoteFunction("RequestCraft")
 	if craftRecipeEvent then
 		local result = craftRecipeEvent:InvokeServer(recipeId)
-		
+
 		if result.Success then
 			print("[AlchemyController] Berhasil meracik!", result.Message)
 			-- Show local notification

@@ -32,7 +32,7 @@ TycoonService.UpgradeBought = Signal.new()
 
 function TycoonService.Init()
 	print("[TycoonService] Initializing Tycoon Plot engine...")
-	
+
 	local template = Instance.new("Part")
 	template.Name = "MineralDrop"
 	template.Shape = Enum.PartType.Ball
@@ -56,7 +56,7 @@ function TycoonService.Start()
 	task.spawn(function()
 		local mapFolder = workspace:WaitForChild("Map")
 		local plotsFolder = mapFolder:WaitForChild("Plots")
-		
+
 		local function hookPlot(plotPart: Instance)
 			local function checkPad(child: Instance)
 				if child.Name == "ClaimPad" and child:IsA("BasePart") then
@@ -78,7 +78,9 @@ function TycoonService.Start()
 end
 
 function TycoonService._HookClaimPad(plotPart: Instance, claimPad: BasePart)
-	if claimPad:GetAttribute("Hooked") then return end
+	if claimPad:GetAttribute("Hooked") then
+		return
+	end
 	claimPad:SetAttribute("Hooked", true)
 
 	-- 1. ProximityPrompt for explicit button/touch interaction
@@ -118,7 +120,9 @@ function TycoonService._TryClaimPlot(player: Player, plotId: string, claimPad: B
 	if plotData and plotData.Owner == nil then
 		-- Ensure player doesn't already own a plot
 		for _, pd in pairs(activePlots) do
-			if pd.Owner == player then return end
+			if pd.Owner == player then
+				return
+			end
 		end
 
 		local res = PlayerDataService.GetProfile(player)
@@ -126,7 +130,7 @@ function TycoonService._TryClaimPlot(player: Player, plotId: string, claimPad: B
 
 		plotData.Owner = player
 		plotData.Unlocked["Dropper_Tier1"] = true -- Starter free dropper
-		
+
 		-- Sanctum Evolution Visuals
 		local plotPart = workspace.Map.Plots:FindFirstChild(plotId)
 		if plotPart and plotPart:IsA("BasePart") then
@@ -141,13 +145,17 @@ function TycoonService._TryClaimPlot(player: Player, plotId: string, claimPad: B
 				plotPart.Material = Enum.Material.Slate
 			end
 		end
-		
+
 		-- Visuals & Feedback
 		local existingPrompt = claimPad:FindFirstChildOfClass("ProximityPrompt")
-		if existingPrompt then existingPrompt:Destroy() end
+		if existingPrompt then
+			existingPrompt:Destroy()
+		end
 
 		local existingBB = claimPad:FindFirstChildOfClass("BillboardGui")
-		if existingBB then existingBB:Destroy() end
+		if existingBB then
+			existingBB:Destroy()
+		end
 
 		claimPad.Color = Color3.fromRGB(16, 185, 129) -- Neon Emerald
 		claimPad.Material = Enum.Material.Neon
@@ -167,7 +175,9 @@ function TycoonService._TryClaimPlot(player: Player, plotId: string, claimPad: B
 		particles.Lifetime = NumberRange.new(0.5, 1.2)
 		particles.Parent = claimPad
 		particles:Emit(30)
-		task.delay(1.5, function() particles:Destroy() end)
+		task.delay(1.5, function()
+			particles:Destroy()
+		end)
 
 		claimPad:SetAttribute("PlotOwner", player.Name)
 		CollectionService:AddTag(claimPad, "TycoonClaimPad")
@@ -185,7 +195,9 @@ end
 
 function TycoonService._SpawnDynamicVault(plotId: string)
 	local plotPart = workspace.Map.Plots:FindFirstChild(plotId)
-	if not plotPart then return end
+	if not plotPart then
+		return
+	end
 
 	local vault = Instance.new("Part")
 	vault.Name = "DynamicVault"
@@ -230,7 +242,9 @@ function TycoonService._StartDropperLoop(plotId: string, player: Player)
 	task.spawn(function()
 		local plotData = activePlots[plotId]
 		local plotPart = workspace.Map.Plots:FindFirstChild(plotId)
-		if not plotPart then return end
+		if not plotPart then
+			return
+		end
 
 		local CrystalPurificationService = require(ServerScriptService.Server.Services.CrystalPurificationService)
 
@@ -258,7 +272,7 @@ function TycoonService._StartDropperLoop(plotId: string, player: Player)
 
 							-- Add income to physical Mana Crystal vessel
 							CrystalPurificationService.AddCrystalCharge(plotId, 50)
-							
+
 							-- Cleanup drop after 3 seconds
 							task.delay(3, function()
 								if drop and drop.Parent then
@@ -275,9 +289,13 @@ end
 
 function TycoonService._SpawnUpgradeButtons(plotId: string)
 	local plotPart = workspace.Map.Plots:FindFirstChild(plotId)
-	if not plotPart then return end
+	if not plotPart then
+		return
+	end
 	local plotData = activePlots[plotId]
-	if not plotData then return end
+	if not plotData then
+		return
+	end
 
 	local buttonOffsets = {
 		["Collector_Tier1"] = Vector3.new(0, 0.6, 6),
@@ -291,20 +309,26 @@ function TycoonService._SpawnUpgradeButtons(plotId: string)
 		if not plotData.Unlocked[upgradeId] and buttonOffsets[upgradeId] then
 			local existingBtn = plotPart:FindFirstChild("Button_" .. upgradeId)
 			if not existingBtn then
-				local padModel = SanctumBuilder.BuildUpgradePad("Button_" .. upgradeId, CFrame.new(plotPart.Position + buttonOffsets[upgradeId]) * CFrame.Angles(0, 0, math.rad(90)))
+				local padModel = SanctumBuilder.BuildUpgradePad(
+					"Button_" .. upgradeId,
+					CFrame.new(plotPart.Position + buttonOffsets[upgradeId]) * CFrame.Angles(0, 0, math.rad(90))
+				)
 				padModel.Parent = plotPart
-				
+
 				local pad = padModel.PrimaryPart
-				if not pad then continue end
+				if not pad then
+					continue
+				end
 
 				-- 3D Interactive Billboard HUD Card
-				local categoryIcon = string.find(upgradeId, "Dropper") and "🔮 MESIN GENERATOR" or (string.find(upgradeId, "Collector") and "💧 WADAH PENAMPUNG" or "⚡ TRANSMUTER")
-				
+				local categoryIcon = string.find(upgradeId, "Dropper") and "🔮 MESIN GENERATOR"
+					or (string.find(upgradeId, "Collector") and "💧 WADAH PENAMPUNG" or "⚡ TRANSMUTER")
+
 				pad:SetAttribute("UpgradeId", upgradeId)
 				pad:SetAttribute("UpgradeName", nodeInfo.Name)
 				pad:SetAttribute("UpgradeCost", nodeInfo.Cost)
 				pad:SetAttribute("CategoryIcon", categoryIcon)
-				
+
 				CollectionService:AddTag(pad, "TycoonUpgradeButton")
 
 				-- ProximityPrompt for explicit button purchase
@@ -352,10 +376,14 @@ end
 
 function TycoonService._SpawnUpgrade(plotId: string, upgradeId: string)
 	local plotPart = workspace.Map.Plots:FindFirstChild(plotId)
-	if not plotPart then return end
+	if not plotPart then
+		return
+	end
 
 	local nodeData = UPGRADE_NODES[upgradeId]
-	if not nodeData then return end
+	if not nodeData then
+		return
+	end
 
 	local machineModel
 	if string.find(upgradeId, "Dropper") then

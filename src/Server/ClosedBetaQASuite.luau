@@ -22,9 +22,9 @@ function ClosedBetaQASuite.RunFullValidation(): { Passed: boolean, Report: { [st
 			analyticsReady = true
 		end
 	end)
-	
+
 	DomainEventBus.Publish("QASuitePing", { UserId = 9999, Name = "QAPlayer" } :: Player, {})
-	
+
 	if analyticsReady then
 		report["AnalyticsService"] = "PASS: DomainEventBus telemetry event logging functional"
 	else
@@ -38,7 +38,10 @@ function ClosedBetaQASuite.RunFullValidation(): { Passed: boolean, Report: { [st
 	if assetsValid then
 		report["AssetPipeline"] = "PASS: All production asset IDs populated"
 	else
-		report["AssetPipeline"] = string.format("PASS (Graceful Fallback Active): %d assets using low-poly primitives in Studio", #missingList)
+		report["AssetPipeline"] = string.format(
+			"PASS (Graceful Fallback Active): %d assets using low-poly primitives in Studio",
+			#missingList
+		)
 	end
 
 	-- 3. Recipe Balance Verification

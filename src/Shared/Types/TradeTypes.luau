@@ -1,6 +1,13 @@
 --!strict
 
-export type TradeState = "Idle" | "Invited" | "Stage1_Confirming" | "Stage2_FinalAccept" | "Executing" | "Completed" | "Cancelled"
+export type TradeState =
+	"Idle"
+	| "Invited"
+	| "Stage1_Confirming"
+	| "Stage2_FinalAccept"
+	| "Executing"
+	| "Completed"
+	| "Cancelled"
 
 export type TradeOffer = {
 	Coins: number,

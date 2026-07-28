@@ -17,9 +17,11 @@ end
 function TycoonRenderController.Start()
 	-- 1. Setup Markas Claim Pad Hologram UI
 	local function setupClaimPad(claimPad: Instance)
-		if not claimPad:IsA("BasePart") then return end
+		if not claimPad:IsA("BasePart") then
+			return
+		end
 		local ownerName = claimPad:GetAttribute("PlotOwner") or "None"
-		
+
 		local prompt = Instance.new("ProximityPrompt")
 		prompt.ActionText = ownerName == "None" and "Klaim Markas" or "Info Markas"
 		prompt.ObjectText = ownerName == "None" and "Plot Kosong" or "Milik: " .. ownerName
@@ -37,18 +39,20 @@ function TycoonRenderController.Start()
 
 	-- 2. Setup Upgrade Buttons Hologram UI
 	local function setupUpgradeButton(pad: Instance)
-		if not pad:IsA("BasePart") then return end
-		
+		if not pad:IsA("BasePart") then
+			return
+		end
+
 		local nodeName = pad:GetAttribute("UpgradeName") or "Unknown"
 		local nodeCost = pad:GetAttribute("UpgradeCost") or 0
 		local categoryIcon = pad:GetAttribute("CategoryIcon") or "⚡ TRANSMUTER"
-		
+
 		local holoGui = HologramUIEngine.Create(pad, {
 			Title = "[ " .. categoryIcon .. " ]\n" .. nodeName,
 			Subtitle = "💰 " .. tostring(nodeCost) .. " COINS",
 			AccentColor = Color3.fromRGB(168, 85, 247),
 			Size = UDim2.new(0, 220, 0, 80),
-			StudsOffset = Vector3.new(0, 4.5, 0)
+			StudsOffset = Vector3.new(0, 4.5, 0),
 		})
 		holoGui.MaxDistance = 30
 		holoGui.AlwaysOnTop = false
@@ -143,4 +147,3 @@ function TycoonRenderController.AnimateDrop(startCFrame: CFrame, endPosition: Ve
 end
 
 return TycoonRenderController
-

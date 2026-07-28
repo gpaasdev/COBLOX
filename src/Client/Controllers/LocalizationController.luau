@@ -13,14 +13,14 @@ local GameLocalization = require(ReplicatedStorage.Shared.Localization.GameLocal
 
 function LocalizationController.Init()
 	print("[LocalizationController] Initializing Hybrid Localization Engine (Cloud + Local Fallback)...")
-	
+
 	local localPlayer = Players.LocalPlayer
 	if localPlayer then
 		pcall(function()
 			cloudTranslator = LocalizationService:GetTranslatorForPlayerAsync(localPlayer)
 		end)
 	end
-	
+
 	local localeId = LocalizationService.RobloxLocaleId
 	local langCode = string.lower(string.sub(localeId, 1, 2))
 	if langCode == "en" then
@@ -28,8 +28,14 @@ function LocalizationController.Init()
 	else
 		activeLocale = "id-id"
 	end
-	
-	print(string.format("[LocalizationController] Active Locale set to %s (Cloud Translator Ready: %s)", activeLocale, tostring(cloudTranslator ~= nil)))
+
+	print(
+		string.format(
+			"[LocalizationController] Active Locale set to %s (Cloud Translator Ready: %s)",
+			activeLocale,
+			tostring(cloudTranslator ~= nil)
+		)
+	)
 end
 
 function LocalizationController.Start()

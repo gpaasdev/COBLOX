@@ -138,7 +138,7 @@ function TradeController._CreateTradeModal()
 	partnerLabel.Parent = partnerOfferFrame
 
 	-- Countdown Display removed for Quick Accept
-	
+
 	-- 2-Step Anti-Scam Trade Action Container
 	local actionContainer = Instance.new("Frame")
 	actionContainer.Size = UDim2.new(0.92, 0, 0.14, 0)
@@ -179,13 +179,15 @@ function TradeController._CreateTradeModal()
 	local isCountingDown = false
 
 	lockBtn.MouseButton1Click:Connect(function()
-		if isCountingDown then return end
-		
+		if isCountingDown then
+			return
+		end
+
 		isLocked = not isLocked
 		if isLocked then
 			lockBtn.Text = "🔓 BUKA KUNCI"
 			lockBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68) -- Red to unlock
-			
+
 			isCountingDown = true
 			for remaining = 3, 1, -1 do
 				acceptBtn.Text = string.format("⏳ TUNGGU (%ds)", remaining)
@@ -208,14 +210,16 @@ function TradeController._CreateTradeModal()
 	end)
 
 	acceptBtn.MouseButton1Click:Connect(function()
-		if not isLocked or not acceptBtn.Active then return end
-		
+		if not isLocked or not acceptBtn.Active then
+			return
+		end
+
 		print("[TradeController] Trade confirmed! Executing secure trade exchange...")
 		local AudioController = require(script.Parent:WaitForChild("AudioController") :: any)
 		pcall(function()
 			AudioController.PlaySound("rbxassetid://138677306", 1.0)
 		end)
-		
+
 		TradeController.ToggleModal()
 	end)
 end

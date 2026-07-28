@@ -18,7 +18,9 @@ end
 function ShadowRaidController.Start()
 	-- Keybind for Begal Aura / Shadow Raid (Hotkey: 'B')
 	UserInputService.InputBegan:Connect(function(input, gameProcessed)
-		if gameProcessed then return end
+		if gameProcessed then
+			return
+		end
 		if input.KeyCode == Enum.KeyCode.B then
 			ShadowRaidController.AttemptRaidFromNearest()
 		end
@@ -28,7 +30,9 @@ end
 function ShadowRaidController.AttemptRaidFromNearest()
 	local localPlayer = Players.LocalPlayer
 	local char = localPlayer.Character
-	if not char or not char.PrimaryPart then return end
+	if not char or not char.PrimaryPart then
+		return
+	end
 
 	local myPos = char.PrimaryPart.Position
 	local nearestPlayer: Player? = nil
@@ -52,7 +56,12 @@ function ShadowRaidController.AttemptRaidFromNearest()
 		if ClientRemotes.RequestShadowRaid then
 			local response = ClientRemotes.RequestShadowRaid:InvokeServer(nearestPlayer.UserId, 1)
 			if response and response.Success then
-				print(string.format("[ShadowRaidController] 🎉 BEGAL AURA BERHASIL! %s diambil!", response.PotionName or "Aura"))
+				print(
+					string.format(
+						"[ShadowRaidController] 🎉 BEGAL AURA BERHASIL! %s diambil!",
+						response.PotionName or "Aura"
+					)
+				)
 			else
 				warn("[ShadowRaidController] Raid failed:", response and response.Message or "Unknown error")
 			end

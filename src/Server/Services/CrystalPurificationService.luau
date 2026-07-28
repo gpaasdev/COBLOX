@@ -32,11 +32,14 @@ function CrystalPurificationService.Start()
 		local map = workspace:WaitForChild("Map")
 		local obelisk = map:WaitForChild("GrandObelisk", 5) or map:WaitForChild("ObeliskPusat", 5)
 		if obelisk then
-			local purificationZone = obelisk:FindFirstChild("PurificationZone") or obelisk:FindFirstChild("SetorZone") :: BasePart?
+			local purificationZone = obelisk:FindFirstChild("PurificationZone")
+				or obelisk:FindFirstChild("SetorZone") :: BasePart?
 			if purificationZone then
 				purificationZone.Touched:Connect(function(hit)
 					local char = hit.Parent
-					if not char then return end
+					if not char then
+						return
+					end
 					local player = Players:GetPlayerFromCharacter(char)
 					if player then
 						CrystalPurificationService.PurifyCrystal(player)
@@ -51,7 +54,7 @@ function CrystalPurificationService.Start()
 	if claimRemote then
 		claimRemote.OnServerInvoke = function(player: Player, plotId: string)
 			-- Zero-Trust Payload Validation
-			local ok, validPlotId = PayloadValidator.Validate({plotId}, {"string"})
+			local ok, validPlotId = PayloadValidator.Validate({ plotId }, { "string" })
 			if not ok then
 				warn("[Security] Payload validation failed for RequestCrystalPurification from", player.Name)
 				return { Success = false, Message = "Invalid payload", Amount = nil }
@@ -71,27 +74,36 @@ function CrystalPurificationService.AddCrystalCharge(plotId: string, amount: num
 	local currentBal = crystalCharges[plotId] or 0
 	-- Compound Interest formula: V(t) = P * (1 + r)^dt
 	-- Where r is 0.01 (1% growth) and dt is 1 (per call).
-	local interestRate = 0.01 
+	local interestRate = 0.01
 	local newBal = currentBal * (1 + interestRate) + amount
 	crystalCharges[plotId] = math.floor(newBal)
-	
+
 	local balance = crystalCharges[plotId]
 
 	-- Visual Beacon update if capacity reached
 	local plotPart = workspace.Map.Plots:FindFirstChild(plotId)
 	if plotPart then
-		local crystalPart = plotPart:FindFirstChild("DynamicVault") or plotPart:FindFirstChild("ManaCrystal") or plotPart:FindFirstChild("BejanaAura") :: BasePart?
+		local crystalPart = plotPart:FindFirstChild("DynamicVault")
+			or plotPart:FindFirstChild("ManaCrystal")
+			or plotPart:FindFirstChild("BejanaAura") :: BasePart?
 		if crystalPart then
 			local beacon = crystalPart:FindFirstChild("FullBeacon") :: ParticleEmitter?
 			local light = crystalPart:FindFirstChild("BeaconLight") :: PointLight?
 			local isFull = balance >= DEFAULT_CRYSTAL_CAPACITY
-			if beacon then beacon.Enabled = isFull end
-			if light then light.Enabled = isFull end
+			if beacon then
+				beacon.Enabled = isFull
+			end
+			if light then
+				light.Enabled = isFull
+			end
 		end
 	end
 end
 
-function CrystalPurificationService.TakeCrystalCargo(player: Player, plotId: string): { Success: boolean, Message: string, Amount: number? }
+function CrystalPurificationService.TakeCrystalCargo(
+	player: Player,
+	plotId: string
+): { Success: boolean, Message: string, Amount: number? }
 	if not RateLimitService.CheckRateLimit(player, "TakeCrystalCargo", 1.0) then
 		return { Success = false, Message = "Rate limit exceeded!", Amount = nil }
 	end
@@ -110,7 +122,9 @@ function CrystalPurificationService.TakeCrystalCargo(player: Player, plotId: str
 		return { Success = false, Message = "Character missing!", Amount = nil }
 	end
 
-	local crystalPart = plotPart:FindFirstChild("DynamicVault") or plotPart:FindFirstChild("ManaCrystal") or plotPart:FindFirstChild("BejanaAura") :: BasePart?
+	local crystalPart = plotPart:FindFirstChild("DynamicVault")
+		or plotPart:FindFirstChild("ManaCrystal")
+		or plotPart:FindFirstChild("BejanaAura") :: BasePart?
 	local targetPos = if crystalPart then crystalPart.Position else plotPart.Position
 	if (char.PrimaryPart.Position - targetPos).Magnitude > MAX_INTERACTION_DIST then
 		return { Success = false, Message = "Terlalu jauh dari Bejana Aura!", Amount = nil }
@@ -123,7 +137,9 @@ function CrystalPurificationService.TakeCrystalCargo(player: Player, plotId: str
 		errSound.Volume = 0.5
 		errSound.Parent = char.PrimaryPart
 		errSound:Play()
-		task.delay(1, function() errSound:Destroy() end)
+		task.delay(1, function()
+			errSound:Destroy()
+		end)
 		return { Success = false, Message = "Bejana Aura kosong!", Amount = nil }
 	end
 
@@ -147,15 +163,30 @@ function CrystalPurificationService.TakeCrystalCargo(player: Player, plotId: str
 		sound.Volume = 1
 		sound.Parent = char.PrimaryPart
 		sound:Play()
-		task.delay(2, function() sound:Destroy() end)
+		task.delay(2, function()
+			sound:Destroy()
+		end)
 	end)
 
-	print(string.format("[CrystalPurificationService] %s picked up Crystal Cargo with %d Energy from %s", player.Name, currentBal, plotId))
-	
+	print(
+		string.format(
+			"[CrystalPurificationService] %s picked up Crystal Cargo with %d Energy from %s",
+			player.Name,
+			currentBal,
+			plotId
+		)
+	)
+
 	-- Send clear UX guidance notification to client
 	local remote = NetChannels.GetRemoteEvent("BroadcastServerMessage")
 	if remote then
-		remote:FireClient(player, string.format("📦 Muatan Aura Diambil (%d)! Bawa ke Obelisk Pusat untuk disetor!", currentBal), 250, 204, 21)
+		remote:FireClient(
+			player,
+			string.format("📦 Muatan Aura Diambil (%d)! Bawa ke Obelisk Pusat untuk disetor!", currentBal),
+			250,
+			204,
+			21
+		)
 	end
 
 	return { Success = true, Message = "Aura berhasil diambil!", Amount = currentBal }
@@ -183,10 +214,14 @@ function CrystalPurificationService.PurifyCrystal(player: Player): { Success: bo
 	-- Atomic deposit into economy wallet via ProfileStore session lock
 	local updateResult = ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
 		local wallet = profileData.Wallet
-		if not wallet then error("WALLET_MISSING") end
+		if not wallet then
+			error("WALLET_MISSING")
+		end
 		wallet.Coins = (wallet.Coins or 0) + amount
 		-- Hard currency ledger entry (Coins is soft but track large deposits)
-		if not profileData.Ledger then profileData.Ledger = {} end
+		if not profileData.Ledger then
+			profileData.Ledger = {}
+		end
 		local HttpSvc = game:GetService("HttpService")
 		table.insert(profileData.Ledger, {
 			TimestampUTC = DateTime.now():ToIsoDate(),
@@ -210,7 +245,8 @@ function CrystalPurificationService.PurifyCrystal(player: Player): { Success: bo
 	-- 1. Shared Aura Resonance Buff (+5% WalkSpeed for 10s to nearby players)
 	local map = workspace:FindFirstChild("Map")
 	local obelisk = map and (map:FindFirstChild("GrandObelisk") or map:FindFirstChild("ObeliskPusat"))
-	local obeliskPos = obelisk and obelisk:GetPivot().Position or (char and char.PrimaryPart and char.PrimaryPart.Position)
+	local obeliskPos = obelisk and obelisk:GetPivot().Position
+		or (char and char.PrimaryPart and char.PrimaryPart.Position)
 
 	if obeliskPos then
 		for _, otherPlayer in ipairs(Players:GetPlayers()) do
@@ -237,13 +273,34 @@ function CrystalPurificationService.PurifyCrystal(player: Player): { Success: bo
 	local remote = NetChannels.GetRemoteEvent("BroadcastServerMessage")
 	if remote then
 		if amount >= 10000 then
-			remote:FireAllClients(string.format("🌟 %s menyetor %d Aura di Obelisk Utama! (+5%% Speed Buff diberikan ke pemain sekitar!)", player.Name, amount), 245, 158, 11)
+			remote:FireAllClients(
+				string.format(
+					"🌟 %s menyetor %d Aura di Obelisk Utama! (+5%% Speed Buff diberikan ke pemain sekitar!)",
+					player.Name,
+					amount
+				),
+				245,
+				158,
+				11
+			)
 		else
-			remote:FireClient(player, string.format("🔮 Setor Aura Berhasil! +%d Koin Energi disimpankan!", amount), 34, 197, 94)
+			remote:FireClient(
+				player,
+				string.format("🔮 Setor Aura Berhasil! +%d Koin Energi disimpankan!", amount),
+				34,
+				197,
+				94
+			)
 		end
 	end
 
-	print(string.format("[CrystalPurificationService] 🔮 %s successfully purified %d Energy at Obelisk!", player.Name, amount))
+	print(
+		string.format(
+			"[CrystalPurificationService] 🔮 %s successfully purified %d Energy at Obelisk!",
+			player.Name,
+			amount
+		)
+	)
 	return { Success = true, Amount = amount }
 end
 

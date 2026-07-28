@@ -34,7 +34,9 @@ function KarmaContractController.Start()
 end
 
 function KarmaContractController.TriggerKarmaRetribution()
-	if not currentTargetUserId then return end
+	if not currentTargetUserId then
+		return
+	end
 
 	local karmaRemoteFunc = NetChannels.GetRemoteFunction("RequestKarmaContract")
 	if karmaRemoteFunc then
@@ -51,13 +53,19 @@ end
 
 function KarmaContractController.AttachPromptToTarget()
 	KarmaContractController.RemovePrompt()
-	if not currentTargetUserId then return end
+	if not currentTargetUserId then
+		return
+	end
 
 	local targetPlayer = Players:GetPlayerByUserId(currentTargetUserId)
-	if not targetPlayer or not targetPlayer.Character then return end
+	if not targetPlayer or not targetPlayer.Character then
+		return
+	end
 
 	local hrp = targetPlayer.Character:FindFirstChild("HumanoidRootPart")
-	if not hrp then return end
+	if not hrp then
+		return
+	end
 
 	local prompt = Instance.new("ProximityPrompt")
 	prompt.ObjectText = "🎯 Kena Karma!"
@@ -84,13 +92,19 @@ end
 
 function KarmaContractController.ShowCompass(targetName: string)
 	KarmaContractController.HideCompass()
-	if not currentTargetUserId then return end
+	if not currentTargetUserId then
+		return
+	end
 
 	local targetPlayer = Players:GetPlayerByUserId(currentTargetUserId)
-	if not targetPlayer or not targetPlayer.Character then return end
+	if not targetPlayer or not targetPlayer.Character then
+		return
+	end
 
 	local hrp = targetPlayer.Character:FindFirstChild("HumanoidRootPart")
-	if not hrp then return end
+	if not hrp then
+		return
+	end
 
 	local billboard = Instance.new("BillboardGui")
 	billboard.Name = "KarmaTrackerCompass"

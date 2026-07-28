@@ -40,15 +40,25 @@ end
 
 function ARLensController.GetScanFrequency(): number
 	local rates = ClientConfig.ARLens.AdaptiveRates
-	if ARLensController.State == "Combat" then return 1 / rates.Combat end
-	if ARLensController.State == "Scanning" then return 1 / rates.Scanning end
-	if ARLensController.State == "Interacting" then return 1 / rates.Interacting end
-	if ARLensController.State == "Walking" then return 1 / rates.Walking end
+	if ARLensController.State == "Combat" then
+		return 1 / rates.Combat
+	end
+	if ARLensController.State == "Scanning" then
+		return 1 / rates.Scanning
+	end
+	if ARLensController.State == "Interacting" then
+		return 1 / rates.Interacting
+	end
+	if ARLensController.State == "Walking" then
+		return 1 / rates.Walking
+	end
 	return 1 / rates.Idle
 end
 
 function ARLensController.Update(dt: number)
-	if not LocalPlayer.Character or not LocalPlayer.Character.PrimaryPart then return end
+	if not LocalPlayer.Character or not LocalPlayer.Character.PrimaryPart then
+		return
+	end
 	local rootPart = LocalPlayer.Character.PrimaryPart
 	local now = tick()
 
@@ -72,7 +82,10 @@ function ARLensController.Update(dt: number)
 
 	-- Update ScreenGui Widget Projections
 	for target, info in pairs(activeTargets) do
-		if not info.Entity.Parent or (info.WorldPos - rootPart.Position).Magnitude > ClientConfig.ARLens.FadeDistance then
+		if
+			not info.Entity.Parent
+			or (info.WorldPos - rootPart.Position).Magnitude > ClientConfig.ARLens.FadeDistance
+		then
 			-- Cull target
 			WidgetRenderer.RecycleWidget(info.EntityType, info.Widget)
 			activeTargets[target] = nil
@@ -90,12 +103,14 @@ function ARLensController.Update(dt: number)
 end
 
 function ARLensController.PerformRaycastScan(origin: Vector3)
-	if not CurrentCamera then return end
+	if not CurrentCamera then
+		return
+	end
 
 	local ray = CurrentCamera:ViewportPointToRay(CurrentCamera.ViewportSize.X / 2, CurrentCamera.ViewportSize.Y / 2)
 	local raycastParams = RaycastParams.new()
 	raycastParams.FilterType = Enum.RaycastFilterType.Exclude
-	raycastParams.FilterDescendantsInstances = {LocalPlayer.Character}
+	raycastParams.FilterDescendantsInstances = { LocalPlayer.Character }
 
 	local result = Workspace:Raycast(ray.Origin, ray.Direction * ClientConfig.ARLens.ScanDistance, raycastParams)
 
@@ -104,11 +119,15 @@ function ARLensController.PerformRaycastScan(origin: Vector3)
 		local localChar = LocalPlayer.Character
 
 		-- Pipeline Step 1: Validate
-		if not ScannerPipeline.Validate(target, localChar) then return end
+		if not ScannerPipeline.Validate(target, localChar) then
+			return
+		end
 
 		-- Pipeline Step 2: Resolve
 		local entityType, entity = ScannerPipeline.Resolve(target)
-		if entityType == "Unknown" then return end
+		if entityType == "Unknown" then
+			return
+		end
 
 		-- Pipeline Step 3: Acquire & Render
 		ARLensController.AcquireTarget(entityType, entity, result.Position)
@@ -116,11 +135,17 @@ function ARLensController.PerformRaycastScan(origin: Vector3)
 end
 
 function ARLensController.AcquireTarget(entityType: ScannerPipeline.EntityType, entity: Instance, worldPos: Vector3)
-	if activeTargets[entity] then return end
+	if activeTargets[entity] then
+		return
+	end
 
 	local count = 0
-	for _ in pairs(activeTargets) do count += 1 end
-	if count >= ClientConfig.ARLens.MaxWidgets then return end
+	for _ in pairs(activeTargets) do
+		count += 1
+	end
+	if count >= ClientConfig.ARLens.MaxWidgets then
+		return
+	end
 
 	-- Pipeline Step 3: Metadata Provider (Query Discovery Service status)
 	local isDiscovered = true -- Default discovered for demo

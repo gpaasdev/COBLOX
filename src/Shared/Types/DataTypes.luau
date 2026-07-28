@@ -21,15 +21,15 @@ export type WalletData = {
 }
 
 export type InventoryData = {
-	PityCounter: number,            -- Gacha pity counter
+	PityCounter: number, -- Gacha pity counter
 	Pets: { [string]: any },
 	Spirits: { [string]: any },
 	Items: { [string]: number },
-	LootDrops: { [string]: number },    -- New loot drops field for mobs
+	LootDrops: { [string]: number }, -- New loot drops field for mobs
 	EquippedUUIDs: { string },
 	MaxEquipSlots: number,
 	MaxInventorySlots: number,
-	MaxPetStorage: number,          -- Max pet storage cap
+	MaxPetStorage: number, -- Max pet storage cap
 }
 
 export type SanctumProfile = {
@@ -39,7 +39,18 @@ export type SanctumProfile = {
 	VaultData: { DepositedAmount: number, LastDepositTimestamp: number },
 }
 
-export type FTUEState = "WELCOME" | "HARVEST" | "CRAFT" | "COMBAT" | "HATCH" | "BIOME" | "QUEST" | "SANCTUM" | "RESEARCH" | "COVEN" | "COMPLETE"
+export type FTUEState =
+	"WELCOME"
+	| "HARVEST"
+	| "CRAFT"
+	| "COMBAT"
+	| "HATCH"
+	| "BIOME"
+	| "QUEST"
+	| "SANCTUM"
+	| "RESEARCH"
+	| "COVEN"
+	| "COMPLETE"
 
 export type FTUEData = {
 	Completed: boolean,
@@ -87,8 +98,8 @@ export type PlayerProfile = {
 		FirstJoin: number,
 		TotalPlayTimeSeconds: number,
 	},
-	Ledger: { LedgerEntry }?,               -- rolling 100 entries max
-	AdminFlagged: boolean?,                  -- security flag for suspicious accounts
+	Ledger: { LedgerEntry }?, -- rolling 100 entries max
+	AdminFlagged: boolean?, -- security flag for suspicious accounts
 	CombatStats: {
 		TotalMobsKilled: number,
 		TotalDamageDealt: number,

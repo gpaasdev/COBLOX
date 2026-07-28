@@ -20,23 +20,25 @@ local function getUIScale(guiObject: GuiObject): UIScale
 end
 
 local function getMotor(guiObject: GuiObject): any
-	if motorCache[guiObject] then return motorCache[guiObject] end
-	
+	if motorCache[guiObject] then
+		return motorCache[guiObject]
+	end
+
 	local scale = getUIScale(guiObject)
 	local motor = Flipper.SingleMotor.new(scale.Scale)
-	
+
 	motor:onStep(function(value)
 		scale.Scale = value
 	end)
-	
+
 	motorCache[guiObject] = motor
-	
+
 	-- Cleanup when object is destroyed
 	guiObject.Destroying:Connect(function()
 		motorCache[guiObject] = nil
 		motor:stop()
 	end)
-	
+
 	return motor
 end
 
@@ -52,7 +54,7 @@ function UIAnimationEngine.AnimateButtonBounce(guiObject: GuiObject)
 	-- Immediate shrink, then spring back
 	motor:setGoal(Flipper.Instant.new(0.92))
 	motor:step(0) -- Force step
-	
+
 	-- Bouncy recovery
 	motor:setGoal(Flipper.Spring.new(1.0, { frequency = 5, dampingRatio = 0.5 }))
 end

@@ -4,7 +4,7 @@ local PayloadValidator = {}
 -- Validates an array of arguments against an array of expected string types.
 -- Supports optional types with a trailing '?' (e.g., 'string?').
 -- Example: PayloadValidator.Validate({ "hello", nil }, { "string", "string?" }) -> true, "hello", nil
-function PayloadValidator.Validate(args: {any}, schema: {string}): (boolean, ...any)
+function PayloadValidator.Validate(args: { any }, schema: { string }): (boolean, ...any)
 	if #args > #schema then
 		-- Strict check: disallow sending more args than expected
 		return false
@@ -61,4 +61,3 @@ function PayloadValidator.IsWithinBounds(pos: any, maxAbsCoord: number?): boolea
 end
 
 return PayloadValidator
-

@@ -44,17 +44,19 @@ function SynthesisController.ToggleModal()
 			modalFrame.Size = UDim2.new(0, 0, 0, 0)
 			modalFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 			modalFrame.Visible = true
-			
-			local openTween = TweenService:Create(modalFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-				Size = UDim2.new(0.65, 0, 0.75, 0),
-				Position = UDim2.new(0.175, 0, 0.125, 0)
-			})
+
+			local openTween =
+				TweenService:Create(modalFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+					Size = UDim2.new(0.65, 0, 0.75, 0),
+					Position = UDim2.new(0.175, 0, 0.125, 0),
+				})
 			openTween:Play()
 		else
-			local closeTween = TweenService:Create(modalFrame, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
-				Size = UDim2.new(0, 0, 0, 0),
-				Position = UDim2.new(0.5, 0, 0.5, 0)
-			})
+			local closeTween =
+				TweenService:Create(modalFrame, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+					Size = UDim2.new(0, 0, 0, 0),
+					Position = UDim2.new(0.5, 0, 0.5, 0),
+				})
 			closeTween:Play()
 			closeTween.Completed:Wait()
 			modalFrame.Visible = false
@@ -198,7 +200,7 @@ function SynthesisController._CreateModal()
 	resultPreviewLabel.TextSize = 13
 	resultPreviewLabel.TextWrapped = true
 	resultPreviewLabel.Parent = resultContainer
-	
+
 	local previewPadding = Instance.new("UIPadding")
 	previewPadding.PaddingLeft = UDim.new(0, 15)
 	previewPadding.PaddingRight = UDim.new(0, 15)
@@ -219,11 +221,11 @@ function SynthesisController._CreateModal()
 	local btnCorner = Instance.new("UICorner")
 	btnCorner.CornerRadius = UDim.new(0, 10)
 	btnCorner.Parent = transmuteBtn
-	
+
 	local btnGradient = Instance.new("UIGradient")
 	btnGradient.Color = ColorSequence.new({
 		ColorSequenceKeypoint.new(0, COLOR_GOLD),
-		ColorSequenceKeypoint.new(1, Color3.fromRGB(251, 191, 36)) -- Lighter gold
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(251, 191, 36)), -- Lighter gold
 	})
 	btnGradient.Rotation = 45
 	btnGradient.Parent = transmuteBtn
@@ -239,17 +241,24 @@ function SynthesisController._CreateModal()
 	local CRAFT_COOLDOWN = 1.5
 
 	transmuteBtn.MouseButton1Click:Connect(function()
-		if isCrafting then return end
-		
+		if isCrafting then
+			return
+		end
+
 		local currentTime = os.clock()
 		if currentTime - lastCraftTime < CRAFT_COOLDOWN then
 			local controllersFolder = script.Parent
 			local UIController = require(controllersFolder:WaitForChild("UIController") :: any)
-			UIController.ShowNotification(string.format("⚠️ Harap tunggu %.1fs sebelum meracik lagi!", CRAFT_COOLDOWN - (currentTime - lastCraftTime)))
+			UIController.ShowNotification(
+				string.format(
+					"⚠️ Harap tunggu %.1fs sebelum meracik lagi!",
+					CRAFT_COOLDOWN - (currentTime - lastCraftTime)
+				)
+			)
 			return
 		end
 		lastCraftTime = currentTime
-		
+
 		-- Check if grid has at least 1 material
 		local hasMaterial = false
 		for i = 1, 9 do
@@ -290,10 +299,13 @@ function SynthesisController._CreateModal()
 			end)
 
 			-- Format technical name
-			local cleanName = tostring(resultItem):gsub("_", " "):gsub("(%l)(%w*)", function(a,b) return a:upper()..b end)
+			local cleanName = tostring(resultItem):gsub("_", " "):gsub("(%l)(%w*)", function(a, b)
+				return a:upper() .. b
+			end)
 
 			if resultPreviewLabel then
-				resultPreviewLabel.Text = string.format("🎉 Berhasil Meracik:\n%s\n(Bonus Elemen: %.1fx)", cleanName, multiplier)
+				resultPreviewLabel.Text =
+					string.format("🎉 Berhasil Meracik:\n%s\n(Bonus Elemen: %.1fx)", cleanName, multiplier)
 			end
 
 			-- Notify UIController to put item into Hotbar & show top toast notification

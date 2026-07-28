@@ -40,7 +40,9 @@ function LightingController.Start(Registry: any)
 end
 
 function LightingController.EvaluatePerformance()
-	if #frameTimes == 0 then return end
+	if #frameTimes == 0 then
+		return
+	end
 	local totalDt = 0
 	for _, dt in ipairs(frameTimes) do
 		totalDt += dt

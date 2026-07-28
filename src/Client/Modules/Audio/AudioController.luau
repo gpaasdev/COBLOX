@@ -35,7 +35,9 @@ end
 
 function AudioController.PlayBGM(themeKey: string)
 	local soundId = AssetManifest.Audio.BGM[themeKey]
-	if not soundId or soundId == "rbxassetid://0" then return end
+	if not soundId or soundId == "rbxassetid://0" then
+		return
+	end
 
 	if bgmSound then
 		bgmSound:Stop()
@@ -56,7 +58,9 @@ end
 
 function AudioController.PlaySFX(sfxKey: string)
 	local soundId = AssetManifest.Audio.SFX[sfxKey]
-	if not soundId or soundId == "rbxassetid://0" then return end
+	if not soundId or soundId == "rbxassetid://0" then
+		return
+	end
 
 	local sound = Instance.new("Sound")
 	sound.Name = "SFX_" .. sfxKey

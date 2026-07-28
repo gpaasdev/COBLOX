@@ -1,35 +1,46 @@
 [
   {
-    "Id": "RCP_SHADOW_RAID_TOKEN",
-    "Name": "Shadow Raid Token",
-    "Description": "Token required to initiate a Shadow Raid expedition.",
+    "Id": "RCP_GUILD_STRONGBOX",
+    "Name": "Guild Strongbox",
+    "Description": "A secure container for Coven shared resources.",
     "Ingredients": [
-      "Void_Crystal_Compound",
-      "Iron_Matrix"
+      "Adamantite_Alloy",
+      "Iron_Refined",
+      "Obsidian_Crystal"
     ],
-    "OutputType": "RaidToken"
+    "OutputType": "Decoration"
   },
   {
-    "Id": "RCP_SPIRIT_CATALYST_VOID",
-    "Name": "Void Spirit Catalyst",
-    "Description": "Forge a Void Catalyst from Obsidian Singularity and Aether Matrix.",
+    "Id": "RCP_AETHER_SINGULARITY",
+    "Name": "Aether Singularity Collapse",
+    "Description": "Collapse an Aether Matrix into a dense Aether Singularity node.",
     "Ingredients": [
-      "Obsidian_Singularity",
       "Aether_Matrix",
-      "Adamantite_Essence"
+      "Obsidian_Crystal"
     ],
-    "OutputType": "Catalyst"
+    "OutputType": "Material"
   },
   {
-    "Id": "RCP_VOID_CRYSTAL_COMPOUND",
-    "Name": "Void Crystal Compound",
-    "Description": "Combine Void-tier materials into a compound for Shadow Raid entry.",
+    "Id": "RCP_SYNTHESIZER_CORE",
+    "Name": "Synthesizer Core",
+    "Description": "Build a Synthesizer Core from Mythril Matrix and Aether Essence.",
     "Ingredients": [
-      "Obsidian_Matrix",
-      "Adamantite_Matrix",
-      "Aether_Vapor"
+      "Mythril_Matrix",
+      "Aether_Essence",
+      "Copper_Refined"
     ],
-    "OutputType": "Research"
+    "OutputType": "Machine"
+  },
+  {
+    "Id": "RCP_REACTOR_CORE",
+    "Name": "Reactor Core Assembly",
+    "Description": "Assemble a Reactor Core from refined metals and an Aether Matrix.",
+    "Ingredients": [
+      "Iron_Refined",
+      "Copper_Alloy",
+      "Aether_Matrix"
+    ],
+    "OutputType": "Machine"
   },
   {
     "Id": "RCP_MYTHRIL_SHARD",
@@ -42,25 +53,191 @@
     "OutputType": "Material"
   },
   {
-    "Id": "RCP_GUILD_STRONGBOX",
-    "Name": "Guild Strongbox",
-    "Description": "A secure container for Coven shared resources.",
+    "Id": "RCP_QUANTUM_ESSENCE",
+    "Name": "Quantum Essence Synthesis",
+    "Description": "Synthesise Quantum Essence by collapsing multiple Singularities together.",
     "Ingredients": [
-      "Adamantite_Alloy",
-      "Iron_Refined",
-      "Obsidian_Crystal"
+      "Aether_Singularity",
+      "Adamantite_Singularity",
+      "Mythril_Singularity"
     ],
-    "OutputType": "Decoration"
+    "OutputType": "Research"
   },
   {
-    "Id": "RCP_OBSIDIAN_CRYSTAL",
-    "Name": "Obsidian Crystal Growth",
-    "Description": "Grow Obsidian Crystals from volcanic ore and AetherCrystal substrate.",
+    "Id": "RCP_COPPER_SHARD",
+    "Name": "Copper Shard Extraction",
+    "Description": "Refine raw Copper Ore into Copper Shards via controlled heating.",
     "Ingredients": [
-      "Obsidian_Ore",
+      "Copper_Ore",
+      "Heat"
+    ],
+    "OutputType": "Material"
+  },
+  {
+    "Id": "RCP_FUSION_CORE_EPIC",
+    "Name": "Epic Fusion Core",
+    "Description": "Core for fusing two Rare Spirits into an Epic Spirit.",
+    "Ingredients": [
+      "Adamantite_Crystal",
+      "Aether_Matrix",
+      "Mythril_Matrix"
+    ],
+    "OutputType": "FusionCore"
+  },
+  {
+    "Id": "RCP_CRYO_REAGENT",
+    "Name": "Cryo Reagent",
+    "Description": "Produce a Cryo Reagent for CryoCooler and low-temperature reactions.",
+    "Ingredients": [
+      "Iron_Vapor",
+      "Copper_Vapor",
+      "Gold_Vapor"
+    ],
+    "OutputType": "Material"
+  },
+  {
+    "Id": "RCP_SANCTUM_TOKEN",
+    "Name": "Sanctum Token",
+    "Description": "Forge a Sanctum Token redeemable in the Battlepass reward track.",
+    "Ingredients": [
+      "Gold_Refined",
+      "Mythril_Alloy"
+    ],
+    "OutputType": "Currency"
+  },
+  {
+    "Id": "RCP_AETHER_CRYSTAL",
+    "Name": "Aether Crystal Condensation",
+    "Description": "Condense raw Aether energy into a stable crystal matrix.",
+    "Ingredients": [
+      "Aether_Ore",
+      "Gold_Essence"
+    ],
+    "OutputType": "Material"
+  },
+  {
+    "Id": "RCP_SMELTER_UPGRADE",
+    "Name": "Smelter Efficiency Upgrade",
+    "Description": "Upgrade a Smelter using Adamantite Alloy and Gold Crystal components.",
+    "Ingredients": [
+      "Adamantite_Alloy",
+      "Gold_Crystal"
+    ],
+    "OutputType": "Machine"
+  },
+  {
+    "Id": "RCP_REBIRTH_CATALYST",
+    "Name": "Rebirth Catalyst",
+    "Description": "A powerful catalyst that enables Rebirth without spending tokens.",
+    "Ingredients": [
+      "Aether_Singularity",
+      "Adamantite_Singularity",
+      "Gold_Singularity"
+    ],
+    "OutputType": "Consumable"
+  },
+  {
+    "Id": "RCP_TURBINE_BLADE",
+    "Name": "Turbine Blade Forging",
+    "Description": "Forge high-efficiency Turbine Blades from Obsidian and Adamantite.",
+    "Ingredients": [
+      "Obsidian_Refined",
+      "Adamantite_Crystal"
+    ],
+    "OutputType": "Machine"
+  },
+  {
+    "Id": "RCP_FERRIUM_ALLOY",
+    "Name": "Ferrium Alloy Synthesis",
+    "Description": "Fuse Iron and AetherCrystal to produce industrial-grade Ferrium Alloy.",
+    "Ingredients": [
+      "Iron",
       "AetherCrystal"
     ],
     "OutputType": "Material"
+  },
+  {
+    "Id": "RCP_CELESTIAL_KEYSTONE",
+    "Name": "Celestial Keystone",
+    "Description": "Craft a Keystone to unlock Celestial Sector 5 biomes.",
+    "Ingredients": [
+      "Aether_Singularity",
+      "Gold_Singularity",
+      "Mythril_Singularity"
+    ],
+    "OutputType": "BiomePass"
+  },
+  {
+    "Id": "RCP_SPIRIT_CATALYST_FIRE",
+    "Name": "Fire Spirit Catalyst",
+    "Description": "Forge a Fire Catalyst from volcanic materials for Fire Spirit hatching.",
+    "Ingredients": [
+      "Obsidian_Ore",
+      "Gold_Shard",
+      "Aether_Vapor"
+    ],
+    "OutputType": "Catalyst"
+  },
+  {
+    "Id": "RCP_ADAMANTITE_ALLOY",
+    "Name": "Adamantite Alloy Forge",
+    "Description": "Forge the hardest known alloy from Adamantite shards and Mythril dust.",
+    "Ingredients": [
+      "Adamantite_Shard",
+      "Mythril_Dust"
+    ],
+    "OutputType": "Material"
+  },
+  {
+    "Id": "RCP_MYTHRIL_REFINED",
+    "Name": "Mythril Refinement",
+    "Description": "Refine Mythril Ore with Aether Dust to produce purified Mythril.",
+    "Ingredients": [
+      "Mythril_Ore",
+      "Aether_Dust"
+    ],
+    "OutputType": "Material"
+  },
+  {
+    "Id": "RCP_AETHER_ESSENCE",
+    "Name": "Aether Essence Distillation",
+    "Description": "Distil Aether Crystal into pure Aether Essence for advanced reactions.",
+    "Ingredients": [
+      "Aether_Crystal",
+      "Copper_Vapor"
+    ],
+    "OutputType": "Material"
+  },
+  {
+    "Id": "RCP_AETHER_MATRIX",
+    "Name": "Aether Matrix Weaving",
+    "Description": "Weave Aether Essence and Iron Matrix into a stable dimensional fabric.",
+    "Ingredients": [
+      "Aether_Essence",
+      "Iron_Matrix"
+    ],
+    "OutputType": "Material"
+  },
+  {
+    "Id": "RCP_PURIFICATION_CRYSTAL",
+    "Name": "Purification Crystal",
+    "Description": "Craft a Purification Crystal for depositing Coins into the Aura Vault.",
+    "Ingredients": [
+      "Gold_Crystal",
+      "Mythril_Crystal",
+      "Aether_Crystal"
+    ],
+    "OutputType": "Currency"
+  },
+  {
+    "Id": "RCP_ABYSSAL_PASS",
+    "Name": "Abyssal Biome Pass",
+    "Description": "Forge a pass for entry into Abyssal-tier biomes.",
+    "Ingredients": [
+      "Obsidian_Singularity",
+      "Adamantite_Alloy"
+    ],
+    "OutputType": "BiomePass"
   },
   {
     "Id": "RCP_GUILD_BANNER",
@@ -85,87 +262,14 @@
     "OutputType": "FusionCore"
   },
   {
-    "Id": "RCP_ABYSSAL_PASS",
-    "Name": "Abyssal Biome Pass",
-    "Description": "Forge a pass for entry into Abyssal-tier biomes.",
+    "Id": "RCP_COPPER_ALLOY",
+    "Name": "Copper Alloy Casting",
+    "Description": "Cast Copper Shards and Iron Refined into Copper Alloy ingots.",
     "Ingredients": [
-      "Obsidian_Singularity",
-      "Adamantite_Alloy"
-    ],
-    "OutputType": "BiomePass"
-  },
-  {
-    "Id": "RCP_TURBINE_BLADE",
-    "Name": "Turbine Blade Forging",
-    "Description": "Forge high-efficiency Turbine Blades from Obsidian and Adamantite.",
-    "Ingredients": [
-      "Obsidian_Refined",
-      "Adamantite_Crystal"
-    ],
-    "OutputType": "Machine"
-  },
-  {
-    "Id": "RCP_SPIRIT_CATALYST_WATER",
-    "Name": "Water Spirit Catalyst",
-    "Description": "Synthesise a Water Catalyst from Aether and cooling minerals.",
-    "Ingredients": [
-      "Aether_Crystal",
-      "Copper_Refined",
-      "Iron_Vapor"
-    ],
-    "OutputType": "Catalyst"
-  },
-  {
-    "Id": "RCP_PURIFICATION_CRYSTAL",
-    "Name": "Purification Crystal",
-    "Description": "Craft a Purification Crystal for depositing Coins into the Aura Vault.",
-    "Ingredients": [
-      "Gold_Crystal",
-      "Mythril_Crystal",
-      "Aether_Crystal"
-    ],
-    "OutputType": "Currency"
-  },
-  {
-    "Id": "RCP_SMELTER_UPGRADE",
-    "Name": "Smelter Efficiency Upgrade",
-    "Description": "Upgrade a Smelter using Adamantite Alloy and Gold Crystal components.",
-    "Ingredients": [
-      "Adamantite_Alloy",
-      "Gold_Crystal"
-    ],
-    "OutputType": "Machine"
-  },
-  {
-    "Id": "RCP_GOLD_ALLOY",
-    "Name": "Gold Alloy Fusion",
-    "Description": "Combine Gold Ore with Aether Dust for a luminous alloy.",
-    "Ingredients": [
-      "Gold_Ore",
-      "Aether_Dust"
+      "Copper_Shard",
+      "Iron_Refined"
     ],
     "OutputType": "Material"
-  },
-  {
-    "Id": "RCP_MYTHRIL_REFINED",
-    "Name": "Mythril Refinement",
-    "Description": "Refine Mythril Ore with Aether Dust to produce purified Mythril.",
-    "Ingredients": [
-      "Mythril_Ore",
-      "Aether_Dust"
-    ],
-    "OutputType": "Material"
-  },
-  {
-    "Id": "RCP_SPIRIT_CATALYST_FIRE",
-    "Name": "Fire Spirit Catalyst",
-    "Description": "Forge a Fire Catalyst from volcanic materials for Fire Spirit hatching.",
-    "Ingredients": [
-      "Obsidian_Ore",
-      "Gold_Shard",
-      "Aether_Vapor"
-    ],
-    "OutputType": "Catalyst"
   },
   {
     "Id": "RCP_AURA_POTION_MAJOR",
@@ -175,87 +279,6 @@
       "Gold_Essence",
       "Mythril_Essence",
       "Aether_Essence"
-    ],
-    "OutputType": "Consumable"
-  },
-  {
-    "Id": "RCP_SYNTHESIZER_CORE",
-    "Name": "Synthesizer Core",
-    "Description": "Build a Synthesizer Core from Mythril Matrix and Aether Essence.",
-    "Ingredients": [
-      "Mythril_Matrix",
-      "Aether_Essence",
-      "Copper_Refined"
-    ],
-    "OutputType": "Machine"
-  },
-  {
-    "Id": "RCP_ADAMANTITE_ALLOY",
-    "Name": "Adamantite Alloy Forge",
-    "Description": "Forge the hardest known alloy from Adamantite shards and Mythril dust.",
-    "Ingredients": [
-      "Adamantite_Shard",
-      "Mythril_Dust"
-    ],
-    "OutputType": "Material"
-  },
-  {
-    "Id": "RCP_AETHER_CRYSTAL",
-    "Name": "Aether Crystal Condensation",
-    "Description": "Condense raw Aether energy into a stable crystal matrix.",
-    "Ingredients": [
-      "Aether_Ore",
-      "Gold_Essence"
-    ],
-    "OutputType": "Material"
-  },
-  {
-    "Id": "RCP_AETHER_ESSENCE",
-    "Name": "Aether Essence Distillation",
-    "Description": "Distil Aether Crystal into pure Aether Essence for advanced reactions.",
-    "Ingredients": [
-      "Aether_Crystal",
-      "Copper_Vapor"
-    ],
-    "OutputType": "Material"
-  },
-  {
-    "Id": "RCP_SANCTUM_TOKEN",
-    "Name": "Sanctum Token",
-    "Description": "Forge a Sanctum Token redeemable in the Battlepass reward track.",
-    "Ingredients": [
-      "Gold_Refined",
-      "Mythril_Alloy"
-    ],
-    "OutputType": "Currency"
-  },
-  {
-    "Id": "RCP_AETHER_MATRIX",
-    "Name": "Aether Matrix Weaving",
-    "Description": "Weave Aether Essence and Iron Matrix into a stable dimensional fabric.",
-    "Ingredients": [
-      "Aether_Essence",
-      "Iron_Matrix"
-    ],
-    "OutputType": "Material"
-  },
-  {
-    "Id": "RCP_FERRIUM_ALLOY",
-    "Name": "Ferrium Alloy Synthesis",
-    "Description": "Fuse Iron and AetherCrystal to produce industrial-grade Ferrium Alloy.",
-    "Ingredients": [
-      "Iron",
-      "AetherCrystal"
-    ],
-    "OutputType": "Material"
-  },
-  {
-    "Id": "RCP_AURA_POTION_MINOR",
-    "Name": "Minor Aura Potion",
-    "Description": "A small Aura Energy potion crafted from common materials.",
-    "Ingredients": [
-      "Iron_Essence",
-      "Copper_Essence"
     ],
     "OutputType": "Consumable"
   },
@@ -271,68 +294,36 @@
     "OutputType": "Catalyst"
   },
   {
-    "Id": "RCP_COPPER_ALLOY",
-    "Name": "Copper Alloy Casting",
-    "Description": "Cast Copper Shards and Iron Refined into Copper Alloy ingots.",
+    "Id": "RCP_SPIRIT_CATALYST_VOID",
+    "Name": "Void Spirit Catalyst",
+    "Description": "Forge a Void Catalyst from Obsidian Singularity and Aether Matrix.",
     "Ingredients": [
-      "Copper_Shard",
-      "Iron_Refined"
-    ],
-    "OutputType": "Material"
-  },
-  {
-    "Id": "RCP_CELESTIAL_KEYSTONE",
-    "Name": "Celestial Keystone",
-    "Description": "Craft a Keystone to unlock Celestial Sector 5 biomes.",
-    "Ingredients": [
-      "Aether_Singularity",
-      "Gold_Singularity",
-      "Mythril_Singularity"
-    ],
-    "OutputType": "BiomePass"
-  },
-  {
-    "Id": "RCP_REACTOR_CORE",
-    "Name": "Reactor Core Assembly",
-    "Description": "Assemble a Reactor Core from refined metals and an Aether Matrix.",
-    "Ingredients": [
-      "Iron_Refined",
-      "Copper_Alloy",
-      "Aether_Matrix"
-    ],
-    "OutputType": "Machine"
-  },
-  {
-    "Id": "RCP_AETHER_SINGULARITY",
-    "Name": "Aether Singularity Collapse",
-    "Description": "Collapse an Aether Matrix into a dense Aether Singularity node.",
-    "Ingredients": [
+      "Obsidian_Singularity",
       "Aether_Matrix",
-      "Obsidian_Crystal"
+      "Adamantite_Essence"
     ],
-    "OutputType": "Material"
+    "OutputType": "Catalyst"
   },
   {
-    "Id": "RCP_CRYO_REAGENT",
-    "Name": "Cryo Reagent",
-    "Description": "Produce a Cryo Reagent for CryoCooler and low-temperature reactions.",
+    "Id": "RCP_SHADOW_RAID_TOKEN",
+    "Name": "Shadow Raid Token",
+    "Description": "Token required to initiate a Shadow Raid expedition.",
     "Ingredients": [
-      "Iron_Vapor",
-      "Copper_Vapor",
-      "Gold_Vapor"
+      "Void_Crystal_Compound",
+      "Iron_Matrix"
     ],
-    "OutputType": "Material"
+    "OutputType": "RaidToken"
   },
   {
-    "Id": "RCP_REBIRTH_CATALYST",
-    "Name": "Rebirth Catalyst",
-    "Description": "A powerful catalyst that enables Rebirth without spending tokens.",
+    "Id": "RCP_VOID_CRYSTAL_COMPOUND",
+    "Name": "Void Crystal Compound",
+    "Description": "Combine Void-tier materials into a compound for Shadow Raid entry.",
     "Ingredients": [
-      "Aether_Singularity",
-      "Adamantite_Singularity",
-      "Gold_Singularity"
+      "Obsidian_Matrix",
+      "Adamantite_Matrix",
+      "Aether_Vapor"
     ],
-    "OutputType": "Consumable"
+    "OutputType": "Research"
   },
   {
     "Id": "RCP_IRON_REFINED",
@@ -341,38 +332,6 @@
     "Ingredients": [
       "Iron_Ore",
       "Coal"
-    ],
-    "OutputType": "Material"
-  },
-  {
-    "Id": "RCP_FUSION_CORE_RARE",
-    "Name": "Rare Fusion Core",
-    "Description": "Core for fusing two Uncommon Spirits into a Rare Spirit.",
-    "Ingredients": [
-      "Mythril_Crystal",
-      "Aether_Crystal",
-      "Obsidian_Shard"
-    ],
-    "OutputType": "FusionCore"
-  },
-  {
-    "Id": "RCP_FUSION_CORE_LEGENDARY",
-    "Name": "Legendary Fusion Core",
-    "Description": "The rarest core \u2014 fuse two Epic Spirits into a Legendary.",
-    "Ingredients": [
-      "Aether_Singularity",
-      "Adamantite_Singularity",
-      "Mythril_Singularity"
-    ],
-    "OutputType": "FusionCore"
-  },
-  {
-    "Id": "RCP_COPPER_SHARD",
-    "Name": "Copper Shard Extraction",
-    "Description": "Refine raw Copper Ore into Copper Shards via controlled heating.",
-    "Ingredients": [
-      "Copper_Ore",
-      "Heat"
     ],
     "OutputType": "Material"
   },
@@ -388,28 +347,6 @@
     "OutputType": "Material"
   },
   {
-    "Id": "RCP_FUSION_CORE_EPIC",
-    "Name": "Epic Fusion Core",
-    "Description": "Core for fusing two Rare Spirits into an Epic Spirit.",
-    "Ingredients": [
-      "Adamantite_Crystal",
-      "Aether_Matrix",
-      "Mythril_Matrix"
-    ],
-    "OutputType": "FusionCore"
-  },
-  {
-    "Id": "RCP_QUANTUM_ESSENCE",
-    "Name": "Quantum Essence Synthesis",
-    "Description": "Synthesise Quantum Essence by collapsing multiple Singularities together.",
-    "Ingredients": [
-      "Aether_Singularity",
-      "Adamantite_Singularity",
-      "Mythril_Singularity"
-    ],
-    "OutputType": "Research"
-  },
-  {
     "Id": "RCP_SPIRIT_CATALYST_EARTH",
     "Name": "Earth Spirit Catalyst",
     "Description": "Bind Earth element energies into a catalyst for Earth Spirit hatching.",
@@ -419,5 +356,68 @@
       "Obsidian_Dust"
     ],
     "OutputType": "Catalyst"
+  },
+  {
+    "Id": "RCP_FUSION_CORE_RARE",
+    "Name": "Rare Fusion Core",
+    "Description": "Core for fusing two Uncommon Spirits into a Rare Spirit.",
+    "Ingredients": [
+      "Mythril_Crystal",
+      "Aether_Crystal",
+      "Obsidian_Shard"
+    ],
+    "OutputType": "FusionCore"
+  },
+  {
+    "Id": "RCP_AURA_POTION_MINOR",
+    "Name": "Minor Aura Potion",
+    "Description": "A small Aura Energy potion crafted from common materials.",
+    "Ingredients": [
+      "Iron_Essence",
+      "Copper_Essence"
+    ],
+    "OutputType": "Consumable"
+  },
+  {
+    "Id": "RCP_OBSIDIAN_CRYSTAL",
+    "Name": "Obsidian Crystal Growth",
+    "Description": "Grow Obsidian Crystals from volcanic ore and AetherCrystal substrate.",
+    "Ingredients": [
+      "Obsidian_Ore",
+      "AetherCrystal"
+    ],
+    "OutputType": "Material"
+  },
+  {
+    "Id": "RCP_SPIRIT_CATALYST_WATER",
+    "Name": "Water Spirit Catalyst",
+    "Description": "Synthesise a Water Catalyst from Aether and cooling minerals.",
+    "Ingredients": [
+      "Aether_Crystal",
+      "Copper_Refined",
+      "Iron_Vapor"
+    ],
+    "OutputType": "Catalyst"
+  },
+  {
+    "Id": "RCP_GOLD_ALLOY",
+    "Name": "Gold Alloy Fusion",
+    "Description": "Combine Gold Ore with Aether Dust for a luminous alloy.",
+    "Ingredients": [
+      "Gold_Ore",
+      "Aether_Dust"
+    ],
+    "OutputType": "Material"
+  },
+  {
+    "Id": "RCP_FUSION_CORE_LEGENDARY",
+    "Name": "Legendary Fusion Core",
+    "Description": "The rarest core \u2014 fuse two Epic Spirits into a Legendary.",
+    "Ingredients": [
+      "Aether_Singularity",
+      "Adamantite_Singularity",
+      "Mythril_Singularity"
+    ],
+    "OutputType": "FusionCore"
   }
 ]

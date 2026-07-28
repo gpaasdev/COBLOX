@@ -48,7 +48,9 @@ local function processPayload(player: Player, payload: LaunchDataPayload)
 		-- Handle bonus currency rewards
 		if payload.bonus_crystals and payload.bonus_crystals > 0 then
 			EconomyService.AddCurrency(player, "AuraEnergy", payload.bonus_crystals)
-			print(`[LaunchDataService] Granted {payload.bonus_crystals} AuraEnergy to {player.Name} from campaign '{campaignName}'`)
+			print(
+				`[LaunchDataService] Granted {payload.bonus_crystals} AuraEnergy to {player.Name} from campaign '{campaignName}'`
+			)
 		end
 
 		-- Handle specific rewards

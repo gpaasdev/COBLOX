@@ -124,16 +124,16 @@ function ProceduralAlchemicalCore.new(parent: Instance, position: Vector3, optio
 	particleEmitter.Texture = "rbxassetid://6071575925" -- Glowing Star/Sparkle
 	particleEmitter.Color = ColorSequence.new({
 		ColorSequenceKeypoint.new(0, coreColor),
-		ColorSequenceKeypoint.new(1, ringColor)
+		ColorSequenceKeypoint.new(1, ringColor),
 	})
 	particleEmitter.Size = NumberSequence.new({
 		NumberSequenceKeypoint.new(0, 0.4 * scale),
 		NumberSequenceKeypoint.new(0.5, 0.8 * scale),
-		NumberSequenceKeypoint.new(1, 0)
+		NumberSequenceKeypoint.new(1, 0),
 	})
 	particleEmitter.Transparency = NumberSequence.new({
 		NumberSequenceKeypoint.new(0, 0.2),
-		NumberSequenceKeypoint.new(1, 1)
+		NumberSequenceKeypoint.new(1, 1),
 	})
 	particleEmitter.Lifetime = NumberRange.new(1.5, 3.0)
 	particleEmitter.Rate = 12
@@ -145,7 +145,9 @@ function ProceduralAlchemicalCore.new(parent: Instance, position: Vector3, optio
 	if opts.PBRColorMap and opts.PBRColorMap ~= "" then
 		local sa = Instance.new("SurfaceAppearance")
 		sa.ColorMap = opts.PBRColorMap
-		if opts.PBRNormalMap then sa.NormalMap = opts.PBRNormalMap end
+		if opts.PBRNormalMap then
+			sa.NormalMap = opts.PBRNormalMap
+		end
 		sa.Parent = corePart
 	end
 
@@ -251,13 +253,13 @@ function ProceduralAlchemicalCore.new(parent: Instance, position: Vector3, optio
 		corePart.Size = Vector3.new(4 * scale * currentScale, 4 * scale * currentScale, 4 * scale * currentScale)
 
 		innerPower.CFrame = CFrame.new(currentPos)
-		innerPower.Size = Vector3.new(2.2 * scale * currentScale, 2.2 * scale * currentScale, 2.2 * scale * currentScale)
+		innerPower.Size =
+			Vector3.new(2.2 * scale * currentScale, 2.2 * scale * currentScale, 2.2 * scale * currentScale)
 
 		-- Rotate Orbiting Rings
 		for _, ringData in ipairs(rings) do
 			ringData.Angle = ringData.Angle + ringData.Speed * dt
-			local ringCF = CFrame.new(currentPos)
-				* CFrame.Angles(ringData.Angle.X, ringData.Angle.Y, ringData.Angle.Z)
+			local ringCF = CFrame.new(currentPos) * CFrame.Angles(ringData.Angle.X, ringData.Angle.Y, ringData.Angle.Z)
 
 			ringData.Part.CFrame = ringCF
 			ringData.Trim.CFrame = ringCF

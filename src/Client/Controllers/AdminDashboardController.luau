@@ -15,12 +15,14 @@ end
 
 function AdminDashboardController.FetchAndDisplayDashboard()
 	local reqRemote = NetChannels.GetRemoteFunction("GetAdminDashboardData")
-	if not reqRemote then return end
-	
+	if not reqRemote then
+		return
+	end
+
 	local ok, data = pcall(function()
 		return reqRemote:InvokeServer()
 	end)
-	
+
 	if ok and data and not data.error then
 		-- Render simple text-based UI or output to console for now
 		print("=== COBLOX ADMIN DASHBOARD ===")

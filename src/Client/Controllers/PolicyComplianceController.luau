@@ -12,16 +12,20 @@ local cachedPolicy: {
 	IsSubjectToChinaPolicies: boolean,
 	IsPaidItemTradingAllowed: boolean,
 	AllowedExternalLinkReferences: { string },
-}? = nil
+}? =
+	nil
 
 function PolicyComplianceController.Init()
 	task.spawn(function()
 		local player = Players.LocalPlayer
-		if not player then return end
+		if not player then
+			return
+		end
 
 		local success, result = pcall(function()
 			local remotesFolder = ReplicatedStorage:WaitForChild("Remotes", 5)
-			local policyRemote = remotesFolder and remotesFolder:WaitForChild("GetPlayerPolicyInfo", 5) :: RemoteFunction
+			local policyRemote = remotesFolder
+				and remotesFolder:WaitForChild("GetPlayerPolicyInfo", 5) :: RemoteFunction
 			if policyRemote then
 				return policyRemote:InvokeServer()
 			end
@@ -35,7 +39,12 @@ function PolicyComplianceController.Init()
 				IsPaidItemTradingAllowed = result.IsPaidItemTradingAllowed or false,
 				AllowedExternalLinkReferences = result.AllowedExternalLinkReferences or {},
 			}
-			print(string.format("[PolicyComplianceController] Policy loaded (Paid Random Items Restricted: %s)", tostring(cachedPolicy.ArePaidRandomItemsRestricted)))
+			print(
+				string.format(
+					"[PolicyComplianceController] Policy loaded (Paid Random Items Restricted: %s)",
+					tostring(cachedPolicy.ArePaidRandomItemsRestricted)
+				)
+			)
 		else
 			warn("[PolicyComplianceController] Failed to fetch policy locally, applying safe fallback.")
 			cachedPolicy = {
@@ -49,12 +58,13 @@ function PolicyComplianceController.Init()
 end
 
 function PolicyComplianceController.GetPolicy()
-	return cachedPolicy or {
-		ArePaidRandomItemsRestricted = true,
-		IsSubjectToChinaPolicies = false,
-		IsPaidItemTradingAllowed = false,
-		AllowedExternalLinkReferences = {},
-	}
+	return cachedPolicy
+		or {
+			ArePaidRandomItemsRestricted = true,
+			IsSubjectToChinaPolicies = false,
+			IsPaidItemTradingAllowed = false,
+			AllowedExternalLinkReferences = {},
+		}
 end
 
 function PolicyComplianceController.ArePaidRandomItemsRestricted(): boolean

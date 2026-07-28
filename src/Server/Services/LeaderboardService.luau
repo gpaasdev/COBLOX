@@ -19,7 +19,9 @@ end
 function LeaderboardService.Start()
 	Players.PlayerRemoving:Connect(function(player: Player)
 		local profile = PlayerDataService.GetProfile(player)
-		if not profile then return end
+		if not profile then
+			return
+		end
 
 		local gems = profile.Data.Wallet.Gems or 0
 		local coins = profile.Data.Wallet.Coins or 0
@@ -38,7 +40,9 @@ function LeaderboardService.GetTopGems(count: number): { { userId: string, score
 	local ok, pages = pcall(function()
 		return ODS_Gems:GetSortedAsync(false, math.min(count, 100))
 	end)
-	if not ok or not pages then return {} end
+	if not ok or not pages then
+		return {}
+	end
 
 	local results = {}
 	for _, entry in ipairs(pages:GetCurrentPage()) do

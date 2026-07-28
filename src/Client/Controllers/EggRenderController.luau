@@ -49,17 +49,19 @@ function EggRenderController.ToggleModal()
 			modalFrame.Size = UDim2.new(0, 0, 0, 0)
 			modalFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 			modalFrame.Visible = true
-			
-			local openTween = TweenService:Create(modalFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-				Size = UDim2.new(0.6, 0, 0.7, 0),
-				Position = UDim2.new(0.2, 0, 0.15, 0)
-			})
+
+			local openTween =
+				TweenService:Create(modalFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+					Size = UDim2.new(0.6, 0, 0.7, 0),
+					Position = UDim2.new(0.2, 0, 0.15, 0),
+				})
 			openTween:Play()
 		else
-			local closeTween = TweenService:Create(modalFrame, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
-				Size = UDim2.new(0, 0, 0, 0),
-				Position = UDim2.new(0.5, 0, 0.5, 0)
-			})
+			local closeTween =
+				TweenService:Create(modalFrame, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+					Size = UDim2.new(0, 0, 0, 0),
+					Position = UDim2.new(0.5, 0, 0.5, 0),
+				})
 			closeTween:Play()
 			closeTween.Completed:Wait()
 			modalFrame.Visible = false
@@ -101,7 +103,7 @@ function EggRenderController._CreateModal()
 	header.TextSize = 24
 	header.TextXAlignment = Enum.TextXAlignment.Left
 	header.Parent = modalFrame
-	
+
 	local headerPadding = Instance.new("UIPadding")
 	headerPadding.PaddingLeft = UDim.new(0, 10)
 	headerPadding.Parent = header
@@ -164,11 +166,11 @@ function EggRenderController._CreateModal()
 	hatchBtn.Font = Enum.Font.FredokaOne
 	hatchBtn.TextSize = 18
 	hatchBtn.Parent = modalFrame
-	
+
 	local hatchGradient = Instance.new("UIGradient")
 	hatchGradient.Color = ColorSequence.new({
 		ColorSequenceKeypoint.new(0, Color3.fromRGB(6, 182, 212)), -- Spark Cyan
-		ColorSequenceKeypoint.new(1, Color3.fromRGB(56, 189, 248)) -- Lighter cyan
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(56, 189, 248)), -- Lighter cyan
 	})
 	hatchGradient.Rotation = 45
 	hatchGradient.Parent = hatchBtn
@@ -196,11 +198,15 @@ function EggRenderController._CreateModal()
 
 	hatchBtn.MouseButton1Click:Connect(function()
 		statusLabel.Text = "🔮 Initializing Genesis Hatching Sequence..."
-		
+
 		-- 1. Tension spin & camera Shake
-		local spinTween = TweenService:Create(eggPart, TweenInfo.new(1.2, Enum.EasingStyle.Back, Enum.EasingDirection.Out), { Orientation = Vector3.new(0, 720, 0) })
+		local spinTween = TweenService:Create(
+			eggPart,
+			TweenInfo.new(1.2, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+			{ Orientation = Vector3.new(0, 720, 0) }
+		)
 		spinTween:Play()
-		
+
 		task.spawn(function()
 			local originalCF = vpCamera.CFrame
 			for i = 1, 24 do
@@ -211,23 +217,28 @@ function EggRenderController._CreateModal()
 			end
 			vpCamera.CFrame = originalCF
 		end)
-		
+
 		-- 2. Audio Chime
 		local controllersFolder = script.Parent
 		local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)
 		pcall(function()
 			AudioController.PlaySound("rbxassetid://138677306", 1.0)
 		end)
-		
+
 		spinTween.Completed:Wait()
 
 		-- 3. Spring Physics Pop & Sparks
-		local popTween = TweenService:Create(eggPart, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out), { Size = Vector3.new(5, 6, 5) })
+		local popTween = TweenService:Create(
+			eggPart,
+			TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+			{ Size = Vector3.new(5, 6, 5) }
+		)
 		popTween:Play()
-		
-		local UIEffectPool = require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("UIEffectPool") :: any)
+
+		local UIEffectPool =
+			require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("UIEffectPool") :: any)
 		UIEffectPool.EmitSparks(viewportFrame, 15)
-		
+
 		popTween.Completed:Wait()
 		TweenService:Create(eggPart, TweenInfo.new(0.15, Enum.EasingStyle.Sine), { Size = Vector3.new(0, 0, 0) }):Play()
 
@@ -235,12 +246,12 @@ function EggRenderController._CreateModal()
 		pcall(function()
 			res = ClientRemotes.RequestHatch:InvokeServer("Egg_BasicTier1")
 		end)
-		
+
 		local petName = (res and res.Data and res.Data.SpiritId) or "Astral Cyber-Crocodile"
 		local rarity = (res and res.Data and res.Data.Rarity) or "Legendary"
-		
+
 		statusLabel.Text = string.format("🎉 PET DIDAPATKAN: %s (%s)!", petName, rarity)
-		
+
 		local UIController = require(controllersFolder:WaitForChild("UIController") :: any)
 		UIController.ShowNotification(string.format("🐶 PET ACQUIRED: %s [%s]", petName, rarity))
 	end)
@@ -249,62 +260,81 @@ end
 function EggRenderController.PlayGenesisPodCutscene(podId: string, spiritId: string)
 	local map = Workspace:FindFirstChild("Map")
 	local stand = map and map:FindFirstChild("EggStands") and map.EggStands:FindFirstChild(podId)
-	if not stand then return end
-	
+	if not stand then
+		return
+	end
+
 	local podMesh = stand:FindFirstChild("EggMesh") or stand
 	local camera = Workspace.CurrentCamera
-	if not camera then return end
+	if not camera then
+		return
+	end
 
 	local originalCameraType = camera.CameraType
 	local originalCFrame = camera.CFrame
-	
+
 	camera.CameraType = Enum.CameraType.Scriptable
-	
+
 	-- 1. Smooth 3D Camera Zoom-In
 	local targetCFrame = CFrame.lookAt(stand.Position + Vector3.new(0, 4, 7), podMesh.Position)
-	local zoomTween = TweenService:Create(camera, TweenInfo.new(0.5, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), { CFrame = targetCFrame })
+	local zoomTween = TweenService:Create(
+		camera,
+		TweenInfo.new(0.5, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out),
+		{ CFrame = targetCFrame }
+	)
 	zoomTween:Play()
 	zoomTween.Completed:Wait()
-	
+
 	-- 2. 3x Tension Shake
 	local originalPodCFrame = podMesh.CFrame
 	for _ = 1, 3 do
-		local shakeLeft = TweenService:Create(podMesh, TweenInfo.new(0.08, Enum.EasingStyle.Sine), { CFrame = originalPodCFrame * CFrame.Angles(0, 0, math.rad(12)) })
-		local shakeRight = TweenService:Create(podMesh, TweenInfo.new(0.08, Enum.EasingStyle.Sine), { CFrame = originalPodCFrame * CFrame.Angles(0, 0, math.rad(-12)) })
-		
+		local shakeLeft = TweenService:Create(
+			podMesh,
+			TweenInfo.new(0.08, Enum.EasingStyle.Sine),
+			{ CFrame = originalPodCFrame * CFrame.Angles(0, 0, math.rad(12)) }
+		)
+		local shakeRight = TweenService:Create(
+			podMesh,
+			TweenInfo.new(0.08, Enum.EasingStyle.Sine),
+			{ CFrame = originalPodCFrame * CFrame.Angles(0, 0, math.rad(-12)) }
+		)
+
 		shakeLeft:Play()
 		shakeLeft.Completed:Wait()
 		shakeRight:Play()
 		shakeRight.Completed:Wait()
 	end
-	
+
 	TweenService:Create(podMesh, TweenInfo.new(0.08), { CFrame = originalPodCFrame }):Play()
 	task.wait(0.15)
-	
+
 	-- 3. Particle Burst & Audio SFX
-	local AudioController = require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("Audio"):WaitForChild("AudioController") :: any)
+	local AudioController = require(
+		script.Parent.Parent:WaitForChild("Modules"):WaitForChild("Audio"):WaitForChild("AudioController") :: any
+	)
 	AudioController.PlaySFX("EggHatchLegendary")
 
 	local fps = 1 / game:GetService("RunService").RenderStepped:Wait()
 	local particleCount = fps > 30 and 20 or 5 -- Dynamic LOD for Low End Mobile
-	
+
 	local burstEmitter = particlePool:Get() :: ParticleEmitter
 	burstEmitter.Parent = podMesh
 	burstEmitter.Enabled = true
 	burstEmitter:Emit(particleCount)
-	
+
 	print("[EggRenderController] Genesis Pod Hatched Spirit: ", spiritId)
-	
+
 	task.wait(1.5)
-	
+
 	burstEmitter.Enabled = false
 	particlePool:Return(burstEmitter)
-	
+
 	-- Restore Camera
-	local restoreTween = TweenService:Create(camera, TweenInfo.new(0.5, Enum.EasingStyle.Cubic), { CFrame = originalCFrame })
+	local restoreTween =
+		TweenService:Create(camera, TweenInfo.new(0.5, Enum.EasingStyle.Cubic), { CFrame = originalCFrame })
 	restoreTween:Play()
 	restoreTween.Completed:Wait()
-	
+
 	camera.CameraType = originalCameraType
 end
 

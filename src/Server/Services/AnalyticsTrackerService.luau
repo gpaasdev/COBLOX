@@ -8,7 +8,13 @@ function AnalyticsTrackerService.Init()
 	print("[AnalyticsTrackerService] Initializing Game Analytics & Economy Flow Tracking...")
 end
 
-function AnalyticsTrackerService.LogEconomyTransaction(player: Player, currencyType: string, amount: number, transactionType: string, category: string)
+function AnalyticsTrackerService.LogEconomyTransaction(
+	player: Player,
+	currencyType: string,
+	amount: number,
+	transactionType: string,
+	category: string
+)
 	local success, err = pcall(function()
 		AnalyticsService:LogCustomEvent(player, "EconomyFlow", amount, {
 			Currency = currencyType,
@@ -36,7 +42,12 @@ function AnalyticsTrackerService.LogGachaPull(player: Player, eggId: string, obt
 	end
 end
 
-function AnalyticsTrackerService.LogDiscoveryEvent(player: Player, discoveryType: string, discoveryId: string, isFirst: boolean)
+function AnalyticsTrackerService.LogDiscoveryEvent(
+	player: Player,
+	discoveryType: string,
+	discoveryId: string,
+	isFirst: boolean
+)
 	pcall(function()
 		AnalyticsService:LogCustomEvent(player, "DiscoveryMade", isFirst and 10 or 1, {
 			Type = discoveryType,

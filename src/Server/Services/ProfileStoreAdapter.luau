@@ -32,7 +32,15 @@ function ProfileStoreAdapter.LoadProfileWithBackoff(player: Player): ServiceResu
 		end
 
 		local backoff = BASE_BACKOFF_SECONDS * math.pow(2, attempt - 1)
-		warn(string.format("[ProfileStoreAdapter] DataStore load attempt %d failed for player %s (%d). Retrying in %.1f seconds...", attempt, player.Name, player.UserId, backoff))
+		warn(
+			string.format(
+				"[ProfileStoreAdapter] DataStore load attempt %d failed for player %s (%d). Retrying in %.1f seconds...",
+				attempt,
+				player.Name,
+				player.UserId,
+				backoff
+			)
+		)
 		task.wait(backoff)
 	end
 
@@ -46,7 +54,10 @@ function ProfileStoreAdapter.LoadProfileWithBackoff(player: Player): ServiceResu
 	}
 end
 
-function ProfileStoreAdapter.SafeUpdateProfile(player: Player, updateFn: (profileData: any) -> ()): ServiceResult<boolean>
+function ProfileStoreAdapter.SafeUpdateProfile(
+	player: Player,
+	updateFn: (profileData: any) -> ()
+): ServiceResult<boolean>
 	local rawProfile = PlayerDataService.GetRawProfile(player)
 	if not rawProfile or not rawProfile.Data then
 		return {

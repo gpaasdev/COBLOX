@@ -57,7 +57,7 @@ local RecipeConfig = {
 			VFXEffect = "SteamExplosionBurst",
 			LoreDescription = "Penyatuan mistis elemen Air dan Api untuk melepaskan percikan energi uap magis.",
 		},
-	} :: { [string]: RecipeDef }
+	} :: { [string]: RecipeDef },
 }
 
 return table.freeze(RecipeConfig)

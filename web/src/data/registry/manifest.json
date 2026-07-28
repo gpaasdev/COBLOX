@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-07-28T02:17:40.771770+00:00Z",
-  "git_commit": "35932cfdd0e055e7ad80e48ccd0241b165c3b345",
-  "content_hash": "463755f735be141619dd551cb05a7a3c02deeb553c2649c8a57f5290eabd2d09",
+  "generated_at": "2026-07-28T11:12:53.431864+00:00Z",
+  "git_commit": "18c51f580e8c849cb51561fb622fe32910646610",
+  "content_hash": "3799b0d94b212dc70739f53afd74a496dd83896566136755198901325a3104e1",
   "schema_version": "v11",
   "pipeline_version": "1.0",
   "entity_counts": {
@@ -13,7 +13,7 @@
     "biomes": 41,
     "creatures": 81,
     "spirits": 30,
-    "badges": 16,
+    "badges": 15,
     "recipes": 40,
     "market": 1
   }

@@ -22,9 +22,9 @@ function AdminDashboardService.Start()
 			if not FeatureFlagService.IsDeveloper(player.UserId) then
 				return { error = "Unauthorized" }
 			end
-			
+
 			local memMb = gcinfo() / 1024
-			
+
 			return {
 				health = {
 					uptime = workspace.DistributedGameTime,
@@ -36,14 +36,14 @@ function AdminDashboardService.Start()
 					tradingSystem = FeatureFlagService.GetState("tradingSystem"),
 					economySystem = FeatureFlagService.GetState("economySystem"),
 					guildRaid = FeatureFlagService.GetState("guildRaid"),
-					maintenanceMode = FeatureFlagService.IsBooleanFlagEnabled("maintenanceMode")
+					maintenanceMode = FeatureFlagService.IsBooleanFlagEnabled("maintenanceMode"),
 				},
 				telemetry = {
 					-- These would ideally be fetched from AnalyticsService metrics
 					queueSize = 0,
 					flushSuccess = "100%",
-					errorCount = 0
-				}
+					errorCount = 0,
+				},
 			}
 		end
 	end

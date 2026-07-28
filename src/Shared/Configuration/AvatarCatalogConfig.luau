@@ -40,18 +40,8 @@ AvatarCatalogConfig.Items = {
 		IsVIPExclusive = true,
 		StatBuff = { AuraMultiplier = 1.5, WalkSpeedBonus = 4 },
 	},
-	{
-		Id = "Hat_CyberKitsuneMask",
-		Name = "Cyber-Kitsune Neon Visor",
-		Category = "Hats",
-		Description = "Topeng rubah holografis berteknologi tinggi dari dimensi Cyberpunk.",
-		AssetId = 13837943486,
-		IconImageId = "rbxassetid://13837943486",
-		Currency = "Coins",
-		Price = 5000,
-		IsVIPExclusive = false,
-		StatBuff = { PityBonus = 0.05 },
-	},
+	-- [REMOVED] Hat_CyberKitsuneMask (AssetId: 13837943486) — Roblox moderation: Blocked (2026-07-28)
+
 	{
 		Id = "Hat_PyroGoggles",
 		Name = "Pyro-Alchemical Goggles",

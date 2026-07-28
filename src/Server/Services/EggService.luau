@@ -54,7 +54,9 @@ local EggConfigs = {
 }
 
 function EggService.Init()
-	print("[EggService] Initializing Server-Authoritative Hatching Engine with RemoteConfig & LiveOps Luck Modifiers...")
+	print(
+		"[EggService] Initializing Server-Authoritative Hatching Engine with RemoteConfig & LiveOps Luck Modifiers..."
+	)
 	-- Pre-create the EggHatchedVisual unreliable remote so clients don't time out waiting for it
 	NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 end
@@ -102,7 +104,7 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 			Retryable = false,
 		}
 	end
-	
+
 	local resProfile = PlayerDataService.GetProfile(player)
 
 	if config.IsVIPExclusive then
@@ -199,17 +201,20 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 		return createRes
 	end
 
-	-- Update Pity Counter
+	-- Update Pity Counter (atomic mutation via SafeUpdateProfile)
 	if resProfile.Success and resProfile.Data then
-		if selectedPetId == "GoldenDragon" then
-			resProfile.Data.Inventory.PityCounter = 0
-		else
-			resProfile.Data.Inventory.PityCounter = pityCounter + 1
-		end
+		local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
+		ProfileStoreAdapter.SafeUpdateProfile(player, function(data)
+			if selectedPetId == "GoldenDragon" then
+				data.Inventory.PityCounter = 0
+			else
+				data.Inventory.PityCounter = pityCounter + 1
+			end
+		end)
 	end
 
 	EggService.EggHatched:Fire(player, eggId, createRes.Data)
-	
+
 	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 	local visualRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 	if visualRemote then

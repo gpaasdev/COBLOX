@@ -39,7 +39,7 @@ function OfflineEarningsService.Start()
 		-- For demo/simulation: simulate 2 hours (7200s) of offline earnings on first join
 		local simulatedOfflineSeconds = 7200
 		local totalEarnings = math.min(simulatedOfflineSeconds, MAX_OFFLINE_SECONDS) * BASE_IDLE_RATE_PER_SEC
-		
+
 		pendingOfflineEarnings[player] = totalEarnings
 		print(string.format("[OfflineEarningsService] %s has %d pending AFK Coins!", player.Name, totalEarnings))
 	end)

@@ -7,6 +7,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)
 local EconomyConfig = require(ReplicatedStorage.Shared.Configuration.EconomyConfig)
 local PlayerDataService = require(script.Parent.PlayerDataService)
+local ProfileStoreAdapter = require(script.Parent.ProfileStoreAdapter)
 local RemoteConfigService = require(ServerScriptService.Server.Services.RemoteConfigService)
 local Signal = require(ReplicatedStorage.Shared.Utility.Signal)
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
@@ -94,7 +95,12 @@ function EconomyService.CalculateQuantumVaultBalance(player: Player): ServiceRes
 	}
 end
 
-function EconomyService.AddCurrency(player: Player, currencyType: string, amount: number, reason: string?): ServiceResult<number>
+function EconomyService.AddCurrency(
+	player: Player,
+	currencyType: string,
+	amount: number,
+	reason: string?
+): ServiceResult<number>
 	local res = PlayerDataService.GetProfile(player)
 	if not res.Success or not res.Data then
 		return {
@@ -108,63 +114,74 @@ function EconomyService.AddCurrency(player: Player, currencyType: string, amount
 	end
 
 	local wallet = res.Data.Wallet
-	local initialBalance = (currencyType == "Gems" or currencyType == "ChronoSparks") and (wallet[currencyType] or 0) or 0
+	local initialBalance = (currencyType == "Gems" or currencyType == "ChronoSparks") and (wallet[currencyType] or 0)
+		or 0
 
-	if currencyType == "AuraEnergy" then
-		wallet.AuraEnergy += amount
-	elseif currencyType == "ChronoSparks" then
-		wallet.ChronoSparks += amount
-	elseif currencyType == "QuantumBadges" then
-		wallet.QuantumBadges += amount
-	elseif currencyType == "Coins" then
-		wallet.Coins += amount
-		EconomyService.CoinsChanged:Fire(player, wallet.Coins, amount, reason or "AddCurrency")
-	elseif currencyType == "Gems" then
-		wallet.Gems += amount
-		EconomyService.GemsChanged:Fire(player, wallet.Gems, amount, reason or "AddCurrency")
-	end
+	local updateResult = ProfileStoreAdapter.SafeUpdateProfile(player, function(data)
+		local w = data.Wallet
 
-	-- Hard Currency Double-Entry Ledger Logging per GDD Section 11
-	if currencyType == "Gems" or currencyType == "ChronoSparks" then
-		local finalBalance = wallet[currencyType]
-		if math.abs((initialBalance + amount) - finalBalance) > 0.001 then
-			warn(string.format("[SECURITY ALERT] Hard currency mismatch for player %s! Flagging account.", player.Name))
-			res.Data.AdminFlagged = true
-			wallet[currencyType] = initialBalance -- Rollback transaction
-			return {
-				Success = false,
-				Category = "Validation",
-				ErrorCode = "CURRENCY_MISMATCH",
-				Message = "Hard currency transaction failed validation",
-				Data = nil,
-				Retryable = false,
-			}
+		if currencyType == "AuraEnergy" then
+			w.AuraEnergy += amount
+		elseif currencyType == "ChronoSparks" then
+			w.ChronoSparks += amount
+		elseif currencyType == "QuantumBadges" then
+			w.QuantumBadges += amount
+		elseif currencyType == "Coins" then
+			w.Coins += amount
+		elseif currencyType == "Gems" then
+			w.Gems += amount
 		end
 
-		if not res.Data.Ledger then
-			res.Data.Ledger = {}
+		if currencyType == "Gems" or currencyType == "ChronoSparks" then
+			local finalBalance = w[currencyType]
+			if math.abs((initialBalance + amount) - finalBalance) > 0.001 then
+				warn(string.format("[SECURITY ALERT] Hard currency mismatch for player %s! Flagging account.", player.Name))
+				data.AdminFlagged = true
+				w[currencyType] = initialBalance
+			else
+				if not data.Ledger then
+					data.Ledger = {}
+				end
+				local HttpService = game:GetService("HttpService")
+				table.insert(data.Ledger, {
+					TimestampUTC = DateTime.now():ToIsoDate(),
+					TransactionId = HttpService:GenerateGUID(false),
+					AmountChange = amount,
+					FinalBalance = finalBalance,
+					Reason = reason or "SystemMutation",
+				})
+			end
 		end
+	end)
 
-		local HttpService = game:GetService("HttpService")
-		local ledgerEntry = {
-			TimestampUTC = DateTime.now():ToIsoDate(),
-			TransactionId = HttpService:GenerateGUID(false),
-			AmountChange = amount,
-			FinalBalance = finalBalance,
-			Reason = reason or "SystemMutation",
+	if not updateResult.Success then
+		return {
+			Success = false,
+			Category = updateResult.Category,
+			ErrorCode = updateResult.ErrorCode,
+			Message = updateResult.Message,
+			Data = nil,
+			Retryable = updateResult.Retryable,
 		}
-		table.insert(res.Data.Ledger, ledgerEntry)
-		print(string.format("[Ledger] Logged %s mutation for %s: %+d (Final: %d)", currencyType, player.Name, amount, finalBalance))
 	end
 
-	EconomyService._SyncClient(player, wallet)
+	local postRes = PlayerDataService.GetProfile(player)
+	local postWallet = postRes.Data and postRes.Data.Wallet
+	if postWallet then
+		if currencyType == "Coins" then
+			EconomyService.CoinsChanged:Fire(player, postWallet.Coins, amount, reason or "AddCurrency")
+		elseif currencyType == "Gems" then
+			EconomyService.GemsChanged:Fire(player, postWallet.Gems, amount, reason or "AddCurrency")
+		end
+		EconomyService._SyncClient(player, postWallet)
+	end
 
 	return {
 		Success = true,
 		Category = nil,
 		ErrorCode = nil,
 		Message = currencyType .. " added successfully",
-		Data = wallet[currencyType],
+		Data = postWallet and postWallet[currencyType] or 0,
 		Retryable = false,
 	}
 end
@@ -252,11 +269,13 @@ function EconomyService.ProcessRebirth(player: Player): ServiceResult<number>
 
 	wallet.Coins = 0
 	wallet.RebirthTokens = (wallet.RebirthTokens or 0) + tokenReward
-	
+
 	EconomyService.RebirthCompleted:Fire(player, wallet.RebirthTokens)
 	EconomyService._SyncClient(player, wallet)
 
-	print(string.format("[EconomyService] Rebirth granted for %s | Total Tokens: %d", player.Name, wallet.RebirthTokens))
+	print(
+		string.format("[EconomyService] Rebirth granted for %s | Total Tokens: %d", player.Name, wallet.RebirthTokens)
+	)
 
 	return {
 		Success = true,
@@ -276,7 +295,9 @@ function EconomyService.SyncWallet(player: Player)
 end
 
 function EconomyService._SyncClient(player: Player, wallet: any)
-	if not syncRemote then return end
+	if not syncRemote then
+		return
+	end
 	syncRemote:FireClient(player, {
 		Coins = wallet.Coins,
 		Gems = wallet.Gems,

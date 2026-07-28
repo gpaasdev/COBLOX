@@ -29,15 +29,30 @@ function AdminService.Start()
 end
 
 function AdminService.IsPlayerAdmin(player: Player): boolean
-	if ADMIN_USER_IDS[player.UserId] or player.UserId <= 0 or (game.CreatorId > 0 and player.UserId == game.CreatorId) then
+	if
+		ADMIN_USER_IDS[player.UserId]
+		or player.UserId <= 0
+		or (game.CreatorId > 0 and player.UserId == game.CreatorId)
+	then
 		return true
 	end
 	return false
 end
 
-function AdminService.ExecuteCommand(sender: Player, commandName: string, targetPlayerName: string, param: number?): ServiceResult<string>
+function AdminService.ExecuteCommand(
+	sender: Player,
+	commandName: string,
+	targetPlayerName: string,
+	param: number?
+): ServiceResult<string>
 	if not AdminService.IsPlayerAdmin(sender) then
-		warn(string.format("[AdminService Security Violation] Non-admin player %s attempted to run command %s", sender.Name, commandName))
+		warn(
+			string.format(
+				"[AdminService Security Violation] Non-admin player %s attempted to run command %s",
+				sender.Name,
+				commandName
+			)
+		)
 		return {
 			Success = false,
 			Category = "Security",
@@ -92,7 +107,15 @@ function AdminService.ExecuteCommand(sender: Player, commandName: string, target
 		Amount = amount,
 	})
 
-	print(string.format("[AdminService Audit] Admin %s executed command '%s' on %s (Param: %d)", sender.Name, commandName, targetPlayerName, amount))
+	print(
+		string.format(
+			"[AdminService Audit] Admin %s executed command '%s' on %s (Param: %d)",
+			sender.Name,
+			commandName,
+			targetPlayerName,
+			amount
+		)
+	)
 
 	return {
 		Success = true,

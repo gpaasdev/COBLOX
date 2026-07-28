@@ -14,6 +14,15 @@ function ResearchRegistry.GetAll(): { [string]: ResearchRegistryDefinition }
 	return ResearchRegistry
 end
 
+-- Backward-compatible aliases (legacy API)
+function ResearchRegistry.GetResearch(id: string): ResearchRegistryDefinition?
+	return ResearchRegistry[id]
+end
+
+function ResearchRegistry.GetAllResearch(): { [string]: ResearchRegistryDefinition }
+	return ResearchRegistry
+end
+
 ResearchRegistry["Tech_Automation_1"] = {
 	Id = "Tech_Automation_1",
 	Name = "Automation Specialization Level 1",

@@ -4,6 +4,8 @@
 -- Dependencies: ReactionRegistry, PhysicsEngine, MaterialRegistry, DiscoveryService
 
 local ReactionEngine = {}
+ReactionEngine.Name = "ReactionEngine"
+ReactionEngine.ServiceStatus = "Production" -- Full reaction logic complete; Init/Start stubs added
 local ReactionRegistry = require(game:GetService("ReplicatedStorage").Shared.Config.ReactionRegistry)
 local MaterialRegistry = require(game:GetService("ReplicatedStorage").Shared.Config.MaterialRegistry)
 local ReactionTypes = require(game:GetService("ReplicatedStorage").Shared.Types.ReactionTypes)
@@ -49,7 +51,11 @@ function ReactionEngine.SimulateReaction(input: ReactionTypes.ReactionInput): Re
 		end
 
 		if hasMaterials then
-			if input.Temperature >= reactionDef.MinTemperature and input.Temperature <= reactionDef.MaxTemperature and input.Pressure >= reactionDef.MinPressure then
+			if
+				input.Temperature >= reactionDef.MinTemperature
+				and input.Temperature <= reactionDef.MaxTemperature
+				and input.Pressure >= reactionDef.MinPressure
+			then
 				matchedReaction = reactionDef
 				break
 			end
@@ -59,20 +65,20 @@ function ReactionEngine.SimulateReaction(input: ReactionTypes.ReactionInput): Re
 	if matchedReaction then
 		output.Success = true
 		output.Products[matchedReaction.Product] = matchedReaction.YieldRatio
-		
+
 		-- GAMEPLAY INTEGRATION: Trigger Discovery Loop
 		if input.Initiator then
 			pcall(function()
 				DiscoveryService.RecordDiscovery(input.Initiator, "Material", matchedReaction.Product)
 			end)
 		end
-		
+
 		-- Conservation of Mass (Equivalent Exchange)
 		local inputMass = 0
 		for mat, amt in pairs(input.Materials) do
 			inputMass += amt
 		end
-		
+
 		if inputMass > matchedReaction.YieldRatio then
 			output.Waste["Slag"] = inputMass - matchedReaction.YieldRatio
 		end
@@ -88,6 +94,14 @@ function ReactionEngine.SimulateReaction(input: ReactionTypes.ReactionInput): Re
 	end
 
 	return output
+end
+
+function ReactionEngine.Init()
+	print("[ReactionEngine] Initialized — Chemical Reaction Engine ready.")
+end
+
+function ReactionEngine.Start()
+	-- Reactions are triggered on-demand; no persistent loop needed
 end
 
 return ReactionEngine

@@ -4,7 +4,9 @@ local Players = game:GetService("Players")
 local UIAnimationEngine = require(script.Parent.UIAnimationEngine)
 local UIEffectPool = require(script.Parent.UIEffectPool)
 local AudioEventBus = require(script.Parent.Parent:WaitForChild("Audio"):WaitForChild("AudioEventBus") :: any)
-local AudioEvents = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("Constants"):WaitForChild("AudioEvents") :: any)
+local AudioEvents = require(
+	game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("Constants"):WaitForChild("AudioEvents") :: any
+)
 
 export type ButtonPlugin = "Hover" | "Click" | "Glow" | "Audio" | "Spark"
 

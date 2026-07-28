@@ -3,6 +3,8 @@
 -- Purpose: Global server variables influenced by factions and events.
 
 local PoliticalService = {}
+PoliticalService.Name = "PoliticalService"
+PoliticalService.ServiceStatus = "Stub" -- SecurityLevel state ready; no persistent scheduling
 local SocialSimulationService = require(script.Parent.SocialSimulationService)
 
 local ServerState = {
@@ -17,9 +19,11 @@ function PoliticalService.UpdatePolitics()
 	local pres = SocialSimulationService.GetFactionData("Preservationists")
 	local ind = SocialSimulationService.GetFactionData("Industrialists")
 	local void = SocialSimulationService.GetFactionData("VoidWalkers")
-	
-	if not pres or not ind or not void then return end
-	
+
+	if not pres or not ind or not void then
+		return
+	end
+
 	-- Determine dominant faction
 	if ind.Influence > pres.Influence and ind.Influence > void.Influence then
 		ServerState.DominantFaction = "Industrialists"
@@ -42,6 +46,14 @@ end
 
 function PoliticalService.GetSecurityLevel(): number
 	return ServerState.SecurityLevel
+end
+
+function PoliticalService.Init()
+	print("[PoliticalService] Initialized — Political state engine ready.")
+end
+
+function PoliticalService.Start()
+	-- Political state changes are event-driven; no heartbeat required
 end
 
 return PoliticalService

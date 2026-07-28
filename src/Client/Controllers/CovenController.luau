@@ -225,7 +225,12 @@ function CovenController._CreateModal()
 	end)
 end
 
-function CovenController.UpdateCovenDisplay(data: { Name: string, Level: number, TreasuryCoins: number, HideoutPlaceId: number? })
+function CovenController.UpdateCovenDisplay(data: {
+	Name: string,
+	Level: number,
+	TreasuryCoins: number,
+	HideoutPlaceId: number?,
+})
 	if covenNameLabel then
 		covenNameLabel.Text = "🏰 " .. data.Name
 	end

@@ -48,7 +48,7 @@ function InteractionService._CheckMassCapacity(player: Player, targetPart: BaseP
 	local res = PlayerDataService.GetProfile(player)
 	-- Default capacity: RebirthTokens/Level can increase it.
 	-- If base is 50, and 1 token = 10 capacity.
-	local capacity = 50 
+	local capacity = 50
 	if res.Success and res.Data and res.Data.Wallet then
 		capacity = capacity + ((res.Data.Wallet.RebirthTokens or 0) * 10)
 	end
@@ -103,7 +103,7 @@ function InteractionService._OnRequestGrab(player: Player, targetPart: BasePart)
 	local rootAttachment = Instance.new("Attachment")
 	rootAttachment.Name = "HoldAttachment"
 	-- Default front of the player. Client will update this position.
-	rootAttachment.CFrame = CFrame.new(0, 0, -4) 
+	rootAttachment.CFrame = CFrame.new(0, 0, -4)
 	rootAttachment.Parent = char.PrimaryPart
 	maid:GiveTask(rootAttachment)
 
@@ -134,7 +134,7 @@ function InteractionService._OnRequestGrab(player: Player, targetPart: BasePart)
 	noCollide.Part1 = targetPart
 	noCollide.Parent = targetPart
 	maid:GiveTask(noCollide)
-	
+
 	-- Clean up network ownership when maid is destroyed
 	maid:GiveTask(function()
 		if targetPart and targetPart.Parent then
@@ -156,7 +156,7 @@ function InteractionService._OnRequestDrop(player: Player): { Success: boolean, 
 		activeGrabs[player] = nil
 		return { Success = true, Message = "Dropped" }
 	end
-	
+
 	return { Success = false, Message = "Nothing to drop" }
 end
 
@@ -164,9 +164,11 @@ function InteractionService._OnRequestThrow(player: Player, chargePower: number)
 	if not RateLimitService.CheckRateLimit(player, "RequestThrow", 0.5) then
 		return { Success = false, Message = "Rate limited" }
 	end
-	
-	local ok, validCharge = PayloadValidator.Validate({chargePower}, {"number"})
-	if not ok then return { Success = false, Message = "Invalid payload" } end
+
+	local ok, validCharge = PayloadValidator.Validate({ chargePower }, { "number" })
+	if not ok then
+		return { Success = false, Message = "Invalid payload" }
+	end
 
 	local maid = activeGrabs[player]
 	if not maid then
@@ -176,7 +178,12 @@ function InteractionService._OnRequestThrow(player: Player, chargePower: number)
 	-- Extract the part before destroying constraints
 	local targetPart = nil
 	for _, task in pairs(maid._tasks) do
-		if typeof(task) == "Instance" and task:IsA("Attachment") and task.Parent and task.Name == "ObjectHoldAttachment" then
+		if
+			typeof(task) == "Instance"
+			and task:IsA("Attachment")
+			and task.Parent
+			and task.Name == "ObjectHoldAttachment"
+		then
 			targetPart = task.Parent
 			break
 		end
@@ -193,14 +200,17 @@ function InteractionService._OnRequestThrow(player: Player, chargePower: number)
 		local mass = targetPart.Mass
 		-- chargePower is clamped between 0 and 1 from the client
 		local throwPower = math.clamp(validCharge, 0, 1)
-		
+
 		-- p = mv
 		-- base velocity desired is ~50 studs/sec for max throw
 		local desiredVelocity = 50 * throwPower
-		local impulseVector = char.PrimaryPart.CFrame.LookVector * (mass * desiredVelocity) + Vector3.new(0, mass * 15 * throwPower, 0)
-		
+		local impulseVector = char.PrimaryPart.CFrame.LookVector * (mass * desiredVelocity)
+			+ Vector3.new(0, mass * 15 * throwPower, 0)
+
 		targetPart:ApplyImpulse(impulseVector)
-		print(string.format("[InteractionService] %s threw %s with charge %f", player.Name, targetPart.Name, throwPower))
+		print(
+			string.format("[InteractionService] %s threw %s with charge %f", player.Name, targetPart.Name, throwPower)
+		)
 	end
 
 	return { Success = true, Message = "Thrown" }

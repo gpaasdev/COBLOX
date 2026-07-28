@@ -26,23 +26,25 @@ function ShadowRaidService.Init()
 	local raidRemoteFunc = NetChannels.GetRemoteFunction("RequestShadowRaid")
 	if raidRemoteFunc then
 		raidRemoteFunc.OnServerInvoke = function(raider: Player, victimUserId: any, slotIndex: any)
-            -- [NEW] PvE Boss Raid Check
-            if victimUserId == "BOSS_RAID" then
-                -- Calculate dynamic scaling based on server player count
-                local activePlayersCount = #Players:GetPlayers()
-                local bossHealth = 10000 + (activePlayersCount * 5000)
-                local bossDamage = 50 + (activePlayersCount * 10)
-                
-                GlobalBroadcastService.Broadcast(
-                    string.format("⚠️ BOSS RAID SHADOW DRAGON MUNCUL! HP: %d", bossHealth),
-                    255, 69, 0
-                )
-                
-                return { Success = true, IsBossRaid = true, BossHealth = bossHealth, BossDamage = bossDamage }
-            end
+			-- [NEW] PvE Boss Raid Check
+			if victimUserId == "BOSS_RAID" then
+				-- Calculate dynamic scaling based on server player count
+				local activePlayersCount = #Players:GetPlayers()
+				local bossHealth = 10000 + (activePlayersCount * 5000)
+				local bossDamage = 50 + (activePlayersCount * 10)
+
+				GlobalBroadcastService.Broadcast(
+					string.format("⚠️ BOSS RAID SHADOW DRAGON MUNCUL! HP: %d", bossHealth),
+					255,
+					69,
+					0
+				)
+
+				return { Success = true, IsBossRaid = true, BossHealth = bossHealth, BossDamage = bossDamage }
+			end
 
 			-- Zero-Trust Payload Validation
-			local ok, vId, sIdx = PayloadValidator.Validate({victimUserId, slotIndex}, {"number", "number"})
+			local ok, vId, sIdx = PayloadValidator.Validate({ victimUserId, slotIndex }, { "number", "number" })
 			if not ok then
 				warn("[Security] Payload validation failed for RequestShadowRaid from", raider.Name)
 				return { Success = false, Message = "Invalid payload!" }
@@ -75,7 +77,10 @@ function ShadowRaidService.Init()
 
 			local dist = (raiderRoot.Position - victimRoot.Position).Magnitude
 			if dist > MAX_RAID_DISTANCE then
-				return { Success = false, Message = string.format("Too far away! (%.1f > %d studs)", dist, MAX_RAID_DISTANCE) }
+				return {
+					Success = false,
+					Message = string.format("Too far away! (%.1f > %d studs)", dist, MAX_RAID_DISTANCE),
+				}
 			end
 
 			-- 4. Check Vault Slot
@@ -102,10 +107,14 @@ function ShadowRaidService.Init()
 			-- Broadcast Event
 			GlobalBroadcastService.Broadcast(
 				string.format("🥷 %s BARU SAJA MEMBEGAL AURA MILIK %s!", raider.Name, victim.Name),
-				239, 68, 68
+				239,
+				68,
+				68
 			)
 
-			print(string.format("[ShadowRaidService] 🥷 %s raided %s from %s!", raider.Name, potionStolen, victim.Name))
+			print(
+				string.format("[ShadowRaidService] 🥷 %s raided %s from %s!", raider.Name, potionStolen, victim.Name)
+			)
 			return { Success = true, PotionName = potionStolen }
 		end
 	end
@@ -116,7 +125,7 @@ function ShadowRaidService.Init()
 			local stolenPotion = activeRaiders[raider]
 			if stolenPotion then
 				activeRaiders[raider] = nil
-				
+
 				-- Restore WalkSpeed
 				local raiderChar = raider.Character
 				if raiderChar then

@@ -10,12 +10,15 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local PolicyComplianceService = {}
 PolicyComplianceService.__index = PolicyComplianceService
 
-local playerPolicies: { [Player]: {
-	ArePaidRandomItemsRestricted: boolean,
-	IsSubjectToChinaPolicies: boolean,
-	IsPaidItemTradingAllowed: boolean,
-	AllowedExternalLinkReferences: { string },
-} } = {}
+local playerPolicies: {
+	[Player]: {
+		ArePaidRandomItemsRestricted: boolean,
+		IsSubjectToChinaPolicies: boolean,
+		IsPaidItemTradingAllowed: boolean,
+		AllowedExternalLinkReferences: { string },
+	},
+} =
+	{}
 
 local policyRemoteFunction: RemoteFunction
 
@@ -68,9 +71,20 @@ function PolicyComplianceService.FetchPlayerPolicyAsync(player: Player)
 			IsPaidItemTradingAllowed = result.IsPaidItemTradingAllowed or false,
 			AllowedExternalLinkReferences = result.AllowedExternalLinkReferences or {},
 		}
-		print(string.format("[PolicyComplianceService] Policy loaded for %s (Paid Random Items Restricted: %s)", player.Name, tostring(playerPolicies[player].ArePaidRandomItemsRestricted)))
+		print(
+			string.format(
+				"[PolicyComplianceService] Policy loaded for %s (Paid Random Items Restricted: %s)",
+				player.Name,
+				tostring(playerPolicies[player].ArePaidRandomItemsRestricted)
+			)
+		)
 	else
-		warn(string.format("[PolicyComplianceService] Failed to fetch policy for %s, applying strict safe fallback.", player.Name))
+		warn(
+			string.format(
+				"[PolicyComplianceService] Failed to fetch policy for %s, applying strict safe fallback.",
+				player.Name
+			)
+		)
 		-- Strict fallback if API call fails: restrict paid random items for safety
 		playerPolicies[player] = {
 			ArePaidRandomItemsRestricted = true,
@@ -85,12 +99,13 @@ function PolicyComplianceService.GetPlayerPolicy(player: Player)
 	if not playerPolicies[player] then
 		PolicyComplianceService.FetchPlayerPolicyAsync(player)
 	end
-	return playerPolicies[player] or {
-		ArePaidRandomItemsRestricted = true,
-		IsSubjectToChinaPolicies = false,
-		IsPaidItemTradingAllowed = false,
-		AllowedExternalLinkReferences = {},
-	}
+	return playerPolicies[player]
+		or {
+			ArePaidRandomItemsRestricted = true,
+			IsSubjectToChinaPolicies = false,
+			IsPaidItemTradingAllowed = false,
+			AllowedExternalLinkReferences = {},
+		}
 end
 
 function PolicyComplianceService.CanPurchasePaidRandomItem(player: Player): boolean

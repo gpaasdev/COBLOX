@@ -26,7 +26,14 @@ function DomainEventBus.Publish(eventName: string, player: Player?, data: { [str
 		local AnalyticsService = game:GetService("AnalyticsService")
 		pcall(function()
 			if player and eventName == "PurchaseCompleted" then
-				AnalyticsService:LogEconomyEvent(player, Enum.AnalyticsEconomyFlowType.Sink, "RobuxPurchase", data.Amount or 0, 1, "DevProduct")
+				AnalyticsService:LogEconomyEvent(
+					player,
+					Enum.AnalyticsEconomyFlowType.Sink,
+					"RobuxPurchase",
+					data.Amount or 0,
+					1,
+					"DevProduct"
+				)
 			elseif player and eventName == "DailyLoginProcessed" then
 				AnalyticsService:LogCustomEvent(player, "DailyLogin", data.Streak or 1)
 			end

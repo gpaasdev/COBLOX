@@ -165,7 +165,9 @@ function WorldAssemblyService._AssembleWorld()
 		pillar.Parent = zoneFolder
 
 		i += 1
-		if i % 2 == 0 then task.wait() end
+		if i % 2 == 0 then
+			task.wait()
+		end
 	end
 
 	-- 3. Build 6 Tycoon Plots in Zone 1
@@ -290,7 +292,7 @@ function WorldAssemblyService._AssembleWorld()
 		local subLbl = Instance.new("TextLabel")
 		subLbl.Size = UDim2.new(1, -12, 0, 24)
 		subLbl.Position = UDim2.new(0, 6, 0, 38)
-		subLbl.Text = "<font color=\"#38BDF8\"><b>[ SENTUH PEDESTAL UTK KLAIM ]</b></font>"
+		subLbl.Text = '<font color="#38BDF8"><b>[ SENTUH PEDESTAL UTK KLAIM ]</b></font>'
 		subLbl.RichText = true
 		subLbl.BackgroundTransparency = 1
 		subLbl.TextColor3 = Color3.fromRGB(203, 213, 225)
@@ -404,10 +406,14 @@ function WorldAssemblyService._AssembleAnimeNature(mapFolder: Folder)
 
 	-- Scatter 16 Stylized Anime Trees around the Main Hub
 	local treePositions = {
-		Vector3.new(-40, 0.6, -30), Vector3.new(40, 0.6, -30),
-		Vector3.new(-70, 0.6, 10), Vector3.new(70, 0.6, 10),
-		Vector3.new(-50, 0.6, 60), Vector3.new(50, 0.6, 60),
-		Vector3.new(-90, 0.6, -50), Vector3.new(90, 0.6, -50),
+		Vector3.new(-40, 0.6, -30),
+		Vector3.new(40, 0.6, -30),
+		Vector3.new(-70, 0.6, 10),
+		Vector3.new(70, 0.6, 10),
+		Vector3.new(-50, 0.6, 60),
+		Vector3.new(50, 0.6, 60),
+		Vector3.new(-90, 0.6, -50),
+		Vector3.new(90, 0.6, -50),
 	}
 
 	for treeIdx, pos in ipairs(treePositions) do

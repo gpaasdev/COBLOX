@@ -15,7 +15,7 @@ local FLAGS: { [string]: SwitchState | boolean } = {
 	economySystem = "ENABLED",
 	marketplace = "ENABLED",
 	guildRaid = "DISABLED", -- Disabled by default until Season 2
-	
+
 	-- Global Toggles (Boolean)
 	maintenanceMode = false,
 }

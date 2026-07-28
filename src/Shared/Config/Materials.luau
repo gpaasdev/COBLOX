@@ -19,7 +19,7 @@ local Materials: { [string]: MaterialTypes.MaterialDef } = {
 			RadiationResistance = 5.0,
 			MagneticProperty = 0.9,
 			ChemicalStability = 4.0,
-		}
+		},
 	},
 	["AetherCrystal"] = {
 		Id = "AetherCrystal",
@@ -36,7 +36,7 @@ local Materials: { [string]: MaterialTypes.MaterialDef } = {
 			RadiationResistance = 10.0,
 			MagneticProperty = 0.1,
 			ChemicalStability = 9.0,
-		}
+		},
 	},
 	["VoidBone"] = {
 		Id = "VoidBone",
@@ -53,7 +53,7 @@ local Materials: { [string]: MaterialTypes.MaterialDef } = {
 			RadiationResistance = 1.0,
 			MagneticProperty = 0.0,
 			ChemicalStability = 2.0,
-		}
+		},
 	},
 	["FerriumAlloy"] = {
 		Id = "FerriumAlloy",
@@ -70,8 +70,8 @@ local Materials: { [string]: MaterialTypes.MaterialDef } = {
 			RadiationResistance = 8.0,
 			MagneticProperty = 0.8,
 			ChemicalStability = 8.5,
-		}
-	}
+		},
+	},
 }
 
 return Materials

@@ -3,7 +3,7 @@
 -- Responsibilities: Collects client performance, controller health, and feature usage telemetry.
 
 local TelemetryController = {
-	Name = "TelemetryController"
+	Name = "TelemetryController",
 }
 
 type TelemetryEvent = {
@@ -26,7 +26,7 @@ function TelemetryController.Start(Registry: any)
 	local GuiService = game:GetService("GuiService")
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
 	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
-	
+
 	local deviceType = "Desktop"
 	if GuiService:IsTenFootInterface() then
 		deviceType = "Console"
@@ -40,7 +40,7 @@ function TelemetryController.Start(Registry: any)
 	if handshakeEvent then
 		handshakeEvent:FireServer(deviceType)
 	end
-	
+
 	print("[TelemetryController] Started tracking telemetry. Device:", deviceType)
 end
 
@@ -59,7 +59,9 @@ function TelemetryController.Track(category: string, action: string, label: stri
 end
 
 function TelemetryController.Flush()
-	if #buffer == 0 then return end
+	if #buffer == 0 then
+		return
+	end
 	-- In production, this batch payload is sent to a server RemoteEvent or HTTP endpoint
 	-- print(string.format("[TelemetryController] Flushed %d events to telemetry pipeline.", #buffer))
 	table.clear(buffer)

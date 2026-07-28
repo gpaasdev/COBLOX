@@ -37,7 +37,7 @@ function NPCPsychologyService.RecordEvent(npcId: string, eventId: string, impact
 	local npc = ActiveNPCs[npcId]
 	if npc then
 		npc.Memory[eventId] = (npc.Memory[eventId] or 0) + impact
-		
+
 		-- Logic hooks
 		if impact < 0 then
 			npc.Fear += math.abs(impact) * 0.1
@@ -47,7 +47,7 @@ function NPCPsychologyService.RecordEvent(npcId: string, eventId: string, impact
 			npc.Trust += impact * 0.2
 			npc.Loyalty += impact * 0.1
 		end
-		
+
 		-- Cap stats between 0 and 100
 		npc.Fear = math.clamp(npc.Fear, 0, 100)
 		npc.Trust = math.clamp(npc.Trust, 0, 100)
@@ -58,12 +58,14 @@ end
 
 function NPCPsychologyService.GetPriceModifier(npcId: string): number
 	local npc = ActiveNPCs[npcId]
-	if not npc then return 1.0 end
-	
+	if not npc then
+		return 1.0
+	end
+
 	-- High greed + low trust = expensive
 	local greedFactor = npc.Greed / 100
 	local trustFactor = npc.Trust / 100
-	
+
 	-- Base 1.0. Greed adds up to +0.5. Trust reduces up to -0.3.
 	return 1.0 + (greedFactor * 0.5) - (trustFactor * 0.3)
 end

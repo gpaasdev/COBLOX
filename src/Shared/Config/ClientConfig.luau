@@ -6,11 +6,11 @@ export type ARLensConfigType = {
 	ScanDistance: number,
 	MaxWidgets: number,
 	AdaptiveRates: {
-		Idle: number,       -- Hz (2)
-		Walking: number,    -- Hz (10)
-		Interacting: number,-- Hz (20)
-		Scanning: number,   -- Hz (30)
-		Combat: number,     -- Hz (60)
+		Idle: number, -- Hz (2)
+		Walking: number, -- Hz (10)
+		Interacting: number, -- Hz (20)
+		Scanning: number, -- Hz (30)
+		Combat: number, -- Hz (60)
 	},
 	FadeDistance: number,
 	LODDistance: number,

@@ -44,7 +44,7 @@ local Pools = {
 local function CreateWidgetFrame(entityType: ScannerPipeline.EntityType): Frame
 	local poolName = entityType .. "WidgetPool"
 	local pool = Pools[poolName] or Pools.GenericWidgetPool
-	
+
 	if #pool > 0 then
 		local frame = table.remove(pool) :: Frame
 		frame.Visible = true
@@ -64,7 +64,7 @@ local function CreateWidgetFrame(entityType: ScannerPipeline.EntityType): Frame
 
 	local uiStroke = Instance.new("UIStroke")
 	uiStroke.Thickness = 1.5
-	uiStroke.Color = entityType == "Monster" and Color3.fromRGB(239, 68, 68) 
+	uiStroke.Color = entityType == "Monster" and Color3.fromRGB(239, 68, 68)
 		or entityType == "Machine" and Color3.fromRGB(59, 130, 246)
 		or Color3.fromRGB(16, 185, 129)
 	uiStroke.Parent = frame
@@ -96,11 +96,19 @@ local function CreateWidgetFrame(entityType: ScannerPipeline.EntityType): Frame
 	return frame
 end
 
-function WidgetRenderer.RenderWidget(entityType: ScannerPipeline.EntityType, metadata: ScannerPipeline.TargetMetadata, worldPos: Vector3): Frame?
-	if not CurrentCamera then return nil end
-	
+function WidgetRenderer.RenderWidget(
+	entityType: ScannerPipeline.EntityType,
+	metadata: ScannerPipeline.TargetMetadata,
+	worldPos: Vector3
+): Frame?
+	if not CurrentCamera then
+		return nil
+	end
+
 	local screenPos, onScreen = CurrentCamera:WorldToViewportPoint(worldPos)
-	if not onScreen then return nil end
+	if not onScreen then
+		return nil
+	end
 
 	local frame = CreateWidgetFrame(entityType)
 	frame.Position = UDim2.fromOffset(screenPos.X - 120, screenPos.Y - 60)

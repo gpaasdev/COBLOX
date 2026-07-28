@@ -26,7 +26,9 @@ end
 function OfflineEarningsController.ShowWelcomeModal()
 	local playerGui = localPlayer:WaitForChild("PlayerGui")
 	local mainHUD = playerGui:FindFirstChild("COBLOX_AlchemyHUD")
-	if not mainHUD then return end
+	if not mainHUD then
+		return
+	end
 
 	modalFrame = Instance.new("Frame")
 	modalFrame.Name = "OfflineEarningsModal"
@@ -61,7 +63,8 @@ function OfflineEarningsController.ShowWelcomeModal()
 	desc.Size = UDim2.new(0.9, 0, 0.35, 0)
 	desc.Position = UDim2.new(0.05, 0, 0.3, 0)
 	desc.BackgroundTransparency = 1
-	desc.Text = "Spirit Companion milikmu telah memanen Mana dan merawat tempat meracik ramuan saat kamu beristirahat!\n\nKamu mendapatkan +36,000 Koin Magis!"
+	desc.Text =
+		"Spirit Companion milikmu telah memanen Mana dan merawat tempat meracik ramuan saat kamu beristirahat!\n\nKamu mendapatkan +36,000 Koin Magis!"
 	desc.TextColor3 = Color3.fromRGB(255, 255, 255)
 	desc.Font = Enum.Font.GothamMedium
 	desc.TextSize = 14
@@ -86,7 +89,7 @@ function OfflineEarningsController.ShowWelcomeModal()
 	local btnGradient = Instance.new("UIGradient")
 	btnGradient.Color = ColorSequence.new({
 		ColorSequenceKeypoint.new(0, Color3.fromRGB(245, 158, 11)),
-		ColorSequenceKeypoint.new(1, Color3.fromRGB(251, 191, 36))
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(251, 191, 36)),
 	})
 	btnGradient.Rotation = 45
 	btnGradient.Parent = claimBtn

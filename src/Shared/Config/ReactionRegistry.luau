@@ -11,8 +11,8 @@ export type ReactionDefinition = {
 	Catalyst: string?,
 	MinTemperature: number, -- Kelvin
 	MaxTemperature: number,
-	MinPressure: number,    -- Atmospheres (atm)
-	Product: string,         -- MaterialId
+	MinPressure: number, -- Atmospheres (atm)
+	Product: string, -- MaterialId
 	YieldRatio: number,
 	EnergyRequired: number,
 	EntropyGenerated: number,

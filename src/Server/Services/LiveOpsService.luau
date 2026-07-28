@@ -15,7 +15,7 @@ local providers: { ILiveOpsProvider } = {}
 
 function LiveOpsService.Init()
 	print("[LiveOpsService] Initializing Provider-based Extensible LiveOps Architecture...")
-	
+
 	-- Register default providers
 	LiveOpsService.RegisterProvider(WeekendProvider.new())
 	LiveOpsService.RegisterProvider(HolidayProvider.new())
@@ -27,7 +27,13 @@ end
 
 function LiveOpsService.RegisterProvider(provider: ILiveOpsProvider)
 	table.insert(providers, provider)
-	print(string.format("[LiveOpsService] Registered event provider: %s (Priority %d)", provider.Name, provider:GetPriority()))
+	print(
+		string.format(
+			"[LiveOpsService] Registered event provider: %s (Priority %d)",
+			provider.Name,
+			provider:GetPriority()
+		)
+	)
 end
 
 function LiveOpsService.GetActiveModifiers(): LiveOpsModifiers

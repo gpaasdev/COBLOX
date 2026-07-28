@@ -25,11 +25,11 @@ export type Mob = {
 
 local activeMobs: { [string]: Mob } = {}
 -- Use GameConfig for all mob constants (no magic numbers)
-local MOB_SPEED        = GameConfig.Combat.MobSpeed
-local AGGRO_RADIUS     = GameConfig.Combat.MobAggroRadius
-local ATTACK_RANGE     = GameConfig.Combat.MobAttackRange
-local LEASH_DISTANCE   = GameConfig.Combat.MobLeashDistance
-local WINDUP_DURATION  = GameConfig.Combat.MobWindupDuration
+local MOB_SPEED = GameConfig.Combat.MobSpeed
+local AGGRO_RADIUS = GameConfig.Combat.MobAggroRadius
+local ATTACK_RANGE = GameConfig.Combat.MobAttackRange
+local LEASH_DISTANCE = GameConfig.Combat.MobLeashDistance
+local WINDUP_DURATION = GameConfig.Combat.MobWindupDuration
 
 function MobService.Init()
 	-- Tick-Rate Driven AI Loop (0.5 second pulse for performance budget < 2.5 GB RAM)
@@ -66,9 +66,11 @@ function MobService.SpawnMob(id: string, position: Vector3)
 		end
 	end
 	mobModel:SetAttribute("MobId", id)
-	
+
 	local hrp = mobModel.PrimaryPart
-	if not hrp then return end
+	if not hrp then
+		return
+	end
 
 	-- 3D Overhead Health Bar & Name HUD (Hologram Theme)
 	local bb = Instance.new("BillboardGui")
@@ -135,12 +137,12 @@ function MobService.SpawnMob(id: string, position: Vector3)
 
 	bb.Parent = hrp
 	mobModel.Parent = workspace:FindFirstChild("Mobs") or workspace
-	
+
 	-- Physics Movers for Smooth Interpolation
 	local attachment = Instance.new("Attachment")
 	attachment.Name = "MoverAttachment"
 	attachment.Parent = hrp
-	
+
 	local alignPos = Instance.new("AlignPosition")
 	alignPos.Attachment0 = attachment
 	alignPos.Mode = Enum.PositionAlignmentMode.OneAttachment
@@ -149,7 +151,7 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	alignPos.MaxVelocity = MOB_SPEED
 	alignPos.Responsiveness = 40
 	alignPos.Parent = hrp
-	
+
 	local alignOri = Instance.new("AlignOrientation")
 	alignOri.Attachment0 = attachment
 	alignOri.Mode = Enum.OrientationAlignmentMode.OneAttachment
@@ -158,7 +160,7 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	alignOri.MaxAngularVelocity = 15
 	alignOri.Responsiveness = 30
 	alignOri.Parent = hrp
-	
+
 	-- Ensure Unanchored for Physics
 	hrp.Anchored = false
 	hrp:SetNetworkOwner(nil) -- Force Server Ownership for AlignPosition to work!
@@ -166,7 +168,7 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	local mobActor = Instance.new("Actor")
 	mobActor.Name = "MobActor"
 	mobActor.Parent = mobModel
-	
+
 	activeMobs[id] = {
 		Id = id,
 		Model = mobModel,
@@ -187,8 +189,10 @@ function MobService.Start()
 end
 
 function MobService.TriggerAggro(player: Player, mobId: string?)
-	if MobService._IsPlayerInSafeZone(player) then return end
-	
+	if MobService._IsPlayerInSafeZone(player) then
+		return
+	end
+
 	if mobId then
 		local mob = activeMobs[mobId]
 		if mob and mob.State == "IDLE" then
@@ -230,8 +234,15 @@ function MobService.TakeDamage(id: string, amount: number, attacker: Player?)
 				local lootEntry = MobService._RollLoot(lootTier)
 				if lootEntry then
 					MobService._GrantLoot(attacker, lootEntry)
-					print(string.format("[MobService] Player %s defeated mob %s (Loot: %s x%s)",
-						attacker.Name, id, lootEntry[2], tostring(lootEntry[3])))
+					print(
+						string.format(
+							"[MobService] Player %s defeated mob %s (Loot: %s x%s)",
+							attacker.Name,
+							id,
+							lootEntry[2],
+							tostring(lootEntry[3])
+						)
+					)
 				end
 				-- Track combat stats
 				local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
@@ -273,8 +284,8 @@ end
 -- Atomic loot grant via ProfileStore session lock
 function MobService._GrantLoot(player: Player, lootEntry: { string | number })
 	local lootType = lootEntry[1] :: string
-	local itemId   = lootEntry[2] :: string
-	local amount   = lootEntry[3] :: number
+	local itemId = lootEntry[2] :: string
+	local amount = lootEntry[3] :: number
 
 	if lootType == "Currency" then
 		local EconomyService = require(ServerScriptService.Server.Services.EconomyService)
@@ -283,8 +294,12 @@ function MobService._GrantLoot(player: Player, lootEntry: { string | number })
 		-- Item loot → atomic write to LootDrops sub-field
 		local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
 		ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
-			if not profileData.Inventory then profileData.Inventory = {} end
-			if not profileData.Inventory.LootDrops then profileData.Inventory.LootDrops = {} end
+			if not profileData.Inventory then
+				profileData.Inventory = {}
+			end
+			if not profileData.Inventory.LootDrops then
+				profileData.Inventory.LootDrops = {}
+			end
 			profileData.Inventory.LootDrops[itemId] = (profileData.Inventory.LootDrops[itemId] or 0) + amount
 		end)
 	end
@@ -293,16 +308,20 @@ end
 function MobService.Tick(dt: number)
 	for id, mob in activeMobs do
 		local hrp = mob.Model.PrimaryPart
-		if not hrp then continue end
-		
+		if not hrp then
+			continue
+		end
+
 		local alignPos = hrp:FindFirstChildOfClass("AlignPosition")
 		local alignOri = hrp:FindFirstChildOfClass("AlignOrientation")
-		
-		if not alignPos or not alignOri then continue end
-		
+
+		if not alignPos or not alignOri then
+			continue
+		end
+
 		local now = os.clock()
 		local timeInState = now - mob.StateTime
-		
+
 		if mob.State == "IDLE" then
 			-- Proximity Aggro Detection (AGGRO_RADIUS = 30)
 			for _, player in ipairs(Players:GetPlayers()) do
@@ -321,29 +340,35 @@ function MobService.Tick(dt: number)
 			-- Gentle Idle Patrol around central nest spawn point
 			if mob.State == "IDLE" and timeInState > 4 then
 				local randomAngle = math.rad(math.random(0, 360))
-				local patrolTarget = mob.SpawnPosition + Vector3.new(math.cos(randomAngle) * 10, 0, math.sin(randomAngle) * 10)
+				local patrolTarget = mob.SpawnPosition
+					+ Vector3.new(math.cos(randomAngle) * 10, 0, math.sin(randomAngle) * 10)
 				alignPos.Position = patrolTarget
 				alignOri.CFrame = CFrame.lookAt(hrp.Position, patrolTarget)
 				mob.StateTime = now
 			end
-			
 		elseif mob.State == "CHASE" then
 			-- Event-Triggered Aggro has a 15-second chase limit or safe zone leash
-			if timeInState > 15 or not mob.Target or not mob.Target.Character or not mob.Target.Character.PrimaryPart or MobService._IsPlayerInSafeZone(mob.Target) then
+			if
+				timeInState > 15
+				or not mob.Target
+				or not mob.Target.Character
+				or not mob.Target.Character.PrimaryPart
+				or MobService._IsPlayerInSafeZone(mob.Target)
+			then
 				-- Time limit reached or Player entered Safe Zone -> RETURN to nest
 				mob.Target = nil
 				mob.State = "RETURN"
 				mob.StateTime = now
 				continue
 			end
-			
+
 			local targetPos = mob.Target.Character.PrimaryPart.Position
 			local hrpPos = hrp.Position
-			
+
 			local distFromTarget = (targetPos - hrpPos).Magnitude
 			local distFromSpawn = (hrpPos - mob.SpawnPosition).Magnitude
-			local lookAtCFrame = CFrame.lookAt(hrpPos, targetPos * Vector3.new(1,0,1) + Vector3.new(0, hrpPos.Y, 0))
-			
+			local lookAtCFrame = CFrame.lookAt(hrpPos, targetPos * Vector3.new(1, 0, 1) + Vector3.new(0, hrpPos.Y, 0))
+
 			if distFromTarget > LEASH_DISTANCE or distFromSpawn > LEASH_DISTANCE then
 				-- Exceeded Leash distance -> RETURN state
 				mob.Target = nil
@@ -360,7 +385,9 @@ function MobService.Tick(dt: number)
 				if eyesCore then
 					eyesCore.Color = Color3.fromRGB(255, 255, 255)
 					task.delay(0.2, function()
-						if eyesCore then eyesCore.Color = Color3.fromRGB(239, 68, 68) end
+						if eyesCore then
+							eyesCore.Color = Color3.fromRGB(239, 68, 68)
+						end
 					end)
 				end
 
@@ -368,29 +395,28 @@ function MobService.Tick(dt: number)
 			else
 				-- Physics follow target
 				alignPos.Position = targetPos
-				alignOri.CFrame = CFrame.lookAt(hrp.Position, targetPos * Vector3.new(1,0,1) + Vector3.new(0, hrp.Position.Y, 0))
+				alignOri.CFrame =
+					CFrame.lookAt(hrp.Position, targetPos * Vector3.new(1, 0, 1) + Vector3.new(0, hrp.Position.Y, 0))
 			end
-			
 		elseif mob.State == "WINDUP" then
-			if timeInState >= WINDUP_DURATION then 
+			if timeInState >= WINDUP_DURATION then
 				mob.State = "ATTACK"
 				mob.StateTime = now
 			end
-			
 		elseif mob.State == "ATTACK" then
 			-- Hitbox Validation via Spatial Query (Lag-compensated) & Auto-Transition back to CHASE
 			if mob.Target and mob.Target.Character and mob.Target.Character.PrimaryPart then
 				local targetChar = mob.Target.Character
-				
+
 				local overlapParams = OverlapParams.new()
 				overlapParams.FilterType = Enum.RaycastFilterType.Include
-				overlapParams.FilterDescendantsInstances = {targetChar}
-				
+				overlapParams.FilterDescendantsInstances = { targetChar }
+
 				local attackHitboxSize = Vector3.new(ATTACK_RANGE * 2, 8, ATTACK_RANGE * 2)
-				local attackHitboxCFrame = hrp.CFrame * CFrame.new(0, 0, -ATTACK_RANGE/2)
-				
+				local attackHitboxCFrame = hrp.CFrame * CFrame.new(0, 0, -ATTACK_RANGE / 2)
+
 				local hitParts = workspace:GetPartBoundsInBox(attackHitboxCFrame, attackHitboxSize, overlapParams)
-				
+
 				if #hitParts > 0 then
 					local CombatService = require(script.Parent.CombatService)
 					if CombatService.CheckParry(mob.Target) then
@@ -403,11 +429,10 @@ function MobService.Tick(dt: number)
 					end
 				end
 			end
-			
+
 			-- Auto-transition back to CHASE
 			mob.State = "CHASE"
 			mob.StateTime = now
-			
 		elseif mob.State == "RETURN" then
 			-- Walk back to SpawnPosition
 			local distToSpawn = (mob.SpawnPosition - hrp.Position).Magnitude
@@ -424,15 +449,21 @@ end
 
 function MobService._IsPlayerInSafeZone(player: Player): boolean
 	local char = player.Character
-	if not char or not char.PrimaryPart then return false end
-	
+	if not char or not char.PrimaryPart then
+		return false
+	end
+
 	local pos = char.PrimaryPart.Position
 	local mapFolder = workspace:FindFirstChild("Map")
-	if not mapFolder then return false end
-	
+	if not mapFolder then
+		return false
+	end
+
 	local plots = mapFolder:FindFirstChild("Plots")
-	if not plots then return false end
-	
+	if not plots then
+		return false
+	end
+
 	for _, plot in ipairs(plots:GetChildren()) do
 		if plot:IsA("BasePart") then
 			-- Check 2D distance inside Tycoon Plot (Radius <= 25 studs)
@@ -442,7 +473,7 @@ function MobService._IsPlayerInSafeZone(player: Player): boolean
 			end
 		end
 	end
-	
+
 	return false
 end
 

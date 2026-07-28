@@ -18,7 +18,7 @@ function ObjectPool.new(template: Instance, initialSize: number): Pool
 	local self = setmetatable({}, ObjectPool)
 	self.Template = template
 	self.Pool = {}
-	
+
 	local parentFolder: Instance
 	if RunService:IsServer() then
 		local ServerStorage = game:GetService("ServerStorage")
@@ -31,14 +31,14 @@ function ObjectPool.new(template: Instance, initialSize: number): Pool
 		parentFolder.Name = "COBLOX_ClientPools"
 		parentFolder.Parent = ReplicatedStorage
 	end
-	
+
 	self.StorageFolder = parentFolder :: Folder
-	
+
 	for _ = 1, initialSize do
 		local clone = self.Template:Clone()
 		self:Return(clone)
 	end
-	
+
 	return (self :: any) :: Pool
 end
 
@@ -59,7 +59,7 @@ function ObjectPool:Return(instance: Instance)
 	elseif instance:IsA("ParticleEmitter") then
 		instance.Enabled = false
 	end
-	
+
 	instance.Parent = self.StorageFolder
 	table.insert(self.Pool, instance)
 end

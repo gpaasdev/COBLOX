@@ -10,7 +10,7 @@ function MathUtil.Probability(chance: number): boolean
 end
 
 -- 2. Weighted Random
-function MathUtil.WeightedRandom(weights: {[string]: number}): string?
+function MathUtil.WeightedRandom(weights: { [string]: number }): string?
 	local totalWeight = 0
 	for _, weight in pairs(weights) do
 		totalWeight += weight
@@ -44,8 +44,12 @@ end
 
 -- 5. Fibonacci Progression
 function MathUtil.Fibonacci(n: number): number
-	if n <= 0 then return 0 end
-	if n == 1 then return 1 end
+	if n <= 0 then
+		return 0
+	end
+	if n == 1 then
+		return 1
+	end
 	local a, b = 0, 1
 	for _ = 2, n do
 		a, b = b, a + b
@@ -68,7 +72,9 @@ end
 
 -- 8. Resource Curves (Diminishing returns)
 function MathUtil.DiminishingReturns(x: number, cap: number): number
-	if x < 0 then return 0 end
+	if x < 0 then
+		return 0
+	end
 	return cap * (1 - math.exp(-x / cap))
 end
 
@@ -82,7 +88,15 @@ function MathUtil.Noise2D(x: number, y: number, seed: number, scale: number): nu
 	return math.noise(x * scale, y * scale, seed)
 end
 
-function MathUtil.FractalBrownianMotion2D(x: number, y: number, seed: number, octaves: number, persistence: number, lacunarity: number, scale: number): number
+function MathUtil.FractalBrownianMotion2D(
+	x: number,
+	y: number,
+	seed: number,
+	octaves: number,
+	persistence: number,
+	lacunarity: number,
+	scale: number
+): number
 	local total = 0
 	local frequency = scale
 	local amplitude = 1

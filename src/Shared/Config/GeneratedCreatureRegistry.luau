@@ -14,6 +14,15 @@ function CreatureRegistry.GetAll(): { [string]: CreatureRegistryDefinition }
 	return CreatureRegistry
 end
 
+-- Backward-compatible aliases (legacy API)
+function CreatureRegistry.GetCreature(id: string): CreatureRegistryDefinition?
+	return CreatureRegistry[id]
+end
+
+function CreatureRegistry.GetAllCreature(): { [string]: CreatureRegistryDefinition }
+	return CreatureRegistry
+end
+
 CreatureRegistry["Creature_Abomination_Lvl1"] = {
 	Id = "Creature_Abomination_Lvl1",
 	Name = "Abomination Elite Grade 1",

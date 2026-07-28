@@ -21,7 +21,7 @@ Linear.__index = Linear
 ]=]
 function Linear.new(targetValue, options)
 	assert(targetValue, "Missing argument #1: targetValue")
-	
+
 	options = options or {}
 
 	return setmetatable({
@@ -46,7 +46,7 @@ function Linear:step(state, dt)
 		position = self._targetValue
 		velocity = 0
 	end
-	
+
 	return {
 		complete = complete,
 		value = position,

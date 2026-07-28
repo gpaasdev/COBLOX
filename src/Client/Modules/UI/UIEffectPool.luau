@@ -40,10 +40,11 @@ function UIEffectPool.EmitSparks(originObject: GuiObject, count: number?)
 			local targetX = center.X + math.cos(angle) * distance
 			local targetY = center.Y + math.sin(angle) * distance
 
-			local tween = TweenService:Create(spark, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-				Position = UDim2.new(0, targetX, 0, targetY),
-				ImageTransparency = 1,
-			})
+			local tween =
+				TweenService:Create(spark, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+					Position = UDim2.new(0, targetX, 0, targetY),
+					ImageTransparency = 1,
+				})
 
 			tween:Play()
 			tween.Completed:Connect(function()
