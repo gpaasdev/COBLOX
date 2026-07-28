@@ -91,5 +91,45 @@ class OpenCloudClient:
         with urllib.request.urlopen(req, timeout=15) as resp:
             return json.loads(resp.read().decode())
 
+    def create_place(self, place_name: str, template_place_id: str, description: str = "") -> Dict[str, Any]:
+        """Create a new place in the universe via Open Cloud API."""
+        if not self.universe_id:
+            raise ValueError("universe_id is required for place creation.")
+        
+        url = f"https://apis.roblox.com/cloud/v2/universes/{self.universe_id}/places"
+        payload = json.dumps({
+            "name": place_name,
+            "description": description,
+            "templatePlaceId": template_place_id,
+        }).encode()
+        
+        req = urllib.request.Request(url, method="POST", data=payload, headers=self._headers())
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode())
+
+    def publish_place_to(self, place_id: str, file_path: str, version_type: str = "Published") -> Dict[str, Any]:
+        """Publish .rbxl to a specific place ID (not just default place)."""
+        if not self.universe_id or not place_id:
+            raise ValueError("universe_id and place_id are required.")
+        
+        url = f"https://apis.roblox.com/universes/v1/{self.universe_id}/places/{place_id}/versions?versionType={version_type}"
+        with open(file_path, "rb") as f:
+            data = f.read()
+        
+        req = urllib.request.Request(url, method="POST", data=data, headers=self._headers("application/octet-stream"))
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            return json.loads(resp.read().decode())
+
+    def get_places(self) -> Dict[str, Any]:
+        """List all places in the universe."""
+        if not self.universe_id:
+            raise ValueError("universe_id is required.")
+        
+        url = f"https://apis.roblox.com/cloud/v2/universes/{self.universe_id}/places"
+        req = urllib.request.Request(url, method="GET", headers=self._headers())
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            return json.loads(resp.read().decode())
+
+
 if __name__ == "__main__":
     print("✅ OpenCloudClient module initialized.")

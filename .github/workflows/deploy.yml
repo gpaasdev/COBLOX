@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-main:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -17,13 +17,34 @@ jobs:
       - name: Run Linter (Selene)
         run: selene src/
 
-      - name: Build Place File
+      - name: Build Main Place
         run: rojo build -o COBLOX_Production.rbxl
 
-      - name: Publish to Roblox via Open Cloud API
+      - name: Publish Main Place to Roblox via Open Cloud API
         run: |
           curl -X POST \
             "https://apis.roblox.com/universes/v1/${{ secrets.ROBLOX_UNIVERSE_ID }}/places/${{ secrets.ROBLOX_PLACE_ID }}/versions?versionType=Published" \
             -H "x-api-key: ${{ secrets.ROBLOX_OPEN_CLOUD_API_KEY }}" \
             -H "Content-Type: application/octet-stream" \
             --data-binary @COBLOX_Production.rbxl
+
+  build-and-deploy-fairytale:
+    runs-on: ubuntu-latest
+    if: ${{ vars.FAIRYTALE_DEPLOY_ENABLED == 'true' }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Aftman (Rojo, Selene, Stylua)
+        uses: ok-nick/setup-aftman@v0.4.2
+
+      - name: Build Fairytale Place
+        run: rojo build fairytale/ -o COBLOX_Fairytale.rbxl
+
+      - name: Publish Fairytale Place to Roblox via Open Cloud API
+        run: |
+          curl -X POST \
+            "https://apis.roblox.com/universes/v1/${{ secrets.ROBLOX_UNIVERSE_ID }}/places/${{ secrets.ROBLOX_FAIRYTALE_PLACE_ID }}/versions?versionType=Published" \
+            -H "x-api-key: ${{ secrets.ROBLOX_OPEN_CLOUD_API_KEY }}" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @COBLOX_Fairytale.rbxl

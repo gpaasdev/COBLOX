@@ -84,6 +84,18 @@ local GameConfig = {
 		-- Tier 4+ (announcements — safe)
 		AnnouncementService = true, -- Stub: DomainEventBus only
 		CrossServerMessagingService = true, -- Production: pcall-wrapped
+
+		-- Tier 2.75 (Realm — multi-place)
+		RealmAssemblyService = true, -- Production: realm-aware WorldAssembly
+		RealmTeleportService = true, -- Production: cross-realm teleport
+
+		-- Tier 5 (Monetization & Social — Production Ready)
+		RewardedAdService = true, -- Production: AdService + reward dispense
+		BadgeService = true, -- Production: Roblox BadgeService + Open Cloud sync
+		SocialEngagementService = true, -- Production: PromptGameInvite + notifications
+
+		-- Tier 5.5 (Subscription — Pending Dashboard Setup)
+		SubscriptionService = true, -- Production: Monthly Alchemist $4.99/mo
 	},
 }
 

@@ -20,6 +20,32 @@
 
 > **LARANGAN:** Jangan hardcode Universe ID / Place ID ke source code atau script sebelum ketidakcocokan angka di atas diklarifikasi langsung ke Creator Dashboard.
 
+## §0b. Multi-Place Architecture
+
+| Parameter | Nilai | Status |
+|---|---|---|
+| Universe ID | 10545905192 | ✅ Confirmed |
+| Place 1 — Main Realm | `ROBLOX_PLACE_ID` | Lihat `.env` |
+| Place 2 — Fairytale Realm | `ROBLOX_FAIRYTALE_PLACE_ID` | ⚠️ Buat via Studio → Publish to Roblox As... → "Add as new place" |
+| Realm auto-detect | `RuntimeServer.server.luau` → `RealmRegistry` | ✅ Implemented |
+| Cross-realm teleport | `RealmTeleportService` via `TeleportService:TeleportAsync` | ✅ Implemented |
+| Realm config | `RealmConfig.luau` (theme + lighting presets) | ✅ Implemented |
+
+**Deployment:**
+- `default.project.json` → Main Place (existing)
+- `fairytale/default.project.json` → Fairytale Place (build via `rojo build fairytale/`)
+- CI/CD: `.github/workflows/deploy.yml` dual-place jobs (Fairytale disabled via `FAIRYTALE_DEPLOY_ENABLED` var)
+
+**Realm auto-detection at boot:**
+```luau
+-- RuntimeServer.server.luau
+for key, entry in pairs(RealmRegistry) do
+    if entry.PlaceId == game.PlaceId then
+        RealmConfig.CurrentTheme = entry.Theme
+    end
+end
+```
+
 ---
 
 ## §1. Stack & Toolchain (Terverifikasi)

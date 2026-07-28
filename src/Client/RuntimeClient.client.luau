@@ -77,8 +77,15 @@ ControllerRegistry.RegisterController("StoreController", require(controllersFold
 ControllerRegistry.RegisterController("StreamingController", require(controllersFolder.StreamingController))
 ControllerRegistry.RegisterController("SynthesisController", require(controllersFolder.SynthesisController))
 ControllerRegistry.RegisterController("TradeController", require(controllersFolder.TradeController))
-ControllerRegistry.RegisterController("TutorialController", require(controllersFolder.TutorialController))
 ControllerRegistry.RegisterController("TycoonRenderController", require(controllersFolder.TycoonRenderController))
+
+-- Tier 5 — Monetization & Social (Phase 0 Production)
+ControllerRegistry.RegisterController("AdRewardController", require(controllersFolder.AdRewardController))
+ControllerRegistry.RegisterController("BadgeNotificationController", require(controllersFolder.BadgeNotificationController))
+ControllerRegistry.RegisterController("SocialInviteController", require(controllersFolder.SocialInviteController))
+
+-- Tier 2.75 — Realm (Phase 1)
+ControllerRegistry.RegisterController("RealmEntryController", require(controllersFolder.RealmEntryController))
 
 print("==================================================")
 print("[COBLOX Client Bootstrap] Initializing Controllers via ControllerRegistry...")

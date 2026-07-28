@@ -3,6 +3,18 @@
 local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local GameConfig = require(ReplicatedStorage.Shared.Configuration.GameConfig)
+local RealmConfig = require(ReplicatedStorage.Shared.Configuration.RealmConfig)
+local RealmRegistry = require(ReplicatedStorage.Shared.Config.RealmRegistry)
+
+-- Auto-detect realm from Place ID
+local currentPlaceId = game.PlaceId
+for key, entry in pairs(RealmRegistry) do
+	if typeof(entry) == "table" and entry.PlaceId == currentPlaceId then
+		RealmConfig.CurrentTheme = entry.Theme :: any
+		print(string.format("[Bootstrap] Auto-detected realm: %s (theme: %s)", key, entry.Theme))
+		break
+	end
+end
 
 -- ============================================================
 -- TIER 0 — Infrastructure
@@ -43,7 +55,6 @@ local ExpeditionService = require(ServerScriptService.Server.Services.Expedition
 local QuestManager = require(ServerScriptService.Server.Services.QuestManager)
 local OnboardingService = require(ServerScriptService.Server.Services.OnboardingService)
 local StoreService = require(ServerScriptService.Server.Services.StoreService)
-local WorldAssemblyService = require(ServerScriptService.Server.Services.WorldAssemblyService)
 
 -- ============================================================
 -- TIER 2.5 — Discovery & Reaction [NEW — RC-2]
@@ -51,6 +62,12 @@ local WorldAssemblyService = require(ServerScriptService.Server.Services.WorldAs
 local DiscoveryService = require(ServerScriptService.Server.Services.DiscoveryService)
 local ReactionEngine = require(ServerScriptService.Server.Services.ReactionEngine)
 local MachineService = require(ServerScriptService.Server.Services.MachineService)
+
+-- ============================================================
+-- TIER 2.75 — Realm [NEW — Phase 1]
+-- ============================================================
+local RealmAssemblyService = require(ServerScriptService.Server.Services.RealmAssemblyService)
+local RealmTeleportService = require(ServerScriptService.Server.Services.RealmTeleportService)
 
 -- ============================================================
 -- TIER 3 — Economy [EXISTING]
@@ -62,6 +79,8 @@ local RecipeService = require(ServerScriptService.Server.Services.RecipeService)
 local PlacementService = require(ServerScriptService.Server.Services.PlacementService)
 local PetService = require(ServerScriptService.Server.Services.PetService)
 local EggService = require(ServerScriptService.Server.Services.EggService)
+local HatchService = require(ServerScriptService.Server.Services.HatchService)
+local SetorAuraService = require(ServerScriptService.Server.Services.SetorAuraService)
 local TycoonService = require(ServerScriptService.Server.Services.TycoonService)
 local TradeService = require(ServerScriptService.Server.Services.TradeService)
 local PotionVaultService = require(ServerScriptService.Server.Services.PotionVaultService)
@@ -89,6 +108,18 @@ local FlexZoneService = require(ServerScriptService.Server.Services.FlexZoneServ
 -- ============================================================
 local AnnouncementService = require(ServerScriptService.Server.Services.AnnouncementService)
 local CrossServerMessagingService = require(ServerScriptService.Server.Services.CrossServerMessagingService)
+
+-- ============================================================
+-- TIER 5 — Monetization & Social [NEW — Phase 0 Production]
+-- ============================================================
+local RewardedAdService = require(ServerScriptService.Server.Services.RewardedAdService)
+local BadgeService = require(ServerScriptService.Server.Services.BadgeService)
+local SocialEngagementService = require(ServerScriptService.Server.Services.SocialEngagementService)
+
+-- ============================================================
+-- TIER 5.5 — Subscription [NEW — Phase 3]
+-- ============================================================
+local SubscriptionService = require(ServerScriptService.Server.Services.SubscriptionService)
 
 -- ============================================================
 -- BOOT ORDER — services{} table with tier comments
@@ -125,12 +156,15 @@ local services = {
 	QuestManager,
 	OnboardingService,
 	StoreService,
-	WorldAssemblyService,
 
 	-- TIER 2.5 — Discovery & Reaction [NEW]
 	DiscoveryService,
 	ReactionEngine,
 	MachineService,
+
+	-- TIER 2.75 — Realm (multi-place)
+	RealmAssemblyService,
+	RealmTeleportService,
 
 	-- TIER 3 — Economy
 	AnalyticsService,
@@ -140,6 +174,8 @@ local services = {
 	PlacementService,
 	PetService,
 	EggService,
+	HatchService,
+	SetorAuraService,
 	TycoonService,
 	TradeService,
 	PotionVaultService,
@@ -161,6 +197,14 @@ local services = {
 	-- TIER 4+ — Cross-Server [NEW]
 	AnnouncementService,
 	CrossServerMessagingService,
+
+	-- TIER 5 — Monetization & Social [NEW — Phase 0 Production]
+	RewardedAdService,
+	BadgeService,
+	SocialEngagementService,
+
+	-- TIER 5.5 — Subscription [NEW — Phase 3]
+	SubscriptionService,
 }
 
 -- ============================================================
@@ -169,6 +213,28 @@ local services = {
 print("==================================================")
 print("[COBLOX Server Bootstrap] Initializing LGBOS v11.0 Commercial Live Service Architecture...")
 print("==================================================")
+
+-- Workspace Cleanup: Remove static root objects replaced by WorldAssemblyService
+local Workspace = game:GetService("Workspace")
+local staticRootCleanup = { "Baseplate", "SpawnLocation" }
+for _, name in ipairs(staticRootCleanup) do
+	local obj = Workspace:FindFirstChild(name)
+	if obj and obj.Parent == Workspace then
+		obj:Destroy()
+		print(string.format("[Bootstrap] Workspace Cleanup: Removed static '%s' from root", name))
+	end
+end
+
+-- Runtime containers: created dynamically for services
+local runtimeContainers = { "FXContainer", "Beac", "Debris" }
+for _, name in ipairs(runtimeContainers) do
+	if not Workspace:FindFirstChild(name) then
+		local container = Instance.new("Folder")
+		container.Name = name
+		container.Parent = Workspace
+		print(string.format("[Bootstrap] Workspace Setup: Created runtime container '%s'", name))
+	end
+end
 
 local booted = 0
 local skipped = 0

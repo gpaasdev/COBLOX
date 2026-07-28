@@ -332,7 +332,7 @@ function WorldAssemblyService._AssembleWorld()
 		npcModel.Parent = npcFolder
 	end
 
-	-- 5. Immersive Ads 3D Billboard Unit in Cyber Lobby
+	-- 5. Immersive Ad Units — Real AdPortal Billboard in Central Hub
 	local adPart = Instance.new("Part")
 	adPart.Name = "ImmersiveAdBillboard"
 	adPart.Size = Vector3.new(36, 20, 1.5)
@@ -342,19 +342,35 @@ function WorldAssemblyService._AssembleWorld()
 	adPart.Material = Enum.Material.Glass
 	adPart.Parent = mapFolder
 
-	local adGui = Instance.new("SurfaceGui")
-	adGui.Name = "AdGui"
-	adGui.Face = Enum.NormalId.Front
-	adGui.Parent = adPart
+	local adPortal = Instance.new("AdPortal")
+	adPortal.Name = "AdPortal"
+	adPortal.Parent = mapFolder
+
+	local adBillboard = Instance.new("SurfaceGui")
+	adBillboard.Name = "AdGui"
+	adBillboard.Face = Enum.NormalId.Front
+	adBillboard.AdPortal = adPortal
+	adBillboard.Parent = adPart
+
+	local adFrame = Instance.new("Frame")
+	adFrame.Size = UDim2.new(1, 0, 1, 0)
+	adFrame.BackgroundColor3 = Color3.fromRGB(30, 41, 59)
+	adFrame.BackgroundTransparency = 0.2
+	adFrame.BorderSizePixel = 0
+	adFrame.Parent = adBillboard
+
+	local adCorner = Instance.new("UICorner")
+	adCorner.CornerRadius = UDim.new(0, 8)
+	adCorner.Parent = adFrame
 
 	local adLabel = Instance.new("TextLabel")
 	adLabel.Size = UDim2.new(1, 0, 1, 0)
-	adLabel.BackgroundColor3 = Color3.fromRGB(30, 41, 59)
+	adLabel.BackgroundTransparency = 1
 	adLabel.TextColor3 = Color3.fromRGB(56, 189, 248)
 	adLabel.Font = Enum.Font.GothamBold
-	adLabel.TextSize = 30
-	adLabel.Text = "📢 ROBLOX IMMERSIVE AD UNIT\n(Passive Monetization Slot)"
-	adLabel.Parent = adGui
+	adLabel.TextSize = 24
+	adLabel.Text = "📢 IMMERSIVE AD UNIT\n(Monetization Slot — Active)"
+	adLabel.Parent = adFrame
 
 	-- 6. Spawn Stylized Anime Nature & Floating Sky Islands
 	WorldAssemblyService._AssembleAnimeNature(mapFolder)

@@ -1,0 +1,130 @@
+{
+  "name": "COBLOX_Fairytale",
+  "tree": {
+    "$className": "DataModel",
+    "$properties": {
+      "Name": "COBLOX: Fairytale Fantasy Realm"
+    },
+    "Workspace": {
+      "$className": "Workspace",
+      "$properties": {
+        "StreamingEnabled": true
+      },
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Position": [0, -10, 0],
+          "Size": [512, 20, 512],
+          "Locked": true,
+          "Color": [0.1, 0.0, 0.2]
+        }
+      },
+      "SpawnLocation": {
+        "$className": "SpawnLocation",
+        "$properties": {
+          "Anchored": true,
+          "Position": [0, 0.5, 0],
+          "Size": [12, 1, 12]
+        }
+      }
+    },
+    "Lighting": {
+      "$className": "Lighting",
+      "$properties": {
+        "Ambient": [0.1, 0.0, 0.2],
+        "OutdoorAmbient": [0.16, 0.08, 0.24],
+        "Brightness": 1.5,
+        "ClockTime": 5.5,
+        "GeographicLatitude": 45.0,
+        "GlobalShadows": true
+      },
+      "Atmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.25,
+          "Offset": 0.15,
+          "Color": [0.47, 0.31, 0.78],
+          "Decay": [0.24, 0.12, 0.39],
+          "Glare": 0.6,
+          "Haze": 0.8
+        }
+      },
+      "Bloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Intensity": 1.2,
+          "Size": 32,
+          "Threshold": 0.6
+        }
+      },
+      "ColorCorrection": {
+        "$className": "ColorCorrectionEffect",
+        "$properties": {
+          "Brightness": 0.08,
+          "Contrast": 0.1,
+          "Saturation": 0.35,
+          "TintColor": [0.94, 0.9, 1.0]
+        }
+      }
+    },
+    "SoundService": {
+      "$className": "SoundService",
+      "BGM": {
+        "$className": "SoundGroup",
+        "$properties": { "Volume": 0.6 }
+      },
+      "SFX": {
+        "$className": "SoundGroup",
+        "$properties": { "Volume": 1.0 }
+      },
+      "UI": {
+        "$className": "SoundGroup",
+        "$properties": { "Volume": 0.8 }
+      },
+      "Ambient": {
+        "$className": "SoundGroup",
+        "$properties": { "Volume": 0.5 }
+      }
+    },
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "Shared": {
+        "$path": "../src/Shared",
+        "Assets": {
+          "$path": "../src/Assets"
+        }
+      },
+      "Packages": {
+        "$path": "../Packages"
+      },
+      "Localization": {
+        "$path": "../src/Localization"
+      }
+    },
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "Server": {
+        "$path": "../src/Server"
+      },
+      "ServerPackages": {
+        "$path": "../ServerPackages"
+      },
+      "Content": {
+        "$path": "../src/Content"
+      },
+      "LiveOps": {
+        "$path": "../src/LiveOps"
+      }
+    },
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "Client": {
+          "$path": "../src/Client"
+        }
+      }
+    }
+  }
+}

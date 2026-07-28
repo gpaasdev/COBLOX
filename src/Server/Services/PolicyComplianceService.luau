@@ -118,4 +118,12 @@ function PolicyComplianceService.CanTradePaidItems(player: Player): boolean
 	return policy.IsPaidItemTradingAllowed
 end
 
+function PolicyComplianceService.CanWatchAds(player: Player): boolean
+	local policy = PolicyComplianceService.GetPlayerPolicy(player)
+	if policy.IsSubjectToChinaPolicies then
+		return false
+	end
+	return true
+end
+
 return PolicyComplianceService

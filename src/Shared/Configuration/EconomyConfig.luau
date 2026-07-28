@@ -27,6 +27,10 @@ local EconomyConfig = {
 		PLUS_50_INVENTORY_SLOTS = 1924818406, -- +50 Inventory Slots (99 R$)
 		AUTO_HATCH = 1925292405, -- Quantum Auto-Hatch (149 R$)
 		CYBER_NEON_TRAIL = 1923484423, -- Cyber-Neon Trail (Free)
+		-- Fairytale Realm (Phase 3 — create via Creator Dashboard)
+		FAIRYTALE_REALM_PASS = 0, -- Fairytale Realm Pass (299 R$) — set after creation
+		CELESTIAL_WINGS_BUNDLE = 0, -- Celestial Wings Bundle (499 R$) — set after creation
+		COVEN_GUILDMASTER = 0, -- Coven Guildmaster License (999 R$) — set after creation
 	},
 
 	DEV_PRODUCTS = {
@@ -40,6 +44,17 @@ local EconomyConfig = {
 		CHRONO_SPARKS_PACK = 3612013298, -- +100 Chrono Sparks (149 R$)
 		INSTANT_EGG_HATCH = 3612013299, -- Instant Egg Hatch (15 R$)
 		REBIRTH_SKIP_TOKEN = 3612013301, -- +1 Rebirth Token (299 R$)
+		-- Fairytale Realm (Phase 3)
+		FAIRY_DUST_PACK = 0, -- Fairy Dust Bundle (99 R$) — set after creation
+		ENCHANTED_ELIXIR = 0, -- Enchanted Elixir (79 R$) — set after creation
+	},
+
+	SUBSCRIPTION = {
+		MONTHLY_ALCHEMIST_ID = 0, -- Monthly Alchemist ($4.99/mo — create via Creator Dashboard)
+		MONTHLY_PRICE_USD = 4.99,
+		MONTHLY_GEMS_PER_DAY = 500,
+		MONTHLY_EXP_BOOST = 0.2,
+		MONTHLY_EXCLUSIVE_PET = "SP_FAIRY_FOX",
 	},
 }
 
