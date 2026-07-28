@@ -55,6 +55,14 @@ RecipeRegistry["RCP_AETHER_CRYSTAL"] = {
 	OutputType = "Material",
 }
 
+RecipeRegistry["RCP_AETHER_CRYSTAL"] = {
+	Id = "RCP_AETHER_CRYSTAL",
+	Name = "Aether Crystal Fusion",
+	Description = "Gabungkan Aether Crystal Shards menjadi Aether Crystal murni.",
+	Ingredients = {"AetherCrystal_Shard", "AetherCrystal_Shard", "FairyDust"},
+	OutputType = "Material",
+}
+
 RecipeRegistry["RCP_AETHER_ESSENCE"] = {
 	Id = "RCP_AETHER_ESSENCE",
 	Name = "Aether Essence Distillation",
@@ -98,6 +106,14 @@ RecipeRegistry["RCP_AURA_POTION_MINOR"] = {
 RecipeRegistry["RCP_CELESTIAL_KEYSTONE"] = {
 	Id = "RCP_CELESTIAL_KEYSTONE",
 	Name = "Celestial Keystone",
+	Description = "Batu kunci untuk membuka portal ke Fairytale Realm.",
+	Ingredients = {"AetherCrystal_Ore", "FairyDust", "MoonBloom_Petal", "GoldVein_Ore"},
+	OutputType = "Key",
+}
+
+RecipeRegistry["RCP_CELESTIAL_KEYSTONE"] = {
+	Id = "RCP_CELESTIAL_KEYSTONE",
+	Name = "Celestial Keystone",
 	Description = "Craft a Keystone to unlock Celestial Sector 5 biomes.",
 	Ingredients = {"Aether_Singularity", "Gold_Singularity", "Mythril_Singularity"},
 	OutputType = "BiomePass",
@@ -125,6 +141,22 @@ RecipeRegistry["RCP_CRYO_REAGENT"] = {
 	Description = "Produce a Cryo Reagent for CryoCooler and low-temperature reactions.",
 	Ingredients = {"Iron_Vapor", "Copper_Vapor", "Gold_Vapor"},
 	OutputType = "Material",
+}
+
+RecipeRegistry["RCP_ENCHANTED_ELIXIR"] = {
+	Id = "RCP_ENCHANTED_ELIXIR",
+	Name = "Enchanted Elixir",
+	Description = "Ramuan ajaib dari bahan-bahan enchanted.",
+	Ingredients = {"MoonBloom_Petal", "EnchantedWood", "AetherCrystal_Shard"},
+	OutputType = "Consumable",
+}
+
+RecipeRegistry["RCP_FAIRY_WING"] = {
+	Id = "RCP_FAIRY_WING",
+	Name = "Fairy Wing Potion",
+	Description = "Ramuan yang memberi efek sayap peri sementara.",
+	Ingredients = {"FairyDust", "MoonBloom_Petal", "AetherCrystal_Shard"},
+	OutputType = "Consumable",
 }
 
 RecipeRegistry["RCP_FERRIUM_ALLOY"] = {
@@ -341,6 +373,14 @@ RecipeRegistry["RCP_VOID_CRYSTAL_COMPOUND"] = {
 	Description = "Combine Void-tier materials into a compound for Shadow Raid entry.",
 	Ingredients = {"Obsidian_Matrix", "Adamantite_Matrix", "Aether_Vapor"},
 	OutputType = "Research",
+}
+
+RecipeRegistry["RCP_VOID_FORGING"] = {
+	Id = "RCP_VOID_FORGING",
+	Name = "Void Forging",
+	Description = "Tempa Void Essence dengan Gold Vein untuk senjata legendaris.",
+	Ingredients = {"VoidEssence", "GoldVein_Ore", "FrostCrystal"},
+	OutputType = "Material",
 }
 
 return RecipeRegistry

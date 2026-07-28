@@ -509,4 +509,64 @@ CreatureRegistry["VoidBeast"] = {
 	Health = 1500,
 }
 
+CreatureRegistry["fairy_MushroomGuardian_Lvl1"] = {
+	Id = "fairy_MushroomGuardian_Lvl1",
+	Name = "Mushroom Guardian Lvl 1",
+	Health = 80,
+}
+
+CreatureRegistry["fairy_MushroomGuardian_Lvl10"] = {
+	Id = "fairy_MushroomGuardian_Lvl10",
+	Name = "Mushroom Guardian Lvl 10",
+	Health = 1500,
+}
+
+CreatureRegistry["fairy_MushroomGuardian_Lvl3"] = {
+	Id = "fairy_MushroomGuardian_Lvl3",
+	Name = "Mushroom Guardian Lvl 3",
+	Health = 160,
+}
+
+CreatureRegistry["fairy_MushroomGuardian_Lvl5"] = {
+	Id = "fairy_MushroomGuardian_Lvl5",
+	Name = "Mushroom Guardian Lvl 5",
+	Health = 320,
+}
+
+CreatureRegistry["fairy_MushroomGuardian_Lvl7"] = {
+	Id = "fairy_MushroomGuardian_Lvl7",
+	Name = "Mushroom Guardian Lvl 7",
+	Health = 650,
+}
+
+CreatureRegistry["fairy_WispHunter_Lvl1"] = {
+	Id = "fairy_WispHunter_Lvl1",
+	Name = "Wisp Hunter Lvl 1",
+	Health = 60,
+}
+
+CreatureRegistry["fairy_WispHunter_Lvl10"] = {
+	Id = "fairy_WispHunter_Lvl10",
+	Name = "Wisp Hunter Lvl 10",
+	Health = 1200,
+}
+
+CreatureRegistry["fairy_WispHunter_Lvl3"] = {
+	Id = "fairy_WispHunter_Lvl3",
+	Name = "Wisp Hunter Lvl 3",
+	Health = 120,
+}
+
+CreatureRegistry["fairy_WispHunter_Lvl5"] = {
+	Id = "fairy_WispHunter_Lvl5",
+	Name = "Wisp Hunter Lvl 5",
+	Health = 250,
+}
+
+CreatureRegistry["fairy_WispHunter_Lvl7"] = {
+	Id = "fairy_WispHunter_Lvl7",
+	Name = "Wisp Hunter Lvl 7",
+	Health = 500,
+}
+
 return CreatureRegistry

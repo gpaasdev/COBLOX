@@ -59,6 +59,15 @@ SpiritRegistry["SP_BRONZE_DRAKE"] = {
 	DropRate = "7.0%",
 }
 
+SpiritRegistry["SP_CELESTIAL_SERAPH"] = {
+	Id = "SP_CELESTIAL_SERAPH",
+	Name = "Celestial Seraph",
+	Description = "Malaikat langit ketujuh.",
+	Rarity = "Epic",
+	Element = "Aether",
+	DropRate = "2.0%",
+}
+
 SpiritRegistry["SP_CLAY_PUP"] = {
 	Id = "SP_CLAY_PUP",
 	Name = "Clay Pup",
@@ -95,6 +104,42 @@ SpiritRegistry["SP_CRYSTAL_BEAR"] = {
 	DropRate = "3.0%",
 }
 
+SpiritRegistry["SP_CRYSTAL_GOLEM"] = {
+	Id = "SP_CRYSTAL_GOLEM",
+	Name = "Crystal Golem",
+	Description = "Golem dari kristal mana murni.",
+	Rarity = "Rare",
+	Element = "Earth",
+	DropRate = "3.0%",
+}
+
+SpiritRegistry["SP_ENCHANTED_DEER"] = {
+	Id = "SP_ENCHANTED_DEER",
+	Name = "Enchanted Deer",
+	Description = "Rusa bertanduk cahaya bintang.",
+	Rarity = "Rare",
+	Element = "Nature",
+	DropRate = "4.0%",
+}
+
+SpiritRegistry["SP_ETHER_DRAKE"] = {
+	Id = "SP_ETHER_DRAKE",
+	Name = "Ether Drake",
+	Description = "Naga legendaris dari lapisan ether.",
+	Rarity = "Legendary",
+	Element = "Aether",
+	DropRate = "0.3%",
+}
+
+SpiritRegistry["SP_FAIRY_FOX"] = {
+	Id = "SP_FAIRY_FOX",
+	Name = "Fairy Fox",
+	Description = "Rubah bercahaya dengan ekor berkilauan.",
+	Rarity = "Uncommon",
+	Element = "Aether",
+	DropRate = "8.0%",
+}
+
 SpiritRegistry["SP_FLAME_CAT"] = {
 	Id = "SP_FLAME_CAT",
 	Name = "Flame Cat",
@@ -102,6 +147,15 @@ SpiritRegistry["SP_FLAME_CAT"] = {
 	Rarity = "Uncommon",
 	Element = "Fire",
 	DropRate = "5.0%",
+}
+
+SpiritRegistry["SP_FROST_PHOENIX"] = {
+	Id = "SP_FROST_PHOENIX",
+	Name = "Frost Phoenix",
+	Description = "Phoenix dari es abadi.",
+	Rarity = "Epic",
+	Element = "Ice",
+	DropRate = "1.5%",
 }
 
 SpiritRegistry["SP_GLOW_MUSH"] = {
@@ -140,6 +194,15 @@ SpiritRegistry["SP_LEAF_BUG"] = {
 	DropRate = "7.0%",
 }
 
+SpiritRegistry["SP_MAGMA_DRAGON"] = {
+	Id = "SP_MAGMA_DRAGON",
+	Name = "Magma Dragon",
+	Description = "Naga dari inti gunung berapi.",
+	Rarity = "Epic",
+	Element = "Fire",
+	DropRate = "1.5%",
+}
+
 SpiritRegistry["SP_MAGMA_SLIME"] = {
 	Id = "SP_MAGMA_SLIME",
 	Name = "Magma Slime",
@@ -147,6 +210,15 @@ SpiritRegistry["SP_MAGMA_SLIME"] = {
 	Rarity = "Uncommon",
 	Element = "Fire",
 	DropRate = "5.0%",
+}
+
+SpiritRegistry["SP_MOON_WISP"] = {
+	Id = "SP_MOON_WISP",
+	Name = "Moon Wisp",
+	Description = "Cahaya bulan yang menjelma.",
+	Rarity = "Uncommon",
+	Element = "Nature",
+	DropRate = "7.0%",
 }
 
 SpiritRegistry["SP_MYTHRIL_SERPENT"] = {
@@ -165,6 +237,15 @@ SpiritRegistry["SP_OBSIDIAN_PHOENIX"] = {
 	Rarity = "Rare",
 	Element = "Fire",
 	DropRate = "5.0%",
+}
+
+SpiritRegistry["SP_PIXIE_SWARM"] = {
+	Id = "SP_PIXIE_SWARM",
+	Name = "Pixie Swarm",
+	Description = "Kawanan peri kecil yang riang.",
+	Rarity = "Common",
+	Element = "Wind",
+	DropRate = "15.0%",
 }
 
 SpiritRegistry["SP_QUANTUM_HYDRA"] = {
@@ -273,6 +354,15 @@ SpiritRegistry["SP_VOID_DRAGON"] = {
 	Rarity = "Legendary",
 	Element = "Void",
 	DropRate = "0.1%",
+}
+
+SpiritRegistry["SP_VOID_SHADE"] = {
+	Id = "SP_VOID_SHADE",
+	Name = "Void Shade",
+	Description = "Bayangan dari kehampaan.",
+	Rarity = "Legendary",
+	Element = "Void",
+	DropRate = "0.5%",
 }
 
 SpiritRegistry["SP_WATER_DRIP"] = {

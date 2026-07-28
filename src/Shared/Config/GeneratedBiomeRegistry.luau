@@ -269,4 +269,40 @@ BiomeRegistry["VoidCaves"] = {
 	Temperature = 180.0,
 }
 
+BiomeRegistry["fairy_AetherSkyCitadel"] = {
+	Id = "fairy_AetherSkyCitadel",
+	Name = "Aether Sky Citadel",
+	Temperature = 280.0,
+}
+
+BiomeRegistry["fairy_CentralHub"] = {
+	Id = "fairy_CentralHub",
+	Name = "Sanctum Citadel",
+	Temperature = 300.0,
+}
+
+BiomeRegistry["fairy_EnchantedForest"] = {
+	Id = "fairy_EnchantedForest",
+	Name = "Enchanted Forest",
+	Temperature = 295.0,
+}
+
+BiomeRegistry["fairy_GlacialCavern"] = {
+	Id = "fairy_GlacialCavern",
+	Name = "Glacial Cavern",
+	Temperature = 230.0,
+}
+
+BiomeRegistry["fairy_VoidCaves"] = {
+	Id = "fairy_VoidCaves",
+	Name = "Void Caves",
+	Temperature = 265.0,
+}
+
+BiomeRegistry["fairy_VolcanicForge"] = {
+	Id = "fairy_VolcanicForge",
+	Name = "Volcanic Forge",
+	Temperature = 420.0,
+}
+
 return BiomeRegistry

@@ -16,6 +16,22 @@
     "DropRate": "2.0%"
   },
   {
+    "Id": "SP_PIXIE_SWARM",
+    "Name": "Pixie Swarm",
+    "Description": "Kawanan peri kecil yang riang.",
+    "Rarity": "Common",
+    "Element": "Wind",
+    "DropRate": "15.0%"
+  },
+  {
+    "Id": "SP_ENCHANTED_DEER",
+    "Name": "Enchanted Deer",
+    "Description": "Rusa bertanduk cahaya bintang.",
+    "Rarity": "Rare",
+    "Element": "Nature",
+    "DropRate": "4.0%"
+  },
+  {
     "Id": "SP_OBSIDIAN_PHOENIX",
     "Name": "Obsidian Phoenix",
     "Description": "Terlahir dari lava dan abu.",
@@ -24,12 +40,28 @@
     "DropRate": "5.0%"
   },
   {
+    "Id": "SP_MAGMA_DRAGON",
+    "Name": "Magma Dragon",
+    "Description": "Naga dari inti gunung berapi.",
+    "Rarity": "Epic",
+    "Element": "Fire",
+    "DropRate": "1.5%"
+  },
+  {
     "Id": "SP_ABYSSAL_KRAKEN",
     "Name": "Abyssal Kraken",
     "Description": "Penguasa laut dalam Sanctum.",
     "Rarity": "Epic",
     "Element": "Water",
     "DropRate": "1.5%"
+  },
+  {
+    "Id": "SP_MOON_WISP",
+    "Name": "Moon Wisp",
+    "Description": "Cahaya bulan yang menjelma.",
+    "Rarity": "Uncommon",
+    "Element": "Nature",
+    "DropRate": "7.0%"
   },
   {
     "Id": "SP_SPARK_BUG",
@@ -54,6 +86,14 @@
     "Rarity": "Legendary",
     "Element": "Void",
     "DropRate": "0.1%"
+  },
+  {
+    "Id": "SP_VOID_SHADE",
+    "Name": "Void Shade",
+    "Description": "Bayangan dari kehampaan.",
+    "Rarity": "Legendary",
+    "Element": "Void",
+    "DropRate": "0.5%"
   },
   {
     "Id": "SP_SILVER_SYLPH",
@@ -88,12 +128,28 @@
     "DropRate": "8.0%"
   },
   {
+    "Id": "SP_FROST_PHOENIX",
+    "Name": "Frost Phoenix",
+    "Description": "Phoenix dari es abadi.",
+    "Rarity": "Epic",
+    "Element": "Ice",
+    "DropRate": "1.5%"
+  },
+  {
     "Id": "SP_COAL_SPRITE",
     "Name": "Coal Sprite",
     "Description": "Panas dan bandel.",
     "Rarity": "Common",
     "Element": "Fire",
     "DropRate": "10.0%"
+  },
+  {
+    "Id": "SP_ETHER_DRAKE",
+    "Name": "Ether Drake",
+    "Description": "Naga legendaris dari lapisan ether.",
+    "Rarity": "Legendary",
+    "Element": "Aether",
+    "DropRate": "0.3%"
   },
   {
     "Id": "SP_ASH_PUFF",
@@ -125,6 +181,14 @@
     "Description": "Wujud fisik dari badai petir.",
     "Rarity": "Rare",
     "Element": "Lightning",
+    "DropRate": "2.0%"
+  },
+  {
+    "Id": "SP_CELESTIAL_SERAPH",
+    "Name": "Celestial Seraph",
+    "Description": "Malaikat langit ketujuh.",
+    "Rarity": "Epic",
+    "Element": "Aether",
     "DropRate": "2.0%"
   },
   {
@@ -165,6 +229,22 @@
     "Description": "Memancarkan cahaya matahari.",
     "Rarity": "Rare",
     "Element": "Light",
+    "DropRate": "3.0%"
+  },
+  {
+    "Id": "SP_FAIRY_FOX",
+    "Name": "Fairy Fox",
+    "Description": "Rubah bercahaya dengan ekor berkilauan.",
+    "Rarity": "Uncommon",
+    "Element": "Aether",
+    "DropRate": "8.0%"
+  },
+  {
+    "Id": "SP_CRYSTAL_GOLEM",
+    "Name": "Crystal Golem",
+    "Description": "Golem dari kristal mana murni.",
+    "Rarity": "Rare",
+    "Element": "Earth",
     "DropRate": "3.0%"
   },
   {

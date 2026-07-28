@@ -23,6 +23,16 @@ function MarketRegistry.GetAllMarket(): { [string]: MarketRegistryDefinition }
 	return MarketRegistry
 end
 
+MarketRegistry["MKT_FAIRYTALE_PASS"] = {
+	Id = "MKT_FAIRYTALE_PASS",
+	Name = "Fairytale Realm Pass",
+	Description = "Akses eksklusif ke Fairytale Fantasy Realm dan semua biome enchanted.",
+	Price = 299,
+	Currency = "Robux",
+	Category = "Gamepass",
+	ImageUrl = "rbxassetid://0",
+}
+
 MarketRegistry["MKT_VIP_PASS"] = {
 	Id = "MKT_VIP_PASS",
 	Name = "Sanctum VIP Pass",

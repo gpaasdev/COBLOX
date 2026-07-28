@@ -10,6 +10,11 @@
     "Health": 3600
   },
   {
+    "Id": "fairy_WispHunter_Lvl10",
+    "Name": "Wisp Hunter Lvl 10",
+    "Health": 1200
+  },
+  {
     "Id": "Creature_Beast_Lvl3",
     "Name": "Beast Elite Grade 3",
     "Health": 900
@@ -33,6 +38,11 @@
     "Id": "Creature_Beast_Lvl7",
     "Name": "Beast Elite Grade 7",
     "Health": 4900
+  },
+  {
+    "Id": "fairy_MushroomGuardian_Lvl1",
+    "Name": "Mushroom Guardian Lvl 1",
+    "Health": 80
   },
   {
     "Id": "Creature_Parasite_Lvl1",
@@ -115,6 +125,11 @@
     "Health": 8100
   },
   {
+    "Id": "fairy_WispHunter_Lvl7",
+    "Name": "Wisp Hunter Lvl 7",
+    "Health": 500
+  },
+  {
     "Id": "Creature_Dragon_Lvl2",
     "Name": "Dragon Elite Grade 2",
     "Health": 400
@@ -180,6 +195,11 @@
     "Health": 8100
   },
   {
+    "Id": "fairy_MushroomGuardian_Lvl5",
+    "Name": "Mushroom Guardian Lvl 5",
+    "Health": 320
+  },
+  {
     "Id": "Creature_Guardian_Lvl5",
     "Name": "Guardian Elite Grade 5",
     "Health": 2500
@@ -193,6 +213,11 @@
     "Id": "Creature_Golem_Lvl9",
     "Name": "Golem Elite Grade 9",
     "Health": 8100
+  },
+  {
+    "Id": "fairy_WispHunter_Lvl1",
+    "Name": "Wisp Hunter Lvl 1",
+    "Health": 60
   },
   {
     "Id": "Creature_Guardian_Lvl6",
@@ -213,6 +238,11 @@
     "Id": "Creature_Dragon_Lvl8",
     "Name": "Dragon Elite Grade 8",
     "Health": 6400
+  },
+  {
+    "Id": "fairy_MushroomGuardian_Lvl3",
+    "Name": "Mushroom Guardian Lvl 3",
+    "Health": 160
   },
   {
     "Id": "Creature_Beast_Lvl1",
@@ -270,6 +300,16 @@
     "Health": 400
   },
   {
+    "Id": "fairy_WispHunter_Lvl5",
+    "Name": "Wisp Hunter Lvl 5",
+    "Health": 250
+  },
+  {
+    "Id": "fairy_MushroomGuardian_Lvl7",
+    "Name": "Mushroom Guardian Lvl 7",
+    "Health": 650
+  },
+  {
     "Id": "Creature_Wisp_Lvl2",
     "Name": "Wisp Elite Grade 2",
     "Health": 400
@@ -320,6 +360,11 @@
     "Health": 2500
   },
   {
+    "Id": "fairy_WispHunter_Lvl3",
+    "Name": "Wisp Hunter Lvl 3",
+    "Health": 120
+  },
+  {
     "Id": "Creature_Parasite_Lvl4",
     "Name": "Parasite Elite Grade 4",
     "Health": 1600
@@ -353,6 +398,11 @@
     "Id": "Creature_Dragon_Lvl10",
     "Name": "Dragon Elite Grade 10",
     "Health": 10000
+  },
+  {
+    "Id": "fairy_MushroomGuardian_Lvl10",
+    "Name": "Mushroom Guardian Lvl 10",
+    "Health": 1500
   },
   {
     "Id": "Creature_Guardian_Lvl1",

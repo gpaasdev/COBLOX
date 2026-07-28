@@ -111,6 +111,22 @@ MaterialRegistry["AetherCrystal"] = {
 	Value = 250,
 }
 
+MaterialRegistry["AetherCrystal_Ore"] = {
+	Id = "AetherCrystal_Ore",
+	Name = "Aether Crystal Ore",
+	Density = 850.0,
+	Conductivity = 95.0,
+	Value = 450,
+}
+
+MaterialRegistry["AetherCrystal_Shard"] = {
+	Id = "AetherCrystal_Shard",
+	Name = "Aether Crystal Shard",
+	Density = 720.0,
+	Conductivity = 105.0,
+	Value = 680,
+}
+
 MaterialRegistry["Aether_Alloy"] = {
 	Id = "Aether_Alloy",
 	Name = "Aether Alloy",
@@ -271,12 +287,44 @@ MaterialRegistry["Copper_Vapor"] = {
 	Value = 485,
 }
 
+MaterialRegistry["EnchantedWood"] = {
+	Id = "EnchantedWood",
+	Name = "Enchanted Wood",
+	Density = 450.0,
+	Conductivity = 55.0,
+	Value = 280,
+}
+
+MaterialRegistry["FairyDust"] = {
+	Id = "FairyDust",
+	Name = "Fairy Dust",
+	Density = 2.0,
+	Conductivity = 200.0,
+	Value = 1200,
+}
+
 MaterialRegistry["FerriumAlloy"] = {
 	Id = "FerriumAlloy",
 	Name = "Ferrium Alloy",
 	Density = 8200.0,
 	Conductivity = 120.0,
 	Value = 500,
+}
+
+MaterialRegistry["FrostCrystal"] = {
+	Id = "FrostCrystal",
+	Name = "Frost Crystal",
+	Density = 920.0,
+	Conductivity = 30.0,
+	Value = 750,
+}
+
+MaterialRegistry["GoldVein_Ore"] = {
+	Id = "GoldVein_Ore",
+	Name = "Gold Vein Ore",
+	Density = 1930.0,
+	Conductivity = 75.0,
+	Value = 1500,
 }
 
 MaterialRegistry["Gold_Alloy"] = {
@@ -445,6 +493,14 @@ MaterialRegistry["Iron_Vapor"] = {
 	Density = 1679.5,
 	Conductivity = 23.5,
 	Value = 235,
+}
+
+MaterialRegistry["MoonBloom_Petal"] = {
+	Id = "MoonBloom_Petal",
+	Name = "Moon Bloom Petal",
+	Density = 15.0,
+	Conductivity = 40.0,
+	Value = 320,
 }
 
 MaterialRegistry["Mythril_Alloy"] = {
@@ -773,6 +829,14 @@ MaterialRegistry["VoidBone"] = {
 	Density = 1500.0,
 	Conductivity = 5.0,
 	Value = 250,
+}
+
+MaterialRegistry["VoidEssence"] = {
+	Id = "VoidEssence",
+	Name = "Void Essence",
+	Density = 1.0,
+	Conductivity = 250.0,
+	Value = 3000,
 }
 
 MaterialRegistry["Void_Alloy"] = {

@@ -1,20 +1,20 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-07-28T11:17:45.748316+00:00Z",
-  "git_commit": "4d43c2f4ba166c8cf81fa66a8872d2f4d8d9e373",
-  "content_hash": "3e8ba327d0ce090eb325137520df45216d8ddd67d4e6be3596bed05eaef48893",
+  "generated_at": "2026-07-28T18:52:01.009155+00:00Z",
+  "git_commit": "1222559490d4dc0e307274547460f18d9bb3a119",
+  "content_hash": "aa8ce030b85110c032e288dbd75f3f81040cee6826b9c549f07759131f38b005",
   "schema_version": "v11",
   "pipeline_version": "1.0",
   "entity_counts": {
-    "materials": 104,
+    "materials": 112,
     "reactions": 1,
     "machines": 62,
     "research": 152,
-    "biomes": 41,
-    "creatures": 81,
-    "spirits": 30,
+    "biomes": 47,
+    "creatures": 91,
+    "spirits": 40,
     "badges": 15,
-    "recipes": 40,
-    "market": 1
+    "recipes": 45,
+    "market": 2
   }
 }

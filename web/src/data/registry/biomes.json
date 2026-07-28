@@ -15,6 +15,11 @@
     "Temperature": 250.0
   },
   {
+    "Id": "fairy_GlacialCavern",
+    "Name": "Glacial Cavern",
+    "Temperature": 230.0
+  },
+  {
     "Id": "Biome_Glacial_2",
     "Name": "Glacial Wastes Sector 2",
     "Temperature": 300.0
@@ -28,6 +33,11 @@
     "Id": "Biome_Celestial_1",
     "Name": "Celestial Wastes Sector 1",
     "Temperature": 250.0
+  },
+  {
+    "Id": "fairy_AetherSkyCitadel",
+    "Name": "Aether Sky Citadel",
+    "Temperature": 280.0
   },
   {
     "Id": "Biome_Abyssal_1",
@@ -120,6 +130,16 @@
     "Temperature": 450.0
   },
   {
+    "Id": "fairy_EnchantedForest",
+    "Name": "Enchanted Forest",
+    "Temperature": 295.0
+  },
+  {
+    "Id": "fairy_CentralHub",
+    "Name": "Sanctum Citadel",
+    "Temperature": 300.0
+  },
+  {
     "Id": "VoidCaves",
     "Name": "Subterranean Void Caves",
     "Temperature": 180.0
@@ -170,6 +190,11 @@
     "Temperature": 350.0
   },
   {
+    "Id": "fairy_VoidCaves",
+    "Name": "Void Caves",
+    "Temperature": 265.0
+  },
+  {
     "Id": "Biome_Toxic_4",
     "Name": "Toxic Wastes Sector 4",
     "Temperature": 400.0
@@ -203,5 +228,10 @@
     "Id": "Biome_Glacial_1",
     "Name": "Glacial Wastes Sector 1",
     "Temperature": 250.0
+  },
+  {
+    "Id": "fairy_VolcanicForge",
+    "Name": "Volcanic Forge",
+    "Temperature": 420.0
   }
 ]
