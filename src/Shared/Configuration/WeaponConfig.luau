@@ -1,7 +1,7 @@
 --!strict
 -- WeaponConfig.luau — SSOT for weapon definitions & progression
 
-export type WeaponTier = 1 | 2 | 3 | 4 | 5
+export type WeaponTier = number
 
 export type WeaponDef = {
 	Id: string,
