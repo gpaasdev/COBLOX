@@ -55,6 +55,11 @@ function UIController.Start()
 	-- Trigger configurable LiveOps Join Popup & TopBar Banner
 	UIController.CheckLiveOpsOverlays()
 
+	-- Realm Selection Guide
+	task.delay(5, function()
+		UIController.ShowNotification("Press [R] to open Realm Selection — explore the Fairytale Realm!")
+	end)
+
 	-- Instantiate 3D Procedural Alchemical Core at Sanctum Altar Center
 	task.spawn(function()
 		local proceduralFolder = clientFolder:WaitForChild("Modules"):WaitForChild("Procedural")
@@ -392,8 +397,8 @@ function UIController._CreateHUD()
 	-- 4. Bottom Viral Action Hotbar & Inventory Slots HUD (Grow a Garden / Pet Sim Benchmark)
 	local bottomBar = Instance.new("Frame")
 	bottomBar.Name = "BottomActionHotbar"
-	bottomBar.Size = UDim2.new(0.55, 0, 0.12, 0)
-	bottomBar.Position = UDim2.new(0.225, 0, 0.86, 0)
+	bottomBar.Size = UDim2.new(0.65, 0, 0.10, 0)
+	bottomBar.Position = UDim2.new(0.175, 0, 0.88, 0)
 	bottomBar.BackgroundColor3 = Color3.fromRGB(15, 23, 42) -- Dark Glassmorphism base
 	bottomBar.BackgroundTransparency = 0.2
 	bottomBar.BorderSizePixel = 0
@@ -428,17 +433,17 @@ function UIController._CreateHUD()
 	pillLayout.Parent = actionRow
 
 	local quickActions = {
-		{ Name = "⚡ DASH", Color = Color3.fromRGB(14, 165, 233) }, -- New Dash Button for Travel Time
+		{ Name = "⚡ DASH", Color = Color3.fromRGB(14, 165, 233) },
 		{ Name = "🌱 ELEMEN", Color = Color3.fromRGB(34, 197, 94) },
 		{ Name = "🏰 MARKAS", Color = Color3.fromRGB(168, 85, 247) },
-		{ Name = "🐶 PETS", Color = Color3.fromRGB(249, 115, 22) },
+		{ Name = "🐣 SPIRIT", Color = Color3.fromRGB(249, 115, 22) },
 		{ Name = "💰 JUAL", Color = Color3.fromRGB(234, 179, 8) },
 	}
 
 	for _, act in ipairs(quickActions) do
 		local pill = Instance.new("TextButton")
 		pill.Name = "Pill_" .. act.Name
-		pill.Size = UDim2.new(0.18, 0, 1, 0) -- Scaled down slightly to fit 5 pills
+		pill.Size = UDim2.new(0.17, 0, 1, 0)
 		pill.BackgroundColor3 = Color3.fromRGB(30, 41, 59) -- Lighter slate for inner buttons
 		pill.BackgroundTransparency = 0.3
 		pill.TextColor3 = act.Color
@@ -491,6 +496,19 @@ function UIController._CreateHUD()
 			end
 		end)
 	end
+
+	-- 4.5 Realm Key Hint
+	local realmHint = Instance.new("TextLabel")
+	realmHint.Name = "RealmKeyHint"
+	realmHint.Size = UDim2.new(0, 140, 0, 24)
+	realmHint.Position = UDim2.new(0.5, -70, 0.78, 0)
+	realmHint.BackgroundTransparency = 1
+	realmHint.Text = "[R] Realm Selection"
+	realmHint.TextColor3 = COLOR_ACCENT_PURPLE
+	realmHint.Font = Enum.Font.GothamBold
+	realmHint.TextSize = 13
+	realmHint.TextStrokeTransparency = 0.3
+	realmHint.Parent = mainScreenGui
 
 	-- 5 Inventory Hotbar Slots (1..5)
 	local slotsRow = Instance.new("Frame")

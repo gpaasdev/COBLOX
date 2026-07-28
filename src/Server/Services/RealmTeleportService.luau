@@ -50,11 +50,13 @@ function RealmTeleportService.TeleportToRealm(player: Player, realmKey: string)
 		JoinedAt = os.time(),
 	})
 
-	AnalyticsService.TrackEvent(player, "RealmTeleport", {
-		FromPlace = currentPlaceId,
-		ToPlace = placeId,
-		Realm = realmKey,
-	})
+	pcall(function()
+		AnalyticsService.LogEvent("RealmTeleport", {
+			FromPlace = currentPlaceId,
+			ToPlace = placeId,
+			Realm = realmKey,
+		}, player.UserId)
+	end)
 
 	DomainEventBus.Publish("RealmTeleport", player, {
 		FromRealm = RealmTeleportService._GetCurrentRealmKey(),
