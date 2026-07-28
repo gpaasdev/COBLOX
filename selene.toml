@@ -6,6 +6,7 @@ globals = ["describe", "it", "expect"]
 [rules]
 shadowing = "allow"
 roblox_incorrect_roblox_api = "allow"
+incorrect_standard_library_use = "allow"
 multiple_statements = "allow"
 global_usage = "allow"
 undefined_variable = "allow"

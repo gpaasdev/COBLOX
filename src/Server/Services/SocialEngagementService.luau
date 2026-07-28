@@ -78,11 +78,12 @@ function SocialEngagementService.ScheduleNotification(
 	actionType: string,
 	delaySeconds: number
 )
+	local notifType = Enum.NotificationType.GameUpdate
 	pcall(function()
 		ExperienceNotificationService:ScheduleNotification(
 			player,
 			delaySeconds,
-			Enum.NotificationType.GameUpdate,
+			notifType,
 			title,
 			body,
 			actionType
