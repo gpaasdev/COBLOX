@@ -6,6 +6,10 @@ local GameConfig = require(ReplicatedStorage.Shared.Configuration.GameConfig)
 local RealmConfig = require(ReplicatedStorage.Shared.Configuration.RealmConfig)
 local RealmRegistry = require(ReplicatedStorage.Shared.Config.RealmRegistry)
 
+-- Enable HTTP for webhooks, Open Cloud sync, etc.
+local HttpService = game:GetService("HttpService")
+HttpService.HttpEnabled = true
+
 -- Auto-detect realm from Place ID
 local currentPlaceId = game.PlaceId
 for key, entry in pairs(RealmRegistry) do
