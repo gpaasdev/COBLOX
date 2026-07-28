@@ -1,75 +1,9 @@
 [
   {
-    "Id": "BDG_COVEN_FOUNDER",
-    "Name": "Coven Founder",
-    "Description": "Create or join a Coven.",
-    "RarityPercent": 20.0
-  },
-  {
-    "Id": "BDG_SHADOW_VETERAN",
-    "Name": "Shadow Veteran",
-    "Description": "Complete 10 Shadow Raids.",
-    "RarityPercent": 10.0
-  },
-  {
-    "Id": "BDG_PIONEER",
-    "Name": "Alchemist Pioneer",
-    "Description": "Awarded to the first 10,000 players who synthesize a Tier 3 material.",
-    "RarityPercent": 1.2
-  },
-  {
-    "Id": "BDG_SANCTUM_BUILDER",
-    "Name": "Sanctum Builder",
-    "Description": "Place 10 structures in your Sanctum.",
-    "RarityPercent": 30.0
-  },
-  {
-    "Id": "BDG_LEGENDARY_HATCH",
-    "Name": "Legend Caller",
-    "Description": "Hatch a Legendary Spirit.",
-    "RarityPercent": 0.5
-  },
-  {
-    "Id": "BDG_PIONEER",
-    "Name": "Alchemist Pioneer",
-    "Description": "Synthesize a Tier 3 material.",
-    "RarityPercent": 1.2
-  },
-  {
-    "Id": "BDG_MASTER_SMITH",
-    "Name": "Forge Lord",
-    "Description": "Upgrade a Machine to Mark 10.",
-    "RarityPercent": 3.0
-  },
-  {
     "Id": "BDG_FIRST_CRAFT",
     "Name": "First Synthesis",
     "Description": "Complete your first alchemical synthesis.",
     "RarityPercent": 85.0
-  },
-  {
-    "Id": "BDG_MONSTER_SLAYER",
-    "Name": "Creature Conqueror",
-    "Description": "Defeat 100 hostile creatures.",
-    "RarityPercent": 25.0
-  },
-  {
-    "Id": "BDG_QUANTUM_MASTER",
-    "Name": "Quantum Master",
-    "Description": "Synthesize a Quantum Essence.",
-    "RarityPercent": 2.0
-  },
-  {
-    "Id": "BDG_BIOME_WALKER",
-    "Name": "Biome Walker",
-    "Description": "Visit 5 different biomes.",
-    "RarityPercent": 40.0
-  },
-  {
-    "Id": "BDG_VETERAN",
-    "Name": "Seasoned Veteran",
-    "Description": "Reach 100 hours of total playtime.",
-    "RarityPercent": 5.0
   },
   {
     "Id": "BDG_SOUL_BONDER",
@@ -78,10 +12,46 @@
     "RarityPercent": 60.0
   },
   {
+    "Id": "BDG_COVEN_FOUNDER",
+    "Name": "Coven Founder",
+    "Description": "Create or join a Coven.",
+    "RarityPercent": 20.0
+  },
+  {
     "Id": "BDG_DAILY_STREAK",
     "Name": "Dedicated Alchemist",
     "Description": "Complete daily quests 7 days in a row.",
     "RarityPercent": 15.0
+  },
+  {
+    "Id": "BDG_MASTER_SMITH",
+    "Name": "Forge Lord",
+    "Description": "Upgrade a Machine to Mark 10.",
+    "RarityPercent": 3.0
+  },
+  {
+    "Id": "BDG_PIONEER",
+    "Name": "Alchemist Pioneer",
+    "Description": "Synthesize a Tier 3 material.",
+    "RarityPercent": 1.2
+  },
+  {
+    "Id": "BDG_VETERAN",
+    "Name": "Seasoned Veteran",
+    "Description": "Reach 100 hours of total playtime.",
+    "RarityPercent": 5.0
+  },
+  {
+    "Id": "BDG_QUANTUM_MASTER",
+    "Name": "Quantum Master",
+    "Description": "Synthesize a Quantum Essence.",
+    "RarityPercent": 2.0
+  },
+  {
+    "Id": "BDG_LEGENDARY_HATCH",
+    "Name": "Legend Caller",
+    "Description": "Hatch a Legendary Spirit.",
+    "RarityPercent": 0.5
   },
   {
     "Id": "BDG_MULTIVERSE_TRAVELER",
@@ -90,9 +60,39 @@
     "RarityPercent": 1.0
   },
   {
+    "Id": "BDG_PIONEER",
+    "Name": "Alchemist Pioneer",
+    "Description": "Awarded to the first 10,000 players who synthesize a Tier 3 material.",
+    "RarityPercent": 1.2
+  },
+  {
+    "Id": "BDG_MONSTER_SLAYER",
+    "Name": "Creature Conqueror",
+    "Description": "Defeat 100 hostile creatures.",
+    "RarityPercent": 25.0
+  },
+  {
+    "Id": "BDG_SANCTUM_BUILDER",
+    "Name": "Sanctum Builder",
+    "Description": "Place 10 structures in your Sanctum.",
+    "RarityPercent": 30.0
+  },
+  {
+    "Id": "BDG_SHADOW_VETERAN",
+    "Name": "Shadow Veteran",
+    "Description": "Complete 10 Shadow Raids.",
+    "RarityPercent": 10.0
+  },
+  {
     "Id": "BDG_RESEARCHER",
     "Name": "Grand Scholar",
     "Description": "Unlock 50 research nodes.",
     "RarityPercent": 8.0
+  },
+  {
+    "Id": "BDG_BIOME_WALKER",
+    "Name": "Biome Walker",
+    "Description": "Visit 5 different biomes.",
+    "RarityPercent": 40.0
   }
 ]

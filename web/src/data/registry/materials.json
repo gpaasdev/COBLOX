@@ -1,122 +1,10 @@
 [
   {
-    "Id": "Copper_Matrix",
-    "Name": "Copper Matrix",
-    "Density": 2057.0,
-    "Conductivity": 31.0,
-    "Value": 360
-  },
-  {
-    "Id": "Void_Vapor",
-    "Name": "Void Vapor",
-    "Density": 5454.5,
-    "Conductivity": 98.5,
-    "Value": 1485
-  },
-  {
-    "Id": "Quantum_Dust",
-    "Name": "Quantum Dust",
-    "Density": 8172.5,
-    "Conductivity": 152.5,
-    "Value": 2385
-  },
-  {
-    "Id": "Quantum_Alloy",
-    "Name": "Quantum Alloy",
-    "Density": 7946.0,
-    "Conductivity": 148.0,
-    "Value": 2310
-  },
-  {
-    "Id": "Gold_Shard",
-    "Name": "Gold Shard",
-    "Density": 3114.0,
-    "Conductivity": 52.0,
-    "Value": 710
-  },
-  {
-    "Id": "Mythril_Vapor",
-    "Name": "Mythril Vapor",
-    "Density": 6964.5,
-    "Conductivity": 128.5,
-    "Value": 1985
-  },
-  {
-    "Id": "Iron_Dust",
-    "Name": "Iron Dust",
-    "Density": 1377.5,
-    "Conductivity": 17.5,
-    "Value": 135
-  },
-  {
-    "Id": "Iron_Singularity",
-    "Name": "Iron Singularity",
-    "Density": 1528.5,
-    "Conductivity": 20.5,
-    "Value": 185
-  },
-  {
-    "Id": "Adamantite_Singularity",
-    "Name": "Adamantite Singularity",
-    "Density": 7568.5,
-    "Conductivity": 140.5,
-    "Value": 2185
-  },
-  {
-    "Id": "Aether_Shard",
-    "Name": "Aether Shard",
-    "Density": 4624.0,
-    "Conductivity": 82.0,
-    "Value": 1210
-  },
-  {
-    "Id": "Quantum_Vapor",
-    "Name": "Quantum Vapor",
-    "Density": 8474.5,
-    "Conductivity": 158.5,
-    "Value": 2485
-  },
-  {
-    "Id": "Gold_Crystal",
-    "Name": "Gold Crystal",
-    "Density": 2736.5,
-    "Conductivity": 44.5,
-    "Value": 585
-  },
-  {
-    "Id": "Aether_Refined",
-    "Name": "Aether Refined",
-    "Density": 4095.5,
-    "Conductivity": 71.5,
-    "Value": 1035
-  },
-  {
-    "Id": "Titanium_Dust",
-    "Name": "Titanium Dust",
-    "Density": 3642.5,
-    "Conductivity": 62.5,
-    "Value": 885
-  },
-  {
-    "Id": "Gold_Essence",
-    "Name": "Gold Essence",
-    "Density": 2963.0,
-    "Conductivity": 49.0,
-    "Value": 660
-  },
-  {
-    "Id": "Aether_Crystal",
-    "Name": "Aether Crystal",
-    "Density": 4246.5,
-    "Conductivity": 74.5,
-    "Value": 1085
-  },
-  {
-    "Id": "Adamantite_Refined",
-    "Name": "Adamantite Refined",
-    "Density": 7115.5,
-    "Conductivity": 131.5,
-    "Value": 2035
+    "Id": "Iron_Matrix",
+    "Name": "Iron Matrix",
+    "Density": 1302.0,
+    "Conductivity": 16.0,
+    "Value": 110
   },
   {
     "Id": "Adamantite_Vapor",
@@ -126,410 +14,11 @@
     "Value": 2235
   },
   {
-    "Id": "Void_Crystal",
-    "Name": "Void Crystal",
-    "Density": 5001.5,
-    "Conductivity": 89.5,
-    "Value": 1335
-  },
-  {
-    "Id": "Void_Dust",
-    "Name": "Void Dust",
-    "Density": 5152.5,
-    "Conductivity": 92.5,
-    "Value": 1385
-  },
-  {
-    "Id": "Void_Singularity",
-    "Name": "Void Singularity",
-    "Density": 5303.5,
-    "Conductivity": 95.5,
-    "Value": 1435
-  },
-  {
-    "Id": "Copper_Crystal",
-    "Name": "Copper Crystal",
-    "Density": 1981.5,
-    "Conductivity": 29.5,
-    "Value": 335
-  },
-  {
-    "Id": "Quantum_Refined",
-    "Name": "Quantum Refined",
-    "Density": 7870.5,
-    "Conductivity": 146.5,
-    "Value": 2285
-  },
-  {
-    "Id": "Aether_Ore",
-    "Name": "Aether Ore",
-    "Density": 4020.0,
-    "Conductivity": 70.0,
-    "Value": 1010
-  },
-  {
-    "Id": "Iron_Ore",
-    "Name": "Iron Ore",
-    "Density": 1000.0,
-    "Conductivity": 10.0,
-    "Value": 10
-  },
-  {
-    "Id": "Iron_Essence",
-    "Name": "Iron Essence",
-    "Density": 1453.0,
-    "Conductivity": 19.0,
-    "Value": 160
-  },
-  {
-    "Id": "Copper_Ore",
-    "Name": "Copper Ore",
-    "Density": 1755.0,
-    "Conductivity": 25.0,
-    "Value": 260
-  },
-  {
-    "Id": "Titanium_Crystal",
-    "Name": "Titanium Crystal",
-    "Density": 3491.5,
-    "Conductivity": 59.5,
-    "Value": 835
-  },
-  {
-    "Id": "Adamantite_Shard",
-    "Name": "Adamantite Shard",
-    "Density": 7644.0,
-    "Conductivity": 142.0,
-    "Value": 2210
-  },
-  {
-    "Id": "Obsidian_Essence",
-    "Name": "Obsidian Essence",
-    "Density": 5983.0,
-    "Conductivity": 109.0,
-    "Value": 1660
-  },
-  {
-    "Id": "Adamantite_Essence",
-    "Name": "Adamantite Essence",
-    "Density": 7493.0,
-    "Conductivity": 139.0,
-    "Value": 2160
-  },
-  {
-    "Id": "Quantum_Crystal",
-    "Name": "Quantum Crystal",
-    "Density": 8021.5,
-    "Conductivity": 149.5,
-    "Value": 2335
-  },
-  {
-    "Id": "Copper_Shard",
-    "Name": "Copper Shard",
-    "Density": 2359.0,
-    "Conductivity": 37.0,
-    "Value": 460
-  },
-  {
-    "Id": "Void_Refined",
-    "Name": "Void Refined",
-    "Density": 4850.5,
-    "Conductivity": 86.5,
-    "Value": 1285
-  },
-  {
-    "Id": "Quantum_Singularity",
-    "Name": "Quantum Singularity",
-    "Density": 8323.5,
-    "Conductivity": 155.5,
-    "Value": 2435
-  },
-  {
-    "Id": "Titanium_Matrix",
-    "Name": "Titanium Matrix",
-    "Density": 3567.0,
-    "Conductivity": 61.0,
-    "Value": 860
-  },
-  {
-    "Id": "Iron_Shard",
-    "Name": "Iron Shard",
-    "Density": 1604.0,
-    "Conductivity": 22.0,
-    "Value": 210
-  },
-  {
-    "Id": "Mythril_Alloy",
-    "Name": "Mythril Alloy",
-    "Density": 6436.0,
-    "Conductivity": 118.0,
-    "Value": 1810
-  },
-  {
-    "Id": "Void_Ore",
-    "Name": "Void Ore",
-    "Density": 4775.0,
-    "Conductivity": 85.0,
-    "Value": 1260
-  },
-  {
     "Id": "Titanium_Alloy",
     "Name": "Titanium Alloy",
     "Density": 3416.0,
     "Conductivity": 58.0,
     "Value": 810
-  },
-  {
-    "Id": "Adamantite_Ore",
-    "Name": "Adamantite Ore",
-    "Density": 7040.0,
-    "Conductivity": 130.0,
-    "Value": 2010
-  },
-  {
-    "Id": "Quantum_Matrix",
-    "Name": "Quantum Matrix",
-    "Density": 8097.0,
-    "Conductivity": 151.0,
-    "Value": 2360
-  },
-  {
-    "Id": "Adamantite_Dust",
-    "Name": "Adamantite Dust",
-    "Density": 7417.5,
-    "Conductivity": 137.5,
-    "Value": 2135
-  },
-  {
-    "Id": "Adamantite_Alloy",
-    "Name": "Adamantite Alloy",
-    "Density": 7191.0,
-    "Conductivity": 133.0,
-    "Value": 2060
-  },
-  {
-    "Id": "Aether_Matrix",
-    "Name": "Aether Matrix",
-    "Density": 4322.0,
-    "Conductivity": 76.0,
-    "Value": 1110
-  },
-  {
-    "Id": "Obsidian_Vapor",
-    "Name": "Obsidian Vapor",
-    "Density": 6209.5,
-    "Conductivity": 113.5,
-    "Value": 1735
-  },
-  {
-    "Id": "Mythril_Ore",
-    "Name": "Mythril Ore",
-    "Density": 6285.0,
-    "Conductivity": 115.0,
-    "Value": 1760
-  },
-  {
-    "Id": "Titanium_Singularity",
-    "Name": "Titanium Singularity",
-    "Density": 3793.5,
-    "Conductivity": 65.5,
-    "Value": 935
-  },
-  {
-    "Id": "Gold_Refined",
-    "Name": "Gold Refined",
-    "Density": 2585.5,
-    "Conductivity": 41.5,
-    "Value": 535
-  },
-  {
-    "Id": "Iron_Matrix",
-    "Name": "Iron Matrix",
-    "Density": 1302.0,
-    "Conductivity": 16.0,
-    "Value": 110
-  },
-  {
-    "Id": "Void_Matrix",
-    "Name": "Void Matrix",
-    "Density": 5077.0,
-    "Conductivity": 91.0,
-    "Value": 1360
-  },
-  {
-    "Id": "Gold_Vapor",
-    "Name": "Gold Vapor",
-    "Density": 3189.5,
-    "Conductivity": 53.5,
-    "Value": 735
-  },
-  {
-    "Id": "Mythril_Shard",
-    "Name": "Mythril Shard",
-    "Density": 6889.0,
-    "Conductivity": 127.0,
-    "Value": 1960
-  },
-  {
-    "Id": "Obsidian_Matrix",
-    "Name": "Obsidian Matrix",
-    "Density": 5832.0,
-    "Conductivity": 106.0,
-    "Value": 1610
-  },
-  {
-    "Id": "Aether_Vapor",
-    "Name": "Aether Vapor",
-    "Density": 4699.5,
-    "Conductivity": 83.5,
-    "Value": 1235
-  },
-  {
-    "Id": "Iron_Crystal",
-    "Name": "Iron Crystal",
-    "Density": 1226.5,
-    "Conductivity": 14.5,
-    "Value": 85
-  },
-  {
-    "Id": "Mythril_Essence",
-    "Name": "Mythril Essence",
-    "Density": 6738.0,
-    "Conductivity": 124.0,
-    "Value": 1910
-  },
-  {
-    "Id": "Aether_Alloy",
-    "Name": "Aether Alloy",
-    "Density": 4171.0,
-    "Conductivity": 73.0,
-    "Value": 1060
-  },
-  {
-    "Id": "Gold_Dust",
-    "Name": "Gold Dust",
-    "Density": 2887.5,
-    "Conductivity": 47.5,
-    "Value": 635
-  },
-  {
-    "Id": "Mythril_Crystal",
-    "Name": "Mythril Crystal",
-    "Density": 6511.5,
-    "Conductivity": 119.5,
-    "Value": 1835
-  },
-  {
-    "Id": "Quantum_Ore",
-    "Name": "Quantum Ore",
-    "Density": 7795.0,
-    "Conductivity": 145.0,
-    "Value": 2260
-  },
-  {
-    "Id": "Obsidian_Dust",
-    "Name": "Obsidian Dust",
-    "Density": 5907.5,
-    "Conductivity": 107.5,
-    "Value": 1635
-  },
-  {
-    "Id": "Obsidian_Alloy",
-    "Name": "Obsidian Alloy",
-    "Density": 5681.0,
-    "Conductivity": 103.0,
-    "Value": 1560
-  },
-  {
-    "Id": "Gold_Singularity",
-    "Name": "Gold Singularity",
-    "Density": 3038.5,
-    "Conductivity": 50.5,
-    "Value": 685
-  },
-  {
-    "Id": "FerriumAlloy",
-    "Name": "Ferrium Alloy",
-    "Density": 8200.0,
-    "Conductivity": 120.0,
-    "Value": 500
-  },
-  {
-    "Id": "Aether_Essence",
-    "Name": "Aether Essence",
-    "Density": 4473.0,
-    "Conductivity": 79.0,
-    "Value": 1160
-  },
-  {
-    "Id": "Gold_Alloy",
-    "Name": "Gold Alloy",
-    "Density": 2661.0,
-    "Conductivity": 43.0,
-    "Value": 560
-  },
-  {
-    "Id": "Copper_Alloy",
-    "Name": "Copper Alloy",
-    "Density": 1906.0,
-    "Conductivity": 28.0,
-    "Value": 310
-  },
-  {
-    "Id": "Void_Shard",
-    "Name": "Void Shard",
-    "Density": 5379.0,
-    "Conductivity": 97.0,
-    "Value": 1460
-  },
-  {
-    "Id": "Mythril_Singularity",
-    "Name": "Mythril Singularity",
-    "Density": 6813.5,
-    "Conductivity": 125.5,
-    "Value": 1935
-  },
-  {
-    "Id": "Adamantite_Crystal",
-    "Name": "Adamantite Crystal",
-    "Density": 7266.5,
-    "Conductivity": 134.5,
-    "Value": 2085
-  },
-  {
-    "Id": "Copper_Dust",
-    "Name": "Copper Dust",
-    "Density": 2132.5,
-    "Conductivity": 32.5,
-    "Value": 385
-  },
-  {
-    "Id": "Void_Essence",
-    "Name": "Void Essence",
-    "Density": 5228.0,
-    "Conductivity": 94.0,
-    "Value": 1410
-  },
-  {
-    "Id": "Titanium_Refined",
-    "Name": "Titanium Refined",
-    "Density": 3340.5,
-    "Conductivity": 56.5,
-    "Value": 785
-  },
-  {
-    "Id": "Adamantite_Matrix",
-    "Name": "Adamantite Matrix",
-    "Density": 7342.0,
-    "Conductivity": 136.0,
-    "Value": 2110
-  },
-  {
-    "Id": "Titanium_Ore",
-    "Name": "Titanium Ore",
-    "Density": 3265.0,
-    "Conductivity": 55.0,
-    "Value": 760
   },
   {
     "Id": "Aether_Singularity",
@@ -539,179 +28,53 @@
     "Value": 1185
   },
   {
-    "Id": "Obsidian_Ore",
-    "Name": "Obsidian Ore",
-    "Density": 5530.0,
-    "Conductivity": 100.0,
-    "Value": 1510
+    "Id": "Adamantite_Crystal",
+    "Name": "Adamantite Crystal",
+    "Density": 7266.5,
+    "Conductivity": 134.5,
+    "Value": 2085
   },
   {
-    "Id": "Copper_Vapor",
-    "Name": "Copper Vapor",
-    "Density": 2434.5,
-    "Conductivity": 38.5,
-    "Value": 485
+    "Id": "Copper_Matrix",
+    "Name": "Copper Matrix",
+    "Density": 2057.0,
+    "Conductivity": 31.0,
+    "Value": 360
   },
   {
-    "Id": "Mythril_Dust",
-    "Name": "Mythril Dust",
-    "Density": 6662.5,
-    "Conductivity": 122.5,
-    "Value": 1885
+    "Id": "Copper_Crystal",
+    "Name": "Copper Crystal",
+    "Density": 1981.5,
+    "Conductivity": 29.5,
+    "Value": 335
   },
   {
-    "Id": "Titanium_Essence",
-    "Name": "Titanium Essence",
-    "Density": 3718.0,
-    "Conductivity": 64.0,
-    "Value": 910
+    "Id": "Iron_Crystal",
+    "Name": "Iron Crystal",
+    "Density": 1226.5,
+    "Conductivity": 14.5,
+    "Value": 85
   },
   {
-    "Id": "Copper_Essence",
-    "Name": "Copper Essence",
-    "Density": 2208.0,
-    "Conductivity": 34.0,
-    "Value": 410
+    "Id": "Mythril_Shard",
+    "Name": "Mythril Shard",
+    "Density": 6889.0,
+    "Conductivity": 127.0,
+    "Value": 1960
   },
   {
-    "Id": "Iron_Vapor",
-    "Name": "Iron Vapor",
-    "Density": 1679.5,
-    "Conductivity": 23.5,
-    "Value": 235
+    "Id": "Gold_Dust",
+    "Name": "Gold Dust",
+    "Density": 2887.5,
+    "Conductivity": 47.5,
+    "Value": 635
   },
   {
-    "Id": "Copper_Singularity",
-    "Name": "Copper Singularity",
-    "Density": 2283.5,
-    "Conductivity": 35.5,
-    "Value": 435
-  },
-  {
-    "Id": "Quantum_Shard",
-    "Name": "Quantum Shard",
-    "Density": 8399.0,
-    "Conductivity": 157.0,
-    "Value": 2460
-  },
-  {
-    "Id": "Gold_Ore",
-    "Name": "Gold Ore",
-    "Density": 2510.0,
-    "Conductivity": 40.0,
-    "Value": 510
-  },
-  {
-    "Id": "VoidBone",
-    "Name": "Void Bone",
-    "Density": 1500.0,
-    "Conductivity": 5.0,
-    "Value": 250
-  },
-  {
-    "Id": "Aether_Dust",
-    "Name": "Aether Dust",
-    "Density": 4397.5,
-    "Conductivity": 77.5,
-    "Value": 1135
-  },
-  {
-    "Id": "Iron_Refined",
-    "Name": "Iron Refined",
-    "Density": 1075.5,
-    "Conductivity": 11.5,
-    "Value": 35
-  },
-  {
-    "Id": "AetherCrystal",
-    "Name": "Aether Crystal",
-    "Density": 2100.0,
-    "Conductivity": 10.0,
-    "Value": 250
-  },
-  {
-    "Id": "Obsidian_Shard",
-    "Name": "Obsidian Shard",
-    "Density": 6134.0,
-    "Conductivity": 112.0,
-    "Value": 1710
-  },
-  {
-    "Id": "Copper_Refined",
-    "Name": "Copper Refined",
-    "Density": 1830.5,
-    "Conductivity": 26.5,
-    "Value": 285
-  },
-  {
-    "Id": "Mythril_Matrix",
-    "Name": "Mythril Matrix",
-    "Density": 6587.0,
-    "Conductivity": 121.0,
-    "Value": 1860
-  },
-  {
-    "Id": "Obsidian_Singularity",
-    "Name": "Obsidian Singularity",
-    "Density": 6058.5,
-    "Conductivity": 110.5,
-    "Value": 1685
-  },
-  {
-    "Id": "Obsidian_Refined",
-    "Name": "Obsidian Refined",
-    "Density": 5605.5,
-    "Conductivity": 101.5,
-    "Value": 1535
-  },
-  {
-    "Id": "Gold_Matrix",
-    "Name": "Gold Matrix",
-    "Density": 2812.0,
-    "Conductivity": 46.0,
-    "Value": 610
-  },
-  {
-    "Id": "Obsidian_Crystal",
-    "Name": "Obsidian Crystal",
-    "Density": 5756.5,
-    "Conductivity": 104.5,
-    "Value": 1585
-  },
-  {
-    "Id": "Void_Alloy",
-    "Name": "Void Alloy",
-    "Density": 4926.0,
-    "Conductivity": 88.0,
-    "Value": 1310
-  },
-  {
-    "Id": "Iron_Alloy",
-    "Name": "Iron Alloy",
-    "Density": 1151.0,
-    "Conductivity": 13.0,
-    "Value": 60
-  },
-  {
-    "Id": "Iron",
-    "Name": "Iron",
-    "Density": 7850.0,
-    "Conductivity": 80.0,
-    "Value": 10
-  },
-  {
-    "Id": "Titanium_Vapor",
-    "Name": "Titanium Vapor",
-    "Density": 3944.5,
-    "Conductivity": 68.5,
-    "Value": 985
-  },
-  {
-    "Id": "Mythril_Refined",
-    "Name": "Mythril Refined",
-    "Density": 6360.5,
-    "Conductivity": 116.5,
-    "Value": 1785
+    "Id": "Quantum_Ore",
+    "Name": "Quantum Ore",
+    "Density": 7795.0,
+    "Conductivity": 145.0,
+    "Value": 2260
   },
   {
     "Id": "Quantum_Essence",
@@ -721,10 +84,647 @@
     "Value": 2410
   },
   {
+    "Id": "Obsidian_Refined",
+    "Name": "Obsidian Refined",
+    "Density": 5605.5,
+    "Conductivity": 101.5,
+    "Value": 1535
+  },
+  {
+    "Id": "Copper_Shard",
+    "Name": "Copper Shard",
+    "Density": 2359.0,
+    "Conductivity": 37.0,
+    "Value": 460
+  },
+  {
+    "Id": "Titanium_Dust",
+    "Name": "Titanium Dust",
+    "Density": 3642.5,
+    "Conductivity": 62.5,
+    "Value": 885
+  },
+  {
+    "Id": "Obsidian_Vapor",
+    "Name": "Obsidian Vapor",
+    "Density": 6209.5,
+    "Conductivity": 113.5,
+    "Value": 1735
+  },
+  {
+    "Id": "Aether_Alloy",
+    "Name": "Aether Alloy",
+    "Density": 4171.0,
+    "Conductivity": 73.0,
+    "Value": 1060
+  },
+  {
+    "Id": "Mythril_Ore",
+    "Name": "Mythril Ore",
+    "Density": 6285.0,
+    "Conductivity": 115.0,
+    "Value": 1760
+  },
+  {
+    "Id": "Iron_Vapor",
+    "Name": "Iron Vapor",
+    "Density": 1679.5,
+    "Conductivity": 23.5,
+    "Value": 235
+  },
+  {
+    "Id": "Quantum_Alloy",
+    "Name": "Quantum Alloy",
+    "Density": 7946.0,
+    "Conductivity": 148.0,
+    "Value": 2310
+  },
+  {
+    "Id": "Gold_Matrix",
+    "Name": "Gold Matrix",
+    "Density": 2812.0,
+    "Conductivity": 46.0,
+    "Value": 610
+  },
+  {
+    "Id": "Gold_Refined",
+    "Name": "Gold Refined",
+    "Density": 2585.5,
+    "Conductivity": 41.5,
+    "Value": 535
+  },
+  {
+    "Id": "Aether_Crystal",
+    "Name": "Aether Crystal",
+    "Density": 4246.5,
+    "Conductivity": 74.5,
+    "Value": 1085
+  },
+  {
+    "Id": "Void_Refined",
+    "Name": "Void Refined",
+    "Density": 4850.5,
+    "Conductivity": 86.5,
+    "Value": 1285
+  },
+  {
+    "Id": "Gold_Shard",
+    "Name": "Gold Shard",
+    "Density": 3114.0,
+    "Conductivity": 52.0,
+    "Value": 710
+  },
+  {
+    "Id": "Adamantite_Essence",
+    "Name": "Adamantite Essence",
+    "Density": 7493.0,
+    "Conductivity": 139.0,
+    "Value": 2160
+  },
+  {
+    "Id": "Gold_Singularity",
+    "Name": "Gold Singularity",
+    "Density": 3038.5,
+    "Conductivity": 50.5,
+    "Value": 685
+  },
+  {
+    "Id": "Void_Matrix",
+    "Name": "Void Matrix",
+    "Density": 5077.0,
+    "Conductivity": 91.0,
+    "Value": 1360
+  },
+  {
+    "Id": "Obsidian_Matrix",
+    "Name": "Obsidian Matrix",
+    "Density": 5832.0,
+    "Conductivity": 106.0,
+    "Value": 1610
+  },
+  {
+    "Id": "Obsidian_Singularity",
+    "Name": "Obsidian Singularity",
+    "Density": 6058.5,
+    "Conductivity": 110.5,
+    "Value": 1685
+  },
+  {
+    "Id": "Gold_Ore",
+    "Name": "Gold Ore",
+    "Density": 2510.0,
+    "Conductivity": 40.0,
+    "Value": 510
+  },
+  {
+    "Id": "Titanium_Refined",
+    "Name": "Titanium Refined",
+    "Density": 3340.5,
+    "Conductivity": 56.5,
+    "Value": 785
+  },
+  {
+    "Id": "Titanium_Vapor",
+    "Name": "Titanium Vapor",
+    "Density": 3944.5,
+    "Conductivity": 68.5,
+    "Value": 985
+  },
+  {
+    "Id": "Void_Singularity",
+    "Name": "Void Singularity",
+    "Density": 5303.5,
+    "Conductivity": 95.5,
+    "Value": 1435
+  },
+  {
+    "Id": "Adamantite_Alloy",
+    "Name": "Adamantite Alloy",
+    "Density": 7191.0,
+    "Conductivity": 133.0,
+    "Value": 2060
+  },
+  {
+    "Id": "Void_Ore",
+    "Name": "Void Ore",
+    "Density": 4775.0,
+    "Conductivity": 85.0,
+    "Value": 1260
+  },
+  {
+    "Id": "Iron_Essence",
+    "Name": "Iron Essence",
+    "Density": 1453.0,
+    "Conductivity": 19.0,
+    "Value": 160
+  },
+  {
+    "Id": "Copper_Essence",
+    "Name": "Copper Essence",
+    "Density": 2208.0,
+    "Conductivity": 34.0,
+    "Value": 410
+  },
+  {
+    "Id": "Mythril_Refined",
+    "Name": "Mythril Refined",
+    "Density": 6360.5,
+    "Conductivity": 116.5,
+    "Value": 1785
+  },
+  {
+    "Id": "Quantum_Singularity",
+    "Name": "Quantum Singularity",
+    "Density": 8323.5,
+    "Conductivity": 155.5,
+    "Value": 2435
+  },
+  {
+    "Id": "Quantum_Vapor",
+    "Name": "Quantum Vapor",
+    "Density": 8474.5,
+    "Conductivity": 158.5,
+    "Value": 2485
+  },
+  {
+    "Id": "Void_Shard",
+    "Name": "Void Shard",
+    "Density": 5379.0,
+    "Conductivity": 97.0,
+    "Value": 1460
+  },
+  {
+    "Id": "Iron_Alloy",
+    "Name": "Iron Alloy",
+    "Density": 1151.0,
+    "Conductivity": 13.0,
+    "Value": 60
+  },
+  {
+    "Id": "Aether_Vapor",
+    "Name": "Aether Vapor",
+    "Density": 4699.5,
+    "Conductivity": 83.5,
+    "Value": 1235
+  },
+  {
+    "Id": "Quantum_Crystal",
+    "Name": "Quantum Crystal",
+    "Density": 8021.5,
+    "Conductivity": 149.5,
+    "Value": 2335
+  },
+  {
+    "Id": "Iron",
+    "Name": "Iron",
+    "Density": 7850.0,
+    "Conductivity": 80.0,
+    "Value": 10
+  },
+  {
+    "Id": "Aether_Essence",
+    "Name": "Aether Essence",
+    "Density": 4473.0,
+    "Conductivity": 79.0,
+    "Value": 1160
+  },
+  {
+    "Id": "Obsidian_Alloy",
+    "Name": "Obsidian Alloy",
+    "Density": 5681.0,
+    "Conductivity": 103.0,
+    "Value": 1560
+  },
+  {
+    "Id": "Aether_Matrix",
+    "Name": "Aether Matrix",
+    "Density": 4322.0,
+    "Conductivity": 76.0,
+    "Value": 1110
+  },
+  {
+    "Id": "Aether_Ore",
+    "Name": "Aether Ore",
+    "Density": 4020.0,
+    "Conductivity": 70.0,
+    "Value": 1010
+  },
+  {
+    "Id": "AetherCrystal",
+    "Name": "Aether Crystal",
+    "Density": 2100.0,
+    "Conductivity": 10.0,
+    "Value": 250
+  },
+  {
+    "Id": "Titanium_Ore",
+    "Name": "Titanium Ore",
+    "Density": 3265.0,
+    "Conductivity": 55.0,
+    "Value": 760
+  },
+  {
+    "Id": "Copper_Ore",
+    "Name": "Copper Ore",
+    "Density": 1755.0,
+    "Conductivity": 25.0,
+    "Value": 260
+  },
+  {
+    "Id": "Obsidian_Ore",
+    "Name": "Obsidian Ore",
+    "Density": 5530.0,
+    "Conductivity": 100.0,
+    "Value": 1510
+  },
+  {
+    "Id": "Mythril_Dust",
+    "Name": "Mythril Dust",
+    "Density": 6662.5,
+    "Conductivity": 122.5,
+    "Value": 1885
+  },
+  {
+    "Id": "Quantum_Shard",
+    "Name": "Quantum Shard",
+    "Density": 8399.0,
+    "Conductivity": 157.0,
+    "Value": 2460
+  },
+  {
+    "Id": "Iron_Singularity",
+    "Name": "Iron Singularity",
+    "Density": 1528.5,
+    "Conductivity": 20.5,
+    "Value": 185
+  },
+  {
+    "Id": "Void_Vapor",
+    "Name": "Void Vapor",
+    "Density": 5454.5,
+    "Conductivity": 98.5,
+    "Value": 1485
+  },
+  {
+    "Id": "Mythril_Matrix",
+    "Name": "Mythril Matrix",
+    "Density": 6587.0,
+    "Conductivity": 121.0,
+    "Value": 1860
+  },
+  {
+    "Id": "Iron_Ore",
+    "Name": "Iron Ore",
+    "Density": 1000.0,
+    "Conductivity": 10.0,
+    "Value": 10
+  },
+  {
+    "Id": "Void_Dust",
+    "Name": "Void Dust",
+    "Density": 5152.5,
+    "Conductivity": 92.5,
+    "Value": 1385
+  },
+  {
+    "Id": "Aether_Shard",
+    "Name": "Aether Shard",
+    "Density": 4624.0,
+    "Conductivity": 82.0,
+    "Value": 1210
+  },
+  {
+    "Id": "Titanium_Crystal",
+    "Name": "Titanium Crystal",
+    "Density": 3491.5,
+    "Conductivity": 59.5,
+    "Value": 835
+  },
+  {
+    "Id": "Void_Crystal",
+    "Name": "Void Crystal",
+    "Density": 5001.5,
+    "Conductivity": 89.5,
+    "Value": 1335
+  },
+  {
+    "Id": "Titanium_Matrix",
+    "Name": "Titanium Matrix",
+    "Density": 3567.0,
+    "Conductivity": 61.0,
+    "Value": 860
+  },
+  {
+    "Id": "Copper_Alloy",
+    "Name": "Copper Alloy",
+    "Density": 1906.0,
+    "Conductivity": 28.0,
+    "Value": 310
+  },
+  {
+    "Id": "Adamantite_Matrix",
+    "Name": "Adamantite Matrix",
+    "Density": 7342.0,
+    "Conductivity": 136.0,
+    "Value": 2110
+  },
+  {
+    "Id": "Adamantite_Dust",
+    "Name": "Adamantite Dust",
+    "Density": 7417.5,
+    "Conductivity": 137.5,
+    "Value": 2135
+  },
+  {
+    "Id": "Gold_Vapor",
+    "Name": "Gold Vapor",
+    "Density": 3189.5,
+    "Conductivity": 53.5,
+    "Value": 735
+  },
+  {
+    "Id": "Mythril_Alloy",
+    "Name": "Mythril Alloy",
+    "Density": 6436.0,
+    "Conductivity": 118.0,
+    "Value": 1810
+  },
+  {
+    "Id": "Quantum_Matrix",
+    "Name": "Quantum Matrix",
+    "Density": 8097.0,
+    "Conductivity": 151.0,
+    "Value": 2360
+  },
+  {
+    "Id": "Gold_Essence",
+    "Name": "Gold Essence",
+    "Density": 2963.0,
+    "Conductivity": 49.0,
+    "Value": 660
+  },
+  {
+    "Id": "Adamantite_Ore",
+    "Name": "Adamantite Ore",
+    "Density": 7040.0,
+    "Conductivity": 130.0,
+    "Value": 2010
+  },
+  {
+    "Id": "Obsidian_Essence",
+    "Name": "Obsidian Essence",
+    "Density": 5983.0,
+    "Conductivity": 109.0,
+    "Value": 1660
+  },
+  {
+    "Id": "Quantum_Refined",
+    "Name": "Quantum Refined",
+    "Density": 7870.5,
+    "Conductivity": 146.5,
+    "Value": 2285
+  },
+  {
     "Id": "Titanium_Shard",
     "Name": "Titanium Shard",
     "Density": 3869.0,
     "Conductivity": 67.0,
     "Value": 960
+  },
+  {
+    "Id": "Mythril_Crystal",
+    "Name": "Mythril Crystal",
+    "Density": 6511.5,
+    "Conductivity": 119.5,
+    "Value": 1835
+  },
+  {
+    "Id": "Copper_Vapor",
+    "Name": "Copper Vapor",
+    "Density": 2434.5,
+    "Conductivity": 38.5,
+    "Value": 485
+  },
+  {
+    "Id": "Titanium_Essence",
+    "Name": "Titanium Essence",
+    "Density": 3718.0,
+    "Conductivity": 64.0,
+    "Value": 910
+  },
+  {
+    "Id": "Copper_Refined",
+    "Name": "Copper Refined",
+    "Density": 1830.5,
+    "Conductivity": 26.5,
+    "Value": 285
+  },
+  {
+    "Id": "Iron_Refined",
+    "Name": "Iron Refined",
+    "Density": 1075.5,
+    "Conductivity": 11.5,
+    "Value": 35
+  },
+  {
+    "Id": "Obsidian_Shard",
+    "Name": "Obsidian Shard",
+    "Density": 6134.0,
+    "Conductivity": 112.0,
+    "Value": 1710
+  },
+  {
+    "Id": "FerriumAlloy",
+    "Name": "Ferrium Alloy",
+    "Density": 8200.0,
+    "Conductivity": 120.0,
+    "Value": 500
+  },
+  {
+    "Id": "Copper_Singularity",
+    "Name": "Copper Singularity",
+    "Density": 2283.5,
+    "Conductivity": 35.5,
+    "Value": 435
+  },
+  {
+    "Id": "Adamantite_Refined",
+    "Name": "Adamantite Refined",
+    "Density": 7115.5,
+    "Conductivity": 131.5,
+    "Value": 2035
+  },
+  {
+    "Id": "Iron_Shard",
+    "Name": "Iron Shard",
+    "Density": 1604.0,
+    "Conductivity": 22.0,
+    "Value": 210
+  },
+  {
+    "Id": "Void_Essence",
+    "Name": "Void Essence",
+    "Density": 5228.0,
+    "Conductivity": 94.0,
+    "Value": 1410
+  },
+  {
+    "Id": "Void_Alloy",
+    "Name": "Void Alloy",
+    "Density": 4926.0,
+    "Conductivity": 88.0,
+    "Value": 1310
+  },
+  {
+    "Id": "Adamantite_Singularity",
+    "Name": "Adamantite Singularity",
+    "Density": 7568.5,
+    "Conductivity": 140.5,
+    "Value": 2185
+  },
+  {
+    "Id": "Copper_Dust",
+    "Name": "Copper Dust",
+    "Density": 2132.5,
+    "Conductivity": 32.5,
+    "Value": 385
+  },
+  {
+    "Id": "Aether_Refined",
+    "Name": "Aether Refined",
+    "Density": 4095.5,
+    "Conductivity": 71.5,
+    "Value": 1035
+  },
+  {
+    "Id": "Gold_Crystal",
+    "Name": "Gold Crystal",
+    "Density": 2736.5,
+    "Conductivity": 44.5,
+    "Value": 585
+  },
+  {
+    "Id": "Quantum_Dust",
+    "Name": "Quantum Dust",
+    "Density": 8172.5,
+    "Conductivity": 152.5,
+    "Value": 2385
+  },
+  {
+    "Id": "Obsidian_Dust",
+    "Name": "Obsidian Dust",
+    "Density": 5907.5,
+    "Conductivity": 107.5,
+    "Value": 1635
+  },
+  {
+    "Id": "Mythril_Singularity",
+    "Name": "Mythril Singularity",
+    "Density": 6813.5,
+    "Conductivity": 125.5,
+    "Value": 1935
+  },
+  {
+    "Id": "Aether_Dust",
+    "Name": "Aether Dust",
+    "Density": 4397.5,
+    "Conductivity": 77.5,
+    "Value": 1135
+  },
+  {
+    "Id": "Adamantite_Shard",
+    "Name": "Adamantite Shard",
+    "Density": 7644.0,
+    "Conductivity": 142.0,
+    "Value": 2210
+  },
+  {
+    "Id": "Titanium_Singularity",
+    "Name": "Titanium Singularity",
+    "Density": 3793.5,
+    "Conductivity": 65.5,
+    "Value": 935
+  },
+  {
+    "Id": "Mythril_Essence",
+    "Name": "Mythril Essence",
+    "Density": 6738.0,
+    "Conductivity": 124.0,
+    "Value": 1910
+  },
+  {
+    "Id": "VoidBone",
+    "Name": "Void Bone",
+    "Density": 1500.0,
+    "Conductivity": 5.0,
+    "Value": 250
+  },
+  {
+    "Id": "Iron_Dust",
+    "Name": "Iron Dust",
+    "Density": 1377.5,
+    "Conductivity": 17.5,
+    "Value": 135
+  },
+  {
+    "Id": "Mythril_Vapor",
+    "Name": "Mythril Vapor",
+    "Density": 6964.5,
+    "Conductivity": 128.5,
+    "Value": 1985
+  },
+  {
+    "Id": "Obsidian_Crystal",
+    "Name": "Obsidian Crystal",
+    "Density": 5756.5,
+    "Conductivity": 104.5,
+    "Value": 1585
+  },
+  {
+    "Id": "Gold_Alloy",
+    "Name": "Gold Alloy",
+    "Density": 2661.0,
+    "Conductivity": 43.0,
+    "Value": 560
   }
 ]

@@ -13,24 +13,24 @@ local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local MonetizationService = {}
 MonetizationService.Name = "MonetizationService"
 
--- Product and Pass IDs (Configurable)
+-- Product and Pass IDs — created via Roblox Open Cloud API 2026-07-28
 MonetizationService.GamePasses = {
-	VIP = 1923436403,
-	AutoHatch = 1925292405,
-	SuperLuck = 1924362417,
-	ExtraInventory = 1924818406,
-	FreeNeonTrail = 1923484423,
+	VIP            = 1928659952, -- Sanctum VIP Pass (500 R$)
+	AutoHatch      = 1930974306, -- Auto-Hatch Pass (299 R$)
+	SuperLuck      = 1931064295, -- Super Luck Pass (399 R$)
+	ExtraInventory = 1931154285, -- Extra Inventory Pass (199 R$)
+	FreeNeonTrail  = 1929103932, -- Neon Trail Pass (Free)
 }
 
 MonetizationService.DevProducts = {
-	CoinsSmall = 3611126655,      -- +5,000 Coins (25 R$)
-	CoinsLarge = 3611126895,      -- +50,000 Coins (99 R$)
-	GemsSmall = 3611126819,       -- +100 Gems (49 R$)
-	GemsLarge = 3611126995,       -- +1,000 Gems (199 R$)
-	AuraBoostMedium = 3611127120, -- +2,500 Aura Energy (79 R$)
-	ChronoSparksPack = 3611127250,-- +100 Chrono Sparks (149 R$)
-	InstantEggHatch = 3611127380, -- Instant Egg Hatch (15 R$)
-	RebirthSkipToken = 3611127510,-- +1 Rebirth Token (299 R$)
+	CoinsSmall        = 3612013265, -- +5,000 Coins (25 R$)
+	CoinsLarge        = 3612013269, -- +50,000 Coins (99 R$)
+	GemsSmall         = 3612013424, -- +100 Gems (49 R$)
+	GemsLarge         = 3612013290, -- +1,000 Gems (199 R$)
+	AuraBoostMedium   = 3612013293, -- +2,500 Aura Energy (79 R$)
+	ChronoSparksPack  = 3612013298, -- +100 Chrono Sparks (149 R$)
+	InstantEggHatch   = 3612013299, -- Instant Egg Hatch (15 R$)
+	RebirthSkipToken  = 3612013301, -- +1 Rebirth Token (299 R$)
 }
 
 local processedReceipts: { [string]: boolean } = {}

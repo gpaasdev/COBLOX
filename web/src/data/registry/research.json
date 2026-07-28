@@ -1,131 +1,75 @@
 [
   {
-    "Id": "Tech_Automation_27",
-    "Name": "Automation Specialization Level 27",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2700
-  },
-  {
-    "Id": "Tech_VoidScience_6",
-    "Name": "VoidScience Specialization Level 6",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 600
-  },
-  {
-    "Id": "Tech_Engineering_20",
-    "Name": "Engineering Specialization Level 20",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2000
-  },
-  {
-    "Id": "Tech_Thermodynamics_28",
-    "Name": "Thermodynamics Specialization Level 28",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2800
-  },
-  {
-    "Id": "Tech_Automation_15",
-    "Name": "Automation Specialization Level 15",
+    "Id": "Tech_VoidScience_15",
+    "Name": "VoidScience Specialization Level 15",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
     "Cost": 1500
   },
   {
-    "Id": "Tech_Engineering_18",
-    "Name": "Engineering Specialization Level 18",
+    "Id": "Tech_Engineering_21",
+    "Name": "Engineering Specialization Level 21",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 1800
+    "Cost": 2100
   },
   {
-    "Id": "Tech_QuantumPhysics_24",
-    "Name": "QuantumPhysics Specialization Level 24",
+    "Id": "Tech_QuantumPhysics_14",
+    "Name": "QuantumPhysics Specialization Level 14",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 2400
+    "Cost": 1400
   },
   {
-    "Id": "Tech_Automation_5",
-    "Name": "Automation Specialization Level 5",
+    "Id": "Tech_Automation_16",
+    "Name": "Automation Specialization Level 16",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 500
+    "Cost": 1600
   },
   {
-    "Id": "Tech_Thermodynamics_2",
-    "Name": "Thermodynamics Specialization Level 2",
+    "Id": "Tech_Engineering_1",
+    "Name": "Engineering Specialization Level 1",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 100
+  },
+  {
+    "Id": "Tech_Thermodynamics_10",
+    "Name": "Thermodynamics Specialization Level 10",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1000
+  },
+  {
+    "Id": "Tech_Automation_3",
+    "Name": "Automation Specialization Level 3",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 300
+  },
+  {
+    "Id": "Tech_QuantumPhysics_4",
+    "Name": "QuantumPhysics Specialization Level 4",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 400
+  },
+  {
+    "Id": "Tech_VoidScience_2",
+    "Name": "VoidScience Specialization Level 2",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
     "Cost": 200
-  },
-  {
-    "Id": "Tech_VoidScience_27",
-    "Name": "VoidScience Specialization Level 27",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2700
-  },
-  {
-    "Id": "Tech_VoidScience_23",
-    "Name": "VoidScience Specialization Level 23",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2300
-  },
-  {
-    "Id": "Tech_Thermodynamics_13",
-    "Name": "Thermodynamics Specialization Level 13",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1300
-  },
-  {
-    "Id": "Tech_QuantumPhysics_11",
-    "Name": "QuantumPhysics Specialization Level 11",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1100
-  },
-  {
-    "Id": "Tech_Engineering_2",
-    "Name": "Engineering Specialization Level 2",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 200
-  },
-  {
-    "Id": "Tech_QuantumPhysics_28",
-    "Name": "QuantumPhysics Specialization Level 28",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2800
-  },
-  {
-    "Id": "Tech_VoidScience_9",
-    "Name": "VoidScience Specialization Level 9",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 900
   },
   {
     "Id": "Tech_Automation_20",
@@ -136,20 +80,28 @@
     "Cost": 2000
   },
   {
-    "Id": "Tech_Automation_13",
-    "Name": "Automation Specialization Level 13",
+    "Id": "Tech_Thermodynamics_30",
+    "Name": "Thermodynamics Specialization Level 30",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 1300
+    "Cost": 3000
   },
   {
-    "Id": "Tech_QuantumPhysics_8",
-    "Name": "QuantumPhysics Specialization Level 8",
+    "Id": "Tech_Thermodynamics_3",
+    "Name": "Thermodynamics Specialization Level 3",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 800
+    "Cost": 300
+  },
+  {
+    "Id": "Tech_QuantumPhysics_22",
+    "Name": "QuantumPhysics Specialization Level 22",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2200
   },
   {
     "Id": "Tech_BasicFusion",
@@ -161,372 +113,12 @@
     "Cost": 500
   },
   {
-    "Id": "Tech_QuantumPhysics_15",
-    "Name": "QuantumPhysics Specialization Level 15",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1500
-  },
-  {
-    "Id": "Tech_QuantumPhysics_26",
-    "Name": "QuantumPhysics Specialization Level 26",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2600
-  },
-  {
-    "Id": "Tech_QuantumPhysics_1",
-    "Name": "QuantumPhysics Specialization Level 1",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 100
-  },
-  {
-    "Id": "Tech_VoidScience_18",
-    "Name": "VoidScience Specialization Level 18",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1800
-  },
-  {
-    "Id": "Tech_Thermodynamics_21",
-    "Name": "Thermodynamics Specialization Level 21",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2100
-  },
-  {
-    "Id": "Tech_VoidScience_13",
-    "Name": "VoidScience Specialization Level 13",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1300
-  },
-  {
-    "Id": "Tech_Automation_10",
-    "Name": "Automation Specialization Level 10",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1000
-  },
-  {
-    "Id": "Tech_Automation_6",
-    "Name": "Automation Specialization Level 6",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 600
-  },
-  {
-    "Id": "Tech_Automation_8",
-    "Name": "Automation Specialization Level 8",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 800
-  },
-  {
-    "Id": "Tech_Thermodynamics_11",
-    "Name": "Thermodynamics Specialization Level 11",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1100
-  },
-  {
-    "Id": "Tech_Engineering_23",
-    "Name": "Engineering Specialization Level 23",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2300
-  },
-  {
-    "Id": "Tech_Thermodynamics_23",
-    "Name": "Thermodynamics Specialization Level 23",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2300
-  },
-  {
-    "Id": "Tech_Automation_30",
-    "Name": "Automation Specialization Level 30",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 3000
-  },
-  {
-    "Id": "Tech_Automation_24",
-    "Name": "Automation Specialization Level 24",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2400
-  },
-  {
-    "Id": "Tech_Thermodynamics_25",
-    "Name": "Thermodynamics Specialization Level 25",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2500
-  },
-  {
-    "Id": "Tech_QuantumPhysics_9",
-    "Name": "QuantumPhysics Specialization Level 9",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 900
-  },
-  {
-    "Id": "Tech_VoidScience_17",
-    "Name": "VoidScience Specialization Level 17",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1700
-  },
-  {
-    "Id": "Tech_Engineering_15",
-    "Name": "Engineering Specialization Level 15",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1500
-  },
-  {
-    "Id": "Tech_Automation_1",
-    "Name": "Automation Specialization Level 1",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 100
-  },
-  {
-    "Id": "Tech_Automation_9",
-    "Name": "Automation Specialization Level 9",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 900
-  },
-  {
-    "Id": "Tech_CryoCooling",
-    "Name": "Advanced Cryogenics",
-    "RequiredDiscoveries": [
-      "AetherCrystal"
-    ],
-    "Cost": 1200
-  },
-  {
-    "Id": "Tech_Automation_3",
-    "Name": "Automation Specialization Level 3",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 300
-  },
-  {
-    "Id": "Tech_Automation_18",
-    "Name": "Automation Specialization Level 18",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1800
-  },
-  {
-    "Id": "Tech_QuantumPhysics_4",
-    "Name": "QuantumPhysics Specialization Level 4",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 400
-  },
-  {
-    "Id": "Tech_QuantumPhysics_17",
-    "Name": "QuantumPhysics Specialization Level 17",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1700
-  },
-  {
-    "Id": "Tech_QuantumPhysics_14",
-    "Name": "QuantumPhysics Specialization Level 14",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1400
-  },
-  {
-    "Id": "Tech_Engineering_5",
-    "Name": "Engineering Specialization Level 5",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 500
-  },
-  {
-    "Id": "Tech_VoidScience_11",
-    "Name": "VoidScience Specialization Level 11",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1100
-  },
-  {
-    "Id": "Tech_QuantumPhysics_16",
-    "Name": "QuantumPhysics Specialization Level 16",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1600
-  },
-  {
-    "Id": "Tech_QuantumPhysics_21",
-    "Name": "QuantumPhysics Specialization Level 21",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2100
-  },
-  {
-    "Id": "Tech_Thermodynamics_22",
-    "Name": "Thermodynamics Specialization Level 22",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2200
-  },
-  {
-    "Id": "Tech_Engineering_27",
-    "Name": "Engineering Specialization Level 27",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2700
-  },
-  {
-    "Id": "Tech_VoidScience_12",
-    "Name": "VoidScience Specialization Level 12",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1200
-  },
-  {
-    "Id": "Tech_Engineering_13",
-    "Name": "Engineering Specialization Level 13",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1300
-  },
-  {
-    "Id": "Tech_Automation_21",
-    "Name": "Automation Specialization Level 21",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2100
-  },
-  {
-    "Id": "Tech_Engineering_25",
-    "Name": "Engineering Specialization Level 25",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2500
-  },
-  {
-    "Id": "Tech_Automation_7",
-    "Name": "Automation Specialization Level 7",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 700
-  },
-  {
-    "Id": "Tech_Thermodynamics_18",
-    "Name": "Thermodynamics Specialization Level 18",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1800
-  },
-  {
-    "Id": "Tech_VoidScience_1",
-    "Name": "VoidScience Specialization Level 1",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 100
-  },
-  {
-    "Id": "Tech_VoidScience_3",
-    "Name": "VoidScience Specialization Level 3",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 300
-  },
-  {
-    "Id": "Tech_Thermodynamics_7",
-    "Name": "Thermodynamics Specialization Level 7",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 700
-  },
-  {
-    "Id": "Tech_Engineering_19",
-    "Name": "Engineering Specialization Level 19",
+    "Id": "Tech_VoidScience_19",
+    "Name": "VoidScience Specialization Level 19",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
     "Cost": 1900
-  },
-  {
-    "Id": "Tech_Automation_11",
-    "Name": "Automation Specialization Level 11",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1100
-  },
-  {
-    "Id": "Tech_Automation_14",
-    "Name": "Automation Specialization Level 14",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1400
-  },
-  {
-    "Id": "Tech_Engineering_30",
-    "Name": "Engineering Specialization Level 30",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 3000
-  },
-  {
-    "Id": "Tech_Engineering_9",
-    "Name": "Engineering Specialization Level 9",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 900
   },
   {
     "Id": "Tech_Thermodynamics_26",
@@ -537,340 +129,12 @@
     "Cost": 2600
   },
   {
-    "Id": "Tech_Engineering_16",
-    "Name": "Engineering Specialization Level 16",
+    "Id": "Tech_QuantumPhysics_18",
+    "Name": "QuantumPhysics Specialization Level 18",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 1600
-  },
-  {
-    "Id": "Tech_Thermodynamics_10",
-    "Name": "Thermodynamics Specialization Level 10",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1000
-  },
-  {
-    "Id": "Tech_Engineering_29",
-    "Name": "Engineering Specialization Level 29",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2900
-  },
-  {
-    "Id": "Tech_QuantumPhysics_30",
-    "Name": "QuantumPhysics Specialization Level 30",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 3000
-  },
-  {
-    "Id": "Tech_QuantumPhysics_13",
-    "Name": "QuantumPhysics Specialization Level 13",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1300
-  },
-  {
-    "Id": "Tech_Engineering_12",
-    "Name": "Engineering Specialization Level 12",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1200
-  },
-  {
-    "Id": "Tech_VoidScience_15",
-    "Name": "VoidScience Specialization Level 15",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1500
-  },
-  {
-    "Id": "Tech_VoidScience_30",
-    "Name": "VoidScience Specialization Level 30",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 3000
-  },
-  {
-    "Id": "Tech_Automation_4",
-    "Name": "Automation Specialization Level 4",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 400
-  },
-  {
-    "Id": "Tech_VoidScience_14",
-    "Name": "VoidScience Specialization Level 14",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1400
-  },
-  {
-    "Id": "Tech_VoidScience_26",
-    "Name": "VoidScience Specialization Level 26",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2600
-  },
-  {
-    "Id": "Tech_Thermodynamics_27",
-    "Name": "Thermodynamics Specialization Level 27",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2700
-  },
-  {
-    "Id": "Tech_Thermodynamics_8",
-    "Name": "Thermodynamics Specialization Level 8",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 800
-  },
-  {
-    "Id": "Tech_QuantumPhysics_7",
-    "Name": "QuantumPhysics Specialization Level 7",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 700
-  },
-  {
-    "Id": "Tech_Thermodynamics_19",
-    "Name": "Thermodynamics Specialization Level 19",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1900
-  },
-  {
-    "Id": "Tech_VoidScience_28",
-    "Name": "VoidScience Specialization Level 28",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2800
-  },
-  {
-    "Id": "Tech_Engineering_21",
-    "Name": "Engineering Specialization Level 21",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2100
-  },
-  {
-    "Id": "Tech_Engineering_11",
-    "Name": "Engineering Specialization Level 11",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1100
-  },
-  {
-    "Id": "Tech_VoidScience_19",
-    "Name": "VoidScience Specialization Level 19",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1900
-  },
-  {
-    "Id": "Tech_VoidScience_21",
-    "Name": "VoidScience Specialization Level 21",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2100
-  },
-  {
-    "Id": "Tech_Automation_23",
-    "Name": "Automation Specialization Level 23",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2300
-  },
-  {
-    "Id": "Tech_QuantumPhysics_22",
-    "Name": "QuantumPhysics Specialization Level 22",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2200
-  },
-  {
-    "Id": "Tech_VoidScience_4",
-    "Name": "VoidScience Specialization Level 4",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 400
-  },
-  {
-    "Id": "Tech_QuantumPhysics_19",
-    "Name": "QuantumPhysics Specialization Level 19",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1900
-  },
-  {
-    "Id": "Tech_Automation_16",
-    "Name": "Automation Specialization Level 16",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1600
-  },
-  {
-    "Id": "Tech_VoidScience_10",
-    "Name": "VoidScience Specialization Level 10",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1000
-  },
-  {
-    "Id": "Tech_VoidScience_24",
-    "Name": "VoidScience Specialization Level 24",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2400
-  },
-  {
-    "Id": "Tech_QuantumPhysics_6",
-    "Name": "QuantumPhysics Specialization Level 6",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 600
-  },
-  {
-    "Id": "Tech_Engineering_4",
-    "Name": "Engineering Specialization Level 4",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 400
-  },
-  {
-    "Id": "Tech_QuantumPhysics_23",
-    "Name": "QuantumPhysics Specialization Level 23",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2300
-  },
-  {
-    "Id": "Tech_Thermodynamics_20",
-    "Name": "Thermodynamics Specialization Level 20",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2000
-  },
-  {
-    "Id": "Tech_QuantumPhysics_12",
-    "Name": "QuantumPhysics Specialization Level 12",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1200
-  },
-  {
-    "Id": "Tech_VoidScience_5",
-    "Name": "VoidScience Specialization Level 5",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 500
-  },
-  {
-    "Id": "Tech_Automation_2",
-    "Name": "Automation Specialization Level 2",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 200
-  },
-  {
-    "Id": "Tech_Thermodynamics_29",
-    "Name": "Thermodynamics Specialization Level 29",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2900
-  },
-  {
-    "Id": "Tech_Engineering_8",
-    "Name": "Engineering Specialization Level 8",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 800
-  },
-  {
-    "Id": "Tech_VoidScience_16",
-    "Name": "VoidScience Specialization Level 16",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1600
-  },
-  {
-    "Id": "Tech_Automation_19",
-    "Name": "Automation Specialization Level 19",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1900
-  },
-  {
-    "Id": "Tech_QuantumPhysics_2",
-    "Name": "QuantumPhysics Specialization Level 2",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 200
-  },
-  {
-    "Id": "Tech_Automation_22",
-    "Name": "Automation Specialization Level 22",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2200
-  },
-  {
-    "Id": "Tech_Engineering_24",
-    "Name": "Engineering Specialization Level 24",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2400
-  },
-  {
-    "Id": "Tech_Engineering_10",
-    "Name": "Engineering Specialization Level 10",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1000
+    "Cost": 1800
   },
   {
     "Id": "Tech_Engineering_17",
@@ -881,6 +145,134 @@
     "Cost": 1700
   },
   {
+    "Id": "Tech_VoidScience_23",
+    "Name": "VoidScience Specialization Level 23",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2300
+  },
+  {
+    "Id": "Tech_QuantumPhysics_8",
+    "Name": "QuantumPhysics Specialization Level 8",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 800
+  },
+  {
+    "Id": "Tech_VoidScience_22",
+    "Name": "VoidScience Specialization Level 22",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2200
+  },
+  {
+    "Id": "Tech_QuantumPhysics_9",
+    "Name": "QuantumPhysics Specialization Level 9",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 900
+  },
+  {
+    "Id": "Tech_Engineering_16",
+    "Name": "Engineering Specialization Level 16",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1600
+  },
+  {
+    "Id": "Tech_QuantumPhysics_19",
+    "Name": "QuantumPhysics Specialization Level 19",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1900
+  },
+  {
+    "Id": "Tech_Thermodynamics_27",
+    "Name": "Thermodynamics Specialization Level 27",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2700
+  },
+  {
+    "Id": "Tech_CryoCooling",
+    "Name": "Advanced Cryogenics",
+    "RequiredDiscoveries": [
+      "AetherCrystal"
+    ],
+    "Cost": 1200
+  },
+  {
+    "Id": "Tech_VoidScience_18",
+    "Name": "VoidScience Specialization Level 18",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1800
+  },
+  {
+    "Id": "Tech_Thermodynamics_2",
+    "Name": "Thermodynamics Specialization Level 2",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 200
+  },
+  {
+    "Id": "Tech_QuantumPhysics_23",
+    "Name": "QuantumPhysics Specialization Level 23",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2300
+  },
+  {
+    "Id": "Tech_VoidScience_3",
+    "Name": "VoidScience Specialization Level 3",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 300
+  },
+  {
+    "Id": "Tech_Automation_21",
+    "Name": "Automation Specialization Level 21",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2100
+  },
+  {
+    "Id": "Tech_Automation_2",
+    "Name": "Automation Specialization Level 2",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 200
+  },
+  {
+    "Id": "Tech_QuantumPhysics_5",
+    "Name": "QuantumPhysics Specialization Level 5",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 500
+  },
+  {
+    "Id": "Tech_Thermodynamics_11",
+    "Name": "Thermodynamics Specialization Level 11",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1100
+  },
+  {
     "Id": "Tech_Automation_17",
     "Name": "Automation Specialization Level 17",
     "RequiredDiscoveries": [
@@ -889,16 +281,112 @@
     "Cost": 1700
   },
   {
-    "Id": "Tech_Engineering_6",
-    "Name": "Engineering Specialization Level 6",
+    "Id": "Tech_QuantumPhysics_15",
+    "Name": "QuantumPhysics Specialization Level 15",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 600
+    "Cost": 1500
   },
   {
-    "Id": "Tech_Engineering_28",
-    "Name": "Engineering Specialization Level 28",
+    "Id": "Tech_Engineering_20",
+    "Name": "Engineering Specialization Level 20",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2000
+  },
+  {
+    "Id": "Tech_VoidScience_14",
+    "Name": "VoidScience Specialization Level 14",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1400
+  },
+  {
+    "Id": "Tech_Automation_26",
+    "Name": "Automation Specialization Level 26",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2600
+  },
+  {
+    "Id": "Tech_VoidScience_4",
+    "Name": "VoidScience Specialization Level 4",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 400
+  },
+  {
+    "Id": "Tech_Thermodynamics_5",
+    "Name": "Thermodynamics Specialization Level 5",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 500
+  },
+  {
+    "Id": "Tech_QuantumPhysics_24",
+    "Name": "QuantumPhysics Specialization Level 24",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2400
+  },
+  {
+    "Id": "Tech_Automation_30",
+    "Name": "Automation Specialization Level 30",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 3000
+  },
+  {
+    "Id": "Tech_Thermodynamics_20",
+    "Name": "Thermodynamics Specialization Level 20",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2000
+  },
+  {
+    "Id": "Tech_Engineering_11",
+    "Name": "Engineering Specialization Level 11",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1100
+  },
+  {
+    "Id": "Tech_VoidScience_25",
+    "Name": "VoidScience Specialization Level 25",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2500
+  },
+  {
+    "Id": "Tech_Automation_9",
+    "Name": "Automation Specialization Level 9",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 900
+  },
+  {
+    "Id": "Tech_Thermodynamics_9",
+    "Name": "Thermodynamics Specialization Level 9",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 900
+  },
+  {
+    "Id": "Tech_QuantumPhysics_28",
+    "Name": "QuantumPhysics Specialization Level 28",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
@@ -913,68 +401,36 @@
     "Cost": 800
   },
   {
-    "Id": "Tech_Engineering_14",
-    "Name": "Engineering Specialization Level 14",
+    "Id": "Tech_VoidScience_13",
+    "Name": "VoidScience Specialization Level 13",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 1400
+    "Cost": 1300
   },
   {
-    "Id": "Tech_VoidScience_29",
-    "Name": "VoidScience Specialization Level 29",
+    "Id": "Tech_Engineering_27",
+    "Name": "Engineering Specialization Level 27",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 2900
+    "Cost": 2700
   },
   {
-    "Id": "Tech_Automation_25",
-    "Name": "Automation Specialization Level 25",
+    "Id": "Tech_QuantumPhysics_12",
+    "Name": "QuantumPhysics Specialization Level 12",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 2500
+    "Cost": 1200
   },
   {
-    "Id": "Tech_Engineering_26",
-    "Name": "Engineering Specialization Level 26",
+    "Id": "Tech_Automation_10",
+    "Name": "Automation Specialization Level 10",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 2600
-  },
-  {
-    "Id": "Tech_QuantumPhysics_29",
-    "Name": "QuantumPhysics Specialization Level 29",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2900
-  },
-  {
-    "Id": "Tech_QuantumPhysics_3",
-    "Name": "QuantumPhysics Specialization Level 3",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 300
-  },
-  {
-    "Id": "Tech_VoidScience_2",
-    "Name": "VoidScience Specialization Level 2",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 200
-  },
-  {
-    "Id": "Tech_Thermodynamics_3",
-    "Name": "Thermodynamics Specialization Level 3",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 300
+    "Cost": 1000
   },
   {
     "Id": "Tech_Engineering_7",
@@ -985,140 +441,60 @@
     "Cost": 700
   },
   {
-    "Id": "Tech_QuantumPhysics_10",
-    "Name": "QuantumPhysics Specialization Level 10",
+    "Id": "Tech_Thermodynamics_16",
+    "Name": "Thermodynamics Specialization Level 16",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 1000
+    "Cost": 1600
   },
   {
-    "Id": "Tech_QuantumPhysics_20",
-    "Name": "QuantumPhysics Specialization Level 20",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2000
-  },
-  {
-    "Id": "Tech_Thermodynamics_6",
-    "Name": "Thermodynamics Specialization Level 6",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 600
-  },
-  {
-    "Id": "Tech_Thermodynamics_4",
-    "Name": "Thermodynamics Specialization Level 4",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 400
-  },
-  {
-    "Id": "Tech_Automation_12",
-    "Name": "Automation Specialization Level 12",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1200
-  },
-  {
-    "Id": "Tech_VoidScience_7",
-    "Name": "VoidScience Specialization Level 7",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 700
-  },
-  {
-    "Id": "Tech_Thermodynamics_12",
-    "Name": "Thermodynamics Specialization Level 12",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1200
-  },
-  {
-    "Id": "Tech_QuantumPhysics_18",
-    "Name": "QuantumPhysics Specialization Level 18",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1800
-  },
-  {
-    "Id": "Tech_Engineering_3",
-    "Name": "Engineering Specialization Level 3",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 300
-  },
-  {
-    "Id": "Tech_VoidScience_20",
-    "Name": "VoidScience Specialization Level 20",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2000
-  },
-  {
-    "Id": "Tech_Thermodynamics_24",
-    "Name": "Thermodynamics Specialization Level 24",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2400
-  },
-  {
-    "Id": "Tech_Thermodynamics_30",
-    "Name": "Thermodynamics Specialization Level 30",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 3000
-  },
-  {
-    "Id": "Tech_Automation_28",
-    "Name": "Automation Specialization Level 28",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2800
-  },
-  {
-    "Id": "Tech_Thermodynamics_14",
-    "Name": "Thermodynamics Specialization Level 14",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 1400
-  },
-  {
-    "Id": "Tech_Thermodynamics_5",
-    "Name": "Thermodynamics Specialization Level 5",
+    "Id": "Tech_Automation_5",
+    "Name": "Automation Specialization Level 5",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
     "Cost": 500
   },
   {
-    "Id": "Tech_Engineering_22",
-    "Name": "Engineering Specialization Level 22",
-    "RequiredDiscoveries": [
-      "Iron_Ore"
-    ],
-    "Cost": 2200
-  },
-  {
-    "Id": "Tech_Automation_29",
-    "Name": "Automation Specialization Level 29",
+    "Id": "Tech_VoidScience_29",
+    "Name": "VoidScience Specialization Level 29",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
     "Cost": 2900
+  },
+  {
+    "Id": "Tech_QuantumPhysics_2",
+    "Name": "QuantumPhysics Specialization Level 2",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 200
+  },
+  {
+    "Id": "Tech_Automation_4",
+    "Name": "Automation Specialization Level 4",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 400
+  },
+  {
+    "Id": "Tech_VoidScience_28",
+    "Name": "VoidScience Specialization Level 28",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2800
+  },
+  {
+    "Id": "Tech_QuantumPhysics_3",
+    "Name": "QuantumPhysics Specialization Level 3",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 300
   },
   {
     "Id": "Tech_Thermodynamics_17",
@@ -1129,44 +505,116 @@
     "Cost": 1700
   },
   {
-    "Id": "Tech_QuantumPhysics_27",
-    "Name": "QuantumPhysics Specialization Level 27",
+    "Id": "Tech_Engineering_6",
+    "Name": "Engineering Specialization Level 6",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 2700
+    "Cost": 600
   },
   {
-    "Id": "Tech_Thermodynamics_15",
-    "Name": "Thermodynamics Specialization Level 15",
+    "Id": "Tech_Automation_11",
+    "Name": "Automation Specialization Level 11",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 1500
+    "Cost": 1100
   },
   {
-    "Id": "Tech_QuantumPhysics_5",
-    "Name": "QuantumPhysics Specialization Level 5",
+    "Id": "Tech_QuantumPhysics_13",
+    "Name": "QuantumPhysics Specialization Level 13",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 500
+    "Cost": 1300
   },
   {
-    "Id": "Tech_VoidScience_25",
-    "Name": "VoidScience Specialization Level 25",
+    "Id": "Tech_Engineering_26",
+    "Name": "Engineering Specialization Level 26",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 2500
+    "Cost": 2600
   },
   {
-    "Id": "Tech_Thermodynamics_1",
-    "Name": "Thermodynamics Specialization Level 1",
+    "Id": "Tech_VoidScience_12",
+    "Name": "VoidScience Specialization Level 12",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 100
+    "Cost": 1200
+  },
+  {
+    "Id": "Tech_VoidScience_9",
+    "Name": "VoidScience Specialization Level 9",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 900
+  },
+  {
+    "Id": "Tech_Engineering_30",
+    "Name": "Engineering Specialization Level 30",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 3000
+  },
+  {
+    "Id": "Tech_Thermodynamics_8",
+    "Name": "Thermodynamics Specialization Level 8",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 800
+  },
+  {
+    "Id": "Tech_QuantumPhysics_29",
+    "Name": "QuantumPhysics Specialization Level 29",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2900
+  },
+  {
+    "Id": "Tech_VoidScience_24",
+    "Name": "VoidScience Specialization Level 24",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2400
+  },
+  {
+    "Id": "Tech_Automation_8",
+    "Name": "Automation Specialization Level 8",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 800
+  },
+  {
+    "Id": "Tech_Engineering_10",
+    "Name": "Engineering Specialization Level 10",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1000
+  },
+  {
+    "Id": "Tech_Thermodynamics_21",
+    "Name": "Thermodynamics Specialization Level 21",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2100
+  },
+  {
+    "Id": "Tech_Thermodynamics_4",
+    "Name": "Thermodynamics Specialization Level 4",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 400
   },
   {
     "Id": "Tech_QuantumPhysics_25",
@@ -1177,43 +625,595 @@
     "Cost": 2500
   },
   {
-    "Id": "Tech_Thermodynamics_16",
-    "Name": "Thermodynamics Specialization Level 16",
+    "Id": "Tech_Automation_27",
+    "Name": "Automation Specialization Level 27",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
-    "Cost": 1600
+    "Cost": 2700
   },
   {
-    "Id": "Tech_Thermodynamics_9",
-    "Name": "Thermodynamics Specialization Level 9",
+    "Id": "Tech_VoidScience_5",
+    "Name": "VoidScience Specialization Level 5",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 500
+  },
+  {
+    "Id": "Tech_VoidScience_27",
+    "Name": "VoidScience Specialization Level 27",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2700
+  },
+  {
+    "Id": "Tech_Engineering_9",
+    "Name": "Engineering Specialization Level 9",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
     "Cost": 900
   },
   {
-    "Id": "Tech_VoidScience_22",
-    "Name": "VoidScience Specialization Level 22",
+    "Id": "Tech_Thermodynamics_18",
+    "Name": "Thermodynamics Specialization Level 18",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1800
+  },
+  {
+    "Id": "Tech_Engineering_13",
+    "Name": "Engineering Specialization Level 13",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1300
+  },
+  {
+    "Id": "Tech_QuantumPhysics_30",
+    "Name": "QuantumPhysics Specialization Level 30",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 3000
+  },
+  {
+    "Id": "Tech_Thermodynamics_22",
+    "Name": "Thermodynamics Specialization Level 22",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
     "Cost": 2200
   },
   {
-    "Id": "Tech_Engineering_1",
-    "Name": "Engineering Specialization Level 1",
+    "Id": "Tech_Engineering_29",
+    "Name": "Engineering Specialization Level 29",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2900
+  },
+  {
+    "Id": "Tech_QuantumPhysics_26",
+    "Name": "QuantumPhysics Specialization Level 26",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2600
+  },
+  {
+    "Id": "Tech_Thermodynamics_7",
+    "Name": "Thermodynamics Specialization Level 7",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 700
+  },
+  {
+    "Id": "Tech_Automation_24",
+    "Name": "Automation Specialization Level 24",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2400
+  },
+  {
+    "Id": "Tech_VoidScience_6",
+    "Name": "VoidScience Specialization Level 6",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 600
+  },
+  {
+    "Id": "Tech_Automation_7",
+    "Name": "Automation Specialization Level 7",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 700
+  },
+  {
+    "Id": "Tech_Thermodynamics_14",
+    "Name": "Thermodynamics Specialization Level 14",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1400
+  },
+  {
+    "Id": "Tech_Engineering_5",
+    "Name": "Engineering Specialization Level 5",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 500
+  },
+  {
+    "Id": "Tech_Automation_12",
+    "Name": "Automation Specialization Level 12",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1200
+  },
+  {
+    "Id": "Tech_QuantumPhysics_10",
+    "Name": "QuantumPhysics Specialization Level 10",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1000
+  },
+  {
+    "Id": "Tech_Engineering_25",
+    "Name": "Engineering Specialization Level 25",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2500
+  },
+  {
+    "Id": "Tech_VoidScience_11",
+    "Name": "VoidScience Specialization Level 11",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1100
+  },
+  {
+    "Id": "Tech_Automation_28",
+    "Name": "Automation Specialization Level 28",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2800
+  },
+  {
+    "Id": "Tech_Automation_29",
+    "Name": "Automation Specialization Level 29",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2900
+  },
+  {
+    "Id": "Tech_VoidScience_10",
+    "Name": "VoidScience Specialization Level 10",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1000
+  },
+  {
+    "Id": "Tech_Engineering_24",
+    "Name": "Engineering Specialization Level 24",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2400
+  },
+  {
+    "Id": "Tech_QuantumPhysics_11",
+    "Name": "QuantumPhysics Specialization Level 11",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1100
+  },
+  {
+    "Id": "Tech_Automation_13",
+    "Name": "Automation Specialization Level 13",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1300
+  },
+  {
+    "Id": "Tech_Engineering_4",
+    "Name": "Engineering Specialization Level 4",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 400
+  },
+  {
+    "Id": "Tech_Thermodynamics_15",
+    "Name": "Thermodynamics Specialization Level 15",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1500
+  },
+  {
+    "Id": "Tech_QuantumPhysics_1",
+    "Name": "QuantumPhysics Specialization Level 1",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
     "Cost": 100
   },
   {
-    "Id": "Tech_Automation_26",
-    "Name": "Automation Specialization Level 26",
+    "Id": "Tech_Automation_6",
+    "Name": "Automation Specialization Level 6",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 600
+  },
+  {
+    "Id": "Tech_Automation_25",
+    "Name": "Automation Specialization Level 25",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2500
+  },
+  {
+    "Id": "Tech_VoidScience_7",
+    "Name": "VoidScience Specialization Level 7",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 700
+  },
+  {
+    "Id": "Tech_QuantumPhysics_27",
+    "Name": "QuantumPhysics Specialization Level 27",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2700
+  },
+  {
+    "Id": "Tech_Thermodynamics_6",
+    "Name": "Thermodynamics Specialization Level 6",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 600
+  },
+  {
+    "Id": "Tech_Thermodynamics_23",
+    "Name": "Thermodynamics Specialization Level 23",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2300
+  },
+  {
+    "Id": "Tech_Engineering_28",
+    "Name": "Engineering Specialization Level 28",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2800
+  },
+  {
+    "Id": "Tech_VoidScience_30",
+    "Name": "VoidScience Specialization Level 30",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 3000
+  },
+  {
+    "Id": "Tech_Thermodynamics_19",
+    "Name": "Thermodynamics Specialization Level 19",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1900
+  },
+  {
+    "Id": "Tech_Engineering_12",
+    "Name": "Engineering Specialization Level 12",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1200
+  },
+  {
+    "Id": "Tech_Engineering_8",
+    "Name": "Engineering Specialization Level 8",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 800
+  },
+  {
+    "Id": "Tech_VoidScience_26",
+    "Name": "VoidScience Specialization Level 26",
     "RequiredDiscoveries": [
       "Iron_Ore"
     ],
     "Cost": 2600
+  },
+  {
+    "Id": "Tech_QuantumPhysics_6",
+    "Name": "QuantumPhysics Specialization Level 6",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 600
+  },
+  {
+    "Id": "Tech_Automation_1",
+    "Name": "Automation Specialization Level 1",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 100
+  },
+  {
+    "Id": "Tech_Thermodynamics_12",
+    "Name": "Thermodynamics Specialization Level 12",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1200
+  },
+  {
+    "Id": "Tech_Engineering_19",
+    "Name": "Engineering Specialization Level 19",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1900
+  },
+  {
+    "Id": "Tech_Engineering_3",
+    "Name": "Engineering Specialization Level 3",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 300
+  },
+  {
+    "Id": "Tech_Automation_14",
+    "Name": "Automation Specialization Level 14",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1400
+  },
+  {
+    "Id": "Tech_QuantumPhysics_16",
+    "Name": "QuantumPhysics Specialization Level 16",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1600
+  },
+  {
+    "Id": "Tech_Thermodynamics_28",
+    "Name": "Thermodynamics Specialization Level 28",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2800
+  },
+  {
+    "Id": "Tech_Engineering_23",
+    "Name": "Engineering Specialization Level 23",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2300
+  },
+  {
+    "Id": "Tech_VoidScience_17",
+    "Name": "VoidScience Specialization Level 17",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1700
+  },
+  {
+    "Id": "Tech_VoidScience_21",
+    "Name": "VoidScience Specialization Level 21",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2100
+  },
+  {
+    "Id": "Tech_Engineering_15",
+    "Name": "Engineering Specialization Level 15",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1500
+  },
+  {
+    "Id": "Tech_Automation_18",
+    "Name": "Automation Specialization Level 18",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1800
+  },
+  {
+    "Id": "Tech_Thermodynamics_24",
+    "Name": "Thermodynamics Specialization Level 24",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2400
+  },
+  {
+    "Id": "Tech_QuantumPhysics_20",
+    "Name": "QuantumPhysics Specialization Level 20",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2000
+  },
+  {
+    "Id": "Tech_Thermodynamics_1",
+    "Name": "Thermodynamics Specialization Level 1",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 100
+  },
+  {
+    "Id": "Tech_Automation_22",
+    "Name": "Automation Specialization Level 22",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2200
+  },
+  {
+    "Id": "Tech_VoidScience_1",
+    "Name": "VoidScience Specialization Level 1",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 100
+  },
+  {
+    "Id": "Tech_Automation_23",
+    "Name": "Automation Specialization Level 23",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2300
+  },
+  {
+    "Id": "Tech_QuantumPhysics_21",
+    "Name": "QuantumPhysics Specialization Level 21",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2100
+  },
+  {
+    "Id": "Tech_Thermodynamics_25",
+    "Name": "Thermodynamics Specialization Level 25",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2500
+  },
+  {
+    "Id": "Tech_Automation_19",
+    "Name": "Automation Specialization Level 19",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1900
+  },
+  {
+    "Id": "Tech_Engineering_14",
+    "Name": "Engineering Specialization Level 14",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1400
+  },
+  {
+    "Id": "Tech_VoidScience_20",
+    "Name": "VoidScience Specialization Level 20",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2000
+  },
+  {
+    "Id": "Tech_VoidScience_16",
+    "Name": "VoidScience Specialization Level 16",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1600
+  },
+  {
+    "Id": "Tech_Thermodynamics_29",
+    "Name": "Thermodynamics Specialization Level 29",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2900
+  },
+  {
+    "Id": "Tech_Engineering_22",
+    "Name": "Engineering Specialization Level 22",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 2200
+  },
+  {
+    "Id": "Tech_QuantumPhysics_17",
+    "Name": "QuantumPhysics Specialization Level 17",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1700
+  },
+  {
+    "Id": "Tech_Automation_15",
+    "Name": "Automation Specialization Level 15",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1500
+  },
+  {
+    "Id": "Tech_Engineering_2",
+    "Name": "Engineering Specialization Level 2",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 200
+  },
+  {
+    "Id": "Tech_Thermodynamics_13",
+    "Name": "Thermodynamics Specialization Level 13",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1300
+  },
+  {
+    "Id": "Tech_Engineering_18",
+    "Name": "Engineering Specialization Level 18",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 1800
+  },
+  {
+    "Id": "Tech_QuantumPhysics_7",
+    "Name": "QuantumPhysics Specialization Level 7",
+    "RequiredDiscoveries": [
+      "Iron_Ore"
+    ],
+    "Cost": 700
   }
 ]

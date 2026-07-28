@@ -73,14 +73,14 @@ BadgeRegistry["BDG_MULTIVERSE_TRAVELER"] = {
 BadgeRegistry["BDG_PIONEER"] = {
 	Id = "BDG_PIONEER",
 	Name = "Alchemist Pioneer",
-	Description = "Awarded to the first 10,000 players who synthesize a Tier 3 material.",
+	Description = "Synthesize a Tier 3 material.",
 	RarityPercent = 1.2,
 }
 
 BadgeRegistry["BDG_PIONEER"] = {
 	Id = "BDG_PIONEER",
 	Name = "Alchemist Pioneer",
-	Description = "Synthesize a Tier 3 material.",
+	Description = "Awarded to the first 10,000 players who synthesize a Tier 3 material.",
 	RarityPercent = 1.2,
 }
 
