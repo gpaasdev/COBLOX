@@ -33,10 +33,13 @@ function DiscoveryService.Init()
 	end
 	_isInitialized = true
 
-	-- Safe: read webhook secret from config service (not hardcoded)
+	-- Webhook secret from config (optional)
 	local RemoteConfigService = require(script.Parent.RemoteConfigService)
-	_webhookSecret = RemoteConfigService.Get("WebhookSecret") or ""
-	if _webhookSecret == "" then
+	local secretVal = pcall(function()
+		return RemoteConfigService.GetTuningValue("WebhookSecret", 0)
+	end)
+	_webhookSecret = tostring(secretVal) or ""
+	if _webhookSecret == "0" or _webhookSecret == "" then
 		warn("[DiscoveryService] WebhookSecret not configured — webhook dispatch disabled.")
 	end
 
