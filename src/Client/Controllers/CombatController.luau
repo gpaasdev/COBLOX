@@ -6,6 +6,7 @@ local Workspace = game:GetService("Workspace")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local CombatEvent = NetChannels.GetRemoteEvent("CombatEvent")
+local MobWindupVFX = NetChannels.GetUnreliableRemoteEvent("MobWindupVFX")
 
 local ContextActionService = game:GetService("ContextActionService")
 local TweenService = game:GetService("TweenService")
@@ -13,6 +14,11 @@ local TweenService = game:GetService("TweenService")
 local CombatController = {}
 local canAttack = true
 local isDashing = false
+
+local PLAYER_WEAPONS = { "Fist", "Sword", "Staff" }
+local currentWeapon = "Fist"
+local weaponDamage = { Fist = 10, Sword = 25, Staff = 35 }
+local weaponRange = { Fist = 8, Sword = 14, Staff = 20 }
 
 local VFXEngine = require(script.Parent.Parent.Modules.UI.VFXEngine)
 
@@ -39,12 +45,19 @@ function CombatController.Init()
 	end, true, Enum.KeyCode.Q, Enum.KeyCode.ButtonL2)
 	ContextActionService:SetTitle("DashAction", "⚡ DASH [Q]")
 
+	ContextActionService:BindAction("WeaponSwitch", function()
+		CombatController.SwitchWeapon()
+	end, false, Enum.KeyCode.X, Enum.KeyCode.ButtonL1)
+	ContextActionService:SetTitle("WeaponSwitch", "🔪 WEAPON")
+
 	UserInputService.InputBegan:Connect(function(input, gameProcessed)
 		if gameProcessed then
 			return
 		end
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			CombatController.Attack()
+		elseif input.KeyCode == Enum.KeyCode.X then
+			CombatController.SwitchWeapon()
 		elseif input.KeyCode == Enum.KeyCode.C then
 			CombatController.ConsumePotion()
 		elseif input.KeyCode == Enum.KeyCode.G then
@@ -60,7 +73,28 @@ function CombatController.Init()
 		end
 	end)
 
+	if MobWindupVFX then
+		MobWindupVFX.OnClientEvent:Connect(function(mobId: string, targetPos: Vector3)
+			CombatController.PlayTelegraph(mobId)
+		end)
+	end
+
 	print("⚔️ CombatController Initialized with Mobile Touch Support")
+end
+
+function CombatController.SwitchWeapon()
+	local idx = 0
+	for i, w in ipairs(PLAYER_WEAPONS) do
+		if w == currentWeapon then
+			idx = i % #PLAYER_WEAPONS + 1
+			break
+		end
+	end
+	currentWeapon = PLAYER_WEAPONS[idx]
+	print(string.format("[CombatController] Weapon switched to: %s (DMG: %d, Range: %d)", currentWeapon, weaponDamage[currentWeapon], weaponRange[currentWeapon]))
+	local uiFolder = script.Parent
+	local UIController = require(uiFolder:WaitForChild("UIController") :: any)
+	UIController.ShowNotification(string.format("🔪 Weapon: %s | DMG: %d | Range: %d", currentWeapon, weaponDamage[currentWeapon], weaponRange[currentWeapon]))
 end
 
 function CombatController.Attack()
@@ -69,23 +103,29 @@ function CombatController.Attack()
 	end
 	canAttack = false
 
-	print("[VFX] Slash played!")
-
 	local char = Players.LocalPlayer.Character
-	if char and char.PrimaryPart then
-		local nearestMobId = nil
-		local nearestDist = 15
+	if not char or not char.PrimaryPart then
+		task.delay(0.4, function() canAttack = true end)
+		return
+	end
 
-		for _, part in Workspace:GetChildren() do
-			if part.Name == "CorruptedElemental" and part.PrimaryPart then
-				local dist = (part.PrimaryPart.Position - char.PrimaryPart.Position).Magnitude
-				if dist <= nearestDist then
+	local mobsFolder = Workspace:FindFirstChild("Mobs") or Workspace
+	local nearestMobId = nil
+	local nearestDist = weaponRange[currentWeapon]
+	local attackRange = nearestDist
+
+	for _, child in ipairs(mobsFolder:GetChildren()) do
+		if child:IsA("Model") then
+			local mobId = child:GetAttribute("MobId")
+			local prim = child.PrimaryPart
+			if mobId and prim then
+				local dist = (prim.Position - char.PrimaryPart.Position).Magnitude
+				if dist <= attackRange then
 					nearestDist = dist
-					nearestMobId = part:GetAttribute("MobId")
+					nearestMobId = mobId
 
-					-- Trigger Impact Sparks locally for juicy visual feedback
 					VFXEngine.EmitImpactSparks(
-						part.PrimaryPart.Position + Vector3.new(0, 1, 0),
+						prim.Position + Vector3.new(0, 1, 0),
 						Color3.fromRGB(255, 180, 50)
 					)
 					VFXEngine.HitStop(0.04)
@@ -93,8 +133,14 @@ function CombatController.Attack()
 				end
 			end
 		end
+	end
 
-		CombatEvent:FireServer("Attack", nearestMobId)
+	CombatEvent:FireServer("Attack", nearestMobId, currentWeapon)
+
+	if nearestMobId then
+		print(string.format("[CombatController] Attacked mob %s with %s (DMG: %d)", nearestMobId, currentWeapon, weaponDamage[currentWeapon]))
+	else
+		print("[CombatController] No mobs in range")
 	end
 
 	task.delay(0.4, function()

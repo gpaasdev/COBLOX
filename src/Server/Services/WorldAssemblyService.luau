@@ -371,7 +371,49 @@ function WorldAssemblyService._AssembleWorld()
 	adLabel.Text = "📢 IMMERSIVE AD UNIT\n(Monetization Slot — Active)"
 	adLabel.Parent = adFrame
 
-	-- 6. Spawn Stylized Anime Nature & Floating Sky Islands
+	-- 6. Mineable Mana Crystal Nodes
+	local crystalPositions = {
+		Vector3.new(-50, 3, -50),
+		Vector3.new(50, 3, -50),
+		Vector3.new(-50, 3, 50),
+		Vector3.new(50, 3, 50),
+		Vector3.new(0, 3, -80),
+		Vector3.new(-80, 3, 0),
+		Vector3.new(80, 3, 0),
+		Vector3.new(0, 3, 80),
+	}
+	for idx, pos in ipairs(crystalPositions) do
+		local crystal = Instance.new("Part")
+		crystal.Name = "ManaCrystalNode_" .. idx
+		crystal.Size = Vector3.new(3, 5, 3)
+		crystal.Position = pos
+		crystal.Anchored = true
+		crystal.CanCollide = true
+		crystal.Color = Color3.fromRGB(56, 189, 248)
+		crystal.Material = Enum.Material.Glass
+		crystal.Parent = mapFolder
+
+		local glow = Instance.new("PointLight")
+		glow.Color = Color3.fromRGB(56, 189, 248)
+		glow.Range = 12
+		glow.Brightness = 3
+		glow.Parent = crystal
+
+		local prompt = Instance.new("ProximityPrompt")
+		prompt.ObjectText = "Mana Crystal"
+		prompt.ActionText = "Mine / Collect"
+		prompt.HoldDuration = 1.5
+		prompt.RequiresLineOfSight = false
+		prompt.Parent = crystal
+
+		prompt.Triggered:Connect(function(player: Player)
+			local EconomyService = require(ServerScriptService.Server.Services.EconomyService)
+			EconomyService.AddCurrency(player, "AuraEnergy", 50, "CrystalMining")
+			print(string.format("[WorldAssembly] %s mined ManaCrystal_%d for +50 AuraEnergy", player.Name, idx))
+		end)
+	end
+
+	-- 7. Spawn Stylized Anime Nature & Floating Sky Islands
 	WorldAssemblyService._AssembleAnimeNature(mapFolder)
 
 	print("[WorldAssemblyService] ✨ Advanced Cyber & Anime Nature Environment Ready!")

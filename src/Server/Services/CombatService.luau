@@ -30,13 +30,13 @@ function CombatService.Init()
 	local combatEvent = NetChannels.GetRemoteEvent("CombatEvent")
 	local RateLimitService = require(script.Parent.RateLimitService)
 
-	combatEvent.OnServerEvent:Connect(function(player, action: string, targetId: string?)
+	combatEvent.OnServerEvent:Connect(function(player, action: string, targetId: string?, weaponType: string?)
 		if not RateLimitService.CheckRateLimit(player, "CombatEvent_" .. tostring(action), 0.2) then
 			return
 		end
 
 		if action == "Attack" and targetId then
-			CombatService.ProcessHit(player, targetId)
+			CombatService.ProcessHit(player, targetId, weaponType)
 		elseif action == "Parry" then
 			parryWindows[player.UserId] = os.clock()
 		end
@@ -44,7 +44,10 @@ function CombatService.Init()
 	print("⚔️ CombatService Initialized")
 end
 
-function CombatService.ProcessHit(player: Player, targetId: string)
+local WEAPON_DAMAGE = { Fist = 10, Sword = 25, Staff = 35 }
+local WEAPON_RANGE = { Fist = 8, Sword = 14, Staff = 20 }
+
+function CombatService.ProcessHit(player: Player, targetId: string, weaponType: string?)
 	local char = player.Character
 	if not char then
 		return
@@ -66,17 +69,16 @@ function CombatService.ProcessHit(player: Player, targetId: string)
 
 	if mob and mob.Model and mob.Model.PrimaryPart then
 		local distance = (hrp.Position - mob.Model.PrimaryPart.Position).Magnitude
-		if distance <= GameConfig.Combat.CombatRange then
-			-- Config-driven zone damage & hit stun (replaces hardcoded 10/15/25)
+		local wType = if typeof(weaponType) == "string" and WEAPON_DAMAGE[weaponType] then weaponType else "Fist"
+		local maxRange = WEAPON_RANGE[wType]
+
+		if distance <= maxRange then
 			local mods = GameConfig.Combat.ZoneModifiers[zone]
-			local damage = GameConfig.Combat.BaseDamage * (mods and mods.damage or 1.0)
-			local hitStun = mods and mods.hitStun or 0.5
-			_ = hitStun -- reserved for stun system
+			local baseDmg = WEAPON_DAMAGE[wType]
+			local damage = baseDmg * (mods and mods.damage or 1.0)
 
-			MobService.TakeDamage(targetId, damage, player)
-
-			-- PvP is currently disabled until Phase B (Combat Update)
-			-- Only PvE logic remains.
+			MobService.TakeDamage(targetId, math.floor(damage), player)
+			print(string.format("[CombatService] %s dealt %d damage to %s (weapon: %s, zone: %s)", player.Name, math.floor(damage), targetId, wType, zone))
 		end
 	end
 end
