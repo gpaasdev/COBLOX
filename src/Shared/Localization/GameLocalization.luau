@@ -3,7 +3,8 @@
 local GameLocalization = {
 	["id-id"] = {
 		-- HUD TopBar & Quests
-		["FTUE_CLAIM_PLOT"] = "🎯 Kunjungi Markas & Racik Ramuan Pertamamu!",
+		["FTUE_CLAIM_PLOT"] = "🎯 Racik Ramuan Pertamamu!",
+		["FTUE_VISIT_SANCTUM"] = "📍 Kunjungi Markas & mulai crafting pertama",
 		["HUD_AURA"] = "🌟 Aura: %d",
 		["HUD_SPARKS"] = "✨ Sparks: %d",
 		["LIVEOPS_BOOST_ACTIVE"] = "🔥 Event LiveOps Aktif! (+50% Rate Drop)",

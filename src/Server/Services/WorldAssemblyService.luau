@@ -349,7 +349,6 @@ function WorldAssemblyService._AssembleWorld()
 	local adBillboard = Instance.new("SurfaceGui")
 	adBillboard.Name = "AdGui"
 	adBillboard.Face = Enum.NormalId.Front
-	adBillboard.AdPortal = adPortal
 	adBillboard.Parent = adPart
 
 	local adFrame = Instance.new("Frame")

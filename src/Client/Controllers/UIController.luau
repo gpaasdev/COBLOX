@@ -94,12 +94,12 @@ function UIController._CreateHUD()
 	questBanner.ZIndex = 55
 	questBanner.Parent = mainScreenGui
 
-	local questGradient = Instance.new(\"UIGradient\")
+	local questGradient = Instance.new("UIGradient")
 	questGradient.Rotation = 90
 	questGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
 	questGradient.Parent = questBanner
 
-	local questPadding = Instance.new(\"UIPadding\")
+	local questPadding = Instance.new("UIPadding")
 	questPadding.PaddingLeft = UDim.new(0, 10)
 	questPadding.PaddingRight = UDim.new(0, 10)
 	questPadding.Parent = questBanner
@@ -127,12 +127,8 @@ function UIController._CreateHUD()
 	questTitle.Font = Enum.Font.FredokaOne
 	questTitle.TextSize = 14
 	questTitle.TextXAlignment = Enum.TextXAlignment.Left
+	questTitle.TextStrokeTransparency = 0.4
 	questTitle.Parent = questBanner
-
-	local questTitleStroke = Instance.new("UIStroke")
-	questTitleStroke.Color = Color3.fromRGB(0, 0, 0)
-	questTitleStroke.Thickness = 1.5
-	questTitleStroke.Parent = questTitle
 
 	local questDesc = Instance.new("TextLabel")
 	questDesc.Name = "QuestDesc"
@@ -142,14 +138,10 @@ function UIController._CreateHUD()
 	questDesc.Text = LocalizationController.Get("FTUE_VISIT_SANCTUM")
 	questDesc.TextColor3 = COLOR_SPARK_CYAN
 	questDesc.Font = Enum.Font.GothamMedium
-	questDesc.TextSize = 11
+	questDesc.TextSize = 12
 	questDesc.TextXAlignment = Enum.TextXAlignment.Left
+	questDesc.TextStrokeTransparency = 0.35
 	questDesc.Parent = questBanner
-
-	local questDescStroke = Instance.new("UIStroke")
-	questDescStroke.Color = Color3.fromRGB(0, 0, 0)
-	questDescStroke.Thickness = 1.2
-	questDescStroke.Parent = questDesc
 
 	-- 1. Top Bar (Aura Energy & Chrono Sparks)
 	-- Aura Pill
@@ -164,7 +156,7 @@ function UIController._CreateHUD()
 	auraBar.ZIndex = 50
 	auraBar.Parent = mainScreenGui
 
-	local auraGradient = Instance.new(\"UIGradient\")
+	local auraGradient = Instance.new("UIGradient")
 	auraGradient.Rotation = 90
 	auraGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
 	auraGradient.Parent = auraBar
@@ -205,7 +197,7 @@ function UIController._CreateHUD()
 	sparksBar.ZIndex = 50
 	sparksBar.Parent = mainScreenGui
 
-	local sparksGradient = Instance.new(\"UIGradient\")
+	local sparksGradient = Instance.new("UIGradient")
 	sparksGradient.Rotation = 90
 	sparksGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
 	sparksGradient.Parent = sparksBar
@@ -383,7 +375,7 @@ function UIController._CreateHUD()
 	notificationLabel.Visible = false
 	notificationLabel.Parent = mainScreenGui
 
-	local notifGradient = Instance.new(\"UIGradient\")
+	local notifGradient = Instance.new("UIGradient")
 	notifGradient.Rotation = 90
 	notifGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
 	notifGradient.Parent = notificationLabel

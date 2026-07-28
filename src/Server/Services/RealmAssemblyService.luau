@@ -184,7 +184,6 @@ function RealmAssemblyService._AssembleFairytaleWorld(preset: RealmConfig.RealmC
 		local adGui = Instance.new("SurfaceGui")
 		adGui.Name = "AdGui"
 		adGui.Face = Enum.NormalId.Front
-		adGui.AdPortal = adPortal
 		adGui.Parent = adPart
 	end
 
