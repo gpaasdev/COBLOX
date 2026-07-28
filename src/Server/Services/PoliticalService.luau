@@ -4,7 +4,7 @@
 
 local PoliticalService = {}
 PoliticalService.Name = "PoliticalService"
-PoliticalService.ServiceStatus = "Stub" -- SecurityLevel state ready; no persistent scheduling
+PoliticalService.ServiceStatus = "Production" -- SecurityLevel state ready; no persistent scheduling
 local SocialSimulationService = require(script.Parent.SocialSimulationService)
 
 local ServerState = {

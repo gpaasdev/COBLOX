@@ -42,6 +42,7 @@ function SocialInviteController._ShowInvitePrompt(context: string)
 			Callback = function(button: string)
 				if button == "Button1" then
 					local remote = NetChannels.GetRemoteEvent("InviteFriendResult")
+	if not remote then return end
 					if remote then
 						remote:FireServer(context)
 					end

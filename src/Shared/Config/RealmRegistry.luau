@@ -23,7 +23,7 @@ RealmRegistry["MAIN"] = {
 	Theme = "CyberAlchemist",
 	Enabled = true,
 	RequiredLevel = 0,
-	Icon = "rbxassetid://0",
+	Icon = "rbxassetid://6026568198",
 }
 
 RealmRegistry["FAIRYTALE"] = {
@@ -34,7 +34,7 @@ RealmRegistry["FAIRYTALE"] = {
 	Theme = "Fairytale",
 	Enabled = true,
 	RequiredLevel = 1,
-	Icon = "rbxassetid://0",
+	Icon = "rbxassetid://6026568198",
 }
 
 function RealmRegistry.Get(key: string): RealmEntry?

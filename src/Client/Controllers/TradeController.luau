@@ -37,8 +37,12 @@ end
 function TradeController.RequestTradeWith(targetPlayer: Player)
 	local ClientRemotes = require(script.Parent.Parent:WaitForChild("Network"):WaitForChild("ClientRemotes") :: any)
 	local tradeRemote = ClientRemotes.RequestTrade
-	tradeRemote:InvokeServer(targetPlayer.Name)
-	print("[TradeController] Sent trade request to " .. targetPlayer.Name)
+	if tradeRemote then
+		tradeRemote:InvokeServer(targetPlayer.Name)
+		print("[TradeController] Sent trade request to " .. targetPlayer.Name)
+	else
+		warn("[TradeController] RequestTrade remote not available")
+	end
 	TradeController.ToggleModal()
 end
 

@@ -51,7 +51,9 @@ function AdRewardController._CreateAdButton(placementId: string, rewardType: str
 		button.Active = false
 		local requestRemote = NetChannels.GetRemoteEvent("RequestRewardedAd")
 		if requestRemote then
-			requestRemote:FireServer(placementId, rewardType)
+						if requestRemote then
+				requestRemote:FireServer(placementId, rewardType)
+			end
 		end
 	end)
 

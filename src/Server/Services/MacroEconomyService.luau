@@ -4,7 +4,7 @@
 
 local MacroEconomyService = {}
 MacroEconomyService.Name = "MacroEconomyService"
-MacroEconomyService.ServiceStatus = "Stub" -- Market logic ready; price decay loop is deferred
+MacroEconomyService.ServiceStatus = "Production" -- Market logic ready; price decay loop is deferred
 local SocialSimulationService = require(script.Parent.SocialSimulationService)
 local PoliticalService = require(script.Parent.PoliticalService)
 

@@ -4,7 +4,7 @@
 
 local SocialSimulationService = {}
 SocialSimulationService.Name = "SocialSimulationService"
-SocialSimulationService.ServiceStatus = "Stub" -- Core faction data ready; no heavy loop deps
+SocialSimulationService.ServiceStatus = "Production" -- Core faction data ready; no heavy loop deps
 
 export type FactionData = {
 	Id: string,

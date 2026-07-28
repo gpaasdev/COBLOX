@@ -215,7 +215,9 @@ function CrystalPurificationService.PurifyCrystal(player: Player): { Success: bo
 	local updateResult = ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
 		local wallet = profileData.Wallet
 		if not wallet then
-			error("WALLET_MISSING")
+			warn("[CrystalPurificationService] Wallet missing for", player.Name, "— creating default")
+			profileData.Wallet = { Coins = 0, Gems = 0, AuraEnergy = 0, ChronoSparks = 0 }
+			wallet = profileData.Wallet
 		end
 		wallet.Coins = (wallet.Coins or 0) + amount
 		-- Hard currency ledger entry (Coins is soft but track large deposits)

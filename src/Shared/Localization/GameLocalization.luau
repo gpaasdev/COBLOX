@@ -2,76 +2,117 @@
 
 local GameLocalization = {
 	["id-id"] = {
-		-- HUD TopBar & Quests
 		["FTUE_CLAIM_PLOT"] = "🎯 Racik Ramuan Pertamamu!",
 		["FTUE_VISIT_SANCTUM"] = "📍 Kunjungi Markas & mulai crafting pertama",
 		["HUD_AURA"] = "🌟 Aura: %d",
 		["HUD_SPARKS"] = "✨ Sparks: %d",
+		["HUD_COINS"] = "Koin",
+		["HUD_GEMS"] = "Berlian",
+		["INSUFFICIENT_COINS"] = "Koin tidak cukup!",
 		["LIVEOPS_BOOST_ACTIVE"] = "🔥 Event LiveOps Aktif! (+50% Rate Drop)",
 
-		-- Side Drawer Menu Buttons
 		["SIDE_SANCTUM_GRID"] = "🏰 Markas Saya",
 		["SIDE_SYNTHESIS_VESSEL"] = "🧪 Lab Racik",
 		["SIDE_SPIRIT_HATCHERY"] = "🐣 Panggil Spirit",
 		["SIDE_COVEN_ORDER"] = "⚔️ Klan Player",
 		["SIDE_CODEX"] = "📜 Buku Resep",
+		["SIDE_WEAPON_SHOP"] = "🔪 Senjata",
+		["SIDE_TRADING_HUB"] = "🤝 Dagang",
+		["SIDE_REBIRTH"] = "🌟 Reborn",
+		["SIDE_STORE"] = "🛒 Toko Premium",
 
-		-- Hotbar Action Pills
 		["HOTBAR_ELEMENTS"] = "🌱 ELEMEN",
 		["HOTBAR_SANCTUM"] = "🏰 MARKAS",
 		["HOTBAR_PETS"] = "🐶 PETS",
 		["HOTBAR_SELL"] = "💰 JUAL AURA",
 
-		-- Synthesis Vessel / Crafting Modal
-		["SYNTHESIS_TITLE"] = "🧪 Lab Racik Alkemis (Synthesis Vessel)",
-		["SYNTHESIS_SUBTITLE"] = "Pilih & tempatkan bahan di slot 3x3 untuk melihat hasil racikan!",
+		["SYNTHESIS_TITLE"] = "🧪 Lab Racik Alkemis",
+		["SYNTHESIS_SUBTITLE"] = "Pilih & tempatkan bahan di slot 3x3!",
 		["SYNTHESIS_BTN"] = "⚡ RACIK SEKARANG!",
-		["SYNTHESIS_SUCCESS"] = "🎉 Berhasil Diracik: %s\n(Hasil Elemen: %.1fx)",
-		["SYNTHESIS_FAILED"] = "❌ Racikan Gagal! Kombinasi Bahan Tidak Tepat.",
+		["SYNTHESIS_SUCCESS"] = "🎉 Berhasil: %s (Hasil: %.1fx)",
+		["SYNTHESIS_FAILED"] = "❌ Racikan Gagal!",
 
-		-- Placement Engine HUD
-		["PLACEMENT_HUD"] = "🟩 MODE PENEMPATAN  |  [R] Rotasi  |  [L-Click] Pasang  |  [X] Batal",
-		["PLACEMENT_SUCCESS"] = "✅ Objek berhasil dipasang di Markas!",
+		["PLACEMENT_HUD"] = "🟩 MODE PENEMPATAN | [R] Rotasi | [L-Click] Pasang | [X] Batal",
+		["PLACEMENT_SUCCESS"] = "✅ Objek terpasang!",
 
-		-- Combat & Parry Tutorial
-		["PARRY_HINT"] = "🛡️ TEKAN [F] / TAMENG UNTUK MENANGKIS SERANGAN MONSTER!",
-		["PARRY_SUCCESS"] = "⚡ TANGKISAN SEMPURNA! Monster Terkena Stun!",
+		["PARRY_HINT"] = "🛡️ TEKAN [F] UNTUK MENANGKIS!",
+		["PARRY_SUCCESS"] = "⚡ TANGKISAN SEMPURNA!",
+
+		["COVEN_TITLE_DEFAULT"] = "🏰 Klan Player",
+		["COVEN_LEVEL"] = "Level Klan: %d",
+		["COVEN_TREASURY"] = "Perbendaharaan: %d",
+		["COVEN_BUFF"] = "Buff Aktif: %s",
+		["COVEN_BTN_CREATE"] = "Buat Klan",
+		["COVEN_BTN_DONATE"] = "Donasi",
+
+		["CODEX_TITLE"] = "📜 Buku Resep & Spirit",
+		["CODEX_SELECT_PROMPT"] = "Pilih kategori untuk melihat resep",
+		["CODEX_LOCKED_MSG"] = "🔒 Terkunci — selesaikan quest untuk membuka",
+
+		["TRADE_TITLE"] = "🤝 Dagang",
+		["TRADE_MY_OFFER"] = "Tawaranku",
+		["TRADE_PARTNER_OFFER"] = "Tawaran Partner",
+
+		["ACTION_SETOR_AURA"] = "🚚 Setor Aura",
+		["ACTION_BEGAL_AURA"] = "🥷 Raid Aura",
+		["ACTION_FLEX_SHRINE"] = "🔥 Flex",
 	},
 
 	["en-us"] = {
-		-- HUD TopBar & Quests
-		["FTUE_CLAIM_PLOT"] = "🎯 Visit Sanctum & Craft Your First Potion!",
+		["FTUE_CLAIM_PLOT"] = "🎯 Craft Your First Potion!",
+		["FTUE_VISIT_SANCTUM"] = "📍 Visit Sanctum & start crafting",
 		["HUD_AURA"] = "🌟 Aura: %d",
 		["HUD_SPARKS"] = "✨ Sparks: %d",
-		["LIVEOPS_BOOST_ACTIVE"] = "🔥 LiveOps Boost Event Active! (+50% Drop Rate)",
+		["HUD_COINS"] = "Coins",
+		["HUD_GEMS"] = "Gems",
+		["INSUFFICIENT_COINS"] = "Not enough coins!",
+		["LIVEOPS_BOOST_ACTIVE"] = "🔥 LiveOps Boost Active! (+50% Drop Rate)",
 
-		-- Side Drawer Menu Buttons
 		["SIDE_SANCTUM_GRID"] = "🏰 My Sanctum",
 		["SIDE_SYNTHESIS_VESSEL"] = "🧪 Alchemist Lab",
 		["SIDE_SPIRIT_HATCHERY"] = "🐣 Hatch Spirit",
 		["SIDE_COVEN_ORDER"] = "⚔️ Player Clan",
 		["SIDE_CODEX"] = "📜 Recipe Codex",
+		["SIDE_WEAPON_SHOP"] = "🔪 Weapons",
+		["SIDE_TRADING_HUB"] = "🤝 Trading",
+		["SIDE_REBIRTH"] = "🌟 Rebirth",
+		["SIDE_STORE"] = "🛒 Premium Store",
 
-		-- Hotbar Action Pills
 		["HOTBAR_ELEMENTS"] = "🌱 ELEMENTS",
 		["HOTBAR_SANCTUM"] = "🏰 SANCTUM",
 		["HOTBAR_PETS"] = "🐶 PETS",
 		["HOTBAR_SELL"] = "💰 SELL AURA",
 
-		-- Synthesis Vessel / Crafting Modal
 		["SYNTHESIS_TITLE"] = "🧪 Alchemist Synthesis Vessel",
-		["SYNTHESIS_SUBTITLE"] = "Select & place materials in 3x3 grid to transmute!",
+		["SYNTHESIS_SUBTITLE"] = "Select & place materials in 3x3 grid!",
 		["SYNTHESIS_BTN"] = "⚡ CRAFT NOW!",
-		["SYNTHESIS_SUCCESS"] = "🎉 Transmuted: %s\n(Elemental Yield: %.1fx)",
-		["SYNTHESIS_FAILED"] = "❌ Recipe Failed! Incorrect combination.",
+		["SYNTHESIS_SUCCESS"] = "🎉 Transmuted: %s (Yield: %.1fx)",
+		["SYNTHESIS_FAILED"] = "❌ Recipe Failed!",
 
-		-- Placement Engine HUD
-		["PLACEMENT_HUD"] = "🟩 PLACEMENT MODE  |  [R] Rotate  |  [L-Click] Place  |  [X] Cancel",
-		["PLACEMENT_SUCCESS"] = "✅ Structure placed in Sanctum!",
+		["PLACEMENT_HUD"] = "🟩 PLACEMENT MODE | [R] Rotate | [L-Click] Place | [X] Cancel",
+		["PLACEMENT_SUCCESS"] = "✅ Structure placed!",
 
-		-- Combat & Parry Tutorial
-		["PARRY_HINT"] = "🛡️ PRESS [F] / SHIELD TO PARRY MONSTER ATTACK!",
-		["PARRY_SUCCESS"] = "⚡ PERFECT PARRY! Monster Stunned!",
+		["PARRY_HINT"] = "🛡️ PRESS [F] TO PARRY!",
+		["PARRY_SUCCESS"] = "⚡ PERFECT PARRY!",
+
+		["COVEN_TITLE_DEFAULT"] = "🏰 Player Clan",
+		["COVEN_LEVEL"] = "Clan Level: %d",
+		["COVEN_TREASURY"] = "Treasury: %d",
+		["COVEN_BUFF"] = "Active Buff: %s",
+		["COVEN_BTN_CREATE"] = "Create Clan",
+		["COVEN_BTN_DONATE"] = "Donate",
+
+		["CODEX_TITLE"] = "📜 Recipe & Spirit Codex",
+		["CODEX_SELECT_PROMPT"] = "Select category to browse recipes",
+		["CODEX_LOCKED_MSG"] = "🔒 Locked — complete quests to unlock",
+
+		["TRADE_TITLE"] = "🤝 Trading",
+		["TRADE_MY_OFFER"] = "My Offer",
+		["TRADE_PARTNER_OFFER"] = "Partner's Offer",
+
+		["ACTION_SETOR_AURA"] = "🚚 Deposit Aura",
+		["ACTION_BEGAL_AURA"] = "🥷 Aura Raid",
+		["ACTION_FLEX_SHRINE"] = "🔥 Flex",
 	},
 }
 
