@@ -126,7 +126,7 @@
         "$path": "Packages"
       },
       "Localization": {
-        "$path": "src/Localization"
+        "$path": "src/Shared/Localization"
       }
     },
     "ServerScriptService": {
