@@ -310,8 +310,12 @@ print("==================================================")
 -- ============================================================
 -- POST-BOOT: ConfigClient sync for joining players
 -- ============================================================
-local ConfigClient = require(ReplicatedStorage.Shared.Config.ConfigClient)
-local Players = game:GetService("Players")
+	local IntegrationTestService = require(ServerScriptService.Server.Services.IntegrationTestService)
+	IntegrationTestService.Start()
+	print("[Bootstrap] IntegrationTestService executed")
+
+	local ConfigClient = require(ReplicatedStorage.Shared.Config.ConfigClient)
+	local Players = game:GetService("Players")
 
 Players.PlayerAdded:Connect(function(player: Player)
 	ConfigClient.SyncToPlayer(player)

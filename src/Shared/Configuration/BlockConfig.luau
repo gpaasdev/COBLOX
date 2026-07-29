@@ -10,7 +10,7 @@ local BlockConfig = {
 		["Stone"] = {
 			Name = "Stone Block",
 			Color = Color3.fromRGB(120, 120, 120),
-			Material = Enum.Material.Stone,
+			Material = Enum.Material.Slate,
 			Cost = { Coins = 10 },
 			Tier = 1,
 		},
