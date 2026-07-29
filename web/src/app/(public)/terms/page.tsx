@@ -42,7 +42,7 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-semibold text-white mt-8">8. Kontak</h2>
         <p>Untuk pertanyaan lebih lanjut, hubungi kami di:
-          <br />Email: <a href="mailto:support@coblox.com" className="text-emerald-400 hover:underline">support@coblox.com</a>
+          <br />Email: <a href="mailto:officialgpaas@gmail.com" className="text-emerald-400 hover:underline">officialgpaas@gmail.com</a>
           <br />Discord: <a href="https://discord.gg/coblox" className="text-emerald-400 hover:underline">COBLOX Community</a>
         </p>
       </div>

@@ -61,10 +61,10 @@ export default function ContactPage() {
             Pertanyaan terkait data pribadi dan keamanan akun.
           </p>
           <a
-            href="mailto:privacy@coblox.com"
-            className="text-purple-400 hover:underline text-sm font-medium"
+            href="mailto:officialgpaas@gmail.com"
+            className="text-purple-400 hover:underline"
           >
-            privacy@coblox.com →
+            officialgpaas@gmail.com →
           </a>
         </div>
 

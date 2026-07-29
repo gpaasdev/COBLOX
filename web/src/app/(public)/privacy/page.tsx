@@ -58,7 +58,7 @@ export default function PrivacyPage() {
 
         <h2 className="text-xl font-semibold text-white mt-8">9. Kontak</h2>
         <p>Untuk pertanyaan tentang privasi data Anda:
-          <br />Email: <a href="mailto:privacy@coblox.com" className="text-emerald-400 hover:underline">privacy@coblox.com</a>
+          <br />Email: <a href="mailto:officialgpaas@gmail.com" className="text-emerald-400 hover:underline">officialgpaas@gmail.com</a>
         </p>
       </div>
 
