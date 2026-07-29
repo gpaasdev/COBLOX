@@ -44,7 +44,7 @@ function UIController.Init(self)
 	self.maid = Maid.new()
 	print("[UIController] Initializing Gen Z & Gen Alpha Visual-First HUD & Side Drawer (MaxWidth = 180px)...")
 
-	UIController._CreateHUD()
+	UIController:_CreateHUD()
 end
 
 function UIController.Start(self)
@@ -84,7 +84,7 @@ function UIController.Start(self)
 	end)
 end
 
-function UIController._CreateHUD()
+function UIController._CreateHUD(self)
 	if not playerGui then
 		playerGui = localPlayer:WaitForChild("PlayerGui") :: PlayerGui
 	end

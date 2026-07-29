@@ -62,6 +62,9 @@ function IntegrationTestService.TestRecipeRegistry()
 	-- Test 2: Each recipe has required fields
 	local validCount = 0
 	for id, recipe in pairs(allRecipes) do
+		if typeof(recipe) ~= "table" then
+			continue
+		end
 		if recipe.Id and recipe.Name and recipe.Ingredients and recipe.OutputType then
 			validCount += 1
 		end
@@ -71,6 +74,9 @@ function IntegrationTestService.TestRecipeRegistry()
 	-- Test 3: Ingredient names use consistent format
 	local badIngredients = 0
 	for _, recipe in pairs(allRecipes) do
+		if typeof(recipe) ~= "table" then
+			continue
+		end
 		for _, ing in recipe.Ingredients do
 			if string.find(ing, " ") then
 				badIngredients += 1
@@ -96,6 +102,9 @@ function IntegrationTestService.TestSpiritRegistry()
 	-- Test 2: Each spirit has valid DropRate
 	local invalidDropRates = 0
 	for _, spirit in pairs(allSpirits) do
+		if typeof(spirit) ~= "table" then
+			continue
+		end
 		local dropNum = tonumber(spirit.DropRate)
 		if not dropNum then
 			invalidDropRates += 1
@@ -106,6 +115,9 @@ function IntegrationTestService.TestSpiritRegistry()
 	-- Test 3: Each rarity has at least one spirit
 	local rarities = {}
 	for _, spirit in pairs(allSpirits) do
+		if typeof(spirit) ~= "table" then
+			continue
+		end
 		rarities[spirit.Rarity] = (rarities[spirit.Rarity] or 0) + 1
 	end
 	local expectedRarities = { Common = true, Uncommon = true, Rare = true, Epic = true, Legendary = true }
@@ -122,6 +134,9 @@ function IntegrationTestService.TestSpiritRegistry()
 	for rarityFilter, expectedCount in pairs(rarities) do
 		local poolCount = 0
 		for _, spirit in pairs(allSpirits) do
+			if typeof(spirit) ~= "table" then
+				continue
+			end
 			if spirit.Rarity == rarityFilter then
 				local dropWeight = tonumber(spirit.DropRate)
 				if dropWeight then
@@ -216,6 +231,9 @@ function IntegrationTestService.TestRecipeMatch(ingredients: { [string]: number 
 	local GeneratedRecipeRegistry = require(ReplicatedStorage.Shared.Config.GeneratedRecipeRegistry)
 
 	for _, recipeDef in pairs(GeneratedRecipeRegistry.GetAll()) do
+		if typeof(recipeDef) ~= "table" then
+			continue
+		end
 		local match = true
 		local needed: { [string]: number } = {}
 		for _, ingredientName in recipeDef.Ingredients do

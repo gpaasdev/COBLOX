@@ -26,11 +26,11 @@ end
 
 function TopbarController.Start(self)
 	self.maid = Maid.new()
-	TopbarController._CreateTopbarIcons()
-	TopbarController._ListenEconomyEvents()
+	TopbarController:_CreateTopbarIcons()
+	TopbarController:_ListenEconomyEvents()
 end
 
-function TopbarController._CreateTopbarIcons()
+function TopbarController._CreateTopbarIcons(self)
 	topbarGui = Instance.new("ScreenGui")
 	topbarGui.Name = "TopbarCurrencyDisplay"
 	topbarGui.Enabled = true
@@ -74,7 +74,7 @@ function TopbarController._CreateTopbarIcons()
 	print(string.format("[TopbarController] Topbar icons bound for player %s", localPlayer.Name))
 end
 
-function TopbarController._ListenEconomyEvents()
+function TopbarController._ListenEconomyEvents(self)
 	local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 	if syncRemote then
 		self.maid:GiveTask(
