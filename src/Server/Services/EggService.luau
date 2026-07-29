@@ -28,6 +28,9 @@ local function buildSpiritPool(rarityFilter: string?)
 	local pool = {}
 	local fullRegistry = GeneratedSpiritRegistry.GetAll()
 	for id, spirit in pairs(fullRegistry) do
+		if typeof(spirit) ~= "table" then
+			continue
+		end
 		if rarityFilter == nil or spirit.Rarity == rarityFilter then
 			local dropWeight = tonumber(spirit.DropRate)
 			if dropWeight then

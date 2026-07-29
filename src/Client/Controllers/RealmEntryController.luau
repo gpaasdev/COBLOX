@@ -151,11 +151,14 @@ function RealmEntryController.Start(self)
 	end))
 
 	local ContextActionService = game:GetService("ContextActionService")
-	self.maid:GiveTask(ContextActionService:BindAction("RealmSelectAction", function()
+	ContextActionService:BindAction("RealmSelectAction", function()
 		RealmEntryController._CreateRealmSelectionUI()
-	end, false, Enum.KeyCode.ButtonR3))
+	end, false, Enum.KeyCode.ButtonR3)
 	ContextActionService:SetTitle("RealmSelectAction", "🌍 REALM")
 	ContextActionService:SetPosition("RealmSelectAction", UDim2.new(0.02, 0, 0.5, 0))
+	self.maid:GiveTask(function()
+		ContextActionService:UnbindAction("RealmSelectAction")
+	end)
 
 	print("[RealmEntryController] Ready. Press 'R' or use mobile button to open realm selection.")
 end

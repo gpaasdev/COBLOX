@@ -148,6 +148,9 @@ function RecipeService.CraftGrid3x3(
 	else
 		-- Check GeneratedRecipeRegistry for recipe matches
 		for _, recipeDef in pairs(GeneratedRecipeRegistry.GetAll()) do
+			if typeof(recipeDef) ~= "table" then
+				continue
+			end
 			local match = true
 			local needed: { [string]: number } = {}
 			for _, ingredientName in recipeDef.Ingredients do

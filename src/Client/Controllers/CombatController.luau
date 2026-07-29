@@ -27,35 +27,47 @@ local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Util
 function CombatController.Init(self)
 	self.maid = Maid.new()
 	-- Bind Mobile & PC Actions via ContextActionService (creates Touch Buttons automatically on Mobile)
-	self.maid:GiveTask(ContextActionService:BindAction("AttackAction", function(actionName, inputState)
+	ContextActionService:BindAction("AttackAction", function(actionName, inputState)
 		if inputState == Enum.UserInputState.Begin then
 			CombatController.Attack()
 		end
-	end, true, Enum.KeyCode.ButtonX))
+	end, true, Enum.KeyCode.ButtonX)
 	ContextActionService:SetTitle("AttackAction", "🗡️ SWORD")
 	ContextActionService:SetPosition("AttackAction", UDim2.new(0.85, 0, 0.8, 0))
+	self.maid:GiveTask(function()
+		ContextActionService:UnbindAction("AttackAction")
+	end)
 
-	self.maid:GiveTask(ContextActionService:BindAction("ParryAction", function(actionName, inputState)
+	ContextActionService:BindAction("ParryAction", function(actionName, inputState)
 		if inputState == Enum.UserInputState.Begin then
 			CombatController.Parry()
 		end
-	end, true, Enum.KeyCode.F, Enum.KeyCode.ButtonY))
+	end, true, Enum.KeyCode.F, Enum.KeyCode.ButtonY)
 	ContextActionService:SetTitle("ParryAction", "🛡️ PARRY [F]")
 	ContextActionService:SetPosition("ParryAction", UDim2.new(0.75, 0, 0.65, 0))
+	self.maid:GiveTask(function()
+		ContextActionService:UnbindAction("ParryAction")
+	end)
 
-	self.maid:GiveTask(ContextActionService:BindAction("DashAction", function(actionName, inputState)
+	ContextActionService:BindAction("DashAction", function(actionName, inputState)
 		if inputState == Enum.UserInputState.Begin then
 			CombatController.Dash()
 		end
-	end, true, Enum.KeyCode.Q, Enum.KeyCode.ButtonL2))
+	end, true, Enum.KeyCode.Q, Enum.KeyCode.ButtonL2)
 	ContextActionService:SetTitle("DashAction", "⚡ DASH [Q]")
 	ContextActionService:SetPosition("DashAction", UDim2.new(0.02, 0, 0.8, 0))
+	self.maid:GiveTask(function()
+		ContextActionService:UnbindAction("DashAction")
+	end)
 
-	self.maid:GiveTask(ContextActionService:BindAction("WeaponSwitch", function()
+	ContextActionService:BindAction("WeaponSwitch", function()
 		CombatController.SwitchWeapon()
-	end, false, Enum.KeyCode.X, Enum.KeyCode.ButtonL1))
+	end, false, Enum.KeyCode.X, Enum.KeyCode.ButtonL1)
 	ContextActionService:SetTitle("WeaponSwitch", "🔪 WEAPON")
 	ContextActionService:SetPosition("WeaponSwitch", UDim2.new(0.02, 0, 0.65, 0))
+	self.maid:GiveTask(function()
+		ContextActionService:UnbindAction("WeaponSwitch")
+	end)
 
 	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input, gameProcessed)
 		if gameProcessed then

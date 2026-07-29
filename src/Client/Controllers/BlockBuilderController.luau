@@ -111,11 +111,14 @@ function BlockBuilderController.Init(self)
 	end))
 
 	local ContextActionService = game:GetService("ContextActionService")
-	self.maid:GiveTask(ContextActionService:BindAction("BlockBuilderAction", function()
+	ContextActionService:BindAction("BlockBuilderAction", function()
 		BlockBuilderController.ToggleBuildMode()
-	end, false, Enum.KeyCode.ButtonSelect))
+	end, false, Enum.KeyCode.ButtonSelect)
 	ContextActionService:SetTitle("BlockBuilderAction", "🧱 BUILD")
 	ContextActionService:SetPosition("BlockBuilderAction", UDim2.new(0.85, 0, 0.65, 0))
+	self.maid:GiveTask(function()
+		ContextActionService:UnbindAction("BlockBuilderAction")
+	end)
 end
 
 return BlockBuilderController

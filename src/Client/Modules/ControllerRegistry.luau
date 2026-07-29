@@ -58,7 +58,7 @@ function ControllerRegistry.InitializeController(name: string)
 
 	if controller.Init then
 		local success, err = pcall(function()
-			controller.Init(ControllerRegistry)
+			controller:Init(ControllerRegistry)
 		end)
 		if not success then
 			warn(string.format("❌ [ControllerRegistry] Init failed for '%s': %s", name, tostring(err)))
@@ -94,7 +94,7 @@ function ControllerRegistry.StartAll(startupOrder: { string }?)
 		local controller = registeredControllers[name]
 		if controller and controller.Start then
 			local success, err = pcall(function()
-				controller.Start(ControllerRegistry)
+				controller:Start(ControllerRegistry)
 			end)
 			if not success then
 				warn(string.format("❌ [ControllerRegistry] Start failed for '%s': %s", name, tostring(err)))
