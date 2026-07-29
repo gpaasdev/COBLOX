@@ -6,6 +6,7 @@ local HttpService = game:GetService("HttpService")
 local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)
 local PetTypes = require(ReplicatedStorage.Shared.Types.PetTypes)
 local PetData = require(ReplicatedStorage.Shared.Configuration.PetData)
+local GeneratedSpiritRegistry = require(ReplicatedStorage.Shared.Config.GeneratedSpiritRegistry)
 local PlayerDataService = require(script.Parent.PlayerDataService)
 local Signal = require(ReplicatedStorage.Shared.Utility.Signal)
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
@@ -119,6 +120,25 @@ end
 
 function PetService.CreatePet(player: Player, petId: string): ServiceResult<PetInstance>
 	local petConfig = PetData[petId]
+	-- Fallback to GeneratedSpiritRegistry if not in PetData
+	if not petConfig then
+		local spiritDef = GeneratedSpiritRegistry.Get(petId)
+		if spiritDef then
+			petConfig = {
+				Name = spiritDef.Name,
+				Description = spiritDef.Description,
+				BaseMultiplier = if spiritDef.Rarity == "Common" then 1
+					elseif spiritDef.Rarity == "Uncommon" then 2
+					elseif spiritDef.Rarity == "Rare" then 5
+					elseif spiritDef.Rarity == "Epic" then 10
+					elseif spiritDef.Rarity == "Legendary" then 25
+					else 1,
+				Rarity = spiritDef.Rarity,
+				Element = spiritDef.Element,
+				DropRate = spiritDef.DropRate,
+			}
+		end
+	end
 	if not petConfig then
 		return {
 			Success = false,

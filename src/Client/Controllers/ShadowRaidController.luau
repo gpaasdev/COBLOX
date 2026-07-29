@@ -28,6 +28,13 @@ function ShadowRaidController.Start(self)
 			ShadowRaidController.AttemptRaidFromNearest()
 		end
 	end))
+
+	local ContextActionService = game:GetService("ContextActionService")
+	self.maid:GiveTask(ContextActionService:BindAction("ShadowRaidAction", function()
+		ShadowRaidController.AttemptRaidFromNearest()
+	end, false, Enum.KeyCode.ButtonL3))
+	ContextActionService:SetTitle("ShadowRaidAction", "🥷 RAID")
+	ContextActionService:SetPosition("ShadowRaidAction", UDim2.new(0.5, 0, 0.85, 0))
 end
 
 function ShadowRaidController.AttemptRaidFromNearest()

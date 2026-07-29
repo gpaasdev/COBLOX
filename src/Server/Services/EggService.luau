@@ -21,35 +21,42 @@ EggService.Name = "EggService"
 
 EggService.EggHatched = Signal.new()
 
+local GeneratedSpiritRegistry = require(ReplicatedStorage.Shared.Config.GeneratedSpiritRegistry)
+
+-- Build pools from GeneratedSpiritRegistry (DropRate → weight)
+local function buildSpiritPool(rarityFilter: string?)
+	local pool = {}
+	local fullRegistry = GeneratedSpiritRegistry.GetAll()
+	for id, spirit in pairs(fullRegistry) do
+		if rarityFilter == nil or spirit.Rarity == rarityFilter then
+			local dropWeight = tonumber(spirit.DropRate)
+			if dropWeight then
+				table.insert(pool, { SpiritId = id, Weight = math.max(1, math.floor(dropWeight * 10)) })
+			end
+		end
+	end
+	return pool
+end
+
 local EggConfigs = {
 	BasicEgg = {
 		CostCoins = 100,
 		CostGems = 0,
 		IsPaidRobuxEgg = false,
-		Pool = {
-			{ PetId = "BasicCat", Weight = 70 },
-			{ PetId = "BasicDog", Weight = 25 },
-			{ PetId = "GoldenDragon", Weight = 5 },
-		},
+		Pool = buildSpiritPool("Common"),
 	},
 	ElementalEgg = {
 		CostCoins = 500,
 		CostGems = 10,
 		IsPaidRobuxEgg = false,
-		Pool = {
-			{ PetId = "BasicCat", Weight = 40 },
-			{ PetId = "BasicDog", Weight = 40 },
-			{ PetId = "GoldenDragon", Weight = 20 },
-		},
+		Pool = buildSpiritPool("Uncommon"),
 	},
 	VIPGodTierEgg = {
 		CostCoins = 0,
 		CostGems = 500,
 		IsPaidRobuxEgg = false,
 		IsVIPExclusive = true,
-		Pool = {
-			{ PetId = "Pet_GodTier_VIP", Weight = 100 },
-		},
+		Pool = buildSpiritPool("Rare"),
 	},
 }
 
@@ -179,29 +186,40 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 
 	for _, entry in ipairs(config.Pool) do
 		local weight = entry.Weight
-		if entry.PetId == "GoldenDragon" then
+		if entry.SpiritId and GeneratedSpiritRegistry[entry.SpiritId] and GeneratedSpiritRegistry[entry.SpiritId].Rarity == "Legendary" then
 			weight = math.floor(weight * totalLuckMultiplier)
 		end
 		totalWeight += weight
-		table.insert(adjustedPool, { PetId = entry.PetId, AdjustedWeight = weight })
+		table.insert(adjustedPool, { SpiritId = entry.SpiritId, AdjustedWeight = weight })
 	end
 
 	local rng = math.random(1, totalWeight)
 	local current = 0
-	local selectedPetId = config.Pool[1].PetId
+	local selectedSpiritId = config.Pool[1].SpiritId
 
 	for _, entry in ipairs(adjustedPool) do
 		current += entry.AdjustedWeight
 		if rng <= current then
-			selectedPetId = entry.PetId
+			selectedSpiritId = entry.SpiritId
 			break
 		end
 	end
 
-	-- Create Pet
-	local createRes = PetService.CreatePet(player, selectedPetId)
+	-- Create Pet using spirit registry data
+	local spiritDef = GeneratedSpiritRegistry[selectedSpiritId]
+	if not spiritDef then
+		return {
+			Success = false,
+			Category = "Fatal",
+			ErrorCode = "SPIRIT_NOT_FOUND",
+			Message = "Spirit definition not found: " .. selectedSpiritId,
+			Data = nil,
+			Retryable = false,
+		}
+	end
+
+	local createRes = PetService.CreatePet(player, selectedSpiritId)
 	if not createRes.Success or not createRes.Data then
-		-- Refund coins and gems on inventory failure
 		if config.CostCoins > 0 then
 			EconomyService.AddCurrency(player, "Coins", config.CostCoins, "HatchRefund")
 		end
@@ -211,11 +229,11 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 		return createRes
 	end
 
-	-- Update Pity Counter (atomic mutation via SafeUpdateProfile)
+	-- Update Pity Counter
 	if resProfile.Success and resProfile.Data then
 		local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
 		ProfileStoreAdapter.SafeUpdateProfile(player, function(data)
-			if selectedPetId == "GoldenDragon" then
+			if spiritDef.Rarity == "Legendary" then
 				data.Inventory.PityCounter = 0
 			else
 				data.Inventory.PityCounter = pityCounter + 1
@@ -228,7 +246,7 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 	local visualRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 	if visualRemote then
-		visualRemote:FireClient(player, createRes.Data, PetData[selectedPetId])
+		visualRemote:FireClient(player, createRes.Data, spiritDef)
 	end
 
 	return {
@@ -238,7 +256,7 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 		Message = "Egg hatched successfully",
 		Data = {
 			PetInstance = createRes.Data,
-			PetConfig = PetData[selectedPetId],
+			PetConfig = spiritDef,
 		},
 		Retryable = false,
 	}

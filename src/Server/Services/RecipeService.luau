@@ -5,6 +5,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 local RecipeConfig = require(ReplicatedStorage.Shared.Configuration.RecipeConfig)
+local GeneratedRecipeRegistry = require(ReplicatedStorage.Shared.Config.GeneratedRecipeRegistry)
 local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)
 local Signal = require(ReplicatedStorage.Shared.Utility.Signal)
 local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
@@ -134,6 +135,7 @@ function RecipeService.CraftGrid3x3(
 	local craftedItem = "AuraElixir_Tier1"
 	local itemType = "Consumable"
 
+	-- Check hardcoded patterns first (backward compat)
 	if countMap["Quartz"] and countMap["Quartz"] >= 3 then
 		craftedItem = "QuartzAltar_Tier1"
 		itemType = "Structure"
@@ -143,6 +145,26 @@ function RecipeService.CraftGrid3x3(
 	elseif countMap["PyroEssence"] and countMap["PyroEssence"] >= 2 then
 		craftedItem = "PyroBuffPotion_Tier2"
 		itemType = "Consumable"
+	else
+		-- Check GeneratedRecipeRegistry for recipe matches
+		for _, recipeDef in GeneratedRecipeRegistry.GetAll() do
+			local match = true
+			local needed: { [string]: number } = {}
+			for _, ingredientName in recipeDef.Ingredients do
+				needed[ingredientName] = (needed[ingredientName] or 0) + 1
+			end
+			for ingName, ingCount in needed do
+				if (countMap[ingName] or 0) < ingCount then
+					match = false
+					break
+				end
+			end
+			if match then
+				craftedItem = recipeDef.Name
+				itemType = recipeDef.OutputType
+				break
+			end
+		end
 	end
 
 	local updateResult = ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
