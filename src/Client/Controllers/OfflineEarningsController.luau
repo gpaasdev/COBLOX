@@ -6,6 +6,8 @@ local TweenService = game:GetService("TweenService")
 
 local ClientRemotes = require(script.Parent.Parent:WaitForChild("Network"):WaitForChild("ClientRemotes") :: any)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local OfflineEarningsController = {}
 OfflineEarningsController.Name = "OfflineEarningsController"
 
@@ -17,6 +19,7 @@ function OfflineEarningsController.Init()
 end
 
 function OfflineEarningsController.Start()
+	self.maid = Maid.new()
 	task.delay(1.5, function()
 		OfflineEarningsController.TryShowWelcomeModal()
 	end)
@@ -51,6 +54,7 @@ function OfflineEarningsController.ShowWelcomeModal(earningsAmount: number)
 	modalFrame.BorderSizePixel = 0
 	modalFrame.ZIndex = 150
 	modalFrame.Parent = mainHUD
+	self.maid:GiveTask(modalFrame)
 
 	local corner = Instance.new("UICorner")
 	corner.CornerRadius = UDim.new(0, 16)
@@ -107,7 +111,7 @@ function OfflineEarningsController.ShowWelcomeModal(earningsAmount: number)
 	btnGradient.Rotation = 45
 	btnGradient.Parent = claimBtn
 
-	claimBtn.MouseButton1Click:Connect(function()
+	self.maid:GiveTask(claimBtn.MouseButton1Click:Connect(function()
 		if ClientRemotes.ClaimOfflineEarnings then
 			ClientRemotes.ClaimOfflineEarnings:InvokeServer()
 		end
@@ -115,7 +119,7 @@ function OfflineEarningsController.ShowWelcomeModal(earningsAmount: number)
 			modalFrame:Destroy()
 			modalFrame = nil
 		end
-	end)
+	end))
 end
 
 return OfflineEarningsController

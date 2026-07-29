@@ -6,6 +6,7 @@ local TweenService = game:GetService("TweenService")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
 local ClientRemotes = require(script.Parent.Parent:WaitForChild("Network"):WaitForChild("ClientRemotes") :: any)
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local localPlayer = Players.LocalPlayer
 local SynthesisController = {}
@@ -30,7 +31,7 @@ function SynthesisController.Init()
 end
 
 function SynthesisController.Start()
-	-- Initialization hooks
+	self.maid = Maid.new()
 end
 
 function SynthesisController.ToggleModal()
@@ -120,9 +121,9 @@ function SynthesisController._CreateModal()
 	closeCorner.CornerRadius = UDim.new(0, 8)
 	closeCorner.Parent = closeBtn
 
-	closeBtn.MouseButton1Click:Connect(function()
+	SynthesisController.maid:GiveTask(closeBtn.MouseButton1Click:Connect(function()
 		SynthesisController.ToggleModal()
-	end)
+	end))
 
 	-- 1. 3x3 Grid Frame (Left Container)
 	local gridContainer = Instance.new("Frame")
@@ -159,7 +160,7 @@ function SynthesisController._CreateModal()
 		slotCorner.CornerRadius = UDim.new(0, 8)
 		slotCorner.Parent = slotBtn
 
-		slotBtn.MouseButton1Click:Connect(function()
+		SynthesisController.maid:GiveTask(slotBtn.MouseButton1Click:Connect(function()
 			if gridData[i] == "" then
 				gridData[i] = selectedMaterial
 				slotBtn.Text = selectedMaterial
@@ -171,7 +172,7 @@ function SynthesisController._CreateModal()
 				slotBtn.TextColor3 = Color3.fromRGB(148, 163, 184)
 				slotBtn.BackgroundColor3 = Color3.fromRGB(15, 23, 42)
 			end
-		end)
+		end))
 
 		gridSlots[i] = slotBtn
 	end
@@ -194,7 +195,7 @@ function SynthesisController._CreateModal()
 	resultPreviewLabel.Size = UDim2.new(1, 0, 0.4, 0)
 	resultPreviewLabel.Position = UDim2.new(0, 0, 0.1, 0)
 	resultPreviewLabel.BackgroundTransparency = 1
-	resultPreviewLabel.Text = "Pilih & tempatkan bahan di slot 3x3\nuntuk melihat hasil racikan!"
+	resultPreviewLabel.Text = LocalizationController.Get("SYNTHESIS_SUBTITLE")
 	resultPreviewLabel.TextColor3 = COLOR_TEXT_WHITE
 	resultPreviewLabel.Font = Enum.Font.GothamMedium
 	resultPreviewLabel.TextSize = 13
@@ -212,7 +213,7 @@ function SynthesisController._CreateModal()
 	transmuteBtn.Size = UDim2.new(0.8, 0, 0.25, 0)
 	transmuteBtn.Position = UDim2.new(0.1, 0, 0.65, 0)
 	transmuteBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White for UIGradient
-	transmuteBtn.Text = "⚡ RACIK SEKARANG!"
+	transmuteBtn.Text = LocalizationController.Get("SYNTHESIS_BTN")
 	transmuteBtn.TextColor3 = COLOR_BG_DARK
 	transmuteBtn.Font = Enum.Font.FredokaOne
 	transmuteBtn.TextSize = 18
@@ -240,7 +241,7 @@ function SynthesisController._CreateModal()
 	local lastCraftTime = 0
 	local CRAFT_COOLDOWN = 1.5
 
-	transmuteBtn.MouseButton1Click:Connect(function()
+	SynthesisController.maid:GiveTask(transmuteBtn.MouseButton1Click:Connect(function()
 		if isCrafting then
 			return
 		end
@@ -267,13 +268,13 @@ function SynthesisController._CreateModal()
 
 		if not hasMaterial then
 			if resultPreviewLabel then
-				resultPreviewLabel.Text = "⚠️ Letakkan minimal 1 bahan alkimia pada grid 3x3!"
+				resultPreviewLabel.Text = LocalizationController.Get("SYNTHESIS_NO_MATERIALS")
 			end
 			return
 		end
 
 		isCrafting = true
-		transmuteBtn.Text = "⏳ MERACIK..."
+		transmuteBtn.Text = LocalizationController.Get("SYNTHESIS_IN_PROGRESS")
 
 		local response = nil
 		pcall(function()
@@ -281,7 +282,7 @@ function SynthesisController._CreateModal()
 		end)
 
 		isCrafting = false
-		transmuteBtn.Text = "⚡ RACIK SEKARANG!"
+		transmuteBtn.Text = LocalizationController.Get("SYNTHESIS_BTN")
 
 		if response and response.Success and response.Data then
 			local resultItem = response.Data.ItemResult
@@ -302,13 +303,13 @@ function SynthesisController._CreateModal()
 
 			if resultPreviewLabel then
 				resultPreviewLabel.Text =
-					string.format("🎉 Berhasil Meracik:\n%s\n(Bonus Elemen: %.1fx)", cleanName, multiplier)
+					string.format(LocalizationController.Get("SYNTHESIS_SUCCESS"), cleanName, multiplier)
 			end
 
 			-- Notify UIController to put item into Hotbar & show top toast notification
 			local UIController = require(controllersFolder:WaitForChild("UIController") :: any)
 			UIController.AddItemToHotbar(resultItem, itemType)
-			UIController.ShowNotification("✨ Berhasil Meracik: " .. cleanName .. "!")
+			UIController.ShowNotification(string.format(LocalizationController.Get("SYNTHESIS_TOAST"), cleanName))
 
 			for i = 1, 9 do
 				gridData[i] = ""
@@ -323,7 +324,7 @@ function SynthesisController._CreateModal()
 				resultPreviewLabel.Text = LocalizationController.Get("SYNTHESIS_FAILED")
 			end
 		end
-	end)
+	end))
 
 	-- 3. Material Selector Bar (Bottom Bar)
 	local selectorContainer = Instance.new("Frame")
@@ -345,7 +346,7 @@ function SynthesisController._CreateModal()
 	selectorLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 	selectorLayout.Parent = selectorContainer
 
-	local materials = { "Quartz", "AstralIron", "PyroEssence", "HydroCrystal" }
+	local materials = { "Water Element", "Fire Element", "Quartz", "AstralIron", "PyroEssence", "HydroCrystal" }
 	for _, mat in ipairs(materials) do
 		local matBtn = Instance.new("TextButton")
 		matBtn.Name = "Mat_" .. mat
@@ -361,14 +362,14 @@ function SynthesisController._CreateModal()
 		matCorner.CornerRadius = UDim.new(0, 6)
 		matCorner.Parent = matBtn
 
-		matBtn.MouseButton1Click:Connect(function()
+		SynthesisController.maid:GiveTask(matBtn.MouseButton1Click:Connect(function()
 			selectedMaterial = mat
 			for _, child in ipairs(selectorContainer:GetChildren()) do
 				if child:IsA("TextButton") then
 					child.BackgroundColor3 = (child.Name == "Mat_" .. mat) and COLOR_CYAN or Color3.fromRGB(15, 23, 42)
 				end
 			end
-		end)
+		end))
 	end
 end
 

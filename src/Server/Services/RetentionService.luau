@@ -20,21 +20,29 @@ end
 function RetentionService.Start()
 	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 	local retentionEvent = NetChannels.GetRemoteEvent("RetentionEvent")
+	local RateLimitService = require(game:GetService("ServerScriptService").Server.Services.RateLimitService)
 
 	retentionEvent.OnServerEvent:Connect(function(player: Player, action: string)
+		if type(action) ~= "string" then
+			return
+		end
 		if action == "SpinWheel" then
-			local profile = PlayerDataService.GetPlayerProfile(player)
-			if profile then
-				local rewardGems = math.random(5, 50)
-				profile.Wallet.ChronoSparks += rewardGems
-				print(
-					string.format(
-						"[RetentionService] Player %s spun the wheel and won %d Gems!",
-						player.Name,
-						rewardGems
-					)
-				)
+			if not RateLimitService.CheckRateLimit(player, "Retention_SpinWheel", 60) then
+				return
 			end
+			local profile = PlayerDataService.GetPlayerProfile(player)
+			if not profile then
+				return
+			end
+			local rewardGems = math.random(5, 50)
+			profile.Wallet.ChronoSparks += rewardGems
+			print(
+				string.format(
+					"[RetentionService] Player %s spun the wheel and won %d Gems!",
+					player.Name,
+					rewardGems
+				)
+			)
 		end
 	end)
 

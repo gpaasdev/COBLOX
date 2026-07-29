@@ -44,11 +44,17 @@ function CombatService.Init()
 	local RateLimitService = require(script.Parent.RateLimitService)
 
 	combatEvent.OnServerEvent:Connect(function(player, action: string, targetId: string?, weaponType: string?)
-		if not RateLimitService.CheckRateLimit(player, "CombatEvent_" .. tostring(action), 0.2) then
+		if type(action) ~= "string" then
+			return
+		end
+		if not RateLimitService.CheckRateLimit(player, "CombatEvent_" .. action, 0.2) then
 			return
 		end
 
-		if action == "Attack" and targetId then
+		if action == "Attack" then
+			if type(targetId) ~= "string" then
+				return
+			end
 			CombatService.ProcessHit(player, targetId, weaponType)
 		elseif action == "Parry" then
 			parryWindows[player.UserId] = os.clock()

@@ -5,6 +5,7 @@ local TweenService = game:GetService("TweenService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local localPlayer = Players.LocalPlayer
 local CovenController = {}
@@ -25,15 +26,16 @@ function CovenController.Init()
 end
 
 function CovenController.Start()
+	self.maid = Maid.new()
 	local covenRemote = NetChannels.GetRemoteEvent("CovenEvent")
 	if covenRemote then
-		covenRemote.OnClientEvent:Connect(function(action: string, data: any)
+		self.maid:GiveTask(covenRemote.OnClientEvent:Connect(function(action: string, data: any)
 			if action == "Sync" and type(data) == "table" then
 				CovenController.UpdateCovenDisplay(data)
 			elseif action == "GuestInviteReceived" and type(data) == "table" then
 				print("[CovenController] Received Guest Invite to Coven: " .. tostring(data.CovenName))
 			end
-		end)
+		end))
 	end
 end
 
@@ -97,9 +99,9 @@ function CovenController._CreateModal()
 	closeCorner.CornerRadius = UDim.new(0, 8)
 	closeCorner.Parent = closeBtn
 
-	closeBtn.MouseButton1Click:Connect(function()
+	CovenController.maid:GiveTask(closeBtn.MouseButton1Click:Connect(function()
 		CovenController.ToggleModal()
-	end)
+	end))
 
 	-- Info Container
 	levelLabel = Instance.new("TextLabel")
@@ -147,12 +149,12 @@ function CovenController._CreateModal()
 	createCorner.CornerRadius = UDim.new(0, 8)
 	createCorner.Parent = createBtn
 
-	createBtn.MouseButton1Click:Connect(function()
+	CovenController.maid:GiveTask(createBtn.MouseButton1Click:Connect(function()
 		local remote = NetChannels.GetRemoteEvent("CovenEvent")
 		if remote then
 			remote:FireServer("Create", localPlayer.Name .. "'s Order")
 		end
-	end)
+	end))
 
 	-- Action 2: Donate Treasury
 	local donateBtn = Instance.new("TextButton")
@@ -169,12 +171,12 @@ function CovenController._CreateModal()
 	donateCorner.CornerRadius = UDim.new(0, 8)
 	donateCorner.Parent = donateBtn
 
-	donateBtn.MouseButton1Click:Connect(function()
+	CovenController.maid:GiveTask(donateBtn.MouseButton1Click:Connect(function()
 		local remote = NetChannels.GetRemoteEvent("CovenEvent")
 		if remote then
 			remote:FireServer("Donate", 1000)
 		end
-	end)
+	end))
 
 	-- Action 3: Visit Instanced Hideout (NEW)
 	visitHideoutBtn = Instance.new("TextButton")
@@ -191,12 +193,12 @@ function CovenController._CreateModal()
 	visitCorner.CornerRadius = UDim.new(0, 8)
 	visitCorner.Parent = visitHideoutBtn
 
-	visitHideoutBtn.MouseButton1Click:Connect(function()
+	CovenController.maid:GiveTask(visitHideoutBtn.MouseButton1Click:Connect(function()
 		local remote = NetChannels.GetRemoteEvent("CovenEvent")
 		if remote then
 			remote:FireServer("TeleportToHideout")
 		end
-	end)
+	end))
 
 	-- Action 4: Invite Guest (NEW)
 	inviteGuestBtn = Instance.new("TextButton")
@@ -213,7 +215,7 @@ function CovenController._CreateModal()
 	inviteCorner.CornerRadius = UDim.new(0, 8)
 	inviteCorner.Parent = inviteGuestBtn
 
-	inviteGuestBtn.MouseButton1Click:Connect(function()
+	CovenController.maid:GiveTask(inviteGuestBtn.MouseButton1Click:Connect(function()
 		-- Fire to server with the local player's own UserId as the invitee target.
 		-- The server validates that the sender is a Coven leader before sending the invite.
 		local remote = NetChannels.GetRemoteEvent("CovenEvent")
@@ -222,7 +224,7 @@ function CovenController._CreateModal()
 			-- Real target selection requires a player-picker UI (future feature).
 			remote:FireServer("InviteGuest", 0)
 		end
-	end)
+	end))
 end
 
 function CovenController.UpdateCovenDisplay(data: {

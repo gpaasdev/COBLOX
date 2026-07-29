@@ -5,6 +5,8 @@ local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local CollectionService = game:GetService("CollectionService")
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local MachineController = {}
 MachineController.Name = "MachineController"
 
@@ -23,6 +25,7 @@ function MachineController.Init()
 end
 
 function MachineController.Start()
+	self.maid = Maid.new()
 	local localPlayer = Players.LocalPlayer
 
 	local function setupMachineHUD(machinePart: BasePart)
@@ -113,7 +116,7 @@ function MachineController.Start()
 		machinePart:SetAttribute("MachineHUD_Ready", true)
 	end
 
-	CollectionService:GetInstanceAddedSignal("MachinePart"):Connect(setupMachineHUD)
+	self.maid:GiveTask(CollectionService:GetInstanceAddedSignal("MachinePart"):Connect(setupMachineHUD))
 	for _, part in ipairs(CollectionService:GetTagged("MachinePart")) do
 		task.spawn(setupMachineHUD, part)
 	end

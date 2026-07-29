@@ -1,122 +1,170 @@
 #!/usr/bin/env python3
 """
-scripts/create_badges.py
-Create all 15 COBLOX badges via Open Cloud API (legacy-badges).
-Also update existing badge name/description/icon.
-Usage: python scripts/create_badges.py --create-all
-       python scripts/create_badges.py --update 644041556488993 --name "Soul Bonder" --desc "Hatch your first Spirit companion"
-"""
-import os
-import sys
-import json
-import argparse
-import urllib.request
-import urllib.parse
+Create missing COBLOX badges via Roblox Badges API.
 
-API_BASE = "https://apis.roblox.com"
+Usage:
+  export ROBLOX_ACCESS_TOKEN=your_oauth_token_here
+  python3 scripts/create_badges.py
+
+  # Dry-run: check quota and list what would be created
+  python3 scripts/create_badges.py --dry-run
+
+Auth: This script requires OAuth 2.0 (Bearer token) with legacy-universe:manage scope.
+Get a token at: https://create.roblox.com/dashboard/credentials
+"""
+import os, sys, json, urllib.request, urllib.error, urllib.parse, uuid, io
+
+TOKEN = os.environ.get("ROBLOX_ACCESS_TOKEN", "")
+COOKIE = os.environ.get("ROBLOSECURITY", "")
 UNIVERSE_ID = os.environ.get("ROBLOX_UNIVERSE_ID", "10545905192")
-API_KEY = os.environ.get("ROBLOX_OPEN_CLOUD_API_KEY") or os.environ.get("ROBLOX_OPENCLOUD_API_KEY")
+DRY_RUN = "--dry-run" in sys.argv
 
 BADGES = [
-    {"key": "BDG_FIRST_CRAFT", "name": "First Synthesis", "desc": "Complete your first alchemical synthesis."},
-    {"key": "BDG_SOUL_BONDER", "name": "Soul Bonder", "desc": "Hatch your first Spirit companion."},
-    {"key": "BDG_BIOME_WALKER", "name": "Biome Walker", "desc": "Visit 5 different biomes."},
-    {"key": "BDG_SANCTUM_BUILDER", "name": "Sanctum Builder", "desc": "Place 10 structures in your Sanctum."},
-    {"key": "BDG_COVEN_FOUNDER", "name": "Coven Founder", "desc": "Create or join a Coven."},
-    {"key": "BDG_DAILY_STREAK", "name": "Dedicated Alchemist", "desc": "Complete daily quests 7 days in a row."},
-    {"key": "BDG_MONSTER_SLAYER", "name": "Creature Conqueror", "desc": "Defeat 100 hostile creatures."},
-    {"key": "BDG_SHADOW_VETERAN", "name": "Shadow Veteran", "desc": "Complete 10 Shadow Raids."},
-    {"key": "BDG_RESEARCHER", "name": "Grand Scholar", "desc": "Unlock 50 research nodes."},
-    {"key": "BDG_VETERAN", "name": "Seasoned Veteran", "desc": "Reach 100 hours of total playtime."},
-    {"key": "BDG_MASTER_SMITH", "name": "Forge Lord", "desc": "Upgrade a Machine to Mark 10."},
-    {"key": "BDG_QUANTUM_MASTER", "name": "Quantum Master", "desc": "Synthesize a Quantum Essence."},
-    {"key": "BDG_LEGENDARY_HATCH", "name": "Legend Caller", "desc": "Hatch a Legendary Spirit."},
-    {"key": "BDG_PIONEER", "name": "Alchemist Pioneer", "desc": "Awarded to the first 10,000 players who synthesize a Tier 3 material."},
-    {"key": "BDG_MULTIVERSE_TRAVELER", "name": "Multiverse Explorer", "desc": "Enter Sector 5 of any Biome."},
+    {"key": "BDG_MONSTER_SLAYER", "name": "Monster Slayer", "desc": "Defeat 100 monsters"},
+    {"key": "BDG_SHADOW_VETERAN", "name": "Shadow Veteran", "desc": "Win 50 Shadow Raids"},
+    {"key": "BDG_RESEARCHER", "name": "Researcher", "desc": "Unlock 20 Codex entries"},
+    {"key": "BDG_VETERAN", "name": "Veteran", "desc": "Play for 100 hours"},
+    {"key": "BDG_MASTER_SMITH", "name": "Master Smith", "desc": "Smelt 1000 ores"},
+    {"key": "BDG_QUANTUM_MASTER", "name": "Quantum Master", "desc": "Reach Rebirth level 10"},
+    {"key": "BDG_LEGENDARY_HATCH", "name": "Legendary Hatcher", "desc": "Hatch 10 Legendary pets"},
+    {"key": "BDG_MULTIVERSE_TRAVELER", "name": "Multiverse Traveler", "desc": "Visit all realms"},
 ]
 
-def call_api(method, path, data=None, files=None, content_type="application/json"):
-    url = f"{API_BASE}{path}"
-    headers = {"x-api-key": API_KEY}
-    if content_type:
-        headers["Content-Type"] = content_type
-    body = json.dumps(data).encode() if data else None
-    req = urllib.request.Request(url, method=method, data=body, headers=headers)
+
+XSRF_TOKEN = None
+
+
+def req(method, url, data=None, form=False, files=None):
+    global XSRF_TOKEN
+    h = {}
+    if TOKEN:
+        h["Authorization"] = f"Bearer {TOKEN}"
+    elif COOKIE:
+        h["Cookie"] = f".ROBLOSECURITY={COOKIE}"
+    if XSRF_TOKEN:
+        h["x-csrf-token"] = XSRF_TOKEN
+    b = None
+    if files:
+        boundary = str(uuid.uuid4())
+        h["Content-Type"] = f"multipart/form-data; boundary={boundary}"
+        parts = []
+        if data:
+            for k, v in data.items():
+                parts.append(f'--{boundary}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode())
+        for field_name, (filename, file_data, content_type) in files.items():
+            parts.append(f'--{boundary}\r\nContent-Disposition: form-data; name="{field_name}"; filename="{filename}"\r\nContent-Type: {content_type}\r\n\r\n'.encode())
+            parts.append(file_data)
+            parts.append(b'\r\n')
+        parts.append(f'--{boundary}--\r\n'.encode())
+        b = b''.join(parts)
+    elif form:
+        h["Content-Type"] = "application/x-www-form-urlencoded"
+        b = urllib.parse.urlencode(data).encode()
+    elif data is not None:
+        h["Content-Type"] = "application/json"
+        b = json.dumps(data).encode()
+    r = urllib.request.Request(url, data=b, headers=h, method=method)
     try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            return json.loads(resp.read().decode())
+        with urllib.request.urlopen(r) as resp:
+            body = resp.read()
+            xsrf = resp.headers.get("x-csrf-token")
+            if xsrf:
+                XSRF_TOKEN = xsrf
+            return json.loads(body) if body else {}
     except urllib.error.HTTPError as e:
-        error_body = e.read().decode()
-        print(f"  ❌ HTTP {e.code}: {error_body}")
+        body = e.read().decode()
+        xsrf = e.headers.get("x-csrf-token")
+        if xsrf and not XSRF_TOKEN:
+            XSRF_TOKEN = xsrf
+            print(f"  Got XSRF token, retrying...")
+            return req(method, url, data, form, files)
+        print(f"  HTTP {e.code}: {body[:300]}")
         return None
 
-def create_badge(name, description, icon_path=None):
-    """Create a single badge via Open Cloud API."""
-    path = f"/legacy-badges/v1/universes/{UNIVERSE_ID}/badges"
-    payload = {
-        "name": name,
-        "description": description,
-        "paymentSourceType": 2,  # Group funds
-        "expectedCost": 0,
-        "isActive": True,
-    }
-    result = call_api("POST", path, payload)
-    if result:
-        print(f"  ✅ Created badge: {name} (ID: {result.get('id')})")
-    return result
-
-def get_existing_badges():
-    """Get existing badges for the universe."""
-    path = f"/legacy-badges/v1/universes/{UNIVERSE_ID}/badges"
-    result = call_api("GET", path)
-    if result:
-        return {b["name"]: b for b in result.get("data", [])}
-    return {}
 
 def main():
-    parser = argparse.ArgumentParser(description="Manage COBLOX badges via Open Cloud")
-    parser.add_argument("--create-all", action="store_true", help="Create all 15 badges")
-    parser.add_argument("--list", action="store_true", help="List existing badges")
-    parser.add_argument("--update", type=int, help="Update a badge by ID")
-    parser.add_argument("--name", help="New name for badge (with --update)")
-    parser.add_argument("--desc", help="New description for badge (with --update)")
-    args = parser.parse_args()
+    if not TOKEN and not COOKIE:
+        print("⚠️  ROBLOX_ACCESS_TOKEN or ROBLOSECURITY not set")
+        print("   Get a token at: https://create.roblox.com/dashboard/credentials")
+        print("   Or use: export ROBLOSECURITY=.ROBLOSECURITY_cookie_value\n")
 
-    if not API_KEY:
-        print("❌ ROBLOX_OPEN_CLOUD_API_KEY not set.")
-        sys.exit(1)
+    BASE = "https://badges.roblox.com"
 
-    if args.list:
-        badges = get_existing_badges()
-        print(f"Existing badges ({len(badges)}):")
-        for name, info in badges.items():
-            print(f"  {info['id']}: {name} — {info.get('description', '')}")
-
-    elif args.update:
-        if args.name or args.desc:
-            data = {}
-            if args.name:
-                data["name"] = args.name
-            if args.desc:
-                data["description"] = args.desc
-            result = call_api("PATCH", f"/legacy-badges/v1/badges/{args.update}", data)
-            if result is not None:
-                print(f"  ✅ Updated badge {args.update}")
+    # Check quota
+    quota_url = f"{BASE}/v1/universes/{UNIVERSE_ID}/free-badges-quota"
+    if TOKEN or COOKIE:
+        quota = req("GET", quota_url)
+        if quota is not None:
+            print(f"📊 Free badge quota remaining: {quota}")
         else:
-            print("  ⚠️ Provide --name and/or --desc")
-
-    elif args.create_all:
-        print(f"Creating {len(BADGES)} badges for universe {UNIVERSE_ID}...")
-        existing = get_existing_badges()
-        for badge in BADGES:
-            if badge["name"] in existing:
-                print(f"  ⏭️ Skipping {badge['key']} ({badge['name']}) — already exists (ID: {existing[badge['name']]['id']})")
-            else:
-                result = create_badge(badge["name"], badge["desc"])
-                if result:
-                    print(f"    → Map to BADGE_IDS in BadgeService.luau: {badge['key']} = {result.get('id')}")
+            print("⚠️  Could not check quota — auth might be invalid")
     else:
-        parser.print_help()
+        print("📊 Free badge quota: ? (set ROBLOX_ACCESS_TOKEN or ROBLOSECURITY to check)")
+
+    print(f"\n📋 Badges to create: {len(BADGES)}")
+    for b in BADGES:
+        print(f"   {b['key']:40s} {b['name']:25s} {b['desc']}")
+
+    if DRY_RUN or not (TOKEN or COOKIE):
+        print("\n💡 Set ROBLOX_ACCESS_TOKEN or ROBLOSECURITY and remove --dry-run to execute")
+        return
+
+    # Check existing badges
+    existing_url = f"{BASE}/v1/universes/{UNIVERSE_ID}/badges?limit=100"
+    existing = req("GET", existing_url)
+    existing_names = set()
+    if existing:
+        for badge in existing.get("data", []):
+            existing_names.add(badge["name"])
+        print(f"\n📋 Found {len(existing_names)} existing badges")
+
+    # Create badges
+    icon_path = os.environ.get("BADGE_ICON", "/tmp/badge_icon.png")
+    if not os.path.exists(icon_path):
+        print(f"⚠️  Badge icon not found at {icon_path}, generating placeholder...")
+        import struct, zlib
+        def create_png(w, h, r, g, b):
+            def chunk(ctype, data):
+                c = ctype + data
+                return struct.pack('>I', len(data)) + c + struct.pack('>I', zlib.crc32(c) & 0xffffffff)
+            ihdr = struct.pack('>IIBBBBB', w, h, 8, 2, 0, 0, 0)
+            raw = b''
+            for y in range(h):
+                raw += b'\x00' + bytes([r, g, b]) * w
+            idat = zlib.compress(raw)
+            return b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', ihdr) + chunk(b'IDAT', idat) + chunk(b'IEND', b'')
+        with open(icon_path, 'wb') as f:
+            f.write(create_png(512, 512, 255, 215, 0))
+        print(f"   Created {icon_path}")
+
+    with open(icon_path, 'rb') as f:
+        icon_data = f.read()
+
+    created = 0
+    for b in BADGES:
+        if b["name"] in existing_names:
+            print(f"⏭️  {b['key']} — already exists")
+            continue
+        create_url = f"{BASE}/v1/universes/{UNIVERSE_ID}/badges"
+        form_data = {
+            "name": b["name"],
+            "description": b["desc"],
+            "isActive": "true",
+        }
+        files_data = {
+            "files": (f"{b['key']}.png", icon_data, "image/png"),
+        }
+        print(f"🔨 Creating {b['key']} ({b['name']})...")
+        result = req("POST", create_url, form_data, files=files_data)
+        if result and result.get("id"):
+            print(f"   ✅ Created! Badge ID: {result['id']}")
+            created += 1
+        else:
+            print(f"   ❌ Failed: {result}")
+
+    print(f"\n✅ Done. Created {created} badges today.")
+    print("   Update BadgeService.luau BADGE_IDS with the new IDs printed above.")
+
 
 if __name__ == "__main__":
     main()

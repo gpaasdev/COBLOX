@@ -36,6 +36,9 @@ function FlexZoneService.Start()
 	local flexRemote = NetChannels.GetRemoteFunction("RequestFlexEffect")
 	if flexRemote then
 		flexRemote.OnServerInvoke = function(player: Player, effectType: string)
+			if type(effectType) ~= "string" then
+				return { Success = false, Message = "Invalid effect type" }
+			end
 			return FlexZoneService.TriggerFlex(player, effectType)
 		end
 	end

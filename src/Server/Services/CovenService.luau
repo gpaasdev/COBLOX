@@ -51,7 +51,14 @@ function CovenService.Init()
 	local RateLimitService = require(script.Parent.RateLimitService)
 
 	covenEvent.OnServerEvent:Connect(function(player, action: string, data: any)
-		if not RateLimitService.CheckRateLimit(player, "CovenEvent_" .. tostring(action), 0.5) then
+		if type(action) ~= "string" then
+			return
+		end
+		local validActions = { Create = true, Donate = true, TeleportToHideout = true, InviteGuest = true }
+		if not validActions[action] then
+			return
+		end
+		if not RateLimitService.CheckRateLimit(player, "CovenEvent_" .. action, 0.5) then
 			return
 		end
 

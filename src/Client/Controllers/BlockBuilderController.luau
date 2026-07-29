@@ -7,6 +7,8 @@ local RunService = game:GetService("RunService")
 local Camera = Workspace.CurrentCamera
 local BlockConfig = require(ReplicatedStorage.Shared.Configuration.BlockConfig)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local BlockBuilderController = {}
 BlockBuilderController.Name = "BlockBuilderController"
 
@@ -69,7 +71,8 @@ function BlockBuilderController.SetBlockType(blockType: string)
 end
 
 function BlockBuilderController.Init()
-	RunService.RenderStepped:Connect(function()
+	self.maid = Maid.new()
+	self.maid:GiveTask(RunService.RenderStepped:Connect(function()
 		if not isBuilding or not ghostPart then return end
 		local pos = getTargetPosition()
 		if pos then
@@ -78,9 +81,9 @@ function BlockBuilderController.Init()
 		else
 			ghostPart.Visible = false
 		end
-	end)
+	end))
 
-	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input, gameProcessed)
 		if gameProcessed or not isBuilding then return end
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			local pos = getTargetPosition()
@@ -99,7 +102,7 @@ function BlockBuilderController.Init()
 		elseif input.KeyCode == Enum.KeyCode.B then
 			BlockBuilderController.ToggleBuildMode()
 		end
-	end)
+	end))
 end
 
 return BlockBuilderController

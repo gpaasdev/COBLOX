@@ -8,6 +8,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local SocialInviteController = {}
 SocialInviteController.Name = "SocialInviteController"
 
@@ -16,9 +18,10 @@ function SocialInviteController.Init()
 end
 
 function SocialInviteController.Start()
+	self.maid = Maid.new()
 	local inviteTriggeredRemote = NetChannels.GetRemoteEvent("SocialInviteTriggered")
 	if inviteTriggeredRemote then
-		inviteTriggeredRemote.OnClientEvent:Connect(function(context: string)
+		self.maid:GiveTask(inviteTriggeredRemote.OnClientEvent:Connect(function(context: string)
 			if typeof(context) ~= "string" then
 				return
 			end

@@ -120,6 +120,9 @@ function RewardedAdService.Init()
 			if typeof(placement) ~= "string" or typeof(rewardType) ~= "string" then
 				return
 			end
+			if not player.Character or not player.Character.PrimaryPart then
+				return
+			end
 			RewardedAdService.RequestAd(player, placement :: AdPlacement, rewardType :: AdRewardType)
 		end)
 	end

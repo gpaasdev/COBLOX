@@ -7,6 +7,8 @@ local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)
 local Signal = require(ReplicatedStorage.Shared.Utility.Signal)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 type QuestNode = DataTypes.QuestNode
 type ServiceResult<T> = DataTypes.ServiceResult<T>
 
@@ -26,7 +28,8 @@ function QuestController.Init()
 end
 
 function QuestController.Start()
-	syncQuestRemote.OnClientEvent:Connect(function(questNode: QuestNode)
+	self.maid = Maid.new()
+	self.maid:GiveTask(syncQuestRemote.OnClientEvent:Connect(function(questNode: QuestNode)
 		print(
 			string.format(
 				"[QuestController] Quest Progress Updated: %s (%d/%d)",

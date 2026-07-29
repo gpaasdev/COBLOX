@@ -5,6 +5,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local MonetizationController = {}
 MonetizationController.Name = "MonetizationController"
 
@@ -29,9 +31,10 @@ function MonetizationController.Init()
 end
 
 function MonetizationController.Start()
+	self.maid = Maid.new()
 	local hatchRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 	if hatchRemote then
-		hatchRemote.OnClientEvent:Connect(function(eggId: string, petId: string)
+		self.maid:GiveTask(hatchRemote.OnClientEvent:Connect(function(eggId: string, petId: string)
 			manualHatchCount += 1
 			if manualHatchCount >= 30 then
 				MonetizationController.PromptAutoHatchRecommendation()
@@ -42,7 +45,7 @@ function MonetizationController.Start()
 
 	local promptRemote = NetChannels.GetRemoteEvent("MonetizationPrompt")
 	if promptRemote then
-		promptRemote.OnClientEvent:Connect(function(promptType: string, data: any)
+		self.maid:GiveTask(promptRemote.OnClientEvent:Connect(function(promptType: string, data: any)
 			if promptType == "InsufficientCoins" then
 				MonetizationController.PromptCoinsPurchase()
 			elseif promptType == "InventoryFull" then

@@ -7,6 +7,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local TradeController = {}
 TradeController.Name = "TradeController"
 
@@ -20,12 +22,13 @@ function TradeController.Init()
 end
 
 function TradeController.Start()
+	self.maid = Maid.new()
 	local inviteRemote = NetChannels.GetRemoteEvent("TradeInvited")
 	if inviteRemote then
-		inviteRemote.OnClientEvent:Connect(function(sessionId: string, partnerName: string)
+		self.maid:GiveTask(inviteRemote.OnClientEvent:Connect(function(sessionId: string, partnerName: string)
 			print(string.format("[TradeController] Trade invited by %s (session: %s)", partnerName, sessionId))
 			TradeController.ToggleModal()
-		end)
+		end))
 	end
 end
 
@@ -65,6 +68,7 @@ function TradeController._CreateTradeModal()
 	modalFrame.ZIndex = 100
 	modalFrame.Visible = false
 	modalFrame.Parent = mainHUD
+	self.maid:GiveTask(modalFrame)
 
 	local corner = Instance.new("UICorner")
 	corner.CornerRadius = UDim.new(0, 16)
@@ -101,9 +105,9 @@ function TradeController._CreateTradeModal()
 	closeCorner.CornerRadius = UDim.new(0, 8)
 	closeCorner.Parent = closeBtn
 
-	closeBtn.MouseButton1Click:Connect(function()
+	self.maid:GiveTask(closeBtn.MouseButton1Click:Connect(function()
 		TradeController.ToggleModal()
-	end)
+	end))
 
 	-- My Offer Container (Left)
 	local myOfferFrame = Instance.new("Frame")
@@ -188,7 +192,7 @@ function TradeController._CreateTradeModal()
 	local isLocked = false
 	local isCountingDown = false
 
-	lockBtn.MouseButton1Click:Connect(function()
+	self.maid:GiveTask(lockBtn.MouseButton1Click:Connect(function()
 		if isCountingDown then
 			return
 		end
@@ -214,7 +218,7 @@ function TradeController._CreateTradeModal()
 			end
 			isCountingDown = false
 
-			acceptBtn.Text = "✅ KONFIRMASI FINAL"
+			acceptBtn.Text = LocalizationController.Get("TRADE_CONFIRM_BTN")
 			acceptBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94)
 			acceptBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 			acceptBtn.Active = true
@@ -231,9 +235,9 @@ function TradeController._CreateTradeModal()
 			acceptBtn.TextColor3 = Color3.fromRGB(148, 163, 184)
 			acceptBtn.Active = false
 		end
-	end)
+	end))
 
-	acceptBtn.MouseButton1Click:Connect(function()
+	self.maid:GiveTask(acceptBtn.MouseButton1Click:Connect(function()
 		if not isLocked or not acceptBtn.Active then
 			return
 		end
@@ -265,7 +269,7 @@ function TradeController._CreateTradeModal()
 		end
 
 		TradeController.ToggleModal()
-	end)
+	end))
 end
 
 return TradeController

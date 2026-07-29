@@ -30,8 +30,29 @@ end
 
 function PetService.Start()
 	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+	local RateLimitService = require(game:GetService("ServerScriptService").Server.Services.RateLimitService)
 	local equipRemote = NetChannels.GetRemoteFunction("RequestEquipPet")
 	equipRemote.OnServerInvoke = function(player: Player, petUUID: string)
+		if type(petUUID) ~= "string" then
+			return {
+				Success = false,
+				Category = "Validation",
+				ErrorCode = "INVALID_PET_UUID",
+				Message = "Invalid pet identifier",
+				Data = false,
+				Retryable = false,
+			}
+		end
+		if not RateLimitService.CheckRateLimit(player, "EquipPet", 0.3) then
+			return {
+				Success = false,
+				Category = "RateLimit",
+				ErrorCode = "TOO_MANY_REQUESTS",
+				Message = "Equip rate limited",
+				Data = false,
+				Retryable = true,
+			}
+		end
 		return PetService.EquipPet(player, petUUID)
 	end
 

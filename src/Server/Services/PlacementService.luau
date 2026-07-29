@@ -73,6 +73,26 @@ function PlacementService.Start()
 			PlacementService.RemoveStructure(player, cleanGridIndex)
 		end)
 	end
+
+	PlacementService.StructurePlaced:Connect(function(player: Player, gridIndex: string, data: any)
+		local structDef = GridConfig.STRUCTURES[data.StructureId]
+		local part = Instance.new("Part")
+		part.Name = "Structure_" .. data.StructureId
+		part.Size = (structDef and structDef.Size) or Vector3.new(3, 3, 3)
+		part.Position = Vector3.new(data.X * GridConfig.CELL_SIZE, 1.5, data.Z * GridConfig.CELL_SIZE)
+		part.Anchored = true
+		part.CanCollide = false
+		part.Color = Color3.fromRGB(34, 197, 94)
+		part.Material = Enum.Material.Glass
+		part.Parent = workspace.Map
+	end)
+
+	PlacementService.StructureRemoved:Connect(function(player: Player, gridIndex: string, data: any)
+		local part = workspace.Map:FindFirstChild("Structure_" .. data.StructureId)
+		if part then
+			part:Destroy()
+		end
+	end)
 end
 
 function PlacementService.SnapPosition(rawPos: Vector3): Vector3

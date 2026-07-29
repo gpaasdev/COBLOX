@@ -46,8 +46,29 @@ end
 
 function TycoonService.Start()
 	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+	local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
 	local buyRemote = NetChannels.GetRemoteFunction("RequestBuyUpgrade")
 	buyRemote.OnServerInvoke = function(player: Player, upgradeId: string)
+		if type(upgradeId) ~= "string" then
+			return {
+				Success = false,
+				Category = "Validation",
+				ErrorCode = "INVALID_UPGRADE",
+				Message = "Invalid upgrade identifier",
+				Data = false,
+				Retryable = false,
+			}
+		end
+		if not RateLimitService.CheckRateLimit(player, "BuyUpgrade", 0.5) then
+			return {
+				Success = false,
+				Category = "RateLimit",
+				ErrorCode = "TOO_MANY_REQUESTS",
+				Message = "Purchase rate limited",
+				Data = false,
+				Retryable = true,
+			}
+		end
 		local res = TycoonService.PurchaseUpgrade(player, upgradeId)
 		return res
 	end

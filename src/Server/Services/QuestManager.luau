@@ -31,9 +31,15 @@ function QuestManager.Start()
 		QuestManager.IncrementProgress(player, craftType, amount)
 	end)
 
-	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+	local RateLimitService = require(game:GetService("ServerScriptService").Server.Services.RateLimitService)
 	local claimRemote = NetChannels.GetRemoteFunction("ClaimQuest")
 	claimRemote.OnServerInvoke = function(player, questId)
+		if type(questId) ~= "string" then
+			return false
+		end
+		if not RateLimitService.CheckRateLimit(player, "ClaimQuest", 0.5) then
+			return false
+		end
 		return QuestManager.ClaimQuest(player, questId)
 	end
 

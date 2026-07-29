@@ -11,6 +11,8 @@ local SoundPool = require(Shared:WaitForChild("Utility"):WaitForChild("SoundPool
 local AssetsFolder = Shared:WaitForChild("Assets")
 local AssetRegistry = require(AssetsFolder:WaitForChild("AssetRegistry") :: any)
 
+local Maid = require(Shared:WaitForChild("Utility"):WaitForChild("Maid"))
+
 local AudioController = {}
 AudioController.Name = "AudioController"
 
@@ -47,6 +49,7 @@ function AudioController.Init()
 end
 
 function AudioController.Start()
+	self.maid = Maid.new()
 	AudioEventBus.Subscribe(function(soundId: string, volume: number)
 		AudioController.PlaySound(soundId, volume)
 	end)
@@ -115,7 +118,7 @@ function AudioController.PlayBGM(soundKey: string, fadeTime: number?)
 		local fadeOutTween =
 			TweenService:Create(oldSound, TweenInfo.new(duration, Enum.EasingStyle.Sine), { Volume = 0 })
 		fadeOutTween:Play()
-		fadeOutTween.Completed:Connect(function()
+		self.maid:GiveTask(fadeOutTween.Completed:Connect(function()
 			oldSound:Stop()
 			-- Don't Destroy — reuse on next call
 		end)

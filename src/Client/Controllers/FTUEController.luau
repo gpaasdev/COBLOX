@@ -7,6 +7,7 @@ local RunService = game:GetService("RunService")
 local ContextActionService = game:GetService("ContextActionService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
 
 local FTUEController = {}
 FTUEController.Name = "FTUEController"
@@ -48,7 +49,7 @@ function FTUEController.Start()
 		hatchRemote.OnClientEvent:Connect(function()
 			if not hasHatchedEgg then
 				hasHatchedEgg = true
-				FTUEController.UpdateMilestone(milestone3, "✅ Tetas Telur Pertama")
+				FTUEController.UpdateMilestone(milestone3, LocalizationController.Get("FTUE_MILESTONE3_DONE"))
 
 				-- Start guiding to Furnace for the final step
 				FTUEController.GuideToFurnace()
@@ -64,7 +65,7 @@ function FTUEController.Start()
 		onDiscoveryRemote.OnClientEvent:Connect(function(discoveryType: string, id: string, isFirstDiscovery: boolean)
 			if not hasCraftedCrystal then
 				hasCraftedCrystal = true
-				FTUEController.UpdateMilestone(milestone4, "✅ First Discovery Completed: " .. tostring(id))
+				FTUEController.UpdateMilestone(milestone4, string.format(LocalizationController.Get("FTUE_MILESTONE4_DONE"), tostring(id)))
 			end
 		end)
 	end
@@ -92,7 +93,7 @@ function FTUEController.Start()
 						local label = bb and bb:FindFirstChildOfClass("TextLabel")
 						if label and string.find(label.Text, localPlayer.Name) then
 							hasClaimedPlot = true
-							FTUEController.UpdateMilestone(milestone1, "✅ Klaim Plot Pabrik")
+							FTUEController.UpdateMilestone(milestone1, LocalizationController.Get("FTUE_MILESTONE1_DONE"))
 							break
 						end
 					end
@@ -112,7 +113,7 @@ function FTUEController.Start()
 							-- Check if collector or tier 2 dropper exists in plot
 							if plot:FindFirstChild("Collector_Tier1") or plot:FindFirstChild("Dropper_Tier2") then
 								hasBoughtDropper = true
-								FTUEController.UpdateMilestone(milestone2, "✅ Beli Upgrade Pertama")
+								FTUEController.UpdateMilestone(milestone2, LocalizationController.Get("FTUE_MILESTONE2_DONE"))
 							end
 							break
 						end
@@ -122,7 +123,7 @@ function FTUEController.Start()
 				-- Scan backpack or local stats
 				if localPlayer:GetAttribute("HasCraftedCrystal") then
 					hasCraftedCrystal = true
-					FTUEController.UpdateMilestone(milestone4, "✅ First Crystal Crafted")
+					FTUEController.UpdateMilestone(milestone4, LocalizationController.Get("FTUE_MILESTONE4_DONE"))
 				end
 			end
 		end
@@ -172,11 +173,12 @@ function FTUEController.GuideToFurnace()
 				bb.Size = UDim2.new(0, 200, 0, 50)
 				bb.StudsOffset = Vector3.new(0, 5, 0)
 				bb.AlwaysOnTop = true
+				bb.MaxDistance = 60
 
 				local lbl = Instance.new("TextLabel")
 				lbl.Size = UDim2.new(1, 0, 1, 0)
 				lbl.BackgroundTransparency = 1
-				lbl.Text = "Craft Your First Crystal Here!"
+				lbl.Text = LocalizationController.Get("FTUE_BILLBOARD")
 				lbl.TextColor3 = Color3.fromRGB(250, 204, 21)
 				lbl.Font = Enum.Font.GothamBold
 				lbl.TextScaled = true
@@ -280,7 +282,7 @@ function FTUEController.PlayCinematicIntro()
 	local throwBtn = Instance.new("TextButton")
 	throwBtn.Size = UDim2.new(0.3, 0, 0.1, 0)
 	throwBtn.Position = UDim2.new(0.35, 0, 0.8, 0)
-	throwBtn.Text = "Throw Pyro Potion!"
+	throwBtn.Text = LocalizationController.Get("FTUE_THROW_POTION")
 	throwBtn.BackgroundColor3 = Color3.fromRGB(220, 38, 38)
 	throwBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 	throwBtn.Font = Enum.Font.GothamBold
@@ -344,7 +346,7 @@ function FTUEController._CreateQuestBar()
 	milestone1 = Instance.new("TextLabel")
 	milestone1.Size = UDim2.new(0.22, 0, 0.8, 0)
 	milestone1.BackgroundTransparency = 1
-	milestone1.Text = "✨ Buka Sanctum"
+	milestone1.Text = LocalizationController.Get("FTUE_MILESTONE1")
 	milestone1.TextColor3 = Color3.fromRGB(248, 250, 252)
 	milestone1.Font = Enum.Font.GothamBold
 	milestone1.TextScaled = true
@@ -353,7 +355,7 @@ function FTUEController._CreateQuestBar()
 	milestone2 = Instance.new("TextLabel")
 	milestone2.Size = UDim2.new(0.22, 0, 0.8, 0)
 	milestone2.BackgroundTransparency = 1
-	milestone2.Text = "⚡ Bejana Aura"
+	milestone2.Text = LocalizationController.Get("FTUE_MILESTONE2")
 	milestone2.TextColor3 = Color3.fromRGB(148, 163, 184) -- Slate 400 (locked look)
 	milestone2.Font = Enum.Font.GothamBold
 	milestone2.TextScaled = true
@@ -362,7 +364,7 @@ function FTUEController._CreateQuestBar()
 	milestone3 = Instance.new("TextLabel")
 	milestone3.Size = UDim2.new(0.22, 0, 0.8, 0)
 	milestone3.BackgroundTransparency = 1
-	milestone3.Text = "🐉 Panggil Spirit"
+	milestone3.Text = LocalizationController.Get("FTUE_MILESTONE3")
 	milestone3.TextColor3 = Color3.fromRGB(148, 163, 184)
 	milestone3.Font = Enum.Font.GothamBold
 	milestone3.TextScaled = true
@@ -371,7 +373,7 @@ function FTUEController._CreateQuestBar()
 	milestone4 = Instance.new("TextLabel")
 	milestone4.Size = UDim2.new(0.22, 0, 0.8, 0)
 	milestone4.BackgroundTransparency = 1
-	milestone4.Text = "⬜ Craft Crystal"
+	milestone4.Text = LocalizationController.Get("FTUE_MILESTONE4")
 	milestone4.TextColor3 = Color3.fromRGB(148, 163, 184)
 	milestone4.Font = Enum.Font.GothamBold
 	milestone4.TextScaled = true

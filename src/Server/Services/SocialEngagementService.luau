@@ -146,6 +146,9 @@ function SocialEngagementService.Init()
 			if typeof(inviteContext) ~= "string" then
 				return
 			end
+			if not player.Character or not player.Character.PrimaryPart then
+				return
+			end
 			SocialEngagementService.PromptInvite(player, inviteContext)
 		end)
 	end

@@ -8,6 +8,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local WorldConfig = require(ReplicatedStorage.Shared.Configuration.WorldConfig)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local CutsceneController = {}
 CutsceneController.Name = "CutsceneController"
 
@@ -19,19 +21,20 @@ function CutsceneController.Init()
 end
 
 function CutsceneController.Start()
+	self.maid = Maid.new()
 	local remote = NetChannels.GetRemoteEvent("PlaySpiritMemory")
 	if remote then
-		remote.OnClientEvent:Connect(function(elementType)
+		self.maid:GiveTask(remote.OnClientEvent:Connect(function(elementType)
 			CutsceneController.PlaySpiritMemory(elementType)
-		end)
+		end))
 	end
 
 	local storyRemote = NetChannels.GetRemoteEvent("StoryEvent")
 	if storyRemote then
-		storyRemote.OnClientEvent:Connect(function(chapterId)
+		self.maid:GiveTask(storyRemote.OnClientEvent:Connect(function(chapterId)
 			print("[CutsceneController] StoryEvent triggered for chapter: " .. tostring(chapterId))
 			-- Implement story visuals here when ready
-		end)
+		end))
 	end
 end
 
@@ -75,12 +78,12 @@ function CutsceneController.PlayChapterIntroCutscene(
 	local tween = TweenService:Create(camera, tweenInfo, { CFrame = targetCFrame })
 
 	tween:Play()
-	tween.Completed:Connect(function()
+	self.maid:GiveTask(tween.Completed:Connect(function()
 		camera.CameraType = Enum.CameraType.Custom
 		if onComplete then
 			onComplete()
 		end
-	end)
+	end))
 end
 
 function CutsceneController.PlaySpiritMemory(elementType: string)
@@ -95,6 +98,7 @@ function CutsceneController.PlaySpiritMemory(elementType: string)
 	vignette.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	vignette.BackgroundTransparency = 1
 	vignette.Parent = playerGui:WaitForChild("COBLOX_MainHUD")
+	self.maid:GiveTask(vignette)
 
 	local textLabel = Instance.new("TextLabel")
 	textLabel.Size = UDim2.new(0.8, 0, 0.2, 0)

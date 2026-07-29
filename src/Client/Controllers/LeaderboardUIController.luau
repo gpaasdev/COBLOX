@@ -5,6 +5,8 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local LeaderboardUIController = {}
 LeaderboardUIController.Name = "LeaderboardUIController"
 
@@ -32,6 +34,7 @@ function LeaderboardUIController._CreateUI()
 	leaderboardGui.Enabled = false
 	leaderboardGui.IgnoreGuiInset = true
 	leaderboardGui.Parent = playerGui
+	self.maid:GiveTask(leaderboardGui)
 
 	local frame = Instance.new("Frame")
 	frame.Size = UDim2.new(0, 280, 0, 360)
@@ -107,18 +110,19 @@ function LeaderboardUIController._CreateUI()
 end
 
 function LeaderboardUIController.Start()
+	self.maid = Maid.new()
 	local toggleRemote = NetChannels.GetRemoteEvent("ToggleLeaderboard")
 	if toggleRemote then
-		toggleRemote.OnClientEvent:Connect(function()
+		self.maid:GiveTask(toggleRemote.OnClientEvent:Connect(function()
 			LeaderboardUIController.Toggle()
-		end)
+		end))
 	end
 
-	game:GetService("UserInputService").InputBegan:Connect(function(input)
+	self.maid:GiveTask(game:GetService("UserInputService").InputBegan:Connect(function(input)
 		if input.KeyCode == Enum.KeyCode.L and not game:GetService("UserInputService"):GetFocusedTextBox() then
 			LeaderboardUIController.Toggle()
 		end
-	end)
+	end))
 
 	print("[LeaderboardUIController] Ready. Press [L] for leaderboard.")
 end

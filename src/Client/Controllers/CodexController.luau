@@ -6,6 +6,8 @@ local TweenService = game:GetService("TweenService")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local localPlayer = Players.LocalPlayer
 local CodexController = {}
 CodexController.Name = "CodexController"
@@ -18,19 +20,19 @@ local LORE_ITEMS = {
 	{
 		Id = "Tape_01",
 		Title = "Sanctum Vault Incident",
-		Text = "Voice Log: 'Arch-Alchemist Vane recorded this before the breach...'",
+		Text = LocalizationController.Get("CODEX_LORE_1"),
 		Unlocked = true,
 	},
 	{
 		Id = "Tape_02",
 		Title = "Forbidden Transmutation",
-		Text = "Notes: 'Void essence dissolves all solid matter into pure energy...'",
+		Text = LocalizationController.Get("CODEX_LORE_2"),
 		Unlocked = false,
 	},
 	{
 		Id = "Journal_01",
 		Title = "Last Keeper Diary",
-		Text = "Entry: 'The catacombs are collapsing, take the spirit pods!'",
+		Text = LocalizationController.Get("CODEX_LORE_3"),
 		Unlocked = true,
 	},
 }
@@ -40,7 +42,7 @@ function CodexController.Init()
 end
 
 function CodexController.Start()
-	-- Event bindings
+	self.maid = Maid.new()
 end
 
 function CodexController.ToggleModal()
@@ -67,6 +69,7 @@ function CodexController._CreateModal()
 	modalFrame.ZIndex = 100
 	modalFrame.Visible = false
 	modalFrame.Parent = mainHUD
+	self.maid:GiveTask(modalFrame)
 
 	local corner = Instance.new("UICorner")
 	corner.CornerRadius = UDim.new(0, 16)
@@ -103,9 +106,9 @@ function CodexController._CreateModal()
 	closeCorner.CornerRadius = UDim.new(0, 8)
 	closeCorner.Parent = closeBtn
 
-	closeBtn.MouseButton1Click:Connect(function()
+	self.maid:GiveTask(closeBtn.MouseButton1Click:Connect(function()
 		CodexController.ToggleModal()
-	end)
+	end))
 
 	-- List Frame (Left side)
 	local listFrame = Instance.new("ScrollingFrame")
@@ -159,7 +162,7 @@ function CodexController._CreateModal()
 		btnCorner.CornerRadius = UDim.new(0, 6)
 		btnCorner.Parent = btn
 
-		btn.MouseButton1Click:Connect(function()
+		self.maid:GiveTask(btn.MouseButton1Click:Connect(function()
 			if item.Unlocked then
 				CodexController.PlayTypewriterText(item.Text)
 			else
@@ -167,7 +170,7 @@ function CodexController._CreateModal()
 					typewriterLabel.Text = LocalizationController.Get("CODEX_LOCKED_MSG")
 				end
 			end
-		end)
+		end))
 	end
 end
 

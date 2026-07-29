@@ -17,6 +17,7 @@ local UIAnimationEngine = require(uiModules:WaitForChild("UIAnimationEngine") ::
 local VFXEngine = require(uiModules:WaitForChild("VFXEngine") :: any)
 local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
 local ConfigClient = require(ReplicatedStorage.Shared.Config.ConfigClient)
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local UIController = {}
 UIController.Name = "UIController"
@@ -40,6 +41,7 @@ local COLOR_ACCENT_PURPLE = Color3.fromRGB(139, 92, 246)
 local COLOR_TEXT_WHITE = Color3.fromRGB(255, 255, 255)
 
 function UIController.Init()
+	self.maid = Maid.new()
 	print("[UIController] Initializing Gen Z & Gen Alpha Visual-First HUD & Side Drawer (MaxWidth = 180px)...")
 
 	UIController._CreateHUD()
@@ -48,7 +50,7 @@ end
 function UIController.Start()
 	local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 	if syncRemote then
-		syncRemote.OnClientEvent:Connect(
+		self.maid:GiveTask(syncRemote.OnClientEvent:Connect(
 			function(data: { Coins: number, Gems: number, AuraEnergy: number?, ChronoSparks: number? })
 				local aura = data.AuraEnergy or 0
 				local sparks = data.ChronoSparks or 0
@@ -56,7 +58,7 @@ function UIController.Start()
 				local gems = data.Gems or 0
 				UIController.UpdateWallet(aura, sparks, coins, gems)
 			end
-		)
+		))
 	end
 
 	-- Trigger configurable LiveOps Join Popup & TopBar Banner
@@ -90,6 +92,7 @@ function UIController._CreateHUD()
 	mainScreenGui.ResetOnSpawn = false
 	mainScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	mainScreenGui.Parent = playerGui
+	UIController.maid:GiveTask(mainScreenGui)
 
 	-- Initialize UI Particle ImageLabel Pool
 	UIEffectPool.Init(mainScreenGui)
@@ -283,7 +286,7 @@ function UIController._CreateHUD()
 	walletCoinLabel.TextColor3 = Color3.fromRGB(251, 191, 36)
 	walletCoinLabel.Font = Enum.Font.FredokaOne
 	walletCoinLabel.TextSize = 16
-	walletCoinLabel.Text = "💰 0"
+	walletCoinLabel.Text = LocalizationController.Get("WALLET_DISPLAY_COINS")
 	walletCoinLabel.Parent = coinBar
 
 	local coinTextStroke = Instance.new("UIStroke")
@@ -327,7 +330,7 @@ function UIController._CreateHUD()
 	walletGemLabel.TextColor3 = Color3.fromRGB(168, 85, 247)
 	walletGemLabel.Font = Enum.Font.FredokaOne
 	walletGemLabel.TextSize = 16
-	walletGemLabel.Text = "💎 0"
+	walletGemLabel.Text = LocalizationController.Get("WALLET_DISPLAY_GEMS")
 	walletGemLabel.Parent = gemBar
 
 	local gemTextStroke = Instance.new("UIStroke")
@@ -517,7 +520,7 @@ function UIController._CreateHUD()
 	notificationLabel.Font = Enum.Font.FredokaOne
 	notificationLabel.TextSize = 15
 	notificationLabel.ZIndex = 300 -- Always on top of all modals
-	notificationLabel.Text = "Welcome to Multiverse Alchemy Sanctum!"
+	notificationLabel.Text = LocalizationController.Get("WELCOME_TEXT")
 	notificationLabel.Visible = false
 	notificationLabel.Parent = mainScreenGui
 
@@ -584,7 +587,9 @@ function UIController._CreateHUD()
 		{ Name = "💰 JUAL", Color = Color3.fromRGB(234, 179, 8) },
 	}
 
-	for _, act in ipairs(quickActions) do
+	local quickActionKeys = { "QUICK_DASH", "QUICK_ELEMEN", "QUICK_MARKAS", "QUICK_SPIRIT", "QUICK_JUAL" }
+
+	for i, act in ipairs(quickActions) do
 		local pill = Instance.new("TextButton")
 		pill.Name = "Pill_" .. act.Name
 		pill.Size = UDim2.new(0.17, 0, 1, 0)
@@ -593,7 +598,7 @@ function UIController._CreateHUD()
 		pill.TextColor3 = act.Color
 		pill.Font = Enum.Font.FredokaOne
 		pill.TextSize = 12
-		pill.Text = act.Name
+		pill.Text = LocalizationController.Get(quickActionKeys[i])
 		pill.Parent = actionRow
 
 		local pillTextStroke = Instance.new("UIStroke")
@@ -627,8 +632,9 @@ function UIController._CreateHUD()
 
 					UIController.ShowNotification(LocalizationController.Get("NOTIF_DASH"))
 				end
-			elseif act.Name == "🐶 PETS" then
-				UIController.ShowNotification(LocalizationController.Get("NOTIF_PETS_COMING"))
+			elseif act.Name == "🐣 SPIRIT" then
+				local EggRenderController = require(controllersFolder:WaitForChild("EggRenderController") :: any)
+				EggRenderController.ToggleModal()
 			elseif act.Name == "🌱 ELEMEN" then
 				local SynthesisController = require(controllersFolder:WaitForChild("SynthesisController") :: any)
 				SynthesisController.ToggleModal()
@@ -641,18 +647,29 @@ function UIController._CreateHUD()
 		end)
 	end
 
-	-- 4.5 Realm Key Hint
-	local realmHint = Instance.new("TextLabel")
+	-- 4.5 Realm Key Hint (clickable for mobile users)
+	local realmHint = Instance.new("TextButton")
 	realmHint.Name = "RealmKeyHint"
-	realmHint.Size = UDim2.new(0, 140, 0, 24)
-	realmHint.Position = UDim2.new(0.5, -70, 0.78, 0)
-	realmHint.BackgroundTransparency = 1
-	realmHint.Text = "[R] Realm Selection"
+	realmHint.Size = UDim2.new(0, 160, 0, 30)
+	realmHint.Position = UDim2.new(0.5, -80, 0.78, 0)
+	realmHint.BackgroundTransparency = 0.5
+	realmHint.BackgroundColor3 = Color3.fromRGB(30, 41, 59)
+	realmHint.Text = LocalizationController.Get("REALM_KEY_HINT")
 	realmHint.TextColor3 = COLOR_ACCENT_PURPLE
 	realmHint.Font = Enum.Font.GothamBold
 	realmHint.TextSize = 13
 	realmHint.TextStrokeTransparency = 0.3
+	realmHint.AutoButtonColor = false
 	realmHint.Parent = mainScreenGui
+
+	local realmCorner = Instance.new("UICorner")
+	realmCorner.CornerRadius = UDim.new(0, 8)
+	realmCorner.Parent = realmHint
+
+	self.maid:GiveTask(realmHint.MouseButton1Click:Connect(function()
+		local RealmEntryController = require(controllersFolder:WaitForChild("RealmEntryController") :: any)
+		RealmEntryController._CreateRealmSelectionUI()
+	end))
 
 	-- 5 Inventory Hotbar Slots (1..5)
 	local slotsRow = Instance.new("Frame")
@@ -715,7 +732,7 @@ function UIController._CreateHUD()
 		emptyLbl.Size = UDim2.new(1, 0, 0.3, 0)
 		emptyLbl.Position = UDim2.new(0, 0, 0.6, 0)
 		emptyLbl.BackgroundTransparency = 1
-		emptyLbl.Text = "Empty"
+		emptyLbl.Text = LocalizationController.Get("HOTBAR_EMPTY")
 		emptyLbl.TextColor3 = Color3.fromRGB(100, 116, 139)
 		emptyLbl.Font = Enum.Font.Gotham
 		emptyLbl.TextSize = 10
@@ -729,7 +746,7 @@ function UIController._CreateHUD()
 			ItemType = nil,
 		}
 
-		slotBtn.MouseButton1Click:Connect(function()
+		UIController.maid:GiveTask(slotBtn.MouseButton1Click:Connect(function()
 			local slotData = hotbarSlotsData[slotIdx]
 			if slotData and slotData.ItemName then
 				local controllersFolder = script.Parent
@@ -747,7 +764,7 @@ function UIController._CreateHUD()
 					end
 				end
 			end
-		end)
+		end))
 	end
 end
 
@@ -760,6 +777,7 @@ function UIController._CreateWeaponShopUI()
 	weaponShopGui.Enabled = false
 	weaponShopGui.IgnoreGuiInset = true
 	weaponShopGui.Parent = playerGui
+	UIController.maid:GiveTask(weaponShopGui)
 
 	local backdrop = Instance.new("Frame")
 	backdrop.Size = UDim2.new(1, 0, 1, 0)
@@ -767,14 +785,14 @@ function UIController._CreateWeaponShopUI()
 	backdrop.BackgroundTransparency = 0.6
 	backdrop.Parent = weaponShopGui
 
-	backdrop.InputBegan:Connect(function(input)
+	UIController.maid:GiveTask(backdrop.InputBegan:Connect(function(input)
 		if
 			input.UserInputType == Enum.UserInputType.Touch
 			or input.UserInputType == Enum.UserInputType.MouseButton1
 		then
 			UIController._ToggleWeaponShop()
 		end
-	end)
+	end))
 
 	local container = Instance.new("Frame")
 	container.Size = UDim2.new(0, 380, 0, 320)
@@ -792,34 +810,34 @@ function UIController._CreateWeaponShopUI()
 	title.Size = UDim2.new(1, 0, 0, 36)
 	title.Position = UDim2.new(0, 0, 0, 8)
 	title.BackgroundTransparency = 1
-	title.Text = "Weapon Shop"
+	title.Text = LocalizationController.Get("WEAPON_SHOP_TITLE")
 	title.TextColor3 = Color3.fromRGB(255, 255, 255)
 	title.Font = Enum.Font.GothamBold
 	title.TextSize = 20
 	title.Parent = container
 
 	local weapons = {
-		{ Name = "Fist", DMG = 10, Range = 8, Cost = "Free", Color = Color3.fromRGB(148, 163, 184) },
-		{ Name = "Iron Sword", DMG = 25, Range = 14, Cost = "5,000 Coins", Color = Color3.fromRGB(168, 162, 158) },
+		{ Name = LocalizationController.Get("WEAPON_FIST"), DMG = 10, Range = 8, Cost = LocalizationController.Get("COST_FREE"), Color = Color3.fromRGB(148, 163, 184) },
+		{ Name = LocalizationController.Get("WEAPON_IRON_SWORD"), DMG = 25, Range = 14, Cost = LocalizationController.Get("COST_IRON_SWORD"), Color = Color3.fromRGB(168, 162, 158) },
 		{
-			Name = "Flame Saber",
+			Name = LocalizationController.Get("WEAPON_FLAME_SABER"),
 			DMG = 45,
 			Range = 16,
-			Cost = "25,000 Coins / 79 R$",
+			Cost = LocalizationController.Get("COST_FLAME_SABER"),
 			Color = Color3.fromRGB(251, 146, 60),
 		},
 		{
-			Name = "Aether Blade",
+			Name = LocalizationController.Get("WEAPON_AETHER_BLADE"),
 			DMG = 75,
 			Range = 18,
-			Cost = "100,000 Coins / 199 R$",
+			Cost = LocalizationController.Get("COST_AETHER_BLADE"),
 			Color = Color3.fromRGB(56, 189, 248),
 		},
 		{
-			Name = "Void Greatsword",
+			Name = LocalizationController.Get("WEAPON_VOID_GREATSWORD"),
 			DMG = 120,
 			Range = 22,
-			Cost = "500,000 Coins / 499 R$",
+			Cost = LocalizationController.Get("COST_VOID_GREATSWORD"),
 			Color = Color3.fromRGB(139, 92, 246),
 		},
 	}
@@ -852,7 +870,7 @@ function UIController._CreateWeaponShopUI()
 		statsLbl.Size = UDim2.new(0.35, 0, 1, 0)
 		statsLbl.Position = UDim2.new(0.35, 0, 0, 0)
 		statsLbl.BackgroundTransparency = 1
-		statsLbl.Text = string.format("DMG:%d RNG:%d", w.DMG, w.Range)
+		statsLbl.Text = string.format(LocalizationController.Get("WEAPON_STATS_FORMAT"), w.DMG, w.Range)
 		statsLbl.TextColor3 = Color3.fromRGB(200, 200, 200)
 		statsLbl.Font = Enum.Font.GothamMedium
 		statsLbl.TextSize = 12
@@ -934,10 +952,10 @@ function UIController.UpdateWallet(aura: number, sparks: number, coins: number?,
 		walletSparksLabel.Text = LocalizationController.Get("HUD_SPARKS", sparks)
 	end
 	if walletCoinLabel then
-		walletCoinLabel.Text = string.format("💰 %s", tostring(coins or 0))
+		walletCoinLabel.Text = string.format(LocalizationController.Get("WALLET_FORMAT_COINS"), tostring(coins or 0))
 	end
 	if walletGemLabel then
-		walletGemLabel.Text = string.format("💎 %s", tostring(gems or 0))
+		walletGemLabel.Text = string.format(LocalizationController.Get("WALLET_FORMAT_GEMS"), tostring(gems or 0))
 	end
 end
 
@@ -987,6 +1005,7 @@ function UIController.ShowOddsDisclosure(crateType: string)
 	oddsGui.ResetOnSpawn = false
 	oddsGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	oddsGui.Parent = playerGui
+	UIController.maid:GiveTask(oddsGui)
 
 	local backdrop = Instance.new("Frame")
 	backdrop.Size = UDim2.new(1, 0, 1, 0)
@@ -1015,7 +1034,7 @@ function UIController.ShowOddsDisclosure(crateType: string)
 	title.Size = UDim2.new(1, 0, 0, 40)
 	title.Position = UDim2.new(0, 0, 0, 10)
 	title.BackgroundTransparency = 1
-	title.Text = "Drop Rates"
+	title.Text = LocalizationController.Get("ODDS_DROP_RATES_TITLE")
 	title.TextColor3 = COLOR_AURA_GOLD
 	title.Font = Enum.Font.FredokaOne
 	title.TextSize = 22
@@ -1024,11 +1043,11 @@ function UIController.ShowOddsDisclosure(crateType: string)
 	local oddsData = ConfigClient["Odds_" .. crateType]
 	if not oddsData then
 		oddsData = {
-			{ Item = "Common Essence", Chance = 50.0 },
-			{ Item = "Uncommon Essence", Chance = 30.0 },
-			{ Item = "Rare Essence", Chance = 15.0 },
-			{ Item = "Epic Essence", Chance = 4.0 },
-			{ Item = "Legendary Essence", Chance = 1.0 },
+			{ Item = LocalizationController.Get("ITEM_COMMON_ESSENCE"), Chance = 50.0 },
+			{ Item = LocalizationController.Get("ITEM_UNCOMMON_ESSENCE"), Chance = 30.0 },
+			{ Item = LocalizationController.Get("ITEM_RARE_ESSENCE"), Chance = 15.0 },
+			{ Item = LocalizationController.Get("ITEM_EPIC_ESSENCE"), Chance = 4.0 },
+			{ Item = LocalizationController.Get("ITEM_LEGENDARY_ESSENCE"), Chance = 1.0 },
 		}
 	end
 
@@ -1086,7 +1105,7 @@ function UIController.ShowOddsDisclosure(crateType: string)
 	understandBtn.Size = UDim2.new(0.47, 0, 1, 0)
 	understandBtn.Position = UDim2.new(0, 0, 0, 0)
 	understandBtn.BackgroundColor3 = COLOR_SPARK_CYAN
-	understandBtn.Text = "I Understand"
+	understandBtn.Text = LocalizationController.Get("ODDS_UNDERSTAND_BTN")
 	understandBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
 	understandBtn.Font = Enum.Font.GothamBold
 	understandBtn.TextSize = 14
@@ -1096,15 +1115,15 @@ function UIController.ShowOddsDisclosure(crateType: string)
 	understandCorner.CornerRadius = UDim.new(0, 8)
 	understandCorner.Parent = understandBtn
 
-	understandBtn.MouseButton1Click:Connect(function()
+	UIController.maid:GiveTask(understandBtn.MouseButton1Click:Connect(function()
 		oddsGui:Destroy()
-	end)
+	end))
 
 	local cancelBtn = Instance.new("TextButton")
 	cancelBtn.Size = UDim2.new(0.47, 0, 1, 0)
 	cancelBtn.Position = UDim2.new(0.53, 0, 0, 0)
 	cancelBtn.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
-	cancelBtn.Text = "Cancel"
+	cancelBtn.Text = LocalizationController.Get("ODDS_CANCEL_BTN")
 	cancelBtn.TextColor3 = COLOR_TEXT_WHITE
 	cancelBtn.Font = Enum.Font.GothamBold
 	cancelBtn.TextSize = 14
@@ -1114,9 +1133,9 @@ function UIController.ShowOddsDisclosure(crateType: string)
 	cancelCorner.CornerRadius = UDim.new(0, 8)
 	cancelCorner.Parent = cancelBtn
 
-	cancelBtn.MouseButton1Click:Connect(function()
+	UIController.maid:GiveTask(cancelBtn.MouseButton1Click:Connect(function()
 		oddsGui:Destroy()
-	end)
+	end))
 end
 
 function UIController.RequestFlexEffect(effectType: string)

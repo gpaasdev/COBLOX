@@ -6,6 +6,8 @@ local TweenService = game:GetService("TweenService")
 
 local ClientRemotes = require(script.Parent.Parent:WaitForChild("Network"):WaitForChild("ClientRemotes") :: any)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local BroadcastBannerController = {}
 BroadcastBannerController.Name = "BroadcastBannerController"
 
@@ -18,9 +20,10 @@ function BroadcastBannerController.Init()
 end
 
 function BroadcastBannerController.Start()
+	self.maid = Maid.new()
 	local remote = ClientRemotes.BroadcastServerMessage
 	if remote then
-		remote.OnClientEvent:Connect(function(text: string, r: number, g: number, b: number)
+		self.maid:GiveTask(remote.OnClientEvent:Connect(function(text: string, r: number, g: number, b: number)
 			BroadcastBannerController.ShowAnnouncement(text, Color3.fromRGB(r or 255, g or 215, b or 0))
 		end)
 	end

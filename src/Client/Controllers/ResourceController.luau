@@ -7,6 +7,8 @@ local Players = game:GetService("Players")
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 local NetChannels = require(Shared:WaitForChild("Network"):WaitForChild("NetChannels"))
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local ResourceController = {}
 ResourceController.__index = ResourceController
 
@@ -14,12 +16,13 @@ local localPlayer = Players.LocalPlayer
 
 function ResourceController.Init()
 	print("[ResourceController] Initializing Client Resource Interaction & Visual Controller...")
+	self.maid = Maid.new()
 
 	local responseRemote = NetChannels.GetRemoteEvent("HarvestResourceResponse")
 	if responseRemote then
-		responseRemote.OnClientEvent:Connect(function(payload: any)
+		self.maid:GiveTask(responseRemote.OnClientEvent:Connect(function(payload: any)
 			ResourceController.OnHarvestResponse(payload)
-		end)
+		end))
 	end
 end
 
@@ -50,9 +53,9 @@ function ResourceController.PlayHitAnimation(nodePart: BasePart)
 		})
 
 	expandTween:Play()
-	expandTween.Completed:Connect(function()
+	self.maid:GiveTask(expandTween.Completed:Connect(function()
 		resetTween:Play()
-	end)
+	end))
 end
 
 function ResourceController.OnHarvestResponse(payload: any)

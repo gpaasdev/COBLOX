@@ -76,6 +76,7 @@ ControllerRegistry.RegisterController("ShadowRaidController", require(controller
 ControllerRegistry.RegisterController("StealController", require(controllersFolder.StealController))
 ControllerRegistry.RegisterController("StoreController", require(controllersFolder.StoreController))
 ControllerRegistry.RegisterController("StreamingController", require(controllersFolder.StreamingController))
+ControllerRegistry.RegisterController("BlockBuilderController", require(controllersFolder.BlockBuilderController))
 ControllerRegistry.RegisterController("SynthesisController", require(controllersFolder.SynthesisController))
 ControllerRegistry.RegisterController("TradeController", require(controllersFolder.TradeController))
 ControllerRegistry.RegisterController("TycoonRenderController", require(controllersFolder.TycoonRenderController))

@@ -36,6 +36,10 @@ local defaultProfile: PlayerProfile = {
 		Items = {
 			["Water Element"] = 10,
 			["Fire Element"] = 5,
+			Quartz = 5,
+			AstralIron = 3,
+			PyroEssence = 2,
+			HydroCrystal = 2,
 		},
 		LootDrops = {},
 		EquippedUUIDs = {},

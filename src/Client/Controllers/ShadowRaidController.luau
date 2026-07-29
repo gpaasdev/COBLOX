@@ -6,6 +6,8 @@ local UserInputService = game:GetService("UserInputService")
 
 local ClientRemotes = require(script.Parent.Parent:WaitForChild("Network"):WaitForChild("ClientRemotes") :: any)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local ShadowRaidController = {}
 ShadowRaidController.Name = "ShadowRaidController"
 
@@ -16,8 +18,9 @@ function ShadowRaidController.Init()
 end
 
 function ShadowRaidController.Start()
+	self.maid = Maid.new()
 	-- Keybind for Begal Aura / Shadow Raid (Hotkey: 'B')
-	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input, gameProcessed)
 		if gameProcessed then
 			return
 		end

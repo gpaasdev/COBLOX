@@ -6,6 +6,8 @@ local playerGui = localPlayer:WaitForChild("PlayerGui") :: PlayerGui
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local EventCalendarController = {}
 EventCalendarController.Name = "EventCalendarController"
 
@@ -41,6 +43,7 @@ local function buildCalendarUI(events: { { [string]: any } })
 	calendarGui.ResetOnSpawn = false
 	calendarGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	calendarGui.Parent = playerGui
+	self.maid:GiveTask(calendarGui)
 
 	local backdrop = Instance.new("Frame")
 	backdrop.Size = UDim2.new(1, 0, 1, 0)
@@ -48,14 +51,14 @@ local function buildCalendarUI(events: { { [string]: any } })
 	backdrop.BackgroundTransparency = 0.6
 	backdrop.Parent = calendarGui
 
-	backdrop.InputBegan:Connect(function(input)
+	self.maid:GiveTask(backdrop.InputBegan:Connect(function(input)
 		if
 			input.UserInputType == Enum.UserInputType.Touch
 			or input.UserInputType == Enum.UserInputType.MouseButton1
 		then
 			EventCalendarController.ToggleCalendar()
 		end
-	end)
+	end))
 
 	local container = Instance.new("Frame")
 	container.Size = UDim2.new(0, 360, 0, 400)
@@ -159,9 +162,9 @@ local function buildCalendarUI(events: { { [string]: any } })
 	closeCorner.CornerRadius = UDim.new(0, 8)
 	closeCorner.Parent = closeBtn
 
-	closeBtn.MouseButton1Click:Connect(function()
+	self.maid:GiveTask(closeBtn.MouseButton1Click:Connect(function()
 		EventCalendarController.ToggleCalendar()
-	end)
+	end))
 end
 
 function EventCalendarController.ToggleCalendar()
@@ -181,6 +184,7 @@ function EventCalendarController.Init()
 end
 
 function EventCalendarController.Start()
+	self.maid = Maid.new()
 end
 
 return EventCalendarController

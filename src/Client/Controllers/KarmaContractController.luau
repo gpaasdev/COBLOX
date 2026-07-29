@@ -4,6 +4,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local KarmaContractController = {}
 KarmaContractController.Name = "KarmaContractController"
@@ -17,9 +18,10 @@ function KarmaContractController.Init()
 end
 
 function KarmaContractController.Start()
+	self.maid = Maid.new()
 	local syncKarmaRemote = NetChannels.GetRemoteEvent("SyncKarmaContract")
 	if syncKarmaRemote then
-		syncKarmaRemote.OnClientEvent:Connect(function(data)
+		self.maid:GiveTask(syncKarmaRemote.OnClientEvent:Connect(function(data)
 			if data and data.Active then
 				currentTargetUserId = data.TargetUserId
 				KarmaContractController.ShowCompass(data.TargetName or "Target")
@@ -29,7 +31,7 @@ function KarmaContractController.Start()
 				KarmaContractController.HideCompass()
 				KarmaContractController.RemovePrompt()
 			end
-		end)
+		end))
 	end
 end
 
@@ -75,11 +77,11 @@ function KarmaContractController.AttachPromptToTarget()
 	prompt.RequiresLineOfSight = false
 	prompt.Parent = hrp
 
-	prompt.Triggered:Connect(function(playerWhoTriggered)
+	KarmaContractController.maid:GiveTask(prompt.Triggered:Connect(function(playerWhoTriggered)
 		if playerWhoTriggered == Players.LocalPlayer then
 			KarmaContractController.TriggerKarmaRetribution()
 		end
-	end)
+	end))
 	activePrompt = prompt
 end
 
@@ -111,6 +113,7 @@ function KarmaContractController.ShowCompass(targetName: string)
 	billboard.Size = UDim2.new(0, 200, 0, 50)
 	billboard.StudsOffset = Vector3.new(0, 4, 0)
 	billboard.AlwaysOnTop = true
+	billboard.MaxDistance = 60
 	billboard.Adornee = hrp
 
 	local label = Instance.new("TextLabel")

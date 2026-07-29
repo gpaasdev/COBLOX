@@ -7,6 +7,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local ClientRemotes = require(script.Parent.Parent:WaitForChild("Network"):WaitForChild("ClientRemotes") :: any)
+local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
 local VFXEngine =
 	require(script.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("VFXEngine") :: any)
 
@@ -19,7 +20,7 @@ PlacementController.Name = "PlacementController"
 local isPlacementActive = false
 local previewHologram: Part? = nil
 local activeConnection: RBXScriptConnection? = nil
-local currentStructureId = "Dropper_Tier1"
+local currentStructureId = "DropperBasic"
 local currentRotationY = 0
 local hudOverlayFrame: Frame? = nil
 
@@ -153,7 +154,7 @@ function PlacementController.ConfirmPlacement()
 		VFXEngine.ScreenPunch(0.5)
 		local uiFolder = script.Parent
 		local UIController = require(uiFolder:WaitForChild("UIController") :: any)
-		UIController.ShowNotification("❌ TIDAK VALID: Area tertutup atau terlalu jauh!")
+		UIController.ShowNotification(LocalizationController.Get("PLACEMENT_INVALID"))
 		return -- Cancel placement attempt
 	end
 
@@ -211,7 +212,7 @@ function PlacementController._ShowControlHUD(show: boolean)
 			local label = Instance.new("TextLabel")
 			label.Size = UDim2.new(1, 0, 1, 0)
 			label.BackgroundTransparency = 1
-			label.Text = "🟩 MODE PENEMPATAN  |  [R] Rotasi  |  [L-Click] Pasang  |  [X] Batal"
+			label.Text = LocalizationController.Get("PLACEMENT_HUD")
 			label.TextColor3 = Color3.fromRGB(255, 255, 255)
 			label.Font = Enum.Font.GothamBold
 			label.TextSize = 13

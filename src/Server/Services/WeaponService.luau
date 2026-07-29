@@ -142,11 +142,15 @@ end
 
 function WeaponService.Init()
 	print("[WeaponService] Initializing Weapon Progression Engine...")
+	local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
 
 	local purchaseRemote = NetChannels.GetRemoteEvent("PurchaseWeaponRequest")
 	if purchaseRemote then
 		purchaseRemote.OnServerEvent:Connect(function(player: Player, weaponId: string, paymentMethod: string)
 			if typeof(weaponId) ~= "string" or typeof(paymentMethod) ~= "string" then
+				return
+			end
+			if not RateLimitService.CheckRateLimit(player, "PurchaseWeapon", 0.5) then
 				return
 			end
 			if paymentMethod == "Coins" then
@@ -159,6 +163,9 @@ function WeaponService.Init()
 	if equipRemote then
 		equipRemote.OnServerEvent:Connect(function(player: Player, weaponId: string)
 			if typeof(weaponId) ~= "string" then
+				return
+			end
+			if not RateLimitService.CheckRateLimit(player, "EquipWeapon", 0.3) then
 				return
 			end
 			WeaponService.EquipWeapon(player, weaponId)

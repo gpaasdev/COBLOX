@@ -66,6 +66,16 @@ function EggService.Start()
 	local hatchRemoteFunc = NetChannels.GetRemoteFunction("RequestHatch")
 
 	hatchRemoteFunc.OnServerInvoke = function(player: Player, eggId: string)
+		if type(eggId) ~= "string" then
+			return {
+				Success = false,
+				Category = "Validation",
+				ErrorCode = "INVALID_EGG_ID",
+				Message = "Invalid egg identifier",
+				Data = nil,
+				Retryable = false,
+			}
+		end
 		if not RateLimitService.CheckRateLimit(player, "HatchEgg", 0.5) then
 			return {
 				Success = false,
@@ -76,7 +86,7 @@ function EggService.Start()
 				Retryable = true,
 			}
 		end
-		return EggService.HatchEgg(player, eggId or "BasicEgg")
+		return EggService.HatchEgg(player, eggId)
 	end
 end
 

@@ -92,11 +92,15 @@ end
 
 function RealmTeleportService.Init()
 	print("[RealmTeleportService] Initializing Cross-Realm Teleport...")
+	local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
 
 	local teleportRemote = NetChannels.GetRemoteEvent("RequestRealmTeleport")
 	if teleportRemote then
 		teleportRemote.OnServerEvent:Connect(function(player: Player, realmKey: string)
 			if typeof(realmKey) ~= "string" then
+				return
+			end
+			if not RateLimitService.CheckRateLimit(player, "RealmTeleport", 1.0) then
 				return
 			end
 			RealmTeleportService.TeleportToRealm(player, realmKey)

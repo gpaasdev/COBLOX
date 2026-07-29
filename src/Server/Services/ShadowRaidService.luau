@@ -122,6 +122,9 @@ function ShadowRaidService.Init()
 	local claimRaidRewardRemoteFunc = NetChannels.GetRemoteFunction("ClaimRaidReward")
 	if claimRaidRewardRemoteFunc then
 		claimRaidRewardRemoteFunc.OnServerInvoke = function(raider: Player)
+			if not RateLimitService.CheckRateLimit(raider, "ClaimRaidReward", 0.5) then
+				return { Success = false, Message = "Rate limit exceeded!" }
+			end
 			local stolenPotion = activeRaiders[raider]
 			if stolenPotion then
 				activeRaiders[raider] = nil

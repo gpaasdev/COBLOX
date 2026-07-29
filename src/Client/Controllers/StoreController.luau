@@ -3,6 +3,8 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local StoreController = {}
 StoreController.Name = "StoreController"
 
@@ -20,7 +22,9 @@ function StoreController.Init()
 	print("[StoreController] Initializing Premium Store UI...")
 end
 
-function StoreController.Start() end
+function StoreController.Start()
+	self.maid = Maid.new()
+end
 
 function StoreController.ToggleModal()
 	if not modalFrame then
@@ -104,9 +108,9 @@ function StoreController._CreateModal()
 	closeCorner.CornerRadius = UDim.new(0, 8)
 	closeCorner.Parent = closeBtn
 
-	closeBtn.MouseButton1Click:Connect(function()
+	StoreController.maid:GiveTask(closeBtn.MouseButton1Click:Connect(function()
 		StoreController.ToggleModal()
-	end)
+	end))
 
 	local contentScroll = Instance.new("ScrollingFrame")
 	contentScroll.Name = "ContentScroll"
@@ -124,9 +128,9 @@ function StoreController._CreateModal()
 	listLayout.Parent = contentScroll
 
 	-- Auto scale canvas
-	listLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+	StoreController.maid:GiveTask(listLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 		contentScroll.CanvasSize = UDim2.new(0, 0, 0, listLayout.AbsoluteContentSize.Y + 20)
-	end)
+	end))
 
 	StoreController._CreateSection(contentScroll, "👑 GamePasses Eksklusif", 1, {
 		{
@@ -285,14 +289,14 @@ function StoreController._CreateSection(parent: Instance, title: string, order: 
 		buyCorner.CornerRadius = UDim.new(0, 6)
 		buyCorner.Parent = buyBtn
 
-		buyBtn.MouseButton1Click:Connect(function()
+		StoreController.maid:GiveTask(buyBtn.MouseButton1Click:Connect(function()
 			local MonetizationController = require(script.Parent:WaitForChild("MonetizationController") :: any)
 			if item.Type == "Pass" then
 				MonetizationController.PromptGamePass(item.Id)
 			else
 				MonetizationController.PromptProduct(item.Id)
 			end
-		end)
+		end))
 	end
 
 	-- Calculate total height needed based on grid items

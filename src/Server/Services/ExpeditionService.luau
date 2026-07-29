@@ -57,17 +57,34 @@ end
 function ExpeditionService.Start()
 	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 	local expeditionEvent = NetChannels.GetRemoteEvent("ExpeditionEvent")
+	local RateLimitService = require(game:GetService("ServerScriptService").Server.Services.RateLimitService)
 
 	expeditionEvent.OnServerEvent:Connect(function(player: Player, action: string, floorNumber: number?)
+		if type(action) ~= "string" then
+			return
+		end
+		if not RateLimitService.CheckRateLimit(player, "ExpeditionEvent_" .. action, 0.5) then
+			return
+		end
 		if action == "Start" then
 			ExpeditionService.StartExpedition(player)
-		elseif action == "CompleteFloor" and floorNumber then
+		elseif action == "CompleteFloor" and type(floorNumber) == "number" then
 			ExpeditionService.CompleteFloor(player, floorNumber)
 		end
 	end)
 end
 
 function ExpeditionService.StartExpedition(player: Player): ServiceResult<{ Floor: number, DurationSeconds: number }>
+	if not player.Character or not player.Character.PrimaryPart then
+		return {
+			Success = false,
+			Category = "Validation",
+			ErrorCode = "CHARACTER_MISSING",
+			Message = "Character not loaded.",
+			Data = nil,
+			Retryable = false,
+		}
+	end
 	if activeSessions[player.UserId] and activeSessions[player.UserId].Active then
 		return {
 			Success = false,

@@ -42,15 +42,16 @@ function SessionService.Start()
 
 	handshakeEvent.OnServerEvent:Connect(function(player, deviceType: string)
 		local session = activeSessions[player.UserId]
-		if session then
-			session.device = type(deviceType) == "string" and deviceType or "Unknown"
-
-			DomainEventBus.Publish("PlayerSessionStarted", player, {
-				sessionId = session.sessionId,
-				serverId = SERVER_ID,
-				device = session.device,
-			})
+		if not session then
+			return
 		end
+		session.device = type(deviceType) == "string" and deviceType or "Unknown"
+
+		DomainEventBus.Publish("PlayerSessionStarted", player, {
+			sessionId = session.sessionId,
+			serverId = SERVER_ID,
+			device = session.device,
+		})
 	end)
 
 	Players.PlayerRemoving:Connect(function(player: Player)

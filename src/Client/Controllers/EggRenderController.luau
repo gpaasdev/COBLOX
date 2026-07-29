@@ -8,6 +8,8 @@ local Players = game:GetService("Players")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local ObjectPool = require(ReplicatedStorage.Shared.Utility.ObjectPool)
 local ClientRemotes = require(script.Parent.Parent:WaitForChild("Network"):WaitForChild("ClientRemotes") :: any)
+local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local localPlayer = Players.LocalPlayer
 local EggRenderController = {}
@@ -30,11 +32,12 @@ function EggRenderController.Init()
 end
 
 function EggRenderController.Start()
+	self.maid = Maid.new()
 	local hatchRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 	if hatchRemote then
-		hatchRemote.OnClientEvent:Connect(function(podId: string, spiritId: string)
+		self.maid:GiveTask(hatchRemote.OnClientEvent:Connect(function(podId: string, spiritId: string)
 			EggRenderController.PlayGenesisPodCutscene(podId, spiritId)
-		end)
+		end))
 	end
 end
 
@@ -97,7 +100,7 @@ function EggRenderController._CreateModal()
 	header.Size = UDim2.new(0.8, 0, 0.08, 0)
 	header.Position = UDim2.new(0.05, 0, 0.04, 0)
 	header.BackgroundTransparency = 1
-	header.Text = "💫 Panggil Spirit Companion"
+	header.Text = LocalizationController.Get("EGG_TITLE")
 	header.TextColor3 = Color3.fromRGB(245, 158, 11)
 	header.Font = Enum.Font.FredokaOne
 	header.TextSize = 24
@@ -113,7 +116,7 @@ function EggRenderController._CreateModal()
 	closeBtn.Size = UDim2.new(0, 44, 0, 44)
 	closeBtn.Position = UDim2.new(0.9, 0, 0.04, 0)
 	closeBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
-	closeBtn.Text = "✕"
+	closeBtn.Text = LocalizationController.Get("CLOSE_BUTTON")
 	closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 	closeBtn.Font = Enum.Font.GothamBold
 	closeBtn.TextSize = 18
@@ -123,9 +126,9 @@ function EggRenderController._CreateModal()
 	closeCorner.CornerRadius = UDim.new(0, 8)
 	closeCorner.Parent = closeBtn
 
-	closeBtn.MouseButton1Click:Connect(function()
+	EggRenderController.maid:GiveTask(closeBtn.MouseButton1Click:Connect(function()
 		EggRenderController.ToggleModal()
-	end)
+	end))
 
 	-- 3D Viewport Frame Container
 	local viewportFrame = Instance.new("ViewportFrame")
@@ -161,7 +164,7 @@ function EggRenderController._CreateModal()
 	hatchBtn.Size = UDim2.new(0.6, 0, 0.15, 0)
 	hatchBtn.Position = UDim2.new(0.2, 0, 0.75, 0)
 	hatchBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White for UIGradient
-	hatchBtn.Text = "✨ HATCH TELUR (100 Koin)"
+	hatchBtn.Text = LocalizationController.Get("EGG_HATCH_BTN")
 	hatchBtn.TextColor3 = Color3.fromRGB(15, 23, 42)
 	hatchBtn.Font = Enum.Font.FredokaOne
 	hatchBtn.TextSize = 18
@@ -190,14 +193,14 @@ function EggRenderController._CreateModal()
 	statusLabel.Size = UDim2.new(0.9, 0, 0.05, 0)
 	statusLabel.Position = UDim2.new(0.05, 0, 0.92, 0)
 	statusLabel.BackgroundTransparency = 1
-	statusLabel.Text = "Ready to hatch Genesis Egg"
+	statusLabel.Text = LocalizationController.Get("EGG_STATUS_READY")
 	statusLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	statusLabel.Font = Enum.Font.GothamMedium
 	statusLabel.TextSize = 12
 	statusLabel.Parent = modalFrame
 
-	hatchBtn.MouseButton1Click:Connect(function()
-		statusLabel.Text = "🔮 Initializing Genesis Hatching Sequence..."
+	EggRenderController.maid:GiveTask(hatchBtn.MouseButton1Click:Connect(function()
+		statusLabel.Text = LocalizationController.Get("EGG_HATCHING")
 
 		-- 1. Tension spin & camera Shake
 		local spinTween = TweenService:Create(
@@ -250,11 +253,11 @@ function EggRenderController._CreateModal()
 		local petName = (res and res.Data and res.Data.SpiritId) or "Astral Cyber-Crocodile"
 		local rarity = (res and res.Data and res.Data.Rarity) or "Legendary"
 
-		statusLabel.Text = string.format("🎉 PET DIDAPATKAN: %s (%s)!", petName, rarity)
+		statusLabel.Text = string.format(LocalizationController.Get("EGG_RESULT"), petName, rarity)
 
 		local UIController = require(controllersFolder:WaitForChild("UIController") :: any)
-		UIController.ShowNotification(string.format("🐶 PET ACQUIRED: %s [%s]", petName, rarity))
-	end)
+		UIController.ShowNotification(string.format(LocalizationController.Get("EGG_RESULT_EN"), petName, rarity))
+	end))
 end
 
 function EggRenderController.PlayGenesisPodCutscene(podId: string, spiritId: string)

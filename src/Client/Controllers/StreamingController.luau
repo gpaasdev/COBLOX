@@ -2,16 +2,20 @@
 
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local StreamingController = {}
 local localPlayer = Players.LocalPlayer
 
 function StreamingController.Init()
+	self.maid = Maid.new()
 	print("[StreamingController] Initializing Mobile Streaming & Integrity Manager...")
 
 	-- Listen for Workspace Streaming Pause events (wrapped in pcall since StreamingPauseMode is not scriptable on all platforms)
 	local ok = pcall(function()
-		Workspace:GetPropertyChangedSignal("StreamingPauseMode"):Connect(function()
+		self.maid:GiveTask(Workspace:GetPropertyChangedSignal("StreamingPauseMode"):Connect(function()
 			print("[StreamingController] Workspace Streaming Mode update detected.")
 		end)
 	end)

@@ -47,6 +47,16 @@ function TradeService.Start()
 	end)
 
 	tradeRemoteFunc.OnServerInvoke = function(player: Player, targetPlayerName: string)
+		if type(targetPlayerName) ~= "string" then
+			return {
+				Success = false,
+				Category = "Validation",
+				ErrorCode = "INVALID_TARGET",
+				Message = "Invalid target player name",
+				Data = nil,
+				Retryable = false,
+			}
+		end
 		if not RateLimitService.CheckRateLimit(player, "RequestTrade", 0.5) then
 			return {
 				Success = false,
@@ -58,7 +68,7 @@ function TradeService.Start()
 			}
 		end
 
-		local targetPlayer = Players:FindFirstChild(targetPlayerName or "")
+		local targetPlayer = Players:FindFirstChild(targetPlayerName)
 		if not targetPlayer then
 			return {
 				Success = false,
@@ -200,6 +210,16 @@ function TradeService.Start()
 
 	if cancelRemoteFunc then
 		cancelRemoteFunc.OnServerInvoke = function(player: Player, reason: string): ServiceResult<boolean>
+			if not RateLimitService.CheckRateLimit(player, "CancelTrade", 0.5) then
+				return {
+					Success = false,
+					Category = "RateLimit",
+					ErrorCode = "TOO_MANY_REQUESTS",
+					Message = "Rate limited",
+					Data = false,
+					Retryable = true,
+				}
+			end
 			local sessionId = playerToSession[player.UserId]
 			if not sessionId then
 				return {
@@ -211,7 +231,7 @@ function TradeService.Start()
 					Retryable = false,
 				}
 			end
-			TradeService.CancelTradeSession(sessionId, reason or "Player cancelled")
+			TradeService.CancelTradeSession(sessionId, if type(reason) == "string" then reason else "Player cancelled")
 			return {
 				Success = true,
 				Category = nil,

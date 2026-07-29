@@ -7,6 +7,8 @@ local TweenService = game:GetService("TweenService")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local PotionVaultController = {}
 PotionVaultController.Name = "PotionVaultController"
 
@@ -28,11 +30,12 @@ local VAULT_SLOT_COLORS = {
 function PotionVaultController.Init() end
 
 function PotionVaultController.Start()
+	self.maid = Maid.new()
 	local vaultSync = NetChannels.GetRemoteEvent("SyncPotionVault")
 	if vaultSync then
-		vaultSync.OnClientEvent:Connect(function(slots: { { ItemId: string, Yield: number } })
+		self.maid:GiveTask(vaultSync.OnClientEvent:Connect(function(slots: { { ItemId: string, Yield: number } })
 			PotionVaultController.UpdateVault(slots)
-		end)
+		end))
 	end
 end
 
@@ -58,6 +61,7 @@ function PotionVaultController._CreateUI()
 	modalFrame.Visible = false
 	modalFrame.ZIndex = 50
 	modalFrame.Parent = mainHUD
+	self.maid:GiveTask(modalFrame)
 
 	local corner = Instance.new("UICorner")
 	corner.CornerRadius = UDim.new(0, 16)
@@ -72,7 +76,7 @@ function PotionVaultController._CreateUI()
 	title.Size = UDim2.new(0.8, 0, 0.1, 0)
 	title.Position = UDim2.new(0.1, 0, 0.04, 0)
 	title.BackgroundTransparency = 1
-	title.Text = "🧪 Potion Vault"
+	title.Text = LocalizationController.Get("VAULT_TITLE")
 	title.TextColor3 = Color3.fromRGB(255, 255, 255)
 	title.Font = Enum.Font.GothamBold
 	title.TextScaled = true
@@ -115,7 +119,7 @@ function PotionVaultController._CreateUI()
 		info.Size = UDim2.new(0.5, 0, 1, 0)
 		info.Position = UDim2.new(0.2, 0, 0, 0)
 		info.BackgroundTransparency = 1
-		info.Text = "Empty Slot"
+			info.Text = LocalizationController.Get("VAULT_EMPTY")
 		info.TextColor3 = Color3.fromRGB(148, 163, 184)
 		info.Font = Enum.Font.GothamBold
 		info.TextSize = 16
@@ -126,7 +130,7 @@ function PotionVaultController._CreateUI()
 		yieldLbl.Size = UDim2.new(0.3, 0, 1, 0)
 		yieldLbl.Position = UDim2.new(0.7, 0, 0, 0)
 		yieldLbl.BackgroundTransparency = 1
-		yieldLbl.Text = "0/s"
+			yieldLbl.Text = LocalizationController.Get("VAULT_YIELD_ZERO")
 		yieldLbl.TextColor3 = Color3.fromRGB(34, 197, 94)
 		yieldLbl.Font = Enum.Font.FredokaOne
 		yieldLbl.TextSize = 18
@@ -139,14 +143,14 @@ function PotionVaultController._CreateUI()
 	closeBtn.Size = UDim2.new(0.3, 0, 0.08, 0)
 	closeBtn.Position = UDim2.new(0.35, 0, 0.88, 0)
 	closeBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
-	closeBtn.Text = "Close"
+	closeBtn.Text = LocalizationController.Get("CLOSE_BUTTON")
 	closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 	closeBtn.Font = Enum.Font.GothamBold
 	closeBtn.TextSize = 14
 	closeBtn.Parent = modalFrame
-	closeBtn.MouseButton1Click:Connect(function()
+	self.maid:GiveTask(closeBtn.MouseButton1Click:Connect(function()
 		PotionVaultController.ToggleModal()
-	end)
+	end))
 
 	local cCorner = Instance.new("UICorner")
 	cCorner.CornerRadius = UDim.new(0, 8)
@@ -168,11 +172,11 @@ function PotionVaultController.UpdateVault(slots: { { ItemId: string, Yield: num
 			end
 		else
 			if info then
-				info.Text = "Empty Slot"
+		info.Text = LocalizationController.Get("VAULT_EMPTY")
 				info.TextColor3 = Color3.fromRGB(148, 163, 184)
 			end
 			if yieldLbl then
-				yieldLbl.Text = "0/s"
+		yieldLbl.Text = LocalizationController.Get("VAULT_YIELD_ZERO")
 			end
 		end
 	end

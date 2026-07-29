@@ -10,6 +10,8 @@ local UserInputService = game:GetService("UserInputService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local localPlayer = Players.LocalPlayer
 local playerGui = localPlayer:WaitForChild("PlayerGui")
 
@@ -35,6 +37,7 @@ function RealmEntryController._CreateRealmSelectionUI()
 	screenGui.Name = "RealmSelection"
 	screenGui.IgnoreGuiInset = true
 	screenGui.Parent = playerGui
+	self.maid:GiveTask(screenGui)
 
 	local backdrop = Instance.new("Frame")
 	backdrop.Size = UDim2.new(1, 0, 1, 0)
@@ -42,7 +45,7 @@ function RealmEntryController._CreateRealmSelectionUI()
 	backdrop.BackgroundTransparency = 0.6
 	backdrop.Parent = screenGui
 
-	backdrop.InputBegan:Connect(function(input)
+	self.maid:GiveTask(backdrop.InputBegan:Connect(function(input)
 		if
 			input.UserInputType == Enum.UserInputType.Touch
 			or input.UserInputType == Enum.UserInputType.MouseButton1
@@ -90,7 +93,7 @@ function RealmEntryController._CreateRealmSelectionUI()
 	btnCorner.CornerRadius = UDim.new(0, 10)
 	btnCorner.Parent = mainBtn
 
-	mainBtn.MouseButton1Click:Connect(function()
+	self.maid:GiveTask(mainBtn.MouseButton1Click:Connect(function()
 		local remote = NetChannels.GetRemoteEvent("RequestRealmTeleport")
 		if remote then
 			remote:FireServer("MAIN")
@@ -117,7 +120,7 @@ function RealmEntryController._CreateRealmSelectionUI()
 	fairyCorner.CornerRadius = UDim.new(0, 10)
 	fairyCorner.Parent = fairyBtn
 
-	fairyBtn.MouseButton1Click:Connect(function()
+	self.maid:GiveTask(fairyBtn.MouseButton1Click:Connect(function()
 		local remote = NetChannels.GetRemoteEvent("RequestRealmTeleport")
 		if remote then
 			remote:FireServer("FAIRYTALE")
@@ -140,13 +143,21 @@ function RealmEntryController._FindPortalInWorkspace(): BasePart?
 end
 
 function RealmEntryController.Start()
-	UserInputService.InputBegan:Connect(function(input)
+	self.maid = Maid.new()
+	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input)
 		if input.KeyCode == Enum.KeyCode.R and not UserInputService:GetFocusedTextBox() then
 			RealmEntryController._CreateRealmSelectionUI()
 		end
 	end)
 
-	print("[RealmEntryController] Ready. Press 'R' to open realm selection.")
+	local ContextActionService = game:GetService("ContextActionService")
+	self.maid:GiveTask(ContextActionService:BindAction("RealmSelectAction", function()
+		RealmEntryController._CreateRealmSelectionUI()
+	end, false, Enum.KeyCode.ButtonR3))
+	ContextActionService:SetTitle("RealmSelectAction", "🌍 REALM")
+	ContextActionService:SetPosition("RealmSelectAction", UDim2.new(0.02, 0, 0.5, 0))
+
+	print("[RealmEntryController] Ready. Press 'R' or use mobile button to open realm selection.")
 end
 
 return RealmEntryController

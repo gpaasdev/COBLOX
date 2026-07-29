@@ -7,6 +7,8 @@ local TweenService = game:GetService("TweenService")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local LocalizationController = require(script.Parent.LocalizationController)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local TopbarController = {}
 TopbarController.Name = "TopbarController"
 
@@ -23,6 +25,7 @@ function TopbarController.Init()
 end
 
 function TopbarController.Start()
+	self.maid = Maid.new()
 	TopbarController._CreateTopbarIcons()
 	TopbarController._ListenEconomyEvents()
 end
@@ -34,6 +37,7 @@ function TopbarController._CreateTopbarIcons()
 	topbarGui.IgnoreGuiInset = true
 	topbarGui.DisplayOrder = 10
 	topbarGui.Parent = playerGui
+	self.maid:GiveTask(topbarGui)
 
 	local holder = Instance.new("Frame")
 	holder.Size = UDim2.new(0, 200, 0, 36)
@@ -73,7 +77,7 @@ end
 function TopbarController._ListenEconomyEvents()
 	local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 	if syncRemote then
-		syncRemote.OnClientEvent:Connect(
+		self.maid:GiveTask(syncRemote.OnClientEvent:Connect(
 			function(data: { AuraEnergy: number?, ChronoSparks: number?, Coins: number?, Gems: number? })
 				local coins = data.Coins or data.AuraEnergy or 0
 				local gems = data.Gems or data.ChronoSparks or 0

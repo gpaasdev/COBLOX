@@ -19,9 +19,29 @@ AlchemyService.ServiceStatus = "Production"
 
 function AlchemyService.Init()
 	local craftRecipeEvent = NetChannels.GetRemoteFunction("CraftRecipe")
+	local ServerScriptService = game:GetService("ServerScriptService")
+	local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
 
 	if craftRecipeEvent then
 		craftRecipeEvent.OnServerInvoke = function(player: Player, recipeId: string)
+			if type(recipeId) ~= "string" then
+				return {
+					Success = false,
+					Category = "Validation",
+					ErrorCode = "INVALID_RECIPE",
+					Message = "Invalid recipe identifier",
+					Retryable = false,
+				}
+			end
+			if not RateLimitService.CheckRateLimit(player, "CraftRecipe", 0.5) then
+				return {
+					Success = false,
+					Category = "RateLimit",
+					ErrorCode = "TOO_MANY_REQUESTS",
+					Message = "Crafting rate limited",
+					Retryable = true,
+				}
+			end
 			return AlchemyService.HandleCraftRequest(player, recipeId)
 		end
 	end

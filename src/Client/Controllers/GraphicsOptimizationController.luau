@@ -2,6 +2,9 @@
 
 local UserSettings = UserSettings()
 local RunService = game:GetService("RunService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local GraphicsOptimizationController = {}
 
@@ -13,9 +16,10 @@ local lastPrintTime = 0
 local PRINT_COOLDOWN = 5
 
 function GraphicsOptimizationController.Init()
+	self.maid = Maid.new()
 	print("[GraphicsOptimizationController] Initializing Dynamic Mobile Quality & FPS Scaling...")
 
-	RunService.Heartbeat:Connect(function(dt: number)
+	self.maid:GiveTask(RunService.Heartbeat:Connect(function(dt: number)
 		sampleCount += 1
 		totalFrameTime += dt
 

@@ -29,6 +29,16 @@ function RecipeService.Start()
 	local craftRemoteFunc = NetChannels.GetRemoteFunction("RequestCraft")
 
 	craftRemoteFunc.OnServerInvoke = function(player: Player, grid: { [number]: string })
+		if type(grid) ~= "table" then
+			return {
+				Success = false,
+				Category = "Validation",
+				ErrorCode = "INVALID_GRID",
+				Message = "Invalid grid data",
+				Data = nil,
+				Retryable = false,
+			}
+		end
 		if not RateLimitService.CheckRateLimit(player, "CraftItem", 0.5) then
 			return {
 				Success = false,

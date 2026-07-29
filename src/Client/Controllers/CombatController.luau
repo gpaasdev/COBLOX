@@ -21,36 +21,43 @@ local weaponDamage = { Fist = 10, Sword = 25, Staff = 35 }
 local weaponRange = { Fist = 8, Sword = 14, Staff = 20 }
 
 local VFXEngine = require(script.Parent.Parent.Modules.UI.VFXEngine)
+local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 function CombatController.Init()
+	self.maid = Maid.new()
 	-- Bind Mobile & PC Actions via ContextActionService (creates Touch Buttons automatically on Mobile)
-	ContextActionService:BindAction("AttackAction", function(actionName, inputState)
+	self.maid:GiveTask(ContextActionService:BindAction("AttackAction", function(actionName, inputState)
 		if inputState == Enum.UserInputState.Begin then
 			CombatController.Attack()
 		end
-	end, true, Enum.KeyCode.ButtonX)
+	end, true, Enum.KeyCode.ButtonX))
 	ContextActionService:SetTitle("AttackAction", "🗡️ SWORD")
+	ContextActionService:SetPosition("AttackAction", UDim2.new(0.85, 0, 0.8, 0))
 
-	ContextActionService:BindAction("ParryAction", function(actionName, inputState)
+	self.maid:GiveTask(ContextActionService:BindAction("ParryAction", function(actionName, inputState)
 		if inputState == Enum.UserInputState.Begin then
 			CombatController.Parry()
 		end
-	end, true, Enum.KeyCode.F, Enum.KeyCode.ButtonY)
+	end, true, Enum.KeyCode.F, Enum.KeyCode.ButtonY))
 	ContextActionService:SetTitle("ParryAction", "🛡️ PARRY [F]")
+	ContextActionService:SetPosition("ParryAction", UDim2.new(0.75, 0, 0.65, 0))
 
-	ContextActionService:BindAction("DashAction", function(actionName, inputState)
+	self.maid:GiveTask(ContextActionService:BindAction("DashAction", function(actionName, inputState)
 		if inputState == Enum.UserInputState.Begin then
 			CombatController.Dash()
 		end
-	end, true, Enum.KeyCode.Q, Enum.KeyCode.ButtonL2)
+	end, true, Enum.KeyCode.Q, Enum.KeyCode.ButtonL2))
 	ContextActionService:SetTitle("DashAction", "⚡ DASH [Q]")
+	ContextActionService:SetPosition("DashAction", UDim2.new(0.02, 0, 0.8, 0))
 
-	ContextActionService:BindAction("WeaponSwitch", function()
+	self.maid:GiveTask(ContextActionService:BindAction("WeaponSwitch", function()
 		CombatController.SwitchWeapon()
-	end, false, Enum.KeyCode.X, Enum.KeyCode.ButtonL1)
+	end, false, Enum.KeyCode.X, Enum.KeyCode.ButtonL1))
 	ContextActionService:SetTitle("WeaponSwitch", "🔪 WEAPON")
+	ContextActionService:SetPosition("WeaponSwitch", UDim2.new(0.02, 0, 0.65, 0))
 
-	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input, gameProcessed)
 		if gameProcessed then
 			return
 		end
@@ -63,23 +70,47 @@ function CombatController.Init()
 		elseif input.KeyCode == Enum.KeyCode.G then
 			CombatController.TriggerFlex()
 		end
-	end)
+	end))
 
-	CombatEvent.OnClientEvent:Connect(function(event, mobId)
+	self.maid:GiveTask(CombatEvent.OnClientEvent:Connect(function(event, mobId)
 		if event == "MobWindup" then
 			CombatController.PlayTelegraph(mobId)
 		elseif event == "MobStunned" then
 			CombatController.PlayStunVFX(mobId)
 		end
-	end)
+	end))
 
 	if MobWindupVFX then
-		MobWindupVFX.OnClientEvent:Connect(function(mobId: string, targetPos: Vector3)
+		self.maid:GiveTask(MobWindupVFX.OnClientEvent:Connect(function(mobId: string, targetPos: Vector3)
 			CombatController.PlayTelegraph(mobId)
-		end)
+		end))
 	end
 
 	print("⚔️ CombatController Initialized with Mobile Touch Support")
+end
+
+function CombatController._UpdateWeaponVisual()
+	local char = Players.LocalPlayer.Character
+	if not char then
+		return
+	end
+	local existing = char:FindFirstChild("WeaponHandle")
+	if existing then
+		existing:Destroy()
+	end
+	local handle = Instance.new("Part")
+	handle.Name = "WeaponHandle"
+	handle.Size = Vector3.new(0.4, 2, 0.4)
+	handle.Anchored = false
+	handle.CanCollide = false
+	handle.Color = if currentWeapon == "Sword" then Color3.fromRGB(200, 200, 255) elseif currentWeapon == "Staff" then Color3.fromRGB(255, 200, 100) else Color3.fromRGB(255, 100, 100)
+	handle.Material = Enum.Material.Metal
+	handle.Parent = char
+	local weld = Instance.new("Weld")
+	weld.Part0 = handle
+	weld.Part1 = char:FindFirstChild("RightHand") or char:FindFirstChild("Right Arm") or char.PrimaryPart
+	weld.C0 = CFrame.new(0, -1, 0.5) * CFrame.Angles(math.rad(45), 0, 0)
+	weld.Parent = handle
 end
 
 function CombatController.SwitchWeapon()
@@ -91,6 +122,7 @@ function CombatController.SwitchWeapon()
 		end
 	end
 	currentWeapon = PLAYER_WEAPONS[idx]
+	CombatController._UpdateWeaponVisual()
 	print(
 		string.format(
 			"[CombatController] Weapon switched to: %s (DMG: %d, Range: %d)",
@@ -103,7 +135,7 @@ function CombatController.SwitchWeapon()
 	local UIController = require(uiFolder:WaitForChild("UIController") :: any)
 	UIController.ShowNotification(
 		string.format(
-			"🔪 Weapon: %s | DMG: %d | Range: %d",
+			LocalizationController.Get("COMBAT_WEAPON_INFO"),
 			currentWeapon,
 			weaponDamage[currentWeapon],
 			weaponRange[currentWeapon]
@@ -203,9 +235,9 @@ function CombatController.Parry()
 			Transparency = 1,
 		})
 		tween:Play()
-		tween.Completed:Connect(function()
+		CombatController.maid:GiveTask(tween.Completed:Connect(function()
 			shield:Destroy()
-		end)
+		end))
 	end
 end
 
@@ -214,7 +246,7 @@ function CombatController.PlayTelegraph(mobId: string)
 	local uiFolder = script.Parent
 	local UIController = require(uiFolder:WaitForChild("UIController") :: any)
 	UIController.ShowNotification(
-		"⚠️ PERINGATAN: Monster akan menyerang! Tekan [F] / Tombol Tameng untuk MENANGKIS!"
+		LocalizationController.Get("COMBAT_MOB_WINDUP")
 	)
 end
 
@@ -227,7 +259,7 @@ function CombatController.PlayStunVFX(mobId: string)
 
 	local uiFolder = script.Parent
 	local UIController = require(uiFolder:WaitForChild("UIController") :: any)
-	UIController.ShowNotification("💥 TANGKISAN SEMPURNA! Monster Terkena Stun (+50 Coins)!")
+	UIController.ShowNotification(LocalizationController.Get("COMBAT_PARRY_STUN"))
 end
 
 function CombatController.ConsumePotion()

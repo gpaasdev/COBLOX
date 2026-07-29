@@ -9,6 +9,8 @@ local StarterGui = game:GetService("StarterGui")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local BadgeNotificationController = {}
 BadgeNotificationController.Name = "BadgeNotificationController"
 
@@ -34,6 +36,7 @@ function BadgeNotificationController._ShowBadgeNotification(badgeName: string)
 			screenGui.IgnoreGuiInset = true
 			screenGui.Enabled = true
 			screenGui.Parent = playerGui
+			self.maid:GiveTask(screenGui)
 		end
 
 		local frame = Instance.new("Frame")
@@ -42,6 +45,7 @@ function BadgeNotificationController._ShowBadgeNotification(badgeName: string)
 		frame.BackgroundColor3 = Color3.fromRGB(139, 92, 246)
 		frame.BackgroundTransparency = 0.15
 		frame.Parent = screenGui
+		self.maid:GiveTask(frame)
 
 		local corner = Instance.new("UICorner")
 		corner.CornerRadius = UDim.new(0, 12)
@@ -90,13 +94,14 @@ function BadgeNotificationController._ShowBadgeNotification(badgeName: string)
 end
 
 function BadgeNotificationController.Start()
+	self.maid = Maid.new()
 	local badgeRemote = NetChannels.GetRemoteEvent("BadgeAwardedNotification")
 	if badgeRemote then
-		badgeRemote.OnClientEvent:Connect(function(badgeName: string)
+		self.maid:GiveTask(badgeRemote.OnClientEvent:Connect(function(badgeName: string)
 			if typeof(badgeName) == "string" then
 				BadgeNotificationController._ShowBadgeNotification(badgeName)
 			end
-		end)
+		end))
 	end
 end
 

@@ -9,6 +9,8 @@ local Camera = workspace:FindFirstChildWhichIsA("Camera")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
+
 local DomainExpansionController = {}
 DomainExpansionController.Name = "DomainExpansionController"
 
@@ -20,9 +22,10 @@ local vignetteFrame: Frame? = nil
 function DomainExpansionController.Init() end
 
 function DomainExpansionController.Start()
+	self.maid = Maid.new()
 	local triggerRemote = NetChannels.GetRemoteEvent("TriggerDomainExpansion")
 	if triggerRemote then
-		triggerRemote.OnClientEvent:Connect(function(duration: number)
+		self.maid:GiveTask(triggerRemote.OnClientEvent:Connect(function(duration: number)
 			DomainExpansionController.TriggerOverdrive(duration or 15)
 		end)
 	end
@@ -37,6 +40,7 @@ function DomainExpansionController.Start()
 	vignetteFrame.ZIndex = 1000
 	vignetteFrame.Active = false
 	vignetteFrame.Parent = playerGui
+	self.maid:GiveTask(vignetteFrame)
 end
 
 function DomainExpansionController.TriggerOverdrive(durationSeconds: number)

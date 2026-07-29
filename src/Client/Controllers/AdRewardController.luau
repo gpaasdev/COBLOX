@@ -10,6 +10,7 @@ local UserInputService = game:GetService("UserInputService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local ReactiveState = require(script.Parent.Parent.Modules.UI.ReactiveState)
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local localPlayer = Players.LocalPlayer
 local playerGui = localPlayer:WaitForChild("PlayerGui")
@@ -46,7 +47,7 @@ function AdRewardController._CreateAdButton(placementId: string, rewardType: str
 	corner.CornerRadius = UDim.new(0, 8)
 	corner.Parent = button
 
-	button.MouseButton1Click:Connect(function()
+	self.maid:GiveTask(button.MouseButton1Click:Connect(function()
 		button.Text = "Loading ad..."
 		button.Active = false
 		local requestRemote = NetChannels.GetRemoteEvent("RequestRewardedAd")
@@ -59,7 +60,7 @@ function AdRewardController._CreateAdButton(placementId: string, rewardType: str
 				button.Active = true
 			end
 		end)
-	end)
+	end))
 
 	adButtonCache[placementId] = button
 end
@@ -71,6 +72,7 @@ function AdRewardController._ShowRewardNotification(text: string, isSuccess: boo
 		screenGui.Name = "AdRewardNotification"
 		screenGui.IgnoreGuiInset = true
 		screenGui.Parent = playerGui
+		self.maid:GiveTask(screenGui)
 	end
 
 	local frame = Instance.new("Frame")
@@ -79,6 +81,7 @@ function AdRewardController._ShowRewardNotification(text: string, isSuccess: boo
 	frame.BackgroundColor3 = isSuccess and Color3.fromRGB(34, 197, 94) or Color3.fromRGB(239, 68, 68)
 	frame.BackgroundTransparency = 0.1
 	frame.Parent = screenGui
+	self.maid:GiveTask(frame)
 
 	local corner = Instance.new("UICorner")
 	corner.CornerRadius = UDim.new(0, 12)
@@ -102,9 +105,10 @@ function AdRewardController._ShowRewardNotification(text: string, isSuccess: boo
 end
 
 function AdRewardController.Start()
+	self.maid = Maid.new()
 	local resultRemote = NetChannels.GetRemoteEvent("RewardedAdResult")
 	if resultRemote then
-		resultRemote.OnClientEvent:Connect(
+		self.maid:GiveTask(resultRemote.OnClientEvent:Connect(
 			function(data: { Success: boolean, Placement: string, RewardType: string, RewardDesc: string })
 				if data.Success then
 					AdRewardController._ShowRewardNotification("+ " .. data.RewardDesc, true)
@@ -117,7 +121,7 @@ function AdRewardController.Start()
 					btn.Active = true
 				end
 			end
-		)
+		))
 	end
 end
 

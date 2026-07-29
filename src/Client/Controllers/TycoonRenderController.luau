@@ -6,6 +6,7 @@ local Workspace = game:GetService("Workspace")
 local CollectionService = game:GetService("CollectionService")
 local HologramUIEngine = require(ReplicatedStorage.Shared.Modules.UI.HologramUIEngine)
 local SanctumBuilder = require(ReplicatedStorage.Shared.Modules.Render.SanctumBuilder)
+local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local TycoonRenderController = {}
 TycoonRenderController.Name = "TycoonRenderController"
@@ -15,6 +16,7 @@ function TycoonRenderController.Init()
 end
 
 function TycoonRenderController.Start()
+	self.maid = Maid.new()
 	-- 1. Setup Markas Claim Pad Hologram UI
 	local function setupClaimPad(claimPad: Instance)
 		if not claimPad:IsA("BasePart") then
@@ -32,7 +34,7 @@ function TycoonRenderController.Start()
 		prompt.Parent = claimPad
 	end
 
-	CollectionService:GetInstanceAddedSignal("TycoonClaimPad"):Connect(setupClaimPad)
+	self.maid:GiveTask(CollectionService:GetInstanceAddedSignal("TycoonClaimPad"):Connect(setupClaimPad))
 	for _, pad in ipairs(CollectionService:GetTagged("TycoonClaimPad")) do
 		task.spawn(setupClaimPad, pad)
 	end
@@ -58,7 +60,7 @@ function TycoonRenderController.Start()
 		holoGui.AlwaysOnTop = false
 	end
 
-	CollectionService:GetInstanceAddedSignal("TycoonUpgradeButton"):Connect(setupUpgradeButton)
+	self.maid:GiveTask(CollectionService:GetInstanceAddedSignal("TycoonUpgradeButton"):Connect(setupUpgradeButton))
 	for _, pad in ipairs(CollectionService:GetTagged("TycoonUpgradeButton")) do
 		task.spawn(setupUpgradeButton, pad)
 	end
@@ -141,9 +143,9 @@ function TycoonRenderController.AnimateDrop(startCFrame: CFrame, endPosition: Ve
 	})
 
 	tween:Play()
-	tween.Completed:Connect(function()
+	TycoonRenderController.maid:GiveTask(tween.Completed:Connect(function()
 		dropPart:Destroy()
-	end)
+	end))
 end
 
 return TycoonRenderController

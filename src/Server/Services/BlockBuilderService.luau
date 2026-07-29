@@ -123,11 +123,30 @@ function BlockBuilderService.GetPlayerGrid(playerId: string): { [string]: any }
 end
 
 function BlockBuilderService.Init()
+	local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
+
 	GetPlaceBlockRemotes.OnServerInvoke = function(player: Player, action: string, ...)
+		if type(action) ~= "string" then
+			return false, "Invalid action"
+		end
 		if action == "PlaceBlock" then
-			return BlockBuilderService.PlaceBlock(player, ...)
+			if not RateLimitService.CheckRateLimit(player, "BlockBuilder_Place", 0.3) then
+				return false, "Rate limited"
+			end
+			local blockType, position = ...
+			if type(blockType) ~= "string" or typeof(position) ~= "Vector3" then
+				return false, "Invalid arguments"
+			end
+			return BlockBuilderService.PlaceBlock(player, blockType, position)
 		elseif action == "RemoveBlock" then
-			return BlockBuilderService.RemoveBlock(player, ...)
+			if not RateLimitService.CheckRateLimit(player, "BlockBuilder_Remove", 0.3) then
+				return false, "Rate limited"
+			end
+			local position = ...
+			if typeof(position) ~= "Vector3" then
+				return false, "Invalid position"
+			end
+			return BlockBuilderService.RemoveBlock(player, position)
 		elseif action == "GetGrid" then
 			return BlockBuilderService.GetPlayerGrid(tostring(player.UserId))
 		end
