@@ -250,8 +250,8 @@ function EggRenderController._CreateModal()
 			res = ClientRemotes.RequestHatch:InvokeServer("Egg_BasicTier1")
 		end)
 
-		local petName = (res and res.Data and res.Data.SpiritId) or "Astral Cyber-Crocodile"
-		local rarity = (res and res.Data and res.Data.Rarity) or "Legendary"
+		local petName = (res and res.Data and res.Data.PetConfig and res.Data.PetConfig.Name) or "Astral Cyber-Crocodile"
+		local rarity = (res and res.Data and res.Data.PetConfig and res.Data.PetConfig.Rarity) or "Legendary"
 
 		statusLabel.Text = string.format(LocalizationController.Get("EGG_RESULT"), petName, rarity)
 

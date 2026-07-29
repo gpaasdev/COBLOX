@@ -125,6 +125,7 @@ function PetService.CreatePet(player: Player, petId: string): ServiceResult<PetI
 		local spiritDef = GeneratedSpiritRegistry.Get(petId)
 		if spiritDef then
 			petConfig = {
+				Id = petId,
 				Name = spiritDef.Name,
 				Description = spiritDef.Description,
 				BaseMultiplier = if spiritDef.Rarity == "Common" then 1
@@ -134,8 +135,7 @@ function PetService.CreatePet(player: Player, petId: string): ServiceResult<PetI
 					elseif spiritDef.Rarity == "Legendary" then 25
 					else 1,
 				Rarity = spiritDef.Rarity,
-				Element = spiritDef.Element,
-				DropRate = spiritDef.DropRate,
+				ModelAssetId = 1,
 			}
 		end
 	end

@@ -54,7 +54,7 @@ After v11.0, code repository growth is strictly restricted to content and config
 - ✅ `src/Shared/Configuration/`
 - ✅ `src/Content/`
 - ✅ `src/Assets/`
-- ✅ `src/Localization/`
+- ✅ `src/Shared/Localization/`
 - ✅ `src/LiveOps/`
 
 Documentation (`docs/`), architecture, and speculative research are frozen in maintenance mode.

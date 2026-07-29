@@ -147,7 +147,7 @@ function RecipeService.CraftGrid3x3(
 		itemType = "Consumable"
 	else
 		-- Check GeneratedRecipeRegistry for recipe matches
-		for _, recipeDef in GeneratedRecipeRegistry.GetAll() do
+		for _, recipeDef in pairs(GeneratedRecipeRegistry.GetAll()) do
 			local match = true
 			local needed: { [string]: number } = {}
 			for _, ingredientName in recipeDef.Ingredients do
