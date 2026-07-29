@@ -50,15 +50,17 @@ end
 function UIController.Start(self)
 	local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 	if syncRemote then
-		self.maid:GiveTask(syncRemote.OnClientEvent:Connect(
-			function(data: { Coins: number, Gems: number, AuraEnergy: number?, ChronoSparks: number? })
-				local aura = data.AuraEnergy or 0
-				local sparks = data.ChronoSparks or 0
-				local coins = data.Coins or 0
-				local gems = data.Gems or 0
-				UIController.UpdateWallet(aura, sparks, coins, gems)
-			end
-		))
+		self.maid:GiveTask(
+			syncRemote.OnClientEvent:Connect(
+				function(data: { Coins: number, Gems: number, AuraEnergy: number?, ChronoSparks: number? })
+					local aura = data.AuraEnergy or 0
+					local sparks = data.ChronoSparks or 0
+					local coins = data.Coins or 0
+					local gems = data.Gems or 0
+					UIController.UpdateWallet(aura, sparks, coins, gems)
+				end
+			)
+		)
 	end
 
 	-- Trigger configurable LiveOps Join Popup & TopBar Banner
@@ -817,8 +819,20 @@ function UIController._CreateWeaponShopUI()
 	title.Parent = container
 
 	local weapons = {
-		{ Name = LocalizationController.Get("WEAPON_FIST"), DMG = 10, Range = 8, Cost = LocalizationController.Get("COST_FREE"), Color = Color3.fromRGB(148, 163, 184) },
-		{ Name = LocalizationController.Get("WEAPON_IRON_SWORD"), DMG = 25, Range = 14, Cost = LocalizationController.Get("COST_IRON_SWORD"), Color = Color3.fromRGB(168, 162, 158) },
+		{
+			Name = LocalizationController.Get("WEAPON_FIST"),
+			DMG = 10,
+			Range = 8,
+			Cost = LocalizationController.Get("COST_FREE"),
+			Color = Color3.fromRGB(148, 163, 184),
+		},
+		{
+			Name = LocalizationController.Get("WEAPON_IRON_SWORD"),
+			DMG = 25,
+			Range = 14,
+			Cost = LocalizationController.Get("COST_IRON_SWORD"),
+			Color = Color3.fromRGB(168, 162, 158),
+		},
 		{
 			Name = LocalizationController.Get("WEAPON_FLAME_SABER"),
 			DMG = 45,

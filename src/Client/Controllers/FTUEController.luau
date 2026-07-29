@@ -65,7 +65,10 @@ function FTUEController.Start()
 		onDiscoveryRemote.OnClientEvent:Connect(function(discoveryType: string, id: string, isFirstDiscovery: boolean)
 			if not hasCraftedCrystal then
 				hasCraftedCrystal = true
-				FTUEController.UpdateMilestone(milestone4, string.format(LocalizationController.Get("FTUE_MILESTONE4_DONE"), tostring(id)))
+				FTUEController.UpdateMilestone(
+					milestone4,
+					string.format(LocalizationController.Get("FTUE_MILESTONE4_DONE"), tostring(id))
+				)
 			end
 		end)
 	end
@@ -93,7 +96,10 @@ function FTUEController.Start()
 						local label = bb and bb:FindFirstChildOfClass("TextLabel")
 						if label and string.find(label.Text, localPlayer.Name) then
 							hasClaimedPlot = true
-							FTUEController.UpdateMilestone(milestone1, LocalizationController.Get("FTUE_MILESTONE1_DONE"))
+							FTUEController.UpdateMilestone(
+								milestone1,
+								LocalizationController.Get("FTUE_MILESTONE1_DONE")
+							)
 							break
 						end
 					end
@@ -113,7 +119,10 @@ function FTUEController.Start()
 							-- Check if collector or tier 2 dropper exists in plot
 							if plot:FindFirstChild("Collector_Tier1") or plot:FindFirstChild("Dropper_Tier2") then
 								hasBoughtDropper = true
-								FTUEController.UpdateMilestone(milestone2, LocalizationController.Get("FTUE_MILESTONE2_DONE"))
+								FTUEController.UpdateMilestone(
+									milestone2,
+									LocalizationController.Get("FTUE_MILESTONE2_DONE")
+								)
 							end
 							break
 						end

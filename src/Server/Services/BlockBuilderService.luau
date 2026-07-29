@@ -154,7 +154,6 @@ function BlockBuilderService.Init()
 	end
 end
 
-function BlockBuilderService.Start()
-end
+function BlockBuilderService.Start() end
 
 return BlockBuilderService

@@ -37,11 +37,7 @@ function RetentionService.Start()
 			local rewardGems = math.random(5, 50)
 			profile.Wallet.ChronoSparks += rewardGems
 			print(
-				string.format(
-					"[RetentionService] Player %s spun the wheel and won %d Gems!",
-					player.Name,
-					rewardGems
-				)
+				string.format("[RetentionService] Player %s spun the wheel and won %d Gems!", player.Name, rewardGems)
 			)
 		end
 	end)

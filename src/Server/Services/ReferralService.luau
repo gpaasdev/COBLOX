@@ -50,7 +50,6 @@ function ReferralService.Init()
 	end)
 end
 
-function ReferralService.Start()
-end
+function ReferralService.Start() end
 
 return ReferralService

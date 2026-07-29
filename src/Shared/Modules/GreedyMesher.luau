@@ -30,7 +30,9 @@ function GreedyMesher.Mesh(grid: { [string]: VoxelData }, snapSize: number): { Q
 
 	local function mergeAxis(grid: { [string]: VoxelData }, axis: number)
 		for key, voxel in grid do
-			if processed[key] then continue end
+			if processed[key] then
+				continue
+			end
 			local x, y, z = parseKey(key)
 			local pos = Vector3.new(x, y, z)
 			local size = Vector3.new(snapSize, snapSize, snapSize)

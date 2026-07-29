@@ -36,7 +36,6 @@ function EventCalendarService.Init()
 	print("[EventCalendarService] Initialized")
 end
 
-function EventCalendarService.Start()
-end
+function EventCalendarService.Start() end
 
 return EventCalendarService

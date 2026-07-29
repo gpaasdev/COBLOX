@@ -83,7 +83,10 @@ ControllerRegistry.RegisterController("TycoonRenderController", require(controll
 
 -- Tier 5 — Monetization & Social (Phase 0 Production)
 ControllerRegistry.RegisterController("AdRewardController", require(controllersFolder.AdRewardController))
-ControllerRegistry.RegisterController("BadgeNotificationController", require(controllersFolder.BadgeNotificationController))
+ControllerRegistry.RegisterController(
+	"BadgeNotificationController",
+	require(controllersFolder.BadgeNotificationController)
+)
 ControllerRegistry.RegisterController("SocialInviteController", require(controllersFolder.SocialInviteController))
 
 -- Tier 2.75 — Realm (Phase 1)

@@ -1,6 +1,6 @@
 --!strict
 
-	local EconomyConfig = {
+local EconomyConfig = {
 	BASE_STARTER_AURA = 250,
 	BASE_STARTER_SPARKS = 25,
 	BASE_STARTER_COINS = 250,

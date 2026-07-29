@@ -51,14 +51,14 @@ local function buildCalendarUI(self, events: { { [string]: any } })
 	backdrop.BackgroundTransparency = 0.6
 	backdrop.Parent = calendarGui
 
-		self.maid:GiveTask(backdrop.InputBegan:Connect(function(input)
-			if
-				input.UserInputType == Enum.UserInputType.Touch
-				or input.UserInputType == Enum.UserInputType.MouseButton1
-			then
-				self:ToggleCalendar()
-			end
-		end))
+	self.maid:GiveTask(backdrop.InputBegan:Connect(function(input)
+		if
+			input.UserInputType == Enum.UserInputType.Touch
+			or input.UserInputType == Enum.UserInputType.MouseButton1
+		then
+			self:ToggleCalendar()
+		end
+	end))
 
 	local container = Instance.new("Frame")
 	container.Size = UDim2.new(0, 360, 0, 400)
@@ -180,8 +180,7 @@ function EventCalendarController.ToggleCalendar(self)
 	end
 end
 
-function EventCalendarController.Init()
-end
+function EventCalendarController.Init() end
 
 function EventCalendarController.Start(self)
 	self.maid = Maid.new()

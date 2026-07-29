@@ -81,10 +81,7 @@ function MachineService._TickSingle(machine: MachineTypes.MachineState, deltaTim
 		local burnRate = 0.5 * deltaTime
 		local fuelBurned = math.min(auraFuel, burnRate)
 		machine.Inventory["AuraEnergy"] = auraFuel - fuelBurned
-		machine.CurrentPower = math.min(
-			machine.CurrentPower + fuelBurned * 10,
-			MachineConfig.Defaults.MaxPower
-		)
+		machine.CurrentPower = math.min(machine.CurrentPower + fuelBurned * 10, MachineConfig.Defaults.MaxPower)
 	end
 
 	-- Rule: No Power -> Shutdown

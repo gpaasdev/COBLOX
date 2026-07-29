@@ -77,13 +77,15 @@ end
 function TopbarController._ListenEconomyEvents()
 	local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 	if syncRemote then
-		self.maid:GiveTask(syncRemote.OnClientEvent:Connect(
-			function(data: { AuraEnergy: number?, ChronoSparks: number?, Coins: number?, Gems: number? })
-				local coins = data.Coins or data.AuraEnergy or 0
-				local gems = data.Gems or data.ChronoSparks or 0
-				TopbarController.UpdateCurrencies(coins, gems)
-			end
-		))
+		self.maid:GiveTask(
+			syncRemote.OnClientEvent:Connect(
+				function(data: { AuraEnergy: number?, ChronoSparks: number?, Coins: number?, Gems: number? })
+					local coins = data.Coins or data.AuraEnergy or 0
+					local gems = data.Gems or data.ChronoSparks or 0
+					TopbarController.UpdateCurrencies(coins, gems)
+				end
+			)
+		)
 	end
 end
 

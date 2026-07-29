@@ -66,8 +66,7 @@ function RemoteConfigService.Init()
 	end
 end
 
-function RemoteConfigService.Start()
-end
+function RemoteConfigService.Start() end
 
 function RemoteConfigService.GetTuningValue(key: string, fallback: number): number
 	if configSnapshot then

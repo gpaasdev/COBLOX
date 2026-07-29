@@ -17,7 +17,9 @@ function MeshSerializer.Serialize(editableMesh: any): { [string]: any }
 			face.Normals = {}
 			for _, nid in ipairs(normalIds) do
 				local n = editableMesh:GetNormal(nid)
-				if n then table.insert(face.Normals, { X = n.X, Y = n.Y, Z = n.Z }) end
+				if n then
+					table.insert(face.Normals, { X = n.X, Y = n.Y, Z = n.Z })
+				end
 			end
 		end
 		local uvIds = editableMesh:GetFaceUVs(fid)
@@ -25,7 +27,9 @@ function MeshSerializer.Serialize(editableMesh: any): { [string]: any }
 			face.UVs = {}
 			for _, uvid in ipairs(uvIds) do
 				local uv = editableMesh:GetUV(uvid)
-				if uv then table.insert(face.UVs, { U = uv.X, V = uv.Y }) end
+				if uv then
+					table.insert(face.UVs, { U = uv.X, V = uv.Y })
+				end
 			end
 		end
 		local colorIds = editableMesh:GetFaceColors(fid)
@@ -34,7 +38,9 @@ function MeshSerializer.Serialize(editableMesh: any): { [string]: any }
 			for _, cid in ipairs(colorIds) do
 				local color = editableMesh:GetColor(cid)
 				local alpha = editableMesh:GetColorAlpha(cid)
-				if color then table.insert(face.Colors, { R = color.R, G = color.G, B = color.B, A = alpha or 1.0 }) end
+				if color then
+					table.insert(face.Colors, { R = color.R, G = color.G, B = color.B, A = alpha or 1.0 })
+				end
 			end
 		end
 		table.insert(data.Faces, face)

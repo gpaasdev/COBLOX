@@ -108,20 +108,22 @@ function AdRewardController.Start(self)
 	self.maid = Maid.new()
 	local resultRemote = NetChannels.GetRemoteEvent("RewardedAdResult")
 	if resultRemote then
-		self.maid:GiveTask(resultRemote.OnClientEvent:Connect(
-			function(data: { Success: boolean, Placement: string, RewardType: string, RewardDesc: string })
-				if data.Success then
-					AdRewardController._ShowRewardNotification("+ " .. data.RewardDesc, true)
-				else
-					AdRewardController._ShowRewardNotification("Ad unavailable. Try again later.", false)
+		self.maid:GiveTask(
+			resultRemote.OnClientEvent:Connect(
+				function(data: { Success: boolean, Placement: string, RewardType: string, RewardDesc: string })
+					if data.Success then
+						AdRewardController._ShowRewardNotification("+ " .. data.RewardDesc, true)
+					else
+						AdRewardController._ShowRewardNotification("Ad unavailable. Try again later.", false)
+					end
+					if adButtonCache[data.Placement] then
+						local btn = adButtonCache[data.Placement]
+						btn.Text = "Watch Ad"
+						btn.Active = true
+					end
 				end
-				if adButtonCache[data.Placement] then
-					local btn = adButtonCache[data.Placement]
-					btn.Text = "Watch Ad"
-					btn.Active = true
-				end
-			end
-		))
+			)
+		)
 	end
 end
 

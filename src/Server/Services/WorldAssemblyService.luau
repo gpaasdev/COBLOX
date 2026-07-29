@@ -324,16 +324,8 @@ function WorldAssemblyService._AssembleWorld()
 			MaxDurability = smelterDef.Durability,
 		}
 
-		MachineService.RegisterMachine(
-			plotId .. "_Reactor",
-			"Reactor",
-			reactorProps
-		)
-		MachineService.RegisterMachine(
-			plotId .. "_Smelter",
-			"Smelter",
-			smelterProps
-		)
+		MachineService.RegisterMachine(plotId .. "_Reactor", "Reactor", reactorProps)
+		MachineService.RegisterMachine(plotId .. "_Smelter", "Smelter", smelterProps)
 	end
 
 	-- 4. Spawn NPCs from QuestConfig

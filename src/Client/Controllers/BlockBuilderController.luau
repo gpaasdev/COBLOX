@@ -19,7 +19,9 @@ local isBuilding = false
 local snapSize = BlockConfig.Grid.SnapSize
 
 local function createGhost()
-	if ghostPart then ghostPart:Destroy() end
+	if ghostPart then
+		ghostPart:Destroy()
+	end
 	ghostPart = Instance.new("Part")
 	ghostPart.Size = Vector3.new(snapSize, snapSize, snapSize)
 	ghostPart.Anchored = true
@@ -73,7 +75,9 @@ end
 function BlockBuilderController.Init(self)
 	self.maid = Maid.new()
 	self.maid:GiveTask(RunService.RenderStepped:Connect(function()
-		if not isBuilding or not ghostPart then return end
+		if not isBuilding or not ghostPart then
+			return
+		end
 		local pos = getTargetPosition()
 		if pos then
 			ghostPart.Position = pos
@@ -84,7 +88,9 @@ function BlockBuilderController.Init(self)
 	end))
 
 	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input, gameProcessed)
-		if gameProcessed or not isBuilding then return end
+		if gameProcessed or not isBuilding then
+			return
+		end
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			local pos = getTargetPosition()
 			if pos then

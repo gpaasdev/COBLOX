@@ -119,7 +119,7 @@ function PotionVaultController._CreateUI()
 		info.Size = UDim2.new(0.5, 0, 1, 0)
 		info.Position = UDim2.new(0.2, 0, 0, 0)
 		info.BackgroundTransparency = 1
-			info.Text = LocalizationController.Get("VAULT_EMPTY")
+		info.Text = LocalizationController.Get("VAULT_EMPTY")
 		info.TextColor3 = Color3.fromRGB(148, 163, 184)
 		info.Font = Enum.Font.GothamBold
 		info.TextSize = 16
@@ -130,7 +130,7 @@ function PotionVaultController._CreateUI()
 		yieldLbl.Size = UDim2.new(0.3, 0, 1, 0)
 		yieldLbl.Position = UDim2.new(0.7, 0, 0, 0)
 		yieldLbl.BackgroundTransparency = 1
-			yieldLbl.Text = LocalizationController.Get("VAULT_YIELD_ZERO")
+		yieldLbl.Text = LocalizationController.Get("VAULT_YIELD_ZERO")
 		yieldLbl.TextColor3 = Color3.fromRGB(34, 197, 94)
 		yieldLbl.Font = Enum.Font.FredokaOne
 		yieldLbl.TextSize = 18
@@ -172,11 +172,11 @@ function PotionVaultController.UpdateVault(slots: { { ItemId: string, Yield: num
 			end
 		else
 			if info then
-		info.Text = LocalizationController.Get("VAULT_EMPTY")
+				info.Text = LocalizationController.Get("VAULT_EMPTY")
 				info.TextColor3 = Color3.fromRGB(148, 163, 184)
 			end
 			if yieldLbl then
-		yieldLbl.Text = LocalizationController.Get("VAULT_YIELD_ZERO")
+				yieldLbl.Text = LocalizationController.Get("VAULT_YIELD_ZERO")
 			end
 		end
 	end

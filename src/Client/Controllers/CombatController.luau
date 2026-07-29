@@ -103,7 +103,10 @@ function CombatController._UpdateWeaponVisual()
 	handle.Size = Vector3.new(0.4, 2, 0.4)
 	handle.Anchored = false
 	handle.CanCollide = false
-	handle.Color = if currentWeapon == "Sword" then Color3.fromRGB(200, 200, 255) elseif currentWeapon == "Staff" then Color3.fromRGB(255, 200, 100) else Color3.fromRGB(255, 100, 100)
+	handle.Color = if currentWeapon == "Sword"
+		then Color3.fromRGB(200, 200, 255)
+		elseif currentWeapon == "Staff" then Color3.fromRGB(255, 200, 100)
+		else Color3.fromRGB(255, 100, 100)
 	handle.Material = Enum.Material.Metal
 	handle.Parent = char
 	local weld = Instance.new("Weld")
@@ -245,9 +248,7 @@ function CombatController.PlayTelegraph(mobId: string)
 	print("[VFX] ⚠️ RED TELEGRAPH: Monster is winding up to attack! Press F / Shield to PARRY!")
 	local uiFolder = script.Parent
 	local UIController = require(uiFolder:WaitForChild("UIController") :: any)
-	UIController.ShowNotification(
-		LocalizationController.Get("COMBAT_MOB_WINDUP")
-	)
+	UIController.ShowNotification(LocalizationController.Get("COMBAT_MOB_WINDUP"))
 end
 
 function CombatController.PlayStunVFX(mobId: string)

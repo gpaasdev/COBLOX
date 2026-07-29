@@ -52,7 +52,10 @@ RealmConfig.Presets = {
 		PlaceId = 105075159736246,
 		DefaultBiomeGroup = "CyberAlchemist",
 		AllowedBiomes = {
-			"Zone_1_Lobby", "Zone_2_Forest", "Zone_3_Ocean", "Zone_4_Celestial",
+			"Zone_1_Lobby",
+			"Zone_2_Forest",
+			"Zone_3_Ocean",
+			"Zone_4_Celestial",
 		},
 		Lighting = {
 			ClockTime = 20.0,
@@ -87,8 +90,12 @@ RealmConfig.Presets = {
 		PlaceId = 89919608022831,
 		DefaultBiomeGroup = "Fairytale",
 		AllowedBiomes = {
-			"fairy_EnchantedForest", "fairy_AetherSkyCitadel", "fairy_GlacialCavern",
-			"fairy_VolcanicForge", "fairy_VoidCaves", "fairy_CentralHub",
+			"fairy_EnchantedForest",
+			"fairy_AetherSkyCitadel",
+			"fairy_GlacialCavern",
+			"fairy_VolcanicForge",
+			"fairy_VoidCaves",
+			"fairy_CentralHub",
 		},
 		Lighting = {
 			ClockTime = 5.5,
