@@ -40,7 +40,9 @@ local GeneratedReactionRegistry = require(script.Parent.GeneratedReactionRegistr
 
 -- Default Data-Driven Reactions (Now loaded from generated pipeline)
 for id, def in pairs(GeneratedReactionRegistry.GetAll()) do
-	ReactionRegistry.RegisterReaction(def)
+	if type(def) == "table" and (def :: any).Id then
+		ReactionRegistry.RegisterReaction(def :: ReactionDefinition)
+	end
 end
 
 return ReactionRegistry

@@ -2,10 +2,12 @@
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
-local EconomyService = require(game:GetService("ServerScriptService").Server.Services.EconomyService)
+local EconomyService = require(ServerScriptService.Server.Services.EconomyService)
 local PlayerDataService = require(script.Parent.PlayerDataService :: any)
+local ProfileStoreAdapter = require(script.Parent.ProfileStoreAdapter)
 
 local PotionVaultService = {}
 PotionVaultService.Name = "PotionVaultService"
@@ -28,17 +30,38 @@ end
 
 function PotionVaultService.Start()
 	Players.PlayerAdded:Connect(function(player)
-		playerVaults[player] = {
-			[1] = "Quartz",
-			[2] = "Quartz",
-			[3] = "",
-			[4] = "",
-			[5] = "",
-			[6] = "",
-		}
+		local result = PlayerDataService.GetProfile(player)
+		if result.Success and result.Data then
+			if not result.Data.Sanctum.VaultSlots then
+				result.Data.Sanctum.VaultSlots = {
+					[1] = "Quartz",
+					[2] = "Quartz",
+					[3] = "",
+					[4] = "",
+					[5] = "",
+					[6] = "",
+				}
+			end
+			playerVaults[player] = result.Data.Sanctum.VaultSlots
+		else
+			playerVaults[player] = {
+				[1] = "Quartz",
+				[2] = "Quartz",
+				[3] = "",
+				[4] = "",
+				[5] = "",
+				[6] = "",
+			}
+		end
 	end)
 
 	Players.PlayerRemoving:Connect(function(player)
+		local slots = playerVaults[player]
+		if slots then
+			ProfileStoreAdapter.SafeUpdateProfile(player, function(data: any)
+				data.Sanctum.VaultSlots = slots
+			end)
+		end
 		playerVaults[player] = nil
 	end)
 
@@ -71,6 +94,9 @@ end
 function PotionVaultService.SetSlot(player: Player, slotIndex: number, potionName: string)
 	if playerVaults[player] then
 		playerVaults[player][slotIndex] = potionName
+		ProfileStoreAdapter.SafeUpdateProfile(player, function(data: any)
+			data.Sanctum.VaultSlots = playerVaults[player]
+		end)
 	end
 end
 

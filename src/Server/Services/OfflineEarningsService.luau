@@ -30,6 +30,14 @@ function OfflineEarningsService.Init()
 			return { Success = false, ClaimedCoins = 0 }
 		end
 	end
+
+	local statusRemoteFunc = NetChannels.GetRemoteFunction("RequestOfflineEarningsStatus")
+	if statusRemoteFunc then
+		statusRemoteFunc.OnServerInvoke = function(player: Player): { Success: boolean, PendingCoins: number }
+			local pending = OfflineEarningsService.GetPendingEarnings(player)
+			return { Success = true, PendingCoins = pending }
+		end
+	end
 end
 
 function OfflineEarningsService.Start()

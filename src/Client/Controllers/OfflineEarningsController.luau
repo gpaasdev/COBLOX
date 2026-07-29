@@ -11,7 +11,6 @@ OfflineEarningsController.Name = "OfflineEarningsController"
 
 local localPlayer = Players.LocalPlayer
 local modalFrame: Frame?
-local isVisible = false
 
 function OfflineEarningsController.Init()
 	print("[OfflineEarningsController] Initializing AFK Earnings UI...")
@@ -19,11 +18,25 @@ end
 
 function OfflineEarningsController.Start()
 	task.delay(1.5, function()
-		OfflineEarningsController.ShowWelcomeModal()
+		OfflineEarningsController.TryShowWelcomeModal()
 	end)
 end
 
-function OfflineEarningsController.ShowWelcomeModal()
+function OfflineEarningsController.TryShowWelcomeModal()
+	local statusRemote = ClientRemotes.RequestOfflineEarningsStatus
+	if not statusRemote then
+		return
+	end
+	local ok, result = pcall(function()
+		return statusRemote:InvokeServer()
+	end)
+	if not ok or not result or not result.Success or result.PendingCoins <= 0 then
+		return
+	end
+	OfflineEarningsController.ShowWelcomeModal(result.PendingCoins)
+end
+
+function OfflineEarningsController.ShowWelcomeModal(earningsAmount: number)
 	local playerGui = localPlayer:WaitForChild("PlayerGui")
 	local mainHUD = playerGui:FindFirstChild("COBLOX_AlchemyHUD")
 	if not mainHUD then
@@ -44,11 +57,10 @@ function OfflineEarningsController.ShowWelcomeModal()
 	corner.Parent = modalFrame
 
 	local stroke = Instance.new("UIStroke")
-	stroke.Color = Color3.fromRGB(245, 158, 11) -- Gold
+	stroke.Color = Color3.fromRGB(245, 158, 11)
 	stroke.Thickness = 3
 	stroke.Parent = modalFrame
 
-	-- Title Header
 	local header = Instance.new("TextLabel")
 	header.Size = UDim2.new(0.9, 0, 0.2, 0)
 	header.Position = UDim2.new(0.05, 0, 0.08, 0)
@@ -63,15 +75,13 @@ function OfflineEarningsController.ShowWelcomeModal()
 	desc.Size = UDim2.new(0.9, 0, 0.35, 0)
 	desc.Position = UDim2.new(0.05, 0, 0.3, 0)
 	desc.BackgroundTransparency = 1
-	desc.Text =
-		"Spirit Companion milikmu telah memanen Mana dan merawat tempat meracik ramuan saat kamu beristirahat!\n\nKamu mendapatkan +36,000 Koin Magis!"
+	desc.Text = string.format("Spirit Companion milikmu telah memanen Mana dan merawat tempat meracik ramuan saat kamu beristirahat!\n\nKamu mendapatkan +%s Koin Magis!", tostring(earningsAmount))
 	desc.TextColor3 = Color3.fromRGB(255, 255, 255)
 	desc.Font = Enum.Font.GothamMedium
 	desc.TextSize = 14
 	desc.TextWrapped = true
 	desc.Parent = modalFrame
 
-	-- Claim Button
 	local claimBtn = Instance.new("TextButton")
 	claimBtn.Size = UDim2.new(0.7, 0, 0.22, 0)
 	claimBtn.Position = UDim2.new(0.15, 0, 0.7, 0)

@@ -2,6 +2,7 @@
 local Workspace = game:GetService("Workspace")
 local RunService = game:GetService("RunService")
 local Stats = game:GetService("Stats")
+local Maid = require(game:GetService("ReplicatedStorage").Shared.Utility.Maid)
 
 local PerformanceMonitorController = {}
 PerformanceMonitorController.Name = "PerformanceMonitorController"
@@ -10,6 +11,7 @@ local TARGET_FPS = 60
 local THROTTLE_THRESHOLD_FPS = 45
 local checkInterval = 2
 local frameHistory = {}
+local controllerMaid = Maid.new()
 
 function PerformanceMonitorController.Init()
 	print("[PerformanceMonitorController] Initializing Mobile FPS Monitoring & Dynamic Throttling...")
@@ -19,10 +21,18 @@ function PerformanceMonitorController.Start()
 	local lastTime = tick()
 	local frames = 0
 
-	RunService.RenderStepped:Connect(function()
+	controllerMaid:GiveTask(RunService.RenderStepped:Connect(function()
 		frames += 1
-		local now = tick()
-		if now - lastTime >= checkInterval then
+	end))
+
+	local evalRunning = true
+	controllerMaid:GiveTask(function()
+		evalRunning = false
+	end)
+	task.spawn(function()
+		while evalRunning do
+			task.wait(checkInterval)
+			local now = tick()
 			local currentFPS = frames / (now - lastTime)
 			table.insert(frameHistory, currentFPS)
 			if #frameHistory > 5 then

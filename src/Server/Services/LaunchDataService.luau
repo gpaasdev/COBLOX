@@ -34,13 +34,13 @@ local function processPayload(player: Player, payload: LaunchDataPayload)
 	-- Wait until player profile is loaded before granting rewards
 	task.spawn(function()
 		local profile = PlayerDataService.GetProfile(player)
-		if not profile then
+		if not profile.Success then
 			-- Retry after brief delay if profile isn't loaded yet
 			task.wait(2)
 			profile = PlayerDataService.GetProfile(player)
 		end
 
-		if not profile then
+		if not profile.Success or not profile.Data then
 			warn(`[LaunchDataService] Could not load profile for {player.Name} to grant LaunchData rewards.`)
 			return
 		end

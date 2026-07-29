@@ -165,8 +165,10 @@ function TradeService.ExecuteAtomicSwap(sessionId: string): ServiceResult<boolea
 	session.State = "Executing"
 
 	-- Re-validate ownership of currencies and items
-	local profileA = PlayerDataService.GetProfile(session.PlayerA).Data
-	local profileB = PlayerDataService.GetProfile(session.PlayerB).Data
+	local resA = PlayerDataService.GetProfile(session.PlayerA)
+	local resB = PlayerDataService.GetProfile(session.PlayerB)
+	local profileA = (resA.Success and resA.Data) or nil
+	local profileB = (resB.Success and resB.Data) or nil
 
 	if not profileA or not profileB then
 		TradeService.CancelTradeSession(sessionId, "Profile load failed during execution")

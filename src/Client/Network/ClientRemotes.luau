@@ -6,6 +6,7 @@ local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 -- Create central RemoteEvent & RemoteFunction instances
 local syncEconomyRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 local hatchRemoteFunc = NetChannels.GetRemoteFunction("RequestHatch")
+local genesisPodRemoteFunc = NetChannels.GetRemoteFunction("RequestGenesisPod")
 local buyUpgradeRemoteFunc = NetChannels.GetRemoteFunction("RequestBuyUpgrade")
 local equipPetRemoteFunc = NetChannels.GetRemoteFunction("RequestEquipPet")
 local requestTradeRemoteFunc = NetChannels.GetRemoteFunction("RequestTrade")
@@ -23,6 +24,7 @@ local requestConsumePotionRemoteFunc = NetChannels.GetRemoteFunction("RequestCon
 local requestFlexEffectRemoteFunc = NetChannels.GetRemoteFunction("RequestFlexEffect")
 local syncShieldStatusRemote = NetChannels.GetUnreliableRemoteEvent("SyncShieldStatus") -- Fase 10: visual-only
 local claimOfflineEarningsRemoteFunc = NetChannels.GetRemoteFunction("ClaimOfflineEarnings")
+local requestOfflineEarningsStatusRemoteFunc = NetChannels.GetRemoteFunction("RequestOfflineEarningsStatus")
 local broadcastServerMessageRemote = NetChannels.GetRemoteEvent("BroadcastServerMessage")
 local eggHatchedVisualRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 
@@ -34,6 +36,7 @@ end
 return setmetatable({
 	SyncEconomy = syncEconomyRemote,
 	RequestHatch = hatchRemoteFunc,
+	RequestGenesisPod = genesisPodRemoteFunc,
 	RequestBuyUpgrade = buyUpgradeRemoteFunc,
 	RequestEquipPet = equipPetRemoteFunc,
 	RequestTrade = requestTradeRemoteFunc,
@@ -48,6 +51,7 @@ return setmetatable({
 	RequestFlexEffect = requestFlexEffectRemoteFunc,
 	SyncShieldStatus = syncShieldStatusRemote,
 	ClaimOfflineEarnings = claimOfflineEarningsRemoteFunc,
+	RequestOfflineEarningsStatus = requestOfflineEarningsStatusRemoteFunc,
 	BroadcastServerMessage = broadcastServerMessageRemote,
 	EggHatchedVisual = eggHatchedVisualRemote,
 }, {

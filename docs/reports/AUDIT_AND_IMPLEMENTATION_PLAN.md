@@ -1,3 +1,5 @@
+> **[🏠 Master Index](../../MASTER_INDEX.md) | [⬅️ Back to Docs](../../README.md)**
+
 # COBLOX Production Readiness Audit & Implementation Report
 
 **Date:** 2026-07-27  

@@ -8,6 +8,7 @@ local Workspace = game:GetService("Workspace")
 local ClientConfig = require(game:GetService("ReplicatedStorage").Shared.Config.ClientConfig)
 local ScannerPipeline = require(script.Parent.Parent.Modules.ScannerPipeline)
 local WidgetRenderer = require(script.Parent.Parent.Modules.WidgetRenderer)
+local Maid = require(game:GetService("ReplicatedStorage").Shared.Utility.Maid)
 
 local ARLensController = {
 	Name = "ARLensController",
@@ -17,6 +18,7 @@ local ARLensController = {
 local RegistryRef: any = nil
 local LocalPlayer = Players.LocalPlayer
 local CurrentCamera = Workspace.CurrentCamera
+local controllerMaid = Maid.new()
 
 type ActiveTargetInfo = {
 	EntityType: ScannerPipeline.EntityType,
@@ -34,7 +36,7 @@ function ARLensController.Init(Registry: any)
 end
 
 function ARLensController.Start(Registry: any)
-	RunService.RenderStepped:Connect(ARLensController.Update)
+	controllerMaid:GiveTask(RunService.RenderStepped:Connect(ARLensController.Update))
 	print("[ARLensController] Active with ScreenGui Pipeline.")
 end
 

@@ -7,6 +7,7 @@ local RunService = game:GetService("RunService")
 local UserSettings = UserSettings()
 local GameSettings = UserSettings:GetService("UserGameSettings")
 local ClientConfig = require(game:GetService("ReplicatedStorage").Shared.Config.ClientConfig)
+local Maid = require(game:GetService("ReplicatedStorage").Shared.Utility.Maid)
 
 local LightingController = {
 	Name = "LightingController",
@@ -16,7 +17,7 @@ local LightingController = {
 local RegistryRef: any = nil
 local frameTimes: { number } = {}
 local sampleWindow = ClientConfig.Lighting.FpsSampleWindow
-local lastEvalTime = 0
+local controllerMaid = Maid.new()
 
 function LightingController.Init(Registry: any)
 	RegistryRef = Registry
@@ -24,15 +25,20 @@ function LightingController.Init(Registry: any)
 end
 
 function LightingController.Start(Registry: any)
-	RunService.RenderStepped:Connect(function(dt: number)
+	controllerMaid:GiveTask(RunService.RenderStepped:Connect(function(dt: number)
 		table.insert(frameTimes, dt)
 		if #frameTimes > 120 then
 			table.remove(frameTimes, 1)
 		end
+	end))
 
-		local now = tick()
-		if now - lastEvalTime >= sampleWindow then
-			lastEvalTime = now
+	local evalRunning = true
+	controllerMaid:GiveTask(function()
+		evalRunning = false
+	end)
+	task.spawn(function()
+		while evalRunning do
+			task.wait(sampleWindow)
 			LightingController.EvaluatePerformance()
 		end
 	end)

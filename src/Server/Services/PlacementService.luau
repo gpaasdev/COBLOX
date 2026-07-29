@@ -8,6 +8,8 @@ local PlayerDataService = require(ServerScriptService.Server.Services.PlayerData
 local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)
 local Signal = require(ReplicatedStorage.Shared.Utility.Signal)
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+local GridConfig = require(ReplicatedStorage.Shared.Configuration.GridConfig)
+local EconomyService = require(ServerScriptService.Server.Services.EconomyService)
 
 type ServiceResult<T> = DataTypes.ServiceResult<T>
 
@@ -15,6 +17,7 @@ local PlacementService = {}
 PlacementService.Name = "PlacementService"
 
 PlacementService.StructurePlaced = Signal.new()
+PlacementService.StructureRemoved = Signal.new()
 
 local MAX_INTERACTION_DISTANCE_STUDS = 15.0
 
@@ -24,8 +27,10 @@ end
 
 function PlacementService.Start()
 	local placeRemote = NetChannels.GetRemoteEvent("RequestPlacement")
+	local removeRemote = NetChannels.GetRemoteEvent("RequestRemoval")
 	local RateLimitService = require(script.Parent.RateLimitService)
 	local PayloadValidator = require(ReplicatedStorage.Shared.Network.PayloadValidator)
+
 	if placeRemote then
 		placeRemote.OnServerEvent:Connect(
 			function(player: Player, structureId: any, gridIndex: any, targetPosition: any)
@@ -46,6 +51,27 @@ function PlacementService.Start()
 					return
 				end
 				PlacementService.PlaceStructure(player, cleanStructId, cleanGridIndex, cleanPos)
+			end
+		)
+	end
+
+	if removeRemote then
+		removeRemote.OnServerEvent:Connect(
+			function(player: Player, gridIndex: any)
+				local valid, cleanGridIndex = PayloadValidator.Validate({ gridIndex }, { "string" })
+				if not valid then
+					warn(
+						string.format(
+							"[PlacementService Security Alert] Invalid removal payload from player %s",
+							player.Name
+						)
+					)
+					return
+				end
+				if not RateLimitService.CheckRateLimit(player, "RemovalEvent", 1.0) then
+					return
+				end
+				PlacementService.RemoveStructure(player, cleanGridIndex)
 			end
 		)
 	end
@@ -117,13 +143,16 @@ function PlacementService.PlaceStructure(
 	local profile = res.Data
 	if not profile.SanctumGrid then
 		profile.SanctumGrid = {
-			Structures = {},
-			CozyRating = 100,
+			Cells = {},
+			PlotBounds = {
+				MinX = -15, MaxX = 15,
+				MinZ = -15, MaxZ = 15,
+			},
 		}
 	end
 
 	local grid = profile.SanctumGrid
-	if grid.Structures[gridIndex] ~= nil then
+	if grid.Cells[gridIndex] ~= nil then
 		return {
 			Success = false,
 			Category = "Validation",
@@ -134,14 +163,43 @@ function PlacementService.PlaceStructure(
 		}
 	end
 
+	-- Validate structure exists in registry
+	local structDef = GridConfig.STRUCTURES[structureId]
+	if not structDef then
+		return {
+			Success = false,
+			Category = "Validation",
+			ErrorCode = "INVALID_STRUCTURE",
+			Message = "Unknown structure type: " .. structureId,
+			Data = nil,
+			Retryable = false,
+		}
+	end
+
+	-- Check structure limit
+	local cellCount = 0
+	for _ in pairs(grid.Cells) do
+		cellCount += 1
+	end
+	if cellCount >= GridConfig.MAX_STRUCTURES then
+		return {
+			Success = false,
+			Category = "Validation",
+			ErrorCode = "GRID_FULL",
+			Message = "Maximum structure limit reached: " .. GridConfig.MAX_STRUCTURES,
+			Data = nil,
+			Retryable = false,
+		}
+	end
+
 	-- 3. Register Structure & Update Cozy Rating
 	local structureData = {
+		X = math.round(targetPosition.X / GridConfig.CELL_SIZE),
+		Z = math.round(targetPosition.Z / GridConfig.CELL_SIZE),
 		StructureId = structureId,
-		PositionX = targetPosition.X,
-		PositionY = targetPosition.Y,
-		PositionZ = targetPosition.Z,
+		Level = 1,
 		PlacedTimestamp = os.time(),
-		CozyValue = 15,
+		CozyValue = structDef.Size.Y * 5, -- Cozy from structure size
 	}
 
 	-- Spatial Query (AABB Collision Validation)
@@ -165,24 +223,17 @@ function PlacementService.PlaceStructure(
 		}
 	end
 
-	grid.Structures[gridIndex] = structureData
-	grid.CozyRating = (grid.CozyRating or 100) + structureData.CozyValue
+	grid.Cells[gridIndex] = structureData
 
-	-- Physical Model Spawning on Server Workspace via SanctumBuilder
-	local SanctumBuilder = require(ReplicatedStorage.Shared.Modules.Render.SanctumBuilder)
-	local placedModel = SanctumBuilder.CreateAlchemicalAltar(targetPosition)
-	placedModel.Name = "Placed_" .. structureId .. "_" .. gridIndex
-
-	PlacementService.StructurePlaced:Fire(player, gridIndex, structureData, grid.CozyRating)
+	PlacementService.StructurePlaced:Fire(player, gridIndex, structureData)
 
 	print(
 		string.format(
-			"[PlacementService] %s placed %s at grid %s (Distance: %.2f studs, Cozy Rating: %d)",
+			"[PlacementService] %s placed %s at grid %s (Distance: %.2f studs)",
 			player.Name,
 			structureId,
 			gridIndex,
-			distance,
-			grid.CozyRating
+			distance
 		)
 	)
 
@@ -191,7 +242,67 @@ function PlacementService.PlaceStructure(
 		Category = nil,
 		ErrorCode = nil,
 		Message = "Placement validated and spawned",
-		Data = grid.CozyRating,
+		Data = grid.Cells[gridIndex],
+		Retryable = false,
+	}
+end
+
+function PlacementService.RemoveStructure(
+	player: Player,
+	gridIndex: string
+): ServiceResult<boolean>
+	local res = PlayerDataService.GetProfile(player)
+	if not res.Success or not res.Data then
+		return {
+			Success = false,
+			Category = "Infrastructure",
+			ErrorCode = "PROFILE_NOT_LOADED",
+			Message = "Profile unavailable",
+			Data = nil,
+			Retryable = true,
+		}
+	end
+
+	local profile = res.Data
+	local grid = profile.SanctumGrid
+	if not grid or not grid.Cells[gridIndex] then
+		return {
+			Success = false,
+			Category = "Validation",
+			ErrorCode = "NOTHING_TO_REMOVE",
+			Message = "No structure at grid slot: " .. gridIndex,
+			Data = nil,
+			Retryable = false,
+		}
+	end
+
+	local removed = grid.Cells[gridIndex]
+	grid.Cells[gridIndex] = nil
+
+	-- Refund 50% of structure cost
+	local structDef = GridConfig.STRUCTURES[removed.StructureId]
+	if structDef and structDef.Cost then
+		local refund = math.floor(structDef.Cost * 0.5)
+		EconomyService.AddCurrency(player, "Coins", refund, "PlacementRefund")
+	end
+
+	PlacementService.StructureRemoved:Fire(player, gridIndex, removed)
+
+	print(
+		string.format(
+			"[PlacementService] %s removed %s from grid %s",
+			player.Name,
+			removed.StructureId,
+			gridIndex
+		)
+	)
+
+	return {
+		Success = true,
+		Category = nil,
+		ErrorCode = nil,
+		Message = "Structure removed",
+		Data = true,
 		Retryable = false,
 	}
 end

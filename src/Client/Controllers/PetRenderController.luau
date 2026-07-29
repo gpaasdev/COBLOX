@@ -7,12 +7,14 @@ local TweenService = game:GetService("TweenService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local CreatureBuilder = require(ReplicatedStorage.Shared.Modules.Render.CreatureBuilder)
+local Maid = require(ReplicatedStorage.Shared.Utility.Maid)
 
 local PetRenderController = {}
 PetRenderController.Name = "PetRenderController"
 
 local localPlayer = Players.LocalPlayer
 local activeSpiritCompanions: { Model } = {}
+local controllerMaid = Maid.new()
 
 function PetRenderController.Init()
 	print("[PetRenderController] Initializing Spirit Companion Spring/Lerp physics rendering engine...")
@@ -40,7 +42,7 @@ function PetRenderController.Start()
 
 	-- Pets will be spawned dynamically from server data in the future
 	-- Render loop for floating Spirit Companions behind character
-	RunService.RenderStepped:Connect(function(dt)
+	controllerMaid:GiveTask(RunService.RenderStepped:Connect(function(dt)
 		if not localPlayer.Character or not localPlayer.Character:FindFirstChild("HumanoidRootPart") then
 			return
 		end
@@ -73,9 +75,9 @@ function PetRenderController.Start()
 					alignPos.Position = targetCFrame.Position
 					alignOri.CFrame = targetCFrame
 				end
-			end
 		end
-	end)
+	end
+	end))
 end
 
 function PetRenderController.SpawnSpiritCompanion(spiritId: string): Model
@@ -282,6 +284,7 @@ function PetRenderController.MountNeonCrocodile(enable: boolean)
 end
 
 function PetRenderController.DespawnAll()
+	controllerMaid:DoCleaning()
 	for _, spirit in ipairs(activeSpiritCompanions) do
 		spirit:Destroy()
 	end

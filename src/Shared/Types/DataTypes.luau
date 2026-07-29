@@ -39,6 +39,36 @@ export type SanctumProfile = {
 	VaultData: { DepositedAmount: number, LastDepositTimestamp: number },
 }
 
+export type GridCell = {
+	X: number,
+	Z: number,
+	StructureId: string,
+	Level: number,
+}
+
+export type SanctumGridData = {
+	Cells: { [string]: GridCell },
+	PlotBounds: {
+		MinX: number,
+		MaxX: number,
+		MinZ: number,
+		MaxZ: number,
+	},
+}
+
+export type CovenMembershipData = {
+	CovenId: string?,
+	Role: "Founder" | "Officer" | "Member"?,
+	TotalDonated: number,
+}
+
+export type TransportState = "IDLE" | "TRANSPORTING" | "DEPOSITING"
+
+export type HatchCooldownData = {
+	LastHatchTimestamp: number,
+	CooldownSeconds: number,
+}
+
 export type FTUEState =
 	"WELCOME"
 	| "HARVEST"
@@ -87,6 +117,10 @@ export type PlayerProfile = {
 	Wallet: WalletData,
 	Inventory: InventoryData,
 	Sanctum: SanctumProfile,
+	SanctumGrid: SanctumGridData?,
+	CovenMembership: CovenMembershipData?,
+	HatchCooldown: HatchCooldownData?,
+	TransportState: TransportState?,
 	FTUE: FTUEData,
 	DailyQuests: QuestProgress,
 	Monetization: MonetizationProfile,
@@ -98,8 +132,8 @@ export type PlayerProfile = {
 		FirstJoin: number,
 		TotalPlayTimeSeconds: number,
 	},
-	Ledger: { LedgerEntry }?, -- rolling 100 entries max
-	AdminFlagged: boolean?, -- security flag for suspicious accounts
+	Ledger: { LedgerEntry }?,
+	AdminFlagged: boolean?,
 	CombatStats: {
 		TotalMobsKilled: number,
 		TotalDamageDealt: number,

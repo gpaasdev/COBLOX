@@ -306,4 +306,80 @@ function EconomyService._SyncClient(player: Player, wallet: any)
 	})
 end
 
+function EconomyService.HasCurrency(player: Player, currencyType: string, amount: number): boolean
+	local res = PlayerDataService.GetProfile(player)
+	if not res.Success or not res.Data then
+		return false
+	end
+	local wallet = res.Data.Wallet
+	local balance = wallet[currencyType] or 0
+	return balance >= amount
+end
+
+function EconomyService.DeductCurrency(
+	player: Player,
+	currencyType: string,
+	amount: number,
+	reason: string?
+): ServiceResult<number>
+	local res = PlayerDataService.GetProfile(player)
+	if not res.Success or not res.Data then
+		return {
+			Success = false,
+			Category = "Infrastructure",
+			ErrorCode = "PROFILE_ERROR",
+			Message = "Failed to load player wallet profile",
+			Data = nil,
+			Retryable = true,
+		}
+	end
+
+	local wallet = res.Data.Wallet
+	local currentBalance = wallet[currencyType] or 0
+
+	if currentBalance < amount then
+		return {
+			Success = false,
+			Category = "Economy",
+			ErrorCode = "INSUFFICIENT_FUNDS",
+			Message = string.format("Need %d %s, have %d", amount, currencyType, currentBalance),
+			Data = nil,
+			Retryable = false,
+		}
+	end
+
+	if currencyType == "Coins" then
+		return EconomyService.DeductCoins(player, amount, reason or "DeductCurrency")
+	end
+
+	-- For non-Coins currencies, use SafeUpdateProfile
+	local initialBalance = currentBalance
+	local ok = pcall(function()
+		ProfileStoreAdapter.SafeUpdateProfile(player, function(data)
+			local w = data.Wallet
+			w[currencyType] = w[currencyType] - amount
+		end)
+	end)
+
+	if not ok then
+		return {
+			Success = false,
+			Category = "Infrastructure",
+			ErrorCode = "DEDUCT_FAILED",
+			Message = "Failed to deduct " .. currencyType,
+			Data = nil,
+			Retryable = true,
+		}
+	end
+
+	return {
+		Success = true,
+		Category = nil,
+		ErrorCode = nil,
+		Message = string.format("Deducted %d %s", amount, currencyType),
+		Data = currentBalance - amount,
+		Retryable = false,
+	}
+end
+
 return EconomyService

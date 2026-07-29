@@ -5,7 +5,7 @@ local Players = game:GetService("Players")
 local UIEffectPool = {}
 
 local pool: { ImageLabel } = {}
-local POOL_SIZE = 30
+local POOL_SIZE = 10
 
 function UIEffectPool.Init(containerGui: ScreenGui)
 	for i = 1, POOL_SIZE do

@@ -1,3 +1,5 @@
+> **[🏠 Master Index](../../MASTER_INDEX.md) | [⬅️ Back to Docs](../../README.md)**
+
 # COBLOX SYSTEM EVALUATION & IMPLEMENTATION PLAN
 > **Status:** Auto-Generated via AI IDE Agent (Phase 0 - Phase 5)
 > **Mode:** Continuous Autonomous Development (Zero Reinvention, Evidence-Based)

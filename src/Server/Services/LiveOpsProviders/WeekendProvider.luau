@@ -1,6 +1,8 @@
 --!strict
 local ServerScriptService = game:GetService("ServerScriptService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ILiveOpsProvider = require(ServerScriptService.Server.Services.LiveOpsProviders.ILiveOpsProvider)
+local LiveOpsConfig = require(ReplicatedStorage.Shared.Configuration.LiveOpsConfig)
 
 type ILiveOpsProvider = ILiveOpsProvider.ILiveOpsProvider
 type LiveOpsModifiers = ILiveOpsProvider.LiveOpsModifiers
@@ -15,10 +17,10 @@ function WeekendProvider.new(): ILiveOpsProvider
 end
 
 function WeekendProvider:IsActive(): boolean
-	-- Check if current UTC day is Friday (6), Saturday (7), or Sunday (1)
-	local dateTable = os.date("!*t") -- UTC
+	local dateTable = os.date("!*t")
 	local weekday = dateTable.wday
-	return weekday == 1 or weekday == 6 or weekday == 7
+	local isWeekendDay = weekday == 1 or weekday == 6 or weekday == 7
+	return isWeekendDay and LiveOpsConfig.WEEKEND_DOUBLE_COINS_ENABLED
 end
 
 function WeekendProvider:GetPriority(): number
@@ -26,11 +28,12 @@ function WeekendProvider:GetPriority(): number
 end
 
 function WeekendProvider:GetModifiers(): LiveOpsModifiers
+	local multiplier = LiveOpsConfig.GetActiveCoinsMultiplier()
 	return {
-		CoinsMultiplier = 2.0,
-		XPMultiplier = 1.5,
-		AuraMultiplier = 1.25,
-		HatchLuckMultiplier = 1.5,
+		CoinsMultiplier = multiplier,
+		XPMultiplier = multiplier,
+		AuraMultiplier = multiplier * 0.75,
+		HatchLuckMultiplier = multiplier * 0.5,
 	}
 end
 
@@ -39,13 +42,12 @@ function WeekendProvider:GetRewards(): { [string]: any }
 end
 
 function WeekendProvider:GetBanner(): string?
-	-- Return nil until the actual Weekend Boost banner asset is uploaded to Roblox.
-	-- Replace with the real rbxassetid once uploaded via Creator Dashboard or asset pipeline.
 	return nil
 end
 
 function WeekendProvider:GetNotifications(): { string }?
-	return { "🎉 2X Weekend Coins & XP Boost is now LIVE!" }
+	local mult = LiveOpsConfig.GetActiveCoinsMultiplier()
+	return { string.format("Weekend Overdrive: %dx Coins & XP LIVE!", mult) }
 end
 
 function WeekendProvider:GetTheme(): string?

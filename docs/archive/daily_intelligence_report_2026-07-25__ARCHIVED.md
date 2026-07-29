@@ -1,3 +1,5 @@
+> **[🏠 Master Index](../../MASTER_INDEX.md) | [⬅️ Back to Docs](../../README.md)**
+
 # COBLOX Daily Intelligence Report
 **Date/Time:** 2026-07-25T04:40:59.854087Z
 

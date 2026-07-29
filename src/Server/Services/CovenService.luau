@@ -10,7 +10,7 @@ local TextService = game:GetService("TextService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local PlayerDataService = require(script.Parent.PlayerDataService)
-local CovenConfig = require(ReplicatedStorage.Shared.Config.CovenConfig)
+local CovenConfig = require(ReplicatedStorage.Shared.Configuration.CovenConfig)
 
 local CovenService = {}
 

@@ -19,7 +19,7 @@ PlayerDataService.ProfileReleasing = Signal.new()
 local PROFILE_KEY_PREFIX = "COBLOX_LGBOS_v11_"
 
 local defaultProfile: PlayerProfile = {
-	SchemaVersion = 4,
+	SchemaVersion = 5,
 	Wallet = {
 		Coins = 1000,
 		Gems = 50,
@@ -47,12 +47,37 @@ local defaultProfile: PlayerProfile = {
 		PlacedStructures = {},
 		CozyRating = 100,
 		VaultData = { DepositedAmount = 0, LastDepositTimestamp = os.time() },
+		VaultSlots = { [1] = "Quartz", [2] = "Quartz", [3] = "", [4] = "", [5] = "", [6] = "" },
 	},
+	SanctumGrid = {
+		Cells = {},
+		PlotBounds = {
+			MinX = -15,
+			MaxX = 15,
+			MinZ = -15,
+			MaxZ = 15,
+		},
+	},
+	CovenMembership = {
+		CovenId = nil,
+		Role = nil,
+		TotalDonated = 0,
+	},
+	HatchCooldown = {
+		LastHatchTimestamp = 0,
+		CooldownSeconds = 0,
+	},
+	TransportState = "IDLE",
 	FTUE = {
 		Completed = false,
 		State = "WELCOME",
 		Step = 0,
 		FirstCraftTimestamp = 0,
+	},
+	DailyLogin = {
+		LastLoginTimestamp = 0,
+		Streak = 0,
+		LastClaimedDay = 0,
 	},
 	DailyQuests = {
 		LastReset = 0,

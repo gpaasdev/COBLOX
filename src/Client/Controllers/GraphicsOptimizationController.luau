@@ -8,6 +8,9 @@ local GraphicsOptimizationController = {}
 local currentFps = 60
 local sampleCount = 0
 local totalFrameTime = 0
+local lastFpsState = ""
+local lastPrintTime = 0
+local PRINT_COOLDOWN = 5
 
 function GraphicsOptimizationController.Init()
 	print("[GraphicsOptimizationController] Initializing Dynamic Mobile Quality & FPS Scaling...")
@@ -27,17 +30,24 @@ function GraphicsOptimizationController.Init()
 end
 
 function GraphicsOptimizationController.EvaluateQuality(fps: number)
+	local now = tick()
 	if fps < 30 then
-		-- Low Performance Device detected: Throttle visual effects
-		print(
-			string.format(
-				"[GraphicsOptimizationController] Low FPS detected (%d). Scaling down particle density & lighting.",
-				fps
+		if lastFpsState ~= "low" and now - lastPrintTime >= PRINT_COOLDOWN then
+			lastFpsState = "low"
+			lastPrintTime = now
+			print(
+				string.format(
+					"[GraphicsOptimizationController] Low FPS detected (%d). Scaling down particle density & lighting.",
+					fps
+				)
 			)
-		)
+		end
 	elseif fps >= 55 then
-		-- High Performance Device: Enable full visual fidelity
-		print(string.format("[GraphicsOptimizationController] High FPS detected (%d). Optimal performance.", fps))
+		if lastFpsState ~= "high" and now - lastPrintTime >= PRINT_COOLDOWN then
+			lastFpsState = "high"
+			lastPrintTime = now
+			print(string.format("[GraphicsOptimizationController] High FPS detected (%d). Optimal performance.", fps))
+		end
 	end
 end
 
