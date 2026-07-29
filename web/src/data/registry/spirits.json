@@ -1,227 +1,11 @@
 [
   {
-    "Id": "SP_QUANTUM_HYDRA",
-    "Name": "Quantum Hydra",
-    "Description": "Bergerak antara dimensi.",
-    "Rarity": "Legendary",
-    "Element": "Quantum",
-    "DropRate": "1.9%"
-  },
-  {
-    "Id": "SP_AETHER_WRAITH",
-    "Name": "Aether Wraith",
-    "Description": "Setengah ada, setengah bayangan.",
-    "Rarity": "Epic",
-    "Element": "Void",
-    "DropRate": "2.0%"
-  },
-  {
-    "Id": "SP_PIXIE_SWARM",
-    "Name": "Pixie Swarm",
-    "Description": "Kawanan peri kecil yang riang.",
-    "Rarity": "Common",
-    "Element": "Wind",
-    "DropRate": "15.0%"
-  },
-  {
-    "Id": "SP_ENCHANTED_DEER",
-    "Name": "Enchanted Deer",
-    "Description": "Rusa bertanduk cahaya bintang.",
-    "Rarity": "Rare",
-    "Element": "Nature",
-    "DropRate": "4.0%"
-  },
-  {
-    "Id": "SP_OBSIDIAN_PHOENIX",
-    "Name": "Obsidian Phoenix",
-    "Description": "Terlahir dari lava dan abu.",
-    "Rarity": "Rare",
-    "Element": "Fire",
-    "DropRate": "5.0%"
-  },
-  {
-    "Id": "SP_MAGMA_DRAGON",
-    "Name": "Magma Dragon",
-    "Description": "Naga dari inti gunung berapi.",
+    "Id": "SP_SOLAR_DRAGON",
+    "Name": "Solar Dragon",
+    "Description": "Naga pemakan energi bintang.",
     "Rarity": "Epic",
     "Element": "Fire",
     "DropRate": "1.5%"
-  },
-  {
-    "Id": "SP_ABYSSAL_KRAKEN",
-    "Name": "Abyssal Kraken",
-    "Description": "Penguasa laut dalam Sanctum.",
-    "Rarity": "Epic",
-    "Element": "Water",
-    "DropRate": "1.5%"
-  },
-  {
-    "Id": "SP_MOON_WISP",
-    "Name": "Moon Wisp",
-    "Description": "Cahaya bulan yang menjelma.",
-    "Rarity": "Uncommon",
-    "Element": "Nature",
-    "DropRate": "7.0%"
-  },
-  {
-    "Id": "SP_SPARK_BUG",
-    "Name": "Spark Bug",
-    "Description": "Mengeluarkan letupan kecil.",
-    "Rarity": "Common",
-    "Element": "Lightning",
-    "DropRate": "7.0%"
-  },
-  {
-    "Id": "SP_IRON_IMP",
-    "Name": "Iron Imp",
-    "Description": "Lahir dari serpihan besi tua.",
-    "Rarity": "Common",
-    "Element": "Earth",
-    "DropRate": "15.0%"
-  },
-  {
-    "Id": "SP_VOID_DRAGON",
-    "Name": "Void Dragon",
-    "Description": "A legendary entity born from the abyss.",
-    "Rarity": "Legendary",
-    "Element": "Void",
-    "DropRate": "0.1%"
-  },
-  {
-    "Id": "SP_VOID_SHADE",
-    "Name": "Void Shade",
-    "Description": "Bayangan dari kehampaan.",
-    "Rarity": "Legendary",
-    "Element": "Void",
-    "DropRate": "0.5%"
-  },
-  {
-    "Id": "SP_SILVER_SYLPH",
-    "Name": "Silver Sylph",
-    "Description": "Gesit dan tak terduga.",
-    "Rarity": "Uncommon",
-    "Element": "Wind",
-    "DropRate": "8.0%"
-  },
-  {
-    "Id": "SP_GLOW_MUSH",
-    "Name": "Glow Mush",
-    "Description": "Menyinari rawa-rawa gelap.",
-    "Rarity": "Uncommon",
-    "Element": "Nature",
-    "DropRate": "5.0%"
-  },
-  {
-    "Id": "SP_SHADOW_FOX",
-    "Name": "Shadow Fox",
-    "Description": "Menghilang di bayangan.",
-    "Rarity": "Rare",
-    "Element": "Dark",
-    "DropRate": "3.0%"
-  },
-  {
-    "Id": "SP_WIND_FLYER",
-    "Name": "Wind Flyer",
-    "Description": "Melayang ditiup angin.",
-    "Rarity": "Common",
-    "Element": "Wind",
-    "DropRate": "8.0%"
-  },
-  {
-    "Id": "SP_FROST_PHOENIX",
-    "Name": "Frost Phoenix",
-    "Description": "Phoenix dari es abadi.",
-    "Rarity": "Epic",
-    "Element": "Ice",
-    "DropRate": "1.5%"
-  },
-  {
-    "Id": "SP_COAL_SPRITE",
-    "Name": "Coal Sprite",
-    "Description": "Panas dan bandel.",
-    "Rarity": "Common",
-    "Element": "Fire",
-    "DropRate": "10.0%"
-  },
-  {
-    "Id": "SP_ETHER_DRAKE",
-    "Name": "Ether Drake",
-    "Description": "Naga legendaris dari lapisan ether.",
-    "Rarity": "Legendary",
-    "Element": "Aether",
-    "DropRate": "0.3%"
-  },
-  {
-    "Id": "SP_ASH_PUFF",
-    "Name": "Ash Puff",
-    "Description": "Sisa pembakaran alkimia.",
-    "Rarity": "Common",
-    "Element": "Fire",
-    "DropRate": "7.0%"
-  },
-  {
-    "Id": "SP_MAGMA_SLIME",
-    "Name": "Magma Slime",
-    "Description": "Slime bersuhu tinggi.",
-    "Rarity": "Uncommon",
-    "Element": "Fire",
-    "DropRate": "5.0%"
-  },
-  {
-    "Id": "SP_ICE_CUBE",
-    "Name": "Ice Cube",
-    "Description": "Tidak pernah meleleh.",
-    "Rarity": "Uncommon",
-    "Element": "Water",
-    "DropRate": "5.0%"
-  },
-  {
-    "Id": "SP_STORM_ELEMENTAL",
-    "Name": "Storm Elemental",
-    "Description": "Wujud fisik dari badai petir.",
-    "Rarity": "Rare",
-    "Element": "Lightning",
-    "DropRate": "2.0%"
-  },
-  {
-    "Id": "SP_CELESTIAL_SERAPH",
-    "Name": "Celestial Seraph",
-    "Description": "Malaikat langit ketujuh.",
-    "Rarity": "Epic",
-    "Element": "Aether",
-    "DropRate": "2.0%"
-  },
-  {
-    "Id": "SP_WATER_DRIP",
-    "Name": "Water Drip",
-    "Description": "Bentuk seperti tetesan air murni.",
-    "Rarity": "Common",
-    "Element": "Water",
-    "DropRate": "8.0%"
-  },
-  {
-    "Id": "SP_BRONZE_DRAKE",
-    "Name": "Bronze Drake",
-    "Description": "Cakar perunggu yang kuat.",
-    "Rarity": "Uncommon",
-    "Element": "Fire",
-    "DropRate": "7.0%"
-  },
-  {
-    "Id": "SP_TITANIUM_WYVERN",
-    "Name": "Titanium Wyvern",
-    "Description": "Sayap titanium yang tak bisa ditembus.",
-    "Rarity": "Rare",
-    "Element": "Metal",
-    "DropRate": "4.0%"
-  },
-  {
-    "Id": "SP_THUNDER_BIRD",
-    "Name": "Thunder Bird",
-    "Description": "Membawa badai kecil.",
-    "Rarity": "Uncommon",
-    "Element": "Lightning",
-    "DropRate": "5.0%"
   },
   {
     "Id": "SP_SUN_LION",
@@ -232,6 +16,54 @@
     "DropRate": "3.0%"
   },
   {
+    "Id": "SP_COAL_SPRITE",
+    "Name": "Coal Sprite",
+    "Description": "Panas dan bandel.",
+    "Rarity": "Common",
+    "Element": "Fire",
+    "DropRate": "10.0%"
+  },
+  {
+    "Id": "SP_CELESTIAL_SERAPH",
+    "Name": "Celestial Seraph",
+    "Description": "Malaikat langit ketujuh.",
+    "Rarity": "Epic",
+    "Element": "Aether",
+    "DropRate": "2.0%"
+  },
+  {
+    "Id": "SP_SHADOW_FOX",
+    "Name": "Shadow Fox",
+    "Description": "Menghilang di bayangan.",
+    "Rarity": "Rare",
+    "Element": "Dark",
+    "DropRate": "3.0%"
+  },
+  {
+    "Id": "SP_GLOW_MUSH",
+    "Name": "Glow Mush",
+    "Description": "Menyinari rawa-rawa gelap.",
+    "Rarity": "Uncommon",
+    "Element": "Nature",
+    "DropRate": "5.0%"
+  },
+  {
+    "Id": "SP_THUNDER_BIRD",
+    "Name": "Thunder Bird",
+    "Description": "Membawa badai kecil.",
+    "Rarity": "Uncommon",
+    "Element": "Lightning",
+    "DropRate": "5.0%"
+  },
+  {
+    "Id": "SP_FROST_PHOENIX",
+    "Name": "Frost Phoenix",
+    "Description": "Phoenix dari es abadi.",
+    "Rarity": "Epic",
+    "Element": "Ice",
+    "DropRate": "1.5%"
+  },
+  {
     "Id": "SP_FAIRY_FOX",
     "Name": "Fairy Fox",
     "Description": "Rubah bercahaya dengan ekor berkilauan.",
@@ -240,12 +72,44 @@
     "DropRate": "8.0%"
   },
   {
-    "Id": "SP_CRYSTAL_GOLEM",
-    "Name": "Crystal Golem",
-    "Description": "Golem dari kristal mana murni.",
-    "Rarity": "Rare",
-    "Element": "Earth",
-    "DropRate": "3.0%"
+    "Id": "SP_VOID_SHADE",
+    "Name": "Void Shade",
+    "Description": "Bayangan dari kehampaan.",
+    "Rarity": "Legendary",
+    "Element": "Void",
+    "DropRate": "0.5%"
+  },
+  {
+    "Id": "SP_VOID_DRAGON",
+    "Name": "Void Dragon",
+    "Description": "A legendary entity born from the abyss.",
+    "Rarity": "Legendary",
+    "Element": "Void",
+    "DropRate": "0.1%"
+  },
+  {
+    "Id": "SP_ICE_CUBE",
+    "Name": "Ice Cube",
+    "Description": "Tidak pernah meleleh.",
+    "Rarity": "Uncommon",
+    "Element": "Water",
+    "DropRate": "5.0%"
+  },
+  {
+    "Id": "SP_SPARK_BUG",
+    "Name": "Spark Bug",
+    "Description": "Mengeluarkan letupan kecil.",
+    "Rarity": "Common",
+    "Element": "Lightning",
+    "DropRate": "7.0%"
+  },
+  {
+    "Id": "SP_SILVER_SYLPH",
+    "Name": "Silver Sylph",
+    "Description": "Gesit dan tak terduga.",
+    "Rarity": "Uncommon",
+    "Element": "Wind",
+    "DropRate": "8.0%"
   },
   {
     "Id": "SP_COPPER_WISP",
@@ -256,52 +120,44 @@
     "DropRate": "12.0%"
   },
   {
-    "Id": "SP_CLAY_PUP",
-    "Name": "Clay Pup",
-    "Description": "Anak anjing dari tanah liat.",
-    "Rarity": "Common",
-    "Element": "Earth",
-    "DropRate": "10.0%"
-  },
-  {
-    "Id": "SP_MYTHRIL_SERPENT",
-    "Name": "Mythril Serpent",
-    "Description": "Bersinar dalam kegelapan.",
-    "Rarity": "Epic",
-    "Element": "Aether",
-    "DropRate": "3.0%"
-  },
-  {
-    "Id": "SP_CRYSTAL_BEAR",
-    "Name": "Crystal Bear",
-    "Description": "Tubuh penuh kristal bening.",
-    "Rarity": "Rare",
-    "Element": "Ice",
-    "DropRate": "3.0%"
-  },
-  {
-    "Id": "SP_SAND_GOLEM",
-    "Name": "Sand Golem",
-    "Description": "Terbentuk dari pasir gurun.",
+    "Id": "SP_MOON_WISP",
+    "Name": "Moon Wisp",
+    "Description": "Cahaya bulan yang menjelma.",
     "Rarity": "Uncommon",
-    "Element": "Earth",
-    "DropRate": "5.0%"
-  },
-  {
-    "Id": "SP_LEAF_BUG",
-    "Name": "Leaf Bug",
-    "Description": "Penjaga tanaman alami.",
-    "Rarity": "Common",
     "Element": "Nature",
     "DropRate": "7.0%"
   },
   {
-    "Id": "SP_FLAME_CAT",
-    "Name": "Flame Cat",
-    "Description": "Kucing berbulu api.",
-    "Rarity": "Uncommon",
+    "Id": "SP_WIND_FLYER",
+    "Name": "Wind Flyer",
+    "Description": "Melayang ditiup angin.",
+    "Rarity": "Common",
+    "Element": "Wind",
+    "DropRate": "8.0%"
+  },
+  {
+    "Id": "SP_ETHER_DRAKE",
+    "Name": "Ether Drake",
+    "Description": "Naga legendaris dari lapisan ether.",
+    "Rarity": "Legendary",
+    "Element": "Aether",
+    "DropRate": "0.3%"
+  },
+  {
+    "Id": "SP_ABYSSAL_KRAKEN",
+    "Name": "Abyssal Kraken",
+    "Description": "Penguasa laut dalam Sanctum.",
+    "Rarity": "Epic",
+    "Element": "Water",
+    "DropRate": "1.5%"
+  },
+  {
+    "Id": "SP_MAGMA_DRAGON",
+    "Name": "Magma Dragon",
+    "Description": "Naga dari inti gunung berapi.",
+    "Rarity": "Epic",
     "Element": "Fire",
-    "DropRate": "5.0%"
+    "DropRate": "1.5%"
   },
   {
     "Id": "SP_STONE_GOBLIN",
@@ -312,11 +168,155 @@
     "DropRate": "8.0%"
   },
   {
-    "Id": "SP_SOLAR_DRAGON",
-    "Name": "Solar Dragon",
-    "Description": "Naga pemakan energi bintang.",
-    "Rarity": "Epic",
+    "Id": "SP_MAGMA_SLIME",
+    "Name": "Magma Slime",
+    "Description": "Slime bersuhu tinggi.",
+    "Rarity": "Uncommon",
     "Element": "Fire",
-    "DropRate": "1.5%"
+    "DropRate": "5.0%"
+  },
+  {
+    "Id": "SP_ASH_PUFF",
+    "Name": "Ash Puff",
+    "Description": "Sisa pembakaran alkimia.",
+    "Rarity": "Common",
+    "Element": "Fire",
+    "DropRate": "7.0%"
+  },
+  {
+    "Id": "SP_STORM_ELEMENTAL",
+    "Name": "Storm Elemental",
+    "Description": "Wujud fisik dari badai petir.",
+    "Rarity": "Rare",
+    "Element": "Lightning",
+    "DropRate": "2.0%"
+  },
+  {
+    "Id": "SP_FLAME_CAT",
+    "Name": "Flame Cat",
+    "Description": "Kucing berbulu api.",
+    "Rarity": "Uncommon",
+    "Element": "Fire",
+    "DropRate": "5.0%"
+  },
+  {
+    "Id": "SP_QUANTUM_HYDRA",
+    "Name": "Quantum Hydra",
+    "Description": "Bergerak antara dimensi.",
+    "Rarity": "Legendary",
+    "Element": "Quantum",
+    "DropRate": "1.9%"
+  },
+  {
+    "Id": "SP_SAND_GOLEM",
+    "Name": "Sand Golem",
+    "Description": "Terbentuk dari pasir gurun.",
+    "Rarity": "Uncommon",
+    "Element": "Earth",
+    "DropRate": "5.0%"
+  },
+  {
+    "Id": "SP_OBSIDIAN_PHOENIX",
+    "Name": "Obsidian Phoenix",
+    "Description": "Terlahir dari lava dan abu.",
+    "Rarity": "Rare",
+    "Element": "Fire",
+    "DropRate": "5.0%"
+  },
+  {
+    "Id": "SP_ENCHANTED_DEER",
+    "Name": "Enchanted Deer",
+    "Description": "Rusa bertanduk cahaya bintang.",
+    "Rarity": "Rare",
+    "Element": "Nature",
+    "DropRate": "4.0%"
+  },
+  {
+    "Id": "SP_MYTHRIL_SERPENT",
+    "Name": "Mythril Serpent",
+    "Description": "Bersinar dalam kegelapan.",
+    "Rarity": "Epic",
+    "Element": "Aether",
+    "DropRate": "3.0%"
+  },
+  {
+    "Id": "SP_PIXIE_SWARM",
+    "Name": "Pixie Swarm",
+    "Description": "Kawanan peri kecil yang riang.",
+    "Rarity": "Common",
+    "Element": "Wind",
+    "DropRate": "15.0%"
+  },
+  {
+    "Id": "SP_WATER_DRIP",
+    "Name": "Water Drip",
+    "Description": "Bentuk seperti tetesan air murni.",
+    "Rarity": "Common",
+    "Element": "Water",
+    "DropRate": "8.0%"
+  },
+  {
+    "Id": "SP_CRYSTAL_BEAR",
+    "Name": "Crystal Bear",
+    "Description": "Tubuh penuh kristal bening.",
+    "Rarity": "Rare",
+    "Element": "Ice",
+    "DropRate": "3.0%"
+  },
+  {
+    "Id": "SP_TITANIUM_WYVERN",
+    "Name": "Titanium Wyvern",
+    "Description": "Sayap titanium yang tak bisa ditembus.",
+    "Rarity": "Rare",
+    "Element": "Metal",
+    "DropRate": "4.0%"
+  },
+  {
+    "Id": "SP_CLAY_PUP",
+    "Name": "Clay Pup",
+    "Description": "Anak anjing dari tanah liat.",
+    "Rarity": "Common",
+    "Element": "Earth",
+    "DropRate": "10.0%"
+  },
+  {
+    "Id": "SP_LEAF_BUG",
+    "Name": "Leaf Bug",
+    "Description": "Penjaga tanaman alami.",
+    "Rarity": "Common",
+    "Element": "Nature",
+    "DropRate": "7.0%"
+  },
+  {
+    "Id": "SP_AETHER_WRAITH",
+    "Name": "Aether Wraith",
+    "Description": "Setengah ada, setengah bayangan.",
+    "Rarity": "Epic",
+    "Element": "Void",
+    "DropRate": "2.0%"
+  },
+  {
+    "Id": "SP_BRONZE_DRAKE",
+    "Name": "Bronze Drake",
+    "Description": "Cakar perunggu yang kuat.",
+    "Rarity": "Uncommon",
+    "Element": "Fire",
+    "DropRate": "7.0%"
+  },
+  {
+    "Id": "SP_CRYSTAL_GOLEM",
+    "Name": "Crystal Golem",
+    "Description": "Golem dari kristal mana murni.",
+    "Rarity": "Rare",
+    "Element": "Earth",
+    "DropRate": "3.0%"
+  },
+  {
+    "Id": "SP_IRON_IMP",
+    "Name": "Iron Imp",
+    "Description": "Lahir dari serpihan besi tua.",
+    "Rarity": "Common",
+    "Element": "Earth",
+    "DropRate": "15.0%"
   }
 ]
