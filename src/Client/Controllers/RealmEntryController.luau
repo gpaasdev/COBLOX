@@ -27,7 +27,7 @@ function RealmEntryController.Init()
 	print("[RealmEntryController] Initialized.")
 end
 
-function RealmEntryController._CreateRealmSelectionUI()
+function RealmEntryController._CreateRealmSelectionUI(self)
 	if realmSelectionOpen then
 		return
 	end
@@ -146,13 +146,13 @@ function RealmEntryController.Start(self)
 	self.maid = Maid.new()
 	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input)
 		if input.KeyCode == Enum.KeyCode.R and not UserInputService:GetFocusedTextBox() then
-			RealmEntryController._CreateRealmSelectionUI()
+			RealmEntryController:_CreateRealmSelectionUI()
 		end
 	end))
 
 	local ContextActionService = game:GetService("ContextActionService")
 	ContextActionService:BindAction("RealmSelectAction", function()
-		RealmEntryController._CreateRealmSelectionUI()
+		RealmEntryController:_CreateRealmSelectionUI()
 	end, false, Enum.KeyCode.ButtonR3)
 	ContextActionService:SetTitle("RealmSelectAction", "🌍 REALM")
 	ContextActionService:SetPosition("RealmSelectAction", UDim2.new(0.02, 0, 0.5, 0))

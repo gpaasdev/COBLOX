@@ -670,7 +670,7 @@ function UIController._CreateHUD(self)
 
 	self.maid:GiveTask(realmHint.MouseButton1Click:Connect(function()
 		local RealmEntryController = require(controllersFolder:WaitForChild("RealmEntryController") :: any)
-		RealmEntryController._CreateRealmSelectionUI()
+		RealmEntryController:_CreateRealmSelectionUI()
 	end))
 
 	-- 5 Inventory Hotbar Slots (1..5)
