@@ -1,4 +1,9 @@
 name: CI/CD Open Cloud Deployment
+# Required GitHub Secrets:
+#   ROBLOX_OPEN_CLOUD_API_KEY — Open Cloud API key with universe.places:write scope
+#   ROBLOX_UNIVERSE_ID — Universe ID for the COBLOX experience
+#   ROBLOX_PLACE_ID — Main Realm place ID
+#   ROBLOX_FAIRYTALE_PLACE_ID — Fairytale Realm place ID (must be set for Fairytale deploy)
 
 on:
   push:
@@ -30,7 +35,7 @@ jobs:
 
   build-and-deploy-fairytale:
     runs-on: ubuntu-latest
-    if: ${{ vars.FAIRYTALE_DEPLOY_ENABLED == 'true' }}
+    needs: build-and-deploy-main
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -39,7 +44,7 @@ jobs:
         uses: ok-nick/setup-aftman@v0.4.2
 
       - name: Build Fairytale Place
-        run: rojo build fairytale/ -o COBLOX_Fairytale.rbxl
+        run: rojo build fairytale/default.project.json -o COBLOX_Fairytale.rbxl
 
       - name: Publish Fairytale Place to Roblox via Open Cloud API
         run: |
