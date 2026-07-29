@@ -54,8 +54,10 @@ function IntegrationTestService.TestRecipeRegistry()
 	-- Test 1: Registry has entries
 	local allRecipes = GeneratedRecipeRegistry.GetAll()
 	local count = 0
-	for _ in pairs(allRecipes) do
-		count += 1
+	for _, v in pairs(allRecipes) do
+		if typeof(v) == "table" then
+			count += 1
+		end
 	end
 	assert(count > 0, "GeneratedRecipeRegistry has " .. count .. " recipes (expected > 0)")
 
@@ -94,8 +96,10 @@ function IntegrationTestService.TestSpiritRegistry()
 	-- Test 1: Registry has entries
 	local allSpirits = GeneratedSpiritRegistry.GetAll()
 	local count = 0
-	for _ in pairs(allSpirits) do
-		count += 1
+	for _, v in pairs(allSpirits) do
+		if typeof(v) == "table" then
+			count += 1
+		end
 	end
 	assert(count > 0, "GeneratedSpiritRegistry has " .. count .. " spirits (expected > 0)")
 
@@ -105,7 +109,8 @@ function IntegrationTestService.TestSpiritRegistry()
 		if typeof(spirit) ~= "table" then
 			continue
 		end
-		local dropNum = tonumber(spirit.DropRate)
+		local dropStr = tostring(spirit.DropRate):gsub("%%", "")
+		local dropNum = tonumber(dropStr)
 		if not dropNum then
 			invalidDropRates += 1
 		end
@@ -138,7 +143,8 @@ function IntegrationTestService.TestSpiritRegistry()
 				continue
 			end
 			if spirit.Rarity == rarityFilter then
-				local dropWeight = tonumber(spirit.DropRate)
+				local dropStr = tostring(spirit.DropRate):gsub("%%", "")
+				local dropWeight = tonumber(dropStr)
 				if dropWeight then
 					poolCount += 1
 				end

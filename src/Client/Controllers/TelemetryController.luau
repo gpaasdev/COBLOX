@@ -17,11 +17,11 @@ type TelemetryEvent = {
 local buffer: { TelemetryEvent } = {}
 local MAX_BUFFER_SIZE = 100
 
-function TelemetryController.Init(Registry: any)
+function TelemetryController.Init(self, Registry: any)
 	print("[TelemetryController] Initialized.")
 end
 
-function TelemetryController.Start(Registry: any)
+function TelemetryController.Start(self, Registry: any)
 	local UserInputService = game:GetService("UserInputService")
 	local GuiService = game:GetService("GuiService")
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")

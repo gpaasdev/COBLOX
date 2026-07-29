@@ -30,12 +30,12 @@ type ActiveTargetInfo = {
 local activeTargets: { [Instance]: ActiveTargetInfo } = {}
 local lastScanTime = 0
 
-function ARLensController.Init(Registry: any)
+function ARLensController.Init(self, Registry: any)
 	RegistryRef = Registry
 	print("[ARLensController] Initialized.")
 end
 
-function ARLensController.Start(Registry: any)
+function ARLensController.Start(self, Registry: any)
 	controllerMaid:GiveTask(RunService.RenderStepped:Connect(ARLensController.Update))
 	print("[ARLensController] Active with ScreenGui Pipeline.")
 end

@@ -12,12 +12,12 @@ local ActionMenuController = {
 
 local RegistryRef: any = nil
 
-function ActionMenuController.Init(Registry: any)
+function ActionMenuController.Init(self, Registry: any)
 	RegistryRef = Registry
 	print("[ActionMenuController] Initialized.")
 end
 
-function ActionMenuController.Start(Registry: any)
+function ActionMenuController.Start(self, Registry: any)
 	print("[ActionMenuController] Action Menu active.")
 end
 

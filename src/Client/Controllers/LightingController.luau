@@ -19,12 +19,12 @@ local frameTimes: { number } = {}
 local sampleWindow = ClientConfig.Lighting.FpsSampleWindow
 local controllerMaid = Maid.new()
 
-function LightingController.Init(Registry: any)
+function LightingController.Init(self, Registry: any)
 	RegistryRef = Registry
 	print("[LightingController] Initialized.")
 end
 
-function LightingController.Start(Registry: any)
+function LightingController.Start(self, Registry: any)
 	controllerMaid:GiveTask(RunService.RenderStepped:Connect(function(dt: number)
 		table.insert(frameTimes, dt)
 		if #frameTimes > 120 then

@@ -32,7 +32,8 @@ local function buildSpiritPool(rarityFilter: string?)
 			continue
 		end
 		if rarityFilter == nil or spirit.Rarity == rarityFilter then
-			local dropWeight = tonumber(spirit.DropRate)
+			local dropStr = tostring(spirit.DropRate):gsub("%%", "")
+			local dropWeight = tonumber(dropStr)
 			if dropWeight then
 				table.insert(pool, { SpiritId = id, Weight = math.max(1, math.floor(dropWeight * 10)) })
 			end

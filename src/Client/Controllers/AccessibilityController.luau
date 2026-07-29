@@ -13,12 +13,12 @@ local AccessibilityController = {
 
 local RegistryRef: any = nil
 
-function AccessibilityController.Init(Registry: any)
+function AccessibilityController.Init(self, Registry: any)
 	RegistryRef = Registry
 	print("[AccessibilityController] Initialized.")
 end
 
-function AccessibilityController.Start(Registry: any)
+function AccessibilityController.Start(self, Registry: any)
 	print("[AccessibilityController] Accessibility Controller Active.")
 end
 

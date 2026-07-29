@@ -195,7 +195,8 @@ function CombatController.Attack()
 		end
 	end
 
-	CombatEvent:FireServer("Attack", nearestMobId, currentWeapon)
+	local weaponIdMap = { Fist = "Fist", Sword = "IronSword", Staff = "FlameSaber" }
+	CombatEvent:FireServer("Attack", nearestMobId, weaponIdMap[currentWeapon] or "Fist")
 
 	if nearestMobId then
 		print(
