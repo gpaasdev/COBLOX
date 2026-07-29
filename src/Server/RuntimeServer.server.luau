@@ -17,6 +17,11 @@ for key, entry in pairs(RealmRegistry) do
 	end
 end
 
+-- Enable DynamicGeneration for EditableMesh/EditableImage support (Block Builder, etc.)
+pcall(function()
+	workspace.DynamicGenerationEnabled = true
+end)
+
 -- ============================================================
 -- TIER 0 — Infrastructure
 -- ============================================================

@@ -5,8 +5,7 @@
     "Workspace": {
       "$className": "Workspace",
       "$properties": {
-        "StreamingEnabled": true,
-        "DynamicGenerationEnabled": true
+        "StreamingEnabled": true
       },
       "Baseplate": {
         "$className": "Part",
