@@ -23,12 +23,12 @@ COBLOXBadgeService.ServiceStatus = "Production"
 -- Run: python scripts/create_badges.py --create-all
 -- ⚠️ Each badge needs: thumbnail image (via Creator Dashboard → Badges → Upload)
 local BADGE_IDS: { [string]: number } = {
-	BDG_FIRST_CRAFT = 0,
+	BDG_FIRST_CRAFT = 4302438167554773,
 	BDG_SOUL_BONDER = 2351451234805475,
-	BDG_BIOME_WALKER = 0,
-	BDG_SANCTUM_BUILDER = 0,
-	BDG_COVEN_FOUNDER = 0,
-	BDG_DAILY_STREAK = 0,
+	BDG_BIOME_WALKER = 1066802505175675,
+	BDG_SANCTUM_BUILDER = 18504618300334,
+	BDG_COVEN_FOUNDER = 1977421385595193,
+	BDG_DAILY_STREAK = 2492410808940770,
 	BDG_MONSTER_SLAYER = 0,
 	BDG_SHADOW_VETERAN = 0,
 	BDG_RESEARCHER = 0,
