@@ -93,7 +93,7 @@ function SynthesisController._CreateModal()
 	header.Size = UDim2.new(0.8, 0, 0.08, 0)
 	header.Position = UDim2.new(0.04, 0, 0.03, 0)
 	header.BackgroundTransparency = 1
-	header.Text = "🧪 Lab Racik (Crafting Alkemis)"
+	header.Text = LocalizationController.Get("SYNTHESIS_TITLE")
 	header.TextColor3 = COLOR_GOLD
 	header.Font = Enum.Font.FredokaOne
 	header.TextSize = 24
@@ -250,8 +250,8 @@ function SynthesisController._CreateModal()
 			local controllersFolder = script.Parent
 			local UIController = require(controllersFolder:WaitForChild("UIController") :: any)
 			UIController.ShowNotification(
-				string.format(
-					"⚠️ Harap tunggu %.1fs sebelum meracik lagi!",
+				LocalizationController.Get(
+					"SYNTHESIS_COOLDOWN",
 					CRAFT_COOLDOWN - (currentTime - lastCraftTime)
 				)
 			)

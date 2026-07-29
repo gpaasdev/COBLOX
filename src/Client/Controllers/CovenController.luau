@@ -181,7 +181,7 @@ function CovenController._CreateModal()
 	visitHideoutBtn.Size = UDim2.new(0.42, 0, 0.12, 0)
 	visitHideoutBtn.Position = UDim2.new(0.05, 0, 0.6, 0)
 	visitHideoutBtn.BackgroundColor3 = Color3.fromRGB(59, 130, 246) -- Blue
-	visitHideoutBtn.Text = "🏰 Visit Hideout"
+	visitHideoutBtn.Text = LocalizationController.Get("COVEN_VISIT_HIDEOUT")
 	visitHideoutBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 	visitHideoutBtn.Font = Enum.Font.GothamBold
 	visitHideoutBtn.TextSize = 14
@@ -203,7 +203,7 @@ function CovenController._CreateModal()
 	inviteGuestBtn.Size = UDim2.new(0.42, 0, 0.12, 0)
 	inviteGuestBtn.Position = UDim2.new(0.51, 0, 0.6, 0)
 	inviteGuestBtn.BackgroundColor3 = Color3.fromRGB(236, 72, 153) -- Pink Accent
-	inviteGuestBtn.Text = "📩 Invite Guest"
+	inviteGuestBtn.Text = LocalizationController.Get("COVEN_INVITE_GUEST")
 	inviteGuestBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 	inviteGuestBtn.Font = Enum.Font.GothamBold
 	inviteGuestBtn.TextSize = 14

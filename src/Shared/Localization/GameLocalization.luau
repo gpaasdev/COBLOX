@@ -31,6 +31,9 @@ local GameLocalization = {
 		["SYNTHESIS_BTN"] = "⚡ RACIK SEKARANG!",
 		["SYNTHESIS_SUCCESS"] = "🎉 Berhasil: %s (Hasil: %.1fx)",
 		["SYNTHESIS_FAILED"] = "❌ Racikan Gagal!",
+		["SYNTHESIS_COOLDOWN"] = "⚠️ Harap tunggu %.1fs sebelum meracik lagi!",
+		["COVEN_VISIT_HIDEOUT"] = "🏰 Visit Hideout",
+		["COVEN_INVITE_GUEST"] = "📩 Invite Guest",
 
 		["PLACEMENT_HUD"] = "🟩 MODE PENEMPATAN | [R] Rotasi | [L-Click] Pasang | [X] Batal",
 		["PLACEMENT_SUCCESS"] = "✅ Objek terpasang!",
@@ -56,6 +59,13 @@ local GameLocalization = {
 		["TRADE_UNLOCK_BTN"] = "🔓 BUKA KUNCI",
 		["TRADE_CONFIRM_BTN"] = "✅ KONFIRMASI FINAL",
 		["TRADE_WAITING"] = "⏳ TUNGGU (%ds)",
+		["NOTIF_DASH"] = "⚡ Dash Diaktifkan!",
+		["NOTIF_PETS_COMING"] = "🐶 Menu Pet segera hadir!",
+		["NOTIF_QUICK_ACTION"] = "⚡ %s",
+		["NOTIF_PLACE_MODE"] = "🏗️ Mode Pasang: %s",
+		["NOTIF_CONSUME"] = "🧪 Menggunakan %s (+100%% Buff Aura 60s)!",
+		["NOTIF_SIDE_DRAWER"] = "Buka: %s",
+		["NOTIF_LIVEOPS"] = "🎉 Event LiveOps Aktif!",
 
 		["ACTION_SETOR_AURA"] = "🚚 Setor Aura",
 		["ACTION_BEGAL_AURA"] = "🥷 Raid Aura",
@@ -97,6 +107,9 @@ local GameLocalization = {
 		["SYNTHESIS_BTN"] = "⚡ CRAFT NOW!",
 		["SYNTHESIS_SUCCESS"] = "🎉 Transmuted: %s (Yield: %.1fx)",
 		["SYNTHESIS_FAILED"] = "❌ Recipe Failed!",
+		["SYNTHESIS_COOLDOWN"] = "⚠️ Please wait %.1fs before crafting again!",
+		["COVEN_VISIT_HIDEOUT"] = "🏰 Visit Hideout",
+		["COVEN_INVITE_GUEST"] = "📩 Invite Guest",
 
 		["PLACEMENT_HUD"] = "🟩 PLACEMENT MODE | [R] Rotate | [L-Click] Place | [X] Cancel",
 		["PLACEMENT_SUCCESS"] = "✅ Structure placed!",
@@ -131,6 +144,13 @@ local GameLocalization = {
 		["NOTIF_HOTBAR_FULL"] = "⚠️ Hotbar full! Clear a slot first.",
 		["NOTIF_HOTBAR_ADD"] = "🎒 Item added to Hotbar Slot %d: %s",
 		["NOTIF_REALM_SELECT"] = "Press [R] to open Realm Selection — explore the Fairytale Realm!",
+		["NOTIF_DASH"] = "⚡ Dash Activated!",
+		["NOTIF_PETS_COMING"] = "🐶 Pet inventory coming soon!",
+		["NOTIF_QUICK_ACTION"] = "⚡ %s",
+		["NOTIF_PLACE_MODE"] = "🏗️ Place Mode: %s",
+		["NOTIF_CONSUME"] = "🧪 Using %s (+100%% Aura Buff 60s)!",
+		["NOTIF_SIDE_DRAWER"] = "Open: %s",
+		["NOTIF_LIVEOPS"] = "🎉 LiveOps Boost Event Active!",
 	},
 }
 

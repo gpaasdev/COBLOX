@@ -449,7 +449,7 @@ function UIController._CreateHUD()
 				local StoreController = require(controllersFolder:WaitForChild("StoreController") :: any)
 				StoreController.ToggleModal()
 			else
-				UIController.ShowNotification("Buka: " .. text)
+				UIController.ShowNotification(LocalizationController.Get("NOTIF_SIDE_DRAWER", text))
 			end
 		end)
 	end
@@ -573,10 +573,10 @@ function UIController._CreateHUD()
 						AudioController.PlaySound("rbxassetid://12222204", 0.8) -- Valid Dash swoosh SFX
 					end)
 					
-					UIController.ShowNotification("⚡ Dash Activated!")
+					UIController.ShowNotification(LocalizationController.Get("NOTIF_DASH"))
 				end
 			elseif act.Name == "🐶 PETS" then
-				UIController.ShowNotification("Menu Inventory Pet akan segera hadir!")
+				UIController.ShowNotification(LocalizationController.Get("NOTIF_PETS_COMING"))
 			elseif act.Name == "🌱 ELEMEN" then
 				local SynthesisController = require(controllersFolder:WaitForChild("SynthesisController") :: any)
 				SynthesisController.ToggleModal()
@@ -584,7 +584,7 @@ function UIController._CreateHUD()
 				local PlacementController = require(controllersFolder:WaitForChild("PlacementController") :: any)
 				PlacementController.TogglePlacementMode()
 			else
-				UIController.ShowNotification("Aksi Cepat: " .. act.Name)
+				UIController.ShowNotification(LocalizationController.Get("NOTIF_QUICK_ACTION", act.Name))
 			end
 		end)
 	end
@@ -684,9 +684,9 @@ function UIController._CreateHUD()
 				if slotData.ItemType == "Structure" then
 					local PlacementController = require(controllersFolder:WaitForChild("PlacementController") :: any)
 					PlacementController.StartPlacementForStructure(slotData.ItemName)
-					UIController.ShowNotification("🏗️ Mode Pasang: " .. slotData.ItemName)
+					UIController.ShowNotification(LocalizationController.Get("NOTIF_PLACE_MODE", slotData.ItemName))
 				elseif slotData.ItemType == "Consumable" then
-					UIController.ShowNotification("🧪 Minum " .. slotData.ItemName .. " (+100% Aura Buff 60s)!")
+					UIController.ShowNotification(LocalizationController.Get("NOTIF_CONSUME", slotData.ItemName))
 					slotData.ItemName = nil
 					slotData.ItemType = nil
 					iconLbl.Text = slotIcons[slotIdx]
@@ -845,7 +845,7 @@ function UIController.CheckLiveOpsOverlays()
 		if liveOpsBanner then
 			liveOpsBanner.Visible = true
 		end
-		UIController.ShowNotification("🎉 LiveOps Boost Event Active!")
+		UIController.ShowNotification(LocalizationController.Get("NOTIF_LIVEOPS"))
 	end)
 end
 
