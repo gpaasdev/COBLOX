@@ -5,25 +5,26 @@
 export type ReactionRegistryDefinition = { Id: string, Name: string, RequiredMaterials: {[string]: number}, Catalyst: string?, MinTemperature: number, MaxTemperature: number, MinPressure: number, Product: string, YieldRatio: number, EnergyRequired: number, EntropyGenerated: number, DiscoveryRequirement: string? }
 
 local ReactionRegistry: { [string]: ReactionRegistryDefinition } = {}
+local ReactionRegistry_data: { [string]: ReactionRegistryDefinition } = {}
 
 function ReactionRegistry.Get(id: string): ReactionRegistryDefinition?
-	return ReactionRegistry[id]
+	return ReactionRegistry_data[id]
 end
 
 function ReactionRegistry.GetAll(): { [string]: ReactionRegistryDefinition }
-	return ReactionRegistry
+	return ReactionRegistry_data
 end
 
 -- Backward-compatible aliases (legacy API)
 function ReactionRegistry.GetReaction(id: string): ReactionRegistryDefinition?
-	return ReactionRegistry[id]
+	return ReactionRegistry_data[id]
 end
 
 function ReactionRegistry.GetAllReaction(): { [string]: ReactionRegistryDefinition }
-	return ReactionRegistry
+	return ReactionRegistry_data
 end
 
-ReactionRegistry["FerriumFusion"] = {
+ReactionRegistry_data["FerriumFusion"] = {
 	Id = "FerriumFusion",
 	Name = "Ferrium Alloy Fusion",
 	RequiredMaterials = {

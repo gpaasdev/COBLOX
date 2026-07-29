@@ -5,25 +5,26 @@
 export type MaterialRegistryDefinition = { Id: string, Name: string, Density: number, Conductivity: number, Value: number }
 
 local MaterialRegistry: { [string]: MaterialRegistryDefinition } = {}
+local MaterialRegistry_data: { [string]: MaterialRegistryDefinition } = {}
 
 function MaterialRegistry.Get(id: string): MaterialRegistryDefinition?
-	return MaterialRegistry[id]
+	return MaterialRegistry_data[id]
 end
 
 function MaterialRegistry.GetAll(): { [string]: MaterialRegistryDefinition }
-	return MaterialRegistry
+	return MaterialRegistry_data
 end
 
 -- Backward-compatible aliases (legacy API)
 function MaterialRegistry.GetMaterial(id: string): MaterialRegistryDefinition?
-	return MaterialRegistry[id]
+	return MaterialRegistry_data[id]
 end
 
 function MaterialRegistry.GetAllMaterial(): { [string]: MaterialRegistryDefinition }
-	return MaterialRegistry
+	return MaterialRegistry_data
 end
 
-MaterialRegistry["Adamantite_Alloy"] = {
+MaterialRegistry_data["Adamantite_Alloy"] = {
 	Id = "Adamantite_Alloy",
 	Name = "Adamantite Alloy",
 	Density = 7191.0,
@@ -31,7 +32,7 @@ MaterialRegistry["Adamantite_Alloy"] = {
 	Value = 2060,
 }
 
-MaterialRegistry["Adamantite_Crystal"] = {
+MaterialRegistry_data["Adamantite_Crystal"] = {
 	Id = "Adamantite_Crystal",
 	Name = "Adamantite Crystal",
 	Density = 7266.5,
@@ -39,7 +40,7 @@ MaterialRegistry["Adamantite_Crystal"] = {
 	Value = 2085,
 }
 
-MaterialRegistry["Adamantite_Dust"] = {
+MaterialRegistry_data["Adamantite_Dust"] = {
 	Id = "Adamantite_Dust",
 	Name = "Adamantite Dust",
 	Density = 7417.5,
@@ -47,7 +48,7 @@ MaterialRegistry["Adamantite_Dust"] = {
 	Value = 2135,
 }
 
-MaterialRegistry["Adamantite_Essence"] = {
+MaterialRegistry_data["Adamantite_Essence"] = {
 	Id = "Adamantite_Essence",
 	Name = "Adamantite Essence",
 	Density = 7493.0,
@@ -55,7 +56,7 @@ MaterialRegistry["Adamantite_Essence"] = {
 	Value = 2160,
 }
 
-MaterialRegistry["Adamantite_Matrix"] = {
+MaterialRegistry_data["Adamantite_Matrix"] = {
 	Id = "Adamantite_Matrix",
 	Name = "Adamantite Matrix",
 	Density = 7342.0,
@@ -63,7 +64,7 @@ MaterialRegistry["Adamantite_Matrix"] = {
 	Value = 2110,
 }
 
-MaterialRegistry["Adamantite_Ore"] = {
+MaterialRegistry_data["Adamantite_Ore"] = {
 	Id = "Adamantite_Ore",
 	Name = "Adamantite Ore",
 	Density = 7040.0,
@@ -71,7 +72,7 @@ MaterialRegistry["Adamantite_Ore"] = {
 	Value = 2010,
 }
 
-MaterialRegistry["Adamantite_Refined"] = {
+MaterialRegistry_data["Adamantite_Refined"] = {
 	Id = "Adamantite_Refined",
 	Name = "Adamantite Refined",
 	Density = 7115.5,
@@ -79,7 +80,7 @@ MaterialRegistry["Adamantite_Refined"] = {
 	Value = 2035,
 }
 
-MaterialRegistry["Adamantite_Shard"] = {
+MaterialRegistry_data["Adamantite_Shard"] = {
 	Id = "Adamantite_Shard",
 	Name = "Adamantite Shard",
 	Density = 7644.0,
@@ -87,7 +88,7 @@ MaterialRegistry["Adamantite_Shard"] = {
 	Value = 2210,
 }
 
-MaterialRegistry["Adamantite_Singularity"] = {
+MaterialRegistry_data["Adamantite_Singularity"] = {
 	Id = "Adamantite_Singularity",
 	Name = "Adamantite Singularity",
 	Density = 7568.5,
@@ -95,7 +96,7 @@ MaterialRegistry["Adamantite_Singularity"] = {
 	Value = 2185,
 }
 
-MaterialRegistry["Adamantite_Vapor"] = {
+MaterialRegistry_data["Adamantite_Vapor"] = {
 	Id = "Adamantite_Vapor",
 	Name = "Adamantite Vapor",
 	Density = 7719.5,
@@ -103,7 +104,7 @@ MaterialRegistry["Adamantite_Vapor"] = {
 	Value = 2235,
 }
 
-MaterialRegistry["AetherCrystal"] = {
+MaterialRegistry_data["AetherCrystal"] = {
 	Id = "AetherCrystal",
 	Name = "Aether Crystal",
 	Density = 2100.0,
@@ -111,7 +112,7 @@ MaterialRegistry["AetherCrystal"] = {
 	Value = 250,
 }
 
-MaterialRegistry["AetherCrystal_Ore"] = {
+MaterialRegistry_data["AetherCrystal_Ore"] = {
 	Id = "AetherCrystal_Ore",
 	Name = "Aether Crystal Ore",
 	Density = 850.0,
@@ -119,7 +120,7 @@ MaterialRegistry["AetherCrystal_Ore"] = {
 	Value = 450,
 }
 
-MaterialRegistry["AetherCrystal_Shard"] = {
+MaterialRegistry_data["AetherCrystal_Shard"] = {
 	Id = "AetherCrystal_Shard",
 	Name = "Aether Crystal Shard",
 	Density = 720.0,
@@ -127,7 +128,7 @@ MaterialRegistry["AetherCrystal_Shard"] = {
 	Value = 680,
 }
 
-MaterialRegistry["Aether_Alloy"] = {
+MaterialRegistry_data["Aether_Alloy"] = {
 	Id = "Aether_Alloy",
 	Name = "Aether Alloy",
 	Density = 4171.0,
@@ -135,7 +136,7 @@ MaterialRegistry["Aether_Alloy"] = {
 	Value = 1060,
 }
 
-MaterialRegistry["Aether_Crystal"] = {
+MaterialRegistry_data["Aether_Crystal"] = {
 	Id = "Aether_Crystal",
 	Name = "Aether Crystal",
 	Density = 4246.5,
@@ -143,7 +144,7 @@ MaterialRegistry["Aether_Crystal"] = {
 	Value = 1085,
 }
 
-MaterialRegistry["Aether_Dust"] = {
+MaterialRegistry_data["Aether_Dust"] = {
 	Id = "Aether_Dust",
 	Name = "Aether Dust",
 	Density = 4397.5,
@@ -151,7 +152,7 @@ MaterialRegistry["Aether_Dust"] = {
 	Value = 1135,
 }
 
-MaterialRegistry["Aether_Essence"] = {
+MaterialRegistry_data["Aether_Essence"] = {
 	Id = "Aether_Essence",
 	Name = "Aether Essence",
 	Density = 4473.0,
@@ -159,7 +160,7 @@ MaterialRegistry["Aether_Essence"] = {
 	Value = 1160,
 }
 
-MaterialRegistry["Aether_Matrix"] = {
+MaterialRegistry_data["Aether_Matrix"] = {
 	Id = "Aether_Matrix",
 	Name = "Aether Matrix",
 	Density = 4322.0,
@@ -167,7 +168,7 @@ MaterialRegistry["Aether_Matrix"] = {
 	Value = 1110,
 }
 
-MaterialRegistry["Aether_Ore"] = {
+MaterialRegistry_data["Aether_Ore"] = {
 	Id = "Aether_Ore",
 	Name = "Aether Ore",
 	Density = 4020.0,
@@ -175,7 +176,7 @@ MaterialRegistry["Aether_Ore"] = {
 	Value = 1010,
 }
 
-MaterialRegistry["Aether_Refined"] = {
+MaterialRegistry_data["Aether_Refined"] = {
 	Id = "Aether_Refined",
 	Name = "Aether Refined",
 	Density = 4095.5,
@@ -183,7 +184,7 @@ MaterialRegistry["Aether_Refined"] = {
 	Value = 1035,
 }
 
-MaterialRegistry["Aether_Shard"] = {
+MaterialRegistry_data["Aether_Shard"] = {
 	Id = "Aether_Shard",
 	Name = "Aether Shard",
 	Density = 4624.0,
@@ -191,7 +192,7 @@ MaterialRegistry["Aether_Shard"] = {
 	Value = 1210,
 }
 
-MaterialRegistry["Aether_Singularity"] = {
+MaterialRegistry_data["Aether_Singularity"] = {
 	Id = "Aether_Singularity",
 	Name = "Aether Singularity",
 	Density = 4548.5,
@@ -199,7 +200,7 @@ MaterialRegistry["Aether_Singularity"] = {
 	Value = 1185,
 }
 
-MaterialRegistry["Aether_Vapor"] = {
+MaterialRegistry_data["Aether_Vapor"] = {
 	Id = "Aether_Vapor",
 	Name = "Aether Vapor",
 	Density = 4699.5,
@@ -207,7 +208,7 @@ MaterialRegistry["Aether_Vapor"] = {
 	Value = 1235,
 }
 
-MaterialRegistry["Copper_Alloy"] = {
+MaterialRegistry_data["Copper_Alloy"] = {
 	Id = "Copper_Alloy",
 	Name = "Copper Alloy",
 	Density = 1906.0,
@@ -215,7 +216,7 @@ MaterialRegistry["Copper_Alloy"] = {
 	Value = 310,
 }
 
-MaterialRegistry["Copper_Crystal"] = {
+MaterialRegistry_data["Copper_Crystal"] = {
 	Id = "Copper_Crystal",
 	Name = "Copper Crystal",
 	Density = 1981.5,
@@ -223,7 +224,7 @@ MaterialRegistry["Copper_Crystal"] = {
 	Value = 335,
 }
 
-MaterialRegistry["Copper_Dust"] = {
+MaterialRegistry_data["Copper_Dust"] = {
 	Id = "Copper_Dust",
 	Name = "Copper Dust",
 	Density = 2132.5,
@@ -231,7 +232,7 @@ MaterialRegistry["Copper_Dust"] = {
 	Value = 385,
 }
 
-MaterialRegistry["Copper_Essence"] = {
+MaterialRegistry_data["Copper_Essence"] = {
 	Id = "Copper_Essence",
 	Name = "Copper Essence",
 	Density = 2208.0,
@@ -239,7 +240,7 @@ MaterialRegistry["Copper_Essence"] = {
 	Value = 410,
 }
 
-MaterialRegistry["Copper_Matrix"] = {
+MaterialRegistry_data["Copper_Matrix"] = {
 	Id = "Copper_Matrix",
 	Name = "Copper Matrix",
 	Density = 2057.0,
@@ -247,7 +248,7 @@ MaterialRegistry["Copper_Matrix"] = {
 	Value = 360,
 }
 
-MaterialRegistry["Copper_Ore"] = {
+MaterialRegistry_data["Copper_Ore"] = {
 	Id = "Copper_Ore",
 	Name = "Copper Ore",
 	Density = 1755.0,
@@ -255,7 +256,7 @@ MaterialRegistry["Copper_Ore"] = {
 	Value = 260,
 }
 
-MaterialRegistry["Copper_Refined"] = {
+MaterialRegistry_data["Copper_Refined"] = {
 	Id = "Copper_Refined",
 	Name = "Copper Refined",
 	Density = 1830.5,
@@ -263,7 +264,7 @@ MaterialRegistry["Copper_Refined"] = {
 	Value = 285,
 }
 
-MaterialRegistry["Copper_Shard"] = {
+MaterialRegistry_data["Copper_Shard"] = {
 	Id = "Copper_Shard",
 	Name = "Copper Shard",
 	Density = 2359.0,
@@ -271,7 +272,7 @@ MaterialRegistry["Copper_Shard"] = {
 	Value = 460,
 }
 
-MaterialRegistry["Copper_Singularity"] = {
+MaterialRegistry_data["Copper_Singularity"] = {
 	Id = "Copper_Singularity",
 	Name = "Copper Singularity",
 	Density = 2283.5,
@@ -279,7 +280,7 @@ MaterialRegistry["Copper_Singularity"] = {
 	Value = 435,
 }
 
-MaterialRegistry["Copper_Vapor"] = {
+MaterialRegistry_data["Copper_Vapor"] = {
 	Id = "Copper_Vapor",
 	Name = "Copper Vapor",
 	Density = 2434.5,
@@ -287,7 +288,7 @@ MaterialRegistry["Copper_Vapor"] = {
 	Value = 485,
 }
 
-MaterialRegistry["EnchantedWood"] = {
+MaterialRegistry_data["EnchantedWood"] = {
 	Id = "EnchantedWood",
 	Name = "Enchanted Wood",
 	Density = 450.0,
@@ -295,7 +296,7 @@ MaterialRegistry["EnchantedWood"] = {
 	Value = 280,
 }
 
-MaterialRegistry["FairyDust"] = {
+MaterialRegistry_data["FairyDust"] = {
 	Id = "FairyDust",
 	Name = "Fairy Dust",
 	Density = 2.0,
@@ -303,7 +304,7 @@ MaterialRegistry["FairyDust"] = {
 	Value = 1200,
 }
 
-MaterialRegistry["FerriumAlloy"] = {
+MaterialRegistry_data["FerriumAlloy"] = {
 	Id = "FerriumAlloy",
 	Name = "Ferrium Alloy",
 	Density = 8200.0,
@@ -311,7 +312,7 @@ MaterialRegistry["FerriumAlloy"] = {
 	Value = 500,
 }
 
-MaterialRegistry["FrostCrystal"] = {
+MaterialRegistry_data["FrostCrystal"] = {
 	Id = "FrostCrystal",
 	Name = "Frost Crystal",
 	Density = 920.0,
@@ -319,7 +320,7 @@ MaterialRegistry["FrostCrystal"] = {
 	Value = 750,
 }
 
-MaterialRegistry["GoldVein_Ore"] = {
+MaterialRegistry_data["GoldVein_Ore"] = {
 	Id = "GoldVein_Ore",
 	Name = "Gold Vein Ore",
 	Density = 1930.0,
@@ -327,7 +328,7 @@ MaterialRegistry["GoldVein_Ore"] = {
 	Value = 1500,
 }
 
-MaterialRegistry["Gold_Alloy"] = {
+MaterialRegistry_data["Gold_Alloy"] = {
 	Id = "Gold_Alloy",
 	Name = "Gold Alloy",
 	Density = 2661.0,
@@ -335,7 +336,7 @@ MaterialRegistry["Gold_Alloy"] = {
 	Value = 560,
 }
 
-MaterialRegistry["Gold_Crystal"] = {
+MaterialRegistry_data["Gold_Crystal"] = {
 	Id = "Gold_Crystal",
 	Name = "Gold Crystal",
 	Density = 2736.5,
@@ -343,7 +344,7 @@ MaterialRegistry["Gold_Crystal"] = {
 	Value = 585,
 }
 
-MaterialRegistry["Gold_Dust"] = {
+MaterialRegistry_data["Gold_Dust"] = {
 	Id = "Gold_Dust",
 	Name = "Gold Dust",
 	Density = 2887.5,
@@ -351,7 +352,7 @@ MaterialRegistry["Gold_Dust"] = {
 	Value = 635,
 }
 
-MaterialRegistry["Gold_Essence"] = {
+MaterialRegistry_data["Gold_Essence"] = {
 	Id = "Gold_Essence",
 	Name = "Gold Essence",
 	Density = 2963.0,
@@ -359,7 +360,7 @@ MaterialRegistry["Gold_Essence"] = {
 	Value = 660,
 }
 
-MaterialRegistry["Gold_Matrix"] = {
+MaterialRegistry_data["Gold_Matrix"] = {
 	Id = "Gold_Matrix",
 	Name = "Gold Matrix",
 	Density = 2812.0,
@@ -367,7 +368,7 @@ MaterialRegistry["Gold_Matrix"] = {
 	Value = 610,
 }
 
-MaterialRegistry["Gold_Ore"] = {
+MaterialRegistry_data["Gold_Ore"] = {
 	Id = "Gold_Ore",
 	Name = "Gold Ore",
 	Density = 2510.0,
@@ -375,7 +376,7 @@ MaterialRegistry["Gold_Ore"] = {
 	Value = 510,
 }
 
-MaterialRegistry["Gold_Refined"] = {
+MaterialRegistry_data["Gold_Refined"] = {
 	Id = "Gold_Refined",
 	Name = "Gold Refined",
 	Density = 2585.5,
@@ -383,7 +384,7 @@ MaterialRegistry["Gold_Refined"] = {
 	Value = 535,
 }
 
-MaterialRegistry["Gold_Shard"] = {
+MaterialRegistry_data["Gold_Shard"] = {
 	Id = "Gold_Shard",
 	Name = "Gold Shard",
 	Density = 3114.0,
@@ -391,7 +392,7 @@ MaterialRegistry["Gold_Shard"] = {
 	Value = 710,
 }
 
-MaterialRegistry["Gold_Singularity"] = {
+MaterialRegistry_data["Gold_Singularity"] = {
 	Id = "Gold_Singularity",
 	Name = "Gold Singularity",
 	Density = 3038.5,
@@ -399,7 +400,7 @@ MaterialRegistry["Gold_Singularity"] = {
 	Value = 685,
 }
 
-MaterialRegistry["Gold_Vapor"] = {
+MaterialRegistry_data["Gold_Vapor"] = {
 	Id = "Gold_Vapor",
 	Name = "Gold Vapor",
 	Density = 3189.5,
@@ -407,7 +408,7 @@ MaterialRegistry["Gold_Vapor"] = {
 	Value = 735,
 }
 
-MaterialRegistry["Iron"] = {
+MaterialRegistry_data["Iron"] = {
 	Id = "Iron",
 	Name = "Iron",
 	Density = 7850.0,
@@ -415,7 +416,7 @@ MaterialRegistry["Iron"] = {
 	Value = 10,
 }
 
-MaterialRegistry["Iron_Alloy"] = {
+MaterialRegistry_data["Iron_Alloy"] = {
 	Id = "Iron_Alloy",
 	Name = "Iron Alloy",
 	Density = 1151.0,
@@ -423,7 +424,7 @@ MaterialRegistry["Iron_Alloy"] = {
 	Value = 60,
 }
 
-MaterialRegistry["Iron_Crystal"] = {
+MaterialRegistry_data["Iron_Crystal"] = {
 	Id = "Iron_Crystal",
 	Name = "Iron Crystal",
 	Density = 1226.5,
@@ -431,7 +432,7 @@ MaterialRegistry["Iron_Crystal"] = {
 	Value = 85,
 }
 
-MaterialRegistry["Iron_Dust"] = {
+MaterialRegistry_data["Iron_Dust"] = {
 	Id = "Iron_Dust",
 	Name = "Iron Dust",
 	Density = 1377.5,
@@ -439,7 +440,7 @@ MaterialRegistry["Iron_Dust"] = {
 	Value = 135,
 }
 
-MaterialRegistry["Iron_Essence"] = {
+MaterialRegistry_data["Iron_Essence"] = {
 	Id = "Iron_Essence",
 	Name = "Iron Essence",
 	Density = 1453.0,
@@ -447,7 +448,7 @@ MaterialRegistry["Iron_Essence"] = {
 	Value = 160,
 }
 
-MaterialRegistry["Iron_Matrix"] = {
+MaterialRegistry_data["Iron_Matrix"] = {
 	Id = "Iron_Matrix",
 	Name = "Iron Matrix",
 	Density = 1302.0,
@@ -455,7 +456,7 @@ MaterialRegistry["Iron_Matrix"] = {
 	Value = 110,
 }
 
-MaterialRegistry["Iron_Ore"] = {
+MaterialRegistry_data["Iron_Ore"] = {
 	Id = "Iron_Ore",
 	Name = "Iron Ore",
 	Density = 1000.0,
@@ -463,7 +464,7 @@ MaterialRegistry["Iron_Ore"] = {
 	Value = 10,
 }
 
-MaterialRegistry["Iron_Refined"] = {
+MaterialRegistry_data["Iron_Refined"] = {
 	Id = "Iron_Refined",
 	Name = "Iron Refined",
 	Density = 1075.5,
@@ -471,7 +472,7 @@ MaterialRegistry["Iron_Refined"] = {
 	Value = 35,
 }
 
-MaterialRegistry["Iron_Shard"] = {
+MaterialRegistry_data["Iron_Shard"] = {
 	Id = "Iron_Shard",
 	Name = "Iron Shard",
 	Density = 1604.0,
@@ -479,7 +480,7 @@ MaterialRegistry["Iron_Shard"] = {
 	Value = 210,
 }
 
-MaterialRegistry["Iron_Singularity"] = {
+MaterialRegistry_data["Iron_Singularity"] = {
 	Id = "Iron_Singularity",
 	Name = "Iron Singularity",
 	Density = 1528.5,
@@ -487,7 +488,7 @@ MaterialRegistry["Iron_Singularity"] = {
 	Value = 185,
 }
 
-MaterialRegistry["Iron_Vapor"] = {
+MaterialRegistry_data["Iron_Vapor"] = {
 	Id = "Iron_Vapor",
 	Name = "Iron Vapor",
 	Density = 1679.5,
@@ -495,7 +496,7 @@ MaterialRegistry["Iron_Vapor"] = {
 	Value = 235,
 }
 
-MaterialRegistry["MoonBloom_Petal"] = {
+MaterialRegistry_data["MoonBloom_Petal"] = {
 	Id = "MoonBloom_Petal",
 	Name = "Moon Bloom Petal",
 	Density = 15.0,
@@ -503,7 +504,7 @@ MaterialRegistry["MoonBloom_Petal"] = {
 	Value = 320,
 }
 
-MaterialRegistry["Mythril_Alloy"] = {
+MaterialRegistry_data["Mythril_Alloy"] = {
 	Id = "Mythril_Alloy",
 	Name = "Mythril Alloy",
 	Density = 6436.0,
@@ -511,7 +512,7 @@ MaterialRegistry["Mythril_Alloy"] = {
 	Value = 1810,
 }
 
-MaterialRegistry["Mythril_Crystal"] = {
+MaterialRegistry_data["Mythril_Crystal"] = {
 	Id = "Mythril_Crystal",
 	Name = "Mythril Crystal",
 	Density = 6511.5,
@@ -519,7 +520,7 @@ MaterialRegistry["Mythril_Crystal"] = {
 	Value = 1835,
 }
 
-MaterialRegistry["Mythril_Dust"] = {
+MaterialRegistry_data["Mythril_Dust"] = {
 	Id = "Mythril_Dust",
 	Name = "Mythril Dust",
 	Density = 6662.5,
@@ -527,7 +528,7 @@ MaterialRegistry["Mythril_Dust"] = {
 	Value = 1885,
 }
 
-MaterialRegistry["Mythril_Essence"] = {
+MaterialRegistry_data["Mythril_Essence"] = {
 	Id = "Mythril_Essence",
 	Name = "Mythril Essence",
 	Density = 6738.0,
@@ -535,7 +536,7 @@ MaterialRegistry["Mythril_Essence"] = {
 	Value = 1910,
 }
 
-MaterialRegistry["Mythril_Matrix"] = {
+MaterialRegistry_data["Mythril_Matrix"] = {
 	Id = "Mythril_Matrix",
 	Name = "Mythril Matrix",
 	Density = 6587.0,
@@ -543,7 +544,7 @@ MaterialRegistry["Mythril_Matrix"] = {
 	Value = 1860,
 }
 
-MaterialRegistry["Mythril_Ore"] = {
+MaterialRegistry_data["Mythril_Ore"] = {
 	Id = "Mythril_Ore",
 	Name = "Mythril Ore",
 	Density = 6285.0,
@@ -551,7 +552,7 @@ MaterialRegistry["Mythril_Ore"] = {
 	Value = 1760,
 }
 
-MaterialRegistry["Mythril_Refined"] = {
+MaterialRegistry_data["Mythril_Refined"] = {
 	Id = "Mythril_Refined",
 	Name = "Mythril Refined",
 	Density = 6360.5,
@@ -559,7 +560,7 @@ MaterialRegistry["Mythril_Refined"] = {
 	Value = 1785,
 }
 
-MaterialRegistry["Mythril_Shard"] = {
+MaterialRegistry_data["Mythril_Shard"] = {
 	Id = "Mythril_Shard",
 	Name = "Mythril Shard",
 	Density = 6889.0,
@@ -567,7 +568,7 @@ MaterialRegistry["Mythril_Shard"] = {
 	Value = 1960,
 }
 
-MaterialRegistry["Mythril_Singularity"] = {
+MaterialRegistry_data["Mythril_Singularity"] = {
 	Id = "Mythril_Singularity",
 	Name = "Mythril Singularity",
 	Density = 6813.5,
@@ -575,7 +576,7 @@ MaterialRegistry["Mythril_Singularity"] = {
 	Value = 1935,
 }
 
-MaterialRegistry["Mythril_Vapor"] = {
+MaterialRegistry_data["Mythril_Vapor"] = {
 	Id = "Mythril_Vapor",
 	Name = "Mythril Vapor",
 	Density = 6964.5,
@@ -583,7 +584,7 @@ MaterialRegistry["Mythril_Vapor"] = {
 	Value = 1985,
 }
 
-MaterialRegistry["Obsidian_Alloy"] = {
+MaterialRegistry_data["Obsidian_Alloy"] = {
 	Id = "Obsidian_Alloy",
 	Name = "Obsidian Alloy",
 	Density = 5681.0,
@@ -591,7 +592,7 @@ MaterialRegistry["Obsidian_Alloy"] = {
 	Value = 1560,
 }
 
-MaterialRegistry["Obsidian_Crystal"] = {
+MaterialRegistry_data["Obsidian_Crystal"] = {
 	Id = "Obsidian_Crystal",
 	Name = "Obsidian Crystal",
 	Density = 5756.5,
@@ -599,7 +600,7 @@ MaterialRegistry["Obsidian_Crystal"] = {
 	Value = 1585,
 }
 
-MaterialRegistry["Obsidian_Dust"] = {
+MaterialRegistry_data["Obsidian_Dust"] = {
 	Id = "Obsidian_Dust",
 	Name = "Obsidian Dust",
 	Density = 5907.5,
@@ -607,7 +608,7 @@ MaterialRegistry["Obsidian_Dust"] = {
 	Value = 1635,
 }
 
-MaterialRegistry["Obsidian_Essence"] = {
+MaterialRegistry_data["Obsidian_Essence"] = {
 	Id = "Obsidian_Essence",
 	Name = "Obsidian Essence",
 	Density = 5983.0,
@@ -615,7 +616,7 @@ MaterialRegistry["Obsidian_Essence"] = {
 	Value = 1660,
 }
 
-MaterialRegistry["Obsidian_Matrix"] = {
+MaterialRegistry_data["Obsidian_Matrix"] = {
 	Id = "Obsidian_Matrix",
 	Name = "Obsidian Matrix",
 	Density = 5832.0,
@@ -623,7 +624,7 @@ MaterialRegistry["Obsidian_Matrix"] = {
 	Value = 1610,
 }
 
-MaterialRegistry["Obsidian_Ore"] = {
+MaterialRegistry_data["Obsidian_Ore"] = {
 	Id = "Obsidian_Ore",
 	Name = "Obsidian Ore",
 	Density = 5530.0,
@@ -631,7 +632,7 @@ MaterialRegistry["Obsidian_Ore"] = {
 	Value = 1510,
 }
 
-MaterialRegistry["Obsidian_Refined"] = {
+MaterialRegistry_data["Obsidian_Refined"] = {
 	Id = "Obsidian_Refined",
 	Name = "Obsidian Refined",
 	Density = 5605.5,
@@ -639,7 +640,7 @@ MaterialRegistry["Obsidian_Refined"] = {
 	Value = 1535,
 }
 
-MaterialRegistry["Obsidian_Shard"] = {
+MaterialRegistry_data["Obsidian_Shard"] = {
 	Id = "Obsidian_Shard",
 	Name = "Obsidian Shard",
 	Density = 6134.0,
@@ -647,7 +648,7 @@ MaterialRegistry["Obsidian_Shard"] = {
 	Value = 1710,
 }
 
-MaterialRegistry["Obsidian_Singularity"] = {
+MaterialRegistry_data["Obsidian_Singularity"] = {
 	Id = "Obsidian_Singularity",
 	Name = "Obsidian Singularity",
 	Density = 6058.5,
@@ -655,7 +656,7 @@ MaterialRegistry["Obsidian_Singularity"] = {
 	Value = 1685,
 }
 
-MaterialRegistry["Obsidian_Vapor"] = {
+MaterialRegistry_data["Obsidian_Vapor"] = {
 	Id = "Obsidian_Vapor",
 	Name = "Obsidian Vapor",
 	Density = 6209.5,
@@ -663,7 +664,7 @@ MaterialRegistry["Obsidian_Vapor"] = {
 	Value = 1735,
 }
 
-MaterialRegistry["Quantum_Alloy"] = {
+MaterialRegistry_data["Quantum_Alloy"] = {
 	Id = "Quantum_Alloy",
 	Name = "Quantum Alloy",
 	Density = 7946.0,
@@ -671,7 +672,7 @@ MaterialRegistry["Quantum_Alloy"] = {
 	Value = 2310,
 }
 
-MaterialRegistry["Quantum_Crystal"] = {
+MaterialRegistry_data["Quantum_Crystal"] = {
 	Id = "Quantum_Crystal",
 	Name = "Quantum Crystal",
 	Density = 8021.5,
@@ -679,7 +680,7 @@ MaterialRegistry["Quantum_Crystal"] = {
 	Value = 2335,
 }
 
-MaterialRegistry["Quantum_Dust"] = {
+MaterialRegistry_data["Quantum_Dust"] = {
 	Id = "Quantum_Dust",
 	Name = "Quantum Dust",
 	Density = 8172.5,
@@ -687,7 +688,7 @@ MaterialRegistry["Quantum_Dust"] = {
 	Value = 2385,
 }
 
-MaterialRegistry["Quantum_Essence"] = {
+MaterialRegistry_data["Quantum_Essence"] = {
 	Id = "Quantum_Essence",
 	Name = "Quantum Essence",
 	Density = 8248.0,
@@ -695,7 +696,7 @@ MaterialRegistry["Quantum_Essence"] = {
 	Value = 2410,
 }
 
-MaterialRegistry["Quantum_Matrix"] = {
+MaterialRegistry_data["Quantum_Matrix"] = {
 	Id = "Quantum_Matrix",
 	Name = "Quantum Matrix",
 	Density = 8097.0,
@@ -703,7 +704,7 @@ MaterialRegistry["Quantum_Matrix"] = {
 	Value = 2360,
 }
 
-MaterialRegistry["Quantum_Ore"] = {
+MaterialRegistry_data["Quantum_Ore"] = {
 	Id = "Quantum_Ore",
 	Name = "Quantum Ore",
 	Density = 7795.0,
@@ -711,7 +712,7 @@ MaterialRegistry["Quantum_Ore"] = {
 	Value = 2260,
 }
 
-MaterialRegistry["Quantum_Refined"] = {
+MaterialRegistry_data["Quantum_Refined"] = {
 	Id = "Quantum_Refined",
 	Name = "Quantum Refined",
 	Density = 7870.5,
@@ -719,7 +720,7 @@ MaterialRegistry["Quantum_Refined"] = {
 	Value = 2285,
 }
 
-MaterialRegistry["Quantum_Shard"] = {
+MaterialRegistry_data["Quantum_Shard"] = {
 	Id = "Quantum_Shard",
 	Name = "Quantum Shard",
 	Density = 8399.0,
@@ -727,7 +728,7 @@ MaterialRegistry["Quantum_Shard"] = {
 	Value = 2460,
 }
 
-MaterialRegistry["Quantum_Singularity"] = {
+MaterialRegistry_data["Quantum_Singularity"] = {
 	Id = "Quantum_Singularity",
 	Name = "Quantum Singularity",
 	Density = 8323.5,
@@ -735,7 +736,7 @@ MaterialRegistry["Quantum_Singularity"] = {
 	Value = 2435,
 }
 
-MaterialRegistry["Quantum_Vapor"] = {
+MaterialRegistry_data["Quantum_Vapor"] = {
 	Id = "Quantum_Vapor",
 	Name = "Quantum Vapor",
 	Density = 8474.5,
@@ -743,7 +744,7 @@ MaterialRegistry["Quantum_Vapor"] = {
 	Value = 2485,
 }
 
-MaterialRegistry["Titanium_Alloy"] = {
+MaterialRegistry_data["Titanium_Alloy"] = {
 	Id = "Titanium_Alloy",
 	Name = "Titanium Alloy",
 	Density = 3416.0,
@@ -751,7 +752,7 @@ MaterialRegistry["Titanium_Alloy"] = {
 	Value = 810,
 }
 
-MaterialRegistry["Titanium_Crystal"] = {
+MaterialRegistry_data["Titanium_Crystal"] = {
 	Id = "Titanium_Crystal",
 	Name = "Titanium Crystal",
 	Density = 3491.5,
@@ -759,7 +760,7 @@ MaterialRegistry["Titanium_Crystal"] = {
 	Value = 835,
 }
 
-MaterialRegistry["Titanium_Dust"] = {
+MaterialRegistry_data["Titanium_Dust"] = {
 	Id = "Titanium_Dust",
 	Name = "Titanium Dust",
 	Density = 3642.5,
@@ -767,7 +768,7 @@ MaterialRegistry["Titanium_Dust"] = {
 	Value = 885,
 }
 
-MaterialRegistry["Titanium_Essence"] = {
+MaterialRegistry_data["Titanium_Essence"] = {
 	Id = "Titanium_Essence",
 	Name = "Titanium Essence",
 	Density = 3718.0,
@@ -775,7 +776,7 @@ MaterialRegistry["Titanium_Essence"] = {
 	Value = 910,
 }
 
-MaterialRegistry["Titanium_Matrix"] = {
+MaterialRegistry_data["Titanium_Matrix"] = {
 	Id = "Titanium_Matrix",
 	Name = "Titanium Matrix",
 	Density = 3567.0,
@@ -783,7 +784,7 @@ MaterialRegistry["Titanium_Matrix"] = {
 	Value = 860,
 }
 
-MaterialRegistry["Titanium_Ore"] = {
+MaterialRegistry_data["Titanium_Ore"] = {
 	Id = "Titanium_Ore",
 	Name = "Titanium Ore",
 	Density = 3265.0,
@@ -791,7 +792,7 @@ MaterialRegistry["Titanium_Ore"] = {
 	Value = 760,
 }
 
-MaterialRegistry["Titanium_Refined"] = {
+MaterialRegistry_data["Titanium_Refined"] = {
 	Id = "Titanium_Refined",
 	Name = "Titanium Refined",
 	Density = 3340.5,
@@ -799,7 +800,7 @@ MaterialRegistry["Titanium_Refined"] = {
 	Value = 785,
 }
 
-MaterialRegistry["Titanium_Shard"] = {
+MaterialRegistry_data["Titanium_Shard"] = {
 	Id = "Titanium_Shard",
 	Name = "Titanium Shard",
 	Density = 3869.0,
@@ -807,7 +808,7 @@ MaterialRegistry["Titanium_Shard"] = {
 	Value = 960,
 }
 
-MaterialRegistry["Titanium_Singularity"] = {
+MaterialRegistry_data["Titanium_Singularity"] = {
 	Id = "Titanium_Singularity",
 	Name = "Titanium Singularity",
 	Density = 3793.5,
@@ -815,7 +816,7 @@ MaterialRegistry["Titanium_Singularity"] = {
 	Value = 935,
 }
 
-MaterialRegistry["Titanium_Vapor"] = {
+MaterialRegistry_data["Titanium_Vapor"] = {
 	Id = "Titanium_Vapor",
 	Name = "Titanium Vapor",
 	Density = 3944.5,
@@ -823,7 +824,7 @@ MaterialRegistry["Titanium_Vapor"] = {
 	Value = 985,
 }
 
-MaterialRegistry["VoidBone"] = {
+MaterialRegistry_data["VoidBone"] = {
 	Id = "VoidBone",
 	Name = "Void Bone",
 	Density = 1500.0,
@@ -831,7 +832,7 @@ MaterialRegistry["VoidBone"] = {
 	Value = 250,
 }
 
-MaterialRegistry["VoidEssence"] = {
+MaterialRegistry_data["VoidEssence"] = {
 	Id = "VoidEssence",
 	Name = "Void Essence",
 	Density = 1.0,
@@ -839,7 +840,7 @@ MaterialRegistry["VoidEssence"] = {
 	Value = 3000,
 }
 
-MaterialRegistry["Void_Alloy"] = {
+MaterialRegistry_data["Void_Alloy"] = {
 	Id = "Void_Alloy",
 	Name = "Void Alloy",
 	Density = 4926.0,
@@ -847,7 +848,7 @@ MaterialRegistry["Void_Alloy"] = {
 	Value = 1310,
 }
 
-MaterialRegistry["Void_Crystal"] = {
+MaterialRegistry_data["Void_Crystal"] = {
 	Id = "Void_Crystal",
 	Name = "Void Crystal",
 	Density = 5001.5,
@@ -855,7 +856,7 @@ MaterialRegistry["Void_Crystal"] = {
 	Value = 1335,
 }
 
-MaterialRegistry["Void_Dust"] = {
+MaterialRegistry_data["Void_Dust"] = {
 	Id = "Void_Dust",
 	Name = "Void Dust",
 	Density = 5152.5,
@@ -863,7 +864,7 @@ MaterialRegistry["Void_Dust"] = {
 	Value = 1385,
 }
 
-MaterialRegistry["Void_Essence"] = {
+MaterialRegistry_data["Void_Essence"] = {
 	Id = "Void_Essence",
 	Name = "Void Essence",
 	Density = 5228.0,
@@ -871,7 +872,7 @@ MaterialRegistry["Void_Essence"] = {
 	Value = 1410,
 }
 
-MaterialRegistry["Void_Matrix"] = {
+MaterialRegistry_data["Void_Matrix"] = {
 	Id = "Void_Matrix",
 	Name = "Void Matrix",
 	Density = 5077.0,
@@ -879,7 +880,7 @@ MaterialRegistry["Void_Matrix"] = {
 	Value = 1360,
 }
 
-MaterialRegistry["Void_Ore"] = {
+MaterialRegistry_data["Void_Ore"] = {
 	Id = "Void_Ore",
 	Name = "Void Ore",
 	Density = 4775.0,
@@ -887,7 +888,7 @@ MaterialRegistry["Void_Ore"] = {
 	Value = 1260,
 }
 
-MaterialRegistry["Void_Refined"] = {
+MaterialRegistry_data["Void_Refined"] = {
 	Id = "Void_Refined",
 	Name = "Void Refined",
 	Density = 4850.5,
@@ -895,7 +896,7 @@ MaterialRegistry["Void_Refined"] = {
 	Value = 1285,
 }
 
-MaterialRegistry["Void_Shard"] = {
+MaterialRegistry_data["Void_Shard"] = {
 	Id = "Void_Shard",
 	Name = "Void Shard",
 	Density = 5379.0,
@@ -903,7 +904,7 @@ MaterialRegistry["Void_Shard"] = {
 	Value = 1460,
 }
 
-MaterialRegistry["Void_Singularity"] = {
+MaterialRegistry_data["Void_Singularity"] = {
 	Id = "Void_Singularity",
 	Name = "Void Singularity",
 	Density = 5303.5,
@@ -911,7 +912,7 @@ MaterialRegistry["Void_Singularity"] = {
 	Value = 1435,
 }
 
-MaterialRegistry["Void_Vapor"] = {
+MaterialRegistry_data["Void_Vapor"] = {
 	Id = "Void_Vapor",
 	Name = "Void Vapor",
 	Density = 5454.5,

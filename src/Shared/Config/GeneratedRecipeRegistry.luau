@@ -5,25 +5,26 @@
 export type RecipeRegistryDefinition = { Id: string, Name: string, Description: string, Ingredients: {string}, OutputType: string }
 
 local RecipeRegistry: { [string]: RecipeRegistryDefinition } = {}
+local RecipeRegistry_data: { [string]: RecipeRegistryDefinition } = {}
 
 function RecipeRegistry.Get(id: string): RecipeRegistryDefinition?
-	return RecipeRegistry[id]
+	return RecipeRegistry_data[id]
 end
 
 function RecipeRegistry.GetAll(): { [string]: RecipeRegistryDefinition }
-	return RecipeRegistry
+	return RecipeRegistry_data
 end
 
 -- Backward-compatible aliases (legacy API)
 function RecipeRegistry.GetRecipe(id: string): RecipeRegistryDefinition?
-	return RecipeRegistry[id]
+	return RecipeRegistry_data[id]
 end
 
 function RecipeRegistry.GetAllRecipe(): { [string]: RecipeRegistryDefinition }
-	return RecipeRegistry
+	return RecipeRegistry_data
 end
 
-RecipeRegistry["RCP_ABYSSAL_PASS"] = {
+RecipeRegistry_data["RCP_ABYSSAL_PASS"] = {
 	Id = "RCP_ABYSSAL_PASS",
 	Name = "Abyssal Biome Pass",
 	Description = "Forge a pass for entry into Abyssal-tier biomes.",
@@ -31,7 +32,7 @@ RecipeRegistry["RCP_ABYSSAL_PASS"] = {
 	OutputType = "BiomePass",
 }
 
-RecipeRegistry["RCP_ADAMANTITE_ALLOY"] = {
+RecipeRegistry_data["RCP_ADAMANTITE_ALLOY"] = {
 	Id = "RCP_ADAMANTITE_ALLOY",
 	Name = "Adamantite Alloy Forge",
 	Description = "Forge the hardest known alloy from Adamantite shards and Mythril dust.",
@@ -39,7 +40,7 @@ RecipeRegistry["RCP_ADAMANTITE_ALLOY"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_ADAMANTITE_REFINED"] = {
+RecipeRegistry_data["RCP_ADAMANTITE_REFINED"] = {
 	Id = "RCP_ADAMANTITE_REFINED",
 	Name = "Adamantite Refinement",
 	Description = "Refine Adamantite Ore through extreme heat and pressure.",
@@ -47,7 +48,7 @@ RecipeRegistry["RCP_ADAMANTITE_REFINED"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_AETHER_CRYSTAL"] = {
+RecipeRegistry_data["RCP_AETHER_CRYSTAL"] = {
 	Id = "RCP_AETHER_CRYSTAL",
 	Name = "Aether Crystal Condensation",
 	Description = "Condense raw Aether energy into a stable crystal matrix.",
@@ -55,7 +56,7 @@ RecipeRegistry["RCP_AETHER_CRYSTAL"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_AETHER_CRYSTAL"] = {
+RecipeRegistry_data["RCP_AETHER_CRYSTAL"] = {
 	Id = "RCP_AETHER_CRYSTAL",
 	Name = "Aether Crystal Fusion",
 	Description = "Gabungkan Aether Crystal Shards menjadi Aether Crystal murni.",
@@ -63,7 +64,7 @@ RecipeRegistry["RCP_AETHER_CRYSTAL"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_AETHER_ESSENCE"] = {
+RecipeRegistry_data["RCP_AETHER_ESSENCE"] = {
 	Id = "RCP_AETHER_ESSENCE",
 	Name = "Aether Essence Distillation",
 	Description = "Distil Aether Crystal into pure Aether Essence for advanced reactions.",
@@ -71,7 +72,7 @@ RecipeRegistry["RCP_AETHER_ESSENCE"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_AETHER_MATRIX"] = {
+RecipeRegistry_data["RCP_AETHER_MATRIX"] = {
 	Id = "RCP_AETHER_MATRIX",
 	Name = "Aether Matrix Weaving",
 	Description = "Weave Aether Essence and Iron Matrix into a stable dimensional fabric.",
@@ -79,7 +80,7 @@ RecipeRegistry["RCP_AETHER_MATRIX"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_AETHER_SINGULARITY"] = {
+RecipeRegistry_data["RCP_AETHER_SINGULARITY"] = {
 	Id = "RCP_AETHER_SINGULARITY",
 	Name = "Aether Singularity Collapse",
 	Description = "Collapse an Aether Matrix into a dense Aether Singularity node.",
@@ -87,7 +88,7 @@ RecipeRegistry["RCP_AETHER_SINGULARITY"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_AURA_POTION_MAJOR"] = {
+RecipeRegistry_data["RCP_AURA_POTION_MAJOR"] = {
 	Id = "RCP_AURA_POTION_MAJOR",
 	Name = "Major Aura Potion",
 	Description = "A potent Aura Energy potion from rare refined essences.",
@@ -95,7 +96,7 @@ RecipeRegistry["RCP_AURA_POTION_MAJOR"] = {
 	OutputType = "Consumable",
 }
 
-RecipeRegistry["RCP_AURA_POTION_MINOR"] = {
+RecipeRegistry_data["RCP_AURA_POTION_MINOR"] = {
 	Id = "RCP_AURA_POTION_MINOR",
 	Name = "Minor Aura Potion",
 	Description = "A small Aura Energy potion crafted from common materials.",
@@ -103,7 +104,7 @@ RecipeRegistry["RCP_AURA_POTION_MINOR"] = {
 	OutputType = "Consumable",
 }
 
-RecipeRegistry["RCP_CELESTIAL_KEYSTONE"] = {
+RecipeRegistry_data["RCP_CELESTIAL_KEYSTONE"] = {
 	Id = "RCP_CELESTIAL_KEYSTONE",
 	Name = "Celestial Keystone",
 	Description = "Batu kunci untuk membuka portal ke Fairytale Realm.",
@@ -111,7 +112,7 @@ RecipeRegistry["RCP_CELESTIAL_KEYSTONE"] = {
 	OutputType = "Key",
 }
 
-RecipeRegistry["RCP_CELESTIAL_KEYSTONE"] = {
+RecipeRegistry_data["RCP_CELESTIAL_KEYSTONE"] = {
 	Id = "RCP_CELESTIAL_KEYSTONE",
 	Name = "Celestial Keystone",
 	Description = "Craft a Keystone to unlock Celestial Sector 5 biomes.",
@@ -119,7 +120,7 @@ RecipeRegistry["RCP_CELESTIAL_KEYSTONE"] = {
 	OutputType = "BiomePass",
 }
 
-RecipeRegistry["RCP_COPPER_ALLOY"] = {
+RecipeRegistry_data["RCP_COPPER_ALLOY"] = {
 	Id = "RCP_COPPER_ALLOY",
 	Name = "Copper Alloy Casting",
 	Description = "Cast Copper Shards and Iron Refined into Copper Alloy ingots.",
@@ -127,7 +128,7 @@ RecipeRegistry["RCP_COPPER_ALLOY"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_COPPER_SHARD"] = {
+RecipeRegistry_data["RCP_COPPER_SHARD"] = {
 	Id = "RCP_COPPER_SHARD",
 	Name = "Copper Shard Extraction",
 	Description = "Refine raw Copper Ore into Copper Shards via controlled heating.",
@@ -135,7 +136,7 @@ RecipeRegistry["RCP_COPPER_SHARD"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_CRYO_REAGENT"] = {
+RecipeRegistry_data["RCP_CRYO_REAGENT"] = {
 	Id = "RCP_CRYO_REAGENT",
 	Name = "Cryo Reagent",
 	Description = "Produce a Cryo Reagent for CryoCooler and low-temperature reactions.",
@@ -143,7 +144,7 @@ RecipeRegistry["RCP_CRYO_REAGENT"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_ENCHANTED_ELIXIR"] = {
+RecipeRegistry_data["RCP_ENCHANTED_ELIXIR"] = {
 	Id = "RCP_ENCHANTED_ELIXIR",
 	Name = "Enchanted Elixir",
 	Description = "Ramuan ajaib dari bahan-bahan enchanted.",
@@ -151,7 +152,7 @@ RecipeRegistry["RCP_ENCHANTED_ELIXIR"] = {
 	OutputType = "Consumable",
 }
 
-RecipeRegistry["RCP_FAIRY_WING"] = {
+RecipeRegistry_data["RCP_FAIRY_WING"] = {
 	Id = "RCP_FAIRY_WING",
 	Name = "Fairy Wing Potion",
 	Description = "Ramuan yang memberi efek sayap peri sementara.",
@@ -159,7 +160,7 @@ RecipeRegistry["RCP_FAIRY_WING"] = {
 	OutputType = "Consumable",
 }
 
-RecipeRegistry["RCP_FERRIUM_ALLOY"] = {
+RecipeRegistry_data["RCP_FERRIUM_ALLOY"] = {
 	Id = "RCP_FERRIUM_ALLOY",
 	Name = "Ferrium Alloy Synthesis",
 	Description = "Fuse Iron and AetherCrystal to produce industrial-grade Ferrium Alloy.",
@@ -167,7 +168,7 @@ RecipeRegistry["RCP_FERRIUM_ALLOY"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_FUSION_CORE_EPIC"] = {
+RecipeRegistry_data["RCP_FUSION_CORE_EPIC"] = {
 	Id = "RCP_FUSION_CORE_EPIC",
 	Name = "Epic Fusion Core",
 	Description = "Core for fusing two Rare Spirits into an Epic Spirit.",
@@ -175,7 +176,7 @@ RecipeRegistry["RCP_FUSION_CORE_EPIC"] = {
 	OutputType = "FusionCore",
 }
 
-RecipeRegistry["RCP_FUSION_CORE_LEGENDARY"] = {
+RecipeRegistry_data["RCP_FUSION_CORE_LEGENDARY"] = {
 	Id = "RCP_FUSION_CORE_LEGENDARY",
 	Name = "Legendary Fusion Core",
 	Description = "The rarest core — fuse two Epic Spirits into a Legendary.",
@@ -183,7 +184,7 @@ RecipeRegistry["RCP_FUSION_CORE_LEGENDARY"] = {
 	OutputType = "FusionCore",
 }
 
-RecipeRegistry["RCP_FUSION_CORE_RARE"] = {
+RecipeRegistry_data["RCP_FUSION_CORE_RARE"] = {
 	Id = "RCP_FUSION_CORE_RARE",
 	Name = "Rare Fusion Core",
 	Description = "Core for fusing two Uncommon Spirits into a Rare Spirit.",
@@ -191,7 +192,7 @@ RecipeRegistry["RCP_FUSION_CORE_RARE"] = {
 	OutputType = "FusionCore",
 }
 
-RecipeRegistry["RCP_FUSION_CORE_UNCOMMON"] = {
+RecipeRegistry_data["RCP_FUSION_CORE_UNCOMMON"] = {
 	Id = "RCP_FUSION_CORE_UNCOMMON",
 	Name = "Uncommon Fusion Core",
 	Description = "Core required for fusing two Common Spirits into an Uncommon.",
@@ -199,7 +200,7 @@ RecipeRegistry["RCP_FUSION_CORE_UNCOMMON"] = {
 	OutputType = "FusionCore",
 }
 
-RecipeRegistry["RCP_GOLD_ALLOY"] = {
+RecipeRegistry_data["RCP_GOLD_ALLOY"] = {
 	Id = "RCP_GOLD_ALLOY",
 	Name = "Gold Alloy Fusion",
 	Description = "Combine Gold Ore with Aether Dust for a luminous alloy.",
@@ -207,7 +208,7 @@ RecipeRegistry["RCP_GOLD_ALLOY"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_GUILD_BANNER"] = {
+RecipeRegistry_data["RCP_GUILD_BANNER"] = {
 	Id = "RCP_GUILD_BANNER",
 	Name = "Guild Banner",
 	Description = "A decorative banner for displaying Coven identity in the Sanctum.",
@@ -215,7 +216,7 @@ RecipeRegistry["RCP_GUILD_BANNER"] = {
 	OutputType = "Decoration",
 }
 
-RecipeRegistry["RCP_GUILD_STRONGBOX"] = {
+RecipeRegistry_data["RCP_GUILD_STRONGBOX"] = {
 	Id = "RCP_GUILD_STRONGBOX",
 	Name = "Guild Strongbox",
 	Description = "A secure container for Coven shared resources.",
@@ -223,7 +224,7 @@ RecipeRegistry["RCP_GUILD_STRONGBOX"] = {
 	OutputType = "Decoration",
 }
 
-RecipeRegistry["RCP_IRON_REFINED"] = {
+RecipeRegistry_data["RCP_IRON_REFINED"] = {
 	Id = "RCP_IRON_REFINED",
 	Name = "Iron Refinement",
 	Description = "Smelt Iron Ore into purified Iron Refined ingots.",
@@ -231,7 +232,7 @@ RecipeRegistry["RCP_IRON_REFINED"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_MYTHRIL_REFINED"] = {
+RecipeRegistry_data["RCP_MYTHRIL_REFINED"] = {
 	Id = "RCP_MYTHRIL_REFINED",
 	Name = "Mythril Refinement",
 	Description = "Refine Mythril Ore with Aether Dust to produce purified Mythril.",
@@ -239,7 +240,7 @@ RecipeRegistry["RCP_MYTHRIL_REFINED"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_MYTHRIL_SHARD"] = {
+RecipeRegistry_data["RCP_MYTHRIL_SHARD"] = {
 	Id = "RCP_MYTHRIL_SHARD",
 	Name = "Mythril Shard Synthesis",
 	Description = "Crystallise Mythril Ore under high pressure into Mythril Shards.",
@@ -247,7 +248,7 @@ RecipeRegistry["RCP_MYTHRIL_SHARD"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_OBSIDIAN_CRYSTAL"] = {
+RecipeRegistry_data["RCP_OBSIDIAN_CRYSTAL"] = {
 	Id = "RCP_OBSIDIAN_CRYSTAL",
 	Name = "Obsidian Crystal Growth",
 	Description = "Grow Obsidian Crystals from volcanic ore and AetherCrystal substrate.",
@@ -255,7 +256,7 @@ RecipeRegistry["RCP_OBSIDIAN_CRYSTAL"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry["RCP_PURIFICATION_CRYSTAL"] = {
+RecipeRegistry_data["RCP_PURIFICATION_CRYSTAL"] = {
 	Id = "RCP_PURIFICATION_CRYSTAL",
 	Name = "Purification Crystal",
 	Description = "Craft a Purification Crystal for depositing Coins into the Aura Vault.",
@@ -263,7 +264,7 @@ RecipeRegistry["RCP_PURIFICATION_CRYSTAL"] = {
 	OutputType = "Currency",
 }
 
-RecipeRegistry["RCP_QUANTUM_ESSENCE"] = {
+RecipeRegistry_data["RCP_QUANTUM_ESSENCE"] = {
 	Id = "RCP_QUANTUM_ESSENCE",
 	Name = "Quantum Essence Synthesis",
 	Description = "Synthesise Quantum Essence by collapsing multiple Singularities together.",
@@ -271,7 +272,7 @@ RecipeRegistry["RCP_QUANTUM_ESSENCE"] = {
 	OutputType = "Research",
 }
 
-RecipeRegistry["RCP_REACTOR_CORE"] = {
+RecipeRegistry_data["RCP_REACTOR_CORE"] = {
 	Id = "RCP_REACTOR_CORE",
 	Name = "Reactor Core Assembly",
 	Description = "Assemble a Reactor Core from refined metals and an Aether Matrix.",
@@ -279,7 +280,7 @@ RecipeRegistry["RCP_REACTOR_CORE"] = {
 	OutputType = "Machine",
 }
 
-RecipeRegistry["RCP_REBIRTH_CATALYST"] = {
+RecipeRegistry_data["RCP_REBIRTH_CATALYST"] = {
 	Id = "RCP_REBIRTH_CATALYST",
 	Name = "Rebirth Catalyst",
 	Description = "A powerful catalyst that enables Rebirth without spending tokens.",
@@ -287,7 +288,7 @@ RecipeRegistry["RCP_REBIRTH_CATALYST"] = {
 	OutputType = "Consumable",
 }
 
-RecipeRegistry["RCP_SANCTUM_TOKEN"] = {
+RecipeRegistry_data["RCP_SANCTUM_TOKEN"] = {
 	Id = "RCP_SANCTUM_TOKEN",
 	Name = "Sanctum Token",
 	Description = "Forge a Sanctum Token redeemable in the Battlepass reward track.",
@@ -295,7 +296,7 @@ RecipeRegistry["RCP_SANCTUM_TOKEN"] = {
 	OutputType = "Currency",
 }
 
-RecipeRegistry["RCP_SHADOW_RAID_TOKEN"] = {
+RecipeRegistry_data["RCP_SHADOW_RAID_TOKEN"] = {
 	Id = "RCP_SHADOW_RAID_TOKEN",
 	Name = "Shadow Raid Token",
 	Description = "Token required to initiate a Shadow Raid expedition.",
@@ -303,7 +304,7 @@ RecipeRegistry["RCP_SHADOW_RAID_TOKEN"] = {
 	OutputType = "RaidToken",
 }
 
-RecipeRegistry["RCP_SMELTER_UPGRADE"] = {
+RecipeRegistry_data["RCP_SMELTER_UPGRADE"] = {
 	Id = "RCP_SMELTER_UPGRADE",
 	Name = "Smelter Efficiency Upgrade",
 	Description = "Upgrade a Smelter using Adamantite Alloy and Gold Crystal components.",
@@ -311,7 +312,7 @@ RecipeRegistry["RCP_SMELTER_UPGRADE"] = {
 	OutputType = "Machine",
 }
 
-RecipeRegistry["RCP_SPIRIT_CATALYST_EARTH"] = {
+RecipeRegistry_data["RCP_SPIRIT_CATALYST_EARTH"] = {
 	Id = "RCP_SPIRIT_CATALYST_EARTH",
 	Name = "Earth Spirit Catalyst",
 	Description = "Bind Earth element energies into a catalyst for Earth Spirit hatching.",
@@ -319,7 +320,7 @@ RecipeRegistry["RCP_SPIRIT_CATALYST_EARTH"] = {
 	OutputType = "Catalyst",
 }
 
-RecipeRegistry["RCP_SPIRIT_CATALYST_FIRE"] = {
+RecipeRegistry_data["RCP_SPIRIT_CATALYST_FIRE"] = {
 	Id = "RCP_SPIRIT_CATALYST_FIRE",
 	Name = "Fire Spirit Catalyst",
 	Description = "Forge a Fire Catalyst from volcanic materials for Fire Spirit hatching.",
@@ -327,7 +328,7 @@ RecipeRegistry["RCP_SPIRIT_CATALYST_FIRE"] = {
 	OutputType = "Catalyst",
 }
 
-RecipeRegistry["RCP_SPIRIT_CATALYST_LIGHTNING"] = {
+RecipeRegistry_data["RCP_SPIRIT_CATALYST_LIGHTNING"] = {
 	Id = "RCP_SPIRIT_CATALYST_LIGHTNING",
 	Name = "Lightning Spirit Catalyst",
 	Description = "Generate a Lightning Catalyst from high-conductivity alloys.",
@@ -335,7 +336,7 @@ RecipeRegistry["RCP_SPIRIT_CATALYST_LIGHTNING"] = {
 	OutputType = "Catalyst",
 }
 
-RecipeRegistry["RCP_SPIRIT_CATALYST_VOID"] = {
+RecipeRegistry_data["RCP_SPIRIT_CATALYST_VOID"] = {
 	Id = "RCP_SPIRIT_CATALYST_VOID",
 	Name = "Void Spirit Catalyst",
 	Description = "Forge a Void Catalyst from Obsidian Singularity and Aether Matrix.",
@@ -343,7 +344,7 @@ RecipeRegistry["RCP_SPIRIT_CATALYST_VOID"] = {
 	OutputType = "Catalyst",
 }
 
-RecipeRegistry["RCP_SPIRIT_CATALYST_WATER"] = {
+RecipeRegistry_data["RCP_SPIRIT_CATALYST_WATER"] = {
 	Id = "RCP_SPIRIT_CATALYST_WATER",
 	Name = "Water Spirit Catalyst",
 	Description = "Synthesise a Water Catalyst from Aether and cooling minerals.",
@@ -351,7 +352,7 @@ RecipeRegistry["RCP_SPIRIT_CATALYST_WATER"] = {
 	OutputType = "Catalyst",
 }
 
-RecipeRegistry["RCP_SYNTHESIZER_CORE"] = {
+RecipeRegistry_data["RCP_SYNTHESIZER_CORE"] = {
 	Id = "RCP_SYNTHESIZER_CORE",
 	Name = "Synthesizer Core",
 	Description = "Build a Synthesizer Core from Mythril Matrix and Aether Essence.",
@@ -359,7 +360,7 @@ RecipeRegistry["RCP_SYNTHESIZER_CORE"] = {
 	OutputType = "Machine",
 }
 
-RecipeRegistry["RCP_TURBINE_BLADE"] = {
+RecipeRegistry_data["RCP_TURBINE_BLADE"] = {
 	Id = "RCP_TURBINE_BLADE",
 	Name = "Turbine Blade Forging",
 	Description = "Forge high-efficiency Turbine Blades from Obsidian and Adamantite.",
@@ -367,7 +368,7 @@ RecipeRegistry["RCP_TURBINE_BLADE"] = {
 	OutputType = "Machine",
 }
 
-RecipeRegistry["RCP_VOID_CRYSTAL_COMPOUND"] = {
+RecipeRegistry_data["RCP_VOID_CRYSTAL_COMPOUND"] = {
 	Id = "RCP_VOID_CRYSTAL_COMPOUND",
 	Name = "Void Crystal Compound",
 	Description = "Combine Void-tier materials into a compound for Shadow Raid entry.",
@@ -375,7 +376,7 @@ RecipeRegistry["RCP_VOID_CRYSTAL_COMPOUND"] = {
 	OutputType = "Research",
 }
 
-RecipeRegistry["RCP_VOID_FORGING"] = {
+RecipeRegistry_data["RCP_VOID_FORGING"] = {
 	Id = "RCP_VOID_FORGING",
 	Name = "Void Forging",
 	Description = "Tempa Void Essence dengan Gold Vein untuk senjata legendaris.",

@@ -5,123 +5,124 @@
 export type BadgeRegistryDefinition = { Id: string, Name: string, Description: string, RarityPercent: number }
 
 local BadgeRegistry: { [string]: BadgeRegistryDefinition } = {}
+local BadgeRegistry_data: { [string]: BadgeRegistryDefinition } = {}
 
 function BadgeRegistry.Get(id: string): BadgeRegistryDefinition?
-	return BadgeRegistry[id]
+	return BadgeRegistry_data[id]
 end
 
 function BadgeRegistry.GetAll(): { [string]: BadgeRegistryDefinition }
-	return BadgeRegistry
+	return BadgeRegistry_data
 end
 
 -- Backward-compatible aliases (legacy API)
 function BadgeRegistry.GetBadge(id: string): BadgeRegistryDefinition?
-	return BadgeRegistry[id]
+	return BadgeRegistry_data[id]
 end
 
 function BadgeRegistry.GetAllBadge(): { [string]: BadgeRegistryDefinition }
-	return BadgeRegistry
+	return BadgeRegistry_data
 end
 
-BadgeRegistry["BDG_BIOME_WALKER"] = {
+BadgeRegistry_data["BDG_BIOME_WALKER"] = {
 	Id = "BDG_BIOME_WALKER",
 	Name = "Biome Walker",
 	Description = "Visit 5 different biomes.",
 	RarityPercent = 40.0,
 }
 
-BadgeRegistry["BDG_COVEN_FOUNDER"] = {
+BadgeRegistry_data["BDG_COVEN_FOUNDER"] = {
 	Id = "BDG_COVEN_FOUNDER",
 	Name = "Coven Founder",
 	Description = "Create or join a Coven.",
 	RarityPercent = 20.0,
 }
 
-BadgeRegistry["BDG_DAILY_STREAK"] = {
+BadgeRegistry_data["BDG_DAILY_STREAK"] = {
 	Id = "BDG_DAILY_STREAK",
 	Name = "Dedicated Alchemist",
 	Description = "Complete daily quests 7 days in a row.",
 	RarityPercent = 15.0,
 }
 
-BadgeRegistry["BDG_FIRST_CRAFT"] = {
+BadgeRegistry_data["BDG_FIRST_CRAFT"] = {
 	Id = "BDG_FIRST_CRAFT",
 	Name = "First Synthesis",
 	Description = "Complete your first alchemical synthesis.",
 	RarityPercent = 85.0,
 }
 
-BadgeRegistry["BDG_LEGENDARY_HATCH"] = {
+BadgeRegistry_data["BDG_LEGENDARY_HATCH"] = {
 	Id = "BDG_LEGENDARY_HATCH",
 	Name = "Legend Caller",
 	Description = "Hatch a Legendary Spirit.",
 	RarityPercent = 0.5,
 }
 
-BadgeRegistry["BDG_MASTER_SMITH"] = {
+BadgeRegistry_data["BDG_MASTER_SMITH"] = {
 	Id = "BDG_MASTER_SMITH",
 	Name = "Forge Lord",
 	Description = "Upgrade a Machine to Mark 10.",
 	RarityPercent = 3.0,
 }
 
-BadgeRegistry["BDG_MONSTER_SLAYER"] = {
+BadgeRegistry_data["BDG_MONSTER_SLAYER"] = {
 	Id = "BDG_MONSTER_SLAYER",
 	Name = "Creature Conqueror",
 	Description = "Defeat 100 hostile creatures.",
 	RarityPercent = 25.0,
 }
 
-BadgeRegistry["BDG_MULTIVERSE_TRAVELER"] = {
+BadgeRegistry_data["BDG_MULTIVERSE_TRAVELER"] = {
 	Id = "BDG_MULTIVERSE_TRAVELER",
 	Name = "Multiverse Explorer",
 	Description = "Enter Sector 5 of any Biome.",
 	RarityPercent = 1.0,
 }
 
-BadgeRegistry["BDG_PIONEER"] = {
+BadgeRegistry_data["BDG_PIONEER"] = {
 	Id = "BDG_PIONEER",
 	Name = "Alchemist Pioneer",
 	Description = "Awarded to the first 10,000 players who synthesize a Tier 3 material.",
 	RarityPercent = 1.2,
 }
 
-BadgeRegistry["BDG_QUANTUM_MASTER"] = {
+BadgeRegistry_data["BDG_QUANTUM_MASTER"] = {
 	Id = "BDG_QUANTUM_MASTER",
 	Name = "Quantum Master",
 	Description = "Synthesize a Quantum Essence.",
 	RarityPercent = 2.0,
 }
 
-BadgeRegistry["BDG_RESEARCHER"] = {
+BadgeRegistry_data["BDG_RESEARCHER"] = {
 	Id = "BDG_RESEARCHER",
 	Name = "Grand Scholar",
 	Description = "Unlock 50 research nodes.",
 	RarityPercent = 8.0,
 }
 
-BadgeRegistry["BDG_SANCTUM_BUILDER"] = {
+BadgeRegistry_data["BDG_SANCTUM_BUILDER"] = {
 	Id = "BDG_SANCTUM_BUILDER",
 	Name = "Sanctum Builder",
 	Description = "Place 10 structures in your Sanctum.",
 	RarityPercent = 30.0,
 }
 
-BadgeRegistry["BDG_SHADOW_VETERAN"] = {
+BadgeRegistry_data["BDG_SHADOW_VETERAN"] = {
 	Id = "BDG_SHADOW_VETERAN",
 	Name = "Shadow Veteran",
 	Description = "Complete 10 Shadow Raids.",
 	RarityPercent = 10.0,
 }
 
-BadgeRegistry["BDG_SOUL_BONDER"] = {
+BadgeRegistry_data["BDG_SOUL_BONDER"] = {
 	Id = "BDG_SOUL_BONDER",
 	Name = "Soul Bonder",
 	Description = "Hatch your first Spirit companion.",
 	RarityPercent = 60.0,
 }
 
-BadgeRegistry["BDG_VETERAN"] = {
+BadgeRegistry_data["BDG_VETERAN"] = {
 	Id = "BDG_VETERAN",
 	Name = "Seasoned Veteran",
 	Description = "Reach 100 hours of total playtime.",

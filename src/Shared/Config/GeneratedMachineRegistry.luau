@@ -5,452 +5,453 @@
 export type MachineRegistryDefinition = { Id: string, Name: string, PowerConsumption: number, MaxTemperature: number }
 
 local MachineRegistry: { [string]: MachineRegistryDefinition } = {}
+local MachineRegistry_data: { [string]: MachineRegistryDefinition } = {}
 
 function MachineRegistry.Get(id: string): MachineRegistryDefinition?
-	return MachineRegistry[id]
+	return MachineRegistry_data[id]
 end
 
 function MachineRegistry.GetAll(): { [string]: MachineRegistryDefinition }
-	return MachineRegistry
+	return MachineRegistry_data
 end
 
 -- Backward-compatible aliases (legacy API)
 function MachineRegistry.GetMachine(id: string): MachineRegistryDefinition?
-	return MachineRegistry[id]
+	return MachineRegistry_data[id]
 end
 
 function MachineRegistry.GetAllMachine(): { [string]: MachineRegistryDefinition }
-	return MachineRegistry
+	return MachineRegistry_data
 end
 
-MachineRegistry["Cooler_v1"] = {
+MachineRegistry_data["Cooler_v1"] = {
 	Id = "Cooler_v1",
 	Name = "Industrial Cooler Mark 1",
 	PowerConsumption = 100.0,
 	MaxTemperature = 750.0,
 }
 
-MachineRegistry["Cooler_v10"] = {
+MachineRegistry_data["Cooler_v10"] = {
 	Id = "Cooler_v10",
 	Name = "Industrial Cooler Mark 10",
 	PowerConsumption = 1000.0,
 	MaxTemperature = 3000.0,
 }
 
-MachineRegistry["Cooler_v2"] = {
+MachineRegistry_data["Cooler_v2"] = {
 	Id = "Cooler_v2",
 	Name = "Industrial Cooler Mark 2",
 	PowerConsumption = 200.0,
 	MaxTemperature = 1000.0,
 }
 
-MachineRegistry["Cooler_v3"] = {
+MachineRegistry_data["Cooler_v3"] = {
 	Id = "Cooler_v3",
 	Name = "Industrial Cooler Mark 3",
 	PowerConsumption = 300.0,
 	MaxTemperature = 1250.0,
 }
 
-MachineRegistry["Cooler_v4"] = {
+MachineRegistry_data["Cooler_v4"] = {
 	Id = "Cooler_v4",
 	Name = "Industrial Cooler Mark 4",
 	PowerConsumption = 400.0,
 	MaxTemperature = 1500.0,
 }
 
-MachineRegistry["Cooler_v5"] = {
+MachineRegistry_data["Cooler_v5"] = {
 	Id = "Cooler_v5",
 	Name = "Industrial Cooler Mark 5",
 	PowerConsumption = 500.0,
 	MaxTemperature = 1750.0,
 }
 
-MachineRegistry["Cooler_v6"] = {
+MachineRegistry_data["Cooler_v6"] = {
 	Id = "Cooler_v6",
 	Name = "Industrial Cooler Mark 6",
 	PowerConsumption = 600.0,
 	MaxTemperature = 2000.0,
 }
 
-MachineRegistry["Cooler_v7"] = {
+MachineRegistry_data["Cooler_v7"] = {
 	Id = "Cooler_v7",
 	Name = "Industrial Cooler Mark 7",
 	PowerConsumption = 700.0,
 	MaxTemperature = 2250.0,
 }
 
-MachineRegistry["Cooler_v8"] = {
+MachineRegistry_data["Cooler_v8"] = {
 	Id = "Cooler_v8",
 	Name = "Industrial Cooler Mark 8",
 	PowerConsumption = 800.0,
 	MaxTemperature = 2500.0,
 }
 
-MachineRegistry["Cooler_v9"] = {
+MachineRegistry_data["Cooler_v9"] = {
 	Id = "Cooler_v9",
 	Name = "Industrial Cooler Mark 9",
 	PowerConsumption = 900.0,
 	MaxTemperature = 2750.0,
 }
 
-MachineRegistry["CryoCooler_v1"] = {
+MachineRegistry_data["CryoCooler_v1"] = {
 	Id = "CryoCooler_v1",
 	Name = "Cryogenic Cooling Chamber",
 	PowerConsumption = 1200.0,
 	MaxTemperature = 500.0,
 }
 
-MachineRegistry["FusionReactor_v1"] = {
+MachineRegistry_data["FusionReactor_v1"] = {
 	Id = "FusionReactor_v1",
 	Name = "Basic Fusion Reactor",
 	PowerConsumption = 500.0,
 	MaxTemperature = 3000.0,
 }
 
-MachineRegistry["Reactor_v1"] = {
+MachineRegistry_data["Reactor_v1"] = {
 	Id = "Reactor_v1",
 	Name = "Industrial Reactor Mark 1",
 	PowerConsumption = 100.0,
 	MaxTemperature = 750.0,
 }
 
-MachineRegistry["Reactor_v10"] = {
+MachineRegistry_data["Reactor_v10"] = {
 	Id = "Reactor_v10",
 	Name = "Industrial Reactor Mark 10",
 	PowerConsumption = 1000.0,
 	MaxTemperature = 3000.0,
 }
 
-MachineRegistry["Reactor_v2"] = {
+MachineRegistry_data["Reactor_v2"] = {
 	Id = "Reactor_v2",
 	Name = "Industrial Reactor Mark 2",
 	PowerConsumption = 200.0,
 	MaxTemperature = 1000.0,
 }
 
-MachineRegistry["Reactor_v3"] = {
+MachineRegistry_data["Reactor_v3"] = {
 	Id = "Reactor_v3",
 	Name = "Industrial Reactor Mark 3",
 	PowerConsumption = 300.0,
 	MaxTemperature = 1250.0,
 }
 
-MachineRegistry["Reactor_v4"] = {
+MachineRegistry_data["Reactor_v4"] = {
 	Id = "Reactor_v4",
 	Name = "Industrial Reactor Mark 4",
 	PowerConsumption = 400.0,
 	MaxTemperature = 1500.0,
 }
 
-MachineRegistry["Reactor_v5"] = {
+MachineRegistry_data["Reactor_v5"] = {
 	Id = "Reactor_v5",
 	Name = "Industrial Reactor Mark 5",
 	PowerConsumption = 500.0,
 	MaxTemperature = 1750.0,
 }
 
-MachineRegistry["Reactor_v6"] = {
+MachineRegistry_data["Reactor_v6"] = {
 	Id = "Reactor_v6",
 	Name = "Industrial Reactor Mark 6",
 	PowerConsumption = 600.0,
 	MaxTemperature = 2000.0,
 }
 
-MachineRegistry["Reactor_v7"] = {
+MachineRegistry_data["Reactor_v7"] = {
 	Id = "Reactor_v7",
 	Name = "Industrial Reactor Mark 7",
 	PowerConsumption = 700.0,
 	MaxTemperature = 2250.0,
 }
 
-MachineRegistry["Reactor_v8"] = {
+MachineRegistry_data["Reactor_v8"] = {
 	Id = "Reactor_v8",
 	Name = "Industrial Reactor Mark 8",
 	PowerConsumption = 800.0,
 	MaxTemperature = 2500.0,
 }
 
-MachineRegistry["Reactor_v9"] = {
+MachineRegistry_data["Reactor_v9"] = {
 	Id = "Reactor_v9",
 	Name = "Industrial Reactor Mark 9",
 	PowerConsumption = 900.0,
 	MaxTemperature = 2750.0,
 }
 
-MachineRegistry["Refinery_v1"] = {
+MachineRegistry_data["Refinery_v1"] = {
 	Id = "Refinery_v1",
 	Name = "Industrial Refinery Mark 1",
 	PowerConsumption = 100.0,
 	MaxTemperature = 750.0,
 }
 
-MachineRegistry["Refinery_v10"] = {
+MachineRegistry_data["Refinery_v10"] = {
 	Id = "Refinery_v10",
 	Name = "Industrial Refinery Mark 10",
 	PowerConsumption = 1000.0,
 	MaxTemperature = 3000.0,
 }
 
-MachineRegistry["Refinery_v2"] = {
+MachineRegistry_data["Refinery_v2"] = {
 	Id = "Refinery_v2",
 	Name = "Industrial Refinery Mark 2",
 	PowerConsumption = 200.0,
 	MaxTemperature = 1000.0,
 }
 
-MachineRegistry["Refinery_v3"] = {
+MachineRegistry_data["Refinery_v3"] = {
 	Id = "Refinery_v3",
 	Name = "Industrial Refinery Mark 3",
 	PowerConsumption = 300.0,
 	MaxTemperature = 1250.0,
 }
 
-MachineRegistry["Refinery_v4"] = {
+MachineRegistry_data["Refinery_v4"] = {
 	Id = "Refinery_v4",
 	Name = "Industrial Refinery Mark 4",
 	PowerConsumption = 400.0,
 	MaxTemperature = 1500.0,
 }
 
-MachineRegistry["Refinery_v5"] = {
+MachineRegistry_data["Refinery_v5"] = {
 	Id = "Refinery_v5",
 	Name = "Industrial Refinery Mark 5",
 	PowerConsumption = 500.0,
 	MaxTemperature = 1750.0,
 }
 
-MachineRegistry["Refinery_v6"] = {
+MachineRegistry_data["Refinery_v6"] = {
 	Id = "Refinery_v6",
 	Name = "Industrial Refinery Mark 6",
 	PowerConsumption = 600.0,
 	MaxTemperature = 2000.0,
 }
 
-MachineRegistry["Refinery_v7"] = {
+MachineRegistry_data["Refinery_v7"] = {
 	Id = "Refinery_v7",
 	Name = "Industrial Refinery Mark 7",
 	PowerConsumption = 700.0,
 	MaxTemperature = 2250.0,
 }
 
-MachineRegistry["Refinery_v8"] = {
+MachineRegistry_data["Refinery_v8"] = {
 	Id = "Refinery_v8",
 	Name = "Industrial Refinery Mark 8",
 	PowerConsumption = 800.0,
 	MaxTemperature = 2500.0,
 }
 
-MachineRegistry["Refinery_v9"] = {
+MachineRegistry_data["Refinery_v9"] = {
 	Id = "Refinery_v9",
 	Name = "Industrial Refinery Mark 9",
 	PowerConsumption = 900.0,
 	MaxTemperature = 2750.0,
 }
 
-MachineRegistry["Smelter_v1"] = {
+MachineRegistry_data["Smelter_v1"] = {
 	Id = "Smelter_v1",
 	Name = "Industrial Smelter Mark 1",
 	PowerConsumption = 100.0,
 	MaxTemperature = 750.0,
 }
 
-MachineRegistry["Smelter_v10"] = {
+MachineRegistry_data["Smelter_v10"] = {
 	Id = "Smelter_v10",
 	Name = "Industrial Smelter Mark 10",
 	PowerConsumption = 1000.0,
 	MaxTemperature = 3000.0,
 }
 
-MachineRegistry["Smelter_v2"] = {
+MachineRegistry_data["Smelter_v2"] = {
 	Id = "Smelter_v2",
 	Name = "Industrial Smelter Mark 2",
 	PowerConsumption = 200.0,
 	MaxTemperature = 1000.0,
 }
 
-MachineRegistry["Smelter_v3"] = {
+MachineRegistry_data["Smelter_v3"] = {
 	Id = "Smelter_v3",
 	Name = "Industrial Smelter Mark 3",
 	PowerConsumption = 300.0,
 	MaxTemperature = 1250.0,
 }
 
-MachineRegistry["Smelter_v4"] = {
+MachineRegistry_data["Smelter_v4"] = {
 	Id = "Smelter_v4",
 	Name = "Industrial Smelter Mark 4",
 	PowerConsumption = 400.0,
 	MaxTemperature = 1500.0,
 }
 
-MachineRegistry["Smelter_v5"] = {
+MachineRegistry_data["Smelter_v5"] = {
 	Id = "Smelter_v5",
 	Name = "Industrial Smelter Mark 5",
 	PowerConsumption = 500.0,
 	MaxTemperature = 1750.0,
 }
 
-MachineRegistry["Smelter_v6"] = {
+MachineRegistry_data["Smelter_v6"] = {
 	Id = "Smelter_v6",
 	Name = "Industrial Smelter Mark 6",
 	PowerConsumption = 600.0,
 	MaxTemperature = 2000.0,
 }
 
-MachineRegistry["Smelter_v7"] = {
+MachineRegistry_data["Smelter_v7"] = {
 	Id = "Smelter_v7",
 	Name = "Industrial Smelter Mark 7",
 	PowerConsumption = 700.0,
 	MaxTemperature = 2250.0,
 }
 
-MachineRegistry["Smelter_v8"] = {
+MachineRegistry_data["Smelter_v8"] = {
 	Id = "Smelter_v8",
 	Name = "Industrial Smelter Mark 8",
 	PowerConsumption = 800.0,
 	MaxTemperature = 2500.0,
 }
 
-MachineRegistry["Smelter_v9"] = {
+MachineRegistry_data["Smelter_v9"] = {
 	Id = "Smelter_v9",
 	Name = "Industrial Smelter Mark 9",
 	PowerConsumption = 900.0,
 	MaxTemperature = 2750.0,
 }
 
-MachineRegistry["Synthesizer_v1"] = {
+MachineRegistry_data["Synthesizer_v1"] = {
 	Id = "Synthesizer_v1",
 	Name = "Industrial Synthesizer Mark 1",
 	PowerConsumption = 100.0,
 	MaxTemperature = 750.0,
 }
 
-MachineRegistry["Synthesizer_v10"] = {
+MachineRegistry_data["Synthesizer_v10"] = {
 	Id = "Synthesizer_v10",
 	Name = "Industrial Synthesizer Mark 10",
 	PowerConsumption = 1000.0,
 	MaxTemperature = 3000.0,
 }
 
-MachineRegistry["Synthesizer_v2"] = {
+MachineRegistry_data["Synthesizer_v2"] = {
 	Id = "Synthesizer_v2",
 	Name = "Industrial Synthesizer Mark 2",
 	PowerConsumption = 200.0,
 	MaxTemperature = 1000.0,
 }
 
-MachineRegistry["Synthesizer_v3"] = {
+MachineRegistry_data["Synthesizer_v3"] = {
 	Id = "Synthesizer_v3",
 	Name = "Industrial Synthesizer Mark 3",
 	PowerConsumption = 300.0,
 	MaxTemperature = 1250.0,
 }
 
-MachineRegistry["Synthesizer_v4"] = {
+MachineRegistry_data["Synthesizer_v4"] = {
 	Id = "Synthesizer_v4",
 	Name = "Industrial Synthesizer Mark 4",
 	PowerConsumption = 400.0,
 	MaxTemperature = 1500.0,
 }
 
-MachineRegistry["Synthesizer_v5"] = {
+MachineRegistry_data["Synthesizer_v5"] = {
 	Id = "Synthesizer_v5",
 	Name = "Industrial Synthesizer Mark 5",
 	PowerConsumption = 500.0,
 	MaxTemperature = 1750.0,
 }
 
-MachineRegistry["Synthesizer_v6"] = {
+MachineRegistry_data["Synthesizer_v6"] = {
 	Id = "Synthesizer_v6",
 	Name = "Industrial Synthesizer Mark 6",
 	PowerConsumption = 600.0,
 	MaxTemperature = 2000.0,
 }
 
-MachineRegistry["Synthesizer_v7"] = {
+MachineRegistry_data["Synthesizer_v7"] = {
 	Id = "Synthesizer_v7",
 	Name = "Industrial Synthesizer Mark 7",
 	PowerConsumption = 700.0,
 	MaxTemperature = 2250.0,
 }
 
-MachineRegistry["Synthesizer_v8"] = {
+MachineRegistry_data["Synthesizer_v8"] = {
 	Id = "Synthesizer_v8",
 	Name = "Industrial Synthesizer Mark 8",
 	PowerConsumption = 800.0,
 	MaxTemperature = 2500.0,
 }
 
-MachineRegistry["Synthesizer_v9"] = {
+MachineRegistry_data["Synthesizer_v9"] = {
 	Id = "Synthesizer_v9",
 	Name = "Industrial Synthesizer Mark 9",
 	PowerConsumption = 900.0,
 	MaxTemperature = 2750.0,
 }
 
-MachineRegistry["Turbine_v1"] = {
+MachineRegistry_data["Turbine_v1"] = {
 	Id = "Turbine_v1",
 	Name = "Industrial Turbine Mark 1",
 	PowerConsumption = 100.0,
 	MaxTemperature = 750.0,
 }
 
-MachineRegistry["Turbine_v10"] = {
+MachineRegistry_data["Turbine_v10"] = {
 	Id = "Turbine_v10",
 	Name = "Industrial Turbine Mark 10",
 	PowerConsumption = 1000.0,
 	MaxTemperature = 3000.0,
 }
 
-MachineRegistry["Turbine_v2"] = {
+MachineRegistry_data["Turbine_v2"] = {
 	Id = "Turbine_v2",
 	Name = "Industrial Turbine Mark 2",
 	PowerConsumption = 200.0,
 	MaxTemperature = 1000.0,
 }
 
-MachineRegistry["Turbine_v3"] = {
+MachineRegistry_data["Turbine_v3"] = {
 	Id = "Turbine_v3",
 	Name = "Industrial Turbine Mark 3",
 	PowerConsumption = 300.0,
 	MaxTemperature = 1250.0,
 }
 
-MachineRegistry["Turbine_v4"] = {
+MachineRegistry_data["Turbine_v4"] = {
 	Id = "Turbine_v4",
 	Name = "Industrial Turbine Mark 4",
 	PowerConsumption = 400.0,
 	MaxTemperature = 1500.0,
 }
 
-MachineRegistry["Turbine_v5"] = {
+MachineRegistry_data["Turbine_v5"] = {
 	Id = "Turbine_v5",
 	Name = "Industrial Turbine Mark 5",
 	PowerConsumption = 500.0,
 	MaxTemperature = 1750.0,
 }
 
-MachineRegistry["Turbine_v6"] = {
+MachineRegistry_data["Turbine_v6"] = {
 	Id = "Turbine_v6",
 	Name = "Industrial Turbine Mark 6",
 	PowerConsumption = 600.0,
 	MaxTemperature = 2000.0,
 }
 
-MachineRegistry["Turbine_v7"] = {
+MachineRegistry_data["Turbine_v7"] = {
 	Id = "Turbine_v7",
 	Name = "Industrial Turbine Mark 7",
 	PowerConsumption = 700.0,
 	MaxTemperature = 2250.0,
 }
 
-MachineRegistry["Turbine_v8"] = {
+MachineRegistry_data["Turbine_v8"] = {
 	Id = "Turbine_v8",
 	Name = "Industrial Turbine Mark 8",
 	PowerConsumption = 800.0,
 	MaxTemperature = 2500.0,
 }
 
-MachineRegistry["Turbine_v9"] = {
+MachineRegistry_data["Turbine_v9"] = {
 	Id = "Turbine_v9",
 	Name = "Industrial Turbine Mark 9",
 	PowerConsumption = 900.0,

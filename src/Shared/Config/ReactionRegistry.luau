@@ -20,20 +20,21 @@ export type ReactionDefinition = {
 }
 
 local ReactionRegistry: { [string]: ReactionDefinition } = {}
+local ReactionRegistry_data: { [string]: ReactionDefinition } = {}
 
 function ReactionRegistry.RegisterReaction(def: ReactionDefinition)
-	if ReactionRegistry[def.Id] then
+	if ReactionRegistry_data[def.Id] then
 		warn(string.format("⚠️ [ReactionRegistry] Duplicate reaction registration for '%s'. Overwriting.", def.Id))
 	end
-	ReactionRegistry[def.Id] = def
+	ReactionRegistry_data[def.Id] = def
 end
 
 function ReactionRegistry.GetReaction(id: string): ReactionDefinition?
-	return ReactionRegistry[id]
+	return ReactionRegistry_data[id]
 end
 
 function ReactionRegistry.GetAllReactions(): { [string]: ReactionDefinition }
-	return ReactionRegistry
+	return ReactionRegistry_data
 end
 
 local GeneratedReactionRegistry = require(script.Parent.GeneratedReactionRegistry)

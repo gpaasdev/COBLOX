@@ -5,301 +5,302 @@
 export type BiomeRegistryDefinition = { Id: string, Name: string, Temperature: number }
 
 local BiomeRegistry: { [string]: BiomeRegistryDefinition } = {}
+local BiomeRegistry_data: { [string]: BiomeRegistryDefinition } = {}
 
 function BiomeRegistry.Get(id: string): BiomeRegistryDefinition?
-	return BiomeRegistry[id]
+	return BiomeRegistry_data[id]
 end
 
 function BiomeRegistry.GetAll(): { [string]: BiomeRegistryDefinition }
-	return BiomeRegistry
+	return BiomeRegistry_data
 end
 
 -- Backward-compatible aliases (legacy API)
 function BiomeRegistry.GetBiome(id: string): BiomeRegistryDefinition?
-	return BiomeRegistry[id]
+	return BiomeRegistry_data[id]
 end
 
 function BiomeRegistry.GetAllBiome(): { [string]: BiomeRegistryDefinition }
-	return BiomeRegistry
+	return BiomeRegistry_data
 end
 
-BiomeRegistry["Biome_Abyssal_1"] = {
+BiomeRegistry_data["Biome_Abyssal_1"] = {
 	Id = "Biome_Abyssal_1",
 	Name = "Abyssal Wastes Sector 1",
 	Temperature = 250.0,
 }
 
-BiomeRegistry["Biome_Abyssal_2"] = {
+BiomeRegistry_data["Biome_Abyssal_2"] = {
 	Id = "Biome_Abyssal_2",
 	Name = "Abyssal Wastes Sector 2",
 	Temperature = 300.0,
 }
 
-BiomeRegistry["Biome_Abyssal_3"] = {
+BiomeRegistry_data["Biome_Abyssal_3"] = {
 	Id = "Biome_Abyssal_3",
 	Name = "Abyssal Wastes Sector 3",
 	Temperature = 350.0,
 }
 
-BiomeRegistry["Biome_Abyssal_4"] = {
+BiomeRegistry_data["Biome_Abyssal_4"] = {
 	Id = "Biome_Abyssal_4",
 	Name = "Abyssal Wastes Sector 4",
 	Temperature = 400.0,
 }
 
-BiomeRegistry["Biome_Abyssal_5"] = {
+BiomeRegistry_data["Biome_Abyssal_5"] = {
 	Id = "Biome_Abyssal_5",
 	Name = "Abyssal Wastes Sector 5",
 	Temperature = 450.0,
 }
 
-BiomeRegistry["Biome_Aether_1"] = {
+BiomeRegistry_data["Biome_Aether_1"] = {
 	Id = "Biome_Aether_1",
 	Name = "Aether Wastes Sector 1",
 	Temperature = 250.0,
 }
 
-BiomeRegistry["Biome_Aether_2"] = {
+BiomeRegistry_data["Biome_Aether_2"] = {
 	Id = "Biome_Aether_2",
 	Name = "Aether Wastes Sector 2",
 	Temperature = 300.0,
 }
 
-BiomeRegistry["Biome_Aether_3"] = {
+BiomeRegistry_data["Biome_Aether_3"] = {
 	Id = "Biome_Aether_3",
 	Name = "Aether Wastes Sector 3",
 	Temperature = 350.0,
 }
 
-BiomeRegistry["Biome_Aether_4"] = {
+BiomeRegistry_data["Biome_Aether_4"] = {
 	Id = "Biome_Aether_4",
 	Name = "Aether Wastes Sector 4",
 	Temperature = 400.0,
 }
 
-BiomeRegistry["Biome_Aether_5"] = {
+BiomeRegistry_data["Biome_Aether_5"] = {
 	Id = "Biome_Aether_5",
 	Name = "Aether Wastes Sector 5",
 	Temperature = 450.0,
 }
 
-BiomeRegistry["Biome_Celestial_1"] = {
+BiomeRegistry_data["Biome_Celestial_1"] = {
 	Id = "Biome_Celestial_1",
 	Name = "Celestial Wastes Sector 1",
 	Temperature = 250.0,
 }
 
-BiomeRegistry["Biome_Celestial_2"] = {
+BiomeRegistry_data["Biome_Celestial_2"] = {
 	Id = "Biome_Celestial_2",
 	Name = "Celestial Wastes Sector 2",
 	Temperature = 300.0,
 }
 
-BiomeRegistry["Biome_Celestial_3"] = {
+BiomeRegistry_data["Biome_Celestial_3"] = {
 	Id = "Biome_Celestial_3",
 	Name = "Celestial Wastes Sector 3",
 	Temperature = 350.0,
 }
 
-BiomeRegistry["Biome_Celestial_4"] = {
+BiomeRegistry_data["Biome_Celestial_4"] = {
 	Id = "Biome_Celestial_4",
 	Name = "Celestial Wastes Sector 4",
 	Temperature = 400.0,
 }
 
-BiomeRegistry["Biome_Celestial_5"] = {
+BiomeRegistry_data["Biome_Celestial_5"] = {
 	Id = "Biome_Celestial_5",
 	Name = "Celestial Wastes Sector 5",
 	Temperature = 450.0,
 }
 
-BiomeRegistry["Biome_Glacial_1"] = {
+BiomeRegistry_data["Biome_Glacial_1"] = {
 	Id = "Biome_Glacial_1",
 	Name = "Glacial Wastes Sector 1",
 	Temperature = 250.0,
 }
 
-BiomeRegistry["Biome_Glacial_2"] = {
+BiomeRegistry_data["Biome_Glacial_2"] = {
 	Id = "Biome_Glacial_2",
 	Name = "Glacial Wastes Sector 2",
 	Temperature = 300.0,
 }
 
-BiomeRegistry["Biome_Glacial_3"] = {
+BiomeRegistry_data["Biome_Glacial_3"] = {
 	Id = "Biome_Glacial_3",
 	Name = "Glacial Wastes Sector 3",
 	Temperature = 350.0,
 }
 
-BiomeRegistry["Biome_Glacial_4"] = {
+BiomeRegistry_data["Biome_Glacial_4"] = {
 	Id = "Biome_Glacial_4",
 	Name = "Glacial Wastes Sector 4",
 	Temperature = 400.0,
 }
 
-BiomeRegistry["Biome_Glacial_5"] = {
+BiomeRegistry_data["Biome_Glacial_5"] = {
 	Id = "Biome_Glacial_5",
 	Name = "Glacial Wastes Sector 5",
 	Temperature = 450.0,
 }
 
-BiomeRegistry["Biome_Subterranean_1"] = {
+BiomeRegistry_data["Biome_Subterranean_1"] = {
 	Id = "Biome_Subterranean_1",
 	Name = "Subterranean Wastes Sector 1",
 	Temperature = 250.0,
 }
 
-BiomeRegistry["Biome_Subterranean_2"] = {
+BiomeRegistry_data["Biome_Subterranean_2"] = {
 	Id = "Biome_Subterranean_2",
 	Name = "Subterranean Wastes Sector 2",
 	Temperature = 300.0,
 }
 
-BiomeRegistry["Biome_Subterranean_3"] = {
+BiomeRegistry_data["Biome_Subterranean_3"] = {
 	Id = "Biome_Subterranean_3",
 	Name = "Subterranean Wastes Sector 3",
 	Temperature = 350.0,
 }
 
-BiomeRegistry["Biome_Subterranean_4"] = {
+BiomeRegistry_data["Biome_Subterranean_4"] = {
 	Id = "Biome_Subterranean_4",
 	Name = "Subterranean Wastes Sector 4",
 	Temperature = 400.0,
 }
 
-BiomeRegistry["Biome_Subterranean_5"] = {
+BiomeRegistry_data["Biome_Subterranean_5"] = {
 	Id = "Biome_Subterranean_5",
 	Name = "Subterranean Wastes Sector 5",
 	Temperature = 450.0,
 }
 
-BiomeRegistry["Biome_Toxic_1"] = {
+BiomeRegistry_data["Biome_Toxic_1"] = {
 	Id = "Biome_Toxic_1",
 	Name = "Toxic Wastes Sector 1",
 	Temperature = 250.0,
 }
 
-BiomeRegistry["Biome_Toxic_2"] = {
+BiomeRegistry_data["Biome_Toxic_2"] = {
 	Id = "Biome_Toxic_2",
 	Name = "Toxic Wastes Sector 2",
 	Temperature = 300.0,
 }
 
-BiomeRegistry["Biome_Toxic_3"] = {
+BiomeRegistry_data["Biome_Toxic_3"] = {
 	Id = "Biome_Toxic_3",
 	Name = "Toxic Wastes Sector 3",
 	Temperature = 350.0,
 }
 
-BiomeRegistry["Biome_Toxic_4"] = {
+BiomeRegistry_data["Biome_Toxic_4"] = {
 	Id = "Biome_Toxic_4",
 	Name = "Toxic Wastes Sector 4",
 	Temperature = 400.0,
 }
 
-BiomeRegistry["Biome_Toxic_5"] = {
+BiomeRegistry_data["Biome_Toxic_5"] = {
 	Id = "Biome_Toxic_5",
 	Name = "Toxic Wastes Sector 5",
 	Temperature = 450.0,
 }
 
-BiomeRegistry["Biome_Void_1"] = {
+BiomeRegistry_data["Biome_Void_1"] = {
 	Id = "Biome_Void_1",
 	Name = "Void Wastes Sector 1",
 	Temperature = 250.0,
 }
 
-BiomeRegistry["Biome_Void_2"] = {
+BiomeRegistry_data["Biome_Void_2"] = {
 	Id = "Biome_Void_2",
 	Name = "Void Wastes Sector 2",
 	Temperature = 300.0,
 }
 
-BiomeRegistry["Biome_Void_3"] = {
+BiomeRegistry_data["Biome_Void_3"] = {
 	Id = "Biome_Void_3",
 	Name = "Void Wastes Sector 3",
 	Temperature = 350.0,
 }
 
-BiomeRegistry["Biome_Void_4"] = {
+BiomeRegistry_data["Biome_Void_4"] = {
 	Id = "Biome_Void_4",
 	Name = "Void Wastes Sector 4",
 	Temperature = 400.0,
 }
 
-BiomeRegistry["Biome_Void_5"] = {
+BiomeRegistry_data["Biome_Void_5"] = {
 	Id = "Biome_Void_5",
 	Name = "Void Wastes Sector 5",
 	Temperature = 450.0,
 }
 
-BiomeRegistry["Biome_Volcanic_1"] = {
+BiomeRegistry_data["Biome_Volcanic_1"] = {
 	Id = "Biome_Volcanic_1",
 	Name = "Volcanic Wastes Sector 1",
 	Temperature = 250.0,
 }
 
-BiomeRegistry["Biome_Volcanic_2"] = {
+BiomeRegistry_data["Biome_Volcanic_2"] = {
 	Id = "Biome_Volcanic_2",
 	Name = "Volcanic Wastes Sector 2",
 	Temperature = 300.0,
 }
 
-BiomeRegistry["Biome_Volcanic_3"] = {
+BiomeRegistry_data["Biome_Volcanic_3"] = {
 	Id = "Biome_Volcanic_3",
 	Name = "Volcanic Wastes Sector 3",
 	Temperature = 350.0,
 }
 
-BiomeRegistry["Biome_Volcanic_4"] = {
+BiomeRegistry_data["Biome_Volcanic_4"] = {
 	Id = "Biome_Volcanic_4",
 	Name = "Volcanic Wastes Sector 4",
 	Temperature = 400.0,
 }
 
-BiomeRegistry["Biome_Volcanic_5"] = {
+BiomeRegistry_data["Biome_Volcanic_5"] = {
 	Id = "Biome_Volcanic_5",
 	Name = "Volcanic Wastes Sector 5",
 	Temperature = 450.0,
 }
 
-BiomeRegistry["VoidCaves"] = {
+BiomeRegistry_data["VoidCaves"] = {
 	Id = "VoidCaves",
 	Name = "Subterranean Void Caves",
 	Temperature = 180.0,
 }
 
-BiomeRegistry["fairy_AetherSkyCitadel"] = {
+BiomeRegistry_data["fairy_AetherSkyCitadel"] = {
 	Id = "fairy_AetherSkyCitadel",
 	Name = "Aether Sky Citadel",
 	Temperature = 280.0,
 }
 
-BiomeRegistry["fairy_CentralHub"] = {
+BiomeRegistry_data["fairy_CentralHub"] = {
 	Id = "fairy_CentralHub",
 	Name = "Sanctum Citadel",
 	Temperature = 300.0,
 }
 
-BiomeRegistry["fairy_EnchantedForest"] = {
+BiomeRegistry_data["fairy_EnchantedForest"] = {
 	Id = "fairy_EnchantedForest",
 	Name = "Enchanted Forest",
 	Temperature = 295.0,
 }
 
-BiomeRegistry["fairy_GlacialCavern"] = {
+BiomeRegistry_data["fairy_GlacialCavern"] = {
 	Id = "fairy_GlacialCavern",
 	Name = "Glacial Cavern",
 	Temperature = 230.0,
 }
 
-BiomeRegistry["fairy_VoidCaves"] = {
+BiomeRegistry_data["fairy_VoidCaves"] = {
 	Id = "fairy_VoidCaves",
 	Name = "Void Caves",
 	Temperature = 265.0,
 }
 
-BiomeRegistry["fairy_VolcanicForge"] = {
+BiomeRegistry_data["fairy_VolcanicForge"] = {
 	Id = "fairy_VolcanicForge",
 	Name = "Volcanic Forge",
 	Temperature = 420.0,

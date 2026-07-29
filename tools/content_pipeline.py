@@ -131,22 +131,23 @@ def generate_luau_registry(items, output_path: str, registry_name: str, type_def
 {type_def}
 
 local {registry_name}: {{ [string]: {registry_name}Definition }} = {{}}
+local {registry_name}_data: {{ [string]: {registry_name}Definition }} = {{}}
 
 function {registry_name}.Get(id: string): {registry_name}Definition?
-	return {registry_name}[id]
+	return {registry_name}_data[id]
 end
 
 function {registry_name}.GetAll(): {{ [string]: {registry_name}Definition }}
-	return {registry_name}
+	return {registry_name}_data
 end
 
 -- Backward-compatible aliases (legacy API)
 function {registry_name}.Get{singular_name}(id: string): {registry_name}Definition?
-	return {registry_name}[id]
+	return {registry_name}_data[id]
 end
 
 function {registry_name}.GetAll{plural_name}(): {{ [string]: {registry_name}Definition }}
-	return {registry_name}
+	return {registry_name}_data
 end
 
 """
@@ -154,7 +155,7 @@ end
     items = sorted(items, key=lambda x: x.Id)
     for item in items:
         data = item.model_dump(exclude_none=True)
-        entry = f'{registry_name}["{data["Id"]}"] = {{\n'
+        entry = f'{registry_name}_data["{data["Id"]}"] = {{\n'
         for k, v in data.items():
             if isinstance(v, dict):
                 entry += f'\t{k} = {{\n'

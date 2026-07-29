@@ -5,25 +5,26 @@
 export type MarketRegistryDefinition = { Id: string, Name: string, Description: string, Price: number, Currency: string, Category: string, ImageUrl: string }
 
 local MarketRegistry: { [string]: MarketRegistryDefinition } = {}
+local MarketRegistry_data: { [string]: MarketRegistryDefinition } = {}
 
 function MarketRegistry.Get(id: string): MarketRegistryDefinition?
-	return MarketRegistry[id]
+	return MarketRegistry_data[id]
 end
 
 function MarketRegistry.GetAll(): { [string]: MarketRegistryDefinition }
-	return MarketRegistry
+	return MarketRegistry_data
 end
 
 -- Backward-compatible aliases (legacy API)
 function MarketRegistry.GetMarket(id: string): MarketRegistryDefinition?
-	return MarketRegistry[id]
+	return MarketRegistry_data[id]
 end
 
 function MarketRegistry.GetAllMarket(): { [string]: MarketRegistryDefinition }
-	return MarketRegistry
+	return MarketRegistry_data
 end
 
-MarketRegistry["MKT_FAIRYTALE_PASS"] = {
+MarketRegistry_data["MKT_FAIRYTALE_PASS"] = {
 	Id = "MKT_FAIRYTALE_PASS",
 	Name = "Fairytale Realm Pass",
 	Description = "Akses eksklusif ke Fairytale Fantasy Realm dan semua biome enchanted.",
@@ -33,7 +34,7 @@ MarketRegistry["MKT_FAIRYTALE_PASS"] = {
 	ImageUrl = "rbxassetid://0",
 }
 
-MarketRegistry["MKT_VIP_PASS"] = {
+MarketRegistry_data["MKT_VIP_PASS"] = {
 	Id = "MKT_VIP_PASS",
 	Name = "Sanctum VIP Pass",
 	Description = "Dapatkan akses eksklusif ke lantai atas Sanctum, +20% Synthesis Speed, dan bonus aura harian. Dukung COBLOX!",
