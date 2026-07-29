@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FlaskConical, Sparkles, BookOpen, Code2, Gamepad2, Database } from "lucide-react";
+import { FlaskConical, Sparkles, BookOpen, Code2, Gamepad2, Database, Newspaper, Megaphone, FileText } from "lucide-react";
 
 export function Header() {
   return (
@@ -20,25 +20,23 @@ export function Header() {
             <Sparkles className="w-4 h-4" /> Beranda
           </Link>
           <Link
-            href="/resources/framework/knit-framework"
+            href="/changelog"
             className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors"
           >
-            <Code2 className="w-4 h-4" /> Dev Hub
+            <Newspaper className="w-4 h-4" /> Changelog
           </Link>
           <Link
-            href="/roblox/games/coblox-multiverse-sanctum"
+            href="/announcements"
             className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors"
           >
-            <Database className="w-4 h-4" /> Player Hub
+            <Megaphone className="w-4 h-4" /> Pengumuman
           </Link>
-          <a
-            href="https://gpaasdev.github.io/COBLOX/codex.html"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/knowledge-base"
             className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors"
           >
-            <BookOpen className="w-4 h-4" /> Panduan
-          </a>
+            <BookOpen className="w-4 h-4" /> Knowledge Base
+          </Link>
           <a
             href="https://www.roblox.com/join/qkced"
             target="_blank"

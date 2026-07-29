@@ -101,3 +101,42 @@ model Badge {
 
   @@map("badges")
 }
+
+model BlogPost {
+  id         String   @id @default(uuid())
+  title      String
+  slug       String   @unique
+  content    String   @db.Text
+  excerpt    String   @db.Text
+  category   String   @default("changelog") // changelog, blog, guide, announcement
+  published  Boolean  @default(false)
+  authorName String   @map("author_name")
+  tags       String   @default("") // comma-separated
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("blog_posts")
+}
+
+model LegalPage {
+  id        String   @id @default(uuid())
+  slug      String   @unique // "terms", "privacy", "eula", "refund"
+  title     String
+  content   String   @db.Text
+  version   Int      @default(1)
+  published Boolean  @default(true)
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("legal_pages")
+}
+
+model Redirect {
+  id         String   @id @default(uuid())
+  sourcePath String   @unique @map("source_path")
+  targetUrl  String   @map("target_url")
+  statusCode Int      @default(302) // 301 or 302
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("redirects")
+}
