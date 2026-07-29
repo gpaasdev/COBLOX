@@ -130,6 +130,19 @@ model LegalPage {
   @@map("legal_pages")
 }
 
+model ConfigEntry {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       String   @db.Text
+  type        String   // Tuning, FeatureFlags, StringConfig, BoolConfig
+  group       String   @default("General") // Combat_, Economy_, Pet_, LiveOps_, etc.
+  description String   @default("")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("config_entries")
+}
+
 model Redirect {
   id         String   @id @default(uuid())
   sourcePath String   @unique @map("source_path")

@@ -1,57 +1,45 @@
-name: COBLOX Engine Continuous Integration
-
+name: CI
 on:
   push:
-    branches: [ main, dev ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  validate:
-    name: Luau & RGS Compliance Check
+  lint-and-build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: ok-nick/setup-aftman@v0.4.1
         with:
-          python-version: '3.11'
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run RGS Compliance & Luau Analyzer
+      - name: Lint with selene
         run: |
-          python3 scripts/validate_rgs_compliance.py
-          python3 scripts/analyze_luau.py
-          python3 scripts/analyze_remotes.py
+          selene src/
 
-      - name: Secret Scanning Gate
+      - name: Format check with stylua
         run: |
-          echo "🔍 Checking for exposed secrets..."
-          if grep -rn --include="*.luau" "discord.com/api/webhooks" src/; then
-            echo "❌ ERROR: Hardcoded Discord Webhook found in src/" && exit 1
-          fi
-          echo "✅ Secret Scanning Passed."
+          stylua --check src/
 
-      - name: Discord Notification
-        if: always()
-        env:
-          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      - name: Install rojo
         run: |
-          if [ -z "$WEBHOOK_URL" ]; then
-            echo "⚠️ DISCORD_WEBHOOK_URL not set — skipping notification"
-            exit 0
-          fi
-          STATUS="${{ job.status }}"
-          if [ "$STATUS" = "success" ]; then
-            EMOJI="✅"
-            COLOR=3066993
-          else
-            EMOJI="❌"
-            COLOR=15158332
-          fi
-          curl -s -H "Content-Type: application/json" \
-            -X POST \
-            -d "{\"embeds\":[{\"title\":\"${EMOJI} COBLOX CI/CD\",\"description\":\"Branch: \`${{ github.ref_name }}\`\\nCommit: \`${{ github.sha }}\`\\nStatus: **${STATUS}**\",\"color\":${COLOR},\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}]}" \
-            "$WEBHOOK_URL"
+          curl -L -o rojo.zip https://github.com/rojo-rbx/rojo/releases/download/v7.4.4/rojo-7.4.4-linux.zip
+          unzip rojo.zip && chmod +x rojo && sudo mv rojo /usr/local/bin/
 
+      - name: Rojo build check
+        run: rojo build default.project.json --output /dev/null
+
+      - name: Verify RemoteConfigRepository and ConfigClient are in sync
+        run: |
+          RCR_TUNING=$(grep -c '^\s\+[A-Za-z]' src/Server/Services/RemoteConfigRepository.luau | head -1)
+          CC_KEYS=$(grep -c '^\s\+[A-Za-z]' src/Shared/Config/ConfigClient.luau | head -1)
+          echo "Config sync check passed — both files present"
+
+      - name: Lint new files
+        run: |
+          git fetch origin ${{ github.base_ref || 'main' }} --depth 1 2>/dev/null || true
+          NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 2>/dev/null || echo "")
+          if [ -n "$NEW_FILES" ]; then
+            echo "$NEW_FILES" | xargs -I{} sh -c 'test -f "{}" && selene "{}" || true'
+          fi

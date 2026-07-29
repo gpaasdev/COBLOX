@@ -95,6 +95,7 @@ local ShadowRaidService = require(ServerScriptService.Server.Services.ShadowRaid
 local AlchemyService = require(ServerScriptService.Server.Services.AlchemyService)
 local ResourceService = require(ServerScriptService.Server.Services.ResourceService)
 local InteractionService = require(ServerScriptService.Server.Services.InteractionService)
+local BlockBuilderService = require(ServerScriptService.Server.Services.BlockBuilderService)
 
 -- ============================================================
 -- TIER 4 — Specialized [EXISTING]
@@ -193,6 +194,7 @@ local services = {
 	AlchemyService,
 	ResourceService,
 	InteractionService,
+	BlockBuilderService,
 
 	-- TIER 4 — Specialized
 	CrystalPurificationService,
@@ -218,6 +220,7 @@ local services = {
 
 -- ============================================================
 -- BOOT — with BOOT_FLAGS gate (RC-2 feature flag system)
+-- Flags now live from RemoteConfigService (with GameConfig fallback)
 -- ============================================================
 print("==================================================")
 print("[COBLOX Server Bootstrap] Initializing LGBOS v11.0 Commercial Live Service Architecture...")
@@ -248,14 +251,24 @@ for _, name in ipairs(runtimeContainers) do
 	end
 end
 
+local function isServiceEnabled(name: string): boolean
+	local liveFlag = RemoteConfigService.GetFeatureFlag("ServiceEnabled_" .. name, nil)
+	if liveFlag ~= nil then
+		return liveFlag
+	end
+	local legacyFlag = GameConfig.BOOT_FLAGS[name]
+	if legacyFlag == false then
+		return false
+	end
+	return true
+end
+
 local booted = 0
 local skipped = 0
 
 for _, service in ipairs(services) do
 	local name = service.Name or tostring(service)
-	local flagEnabled = GameConfig.BOOT_FLAGS[name]
-
-	if flagEnabled == false then
+	if not isServiceEnabled(name) then
 		warn(string.format("[Bootstrap] ⏭️ SKIPPED: %s (BOOT_FLAGS disabled)", name))
 		skipped += 1
 		continue
@@ -271,8 +284,7 @@ end
 
 for _, service in ipairs(services) do
 	local name = service.Name or tostring(service)
-	local flagEnabled = GameConfig.BOOT_FLAGS[name]
-	if flagEnabled == false then
+	if not isServiceEnabled(name) then
 		continue
 	end
 	if service.Start then
@@ -289,3 +301,13 @@ print(
 	)
 )
 print("==================================================")
+
+-- ============================================================
+-- POST-BOOT: ConfigClient sync for joining players
+-- ============================================================
+local ConfigClient = require(ReplicatedStorage.Shared.Config.ConfigClient)
+local Players = game:GetService("Players")
+
+Players.PlayerAdded:Connect(function(player: Player)
+	ConfigClient.SyncToPlayer(player)
+end)

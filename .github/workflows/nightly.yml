@@ -1,0 +1,58 @@
+name: Nightly Build & Deploy
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ok-nick/setup-aftman@v0.4.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install rojo
+        run: |
+          curl -L -o rojo.zip https://github.com/rojo-rbx/rojo/releases/download/v7.4.4/rojo-7.4.4-linux.zip
+          unzip rojo.zip && chmod +x rojo && sudo mv rojo /usr/local/bin/
+
+      - name: Build main place
+        run: rojo build default.project.json -o COBLOX_main.rbxl
+
+      - name: Build fairytale place
+        run: rojo build fairytale/default.project.json -o COBLOX_fairytale.rbxl
+
+      - name: Publish main place
+        env:
+          ROBLOX_OPEN_CLOUD_API_KEY: ${{ secrets.ROBLOX_OPEN_CLOUD_API_KEY }}
+          ROBLOX_PLACE_ID: ${{ secrets.ROBLOX_PLACE_ID }}
+          ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_UNIVERSE_ID }}
+        run: |
+          curl -s -X POST "https://apis.roblox.com/cloud/v2/universes/${{ secrets.ROBLOX_UNIVERSE_ID }}/places/${{ secrets.ROBLOX_PLACE_ID }}/versions" \
+            -H "x-api-key: ${{ secrets.ROBLOX_OPEN_CLOUD_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"file": "'"$(base64 -w0 COBLOX_main.rbxl)"'"}'
+
+      - name: Publish fairytale place
+        if: env.ROBLOX_FAIRYTALE_PLACE_ID != ''
+        env:
+          ROBLOX_OPEN_CLOUD_API_KEY: ${{ secrets.ROBLOX_OPEN_CLOUD_API_KEY }}
+          ROBLOX_FAIRYTALE_PLACE_ID: ${{ secrets.ROBLOX_FAIRYTALE_PLACE_ID }}
+          ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_UNIVERSE_ID }}
+        run: |
+          curl -s -X POST "https://apis.roblox.com/cloud/v2/universes/${{ secrets.ROBLOX_UNIVERSE_ID }}/places/${{ secrets.ROBLOX_FAIRYTALE_PLACE_ID }}/versions" \
+            -H "x-api-key: ${{ secrets.ROBLOX_OPEN_CLOUD_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"file": "'"$(base64 -w0 COBLOX_fairytale.rbxl)"'"}'
+
+      - name: Discord notification
+        if: always()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          STATUS="${{ job.status }}"
+          curl -s -H "Content-Type: application/json" \
+            -d "{\"embeds\":[{\"title\":\"Nightly Build\",\"description\":\"Status: $STATUS\",\"color\":$([ \"$STATUS\" = \"success\" ] && echo 3066993 || echo 15158332),\"timestamp\":\"$(date -Iseconds)\"}]}" \
+            "$DISCORD_WEBHOOK_URL"

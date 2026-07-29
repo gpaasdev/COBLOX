@@ -16,6 +16,7 @@ local UIEffectPool = require(uiModules:WaitForChild("UIEffectPool") :: any)
 local UIAnimationEngine = require(uiModules:WaitForChild("UIAnimationEngine") :: any)
 local VFXEngine = require(uiModules:WaitForChild("VFXEngine") :: any)
 local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
+local ConfigClient = require(ReplicatedStorage.Shared.Config.ConfigClient)
 
 local UIController = {}
 UIController.Name = "UIController"
@@ -978,6 +979,144 @@ function UIController.ShowNotification(msg: string)
 			end)
 		end)
 	end
+end
+
+function UIController.ShowOddsDisclosure(crateType: string)
+	local oddsGui = Instance.new("ScreenGui")
+	oddsGui.Name = "OddsDisclosure"
+	oddsGui.ResetOnSpawn = false
+	oddsGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	oddsGui.Parent = playerGui
+
+	local backdrop = Instance.new("Frame")
+	backdrop.Size = UDim2.new(1, 0, 1, 0)
+	backdrop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	backdrop.BackgroundTransparency = 0.6
+	backdrop.Parent = oddsGui
+
+	local container = Instance.new("Frame")
+	container.Size = UDim2.new(0, 340, 0, 380)
+	container.Position = UDim2.new(0.5, -170, 0.5, -190)
+	container.BackgroundColor3 = COLOR_BG_DARK
+	container.BackgroundTransparency = 0.1
+	container.BorderSizePixel = 0
+	container.Parent = oddsGui
+
+	local containerCorner = Instance.new("UICorner")
+	containerCorner.CornerRadius = UDim.new(0, 14)
+	containerCorner.Parent = container
+
+	local containerStroke = Instance.new("UIStroke")
+	containerStroke.Color = COLOR_AURA_GOLD
+	containerStroke.Thickness = 2
+	containerStroke.Parent = container
+
+	local title = Instance.new("TextLabel")
+	title.Size = UDim2.new(1, 0, 0, 40)
+	title.Position = UDim2.new(0, 0, 0, 10)
+	title.BackgroundTransparency = 1
+	title.Text = "Drop Rates"
+	title.TextColor3 = COLOR_AURA_GOLD
+	title.Font = Enum.Font.FredokaOne
+	title.TextSize = 22
+	title.Parent = container
+
+	local oddsData = ConfigClient["Odds_" .. crateType]
+	if not oddsData then
+		oddsData = {
+			{ Item = "Common Essence", Chance = 50.0 },
+			{ Item = "Uncommon Essence", Chance = 30.0 },
+			{ Item = "Rare Essence", Chance = 15.0 },
+			{ Item = "Epic Essence", Chance = 4.0 },
+			{ Item = "Legendary Essence", Chance = 1.0 },
+		}
+	end
+
+	local listFrame = Instance.new("Frame")
+	listFrame.Size = UDim2.new(0.9, 0, 0, 240)
+	listFrame.Position = UDim2.new(0.05, 0, 0, 60)
+	listFrame.BackgroundTransparency = 1
+	listFrame.Parent = container
+
+	local listLayout = Instance.new("UIListLayout")
+	listLayout.Padding = UDim.new(0, 6)
+	listLayout.Parent = listFrame
+
+	for _, entry in ipairs(oddsData) do
+		local row = Instance.new("Frame")
+		row.Size = UDim2.new(1, 0, 0, 36)
+		row.BackgroundColor3 = Color3.fromRGB(45, 40, 110)
+		row.BackgroundTransparency = 0.5
+		row.Parent = listFrame
+
+		local rowCorner = Instance.new("UICorner")
+		rowCorner.CornerRadius = UDim.new(0, 6)
+		rowCorner.Parent = row
+
+		local itemLabel = Instance.new("TextLabel")
+		itemLabel.Size = UDim2.new(0.6, 0, 1, 0)
+		itemLabel.Position = UDim2.new(0, 10, 0, 0)
+		itemLabel.BackgroundTransparency = 1
+		itemLabel.Text = entry.Item
+		itemLabel.TextColor3 = COLOR_TEXT_WHITE
+		itemLabel.Font = Enum.Font.GothamMedium
+		itemLabel.TextSize = 14
+		itemLabel.TextXAlignment = Enum.TextXAlignment.Left
+		itemLabel.Parent = row
+
+		local chanceLabel = Instance.new("TextLabel")
+		chanceLabel.Size = UDim2.new(0.3, 0, 1, 0)
+		chanceLabel.Position = UDim2.new(0.65, 0, 0, 0)
+		chanceLabel.BackgroundTransparency = 1
+		chanceLabel.Text = string.format("%.1f%%", entry.Chance)
+		chanceLabel.TextColor3 = COLOR_SPARK_CYAN
+		chanceLabel.Font = Enum.Font.FredokaOne
+		chanceLabel.TextSize = 14
+		chanceLabel.TextXAlignment = Enum.TextXAlignment.Right
+		chanceLabel.Parent = row
+	end
+
+	local buttonRow = Instance.new("Frame")
+	buttonRow.Size = UDim2.new(0.9, 0, 0, 44)
+	buttonRow.Position = UDim2.new(0.05, 0, 0, 320)
+	buttonRow.BackgroundTransparency = 1
+	buttonRow.Parent = container
+
+	local understandBtn = Instance.new("TextButton")
+	understandBtn.Size = UDim2.new(0.47, 0, 1, 0)
+	understandBtn.Position = UDim2.new(0, 0, 0, 0)
+	understandBtn.BackgroundColor3 = COLOR_SPARK_CYAN
+	understandBtn.Text = "I Understand"
+	understandBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
+	understandBtn.Font = Enum.Font.GothamBold
+	understandBtn.TextSize = 14
+	understandBtn.Parent = buttonRow
+
+	local understandCorner = Instance.new("UICorner")
+	understandCorner.CornerRadius = UDim.new(0, 8)
+	understandCorner.Parent = understandBtn
+
+	understandBtn.MouseButton1Click:Connect(function()
+		oddsGui:Destroy()
+	end)
+
+	local cancelBtn = Instance.new("TextButton")
+	cancelBtn.Size = UDim2.new(0.47, 0, 1, 0)
+	cancelBtn.Position = UDim2.new(0.53, 0, 0, 0)
+	cancelBtn.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+	cancelBtn.Text = "Cancel"
+	cancelBtn.TextColor3 = COLOR_TEXT_WHITE
+	cancelBtn.Font = Enum.Font.GothamBold
+	cancelBtn.TextSize = 14
+	cancelBtn.Parent = buttonRow
+
+	local cancelCorner = Instance.new("UICorner")
+	cancelCorner.CornerRadius = UDim.new(0, 8)
+	cancelCorner.Parent = cancelBtn
+
+	cancelBtn.MouseButton1Click:Connect(function()
+		oddsGui:Destroy()
+	end)
 end
 
 function UIController.RequestFlexEffect(effectType: string)

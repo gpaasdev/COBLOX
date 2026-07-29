@@ -74,12 +74,13 @@ local GameConfig = {
 		-- Tier 2.5 (gameplay systems — enabled Phase B)
 		DiscoveryService = true, -- Production: recipe discovery system
 		ReactionEngine = true, -- Production: alchemical reaction simulator
-		MachineService = false, -- Experimental: BoundedTick required first
+		MachineService = true, -- Production: BoundedTick + MachineConfig enabled
 
 		-- Tier 3.5 (core gameplay — enabled Phase B)
 		AlchemyService = true, -- Production: crafting/synthesis system
 		ResourceService = true, -- Production: world resource nodes
 		InteractionService = true, -- Production: grab/drop/throw
+		BlockBuilderService = true, -- Production: procedural block building system
 
 		-- Tier 4+ (announcements — safe)
 		AnnouncementService = true, -- Stub: DomainEventBus only

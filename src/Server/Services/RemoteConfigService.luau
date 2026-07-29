@@ -9,6 +9,7 @@ type ConfigSchema = RemoteConfigRepository.ConfigSchema
 
 local RemoteConfigService = {}
 RemoteConfigService.Name = "RemoteConfigService"
+RemoteConfigService.ServiceStatus = "Production"
 
 local activeConfig: ConfigSchema = RemoteConfigRepository.GetDefaultConfig()
 local configSnapshot: any = nil
@@ -22,7 +23,7 @@ local EXPERIMENT_REGISTRY = {
 		Owner = "ProductTeam",
 		Description = "Tests if 2x FTUE reward improves D1 Retention",
 		SuccessMetric = "ftue.completed rate",
-		Rollback = "A", -- Default variant
+		Rollback = "A",
 	},
 	["EXP_SHOP_PRICE"] = {
 		Status = "Draft",
@@ -35,7 +36,6 @@ local EXPERIMENT_REGISTRY = {
 	},
 }
 
--- Simple deterministic hash function for bucketing
 local function getHash(str: string): number
 	local hash = 5381
 	for i = 1, #str do
@@ -45,7 +45,6 @@ local function getHash(str: string): number
 end
 
 function RemoteConfigService.Init()
-	print("[RemoteConfigService] Initializing ConfigService & A/B Testing Bucketing...")
 	activeConfig = RemoteConfigRepository.LoadConfig()
 
 	local ok, snapshot = false, nil
@@ -68,7 +67,6 @@ function RemoteConfigService.Init()
 end
 
 function RemoteConfigService.Start()
-	-- Eventual MessagingService LiveOps setup
 end
 
 function RemoteConfigService.GetTuningValue(key: string, fallback: number): number
@@ -89,7 +87,64 @@ function RemoteConfigService.GetTuningValue(key: string, fallback: number): numb
 	return val
 end
 
--- A/B Testing Bucketing Logic
+function RemoteConfigService.GetStringValue(key: string, fallback: string): string
+	if configSnapshot then
+		local val = nil
+		pcall(function()
+			val = configSnapshot:GetValue(key)
+		end)
+		if val ~= nil and type(val) == "string" then
+			return val
+		end
+	end
+
+	local val = activeConfig.StringConfig[key]
+	if val == nil then
+		return fallback
+	end
+	return val
+end
+
+function RemoteConfigService.GetBoolValue(key: string, fallback: boolean): boolean
+	if configSnapshot then
+		local val = nil
+		pcall(function()
+			val = configSnapshot:GetValue(key)
+		end)
+		if val ~= nil and type(val) == "boolean" then
+			return val
+		end
+	end
+
+	local val = activeConfig.BoolConfig[key]
+	if val == nil then
+		return fallback
+	end
+	return val
+end
+
+function RemoteConfigService.GetFeatureFlag(key: string, fallback: boolean): boolean
+	if configSnapshot then
+		local val = nil
+		pcall(function()
+			val = configSnapshot:GetValue(key)
+		end)
+		if val ~= nil and type(val) == "boolean" then
+			return val
+		end
+	end
+
+	local val = activeConfig.FeatureFlags[key]
+	if val == nil then
+		return fallback
+	end
+	return val
+end
+
+function RemoteConfigService.GetConfigForPlayer(player: Player): ConfigSchema
+	return activeConfig
+end
+
 function RemoteConfigService.GetExperimentVariant(player: Player, experimentId: string): string
 	local experiment = EXPERIMENT_REGISTRY[experimentId]
 	if not experiment or experiment.Status ~= "Active" then
@@ -99,12 +154,15 @@ function RemoteConfigService.GetExperimentVariant(player: Player, experimentId: 
 	local hashInput = tostring(player.UserId) .. experimentId
 	local hashValue = getHash(hashInput)
 
-	-- Return A (Control) or B (Variant) based on 50/50 split
 	if hashValue % 2 == 0 then
 		return "A"
 	else
 		return "B"
 	end
+end
+
+function RemoteConfigService.GetAllConfig(): ConfigSchema
+	return activeConfig
 end
 
 return RemoteConfigService

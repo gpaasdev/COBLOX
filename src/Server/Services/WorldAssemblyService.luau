@@ -7,6 +7,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local WorldConfig = require(ReplicatedStorage.Shared.Configuration.WorldConfig)
 local QuestConfig = require(ReplicatedStorage.Shared.Configuration.QuestConfig)
+local MachineConfig = require(ReplicatedStorage.Shared.Configuration.MachineConfig)
 local BiomeContentRegistry = require(ServerScriptService.Server.Parent.Content.BiomeContentRegistry)
 
 local WorldAssemblyService = {}
@@ -301,6 +302,38 @@ function WorldAssemblyService._AssembleWorld()
 		subLbl.Parent = card
 
 		bb.Parent = claimPad
+
+		-- Spawn starter machines on each plot
+		local MachineService = require(ServerScriptService.Server.Services.MachineService)
+		local reactorDef = MachineConfig.Types.Reactor
+		local reactorProps = {
+			PowerConsumption = reactorDef.PowerConsumption,
+			HeatGeneration = reactorDef.HeatGeneration,
+			MaxHeat = reactorDef.MaxHeat,
+			Efficiency = 1.0,
+			Durability = reactorDef.Durability,
+			MaxDurability = reactorDef.Durability,
+		}
+		local smelterDef = MachineConfig.Types.Smelter
+		local smelterProps = {
+			PowerConsumption = smelterDef.PowerConsumption,
+			HeatGeneration = smelterDef.HeatGeneration,
+			MaxHeat = smelterDef.MaxHeat,
+			Efficiency = 1.0,
+			Durability = smelterDef.Durability,
+			MaxDurability = smelterDef.Durability,
+		}
+
+		MachineService.RegisterMachine(
+			plotId .. "_Reactor",
+			"Reactor",
+			reactorProps
+		)
+		MachineService.RegisterMachine(
+			plotId .. "_Smelter",
+			"Smelter",
+			smelterProps
+		)
 	end
 
 	-- 4. Spawn NPCs from QuestConfig

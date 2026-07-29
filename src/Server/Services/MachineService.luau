@@ -4,12 +4,14 @@
 -- RC-2: Added BoundedTick scheduler (max 10 machines/frame), Init/Start lifecycle, ServiceStatus metadata.
 
 local RunService = game:GetService("RunService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local MachineService = {}
 MachineService.Name = "MachineService"
-MachineService.ServiceStatus = "Experimental" -- BoundedTick added; validate in Studio before enabling
+MachineService.ServiceStatus = "Production"
 
-local MachineTypes = require(game:GetService("ReplicatedStorage").Shared.Types.MachineTypes)
+local MachineTypes = require(ReplicatedStorage.Shared.Types.MachineTypes)
+local MachineConfig = require(ReplicatedStorage.Shared.Configuration.MachineConfig)
 local ReactionEngine = require(script.Parent.ReactionEngine)
 local MacroEconomyService = require(script.Parent.MacroEconomyService)
 
@@ -20,19 +22,40 @@ local _machineIds: { string } = {}
 local _cursor = 1
 local MAX_MACHINES_PER_FRAME = 10 -- tune: balance between simulation fidelity and frame budget
 
-function MachineService.RegisterMachine(id: string, machineType: string, props: MachineTypes.MachineProperties)
+function MachineService.RegisterMachine(
+	id: string,
+	machineType: string,
+	props: MachineTypes.MachineProperties,
+	player: Player?
+): MachineTypes.MachineState?
+	local cost = MachineConfig.Costs[machineType]
+	if cost and player then
+		local EconomyService = require(script.Parent.EconomyService)
+		if not EconomyService.HasCurrency(player, "Coins", cost.Coins) then
+			return nil
+		end
+		if not EconomyService.HasCurrency(player, "Gems", cost.Gems) then
+			return nil
+		end
+		EconomyService.DeductCurrency(player, "Coins", cost.Coins, "MachinePurchase")
+		EconomyService.DeductCurrency(player, "Gems", cost.Gems, "MachinePurchase")
+	end
+
+	local machineDef = MachineConfig.Types[machineType]
+	local startPower = if machineDef then MachineConfig.Defaults.StartPower else 0
+
 	ActiveMachines[id] = {
 		Id = id,
 		Type = machineType,
 		IsActive = false,
-		CurrentHeat = 293, -- Room temp in Kelvin
-		CurrentPower = 0,
+		CurrentHeat = 293,
+		CurrentPower = startPower,
 		Properties = props,
 		Inventory = {},
 		Waste = {},
 		Condition = "Optimal",
 	}
-	MachineService._RebuildIndex() -- keep index current
+	MachineService._RebuildIndex()
 	return ActiveMachines[id]
 end
 
@@ -47,21 +70,38 @@ end
 
 -- Tick logic for a single machine (extracted for clarity)
 function MachineService._TickSingle(machine: MachineTypes.MachineState, deltaTime: number)
+	local machineDef = MachineConfig.Types[machine.Type]
+	local powerConsumption = if machineDef then machineDef.PowerConsumption else machine.Properties.PowerConsumption
+	local heatGeneration = if machineDef then machineDef.HeatGeneration else machine.Properties.HeatGeneration
+	local maxHeat = if machineDef then machineDef.MaxHeat else machine.Properties.MaxHeat
+
+	-- Fuel consumption: burn AuraEnergy from inventory to regenerate power
+	local auraFuel = machine.Inventory["AuraEnergy"] or 0
+	if auraFuel > 0 and machine.CurrentPower < MachineConfig.Defaults.MaxPower * 0.5 then
+		local burnRate = 0.5 * deltaTime
+		local fuelBurned = math.min(auraFuel, burnRate)
+		machine.Inventory["AuraEnergy"] = auraFuel - fuelBurned
+		machine.CurrentPower = math.min(
+			machine.CurrentPower + fuelBurned * 10,
+			MachineConfig.Defaults.MaxPower
+		)
+	end
+
 	-- Rule: No Power -> Shutdown
-	if machine.CurrentPower < machine.Properties.PowerConsumption * deltaTime then
+	if machine.CurrentPower < powerConsumption * deltaTime then
 		machine.IsActive = false
 		machine.Condition = "NoPower"
 		return
 	end
 
 	-- Consume Power
-	machine.CurrentPower -= machine.Properties.PowerConsumption * deltaTime
+	machine.CurrentPower -= powerConsumption * deltaTime
 
 	-- Generate Heat
-	machine.CurrentHeat += machine.Properties.HeatGeneration * deltaTime
+	machine.CurrentHeat += heatGeneration * deltaTime
 
 	-- Check Failure States
-	if machine.CurrentHeat > machine.Properties.MaxHeat then
+	if machine.CurrentHeat > maxHeat then
 		machine.Condition = "Overheated"
 		machine.IsActive = false
 		machine.Properties.Durability -= 10 * deltaTime
@@ -69,6 +109,11 @@ function MachineService._TickSingle(machine: MachineTypes.MachineState, deltaTim
 			machine.Condition = "Broken"
 		end
 		return
+	end
+
+	-- Passive waste decay
+	for wasteItem, wasteQty in pairs(machine.Waste) do
+		machine.Waste[wasteItem] = math.max(0, wasteQty - MachineConfig.Defaults.PassiveWasteDecay * deltaTime)
 	end
 
 	-- Clogged condition (Waste buffer full)
@@ -80,6 +125,14 @@ function MachineService._TickSingle(machine: MachineTypes.MachineState, deltaTim
 		machine.Condition = "Clogged"
 		machine.IsActive = false
 		return
+	end
+
+	-- Passive power regeneration when idle
+	if not machine.IsActive and machine.CurrentPower < MachineConfig.Defaults.MaxPower then
+		machine.CurrentPower = math.min(
+			machine.CurrentPower + MachineConfig.Defaults.PowerRegenRate * deltaTime,
+			MachineConfig.Defaults.MaxPower
+		)
 	end
 
 	-- Execute Reaction if machine has inventory materials
