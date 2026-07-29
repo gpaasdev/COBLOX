@@ -29,14 +29,24 @@ function MonetizationController.Init()
 end
 
 function MonetizationController.Start()
-	-- Listen for local hatch triggers to track auto-hatch recommendation
 	local hatchRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 	if hatchRemote then
 		hatchRemote.OnClientEvent:Connect(function(eggId: string, petId: string)
 			manualHatchCount += 1
 			if manualHatchCount >= 30 then
 				MonetizationController.PromptAutoHatchRecommendation()
-				manualHatchCount = 0 -- Reset counter
+				manualHatchCount = 0
+			end
+		end)
+	end
+
+	local promptRemote = NetChannels.GetRemoteEvent("MonetizationPrompt")
+	if promptRemote then
+		promptRemote.OnClientEvent:Connect(function(promptType: string, data: any)
+			if promptType == "InsufficientCoins" then
+				MonetizationController.PromptCoinsPurchase()
+			elseif promptType == "InventoryFull" then
+				MonetizationController.PromptInventoryUpgrade()
 			end
 		end)
 	end

@@ -9,9 +9,12 @@ PerformanceMonitorController.Name = "PerformanceMonitorController"
 
 local TARGET_FPS = 60
 local THROTTLE_THRESHOLD_FPS = 45
+local RESTORE_THRESHOLD_FPS = 50
+local THROTTLE_COOLDOWN = 10
 local checkInterval = 2
 local frameHistory = {}
 local controllerMaid = Maid.new()
+local lastThrottleChange = 0
 
 function PerformanceMonitorController.Init()
 	print("[PerformanceMonitorController] Initializing Mobile FPS Monitoring & Dynamic Throttling...")
@@ -45,10 +48,16 @@ function PerformanceMonitorController.Start()
 			end
 			avgFPS = avgFPS / #frameHistory
 
-			if avgFPS < THROTTLE_THRESHOLD_FPS then
-				PerformanceMonitorController.ThrottleGraphics()
+			local now = tick()
+			if _G.GraphicsThrottled then
+				if avgFPS > RESTORE_THRESHOLD_FPS and now - lastThrottleChange > THROTTLE_COOLDOWN then
+					PerformanceMonitorController.RestoreGraphics()
+				end
 			else
-				PerformanceMonitorController.RestoreGraphics()
+				if avgFPS < THROTTLE_THRESHOLD_FPS then
+					PerformanceMonitorController.ThrottleGraphics()
+					lastThrottleChange = now
+				end
 			end
 
 			frames = 0
