@@ -7,6 +7,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
+local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
 local PayloadValidator = require(ReplicatedStorage.Shared.Network.PayloadValidator)
 
 local ConsumableMutationService = {}
@@ -47,6 +48,29 @@ function ConsumableMutationService.ConsumePotion(
 		return { Success = false, Message = "Rate limit exceeded!" }
 	end
 
+	local res = PlayerDataService.GetProfile(player)
+	if not res.Success or not res.Data then
+		return { Success = false, Message = "Profile not loaded!" }
+	end
+
+	local playerItems = (res.Data.Inventory or {}).Items or {}
+	local owned = playerItems[potionName] or 0
+	if owned < 1 then
+		return { Success = false, Message = "You don't have " .. potionName .. "!" }
+	end
+
+	local deductOk = ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
+		if profileData.Inventory and profileData.Inventory.Items then
+			profileData.Inventory.Items[potionName] = (profileData.Inventory.Items[potionName] or 0) - 1
+			if profileData.Inventory.Items[potionName] <= 0 then
+				profileData.Inventory.Items[potionName] = nil
+			end
+		end
+	end)
+	if not deductOk.Success then
+		return { Success = false, Message = "Failed to deduct potion!" }
+	end
+
 	local char = player.Character
 	if not char then
 		return { Success = false, Message = "Character missing!" }
@@ -57,7 +81,7 @@ function ConsumableMutationService.ConsumePotion(
 		return { Success = false, Message = "Humanoid missing!" }
 	end
 
-	local syncScreenShake = NetChannels.GetUnreliableRemoteEvent("TriggerScreenShake") -- Fase 10: visual-only, unreliable ok
+	local syncScreenShake = NetChannels.GetUnreliableRemoteEvent("TriggerScreenShake")
 
 	if potionName == "ElixirSurge" or potionName == "Quartz" then
 		-- Elixir Surge (formerly Caffeine Overdose): +180% WalkSpeed (45), 10s duration + Screen Shake

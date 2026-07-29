@@ -73,7 +73,6 @@ function RecipeService.CraftGrid3x3(
 	player: Player,
 	grid: { [number]: string }
 ): ServiceResult<{ ItemResult: string, YieldMultiplier: number }>
-	-- Validate 3x3 grid crafting (Minecraft benchmark)
 	local res = PlayerDataService.GetProfile(player)
 	if not res.Success or not res.Data then
 		return {
@@ -98,13 +97,30 @@ function RecipeService.CraftGrid3x3(
 		end
 	end
 
+	local playerInv = res.Data.Inventory or {}
+	local playerItems = playerInv.Items or {}
+
+	for itemId, required in pairs(countMap) do
+		local owned = playerItems[itemId] or 0
+		if owned < required then
+			return {
+				Success = false,
+				Category = "Validation",
+				ErrorCode = "INSUFFICIENT_INGREDIENTS",
+				Message = "Missing ingredient: " .. itemId .. " (need " .. tostring(required) .. ", have " .. tostring(owned) .. ")",
+				Data = nil,
+				Retryable = false,
+			}
+		end
+	end
+
 	local yieldMultiplier = 1.0
 	if #elementsUsed >= 2 then
 		yieldMultiplier = RecipeService.CalculateElementalReactionMultiplier(elementsUsed[1], elementsUsed[2])
 	end
 
 	local craftedItem = "AuraElixir_Tier1"
-	local itemType = "Consumable" -- Default Potion/Consumable
+	local itemType = "Consumable"
 
 	if countMap["Quartz"] and countMap["Quartz"] >= 3 then
 		craftedItem = "QuartzAltar_Tier1"
@@ -121,9 +137,14 @@ function RecipeService.CraftGrid3x3(
 		if not profileData.Inventory then
 			profileData.Inventory = {}
 		end
-		-- Items sub-table for consumables/structures
 		if not profileData.Inventory.Items then
 			profileData.Inventory.Items = {}
+		end
+		for itemId, required in pairs(countMap) do
+			profileData.Inventory.Items[itemId] = (profileData.Inventory.Items[itemId] or 0) - required
+			if profileData.Inventory.Items[itemId] <= 0 then
+				profileData.Inventory.Items[itemId] = nil
+			end
 		end
 		profileData.Inventory.Items[craftedItem] = (profileData.Inventory.Items[craftedItem] or 0) + 1
 	end)
@@ -162,7 +183,6 @@ function RecipeService.CraftGrid3x3(
 end
 
 function RecipeService.SmeltOre(player: Player, rawOreItem: string, fuelItem: string): ServiceResult<string>
-	-- Smelting furnace (Minecraft benchmark)
 	local res = PlayerDataService.GetProfile(player)
 	if not res.Success or not res.Data then
 		return {
@@ -175,7 +195,54 @@ function RecipeService.SmeltOre(player: Player, rawOreItem: string, fuelItem: st
 		}
 	end
 
+	local playerInv = res.Data.Inventory or {}
+	local playerItems = playerInv.Items or {}
+
+	if (playerItems[rawOreItem] or 0) < 1 then
+		return {
+			Success = false,
+			Category = "Validation",
+			ErrorCode = "INSUFFICIENT_ORE",
+			Message = "Missing ore: " .. rawOreItem,
+			Data = nil,
+			Retryable = false,
+		}
+	end
+	if fuelItem ~= "" and (playerItems[fuelItem] or 0) < 1 then
+		return {
+			Success = false,
+			Category = "Validation",
+			ErrorCode = "INSUFFICIENT_FUEL",
+			Message = "Missing fuel: " .. fuelItem,
+			Data = nil,
+			Retryable = false,
+		}
+	end
+
 	local refinedResult = "Refined_" .. rawOreItem
+	local updateResult = ProfileStoreAdapter.SafeUpdateProfile(player, function(profileData)
+		if not profileData.Inventory then
+			profileData.Inventory = {}
+		end
+		if not profileData.Inventory.Items then
+			profileData.Inventory.Items = {}
+		end
+		profileData.Inventory.Items[rawOreItem] = (profileData.Inventory.Items[rawOreItem] or 0) - 1
+		if profileData.Inventory.Items[rawOreItem] <= 0 then
+			profileData.Inventory.Items[rawOreItem] = nil
+		end
+		if fuelItem ~= "" then
+			profileData.Inventory.Items[fuelItem] = (profileData.Inventory.Items[fuelItem] or 0) - 1
+			if profileData.Inventory.Items[fuelItem] <= 0 then
+				profileData.Inventory.Items[fuelItem] = nil
+			end
+		end
+		profileData.Inventory.Items[refinedResult] = (profileData.Inventory.Items[refinedResult] or 0) + 1
+	end)
+	if not updateResult.Success then
+		return updateResult
+	end
+
 	RecipeService.SmeltingCompleted:Fire(player, rawOreItem, refinedResult)
 
 	print(
