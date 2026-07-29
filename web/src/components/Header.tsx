@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FlaskConical, Sparkles, BookOpen, Code2, Gamepad2, Database, Newspaper, Megaphone, FileText } from "lucide-react";
+import { FlaskConical, Sparkles, BookOpen, Gamepad2, Newspaper, Megaphone, Mail } from "lucide-react";
 
 export function Header() {
   return (
@@ -13,29 +13,20 @@ export function Header() {
           <span>COBLOX</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
-          <Link
-            href="/"
-            className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors"
-          >
+          <Link href="/" className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors">
             <Sparkles className="w-4 h-4" /> Beranda
           </Link>
-          <Link
-            href="/changelog"
-            className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors"
-          >
+          <Link href="/changelog" className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors">
             <Newspaper className="w-4 h-4" /> Changelog
           </Link>
-          <Link
-            href="/announcements"
-            className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors"
-          >
+          <Link href="/announcements" className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors">
             <Megaphone className="w-4 h-4" /> Pengumuman
           </Link>
-          <Link
-            href="/knowledge-base"
-            className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors"
-          >
-            <BookOpen className="w-4 h-4" /> Knowledge Base
+          <Link href="/knowledge-base" className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors">
+            <BookOpen className="w-4 h-4" /> KB
+          </Link>
+          <Link href="/contact" className="text-sm font-medium text-slate-300 hover:text-emerald-400 flex items-center gap-2 transition-colors">
+            <Mail className="w-4 h-4" /> Kontak
           </Link>
           <a
             href="https://www.roblox.com/join/qkced"

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "COBLOX | Multiverse Alchemy Sanctum",
     description: "Pengalaman Hybrid Pet Tycoon & Social Action Alkimia terdepan di Roblox 2026.",
-    url: "https://gpaasdev.github.io/COBLOX/", // Replace with actual production URL when Vercel is linked
+    url: "https://hycoblox.vercel.app",
     siteName: "COBLOX",
     images: [
       {
