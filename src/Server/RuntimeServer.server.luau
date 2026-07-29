@@ -5,6 +5,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local GameConfig = require(ReplicatedStorage.Shared.Configuration.GameConfig)
 local RealmConfig = require(ReplicatedStorage.Shared.Configuration.RealmConfig)
 local RealmRegistry = require(ReplicatedStorage.Shared.Config.RealmRegistry)
+local PartCache = require(ReplicatedStorage.Shared.Modules.PartCache)
 
 -- Auto-detect realm from Place ID
 local currentPlaceId = game.PlaceId
@@ -232,6 +233,9 @@ for _, name in ipairs(staticRootCleanup) do
 		print(string.format("[Bootstrap] Workspace Cleanup: Removed static '%s' from root", name))
 	end
 end
+
+-- Cleanup orphaned PartCache folders
+PartCache.CleanupEmptyFolders()
 
 -- Runtime containers: created dynamically for services
 local runtimeContainers = { "FXContainer", "Beac", "Debris" }

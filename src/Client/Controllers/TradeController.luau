@@ -160,7 +160,7 @@ function TradeController._CreateTradeModal()
 	lockBtn.Size = UDim2.new(0.48, 0, 1, 0)
 	lockBtn.Position = UDim2.new(0, 0, 0, 0)
 	lockBtn.BackgroundColor3 = Color3.fromRGB(234, 179, 8) -- Yellow 500
-	lockBtn.Text = "🔒 KUNCI PENAWARAN"
+	lockBtn.Text = LocalizationController.Get("TRADE_LOCK_BTN")
 	lockBtn.TextColor3 = Color3.fromRGB(15, 23, 42)
 	lockBtn.Font = Enum.Font.FredokaOne
 	lockBtn.TextSize = 14
@@ -173,8 +173,8 @@ function TradeController._CreateTradeModal()
 	local acceptBtn = Instance.new("TextButton")
 	acceptBtn.Size = UDim2.new(0.48, 0, 1, 0)
 	acceptBtn.Position = UDim2.new(0.52, 0, 0, 0)
-	acceptBtn.BackgroundColor3 = Color3.fromRGB(71, 85, 105) -- Disabled slate
-	acceptBtn.Text = "✅ KONFIRMASI FINAL"
+	acceptBtn.BackgroundColor3 = Color3.fromRGB(71, 85, 105)
+	acceptBtn.Text = LocalizationController.Get("TRADE_CONFIRM_BTN")
 	acceptBtn.TextColor3 = Color3.fromRGB(148, 163, 184)
 	acceptBtn.Font = Enum.Font.FredokaOne
 	acceptBtn.TextSize = 14
@@ -205,11 +205,11 @@ function TradeController._CreateTradeModal()
 				end
 			end
 
-			lockBtn.Text = "🔓 BUKA KUNCI"
+			lockBtn.Text = LocalizationController.Get("TRADE_UNLOCK_BTN")
 			lockBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
 			isCountingDown = true
 			for remaining = 3, 1, -1 do
-				acceptBtn.Text = string.format("⏳ TUNGGU (%ds)", remaining)
+				acceptBtn.Text = LocalizationController.Get("TRADE_WAITING", remaining)
 				task.wait(1)
 			end
 			isCountingDown = false
@@ -224,9 +224,9 @@ function TradeController._CreateTradeModal()
 				cancelRemote:InvokeServer("Player unlocked offer")
 			end
 
-			lockBtn.Text = "🔒 KUNCI PENAWARAN"
+			lockBtn.Text = LocalizationController.Get("TRADE_LOCK_BTN")
 			lockBtn.BackgroundColor3 = Color3.fromRGB(234, 179, 8)
-			acceptBtn.Text = "✅ KONFIRMASI FINAL"
+			acceptBtn.Text = LocalizationController.Get("TRADE_CONFIRM_BTN")
 			acceptBtn.BackgroundColor3 = Color3.fromRGB(71, 85, 105)
 			acceptBtn.TextColor3 = Color3.fromRGB(148, 163, 184)
 			acceptBtn.Active = false

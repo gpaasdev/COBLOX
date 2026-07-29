@@ -45,6 +45,17 @@ function PartCache:GetPart()
 	return part
 end
 
+function PartCache.CleanupEmptyFolders()
+	local Workspace = game:GetService("Workspace")
+	for _, child in ipairs(Workspace:GetChildren()) do
+		if child:IsA("Folder") and child.Name:find("^PartCache_") then
+			if #child:GetChildren() == 0 then
+				child:Destroy()
+			end
+		end
+	end
+end
+
 function PartCache:ReturnPart(part: BasePart)
 	local index = table.find(self.InUse, part)
 	if index then

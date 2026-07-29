@@ -24,6 +24,8 @@ local playerGui: PlayerGui? = nil
 local mainScreenGui: ScreenGui
 local walletAuraLabel: TextLabel
 local walletSparksLabel: TextLabel
+local walletCoinLabel: TextLabel
+local walletGemLabel: TextLabel
 local notificationLabel: TextLabel
 local sideDrawer: Frame
 local liveOpsBanner: TextLabel
@@ -47,9 +49,11 @@ function UIController.Start()
 	local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 	if syncRemote then
 		syncRemote.OnClientEvent:Connect(function(data: { Coins: number, Gems: number, AuraEnergy: number?, ChronoSparks: number? })
-			local aura = data.AuraEnergy or data.Coins or 0
-			local sparks = data.ChronoSparks or data.Gems or 0
-			UIController.UpdateWallet(aura, sparks)
+			local aura = data.AuraEnergy or 0
+			local sparks = data.ChronoSparks or 0
+			local coins = data.Coins or 0
+			local gems = data.Gems or 0
+			UIController.UpdateWallet(aura, sparks, coins, gems)
 		end)
 	end
 
@@ -58,7 +62,7 @@ function UIController.Start()
 
 	-- Realm Selection Guide
 	task.delay(5, function()
-		UIController.ShowNotification("Press [R] to open Realm Selection — explore the Fairytale Realm!")
+		UIController.ShowNotification(LocalizationController.Get("NOTIF_REALM_SELECT"))
 	end)
 
 	-- Instantiate 3D Procedural Alchemical Core at Sanctum Altar Center
@@ -231,6 +235,88 @@ function UIController._CreateHUD()
 	sparksTextStroke.Color = Color3.fromRGB(0, 0, 0)
 	sparksTextStroke.Thickness = 1.5
 	sparksTextStroke.Parent = walletSparksLabel
+
+	-- Coins Pill (left of Sparks)
+	local coinBar = Instance.new("Frame")
+	coinBar.Name = "CoinBar"
+	coinBar.Size = UDim2.new(0.15, 0, 0.05, 0)
+	coinBar.AnchorPoint = Vector2.new(1, 0)
+	coinBar.Position = UDim2.new(0.64, 0, 0.02, 0)
+	coinBar.BackgroundColor3 = COLOR_BG_DARK
+	coinBar.BackgroundTransparency = 0.4
+	coinBar.BorderSizePixel = 0
+	coinBar.ZIndex = 50
+	coinBar.Parent = mainScreenGui
+
+	local coinGradient = Instance.new("UIGradient")
+	coinGradient.Rotation = 90
+	coinGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	coinGradient.Parent = coinBar
+
+	local coinCorner = Instance.new("UICorner")
+	coinCorner.CornerRadius = UDim.new(0, 12)
+	coinCorner.Parent = coinBar
+
+	local coinStroke = Instance.new("UIStroke")
+	coinStroke.Color = Color3.fromRGB(251, 191, 36)
+	coinStroke.Thickness = 1.5
+	coinStroke.Parent = coinBar
+
+	walletCoinLabel = Instance.new("TextLabel")
+	walletCoinLabel.Name = "CoinLabel"
+	walletCoinLabel.Size = UDim2.new(1, 0, 1, 0)
+	walletCoinLabel.BackgroundTransparency = 1
+	walletCoinLabel.TextColor3 = Color3.fromRGB(251, 191, 36)
+	walletCoinLabel.Font = Enum.Font.FredokaOne
+	walletCoinLabel.TextSize = 16
+	walletCoinLabel.Text = "💰 0"
+	walletCoinLabel.Parent = coinBar
+
+	local coinTextStroke = Instance.new("UIStroke")
+	coinTextStroke.Color = Color3.fromRGB(0, 0, 0)
+	coinTextStroke.Thickness = 1.5
+	coinTextStroke.Parent = walletCoinLabel
+
+	-- Gems Pill (left of Coins)
+	local gemBar = Instance.new("Frame")
+	gemBar.Name = "GemBar"
+	gemBar.Size = UDim2.new(0.15, 0, 0.05, 0)
+	gemBar.AnchorPoint = Vector2.new(1, 0)
+	gemBar.Position = UDim2.new(0.48, 0, 0.02, 0)
+	gemBar.BackgroundColor3 = COLOR_BG_DARK
+	gemBar.BackgroundTransparency = 0.4
+	gemBar.BorderSizePixel = 0
+	gemBar.ZIndex = 50
+	gemBar.Parent = mainScreenGui
+
+	local gemGradient = Instance.new("UIGradient")
+	gemGradient.Rotation = 90
+	gemGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	gemGradient.Parent = gemBar
+
+	local gemCorner = Instance.new("UICorner")
+	gemCorner.CornerRadius = UDim.new(0, 12)
+	gemCorner.Parent = gemBar
+
+	local gemStroke = Instance.new("UIStroke")
+	gemStroke.Color = Color3.fromRGB(168, 85, 247)
+	gemStroke.Thickness = 1.5
+	gemStroke.Parent = gemBar
+
+	walletGemLabel = Instance.new("TextLabel")
+	walletGemLabel.Name = "GemLabel"
+	walletGemLabel.Size = UDim2.new(1, 0, 1, 0)
+	walletGemLabel.BackgroundTransparency = 1
+	walletGemLabel.TextColor3 = Color3.fromRGB(168, 85, 247)
+	walletGemLabel.Font = Enum.Font.FredokaOne
+	walletGemLabel.TextSize = 16
+	walletGemLabel.Text = "💎 0"
+	walletGemLabel.Parent = gemBar
+
+	local gemTextStroke = Instance.new("UIStroke")
+	gemTextStroke.Color = Color3.fromRGB(0, 0, 0)
+	gemTextStroke.Thickness = 1.5
+	gemTextStroke.Parent = walletGemLabel
 
 	-- LiveOps TopBar Event Indicator Banner
 	liveOpsBanner = Instance.new("TextLabel")
@@ -565,15 +651,28 @@ function UIController._CreateHUD()
 
 		local iconLbl = Instance.new("TextLabel")
 		iconLbl.Name = "IconLabel"
-		iconLbl.Size = UDim2.new(1, 0, 1, 0)
+		iconLbl.Size = UDim2.new(1, 0, 0.6, 0)
+		iconLbl.Position = UDim2.new(0, 0, 0, -4)
 		iconLbl.BackgroundTransparency = 1
 		iconLbl.Text = slotIcons[slotIdx]
 		iconLbl.TextSize = 18
 		iconLbl.Parent = slotBtn
 
+		local emptyLbl = Instance.new("TextLabel")
+		emptyLbl.Name = "EmptyLabel"
+		emptyLbl.Size = UDim2.new(1, 0, 0.3, 0)
+		emptyLbl.Position = UDim2.new(0, 0, 0.6, 0)
+		emptyLbl.BackgroundTransparency = 1
+		emptyLbl.Text = "Empty"
+		emptyLbl.TextColor3 = Color3.fromRGB(100, 116, 139)
+		emptyLbl.Font = Enum.Font.Gotham
+		emptyLbl.TextSize = 10
+		emptyLbl.Parent = slotBtn
+
 		hotbarSlotsData[slotIdx] = {
 			Button = slotBtn,
 			IconLabel = iconLbl,
+			EmptyLabel = emptyLbl,
 			ItemName = nil,
 			ItemType = nil,
 		}
@@ -591,6 +690,9 @@ function UIController._CreateHUD()
 					slotData.ItemName = nil
 					slotData.ItemType = nil
 					iconLbl.Text = slotIcons[slotIdx]
+					if slotData.EmptyLabel then
+						slotData.EmptyLabel.Visible = true
+					end
 				end
 			end
 		end)
@@ -704,7 +806,7 @@ function UIController._ToggleWeaponShop()
 	if weaponShopGui then
 		weaponShopGui.Enabled = weaponShopOpen
 	end
-	UIController.ShowNotification(if weaponShopOpen then "🔪 Weapon Shop opened" else "Weapon Shop closed")
+	UIController.ShowNotification(if weaponShopOpen then LocalizationController.Get("NOTIF_WEAPON_OPEN") else LocalizationController.Get("NOTIF_WEAPON_CLOSE"))
 end
 
 function UIController._OpenWeaponShop()
@@ -726,11 +828,14 @@ function UIController.AddItemToHotbar(itemName: string, itemType: string)
 			slotData.ItemName = itemName
 			slotData.ItemType = itemType
 			slotData.IconLabel.Text = icon .. " " .. string.sub(itemName, 1, 6)
-			UIController.ShowNotification("🎒 Item masuk ke Hotbar Slot " .. i .. ": " .. itemName)
+			if slotData.EmptyLabel then
+				slotData.EmptyLabel.Visible = false
+			end
+			UIController.ShowNotification(LocalizationController.Get("NOTIF_HOTBAR_ADD", i, itemName))
 			return true
 		end
 	end
-	UIController.ShowNotification("⚠️ Hotbar Penuh! Kosongkan slot terlebih dahulu.")
+	UIController.ShowNotification(LocalizationController.Get("NOTIF_HOTBAR_FULL"))
 	return false
 end
 
@@ -744,12 +849,18 @@ function UIController.CheckLiveOpsOverlays()
 	end)
 end
 
-function UIController.UpdateWallet(aura: number, sparks: number)
+function UIController.UpdateWallet(aura: number, sparks: number, coins: number?, gems: number?)
 	if walletAuraLabel then
 		walletAuraLabel.Text = LocalizationController.Get("HUD_AURA", aura)
 	end
 	if walletSparksLabel then
 		walletSparksLabel.Text = LocalizationController.Get("HUD_SPARKS", sparks)
+	end
+	if walletCoinLabel then
+		walletCoinLabel.Text = string.format("💰 %s", tostring(coins or 0))
+	end
+	if walletGemLabel then
+		walletGemLabel.Text = string.format("💎 %s", tostring(gems or 0))
 	end
 end
 

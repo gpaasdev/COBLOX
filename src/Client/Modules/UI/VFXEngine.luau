@@ -26,6 +26,7 @@ local bb = Instance.new("BillboardGui")
 bb.Name = "BB"
 bb.Size = UDim2.new(0, 200, 0, 50)
 bb.AlwaysOnTop = true
+bb.MaxDistance = 60
 bb.Parent = floatingTextTemplate
 local label = Instance.new("TextLabel")
 label.Name = "TextLabel"

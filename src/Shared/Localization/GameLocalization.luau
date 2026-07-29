@@ -52,10 +52,19 @@ local GameLocalization = {
 		["TRADE_TITLE"] = "🤝 Dagang",
 		["TRADE_MY_OFFER"] = "Tawaranku",
 		["TRADE_PARTNER_OFFER"] = "Tawaran Partner",
+		["TRADE_LOCK_BTN"] = "🔒 KUNCI PENAWARAN",
+		["TRADE_UNLOCK_BTN"] = "🔓 BUKA KUNCI",
+		["TRADE_CONFIRM_BTN"] = "✅ KONFIRMASI FINAL",
+		["TRADE_WAITING"] = "⏳ TUNGGU (%ds)",
 
 		["ACTION_SETOR_AURA"] = "🚚 Setor Aura",
 		["ACTION_BEGAL_AURA"] = "🥷 Raid Aura",
 		["ACTION_FLEX_SHRINE"] = "🔥 Flex",
+		["NOTIF_WEAPON_OPEN"] = "🔪 Weapon Shop opened",
+		["NOTIF_WEAPON_CLOSE"] = "Weapon Shop closed",
+		["NOTIF_HOTBAR_FULL"] = "⚠️ Hotbar Penuh! Kosongkan slot terlebih dahulu.",
+		["NOTIF_HOTBAR_ADD"] = "🎒 Item masuk ke Hotbar Slot %d: %s",
+		["NOTIF_REALM_SELECT"] = "Press [R] to open Realm Selection — explore the Fairytale Realm!",
 	},
 
 	["en-us"] = {
@@ -109,10 +118,19 @@ local GameLocalization = {
 		["TRADE_TITLE"] = "🤝 Trading",
 		["TRADE_MY_OFFER"] = "My Offer",
 		["TRADE_PARTNER_OFFER"] = "Partner's Offer",
+		["TRADE_LOCK_BTN"] = "🔒 LOCK OFFER",
+		["TRADE_UNLOCK_BTN"] = "🔓 UNLOCK",
+		["TRADE_CONFIRM_BTN"] = "✅ CONFIRM TRADE",
+		["TRADE_WAITING"] = "⏳ WAIT (%ds)",
 
 		["ACTION_SETOR_AURA"] = "🚚 Deposit Aura",
 		["ACTION_BEGAL_AURA"] = "🥷 Aura Raid",
 		["ACTION_FLEX_SHRINE"] = "🔥 Flex",
+		["NOTIF_WEAPON_OPEN"] = "🔪 Weapon Shop opened",
+		["NOTIF_WEAPON_CLOSE"] = "Weapon Shop closed",
+		["NOTIF_HOTBAR_FULL"] = "⚠️ Hotbar full! Clear a slot first.",
+		["NOTIF_HOTBAR_ADD"] = "🎒 Item added to Hotbar Slot %d: %s",
+		["NOTIF_REALM_SELECT"] = "Press [R] to open Realm Selection — explore the Fairytale Realm!",
 	},
 }
 
