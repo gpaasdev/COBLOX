@@ -320,9 +320,15 @@ function SynthesisController._CreateModal()
 				end
 			end
 		else
-			if resultPreviewLabel then
-				resultPreviewLabel.Text = LocalizationController.Get("SYNTHESIS_FAILED")
+			local failMessage = LocalizationController.Get("SYNTHESIS_FAILED")
+			if response and response.Message and response.Message ~= "" then
+				failMessage = response.Message
 			end
+			if resultPreviewLabel then
+				resultPreviewLabel.Text = failMessage
+			end
+			local UIController = require(script.Parent:WaitForChild("UIController") :: any)
+			UIController.ShowNotification(failMessage)
 		end
 	end))
 

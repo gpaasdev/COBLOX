@@ -1,14 +1,6 @@
 --!strict
 local MachineConfig = {
 	Types = {
-		Reactor = {
-			DisplayName = "Alchemical Reactor",
-			PowerConsumption = 10,
-			HeatGeneration = 5,
-			MaxHeat = 500,
-			Durability = 1000,
-			BaseProduction = 1.0,
-		},
 		Smelter = {
 			DisplayName = "Arcane Smelter",
 			PowerConsumption = 15,
@@ -16,6 +8,52 @@ local MachineConfig = {
 			MaxHeat = 1200,
 			Durability = 800,
 			BaseProduction = 1.5,
+			MaxTier = 10,
+		},
+		Refinery = {
+			DisplayName = "Alchemical Refinery",
+			PowerConsumption = 20,
+			HeatGeneration = 25,
+			MaxHeat = 1500,
+			Durability = 900,
+			BaseProduction = 1.8,
+			MaxTier = 10,
+		},
+		Synthesizer = {
+			DisplayName = "Arcane Synthesizer",
+			PowerConsumption = 25,
+			HeatGeneration = 30,
+			MaxHeat = 1800,
+			Durability = 700,
+			BaseProduction = 2.0,
+			MaxTier = 10,
+		},
+		Reactor = {
+			DisplayName = "Alchemical Reactor",
+			PowerConsumption = 10,
+			HeatGeneration = 5,
+			MaxHeat = 500,
+			Durability = 1000,
+			BaseProduction = 1.0,
+			MaxTier = 10,
+		},
+		Turbine = {
+			DisplayName = "Mana Turbine",
+			PowerConsumption = 5,
+			HeatGeneration = 10,
+			MaxHeat = 300,
+			Durability = 600,
+			BaseProduction = 0.5,
+			MaxTier = 10,
+		},
+		Cooler = {
+			DisplayName = "Cryo Cooler",
+			PowerConsumption = 5,
+			HeatGeneration = 0,
+			MaxHeat = 100,
+			Durability = 500,
+			BaseProduction = 0.0,
+			MaxTier = 10,
 		},
 		Furnace = {
 			DisplayName = "Mana Furnace",
@@ -24,6 +62,7 @@ local MachineConfig = {
 			MaxHeat = 900,
 			Durability = 600,
 			BaseProduction = 0.8,
+			MaxTier = 5,
 		},
 		Crucible = {
 			DisplayName = "Void Crucible",
@@ -32,6 +71,7 @@ local MachineConfig = {
 			MaxHeat = 2000,
 			Durability = 1500,
 			BaseProduction = 2.0,
+			MaxTier = 5,
 		},
 	},
 	Defaults = {
@@ -41,8 +81,12 @@ local MachineConfig = {
 		PassiveWasteDecay = 0.1,
 	},
 	Costs = {
-		Reactor = { Coins = 5000, Gems = 25 },
 		Smelter = { Coins = 8000, Gems = 50 },
+		Refinery = { Coins = 12000, Gems = 75 },
+		Synthesizer = { Coins = 15000, Gems = 100 },
+		Reactor = { Coins = 5000, Gems = 25 },
+		Turbine = { Coins = 3000, Gems = 10 },
+		Cooler = { Coins = 2000, Gems = 5 },
 		Furnace = { Coins = 3000, Gems = 10 },
 		Crucible = { Coins = 15000, Gems = 100 },
 	},
