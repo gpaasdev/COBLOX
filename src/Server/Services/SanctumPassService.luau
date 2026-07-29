@@ -11,6 +11,7 @@ local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)
 type ServiceResult<T> = DataTypes.ServiceResult<T>
 
 local SanctumPassService = {}
+SanctumPassService.ServiceStatus = "Production"
 SanctumPassService.Name = "SanctumPassService"
 
 local MAX_PASS_TIERS = 50

@@ -14,6 +14,7 @@ local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 type ServiceResult<T> = DataTypes.ServiceResult<T>
 
 local HatchService = {}
+HatchService.ServiceStatus = "Production"
 HatchService.Name = "HatchService"
 
 HatchService.PetHatched = Signal.new()

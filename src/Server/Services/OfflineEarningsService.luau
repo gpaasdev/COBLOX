@@ -8,6 +8,7 @@ local EconomyService = require(game:GetService("ServerScriptService").Server.Ser
 local PlayerDataService = require(script.Parent.PlayerDataService :: any)
 
 local OfflineEarningsService = {}
+OfflineEarningsService.ServiceStatus = "Production"
 OfflineEarningsService.Name = "OfflineEarningsService"
 
 local pendingOfflineEarnings: { [Player]: number } = {}
@@ -42,17 +43,26 @@ end
 
 function OfflineEarningsService.Start()
 	Players.PlayerAdded:Connect(function(player)
-		-- Compute sample offline earnings based on join timestamp
-		local joinTime = os.time()
-		-- For demo/simulation: simulate 2 hours (7200s) of offline earnings on first join
-		local simulatedOfflineSeconds = 7200
-		local totalEarnings = math.min(simulatedOfflineSeconds, MAX_OFFLINE_SECONDS) * BASE_IDLE_RATE_PER_SEC
+		local res = PlayerDataService.GetProfile(player)
+		local lastSeen = 0
+		if res.Success and res.Data then
+			lastSeen = res.Data.LastSeen or 0
+		end
+		local now = os.time()
+		local offlineSeconds = if lastSeen > 0 then math.min(now - lastSeen, MAX_OFFLINE_SECONDS) else 0
+		local totalEarnings = offlineSeconds * BASE_IDLE_RATE_PER_SEC
 
 		pendingOfflineEarnings[player] = totalEarnings
-		print(string.format("[OfflineEarningsService] %s has %d pending AFK Coins!", player.Name, totalEarnings))
+		if totalEarnings > 0 then
+			print(string.format("[OfflineEarningsService] %s was offline for %d seconds, earned %d AFK Coins!", player.Name, offlineSeconds, totalEarnings))
+		end
 	end)
 
 	Players.PlayerRemoving:Connect(function(player)
+		local profileStore = require(script.Parent.ProfileStoreAdapter)
+		profileStore.SafeUpdateProfile(player, function(data)
+			data.LastSeen = os.time()
+		end)
 		pendingOfflineEarnings[player] = nil
 	end)
 end

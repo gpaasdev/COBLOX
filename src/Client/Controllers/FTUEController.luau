@@ -22,6 +22,8 @@ local hasClaimedPlot = false
 local hasBoughtDropper = false
 local hasHatchedEgg = false
 local hasCraftedCrystal = false
+local ftueHeartbeat: RBXScriptConnection? = nil
+local ftueScanCounter = 0
 
 function FTUEController.Init()
 	print("[FTUEController] Initializing Frictionless Onboarding and Quest Bar...")
@@ -66,10 +68,18 @@ function FTUEController.Start()
 			end
 		end)
 	end
-	-- Scan the workspace to check if the plot is claimed or droppers bought
-	RunService.Heartbeat:Connect(function()
+	-- Scan workspace every 30 frames for FTUE milestone detection
+	ftueHeartbeat = RunService.Stepped:Connect(function()
+		ftueScanCounter += 1
+		if ftueScanCounter % 30 ~= 0 then return end
+
+		if hasClaimedPlot and hasBoughtDropper and hasCraftedCrystal then
+			ftueHeartbeat:Disconnect()
+			ftueHeartbeat = nil
+			return
+		end
+
 		if not hasClaimedPlot then
-			-- Scan plots for local player ownership
 			local map = Workspace:FindFirstChild("Map")
 			local plots = map and map:FindFirstChild("Plots")
 			if plots then
@@ -81,7 +91,6 @@ function FTUEController.Start()
 						if label and string.find(label.Text, localPlayer.Name) then
 							hasClaimedPlot = true
 							FTUEController.UpdateMilestone(milestone1, "✅ Klaim Plot Pabrik")
-							-- Now enable dropper check
 							break
 						end
 					end
@@ -297,8 +306,6 @@ function FTUEController.PlayCinematicIntro()
 		camera.CameraType = Enum.CameraType.Custom
 	end)
 end
-
-local milestone4: TextLabel
 
 function FTUEController._CreateQuestBar()
 	local playerGui = localPlayer:WaitForChild("PlayerGui")

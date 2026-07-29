@@ -11,6 +11,7 @@ local CombatEvent = NetChannels.GetRemoteEvent("CombatEvent")
 local MobWindupVFX = NetChannels.GetUnreliableRemoteEvent("MobWindupVFX") -- Fase 10: visual-only windup telegraph
 
 local MobService = {}
+MobService.ServiceStatus = "Production"
 
 export type MobState = "IDLE" | "CHASE" | "WINDUP" | "ATTACK" | "RETURN" | "DEAD"
 export type Mob = {

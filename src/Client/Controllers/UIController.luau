@@ -27,6 +27,7 @@ local walletSparksLabel: TextLabel
 local notificationLabel: TextLabel
 local sideDrawer: Frame
 local liveOpsBanner: TextLabel
+local hotbarSlotsData: {{[string]: any}} = {}
 
 -- LGBOS v11.0 Sci-Fantasy Palette (Quantum Indigo #1E1B4B, Aura Gold #F59E0B, Spark Cyan #06B6D4)
 local COLOR_BG_DARK = Color3.fromRGB(30, 27, 75)
@@ -530,7 +531,7 @@ function UIController._CreateHUD()
 	slotLayout.Parent = slotsRow
 
 	local slotIcons = { "🔮", "💧", "⚡", "🧪", "📜" }
-	local hotbarSlotsData = {}
+	hotbarSlotsData = {}
 	for slotIdx = 1, 5 do
 		local slotBtn = Instance.new("TextButton")
 		slotBtn.Name = "Slot_" .. slotIdx
@@ -709,8 +710,6 @@ end
 function UIController._OpenWeaponShop()
 	UIController._ToggleWeaponShop()
 end
-
-local hotbarSlotsData: {{[string]: any}} = {}
 
 function UIController.AddItemToHotbar(itemName: string, itemType: string)
 	local iconMap = {

@@ -15,6 +15,7 @@ local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 type ServiceResult<T> = DataTypes.ServiceResult<T>
 
 local EconomyService = {}
+EconomyService.ServiceStatus = "Production"
 EconomyService.Name = "EconomyService"
 
 EconomyService.CoinsChanged = Signal.new()

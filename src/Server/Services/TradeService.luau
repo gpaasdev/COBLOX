@@ -14,6 +14,7 @@ type TradeSession = TradeTypes.TradeSession
 type ServiceResult<T> = DataTypes.ServiceResult<T>
 
 local TradeService = {}
+TradeService.ServiceStatus = "Production"
 TradeService.Name = "TradeService"
 
 local activeSessions: { [string]: TradeSession } = {}
@@ -32,6 +33,18 @@ function TradeService.Start()
 	local ServerScriptService = game:GetService("ServerScriptService")
 	local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
 	local tradeRemoteFunc = NetChannels.GetRemoteFunction("RequestTrade")
+	local lockRemoteFunc = NetChannels.GetRemoteFunction("LockTradeOffer")
+	local confirmRemoteFunc = NetChannels.GetRemoteFunction("ConfirmTrade")
+	local executeRemoteFunc = NetChannels.GetRemoteFunction("ExecuteTrade")
+	local cancelRemoteFunc = NetChannels.GetRemoteFunction("CancelTrade")
+
+	local tradeInvitedRemote = NetChannels.GetRemoteEvent("TradeInvited")
+
+	TradeService.TradeStarted:Connect(function(sessionId: string, playerA: Player, playerB: Player)
+		if tradeInvitedRemote then
+			tradeInvitedRemote:FireClient(playerB, sessionId, playerA.Name)
+		end
+	end)
 
 	tradeRemoteFunc.OnServerInvoke = function(player: Player, targetPlayerName: string)
 		if not RateLimitService.CheckRateLimit(player, "RequestTrade", 0.5) then
@@ -58,6 +71,72 @@ function TradeService.Start()
 		end
 
 		return TradeService.CreateTradeSession(player, targetPlayer)
+	end
+
+	if lockRemoteFunc then
+		lockRemoteFunc.OnServerInvoke = function(player: Player): ServiceResult<boolean>
+			local sessionId = playerToSession[player.UserId]
+			if not sessionId then
+				return { Success = false, Category = "Validation", ErrorCode = "NO_ACTIVE_SESSION", Message = "No active trade session", Data = false, Retryable = false }
+			end
+			local session = activeSessions[sessionId]
+			if not session then
+				return { Success = false, Category = "Validation", ErrorCode = "SESSION_NOT_FOUND", Message = "Session not found", Data = false, Retryable = false }
+			end
+			if session.PlayerA == player then
+				session.Stage1_A = true
+			elseif session.PlayerB == player then
+				session.Stage1_B = true
+			else
+				return { Success = false, Category = "Validation", ErrorCode = "NOT_IN_SESSION", Message = "Player not in this session", Data = false, Retryable = false }
+			end
+			return { Success = true, Category = nil, ErrorCode = nil, Message = "Offer locked", Data = true, Retryable = false }
+		end
+	end
+
+	if confirmRemoteFunc then
+		confirmRemoteFunc.OnServerInvoke = function(player: Player): ServiceResult<boolean>
+			local sessionId = playerToSession[player.UserId]
+			if not sessionId then
+				return { Success = false, Category = "Validation", ErrorCode = "NO_ACTIVE_SESSION", Message = "No active trade session", Data = false, Retryable = false }
+			end
+			local session = activeSessions[sessionId]
+			if not session then
+				return { Success = false, Category = "Validation", ErrorCode = "SESSION_NOT_FOUND", Message = "Session not found", Data = false, Retryable = false }
+			end
+			if not (session.Stage1_A and session.Stage1_B) then
+				return { Success = false, Category = "Validation", ErrorCode = "STAGE1_NOT_LOCKED", Message = "Both players must lock their offers first", Data = false, Retryable = false }
+			end
+			if session.PlayerA == player then
+				session.Stage2_A = true
+			elseif session.PlayerB == player then
+				session.Stage2_B = true
+			else
+				return { Success = false, Category = "Validation", ErrorCode = "NOT_IN_SESSION", Message = "Player not in this session", Data = false, Retryable = false }
+			end
+			return { Success = true, Category = nil, ErrorCode = nil, Message = "Trade confirmed", Data = true, Retryable = false }
+		end
+	end
+
+	if executeRemoteFunc then
+		executeRemoteFunc.OnServerInvoke = function(player: Player): ServiceResult<boolean>
+			local sessionId = playerToSession[player.UserId]
+			if not sessionId then
+				return { Success = false, Category = "Validation", ErrorCode = "NO_ACTIVE_SESSION", Message = "No active trade session", Data = false, Retryable = false }
+			end
+			return TradeService.ExecuteAtomicSwap(sessionId)
+		end
+	end
+
+	if cancelRemoteFunc then
+		cancelRemoteFunc.OnServerInvoke = function(player: Player, reason: string): ServiceResult<boolean>
+			local sessionId = playerToSession[player.UserId]
+			if not sessionId then
+				return { Success = false, Category = "Validation", ErrorCode = "NO_ACTIVE_SESSION", Message = "No active trade session", Data = false, Retryable = false }
+			end
+			TradeService.CancelTradeSession(sessionId, reason or "Player cancelled")
+			return { Success = true, Category = nil, ErrorCode = nil, Message = "Trade cancelled", Data = true, Retryable = false }
+		end
 	end
 end
 

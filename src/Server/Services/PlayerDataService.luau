@@ -11,6 +11,7 @@ type PlayerProfile = DataTypes.PlayerProfile
 type ServiceResult<T> = DataTypes.ServiceResult<T>
 
 local PlayerDataService = {}
+PlayerDataService.ServiceStatus = "Production"
 PlayerDataService.Name = "PlayerDataService"
 
 PlayerDataService.ProfileLoaded = Signal.new()

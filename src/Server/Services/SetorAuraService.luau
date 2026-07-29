@@ -13,6 +13,7 @@ type ServiceResult<T> = DataTypes.ServiceResult<T>
 type TransportState = DataTypes.TransportState
 
 local SetorAuraService = {}
+SetorAuraService.ServiceStatus = "Production"
 SetorAuraService.Name = "SetorAuraService"
 
 SetorAuraService.TransportStarted = Signal.new()

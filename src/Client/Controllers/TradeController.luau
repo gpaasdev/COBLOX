@@ -20,7 +20,13 @@ function TradeController.Init()
 end
 
 function TradeController.Start()
-	-- Connect trade invitation remotes
+	local inviteRemote = NetChannels.GetRemoteEvent("TradeInvited")
+	if inviteRemote then
+		inviteRemote.OnClientEvent:Connect(function(sessionId: string, partnerName: string)
+			print(string.format("[TradeController] Trade invited by %s (session: %s)", partnerName, sessionId))
+			TradeController.ToggleModal()
+		end)
+	end
 end
 
 function TradeController.ToggleModal()
@@ -189,9 +195,18 @@ function TradeController._CreateTradeModal()
 
 		isLocked = not isLocked
 		if isLocked then
-			lockBtn.Text = "🔓 BUKA KUNCI"
-			lockBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68) -- Red to unlock
+			local lockRemote = NetChannels.GetRemoteFunction("LockTradeOffer")
+			if lockRemote then
+				local result = lockRemote:InvokeServer()
+				if not result or not result.Success then
+					isLocked = false
+					warn("[TradeController] Lock rejected: " .. tostring(result and result.Message))
+					return
+				end
+			end
 
+			lockBtn.Text = "🔓 BUKA KUNCI"
+			lockBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
 			isCountingDown = true
 			for remaining = 3, 1, -1 do
 				acceptBtn.Text = string.format("⏳ TUNGGU (%ds)", remaining)
@@ -200,10 +215,15 @@ function TradeController._CreateTradeModal()
 			isCountingDown = false
 
 			acceptBtn.Text = "✅ KONFIRMASI FINAL"
-			acceptBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94) -- Active Green
+			acceptBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94)
 			acceptBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 			acceptBtn.Active = true
 		else
+			local cancelRemote = NetChannels.GetRemoteFunction("CancelTrade")
+			if cancelRemote then
+				cancelRemote:InvokeServer("Player unlocked offer")
+			end
+
 			lockBtn.Text = "🔒 KUNCI PENAWARAN"
 			lockBtn.BackgroundColor3 = Color3.fromRGB(234, 179, 8)
 			acceptBtn.Text = "✅ KONFIRMASI FINAL"
@@ -219,10 +239,30 @@ function TradeController._CreateTradeModal()
 		end
 
 		print("[TradeController] Trade confirmed! Executing secure trade exchange...")
-		local AudioController = require(script.Parent:WaitForChild("AudioController") :: any)
-		pcall(function()
-			AudioController.PlaySound("rbxassetid://138677306", 1.0)
-		end)
+		local confirmRemote = NetChannels.GetRemoteFunction("ConfirmTrade")
+		if not confirmRemote then
+			warn("[TradeController] ConfirmTrade remote not available")
+			return
+		end
+		local confirmResult = confirmRemote:InvokeServer()
+		if not confirmResult or not confirmResult.Success then
+			warn("[TradeController] Confirm rejected: " .. tostring(confirmResult and confirmResult.Message))
+			return
+		end
+
+		local executeRemote = NetChannels.GetRemoteFunction("ExecuteTrade")
+		if executeRemote then
+			local execResult = executeRemote:InvokeServer()
+			if execResult and execResult.Success then
+				local AudioController = require(script.Parent:WaitForChild("AudioController") :: any)
+				pcall(function()
+					AudioController.PlaySound("rbxassetid://138677306", 1.0)
+				end)
+				print("[TradeController] Trade executed successfully!")
+			else
+				warn("[TradeController] Trade execution failed: " .. tostring(execResult and execResult.Message))
+			end
+		end
 
 		TradeController.ToggleModal()
 	end)

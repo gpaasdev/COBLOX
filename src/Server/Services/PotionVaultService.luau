@@ -10,6 +10,7 @@ local PlayerDataService = require(script.Parent.PlayerDataService :: any)
 local ProfileStoreAdapter = require(script.Parent.ProfileStoreAdapter)
 
 local PotionVaultService = {}
+PotionVaultService.ServiceStatus = "Production"
 PotionVaultService.Name = "PotionVaultService"
 
 -- Potion Base Yields per second (Koin/sec)

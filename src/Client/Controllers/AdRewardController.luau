@@ -51,10 +51,14 @@ function AdRewardController._CreateAdButton(placementId: string, rewardType: str
 		button.Active = false
 		local requestRemote = NetChannels.GetRemoteEvent("RequestRewardedAd")
 		if requestRemote then
-						if requestRemote then
-				requestRemote:FireServer(placementId, rewardType)
-			end
+			requestRemote:FireServer(placementId, rewardType)
 		end
+		task.delay(10, function()
+			if button and button.Parent then
+				button.Text = "Watch Ad"
+				button.Active = true
+			end
+		end)
 	end)
 
 	adButtonCache[placementId] = button

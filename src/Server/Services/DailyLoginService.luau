@@ -8,6 +8,7 @@ local EconomyService = require(ServerScriptService.Server.Services.EconomyServic
 local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
 
 local DailyLoginService = {}
+DailyLoginService.ServiceStatus = "Production"
 DailyLoginService.Name = "DailyLoginService"
 
 local LOGIN_REWARDS = {

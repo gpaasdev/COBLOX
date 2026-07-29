@@ -11,6 +11,7 @@ local PlayerDataService = require(ServerScriptService.Server.Services.PlayerData
 local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
 
 local InteractionService = {}
+InteractionService.ServiceStatus = "Production"
 InteractionService.Name = "InteractionService"
 
 -- Stores active grab maids per player

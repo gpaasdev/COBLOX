@@ -7,9 +7,19 @@ local GameConfig = require(ReplicatedStorage.Shared.Configuration.GameConfig)
 local WeaponConfig = require(ReplicatedStorage.Shared.Configuration.WeaponConfig)
 
 local CombatService = {}
+CombatService.Name = "CombatService"
+CombatService.ServiceStatus = "Production"
 
 local stunRecords = {}
 local parryWindows = {}
+local lastAttackTime: { [number]: number } = {}
+local attackCooldown = 0.5
+
+local function GetEquippedWeapon(player: Player): string?
+	local res = require(script.Parent.PlayerDataService).GetProfile(player)
+	if not res.Success or not res.Data then return nil end
+	return res.Data.Inventory.EquippedWeapon
+end
 
 -- Modular Rulesets
 type ZoneRuleset = "Wilderness" | "Arena" | "FactionWars" | "Safezone"
@@ -46,6 +56,13 @@ function CombatService.Init()
 end
 
 function CombatService.ProcessHit(player: Player, targetId: string, weaponType: string?)
+	local now = os.clock()
+	local lastAttack = lastAttackTime[player.UserId] or 0
+	if now - lastAttack < attackCooldown then
+		return
+	end
+	lastAttackTime[player.UserId] = now
+
 	local char = player.Character
 	if not char then
 		return
@@ -58,8 +75,13 @@ function CombatService.ProcessHit(player: Player, targetId: string, weaponType: 
 
 	local zone = GetZoneRuleset(hrp.Position)
 	if zone == "Safezone" then
-		print("[CombatService] Attack blocked: Player is in Safezone.")
 		return
+	end
+
+	local equippedWeapon = GetEquippedWeapon(player)
+	if weaponType and equippedWeapon and weaponType ~= equippedWeapon then
+		warn(string.format("[CombatService] Weapon mismatch: %s sent %s but has %s equipped", player.Name, weaponType, equippedWeapon))
+		weaponType = equippedWeapon
 	end
 
 	local MobService = require(script.Parent.MobService)

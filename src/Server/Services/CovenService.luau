@@ -13,6 +13,7 @@ local PlayerDataService = require(script.Parent.PlayerDataService)
 local CovenConfig = require(ReplicatedStorage.Shared.Configuration.CovenConfig)
 
 local CovenService = {}
+CovenService.ServiceStatus = "Production"
 
 type CovenData = {
 	Id: string,

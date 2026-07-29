@@ -4,6 +4,7 @@ local EconomyService = require(game:GetService("ServerScriptService").Server.Ser
 local PlayerDataService = require(ServerScriptService.Server.Services.PlayerDataService)
 
 local OnboardingService = {}
+OnboardingService.ServiceStatus = "Production"
 
 local NetChannels = require(game:GetService("ReplicatedStorage").Shared.Network.NetChannels)
 local AnalyticsService = require(ServerScriptService.Server.Services.AnalyticsService)

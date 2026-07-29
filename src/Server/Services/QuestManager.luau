@@ -7,6 +7,7 @@ local QuestRegistry = require(ReplicatedStorage.Shared.Configuration.QuestRegist
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
 local QuestManager = {}
+QuestManager.ServiceStatus = "Production"
 
 function QuestManager.Init()
 	print("[QuestManager] Initializing Daily Quest Engine...")
