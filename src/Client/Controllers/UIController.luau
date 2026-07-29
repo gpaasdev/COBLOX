@@ -821,6 +821,7 @@ function UIController._CreateWeaponShopUI()
 	local weapons = {
 		{
 			Name = LocalizationController.Get("WEAPON_FIST"),
+			Id = "Fist",
 			DMG = 10,
 			Range = 8,
 			Cost = LocalizationController.Get("COST_FREE"),
@@ -828,6 +829,7 @@ function UIController._CreateWeaponShopUI()
 		},
 		{
 			Name = LocalizationController.Get("WEAPON_IRON_SWORD"),
+			Id = "IronSword",
 			DMG = 25,
 			Range = 14,
 			Cost = LocalizationController.Get("COST_IRON_SWORD"),
@@ -835,6 +837,7 @@ function UIController._CreateWeaponShopUI()
 		},
 		{
 			Name = LocalizationController.Get("WEAPON_FLAME_SABER"),
+			Id = "FlameSaber",
 			DMG = 45,
 			Range = 16,
 			Cost = LocalizationController.Get("COST_FLAME_SABER"),
@@ -842,6 +845,7 @@ function UIController._CreateWeaponShopUI()
 		},
 		{
 			Name = LocalizationController.Get("WEAPON_AETHER_BLADE"),
+			Id = "AetherBlade",
 			DMG = 75,
 			Range = 18,
 			Cost = LocalizationController.Get("COST_AETHER_BLADE"),
@@ -849,6 +853,7 @@ function UIController._CreateWeaponShopUI()
 		},
 		{
 			Name = LocalizationController.Get("WEAPON_VOID_GREATSWORD"),
+			Id = "VoidGreatsword",
 			DMG = 120,
 			Range = 22,
 			Cost = LocalizationController.Get("COST_VOID_GREATSWORD"),
@@ -891,16 +896,30 @@ function UIController._CreateWeaponShopUI()
 		statsLbl.TextXAlignment = Enum.TextXAlignment.Center
 		statsLbl.Parent = row
 
-		local costLbl = Instance.new("TextLabel")
-		costLbl.Size = UDim2.new(0.3, 0, 1, 0)
-		costLbl.Position = UDim2.new(0.7, 0, 0, 0)
-		costLbl.BackgroundTransparency = 1
-		costLbl.Text = w.Cost
-		costLbl.TextColor3 = Color3.fromRGB(255, 215, 0)
-		costLbl.Font = Enum.Font.GothamBold
-		costLbl.TextSize = 11
-		costLbl.TextXAlignment = Enum.TextXAlignment.Center
-		costLbl.Parent = row
+		local buyBtn = Instance.new("TextButton")
+		buyBtn.Size = UDim2.new(0.3, 0, 1, 0)
+		buyBtn.Position = UDim2.new(0.7, 0, 0, 0)
+		buyBtn.BackgroundTransparency = 0.3
+		buyBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94)
+		buyBtn.Text = w.Cost
+		buyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		buyBtn.Font = Enum.Font.GothamBold
+		buyBtn.TextSize = 11
+		buyBtn.TextXAlignment = Enum.TextXAlignment.Center
+		buyBtn.Parent = row
+
+		local buyCorner = Instance.new("UICorner")
+		buyCorner.CornerRadius = UDim.new(0, 6)
+		buyCorner.Parent = buyBtn
+
+		UIController.maid:GiveTask(buyBtn.MouseButton1Click:Connect(function()
+			local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
+			local purchaseRemote = NetChannels.GetRemoteEvent("PurchaseWeaponRequest")
+			if purchaseRemote then
+				purchaseRemote:FireServer(w.Id, "Coins")
+				UIController.ShowNotification("Purchasing " .. w.Name .. "...")
+			end
+		end))
 
 		yOff += 50
 	end
