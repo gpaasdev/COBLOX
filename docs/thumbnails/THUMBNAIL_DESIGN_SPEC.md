@@ -1,3 +1,5 @@
+[🏠 Master Index](../README.md)
+
 # COBLOX Thumbnail Design System
 
 ## Format Specifications

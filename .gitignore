@@ -54,3 +54,21 @@ scratch/
 docs/archive/
 UEFN/
 roblox-opencloud-mcp-server/
+
+# Large build artifacts (keep gitignored)
+*.rbxl
+*.rbxlx
+*.zip
+*.rar
+*.7z
+
+# IDE & OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Web build output
+.next/
+out/

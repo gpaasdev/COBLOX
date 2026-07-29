@@ -1,3 +1,5 @@
+[🏠 Master Index](../README.md)
+
 # Phase 1 — Sprint 5 Validation Report
 
 **Date**: 2026-07-28

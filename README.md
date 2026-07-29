@@ -6,11 +6,14 @@
 
 <p align="center">
   <a href="https://www.roblox.com/join/qkced"><img src="https://img.shields.io/badge/Roblox-Play%20Now%20(Official%20Link)-FF0000?style=for-the-badge&logo=roblox&logoColor=white" alt="Play on Roblox"></a>
-  <a href="https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml"><img src="https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml/badge.svg" alt="CI/CD Build Status"></a>
-  <a href="https://hycoblox.vercel.app/"><img src="https://img.shields.io/badge/pSEO%20Platform-Hycoblox-000000?style=for-the-badge&logo=vercel" alt="Hycoblox pSEO Platform"></a>
-  <a href="https://gpaasdev.github.io/COBLOX/"><img src="https://img.shields.io/badge/Web-Vercel%20Live-000000?style=for-the-badge&logo=vercel" alt="Vercel Live"></a>
+  <a href="https://github.com/gpaasdev/COBLOX/actions"><img src="https://github.com/gpaasdev/COBLOX/actions/workflows/ci.yml/badge.svg" alt="CI/CD Build Status"></a>
+  <a href="https://hycoblox.vercel.app"><img src="https://img.shields.io/badge/Portal-Hycoblox-000000?style=for-the-badge&logo=vercel" alt="Hycoblox Portal"></a>
+  <a href="https://vercel.com/gpaasdev/coblox"><img src="https://vercelbadge.vercel.app/api/gpaasdev/coblox" alt="Vercel Deployment"></a>
+  <a href="https://hycoblox.vercel.app"><img src="https://img.shields.io/badge/Portal-Vercel%20Live-000000?style=for-the-badge&logo=vercel" alt="Portal Live"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge" alt="License: MIT"></a>
   <a href="https://luau-lang.org/"><img src="https://img.shields.io/badge/Engine-Roblox%20Luau--strict-000000?style=for-the-badge&logo=roblox" alt="Engine: Roblox Luau"></a>
+  <br>
+  <b>Main v196</b> · <b>Fairytale v22</b> · 57 services · 47 controllers · 40+ bugs fixed
 </p>
 
 Hybrid Pet Tycoon & Social Action Alkimia di Roblox. Susun Bejana Aura, racik elemen magis dalam matriks 3x3, tetaskan Spirit Companion, dan berkumpul bersama teman dalam klan alkemis (Coven Order).
@@ -119,13 +122,11 @@ selene src/
 
 ## 🌐 Publikasi & Web Portal
 
-Web Portal COBLOX otomatis di-deploy ke GitHub Pages saat terjadi pembaruan pada cabang `main`:
-- **Web Portal Live:** [https://gpaasdev.github.io/COBLOX/](https://gpaasdev.github.io/COBLOX/)
-- **Buku Resep & Spirit Codex:** [https://gpaasdev.github.io/COBLOX/codex.html](https://gpaasdev.github.io/COBLOX/codex.html)
-- **Portal Pengembang:** [https://gpaasdev.github.io/COBLOX/developers.html](https://gpaasdev.github.io/COBLOX/developers.html)
-
-### 📈 Hycoblox: pSEO Aggregator & Developer Resources
-Kunjungi **[Hycoblox](https://hycoblox.vercel.app/)**, platform programmatic SEO (pSEO) kami untuk statistik game, sumber daya developer, skrip Luau, dan UI asset gratis.
+- **Portal Utama:** [https://hycoblox.vercel.app](https://hycoblox.vercel.app) (Next.js 16 + Vercel)
+- **Admin Dashboard:** `/dashboard` — DataStore viewer, LiveOps broadcast, monitoring, config, CMS
+- **Changelog:** `/changelog` — Catatan perubahan setiap rilis
+- **Knowledge Base:** `/knowledge-base` — Panduan pemain & referensi
+- **Kontak:** `/contact` — Business inquiry & dukungan pemain
 
 ---
 
