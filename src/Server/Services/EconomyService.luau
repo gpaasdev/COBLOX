@@ -136,7 +136,12 @@ function EconomyService.AddCurrency(
 		if currencyType == "Gems" or currencyType == "ChronoSparks" then
 			local finalBalance = w[currencyType]
 			if math.abs((initialBalance + amount) - finalBalance) > 0.001 then
-				warn(string.format("[SECURITY ALERT] Hard currency mismatch for player %s! Flagging account.", player.Name))
+				warn(
+					string.format(
+						"[SECURITY ALERT] Hard currency mismatch for player %s! Flagging account.",
+						player.Name
+					)
+				)
 				data.AdminFlagged = true
 				w[currencyType] = initialBalance
 			else

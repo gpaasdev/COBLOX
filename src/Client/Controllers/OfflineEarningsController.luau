@@ -75,7 +75,10 @@ function OfflineEarningsController.ShowWelcomeModal(earningsAmount: number)
 	desc.Size = UDim2.new(0.9, 0, 0.35, 0)
 	desc.Position = UDim2.new(0.05, 0, 0.3, 0)
 	desc.BackgroundTransparency = 1
-	desc.Text = string.format("Spirit Companion milikmu telah memanen Mana dan merawat tempat meracik ramuan saat kamu beristirahat!\n\nKamu mendapatkan +%s Koin Magis!", tostring(earningsAmount))
+	desc.Text = string.format(
+		"Spirit Companion milikmu telah memanen Mana dan merawat tempat meracik ramuan saat kamu beristirahat!\n\nKamu mendapatkan +%s Koin Magis!",
+		tostring(earningsAmount)
+	)
 	desc.TextColor3 = Color3.fromRGB(255, 255, 255)
 	desc.Font = Enum.Font.GothamMedium
 	desc.TextSize = 14

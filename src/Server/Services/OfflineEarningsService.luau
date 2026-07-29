@@ -54,7 +54,14 @@ function OfflineEarningsService.Start()
 
 		pendingOfflineEarnings[player] = totalEarnings
 		if totalEarnings > 0 then
-			print(string.format("[OfflineEarningsService] %s was offline for %d seconds, earned %d AFK Coins!", player.Name, offlineSeconds, totalEarnings))
+			print(
+				string.format(
+					"[OfflineEarningsService] %s was offline for %d seconds, earned %d AFK Coins!",
+					player.Name,
+					offlineSeconds,
+					totalEarnings
+				)
+			)
 		end
 	end)
 

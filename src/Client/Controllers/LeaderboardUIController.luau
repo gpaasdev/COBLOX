@@ -61,7 +61,9 @@ function LeaderboardUIController._CreateUI()
 		if data and typeof(data) == "table" then
 			local yPos = 44
 			for i, entry in ipairs(data) do
-				if i > 10 then break end
+				if i > 10 then
+					break
+				end
 				local row = Instance.new("Frame")
 				row.Size = UDim2.new(0.92, 0, 0, 26)
 				row.Position = UDim2.new(0.04, 0, 0, yPos)

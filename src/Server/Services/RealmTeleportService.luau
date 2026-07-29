@@ -69,7 +69,14 @@ function RealmTeleportService.TeleportToRealm(player: Player, realmKey: string)
 	end)
 
 	if not success then
-		warn(string.format("[RealmTeleportService] Teleport failed for %s to %s: %s", player.Name, realmKey, tostring(err)))
+		warn(
+			string.format(
+				"[RealmTeleportService] Teleport failed for %s to %s: %s",
+				player.Name,
+				realmKey,
+				tostring(err)
+			)
+		)
 	end
 end
 

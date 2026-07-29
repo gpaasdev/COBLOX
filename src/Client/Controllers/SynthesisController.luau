@@ -250,10 +250,7 @@ function SynthesisController._CreateModal()
 			local controllersFolder = script.Parent
 			local UIController = require(controllersFolder:WaitForChild("UIController") :: any)
 			UIController.ShowNotification(
-				LocalizationController.Get(
-					"SYNTHESIS_COOLDOWN",
-					CRAFT_COOLDOWN - (currentTime - lastCraftTime)
-				)
+				LocalizationController.Get("SYNTHESIS_COOLDOWN", CRAFT_COOLDOWN - (currentTime - lastCraftTime))
 			)
 			return
 		end

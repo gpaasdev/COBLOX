@@ -71,7 +71,9 @@ function FTUEController.Start()
 	-- Scan workspace every 30 frames for FTUE milestone detection
 	ftueHeartbeat = RunService.Stepped:Connect(function()
 		ftueScanCounter += 1
-		if ftueScanCounter % 30 ~= 0 then return end
+		if ftueScanCounter % 30 ~= 0 then
+			return
+		end
 
 		if hasClaimedPlot and hasBoughtDropper and hasCraftedCrystal then
 			ftueHeartbeat:Disconnect()

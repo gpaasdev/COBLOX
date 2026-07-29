@@ -44,8 +44,11 @@ function DailyLoginService.CheckDailyReward(player: Player)
 
 	local now = os.time()
 
-	if result.Data.DailyLogin and result.Data.DailyLogin.LastLoginTimestamp > 0
-		and now - result.Data.DailyLogin.LastLoginTimestamp < DAY_SECONDS then
+	if
+		result.Data.DailyLogin
+		and result.Data.DailyLogin.LastLoginTimestamp > 0
+		and now - result.Data.DailyLogin.LastLoginTimestamp < DAY_SECONDS
+	then
 		print(string.format("[DailyLoginService] Player %s already claimed today.", player.Name))
 		return
 	end
@@ -87,8 +90,15 @@ function DailyLoginService.CheckDailyReward(player: Player)
 		data.DailyLogin.LastLoginTimestamp = now
 		data.DailyLogin.LastClaimedDay = rewardDay
 
-		print(string.format("[DailyLoginService] Player %s claimed Day %d reward: %d Coins, %d Gems",
-			player.Name, rewardDay, reward.Coins or 0, reward.Gems or 0))
+		print(
+			string.format(
+				"[DailyLoginService] Player %s claimed Day %d reward: %d Coins, %d Gems",
+				player.Name,
+				rewardDay,
+				reward.Coins or 0,
+				reward.Gems or 0
+			)
+		)
 	end)
 end
 

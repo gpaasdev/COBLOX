@@ -32,12 +32,7 @@ function HatchService.Start()
 		hatchRemote.OnServerInvoke = function(player: Player, podType: any)
 			local valid, cleanPodType = PayloadValidator.Validate({ podType }, { "string" })
 			if not valid then
-				warn(
-					string.format(
-						"[HatchService Security Alert] Invalid payload from player %s",
-						player.Name
-					)
-				)
+				warn(string.format("[HatchService Security Alert] Invalid payload from player %s", player.Name))
 				return {
 					Success = false,
 					Category = "Validation",
@@ -90,10 +85,7 @@ function HatchService.RollRarity(pityCounter: number, luckUpgrades: number, hasS
 	return "Common"
 end
 
-function HatchService.HatchPod(
-	player: Player,
-	podType: string
-): ServiceResult<any>
+function HatchService.HatchPod(player: Player, podType: string): ServiceResult<any>
 	local podDef = HatchConfig.POD_TYPES[podType]
 	if not podDef then
 		return {

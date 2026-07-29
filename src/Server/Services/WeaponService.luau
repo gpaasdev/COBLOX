@@ -47,7 +47,15 @@ function WeaponService.PurchaseWithCoins(player: Player, weaponId: string): bool
 
 	local coins = wallet.Coins or 0
 	if coins < def.CoinCost then
-		warn(string.format("[WeaponService] %s needs %d Coins for %s, has %d", player.Name, def.CoinCost, weaponId, coins))
+		warn(
+			string.format(
+				"[WeaponService] %s needs %d Coins for %s, has %d",
+				player.Name,
+				def.CoinCost,
+				weaponId,
+				coins
+			)
+		)
 		return false
 	end
 
@@ -109,7 +117,15 @@ function WeaponService.EquipWeapon(player: Player, weaponId: string): boolean
 	player:SetAttribute("WeaponRange", def.Range)
 	player:SetAttribute("WeaponAttackSpeed", def.AttackSpeed)
 
-	print(string.format("[WeaponService] %s equipped: %s (DMG: %d, Range: %d)", player.Name, def.Name, def.Damage, def.Range))
+	print(
+		string.format(
+			"[WeaponService] %s equipped: %s (DMG: %d, Range: %d)",
+			player.Name,
+			def.Name,
+			def.Damage,
+			def.Range
+		)
+	)
 	return true
 end
 

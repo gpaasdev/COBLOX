@@ -63,12 +63,14 @@ function SocialEngagementService.RewardInviteReferral(invitedPlayer: Player, inv
 		Reward = INVITE_REWARD_SPARKS,
 	})
 
-	print(string.format(
-		"[SocialEngagementService] Referral reward: %s invited %s → both get +%d ChronoSparks",
-		inviter.Name,
-		invitedPlayer.Name,
-		INVITE_REWARD_SPARKS
-	))
+	print(
+		string.format(
+			"[SocialEngagementService] Referral reward: %s invited %s → both get +%d ChronoSparks",
+			inviter.Name,
+			invitedPlayer.Name,
+			INVITE_REWARD_SPARKS
+		)
+	)
 end
 
 function SocialEngagementService.ScheduleNotification(
@@ -80,14 +82,7 @@ function SocialEngagementService.ScheduleNotification(
 )
 	local notifType = Enum.NotificationType.GameUpdate
 	pcall(function()
-		ExperienceNotificationService:ScheduleNotification(
-			player,
-			delaySeconds,
-			notifType,
-			title,
-			body,
-			actionType
-		)
+		ExperienceNotificationService:ScheduleNotification(player, delaySeconds, notifType, title, body, actionType)
 	end)
 end
 

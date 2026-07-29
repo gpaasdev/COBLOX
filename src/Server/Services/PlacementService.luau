@@ -56,24 +56,22 @@ function PlacementService.Start()
 	end
 
 	if removeRemote then
-		removeRemote.OnServerEvent:Connect(
-			function(player: Player, gridIndex: any)
-				local valid, cleanGridIndex = PayloadValidator.Validate({ gridIndex }, { "string" })
-				if not valid then
-					warn(
-						string.format(
-							"[PlacementService Security Alert] Invalid removal payload from player %s",
-							player.Name
-						)
+		removeRemote.OnServerEvent:Connect(function(player: Player, gridIndex: any)
+			local valid, cleanGridIndex = PayloadValidator.Validate({ gridIndex }, { "string" })
+			if not valid then
+				warn(
+					string.format(
+						"[PlacementService Security Alert] Invalid removal payload from player %s",
+						player.Name
 					)
-					return
-				end
-				if not RateLimitService.CheckRateLimit(player, "RemovalEvent", 1.0) then
-					return
-				end
-				PlacementService.RemoveStructure(player, cleanGridIndex)
+				)
+				return
 			end
-		)
+			if not RateLimitService.CheckRateLimit(player, "RemovalEvent", 1.0) then
+				return
+			end
+			PlacementService.RemoveStructure(player, cleanGridIndex)
+		end)
 	end
 end
 
@@ -145,8 +143,10 @@ function PlacementService.PlaceStructure(
 		profile.SanctumGrid = {
 			Cells = {},
 			PlotBounds = {
-				MinX = -15, MaxX = 15,
-				MinZ = -15, MaxZ = 15,
+				MinX = -15,
+				MaxX = 15,
+				MinZ = -15,
+				MaxZ = 15,
 			},
 		}
 	end
@@ -247,10 +247,7 @@ function PlacementService.PlaceStructure(
 	}
 end
 
-function PlacementService.RemoveStructure(
-	player: Player,
-	gridIndex: string
-): ServiceResult<boolean>
+function PlacementService.RemoveStructure(player: Player, gridIndex: string): ServiceResult<boolean>
 	local res = PlayerDataService.GetProfile(player)
 	if not res.Success or not res.Data then
 		return {
@@ -288,14 +285,7 @@ function PlacementService.RemoveStructure(
 
 	PlacementService.StructureRemoved:Fire(player, gridIndex, removed)
 
-	print(
-		string.format(
-			"[PlacementService] %s removed %s from grid %s",
-			player.Name,
-			removed.StructureId,
-			gridIndex
-		)
-	)
+	print(string.format("[PlacementService] %s removed %s from grid %s", player.Name, removed.StructureId, gridIndex))
 
 	return {
 		Success = true,

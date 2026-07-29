@@ -64,7 +64,9 @@ function COBLOXBadgeService.AwardBadge(player: Player, badgeKey: string): boolea
 			BadgeService:AwardBadge(player.UserId, badgeId)
 		end)
 		if not success then
-			warn(string.format("[BadgeService] Failed to award badge %s to %s: %s", badgeKey, player.Name, tostring(err)))
+			warn(
+				string.format("[BadgeService] Failed to award badge %s to %s: %s", badgeKey, player.Name, tostring(err))
+			)
 		else
 			print(string.format("[BadgeService] Awarded platform badge %s to %s", badgeKey, player.Name))
 		end
@@ -138,7 +140,9 @@ function COBLOXBadgeService.Start()
 					warn(string.format("[BadgeService] ❌ Badge %s (ID:%d) → NOT FOUND", badgeKey, badgeId))
 				end
 			else
-				print(string.format("[BadgeService] ⏳ Badge %s → no Roblox ID set (create via Dashboard)", badgeKey))
+				print(
+					string.format("[BadgeService] ⏳ Badge %s → no Roblox ID set (create via Dashboard)", badgeKey)
+				)
 			end
 		end
 	end)

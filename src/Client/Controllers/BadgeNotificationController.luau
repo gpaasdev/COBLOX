@@ -75,7 +75,13 @@ function BadgeNotificationController._ShowBadgeNotification(badgeName: string)
 		descLabel.Parent = frame
 
 		task.delay(5, function()
-			frame:TweenPosition(UDim2.new(0.5, -160, 0.1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
+			frame:TweenPosition(
+				UDim2.new(0.5, -160, 0.1, 0),
+				Enum.EasingDirection.Out,
+				Enum.EasingStyle.Quad,
+				0.5,
+				true
+			)
 			task.delay(0.6, function()
 				frame:Destroy()
 			end)

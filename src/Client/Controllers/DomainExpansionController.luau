@@ -17,8 +17,7 @@ local playerGui = localPlayer:WaitForChild("PlayerGui")
 local isActive = false
 local vignetteFrame: Frame? = nil
 
-function DomainExpansionController.Init()
-end
+function DomainExpansionController.Init() end
 
 function DomainExpansionController.Start()
 	local triggerRemote = NetChannels.GetRemoteEvent("TriggerDomainExpansion")

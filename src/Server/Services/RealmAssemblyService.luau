@@ -190,7 +190,6 @@ function RealmAssemblyService._AssembleFairytaleWorld(preset: RealmConfig.RealmC
 	print(string.format("[RealmAssemblyService] Fairytale Realm '%s' ready.", preset.DisplayName))
 end
 
-function RealmAssemblyService.Start()
-end
+function RealmAssemblyService.Start() end
 
 return RealmAssemblyService

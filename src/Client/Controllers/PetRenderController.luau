@@ -75,8 +75,8 @@ function PetRenderController.Start()
 					alignPos.Position = targetCFrame.Position
 					alignOri.CFrame = targetCFrame
 				end
+			end
 		end
-	end
 	end))
 end
 

@@ -32,35 +32,24 @@ function SetorAuraService.Start()
 	local PayloadValidator = require(ReplicatedStorage.Shared.Network.PayloadValidator)
 
 	if requestRemote then
-		requestRemote.OnServerEvent:Connect(
-			function(player: Player, sourceNodeId: any, destVesselId: any)
-				local valid, cleanSource, cleanDest = PayloadValidator.Validate(
-					{ sourceNodeId, destVesselId },
-					{ "string", "string" }
-				)
-				if not valid then
-					warn(
-						string.format(
-							"[SetorAuraService Security Alert] Invalid payload from player %s",
-							player.Name
-						)
-					)
-					return
-				end
-				if not RateLimitService.CheckRateLimit(player, "SetorAuraEvent", 2.0) then
-					return
-				end
-				SetorAuraService.StartTransport(player, cleanSource, cleanDest)
+		requestRemote.OnServerEvent:Connect(function(player: Player, sourceNodeId: any, destVesselId: any)
+			local valid, cleanSource, cleanDest = PayloadValidator.Validate(
+				{ sourceNodeId, destVesselId },
+				{ "string", "string" }
+			)
+			if not valid then
+				warn(string.format("[SetorAuraService Security Alert] Invalid payload from player %s", player.Name))
+				return
 			end
-		)
+			if not RateLimitService.CheckRateLimit(player, "SetorAuraEvent", 2.0) then
+				return
+			end
+			SetorAuraService.StartTransport(player, cleanSource, cleanDest)
+		end)
 	end
 end
 
-function SetorAuraService.StartTransport(
-	player: Player,
-	sourceNodeId: string,
-	destVesselId: string
-): ServiceResult<any>
+function SetorAuraService.StartTransport(player: Player, sourceNodeId: string, destVesselId: string): ServiceResult<any>
 	local res = PlayerDataService.GetProfile(player)
 	if not res.Success or not res.Data then
 		return {

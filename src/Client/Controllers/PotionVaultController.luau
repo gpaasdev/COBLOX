@@ -25,8 +25,7 @@ local VAULT_SLOT_COLORS = {
 	Color3.fromRGB(244, 114, 182),
 }
 
-function PotionVaultController.Init()
-end
+function PotionVaultController.Init() end
 
 function PotionVaultController.Start()
 	local vaultSync = NetChannels.GetRemoteEvent("SyncPotionVault")

@@ -81,12 +81,20 @@ function SubscriptionService._GrantExclusivePet(player: Player)
 
 		local HatcheryService = require(ServerScriptService.Server.Services.HatchService)
 		if HatcheryService then
-			print(string.format("[SubscriptionService] Granted exclusive pet %s to subscriber %s", exclusivePetId, player.Name))
+			print(
+				string.format(
+					"[SubscriptionService] Granted exclusive pet %s to subscriber %s",
+					exclusivePetId,
+					player.Name
+				)
+			)
 		end
 	end
 end
 
-function SubscriptionService._ProcessSubscriptionReceipt(receiptInfo: { PlayerId: number, ProductId: number, PurchaseId: string }): Enum.ProductPurchaseDecision
+function SubscriptionService._ProcessSubscriptionReceipt(
+	receiptInfo: { PlayerId: number, ProductId: number, PurchaseId: string }
+): Enum.ProductPurchaseDecision
 	if receiptInfo.ProductId ~= SUBSCRIPTION_PRODUCT_ID then
 		return Enum.ProductPurchaseDecision.NotProcessedYet
 	end

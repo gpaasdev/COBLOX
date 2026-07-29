@@ -43,7 +43,10 @@ function RealmEntryController._CreateRealmSelectionUI()
 	backdrop.Parent = screenGui
 
 	backdrop.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+		if
+			input.UserInputType == Enum.UserInputType.Touch
+			or input.UserInputType == Enum.UserInputType.MouseButton1
+		then
 			screenGui:Destroy()
 			realmSelectionOpen = false
 		end

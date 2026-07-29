@@ -1,3 +1,5 @@
+[🏠 Master Index](../README.md)
+
 # COBLOX Project Reference
 # Dokumen SSOT (Single Source of Truth) untuk semua AI agent yang bekerja di repo ini.
 # Dibaca bersama AGENTS.md dan roblox_architect.md.

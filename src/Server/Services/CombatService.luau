@@ -17,7 +17,9 @@ local attackCooldown = 0.5
 
 local function GetEquippedWeapon(player: Player): string?
 	local res = require(script.Parent.PlayerDataService).GetProfile(player)
-	if not res.Success or not res.Data then return nil end
+	if not res.Success or not res.Data then
+		return nil
+	end
 	return res.Data.Inventory.EquippedWeapon
 end
 
@@ -80,7 +82,14 @@ function CombatService.ProcessHit(player: Player, targetId: string, weaponType: 
 
 	local equippedWeapon = GetEquippedWeapon(player)
 	if weaponType and equippedWeapon and weaponType ~= equippedWeapon then
-		warn(string.format("[CombatService] Weapon mismatch: %s sent %s but has %s equipped", player.Name, weaponType, equippedWeapon))
+		warn(
+			string.format(
+				"[CombatService] Weapon mismatch: %s sent %s but has %s equipped",
+				player.Name,
+				weaponType,
+				equippedWeapon
+			)
+		)
 		weaponType = equippedWeapon
 	end
 
@@ -100,7 +109,16 @@ function CombatService.ProcessHit(player: Player, targetId: string, weaponType: 
 			local damage = baseDmg * (mods and mods.damage or 1.0)
 
 			MobService.TakeDamage(targetId, math.floor(damage), player)
-			print(string.format("[CombatService] %s dealt %d damage to %s (weapon: %s, zone: %s)", player.Name, math.floor(damage), targetId, weaponDef and weaponDef.Id or "Fist", zone))
+			print(
+				string.format(
+					"[CombatService] %s dealt %d damage to %s (weapon: %s, zone: %s)",
+					player.Name,
+					math.floor(damage),
+					targetId,
+					weaponDef and weaponDef.Id or "Fist",
+					zone
+				)
+			)
 		end
 	end
 end

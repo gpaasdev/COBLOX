@@ -107,7 +107,9 @@ function RecipeService.CraftGrid3x3(
 				Success = false,
 				Category = "Validation",
 				ErrorCode = "INSUFFICIENT_INGREDIENTS",
-				Message = "Missing ingredient: " .. itemId .. " (need " .. tostring(required) .. ", have " .. tostring(owned) .. ")",
+				Message = "Missing ingredient: " .. itemId .. " (need " .. tostring(required) .. ", have " .. tostring(
+					owned
+				) .. ")",
 				Data = nil,
 				Retryable = false,
 			}

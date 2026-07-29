@@ -24,7 +24,9 @@ function LeaderboardService.Start()
 		lbFunc.OnServerInvoke = function(player: Player, category: string?, count: number?)
 			local cat = if typeof(category) == "string" and category ~= "" then category else "Gems"
 			local maxCount = math.min(typeof(count) == "number" and count or 10, 50)
-			local entries = if cat == "Gems" then LeaderboardService.GetTopGems(maxCount) else LeaderboardService.GetTopCoins(maxCount)
+			local entries = if cat == "Gems"
+				then LeaderboardService.GetTopGems(maxCount)
+				else LeaderboardService.GetTopCoins(maxCount)
 			local result: { { Name: string, Score: number } } = {}
 			for _, e in ipairs(entries) do
 				local p = Players:GetPlayerByUserId(tonumber(e.userId) or 0)

@@ -91,10 +91,24 @@ function CombatController.SwitchWeapon()
 		end
 	end
 	currentWeapon = PLAYER_WEAPONS[idx]
-	print(string.format("[CombatController] Weapon switched to: %s (DMG: %d, Range: %d)", currentWeapon, weaponDamage[currentWeapon], weaponRange[currentWeapon]))
+	print(
+		string.format(
+			"[CombatController] Weapon switched to: %s (DMG: %d, Range: %d)",
+			currentWeapon,
+			weaponDamage[currentWeapon],
+			weaponRange[currentWeapon]
+		)
+	)
 	local uiFolder = script.Parent
 	local UIController = require(uiFolder:WaitForChild("UIController") :: any)
-	UIController.ShowNotification(string.format("🔪 Weapon: %s | DMG: %d | Range: %d", currentWeapon, weaponDamage[currentWeapon], weaponRange[currentWeapon]))
+	UIController.ShowNotification(
+		string.format(
+			"🔪 Weapon: %s | DMG: %d | Range: %d",
+			currentWeapon,
+			weaponDamage[currentWeapon],
+			weaponRange[currentWeapon]
+		)
+	)
 end
 
 function CombatController.Attack()
@@ -105,7 +119,9 @@ function CombatController.Attack()
 
 	local char = Players.LocalPlayer.Character
 	if not char or not char.PrimaryPart then
-		task.delay(0.4, function() canAttack = true end)
+		task.delay(0.4, function()
+			canAttack = true
+		end)
 		return
 	end
 
@@ -124,10 +140,7 @@ function CombatController.Attack()
 					nearestDist = dist
 					nearestMobId = mobId
 
-					VFXEngine.EmitImpactSparks(
-						prim.Position + Vector3.new(0, 1, 0),
-						Color3.fromRGB(255, 180, 50)
-					)
+					VFXEngine.EmitImpactSparks(prim.Position + Vector3.new(0, 1, 0), Color3.fromRGB(255, 180, 50))
 					VFXEngine.HitStop(0.04)
 					VFXEngine.PlayCameraShake(0.3, 0.15)
 				end
@@ -138,7 +151,14 @@ function CombatController.Attack()
 	CombatEvent:FireServer("Attack", nearestMobId, currentWeapon)
 
 	if nearestMobId then
-		print(string.format("[CombatController] Attacked mob %s with %s (DMG: %d)", nearestMobId, currentWeapon, weaponDamage[currentWeapon]))
+		print(
+			string.format(
+				"[CombatController] Attacked mob %s with %s (DMG: %d)",
+				nearestMobId,
+				currentWeapon,
+				weaponDamage[currentWeapon]
+			)
+		)
 	else
 		print("[CombatController] No mobs in range")
 	end

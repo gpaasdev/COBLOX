@@ -77,20 +77,48 @@ function TradeService.Start()
 		lockRemoteFunc.OnServerInvoke = function(player: Player): ServiceResult<boolean>
 			local sessionId = playerToSession[player.UserId]
 			if not sessionId then
-				return { Success = false, Category = "Validation", ErrorCode = "NO_ACTIVE_SESSION", Message = "No active trade session", Data = false, Retryable = false }
+				return {
+					Success = false,
+					Category = "Validation",
+					ErrorCode = "NO_ACTIVE_SESSION",
+					Message = "No active trade session",
+					Data = false,
+					Retryable = false,
+				}
 			end
 			local session = activeSessions[sessionId]
 			if not session then
-				return { Success = false, Category = "Validation", ErrorCode = "SESSION_NOT_FOUND", Message = "Session not found", Data = false, Retryable = false }
+				return {
+					Success = false,
+					Category = "Validation",
+					ErrorCode = "SESSION_NOT_FOUND",
+					Message = "Session not found",
+					Data = false,
+					Retryable = false,
+				}
 			end
 			if session.PlayerA == player then
 				session.Stage1_A = true
 			elseif session.PlayerB == player then
 				session.Stage1_B = true
 			else
-				return { Success = false, Category = "Validation", ErrorCode = "NOT_IN_SESSION", Message = "Player not in this session", Data = false, Retryable = false }
+				return {
+					Success = false,
+					Category = "Validation",
+					ErrorCode = "NOT_IN_SESSION",
+					Message = "Player not in this session",
+					Data = false,
+					Retryable = false,
+				}
 			end
-			return { Success = true, Category = nil, ErrorCode = nil, Message = "Offer locked", Data = true, Retryable = false }
+			return {
+				Success = true,
+				Category = nil,
+				ErrorCode = nil,
+				Message = "Offer locked",
+				Data = true,
+				Retryable = false,
+			}
 		end
 	end
 
@@ -98,23 +126,58 @@ function TradeService.Start()
 		confirmRemoteFunc.OnServerInvoke = function(player: Player): ServiceResult<boolean>
 			local sessionId = playerToSession[player.UserId]
 			if not sessionId then
-				return { Success = false, Category = "Validation", ErrorCode = "NO_ACTIVE_SESSION", Message = "No active trade session", Data = false, Retryable = false }
+				return {
+					Success = false,
+					Category = "Validation",
+					ErrorCode = "NO_ACTIVE_SESSION",
+					Message = "No active trade session",
+					Data = false,
+					Retryable = false,
+				}
 			end
 			local session = activeSessions[sessionId]
 			if not session then
-				return { Success = false, Category = "Validation", ErrorCode = "SESSION_NOT_FOUND", Message = "Session not found", Data = false, Retryable = false }
+				return {
+					Success = false,
+					Category = "Validation",
+					ErrorCode = "SESSION_NOT_FOUND",
+					Message = "Session not found",
+					Data = false,
+					Retryable = false,
+				}
 			end
 			if not (session.Stage1_A and session.Stage1_B) then
-				return { Success = false, Category = "Validation", ErrorCode = "STAGE1_NOT_LOCKED", Message = "Both players must lock their offers first", Data = false, Retryable = false }
+				return {
+					Success = false,
+					Category = "Validation",
+					ErrorCode = "STAGE1_NOT_LOCKED",
+					Message = "Both players must lock their offers first",
+					Data = false,
+					Retryable = false,
+				}
 			end
 			if session.PlayerA == player then
 				session.Stage2_A = true
 			elseif session.PlayerB == player then
 				session.Stage2_B = true
 			else
-				return { Success = false, Category = "Validation", ErrorCode = "NOT_IN_SESSION", Message = "Player not in this session", Data = false, Retryable = false }
+				return {
+					Success = false,
+					Category = "Validation",
+					ErrorCode = "NOT_IN_SESSION",
+					Message = "Player not in this session",
+					Data = false,
+					Retryable = false,
+				}
 			end
-			return { Success = true, Category = nil, ErrorCode = nil, Message = "Trade confirmed", Data = true, Retryable = false }
+			return {
+				Success = true,
+				Category = nil,
+				ErrorCode = nil,
+				Message = "Trade confirmed",
+				Data = true,
+				Retryable = false,
+			}
 		end
 	end
 
@@ -122,7 +185,14 @@ function TradeService.Start()
 		executeRemoteFunc.OnServerInvoke = function(player: Player): ServiceResult<boolean>
 			local sessionId = playerToSession[player.UserId]
 			if not sessionId then
-				return { Success = false, Category = "Validation", ErrorCode = "NO_ACTIVE_SESSION", Message = "No active trade session", Data = false, Retryable = false }
+				return {
+					Success = false,
+					Category = "Validation",
+					ErrorCode = "NO_ACTIVE_SESSION",
+					Message = "No active trade session",
+					Data = false,
+					Retryable = false,
+				}
 			end
 			return TradeService.ExecuteAtomicSwap(sessionId)
 		end
@@ -132,10 +202,24 @@ function TradeService.Start()
 		cancelRemoteFunc.OnServerInvoke = function(player: Player, reason: string): ServiceResult<boolean>
 			local sessionId = playerToSession[player.UserId]
 			if not sessionId then
-				return { Success = false, Category = "Validation", ErrorCode = "NO_ACTIVE_SESSION", Message = "No active trade session", Data = false, Retryable = false }
+				return {
+					Success = false,
+					Category = "Validation",
+					ErrorCode = "NO_ACTIVE_SESSION",
+					Message = "No active trade session",
+					Data = false,
+					Retryable = false,
+				}
 			end
 			TradeService.CancelTradeSession(sessionId, reason or "Player cancelled")
-			return { Success = true, Category = nil, ErrorCode = nil, Message = "Trade cancelled", Data = true, Retryable = false }
+			return {
+				Success = true,
+				Category = nil,
+				ErrorCode = nil,
+				Message = "Trade cancelled",
+				Data = true,
+				Retryable = false,
+			}
 		end
 	end
 end

@@ -29,7 +29,7 @@ local walletGemLabel: TextLabel
 local notificationLabel: TextLabel
 local sideDrawer: Frame
 local liveOpsBanner: TextLabel
-local hotbarSlotsData: {{[string]: any}} = {}
+local hotbarSlotsData: { { [string]: any } } = {}
 
 -- LGBOS v11.0 Sci-Fantasy Palette (Quantum Indigo #1E1B4B, Aura Gold #F59E0B, Spark Cyan #06B6D4)
 local COLOR_BG_DARK = Color3.fromRGB(30, 27, 75)
@@ -40,21 +40,22 @@ local COLOR_TEXT_WHITE = Color3.fromRGB(255, 255, 255)
 
 function UIController.Init()
 	print("[UIController] Initializing Gen Z & Gen Alpha Visual-First HUD & Side Drawer (MaxWidth = 180px)...")
-	
-	UIController._CreateHUD()
 
+	UIController._CreateHUD()
 end
 
 function UIController.Start()
 	local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 	if syncRemote then
-		syncRemote.OnClientEvent:Connect(function(data: { Coins: number, Gems: number, AuraEnergy: number?, ChronoSparks: number? })
-			local aura = data.AuraEnergy or 0
-			local sparks = data.ChronoSparks or 0
-			local coins = data.Coins or 0
-			local gems = data.Gems or 0
-			UIController.UpdateWallet(aura, sparks, coins, gems)
-		end)
+		syncRemote.OnClientEvent:Connect(
+			function(data: { Coins: number, Gems: number, AuraEnergy: number?, ChronoSparks: number? })
+				local aura = data.AuraEnergy or 0
+				local sparks = data.ChronoSparks or 0
+				local coins = data.Coins or 0
+				local gems = data.Gems or 0
+				UIController.UpdateWallet(aura, sparks, coins, gems)
+			end
+		)
 	end
 
 	-- Trigger configurable LiveOps Join Popup & TopBar Banner
@@ -106,7 +107,10 @@ function UIController._CreateHUD()
 
 	local questGradient = Instance.new("UIGradient")
 	questGradient.Rotation = 90
-	questGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	questGradient.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0, COLOR_BG_DARK),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110)),
+	})
 	questGradient.Parent = questBanner
 
 	local questPadding = Instance.new("UIPadding")
@@ -168,13 +172,16 @@ function UIController._CreateHUD()
 
 	local auraGradient = Instance.new("UIGradient")
 	auraGradient.Rotation = 90
-	auraGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	auraGradient.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0, COLOR_BG_DARK),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110)),
+	})
 	auraGradient.Parent = auraBar
 
 	local auraCorner = Instance.new("UICorner")
 	auraCorner.CornerRadius = UDim.new(0, 12)
 	auraCorner.Parent = auraBar
-	
+
 	local auraStroke = Instance.new("UIStroke")
 	auraStroke.Color = COLOR_AURA_GOLD
 	auraStroke.Thickness = 1.5
@@ -209,13 +216,16 @@ function UIController._CreateHUD()
 
 	local sparksGradient = Instance.new("UIGradient")
 	sparksGradient.Rotation = 90
-	sparksGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	sparksGradient.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0, COLOR_BG_DARK),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110)),
+	})
 	sparksGradient.Parent = sparksBar
 
 	local sparksCorner = Instance.new("UICorner")
 	sparksCorner.CornerRadius = UDim.new(0, 12)
 	sparksCorner.Parent = sparksBar
-	
+
 	local sparksStroke = Instance.new("UIStroke")
 	sparksStroke.Color = COLOR_SPARK_CYAN
 	sparksStroke.Thickness = 1.5
@@ -250,7 +260,10 @@ function UIController._CreateHUD()
 
 	local coinGradient = Instance.new("UIGradient")
 	coinGradient.Rotation = 90
-	coinGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	coinGradient.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0, COLOR_BG_DARK),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110)),
+	})
 	coinGradient.Parent = coinBar
 
 	local coinCorner = Instance.new("UICorner")
@@ -291,7 +304,10 @@ function UIController._CreateHUD()
 
 	local gemGradient = Instance.new("UIGradient")
 	gemGradient.Rotation = 90
-	gemGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	gemGradient.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0, COLOR_BG_DARK),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110)),
+	})
 	gemGradient.Parent = gemBar
 
 	local gemCorner = Instance.new("UICorner")
@@ -357,7 +373,7 @@ function UIController._CreateHUD()
 	local menuCorner = Instance.new("UICorner")
 	menuCorner.CornerRadius = UDim.new(0, 10)
 	menuCorner.Parent = menuBtn
-	
+
 	local menuStroke = Instance.new("UIStroke")
 	menuStroke.Color = COLOR_ACCENT_PURPLE
 	menuStroke.Thickness = 1.5
@@ -428,24 +444,56 @@ function UIController._CreateHUD()
 		UIButtonAnimator.BindButton(btn, { "Hover", "Click", "Audio", "Spark" }, function()
 			local controllersFolder = script.Parent
 			local text = btn.Text
-			if btnName == "Lab Racik" or text == "Lab Racik" or text == "Alchemist Lab" or text == "Synthesis Vessel" then
+			if
+				btnName == "Lab Racik"
+				or text == "Lab Racik"
+				or text == "Alchemist Lab"
+				or text == "Synthesis Vessel"
+			then
 				local SynthesisController = require(controllersFolder:WaitForChild("SynthesisController") :: any)
 				SynthesisController.ToggleModal()
-			elseif btnName == "Panggil Spirit" or text == "Panggil Spirit" or text == "Hatch Spirit" or text == "Hatch Telur Pet" or text == "Spirit Hatchery" then
+			elseif
+				btnName == "Panggil Spirit"
+				or text == "Panggil Spirit"
+				or text == "Hatch Spirit"
+				or text == "Hatch Telur Pet"
+				or text == "Spirit Hatchery"
+			then
 				local EggRenderController = require(controllersFolder:WaitForChild("EggRenderController") :: any)
 				EggRenderController.ToggleModal()
-			elseif btnName == "Klan Player" or text == "Klan Player" or text == "Player Clan" or text == "Clan Alkemis" or text == "Coven Order" then
+			elseif
+				btnName == "Klan Player"
+				or text == "Klan Player"
+				or text == "Player Clan"
+				or text == "Clan Alkemis"
+				or text == "Coven Order"
+			then
 				local CovenController = require(controllersFolder:WaitForChild("CovenController") :: any)
 				CovenController.ToggleModal()
-			elseif btnName == "Buku Resep & Spirit" or text == "Buku Resep & Spirit" or text == "Recipe Codex" or text == "Codex" then
+			elseif
+				btnName == "Buku Resep & Spirit"
+				or text == "Buku Resep & Spirit"
+				or text == "Recipe Codex"
+				or text == "Codex"
+			then
 				local CodexController = require(controllersFolder:WaitForChild("CodexController") :: any)
 				CodexController.ToggleModal()
-			elseif btnName == "Markas Saya" or text == "Markas Saya" or text == "My Sanctum" or text == "Sanctum Grid" then
+			elseif
+				btnName == "Markas Saya"
+				or text == "Markas Saya"
+				or text == "My Sanctum"
+				or text == "Sanctum Grid"
+			then
 				local PlacementController = require(controllersFolder:WaitForChild("PlacementController") :: any)
 				PlacementController.TogglePlacementMode()
 			elseif btnName == "Senjata" or text == "Senjata" or text == "Weapon Shop" or text == "Sword" then
 				UIController._OpenWeaponShop()
-			elseif btnName == "Toko Premium" or text == "Toko Premium" or text == "Premium Store" or text == "Store" then
+			elseif
+				btnName == "Toko Premium"
+				or text == "Toko Premium"
+				or text == "Premium Store"
+				or text == "Store"
+			then
 				local StoreController = require(controllersFolder:WaitForChild("StoreController") :: any)
 				StoreController.ToggleModal()
 			else
@@ -474,7 +522,10 @@ function UIController._CreateHUD()
 
 	local notifGradient = Instance.new("UIGradient")
 	notifGradient.Rotation = 90
-	notifGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, COLOR_BG_DARK), ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110))})
+	notifGradient.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0, COLOR_BG_DARK),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(45, 40, 110)),
+	})
 	notifGradient.Parent = notificationLabel
 
 	local notifCorner = Instance.new("UICorner")
@@ -566,13 +617,13 @@ function UIController._CreateHUD()
 				if char and char:FindFirstChild("HumanoidRootPart") then
 					local hrp = char.HumanoidRootPart
 					hrp.AssemblyLinearVelocity = hrp.CFrame.LookVector * 100 -- Propel forward
-					
+
 					-- Tactile Audio & Visual Polish
 					local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)
 					pcall(function()
 						AudioController.PlaySound("rbxassetid://12222204", 0.8) -- Valid Dash swoosh SFX
 					end)
-					
+
 					UIController.ShowNotification(LocalizationController.Get("NOTIF_DASH"))
 				end
 			elseif act.Name == "🐶 PETS" then
@@ -716,7 +767,10 @@ function UIController._CreateWeaponShopUI()
 	backdrop.Parent = weaponShopGui
 
 	backdrop.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+		if
+			input.UserInputType == Enum.UserInputType.Touch
+			or input.UserInputType == Enum.UserInputType.MouseButton1
+		then
 			UIController._ToggleWeaponShop()
 		end
 	end)
@@ -746,9 +800,27 @@ function UIController._CreateWeaponShopUI()
 	local weapons = {
 		{ Name = "Fist", DMG = 10, Range = 8, Cost = "Free", Color = Color3.fromRGB(148, 163, 184) },
 		{ Name = "Iron Sword", DMG = 25, Range = 14, Cost = "5,000 Coins", Color = Color3.fromRGB(168, 162, 158) },
-		{ Name = "Flame Saber", DMG = 45, Range = 16, Cost = "25,000 Coins / 79 R$", Color = Color3.fromRGB(251, 146, 60) },
-		{ Name = "Aether Blade", DMG = 75, Range = 18, Cost = "100,000 Coins / 199 R$", Color = Color3.fromRGB(56, 189, 248) },
-		{ Name = "Void Greatsword", DMG = 120, Range = 22, Cost = "500,000 Coins / 499 R$", Color = Color3.fromRGB(139, 92, 246) },
+		{
+			Name = "Flame Saber",
+			DMG = 45,
+			Range = 16,
+			Cost = "25,000 Coins / 79 R$",
+			Color = Color3.fromRGB(251, 146, 60),
+		},
+		{
+			Name = "Aether Blade",
+			DMG = 75,
+			Range = 18,
+			Cost = "100,000 Coins / 199 R$",
+			Color = Color3.fromRGB(56, 189, 248),
+		},
+		{
+			Name = "Void Greatsword",
+			DMG = 120,
+			Range = 22,
+			Cost = "500,000 Coins / 499 R$",
+			Color = Color3.fromRGB(139, 92, 246),
+		},
 	}
 
 	local yOff = 50
@@ -806,7 +878,11 @@ function UIController._ToggleWeaponShop()
 	if weaponShopGui then
 		weaponShopGui.Enabled = weaponShopOpen
 	end
-	UIController.ShowNotification(if weaponShopOpen then LocalizationController.Get("NOTIF_WEAPON_OPEN") else LocalizationController.Get("NOTIF_WEAPON_CLOSE"))
+	UIController.ShowNotification(
+		if weaponShopOpen
+			then LocalizationController.Get("NOTIF_WEAPON_OPEN")
+			else LocalizationController.Get("NOTIF_WEAPON_CLOSE")
+	)
 end
 
 function UIController._OpenWeaponShop()
@@ -868,31 +944,31 @@ function UIController.ShowNotification(msg: string)
 	if notificationLabel then
 		notificationLabel.Text = msg
 		notificationLabel.Visible = true
-		
+
 		-- Spring Physics Popup Bounce
 		UIAnimationEngine.AnimateScale(notificationLabel, 1.1)
 		task.delay(0.1, function()
 			UIAnimationEngine.AnimateScale(notificationLabel, 1.0)
 		end)
-		
+
 		-- Audio Chime
 		local controllersFolder = script.Parent
 		local AudioController = require(controllersFolder:WaitForChild("AudioController") :: any)
 		pcall(function()
 			AudioController.PlaySound("rbxassetid://12222076", 1.0) -- Crisp UI pop chime
 		end)
-        
-        -- Haptic Feedback (Juiciness)
-        if UserInputService.TouchEnabled then
-            pcall(function()
-                if HapticService:IsMotorSupported(Enum.UserInputType.Gamepad1, Enum.VibrationMotor.Small) then
-                    HapticService:SetMotor(Enum.UserInputType.Gamepad1, Enum.VibrationMotor.Small, 0.5)
-                    task.delay(0.1, function()
-                        HapticService:SetMotor(Enum.UserInputType.Gamepad1, Enum.VibrationMotor.Small, 0)
-                    end)
-                end
-            end)
-        end
+
+		-- Haptic Feedback (Juiciness)
+		if UserInputService.TouchEnabled then
+			pcall(function()
+				if HapticService:IsMotorSupported(Enum.UserInputType.Gamepad1, Enum.VibrationMotor.Small) then
+					HapticService:SetMotor(Enum.UserInputType.Gamepad1, Enum.VibrationMotor.Small, 0.5)
+					task.delay(0.1, function()
+						HapticService:SetMotor(Enum.UserInputType.Gamepad1, Enum.VibrationMotor.Small, 0)
+					end)
+				end
+			end)
+		end
 
 		task.delay(3, function()
 			UIAnimationEngine.AnimateScale(notificationLabel, 0.8)

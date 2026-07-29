@@ -90,8 +90,9 @@ function RewardedAdService._GrantReward(player: Player, rewardType: AdRewardType
 	if rewardType == "InstantCatalyst" then
 		local profileRes = PlayerDataService.GetProfile(player)
 		if profileRes.Success and profileRes.Data then
-			profileRes.Data.Inventory.Materials["InstantCatalyst"] =
-				(profileRes.Data.Inventory.Materials["InstantCatalyst"] or 0) + REWARDS.InstantCatalyst.Amount
+			profileRes.Data.Inventory.Materials["InstantCatalyst"] = (
+				profileRes.Data.Inventory.Materials["InstantCatalyst"] or 0
+			) + REWARDS.InstantCatalyst.Amount
 		end
 	elseif rewardType == "AuraBoost30m" then
 		local userId = player.UserId

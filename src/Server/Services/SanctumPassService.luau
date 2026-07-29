@@ -49,11 +49,7 @@ function SanctumPassService.AddPassXP(player: Player, amount: number): ServiceRe
 			passData.Tier += 1
 			DomainEventBus.Publish("PassTierUnlocked", player, { Tier = passData.Tier })
 			print(
-				string.format(
-					"[SanctumPassService] Player %s unlocked Battlepass Tier %d!",
-					player.Name,
-					passData.Tier
-				)
+				string.format("[SanctumPassService] Player %s unlocked Battlepass Tier %d!", player.Name, passData.Tier)
 			)
 		end
 
