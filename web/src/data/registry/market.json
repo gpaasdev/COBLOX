@@ -1,20 +1,20 @@
 [
-  {
-    "Id": "MKT_VIP_PASS",
-    "Name": "Sanctum VIP Pass",
-    "Description": "Dapatkan akses eksklusif ke lantai atas Sanctum, +20% Synthesis Speed, dan bonus aura harian. Dukung COBLOX!",
-    "Price": 500,
-    "Currency": "Robux",
-    "Category": "Gamepass",
-    "ImageUrl": "rbxassetid://1928659952"
-  },
-  {
-    "Id": "MKT_FAIRYTALE_PASS",
-    "Name": "Fairytale Realm Pass",
-    "Description": "Akses eksklusif ke Fairytale Fantasy Realm dan semua biome enchanted.",
-    "Price": 299,
-    "Currency": "Robux",
-    "Category": "Gamepass",
-    "ImageUrl": "rbxassetid://0"
-  }
+  {"Id":"MKT_VIP_PASS","Name":"Sanctum VIP Pass","Description":"Akses eksklusif ke lantai atas Sanctum, +20% Synthesis Speed, bonus aura harian.","Price":500,"Currency":"Robux","Category":"Gamepass","ImageUrl":"rbxassetid://1928659952"},
+  {"Id":"MKT_SUPER_LUCK","Name":"Super Alchemical Luck","Description":"Meningkatkan peluang hatch pet Legendary & God-Tier sebesar +100% permanen.","Price":399,"Currency":"Robux","Category":"Gamepass","ImageUrl":"rbxassetid://1924362417"},
+  {"Id":"MKT_PLUS50_SLOTS","Name":"+50 Extra Inventory Slots","Description":"Memperluas kapasitas penyimpanan Pet dan Bahan Elemen +50 slot permanen.","Price":199,"Currency":"Robux","Category":"Gamepass","ImageUrl":"rbxassetid://1924818406"},
+  {"Id":"MKT_AUTO_HATCH","Name":"Quantum Auto-Hatch","Description":"Penetasan telur otomatis tanpa henti di depan Genesis Pod.","Price":299,"Currency":"Robux","Category":"Gamepass","ImageUrl":"rbxassetid://1925292405"},
+  {"Id":"MKT_CYBER_NEON_TRAIL","Name":"Cyber-Neon Trail (FREE)","Description":"Free trail effect untuk semua pemain.","Price":0,"Currency":"Robux","Category":"Gamepass","ImageUrl":"rbxassetid://1923484423"},
+  {"Id":"MKT_FAIRYTALE_PASS","Name":"Fairytale Realm Pass","Description":"Akses eksklusif ke Fairytale Fantasy Realm + 6 bioma enchanted.","Price":299,"Currency":"Robux","Category":"Gamepass","ImageUrl":"rbxassetid://0"},
+  {"Id":"MKT_CELESTIAL_WINGS","Name":"Celestial Wings Bundle","Description":"Celestial Wings + Aura Trail + Name Tag eksklusif.","Price":499,"Currency":"Robux","Category":"Gamepass","ImageUrl":"rbxassetid://0"},
+  {"Id":"MKT_COVEN_GUILDMASTER","Name":"Coven Guildmaster License","Description":"Buat Coven, akses hideout, treasury voting, dan raid co-op.","Price":999,"Currency":"Robux","Category":"Gamepass","ImageUrl":"rbxassetid://0"},
+  {"Id":"MKT_GEMS_SMALL","Name":"Gems Small Pack (100)","Description":"Kantong berisi 100 Gems Magis untuk penetasan instan.","Price":49,"Currency":"Robux","Category":"DevProduct","ImageUrl":"rbxassetid://13837943489"},
+  {"Id":"MKT_GEMS_LARGE","Name":"Gems Large Pack (1,000)","Description":"Peti harta karun berisi 1,000 Gems Magis.","Price":399,"Currency":"Robux","Category":"DevProduct","ImageUrl":"rbxassetid://13837943490"},
+  {"Id":"MKT_COINS_SMALL","Name":"Coins Small Pack (5,000)","Description":"Kantung 5,000 Koin Mana untuk racik resep dasar.","Price":29,"Currency":"Robux","Category":"DevProduct","ImageUrl":"rbxassetid://13837943491"},
+  {"Id":"MKT_COINS_LARGE","Name":"Coins Large Pack (50,000)","Description":"Brankas 50,000 Koin Mana untuk upgrade Sanctum.","Price":249,"Currency":"Robux","Category":"DevProduct","ImageUrl":"rbxassetid://13837943492"},
+  {"Id":"MKT_AURA_BOOST","Name":"Aura Boost Medium (+2,500)","Description":"+2,500 Aura Energy untuk crafting dan aktivasi.","Price":79,"Currency":"Robux","Category":"DevProduct","ImageUrl":"rbxassetid://0"},
+  {"Id":"MKT_CHRONO_SPARKS","Name":"Chrono Sparks Pack (+100)","Description":"+100 Chrono Sparks untuk transmutasi langka.","Price":149,"Currency":"Robux","Category":"DevProduct","ImageUrl":"rbxassetid://0"},
+  {"Id":"MKT_INSTANT_HATCH","Name":"Instant Egg Hatch","Description":"Tetaskan telur secara instan tanpa menunggu.","Price":15,"Currency":"Robux","Category":"DevProduct","ImageUrl":"rbxassetid://0"},
+  {"Id":"MKT_REBIRTH_TOKEN","Name":"Rebirth Skip Token","Description":"+1 Rebirth Token untuk skip level rebirth.","Price":299,"Currency":"Robux","Category":"DevProduct","ImageUrl":"rbxassetid://0"},
+  {"Id":"MKT_FAIRY_DUST","Name":"Fairy Dust Pack (+500)","Description":"+500 Fairy Dust untuk crafting Fairytale eksklusif.","Price":99,"Currency":"Robux","Category":"DevProduct","ImageUrl":"rbxassetid://0"},
+  {"Id":"MKT_ENCHANTED_ELIXIR","Name":"Enchanted Elixir","Description":"30 menit 2x EXP + 50% luck boost.","Price":79,"Currency":"Robux","Category":"DevProduct","ImageUrl":"rbxassetid://0"}
 ]

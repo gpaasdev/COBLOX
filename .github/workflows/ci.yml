@@ -33,3 +33,25 @@ jobs:
           fi
           echo "✅ Secret Scanning Passed."
 
+      - name: Discord Notification
+        if: always()
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "⚠️ DISCORD_WEBHOOK_URL not set — skipping notification"
+            exit 0
+          fi
+          STATUS="${{ job.status }}"
+          if [ "$STATUS" = "success" ]; then
+            EMOJI="✅"
+            COLOR=3066993
+          else
+            EMOJI="❌"
+            COLOR=15158332
+          fi
+          curl -s -H "Content-Type: application/json" \
+            -X POST \
+            -d "{\"embeds\":[{\"title\":\"${EMOJI} COBLOX CI/CD\",\"description\":\"Branch: \`${{ github.ref_name }}\`\\nCommit: \`${{ github.sha }}\`\\nStatus: **${STATUS}**\",\"color\":${COLOR},\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}]}" \
+            "$WEBHOOK_URL"
+
