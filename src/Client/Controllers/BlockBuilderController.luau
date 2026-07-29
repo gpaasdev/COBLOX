@@ -70,7 +70,7 @@ function BlockBuilderController.SetBlockType(blockType: string)
 	end
 end
 
-function BlockBuilderController.Init()
+function BlockBuilderController.Init(self)
 	self.maid = Maid.new()
 	self.maid:GiveTask(RunService.RenderStepped:Connect(function()
 		if not isBuilding or not ghostPart then return end

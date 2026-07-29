@@ -17,7 +17,7 @@ function KarmaContractController.Init()
 	print("[KarmaContractController] Initializing Karma Contract Tracker HUD...")
 end
 
-function KarmaContractController.Start()
+function KarmaContractController.Start(self)
 	self.maid = Maid.new()
 	local syncKarmaRemote = NetChannels.GetRemoteEvent("SyncKarmaContract")
 	if syncKarmaRemote then

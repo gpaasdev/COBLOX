@@ -24,7 +24,7 @@ function MachineController.Init()
 	print("[MachineController] Initialized machine status viewer.")
 end
 
-function MachineController.Start()
+function MachineController.Start(self)
 	self.maid = Maid.new()
 	local localPlayer = Players.LocalPlayer
 

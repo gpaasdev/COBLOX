@@ -48,7 +48,7 @@ function AudioController.Init()
 	uiGroup.Parent = masterGroup
 end
 
-function AudioController.Start()
+function AudioController.Start(self)
 	self.maid = Maid.new()
 	AudioEventBus.Subscribe(function(soundId: string, volume: number)
 		AudioController.PlaySound(soundId, volume)
@@ -121,7 +121,7 @@ function AudioController.PlayBGM(soundKey: string, fadeTime: number?)
 		self.maid:GiveTask(fadeOutTween.Completed:Connect(function()
 			oldSound:Stop()
 			-- Don't Destroy — reuse on next call
-		end)
+		end))
 	end
 
 	local fadeInTween = TweenService:Create(newSound, TweenInfo.new(duration, Enum.EasingStyle.Sine), { Volume = 0.7 })

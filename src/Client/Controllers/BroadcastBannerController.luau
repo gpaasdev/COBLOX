@@ -19,13 +19,13 @@ function BroadcastBannerController.Init()
 	print("[BroadcastBannerController] Initializing Server Broadcast UI...")
 end
 
-function BroadcastBannerController.Start()
+function BroadcastBannerController.Start(self)
 	self.maid = Maid.new()
 	local remote = ClientRemotes.BroadcastServerMessage
 	if remote then
 		self.maid:GiveTask(remote.OnClientEvent:Connect(function(text: string, r: number, g: number, b: number)
 			BroadcastBannerController.ShowAnnouncement(text, Color3.fromRGB(r or 255, g or 215, b or 0))
-		end)
+		end))
 	end
 end
 

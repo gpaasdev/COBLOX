@@ -15,7 +15,7 @@ LODRenderController.__index = LODRenderController
 
 local spatialIndex = SpatialOctree.new(Vector3.new(0, 0, 0), Vector3.new(2048, 512, 2048))
 
-function LODRenderController.Init(): ()
+function LODRenderController.Init(self): ()
 	self.maid = Maid.new()
 	LODManager.StartUpdateLoop()
 
@@ -30,7 +30,7 @@ function LODRenderController.Init(): ()
 			LODManager.Register(id, high, low, nil)
 			spatialIndex:Insert(high:GetPivot().Position, id)
 		end
-	end)
+	end))
 end
 
 return LODRenderController

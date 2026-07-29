@@ -53,7 +53,7 @@ function RealmEntryController._CreateRealmSelectionUI()
 			screenGui:Destroy()
 			realmSelectionOpen = false
 		end
-	end)
+	end))
 
 	local container = Instance.new("Frame")
 	container.Size = UDim2.new(0, 400, 0, 250)
@@ -100,7 +100,7 @@ function RealmEntryController._CreateRealmSelectionUI()
 		end
 		screenGui:Destroy()
 		realmSelectionOpen = false
-	end)
+	end))
 
 	-- Fairytale Realm button
 	local fairyBtn = Instance.new("TextButton")
@@ -127,7 +127,7 @@ function RealmEntryController._CreateRealmSelectionUI()
 		end
 		screenGui:Destroy()
 		realmSelectionOpen = false
-	end)
+	end))
 end
 
 function RealmEntryController._FindPortalInWorkspace(): BasePart?
@@ -142,13 +142,13 @@ function RealmEntryController._FindPortalInWorkspace(): BasePart?
 	return nil
 end
 
-function RealmEntryController.Start()
+function RealmEntryController.Start(self)
 	self.maid = Maid.new()
 	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input)
 		if input.KeyCode == Enum.KeyCode.R and not UserInputService:GetFocusedTextBox() then
 			RealmEntryController._CreateRealmSelectionUI()
 		end
-	end)
+	end))
 
 	local ContextActionService = game:GetService("ContextActionService")
 	self.maid:GiveTask(ContextActionService:BindAction("RealmSelectAction", function()

@@ -104,7 +104,7 @@ function AdRewardController._ShowRewardNotification(text: string, isSuccess: boo
 	end)
 end
 
-function AdRewardController.Start()
+function AdRewardController.Start(self)
 	self.maid = Maid.new()
 	local resultRemote = NetChannels.GetRemoteEvent("RewardedAdResult")
 	if resultRemote then

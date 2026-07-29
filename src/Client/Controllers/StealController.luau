@@ -17,7 +17,7 @@ function StealController.Init()
 	print("[StealController] Initializing Begal Aura Client Controller...")
 end
 
-function StealController.Start()
+function StealController.Start(self)
 	self.maid = Maid.new()
 	local stealEvent = NetChannels.GetRemoteEvent("StealAuraEvent")
 	if stealEvent then

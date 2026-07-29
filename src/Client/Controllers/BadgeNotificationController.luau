@@ -93,7 +93,7 @@ function BadgeNotificationController._ShowBadgeNotification(badgeName: string)
 	end
 end
 
-function BadgeNotificationController.Start()
+function BadgeNotificationController.Start(self)
 	self.maid = Maid.new()
 	local badgeRemote = NetChannels.GetRemoteEvent("BadgeAwardedNotification")
 	if badgeRemote then

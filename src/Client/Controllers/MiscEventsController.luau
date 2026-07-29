@@ -12,20 +12,20 @@ function MiscEventsController.Init()
 	print("[MiscEventsController] Initializing miscellaneous event listeners...")
 end
 
-function MiscEventsController.Start()
+function MiscEventsController.Start(self)
 	self.maid = Maid.new()
 	local expeditionRemote = NetChannels.GetRemoteEvent("ExpeditionEvent")
 	if expeditionRemote then
 		self.maid:GiveTask(expeditionRemote.OnClientEvent:Connect(function(eventData)
 			print("[MiscEventsController] Received ExpeditionEvent:", eventData)
-		end)
+		end))
 	end
 
 	local retentionRemote = NetChannels.GetRemoteEvent("RetentionEvent")
 	if retentionRemote then
 		self.maid:GiveTask(retentionRemote.OnClientEvent:Connect(function(eventData)
 			print("[MiscEventsController] Received RetentionEvent:", eventData)
-		end)
+		end))
 	end
 end
 

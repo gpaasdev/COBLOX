@@ -27,7 +27,7 @@ function QuestController.Init()
 	syncQuestRemote = NetChannels.GetRemoteEvent("SyncQuest")
 end
 
-function QuestController.Start()
+function QuestController.Start(self)
 	self.maid = Maid.new()
 	self.maid:GiveTask(syncQuestRemote.OnClientEvent:Connect(function(questNode: QuestNode)
 		print(
@@ -39,7 +39,7 @@ function QuestController.Start()
 			)
 		)
 		QuestController.QuestProgressUpdated:Fire(questNode)
-	end)
+	end))
 end
 
 function QuestController.ClaimReward(questId: string): ServiceResult<any>

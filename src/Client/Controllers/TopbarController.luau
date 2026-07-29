@@ -24,7 +24,7 @@ function TopbarController.Init()
 	print("[TopbarController] Initializing Native Roblox Topbar Icon Integrations (TopbarPlus pattern)...")
 end
 
-function TopbarController.Start()
+function TopbarController.Start(self)
 	self.maid = Maid.new()
 	TopbarController._CreateTopbarIcons()
 	TopbarController._ListenEconomyEvents()
@@ -83,7 +83,7 @@ function TopbarController._ListenEconomyEvents()
 				local gems = data.Gems or data.ChronoSparks or 0
 				TopbarController.UpdateCurrencies(coins, gems)
 			end
-		)
+		))
 	end
 end
 

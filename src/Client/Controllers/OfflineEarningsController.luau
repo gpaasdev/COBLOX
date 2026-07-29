@@ -18,7 +18,7 @@ function OfflineEarningsController.Init()
 	print("[OfflineEarningsController] Initializing AFK Earnings UI...")
 end
 
-function OfflineEarningsController.Start()
+function OfflineEarningsController.Start(self)
 	self.maid = Maid.new()
 	task.delay(1.5, function()
 		OfflineEarningsController.TryShowWelcomeModal()

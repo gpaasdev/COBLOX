@@ -31,7 +31,7 @@ function EggRenderController.Init()
 	print("[EggRenderController] Initializing Genesis Pod 3D Hatching Engine & Viewport UI...")
 end
 
-function EggRenderController.Start()
+function EggRenderController.Start(self)
 	self.maid = Maid.new()
 	local hatchRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 	if hatchRemote then

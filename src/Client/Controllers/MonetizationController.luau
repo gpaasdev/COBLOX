@@ -30,7 +30,7 @@ function MonetizationController.Init()
 	print("[MonetizationController] Initializing Contextual Monetization Controller...")
 end
 
-function MonetizationController.Start()
+function MonetizationController.Start(self)
 	self.maid = Maid.new()
 	local hatchRemote = NetChannels.GetUnreliableRemoteEvent("EggHatchedVisual")
 	if hatchRemote then
@@ -40,7 +40,7 @@ function MonetizationController.Start()
 				MonetizationController.PromptAutoHatchRecommendation()
 				manualHatchCount = 0
 			end
-		end)
+		end))
 	end
 
 	local promptRemote = NetChannels.GetRemoteEvent("MonetizationPrompt")
@@ -51,7 +51,7 @@ function MonetizationController.Start()
 			elseif promptType == "InventoryFull" then
 				MonetizationController.PromptInventoryUpgrade()
 			end
-		end)
+		end))
 	end
 end
 

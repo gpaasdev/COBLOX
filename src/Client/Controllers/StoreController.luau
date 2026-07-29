@@ -22,7 +22,7 @@ function StoreController.Init()
 	print("[StoreController] Initializing Premium Store UI...")
 end
 
-function StoreController.Start()
+function StoreController.Start(self)
 	self.maid = Maid.new()
 end
 

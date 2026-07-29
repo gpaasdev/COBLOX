@@ -28,7 +28,7 @@ function LeaderboardUIController.Toggle()
 	end
 end
 
-function LeaderboardUIController._CreateUI()
+function LeaderboardUIController._CreateUI(self)
 	leaderboardGui = Instance.new("ScreenGui")
 	leaderboardGui.Name = "LeaderboardUI"
 	leaderboardGui.Enabled = false
@@ -109,7 +109,7 @@ function LeaderboardUIController._CreateUI()
 	end
 end
 
-function LeaderboardUIController.Start()
+function LeaderboardUIController.Start(self)
 	self.maid = Maid.new()
 	local toggleRemote = NetChannels.GetRemoteEvent("ToggleLeaderboard")
 	if toggleRemote then

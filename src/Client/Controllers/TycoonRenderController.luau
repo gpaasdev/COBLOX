@@ -15,7 +15,7 @@ function TycoonRenderController.Init()
 	print("[TycoonRenderController] Initializing client visual rendering for Tycoon...")
 end
 
-function TycoonRenderController.Start()
+function TycoonRenderController.Start(self)
 	self.maid = Maid.new()
 	-- 1. Setup Markas Claim Pad Hologram UI
 	local function setupClaimPad(claimPad: Instance)

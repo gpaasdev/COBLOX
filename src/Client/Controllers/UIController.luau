@@ -40,14 +40,14 @@ local COLOR_SPARK_CYAN = Color3.fromRGB(6, 182, 212)
 local COLOR_ACCENT_PURPLE = Color3.fromRGB(139, 92, 246)
 local COLOR_TEXT_WHITE = Color3.fromRGB(255, 255, 255)
 
-function UIController.Init()
+function UIController.Init(self)
 	self.maid = Maid.new()
 	print("[UIController] Initializing Gen Z & Gen Alpha Visual-First HUD & Side Drawer (MaxWidth = 180px)...")
 
 	UIController._CreateHUD()
 end
 
-function UIController.Start()
+function UIController.Start(self)
 	local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 	if syncRemote then
 		self.maid:GiveTask(syncRemote.OnClientEvent:Connect(

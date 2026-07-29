@@ -21,7 +21,7 @@ function TradeController.Init()
 	print("[TradeController] Initializing Client Trade prompt & UI controller...")
 end
 
-function TradeController.Start()
+function TradeController.Start(self)
 	self.maid = Maid.new()
 	local inviteRemote = NetChannels.GetRemoteEvent("TradeInvited")
 	if inviteRemote then

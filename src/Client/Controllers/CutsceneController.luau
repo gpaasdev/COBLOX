@@ -20,7 +20,7 @@ function CutsceneController.Init()
 	print("[CutsceneController] Initializing Camera Manipulation & Atmospheric Vignette FX Engine...")
 end
 
-function CutsceneController.Start()
+function CutsceneController.Start(self)
 	self.maid = Maid.new()
 	local remote = NetChannels.GetRemoteEvent("PlaySpiritMemory")
 	if remote then

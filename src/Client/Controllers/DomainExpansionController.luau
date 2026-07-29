@@ -21,13 +21,13 @@ local vignetteFrame: Frame? = nil
 
 function DomainExpansionController.Init() end
 
-function DomainExpansionController.Start()
+function DomainExpansionController.Start(self)
 	self.maid = Maid.new()
 	local triggerRemote = NetChannels.GetRemoteEvent("TriggerDomainExpansion")
 	if triggerRemote then
 		self.maid:GiveTask(triggerRemote.OnClientEvent:Connect(function(duration: number)
 			DomainExpansionController.TriggerOverdrive(duration or 15)
-		end)
+		end))
 	end
 
 	vignetteFrame = Instance.new("Frame")

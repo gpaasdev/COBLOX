@@ -29,7 +29,7 @@ local VAULT_SLOT_COLORS = {
 
 function PotionVaultController.Init() end
 
-function PotionVaultController.Start()
+function PotionVaultController.Start(self)
 	self.maid = Maid.new()
 	local vaultSync = NetChannels.GetRemoteEvent("SyncPotionVault")
 	if vaultSync then

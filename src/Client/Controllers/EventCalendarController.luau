@@ -33,7 +33,7 @@ local function fetchEventsFromServer(): { { [string]: any } }
 	return {}
 end
 
-local function buildCalendarUI(events: { { [string]: any } })
+local function buildCalendarUI(self, events: { { [string]: any } })
 	if calendarGui then
 		calendarGui:Destroy()
 	end
@@ -51,14 +51,14 @@ local function buildCalendarUI(events: { { [string]: any } })
 	backdrop.BackgroundTransparency = 0.6
 	backdrop.Parent = calendarGui
 
-	self.maid:GiveTask(backdrop.InputBegan:Connect(function(input)
-		if
-			input.UserInputType == Enum.UserInputType.Touch
-			or input.UserInputType == Enum.UserInputType.MouseButton1
-		then
-			EventCalendarController.ToggleCalendar()
-		end
-	end))
+		self.maid:GiveTask(backdrop.InputBegan:Connect(function(input)
+			if
+				input.UserInputType == Enum.UserInputType.Touch
+				or input.UserInputType == Enum.UserInputType.MouseButton1
+			then
+				self:ToggleCalendar()
+			end
+		end))
 
 	local container = Instance.new("Frame")
 	container.Size = UDim2.new(0, 360, 0, 400)
@@ -163,15 +163,15 @@ local function buildCalendarUI(events: { { [string]: any } })
 	closeCorner.Parent = closeBtn
 
 	self.maid:GiveTask(closeBtn.MouseButton1Click:Connect(function()
-		EventCalendarController.ToggleCalendar()
+		self:ToggleCalendar()
 	end))
 end
 
-function EventCalendarController.ToggleCalendar()
+function EventCalendarController.ToggleCalendar(self)
 	calendarOpen = not calendarOpen
 	if calendarOpen then
 		local events = fetchEventsFromServer()
-		buildCalendarUI(events)
+		buildCalendarUI(self, events)
 	else
 		if calendarGui then
 			calendarGui:Destroy()
@@ -183,7 +183,7 @@ end
 function EventCalendarController.Init()
 end
 
-function EventCalendarController.Start()
+function EventCalendarController.Start(self)
 	self.maid = Maid.new()
 end
 

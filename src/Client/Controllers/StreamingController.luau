@@ -9,7 +9,7 @@ local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Util
 local StreamingController = {}
 local localPlayer = Players.LocalPlayer
 
-function StreamingController.Init()
+function StreamingController.Init(self)
 	self.maid = Maid.new()
 	print("[StreamingController] Initializing Mobile Streaming & Integrity Manager...")
 
@@ -17,7 +17,7 @@ function StreamingController.Init()
 	local ok = pcall(function()
 		self.maid:GiveTask(Workspace:GetPropertyChangedSignal("StreamingPauseMode"):Connect(function()
 			print("[StreamingController] Workspace Streaming Mode update detected.")
-		end)
+		end))
 	end)
 	if not ok then
 		warn("[StreamingController] StreamingPauseMode signal unavailable on this platform, skipping listener.")

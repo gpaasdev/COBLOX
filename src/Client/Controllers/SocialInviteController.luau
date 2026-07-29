@@ -17,7 +17,7 @@ function SocialInviteController.Init()
 	print("[SocialInviteController] Initialized.")
 end
 
-function SocialInviteController.Start()
+function SocialInviteController.Start(self)
 	self.maid = Maid.new()
 	local inviteTriggeredRemote = NetChannels.GetRemoteEvent("SocialInviteTriggered")
 	if inviteTriggeredRemote then
@@ -26,7 +26,7 @@ function SocialInviteController.Start()
 				return
 			end
 			SocialInviteController._ShowInvitePrompt(context)
-		end)
+		end))
 	end
 end
 

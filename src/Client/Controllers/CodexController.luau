@@ -41,7 +41,7 @@ function CodexController.Init()
 	print("[CodexController] Initializing Codex & Lore Reader UI Engine...")
 end
 
-function CodexController.Start()
+function CodexController.Start(self)
 	self.maid = Maid.new()
 end
 
@@ -56,7 +56,7 @@ function CodexController.ToggleModal()
 	end
 end
 
-function CodexController._CreateModal()
+function CodexController._CreateModal(self)
 	local playerGui = localPlayer:WaitForChild("PlayerGui")
 	local mainHUD = playerGui:WaitForChild("COBLOX_AlchemyHUD")
 

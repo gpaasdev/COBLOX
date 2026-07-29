@@ -30,7 +30,7 @@ function SynthesisController.Init()
 	print("[SynthesisController] Initializing 3x3 Alchemist Crafting & Synthesis Vessel UI...")
 end
 
-function SynthesisController.Start()
+function SynthesisController.Start(self)
 	self.maid = Maid.new()
 end
 

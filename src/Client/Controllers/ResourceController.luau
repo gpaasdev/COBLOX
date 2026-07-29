@@ -14,7 +14,7 @@ ResourceController.__index = ResourceController
 
 local localPlayer = Players.LocalPlayer
 
-function ResourceController.Init()
+function ResourceController.Init(self)
 	print("[ResourceController] Initializing Client Resource Interaction & Visual Controller...")
 	self.maid = Maid.new()
 

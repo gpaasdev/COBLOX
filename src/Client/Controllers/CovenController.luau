@@ -25,7 +25,7 @@ function CovenController.Init()
 	print("[CovenController] Initializing Coven (Guild) UI Engine with Hideout Controls...")
 end
 
-function CovenController.Start()
+function CovenController.Start(self)
 	self.maid = Maid.new()
 	local covenRemote = NetChannels.GetRemoteEvent("CovenEvent")
 	if covenRemote then

@@ -15,7 +15,7 @@ local lastFpsState = ""
 local lastPrintTime = 0
 local PRINT_COOLDOWN = 5
 
-function GraphicsOptimizationController.Init()
+function GraphicsOptimizationController.Init(self)
 	self.maid = Maid.new()
 	print("[GraphicsOptimizationController] Initializing Dynamic Mobile Quality & FPS Scaling...")
 
@@ -30,7 +30,7 @@ function GraphicsOptimizationController.Init()
 
 			GraphicsOptimizationController.EvaluateQuality(currentFps)
 		end
-	end)
+	end))
 end
 
 function GraphicsOptimizationController.EvaluateQuality(fps: number)

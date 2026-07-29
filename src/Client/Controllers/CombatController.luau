@@ -24,7 +24,7 @@ local VFXEngine = require(script.Parent.Parent.Modules.UI.VFXEngine)
 local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
 local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
-function CombatController.Init()
+function CombatController.Init(self)
 	self.maid = Maid.new()
 	-- Bind Mobile & PC Actions via ContextActionService (creates Touch Buttons automatically on Mobile)
 	self.maid:GiveTask(ContextActionService:BindAction("AttackAction", function(actionName, inputState)
