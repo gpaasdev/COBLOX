@@ -7,6 +7,7 @@
 ---
 
 ## 📑 Dokumen Spesifikasi Utama
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** — Spesifikasi Arsitektur SOA, Zero-Trust Remote Validation, & ProfileStore Data Persistence.
-- **[GAMEPLAY_SPEC.md](GAMEPLAY_SPEC.md)** — Spesifikasi Core Gameplay Loop, Otomasi Mesin, Resep Sintesis, & Spirit Companions.
-- **[LIVEOPS_AND_MONETIZATION.md](LIVEOPS_AND_MONETIZATION.md)** — Spesifikasi Monetisasi (Passes/DevProducts), Analytics Telemetry, & Sistem Badges.
+1. **[🏗️ Architecture Specification](ARCHITECTURE.md)** — Arsitektur Server-Authoritative SOA, Lifecycle, & Data Isolation.
+2. **[🌐 Open Cloud Capability Matrix & Roadmap](OPEN_CLOUD_CAPABILITY_MATRIX.md)** — Matriks 16+ API Open Cloud, Luau Execution, & Integrasi Web Portal.
+3. **[🎮 Gameplay & Systems Spec](GAMEPLAY_SPEC.md)** — Spesifikasi mekanik 3x3 grid alchemic, Spirit Companions, & klan alkemis.
+4. **[LIVEOPS_AND_MONETIZATION.md](LIVEOPS_AND_MONETIZATION.md)** — Spesifikasi Monetisasi (Passes/DevProducts), Analytics Telemetry, & Sistem Badges.
