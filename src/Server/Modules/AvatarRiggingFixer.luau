@@ -35,11 +35,7 @@ function AvatarRiggingFixer.AddAccessoryPhysics(character: Model, accessories: {
 				continue
 			end
 
-			local swayOffset = Vector3.new(
-				-normalizedVel.X * 0.3,
-				math.abs(accel.Y) * -0.02,
-				math.abs(accel.X) * 0.02
-			)
+			local swayOffset = Vector3.new(-normalizedVel.X * 0.3, math.abs(accel.Y) * -0.02, math.abs(accel.X) * 0.02)
 
 			local basePos = rootPart.Position + Vector3.new(0, -1, 0)
 			part.Position = basePos + swayOffset
@@ -49,7 +45,12 @@ function AvatarRiggingFixer.AddAccessoryPhysics(character: Model, accessories: {
 	return maid
 end
 
-function AvatarRiggingFixer.AttachHangingAccessory(character: Model, meshPart: MeshPart, attachmentPoint: string, anchorOffset: Vector3): Maid
+function AvatarRiggingFixer.AttachHangingAccessory(
+	character: Model,
+	meshPart: MeshPart,
+	attachmentPoint: string,
+	anchorOffset: Vector3
+): Maid
 	local maid = Maid.new()
 	local targetPart = character:FindFirstChild(attachmentPoint, true)
 	if not targetPart or not targetPart:IsA("BasePart") then
@@ -94,7 +95,11 @@ function AvatarRiggingFixer.AttachHangingAccessory(character: Model, meshPart: M
 	return maid
 end
 
-function AvatarRiggingFixer.AttachPhysicsAccessory(character: Model, meshPart: MeshPart, attachmentPartName: string): Maid
+function AvatarRiggingFixer.AttachPhysicsAccessory(
+	character: Model,
+	meshPart: MeshPart,
+	attachmentPartName: string
+): Maid
 	local maid = Maid.new()
 	local targetPart = character:FindFirstChild(attachmentPartName, true)
 	if not targetPart or not targetPart:IsA("BasePart") then

@@ -72,7 +72,14 @@ function AvatarService._ApplySavedConfig(player: Player, profile: PlayerProfile)
 			RAEA_Engine.AttachLayeredClothing(character, mesh, 1)
 		end)
 		if not success then
-			warn(string.format("[AvatarService] Failed to attach clothing %s for %s: %s", assetId, player.Name, tostring(result)))
+			warn(
+				string.format(
+					"[AvatarService] Failed to attach clothing %s for %s: %s",
+					assetId,
+					player.Name,
+					tostring(result)
+				)
+			)
 		end
 	end
 

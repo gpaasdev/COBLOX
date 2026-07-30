@@ -40,12 +40,7 @@ function MCPBridge._EnforceRateLimit()
 	table.insert(requestTimestamps, now)
 end
 
-function MCPBridge._Request(
-	method: string,
-	url: string,
-	headers: { [string]: string },
-	body: string?
-): MCPResponse
+function MCPBridge._Request(method: string, url: string, headers: { [string]: string }, body: string?): MCPResponse
 	MCPBridge._EnforceRateLimit()
 
 	local success, result = pcall(function()
@@ -105,11 +100,7 @@ function MCPBridge.UploadAsset(
 	)
 end
 
-function MCPBridge.GetDataStoreEntry(
-	dataStoreName: string,
-	key: string,
-	config: OpenCloudConfig
-): MCPResponse
+function MCPBridge.GetDataStoreEntry(dataStoreName: string, key: string, config: OpenCloudConfig): MCPResponse
 	local url = string.format(
 		"%s/datastores/v1/universes/%d/standard-datastores/datastore/entries/entry",
 		OPEN_CLOUD_BASE,
@@ -118,12 +109,7 @@ function MCPBridge.GetDataStoreEntry(
 	url ..= "?datastoreName=" .. HttpService:UrlEncode(dataStoreName)
 	url ..= "&entryKey=" .. HttpService:UrlEncode(key)
 
-	return MCPBridge._Request(
-		"GET",
-		url,
-		{ ["x-api-key"] = config.ApiKey },
-		nil
-	)
+	return MCPBridge._Request("GET", url, { ["x-api-key"] = config.ApiKey }, nil)
 end
 
 function MCPBridge.SetDataStoreEntry(
@@ -153,11 +139,7 @@ function MCPBridge.SetDataStoreEntry(
 	)
 end
 
-function MCPBridge.PublishMessagingTopic(
-	topic: string,
-	message: any,
-	config: OpenCloudConfig
-): MCPResponse
+function MCPBridge.PublishMessagingTopic(topic: string, message: any, config: OpenCloudConfig): MCPResponse
 	local url = string.format(
 		"%s/messaging/v1/universes/%d/topics/%s",
 		OPEN_CLOUD_BASE,

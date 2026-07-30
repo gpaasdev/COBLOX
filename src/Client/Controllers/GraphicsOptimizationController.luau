@@ -70,19 +70,24 @@ function GraphicsOptimizationController._EvaluateQuality()
 		settings().Rendering.QualityLevel = Enum.QualityLevel.Level03
 		Lighting.ShadowSoftness = Enum.ShadowSoftness.Low
 		Lighting.GlobalShadows = false
-		print(string.format("[GraphicsOptimizationController] Low quality mode (FPS: %d) — shadows disabled, LOD aggressive", currentFps))
-
+		print(
+			string.format(
+				"[GraphicsOptimizationController] Low quality mode (FPS: %d) — shadows disabled, LOD aggressive",
+				currentFps
+			)
+		)
 	elseif targetQuality == "medium" then
 		settings().Rendering.QualityLevel = Enum.QualityLevel.Level08
 		Lighting.ShadowSoftness = Enum.ShadowSoftness.Medium
 		Lighting.GlobalShadows = true
 		print(string.format("[GraphicsOptimizationController] Medium quality mode (FPS: %d)", currentFps))
-
 	elseif targetQuality == "high" then
 		settings().Rendering.QualityLevel = Enum.QualityLevel.Level10
 		Lighting.ShadowSoftness = Enum.ShadowSoftness.High
 		Lighting.GlobalShadows = true
-		print(string.format("[GraphicsOptimizationController] High quality mode (FPS: %d) — full fidelity", currentFps))
+		print(
+			string.format("[GraphicsOptimizationController] High quality mode (FPS: %d) — full fidelity", currentFps)
+		)
 	end
 end
 

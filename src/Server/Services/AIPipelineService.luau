@@ -132,7 +132,6 @@ function AIPipelineService._ExecuteStep(step: any, pipeline: any): any
 			return { abort = true, reason = "Prompt too short" }
 		end
 		return { validated = true }
-
 	elseif step.name == "call_meshy_api" then
 		local apiKey = AIPipelineService._GetApiKey("MESHY_API_KEY")
 		if not apiKey then
@@ -152,7 +151,6 @@ function AIPipelineService._ExecuteStep(step: any, pipeline: any): any
 			})
 		)
 		return result
-
 	elseif step.name == "call_deepmotion_api" then
 		local apiKey = AIPipelineService._GetApiKey("DEEPMOTION_API_KEY")
 		if not apiKey then
@@ -171,7 +169,6 @@ function AIPipelineService._ExecuteStep(step: any, pipeline: any): any
 			})
 		)
 		return result
-
 	elseif step.name == "call_suno_api" then
 		local apiKey = AIPipelineService._GetApiKey("SUNO_API_KEY")
 		if not apiKey then
@@ -190,7 +187,6 @@ function AIPipelineService._ExecuteStep(step: any, pipeline: any): any
 			})
 		)
 		return result
-
 	elseif step.name == "upload_to_roblox" or step.name == "upload_keyframe" or step.name == "upload_audio" then
 		local apiKey = AIPipelineService._GetApiKey("OPEN_CLOUD_API_KEY")
 		if not apiKey then
@@ -209,18 +205,14 @@ function AIPipelineService._ExecuteStep(step: any, pipeline: any): any
 			})
 		)
 		return result
-
 	elseif step.name == "retarget_rig" then
 		print(string.format("[AIPipelineService] Retargeting animation for pipeline %s", pipeline.id))
 		return { retargeted = true }
-
 	elseif step.name == "notify_complete" then
 		AIPipelineService._BroadcastPipelineStatus(pipeline)
 		return { notified = true }
-
 	elseif step.name == "validate_motion" or step.name == "validate_audio_request" then
 		return { validated = true }
-
 	end
 
 	return { abort = true, reason = "Unknown step: " .. step.name }

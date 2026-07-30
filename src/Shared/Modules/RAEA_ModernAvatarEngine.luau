@@ -149,7 +149,12 @@ function RAEA_Engine.SetFacialExpression(character: Model, expressionName: strin
 	end
 end
 
-function RAEA_Engine.ApplyPBRCustomization(meshPart: MeshPart, colorMap: string, normalMap: string?, roughnessMap: string?)
+function RAEA_Engine.ApplyPBRCustomization(
+	meshPart: MeshPart,
+	colorMap: string,
+	normalMap: string?,
+	roughnessMap: string?
+)
 	if not meshPart then
 		return
 	end

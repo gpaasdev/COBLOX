@@ -7,13 +7,16 @@ local FusionProvider = require(script.Parent.FusionProvider)
 
 local GlassPanel = {}
 
-function GlassPanel.New(fusion: any, props: {
-	Size: UDim2?,
-	Position: UDim2?,
-	AnchorPoint: Vector2?,
-	CornerRadius: UDim?,
-	Children: { Instance }?,
-}): Instance
+function GlassPanel.New(
+	fusion: any,
+	props: {
+		Size: UDim2?,
+		Position: UDim2?,
+		AnchorPoint: Vector2?,
+		CornerRadius: UDim?,
+		Children: { Instance }?,
+	}
+): Instance
 	local panel = fusion.New("Frame")({
 		Size = props.Size or UDim2.fromOffset(200, 100),
 		Position = props.Position or UDim2.fromOffset(0, 0),

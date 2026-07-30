@@ -47,7 +47,9 @@ function KeyGuideController.Start(self)
 	end)
 
 	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input, processed)
-		if processed then return end
+		if processed then
+			return
+		end
 		if input.KeyCode == Enum.KeyCode.K and not UserInputService:GetFocusedTextBox() then
 			KeyGuideController:_Toggle()
 		end
@@ -72,8 +74,12 @@ end
 
 function KeyGuideController:_CreateUI()
 	local player = Players.LocalPlayer
-	if not player then return end
-	if screenGui then screenGui:Destroy() end
+	if not player then
+		return
+	end
+	if screenGui then
+		screenGui:Destroy()
+	end
 
 	screenGui = Instance.new("ScreenGui")
 	screenGui.Name = "KeyGuideGUI"

@@ -9,7 +9,8 @@ local function _BuildSystemPrompt(sections: { string }): string
 	return table.concat(sections, "\n\n")
 end
 
-local CORE_IDENTITY = [[You are RAEA (Roblox AI Engine Architect), a specialized autonomous software engineer for COBLOX: Multiverse Alchemy Sanctum.
+local CORE_IDENTITY =
+	[[You are RAEA (Roblox AI Engine Architect), a specialized autonomous software engineer for COBLOX: Multiverse Alchemy Sanctum.
 Architecture: LGBOS v11.0 Server-Authoritative Zero-Trust.
 Language: Luau --!strict with task lifecycle (task.wait, task.spawn, task.defer).
 Persistence: ProfileStore (session-locked DataStore).
@@ -40,7 +41,8 @@ local SECURITY_RULES = [[Security Rules (Zero-Trust):
 6. DropRate values in config are strings ("1.5%") — parse with tonumber(gsub("%%","")).]]
 
 function AIPrompt.GetSystemPrompt(mode: "studio_mcp" | "headless" | "fallback"): string
-	local modePrompt = if mode == "studio_mcp" then MODE1_STUDIO_MCP
+	local modePrompt = if mode == "studio_mcp"
+		then MODE1_STUDIO_MCP
 		elseif mode == "headless" then MODE2_HEADLESS
 		else MODE3_FALLBACK
 
@@ -48,7 +50,8 @@ function AIPrompt.GetSystemPrompt(mode: "studio_mcp" | "headless" | "fallback"):
 end
 
 function AIPrompt.GetServiceTemplate(serviceName: string): string
-	return string.format([[
+	return string.format(
+		[[
 --!strict
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
@@ -66,11 +69,22 @@ function %s.Start(self)
 end
 
 return %s
-]], serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName)
+]],
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName
+	)
 end
 
 function AIPrompt.GetControllerTemplate(controllerName: string): string
-	return string.format([[
+	return string.format(
+		[[
 --!strict
 local %s = {}
 
@@ -83,7 +97,13 @@ function %s.Start(self, Registry)
 end
 
 return %s
-]], controllerName, controllerName, controllerName, controllerName, controllerName)
+]],
+		controllerName,
+		controllerName,
+		controllerName,
+		controllerName,
+		controllerName
+	)
 end
 
 function AIPrompt.GetApiCallExample(apiName: string): string

@@ -30,7 +30,9 @@ function QuestJournalController.Start(self)
 	end)
 
 	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input, processed)
-		if processed then return end
+		if processed then
+			return
+		end
 		if input.KeyCode == Enum.KeyCode.J and not UserInputService:GetFocusedTextBox() then
 			QuestJournalController:_Toggle()
 		end
@@ -55,8 +57,12 @@ end
 
 function QuestJournalController:_CreateUI()
 	local player = Players.LocalPlayer
-	if not player then return end
-	if screenGui then screenGui:Destroy() end
+	if not player then
+		return
+	end
+	if screenGui then
+		screenGui:Destroy()
+	end
 
 	screenGui = Instance.new("ScreenGui")
 	screenGui.Name = "QuestJournalGUI"
@@ -146,9 +152,13 @@ function QuestJournalController:_CreateUI()
 end
 
 function QuestJournalController:_Render()
-	if not mainFrame then return end
+	if not mainFrame then
+		return
+	end
 	local listFrame = mainFrame:FindFirstChildOfClass("ScrollingFrame")
-	if not listFrame then return end
+	if not listFrame then
+		return
+	end
 
 	for _, child in listFrame:GetChildren() do
 		if child:IsA("Frame") then

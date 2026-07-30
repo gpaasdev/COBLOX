@@ -109,7 +109,9 @@ function SelfHealingService._HandleError(message: string)
 	end
 end
 
-function SelfHealingService._DiagnoseError(message: string): { pattern: string, severity: string, category: string, suggestion: string }?
+function SelfHealingService._DiagnoseError(
+	message: string
+): { pattern: string, severity: string, category: string, suggestion: string }?
 	for _, entry in ipairs(COMMON_ERROR_PATTERNS) do
 		if string.find(message, entry.pattern, 1, true) then
 			return entry

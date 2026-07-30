@@ -291,8 +291,15 @@ function BossService._AwardLoot(player: Player, bossId: string, damage: number)
 		})
 	end
 
-	print(string.format("[BossService] %s rewarded: %d coins, %d XP, items: %s",
-		player.Name, coins, xp, table.concat(lootMessage, ", ")))
+	print(
+		string.format(
+			"[BossService] %s rewarded: %d coins, %d XP, items: %s",
+			player.Name,
+			coins,
+			xp,
+			table.concat(lootMessage, ", ")
+		)
+	)
 end
 
 function BossService.ForceSpawnBoss(bossId: string): boolean

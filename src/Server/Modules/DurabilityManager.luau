@@ -69,10 +69,7 @@ function DurabilityManager.RepairItem(player: Player, itemUUID: string, repairAm
 	end
 
 	local durableItem = item :: ItemWithDurability
-	durableItem.currentDurability = math.min(
-		durableItem.currentDurability + repairAmount,
-		durableItem.maxDurability
-	)
+	durableItem.currentDurability = math.min(durableItem.currentDurability + repairAmount, durableItem.maxDurability)
 	durableItem.broken = false
 
 	return true

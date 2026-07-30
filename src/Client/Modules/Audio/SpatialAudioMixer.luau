@@ -57,7 +57,12 @@ function SpatialAudioMixer.PlayAtPosition(soundId: string, position: Vector3, ra
 	return sound
 end
 
-function SpatialAudioMixer.CreateSpatialLoop(soundId: string, positionProvider: () -> Vector3, range: number, volume: number): Maid
+function SpatialAudioMixer.CreateSpatialLoop(
+	soundId: string,
+	positionProvider: () -> Vector3,
+	range: number,
+	volume: number
+): Maid
 	local maid = Maid.new()
 	local sound = Instance.new("Sound")
 	sound.SoundId = soundId
@@ -113,11 +118,7 @@ function SpatialAudioMixer.UpdateAll(dt: number)
 
 		if entry.SoundObj then
 			entry.SoundObj.Volume = targetVolume
-			entry.SoundObj.PanStereo = math.clamp(
-				(entry.Position.X - listenerPos.X) / entry.Range,
-				-0.5,
-				0.5
-			)
+			entry.SoundObj.PanStereo = math.clamp((entry.Position.X - listenerPos.X) / entry.Range, -0.5, 0.5)
 		end
 	end
 end

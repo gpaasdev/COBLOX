@@ -28,7 +28,9 @@ function SettingsController.Start(self)
 	end)
 
 	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input, processed)
-		if processed then return end
+		if processed then
+			return
+		end
 		if input.KeyCode == Enum.KeyCode.M and not UserInputService:GetFocusedTextBox() then
 			SettingsController:_Toggle()
 		end
@@ -46,8 +48,12 @@ end
 
 function SettingsController:_CreateUI()
 	local player = Players.LocalPlayer
-	if not player then return end
-	if screenGui then screenGui:Destroy() end
+	if not player then
+		return
+	end
+	if screenGui then
+		screenGui:Destroy()
+	end
 
 	screenGui = Instance.new("ScreenGui")
 	screenGui.Name = "SettingsGUI"
@@ -152,7 +158,9 @@ function SettingsController:_CreateUI()
 			local toggleBtn = Instance.new("TextButton")
 			toggleBtn.Size = UDim2.new(0, 50, 0, 30)
 			toggleBtn.Position = UDim2.new(1, -60, 0.5, -15)
-			toggleBtn.BackgroundColor3 = if currentVal then Color3.fromRGB(100, 200, 100) else Color3.fromRGB(80, 80, 80)
+			toggleBtn.BackgroundColor3 = if currentVal
+				then Color3.fromRGB(100, 200, 100)
+				else Color3.fromRGB(80, 80, 80)
 			toggleBtn.Text = if currentVal then "ON" else "OFF"
 			toggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 			toggleBtn.TextSize = 13
@@ -163,7 +171,9 @@ function SettingsController:_CreateUI()
 				local newVal = not (currentVal or false)
 				currentVal = newVal
 				Players.LocalPlayer:SetAttribute(setting.key, newVal)
-				toggleBtn.BackgroundColor3 = if newVal then Color3.fromRGB(100, 200, 100) else Color3.fromRGB(80, 80, 80)
+				toggleBtn.BackgroundColor3 = if newVal
+					then Color3.fromRGB(100, 200, 100)
+					else Color3.fromRGB(80, 80, 80)
 				toggleBtn.Text = if newVal then "ON" else "OFF"
 			end)
 		elseif setting.type == "slider" then

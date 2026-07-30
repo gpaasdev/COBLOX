@@ -12,7 +12,8 @@ export type GeneratedCode = {
 }
 
 function FallbackCodeGenerator.GenerateService(serviceName: string, tier: number): GeneratedCode
-	local src = string.format([[
+	local src = string.format(
+		[[
 --!strict
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -44,7 +45,22 @@ function %s.Start(self)
 end
 
 return %s
-]], serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName, serviceName)
+]],
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName,
+		serviceName
+	)
 
 	return {
 		Source = src,
@@ -55,7 +71,8 @@ return %s
 end
 
 function FallbackCodeGenerator.GenerateController(controllerName: string): GeneratedCode
-	local src = string.format([[
+	local src = string.format(
+		[[
 --!strict
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -80,7 +97,14 @@ function %s.Cleanup(self)
 end
 
 return %s
-]], controllerName, controllerName, controllerName, controllerName, controllerName, controllerName)
+]],
+		controllerName,
+		controllerName,
+		controllerName,
+		controllerName,
+		controllerName,
+		controllerName
+	)
 
 	return {
 		Source = src,
@@ -106,7 +130,8 @@ function FallbackCodeGenerator.GenerateRemoteEventHandler(
 ]]
 	end
 
-	local src = string.format([[
+	local src = string.format(
+		[[
 --!strict
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -128,26 +153,35 @@ local function Setup%sHandler()
 end
 
 return Setup%sHandler
-]], eventName, eventName, eventName, validationCode, handlerLogic, eventName)
+]],
+		eventName,
+		eventName,
+		eventName,
+		validationCode,
+		handlerLogic,
+		eventName
+	)
 
 	return {
 		Source = src,
 		FilePath = string.format("src/Server/Handlers/%sHandler.luau", eventName),
 		Dependencies = { "NetChannels" },
-		Description = string.format("Server-side handler for %s with%s validation", eventName, if validatePlayer then "" else "out"),
+		Description = string.format(
+			"Server-side handler for %s with%s validation",
+			eventName,
+			if validatePlayer then "" else "out"
+		),
 	}
 end
 
-function FallbackCodeGenerator.GenerateDataStoreAccess(
-	profileKey: string,
-	fields: { [string]: string }
-): GeneratedCode
+function FallbackCodeGenerator.GenerateDataStoreAccess(profileKey: string, fields: { [string]: string }): GeneratedCode
 	local fieldDefaults = ""
 	for name, dtype in pairs(fields) do
 		fieldDefaults ..= string.format("\tlocal %s = data.%s\n", name, name)
 	end
 
-	local src = string.format([[
+	local src = string.format(
+		[[
 --!strict
 
 local ProfileStore = require(game:GetService("ServerScriptService").ServerPackages.ProfileStore)
@@ -180,7 +214,10 @@ return {
 	LoadProfile = LoadProfile,
 	SaveProfile = SaveProfile,
 }
-]], fieldDefaults, profileKey)
+]],
+		fieldDefaults,
+		profileKey
+	)
 
 	return {
 		Source = src,

@@ -178,7 +178,13 @@ function CommerceController._BuildUI(self)
 end
 
 function CommerceController._HandleReceipt(self, receiptInfo: ReceiptInfo): Enum.ProductPurchaseDecision
-	print(string.format("[CommerceController] Receipt processed: %s (ID: %d)", receiptInfo.ProductId, receiptInfo.PurchaseId))
+	print(
+		string.format(
+			"[CommerceController] Receipt processed: %s (ID: %d)",
+			receiptInfo.ProductId,
+			receiptInfo.PurchaseId
+		)
+	)
 	return Enum.ProductPurchaseDecision.PurchaseGranted
 end
 

@@ -34,7 +34,6 @@ function CloudSyncService._HandleMessage(data: { [string]: any })
 		local registryName = data.registryName :: string
 		print(string.format("[CloudSyncService] Hot-reload requested for registry: %s", registryName))
 		CloudSyncService._BroadcastToPlayers("RegistryUpdated", { registryName = registryName })
-
 	elseif action == "update_asset" then
 		local assetType = data.assetType :: string
 		local assetId = data.assetId :: number
@@ -45,7 +44,6 @@ function CloudSyncService._HandleMessage(data: { [string]: any })
 			assetId = assetId,
 			registryPath = registryPath,
 		})
-
 	elseif action == "invalidate_cache" then
 		local cacheKey = data.cacheKey :: string
 		print(string.format("[CloudSyncService] Cache invalidation: %s", cacheKey))

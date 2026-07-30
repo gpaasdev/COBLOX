@@ -49,14 +49,12 @@ function LiveEventService._HandleCommand(player: Player, command: string, payloa
 			return
 		end
 		LiveEventService._LoadBrandAsset(assetId, payload.position or Vector3.new())
-
 	elseif command == "start_event" then
 		local eventId = payload.eventId
 		if type(eventId) ~= "string" then
 			return
 		end
 		LiveEventService._StartEvent(eventId, payload)
-
 	elseif command == "end_event" then
 		local eventId = payload.eventId
 		if type(eventId) ~= "string" then
