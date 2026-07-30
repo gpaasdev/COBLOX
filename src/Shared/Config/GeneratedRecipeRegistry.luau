@@ -112,14 +112,6 @@ RecipeRegistry_data["RCP_CELESTIAL_KEYSTONE"] = {
 	OutputType = "BiomePass",
 }
 
-RecipeRegistry_data["RCP_FAIRY_PORTAL_KEYSTONE"] = {
-	Id = "RCP_FAIRY_PORTAL_KEYSTONE",
-	Name = "Celestial Keystone",
-	Description = "Batu kunci untuk membuka portal ke Fairytale Realm.",
-	Ingredients = {"AetherCrystal_Ore", "FairyDust", "MoonBloom_Petal", "GoldVein_Ore"},
-	OutputType = "Key",
-}
-
 RecipeRegistry_data["RCP_COPPER_ALLOY"] = {
 	Id = "RCP_COPPER_ALLOY",
 	Name = "Copper Alloy Casting",
@@ -150,6 +142,14 @@ RecipeRegistry_data["RCP_ENCHANTED_ELIXIR"] = {
 	Description = "Ramuan ajaib dari bahan-bahan enchanted.",
 	Ingredients = {"MoonBloom_Petal", "EnchantedWood", "AetherCrystal_Shard"},
 	OutputType = "Consumable",
+}
+
+RecipeRegistry_data["RCP_FAIRY_PORTAL_KEYSTONE"] = {
+	Id = "RCP_FAIRY_PORTAL_KEYSTONE",
+	Name = "Celestial Keystone",
+	Description = "Batu kunci untuk membuka portal ke Fairytale Realm.",
+	Ingredients = {"AetherCrystal_Ore", "FairyDust", "MoonBloom_Petal", "GoldVein_Ore"},
+	OutputType = "Key",
 }
 
 RecipeRegistry_data["RCP_FAIRY_WING"] = {
