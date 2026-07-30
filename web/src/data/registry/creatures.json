@@ -1,13 +1,8 @@
 [
   {
-    "Id": "Creature_Construct_Lvl4",
-    "Name": "Construct Elite Grade 4",
-    "Health": 380
-  },
-  {
-    "Id": "Creature_Parasite_Lvl6",
-    "Name": "Parasite Elite Grade 6",
-    "Health": 175
+    "Id": "Creature_Beast_Lvl10",
+    "Name": "Beast Elite Grade 10",
+    "Health": 370
   },
   {
     "Id": "fairy_WispHunter_Lvl10",
@@ -15,264 +10,9 @@
     "Health": 296
   },
   {
-    "Id": "Creature_Beast_Lvl3",
-    "Name": "Beast Elite Grade 3",
-    "Health": 160
-  },
-  {
-    "Id": "Creature_Dragon_Lvl6",
-    "Name": "Dragon Elite Grade 6",
-    "Health": 750
-  },
-  {
-    "Id": "Creature_Parasite_Lvl5",
-    "Name": "Parasite Elite Grade 5",
-    "Health": 154
-  },
-  {
-    "Id": "Creature_Wisp_Lvl8",
-    "Name": "Wisp Elite Grade 8",
-    "Health": 186
-  },
-  {
-    "Id": "Creature_Beast_Lvl7",
-    "Name": "Beast Elite Grade 7",
-    "Health": 280
-  },
-  {
-    "Id": "fairy_MushroomGuardian_Lvl1",
-    "Name": "Mushroom Guardian Lvl 1",
-    "Health": 150
-  },
-  {
-    "Id": "Creature_Parasite_Lvl1",
-    "Name": "Parasite Elite Grade 1",
-    "Health": 70
-  },
-  {
-    "Id": "Creature_Wisp_Lvl9",
-    "Name": "Wisp Elite Grade 9",
-    "Health": 204
-  },
-  {
-    "Id": "Creature_Abomination_Lvl10",
-    "Name": "Abomination Elite Grade 10",
-    "Health": 666
-  },
-  {
-    "Id": "Creature_Construct_Lvl9",
-    "Name": "Construct Elite Grade 9",
-    "Health": 680
-  },
-  {
-    "Id": "Creature_Dragon_Lvl1",
-    "Name": "Dragon Elite Grade 1",
-    "Health": 300
-  },
-  {
-    "Id": "Creature_Abomination_Lvl9",
-    "Name": "Abomination Elite Grade 9",
-    "Health": 612
-  },
-  {
-    "Id": "Creature_Guardian_Lvl8",
-    "Name": "Guardian Elite Grade 8",
-    "Health": 682
-  },
-  {
-    "Id": "Creature_Construct_Lvl3",
-    "Name": "Construct Elite Grade 3",
-    "Health": 320
-  },
-  {
-    "Id": "Creature_Construct_Lvl10",
-    "Name": "Construct Elite Grade 10",
-    "Health": 740
-  },
-  {
-    "Id": "Creature_Parasite_Lvl10",
-    "Name": "Parasite Elite Grade 10",
-    "Health": 259
-  },
-  {
-    "Id": "Creature_Beast_Lvl6",
-    "Name": "Beast Elite Grade 6",
-    "Health": 250
-  },
-  {
-    "Id": "Creature_Abomination_Lvl1",
-    "Name": "Abomination Elite Grade 1",
-    "Health": 180
-  },
-  {
-    "Id": "Creature_Golem_Lvl3",
-    "Name": "Golem Elite Grade 3",
-    "Health": 400
-  },
-  {
-    "Id": "Creature_Abomination_Lvl5",
-    "Name": "Abomination Elite Grade 5",
-    "Health": 396
-  },
-  {
-    "Id": "Creature_Wisp_Lvl10",
-    "Name": "Wisp Elite Grade 10",
-    "Health": 222
-  },
-  {
-    "Id": "Creature_Dragon_Lvl9",
-    "Name": "Dragon Elite Grade 9",
-    "Health": 1020
-  },
-  {
-    "Id": "fairy_WispHunter_Lvl7",
-    "Name": "Wisp Hunter Lvl 7",
-    "Health": 224
-  },
-  {
-    "Id": "Creature_Dragon_Lvl2",
-    "Name": "Dragon Elite Grade 2",
-    "Health": 390
-  },
-  {
-    "Id": "Creature_Dragon_Lvl3",
-    "Name": "Dragon Elite Grade 3",
-    "Health": 480
-  },
-  {
-    "Id": "VoidBeast",
-    "Name": "Void Abyssal Beast",
-    "Health": 1500
-  },
-  {
-    "Id": "Creature_Golem_Lvl1",
-    "Name": "Golem Elite Grade 1",
-    "Health": 250
-  },
-  {
-    "Id": "Creature_Beast_Lvl8",
-    "Name": "Beast Elite Grade 8",
-    "Health": 310
-  },
-  {
-    "Id": "Creature_Construct_Lvl6",
-    "Name": "Construct Elite Grade 6",
-    "Health": 500
-  },
-  {
-    "Id": "Creature_Golem_Lvl2",
-    "Name": "Golem Elite Grade 2",
-    "Health": 325
-  },
-  {
-    "Id": "Creature_Construct_Lvl5",
-    "Name": "Construct Elite Grade 5",
-    "Health": 440
-  },
-  {
-    "Id": "Creature_Parasite_Lvl3",
-    "Name": "Parasite Elite Grade 3",
-    "Health": 112
-  },
-  {
-    "Id": "Creature_Guardian_Lvl9",
-    "Name": "Guardian Elite Grade 9",
-    "Health": 748
-  },
-  {
-    "Id": "Creature_Construct_Lvl8",
-    "Name": "Construct Elite Grade 8",
-    "Health": 620
-  },
-  {
-    "Id": "Creature_Construct_Lvl2",
-    "Name": "Construct Elite Grade 2",
-    "Health": 260
-  },
-  {
-    "Id": "Creature_Parasite_Lvl9",
-    "Name": "Parasite Elite Grade 9",
-    "Health": 238
-  },
-  {
-    "Id": "fairy_MushroomGuardian_Lvl5",
-    "Name": "Mushroom Guardian Lvl 5",
-    "Health": 330
-  },
-  {
-    "Id": "Creature_Guardian_Lvl5",
-    "Name": "Guardian Elite Grade 5",
-    "Health": 484
-  },
-  {
-    "Id": "Creature_Beast_Lvl4",
-    "Name": "Beast Elite Grade 4",
-    "Health": 190
-  },
-  {
-    "Id": "Creature_Golem_Lvl9",
-    "Name": "Golem Elite Grade 9",
-    "Health": 850
-  },
-  {
-    "Id": "fairy_WispHunter_Lvl1",
-    "Name": "Wisp Hunter Lvl 1",
-    "Health": 80
-  },
-  {
-    "Id": "Creature_Guardian_Lvl6",
-    "Name": "Guardian Elite Grade 6",
-    "Health": 550
-  },
-  {
-    "Id": "Creature_Abomination_Lvl3",
-    "Name": "Abomination Elite Grade 3",
-    "Health": 288
-  },
-  {
-    "Id": "Creature_Dragon_Lvl7",
-    "Name": "Dragon Elite Grade 7",
-    "Health": 840
-  },
-  {
-    "Id": "Creature_Dragon_Lvl8",
-    "Name": "Dragon Elite Grade 8",
-    "Health": 930
-  },
-  {
-    "Id": "fairy_MushroomGuardian_Lvl3",
-    "Name": "Mushroom Guardian Lvl 3",
-    "Health": 240
-  },
-  {
-    "Id": "Creature_Beast_Lvl1",
-    "Name": "Beast Elite Grade 1",
-    "Health": 100
-  },
-  {
-    "Id": "Creature_Construct_Lvl1",
-    "Name": "Construct Elite Grade 1",
-    "Health": 200
-  },
-  {
-    "Id": "Creature_Golem_Lvl4",
-    "Name": "Golem Elite Grade 4",
-    "Health": 475
-  },
-  {
-    "Id": "Creature_Guardian_Lvl3",
-    "Name": "Guardian Elite Grade 3",
-    "Health": 352
-  },
-  {
-    "Id": "Creature_Golem_Lvl10",
-    "Name": "Golem Elite Grade 10",
-    "Health": 925
-  },
-  {
-    "Id": "Creature_Beast_Lvl10",
-    "Name": "Beast Elite Grade 10",
-    "Health": 370
+    "Id": "fairy_WispHunter_Lvl5",
+    "Name": "Wisp Hunter Lvl 5",
+    "Health": 176
   },
   {
     "Id": "Creature_Abomination_Lvl4",
@@ -280,164 +20,14 @@
     "Health": 342
   },
   {
-    "Id": "Creature_Construct_Lvl7",
-    "Name": "Construct Elite Grade 7",
-    "Health": 560
+    "Id": "Creature_Construct_Lvl1",
+    "Name": "Construct Elite Grade 1",
+    "Health": 200
   },
   {
-    "Id": "Creature_Wisp_Lvl7",
-    "Name": "Wisp Elite Grade 7",
-    "Health": 168
-  },
-  {
-    "Id": "Creature_Beast_Lvl5",
-    "Name": "Beast Elite Grade 5",
-    "Health": 220
-  },
-  {
-    "Id": "Creature_Guardian_Lvl2",
-    "Name": "Guardian Elite Grade 2",
-    "Health": 286
-  },
-  {
-    "Id": "fairy_WispHunter_Lvl5",
-    "Name": "Wisp Hunter Lvl 5",
-    "Health": 176
-  },
-  {
-    "Id": "fairy_MushroomGuardian_Lvl7",
-    "Name": "Mushroom Guardian Lvl 7",
-    "Health": 420
-  },
-  {
-    "Id": "Creature_Wisp_Lvl2",
-    "Name": "Wisp Elite Grade 2",
-    "Health": 78
-  },
-  {
-    "Id": "Creature_Guardian_Lvl10",
-    "Name": "Guardian Elite Grade 10",
-    "Health": 814
-  },
-  {
-    "Id": "Creature_Wisp_Lvl1",
-    "Name": "Wisp Elite Grade 1",
-    "Health": 60
-  },
-  {
-    "Id": "Creature_Guardian_Lvl4",
-    "Name": "Guardian Elite Grade 4",
-    "Health": 418
-  },
-  {
-    "Id": "Creature_Golem_Lvl7",
-    "Name": "Golem Elite Grade 7",
-    "Health": 700
-  },
-  {
-    "Id": "Creature_Abomination_Lvl2",
-    "Name": "Abomination Elite Grade 2",
-    "Health": 234
-  },
-  {
-    "Id": "Creature_Beast_Lvl9",
-    "Name": "Beast Elite Grade 9",
-    "Health": 340
-  },
-  {
-    "Id": "Creature_Wisp_Lvl3",
-    "Name": "Wisp Elite Grade 3",
-    "Health": 96
-  },
-  {
-    "Id": "Creature_Guardian_Lvl7",
-    "Name": "Guardian Elite Grade 7",
-    "Health": 616
-  },
-  {
-    "Id": "Creature_Dragon_Lvl5",
-    "Name": "Dragon Elite Grade 5",
-    "Health": 660
-  },
-  {
-    "Id": "fairy_WispHunter_Lvl3",
-    "Name": "Wisp Hunter Lvl 3",
-    "Health": 128
-  },
-  {
-    "Id": "Creature_Parasite_Lvl4",
-    "Name": "Parasite Elite Grade 4",
-    "Health": 133
-  },
-  {
-    "Id": "Creature_Golem_Lvl8",
-    "Name": "Golem Elite Grade 8",
-    "Health": 775
-  },
-  {
-    "Id": "Creature_Golem_Lvl6",
-    "Name": "Golem Elite Grade 6",
-    "Health": 625
-  },
-  {
-    "Id": "Creature_Abomination_Lvl8",
-    "Name": "Abomination Elite Grade 8",
-    "Health": 558
-  },
-  {
-    "Id": "Creature_Parasite_Lvl2",
-    "Name": "Parasite Elite Grade 2",
-    "Health": 91
-  },
-  {
-    "Id": "Creature_Abomination_Lvl6",
-    "Name": "Abomination Elite Grade 6",
-    "Health": 450
-  },
-  {
-    "Id": "Creature_Dragon_Lvl10",
-    "Name": "Dragon Elite Grade 10",
-    "Health": 1110
-  },
-  {
-    "Id": "fairy_MushroomGuardian_Lvl10",
-    "Name": "Mushroom Guardian Lvl 10",
-    "Health": 555
-  },
-  {
-    "Id": "Creature_Guardian_Lvl1",
-    "Name": "Guardian Elite Grade 1",
-    "Health": 220
-  },
-  {
-    "Id": "Creature_Wisp_Lvl4",
-    "Name": "Wisp Elite Grade 4",
-    "Health": 114
-  },
-  {
-    "Id": "Creature_Golem_Lvl5",
-    "Name": "Golem Elite Grade 5",
-    "Health": 550
-  },
-  {
-    "Id": "Creature_Beast_Lvl2",
-    "Name": "Beast Elite Grade 2",
-    "Health": 130
-  },
-  {
-    "Id": "Creature_Dragon_Lvl4",
-    "Name": "Dragon Elite Grade 4",
-    "Health": 570
-  },
-  {
-    "Id": "Creature_Abomination_Lvl7",
-    "Name": "Abomination Elite Grade 7",
-    "Health": 504
-  },
-  {
-    "Id": "Creature_Parasite_Lvl7",
-    "Name": "Parasite Elite Grade 7",
-    "Health": 196
+    "Id": "Creature_Beast_Lvl8",
+    "Name": "Beast Elite Grade 8",
+    "Health": 310
   },
   {
     "Id": "Creature_Wisp_Lvl5",
@@ -445,13 +35,423 @@
     "Health": 132
   },
   {
-    "Id": "Creature_Wisp_Lvl6",
-    "Name": "Wisp Elite Grade 6",
+    "Id": "Creature_Parasite_Lvl1",
+    "Name": "Parasite Elite Grade 1",
+    "Health": 70
+  },
+  {
+    "Id": "Creature_Golem_Lvl3",
+    "Name": "Golem Elite Grade 3",
+    "Health": 400
+  },
+  {
+    "Id": "Creature_Golem_Lvl10",
+    "Name": "Golem Elite Grade 10",
+    "Health": 925
+  },
+  {
+    "Id": "Creature_Dragon_Lvl3",
+    "Name": "Dragon Elite Grade 3",
+    "Health": 480
+  },
+  {
+    "Id": "Creature_Abomination_Lvl8",
+    "Name": "Abomination Elite Grade 8",
+    "Health": 558
+  },
+  {
+    "Id": "Creature_Wisp_Lvl9",
+    "Name": "Wisp Elite Grade 9",
+    "Health": 204
+  },
+  {
+    "Id": "Creature_Beast_Lvl4",
+    "Name": "Beast Elite Grade 4",
+    "Health": 190
+  },
+  {
+    "Id": "Creature_Guardian_Lvl2",
+    "Name": "Guardian Elite Grade 2",
+    "Health": 286
+  },
+  {
+    "Id": "Creature_Abomination_Lvl10",
+    "Name": "Abomination Elite Grade 10",
+    "Health": 666
+  },
+  {
+    "Id": "fairy_MushroomGuardian_Lvl7",
+    "Name": "Mushroom Guardian Lvl 7",
+    "Health": 420
+  },
+  {
+    "Id": "Creature_Guardian_Lvl3",
+    "Name": "Guardian Elite Grade 3",
+    "Health": 352
+  },
+  {
+    "Id": "Creature_Beast_Lvl5",
+    "Name": "Beast Elite Grade 5",
+    "Health": 220
+  },
+  {
+    "Id": "Creature_Wisp_Lvl8",
+    "Name": "Wisp Elite Grade 8",
+    "Health": 186
+  },
+  {
+    "Id": "Creature_Abomination_Lvl9",
+    "Name": "Abomination Elite Grade 9",
+    "Health": 612
+  },
+  {
+    "Id": "Creature_Dragon_Lvl2",
+    "Name": "Dragon Elite Grade 2",
+    "Health": 390
+  },
+  {
+    "Id": "Creature_Golem_Lvl2",
+    "Name": "Golem Elite Grade 2",
+    "Health": 325
+  },
+  {
+    "Id": "Creature_Wisp_Lvl4",
+    "Name": "Wisp Elite Grade 4",
+    "Health": 114
+  },
+  {
+    "Id": "Creature_Beast_Lvl9",
+    "Name": "Beast Elite Grade 9",
+    "Health": 340
+  },
+  {
+    "Id": "Creature_Abomination_Lvl5",
+    "Name": "Abomination Elite Grade 5",
+    "Health": 396
+  },
+  {
+    "Id": "Creature_Dragon_Lvl5",
+    "Name": "Dragon Elite Grade 5",
+    "Health": 660
+  },
+  {
+    "Id": "Creature_Beast_Lvl2",
+    "Name": "Beast Elite Grade 2",
+    "Health": 130
+  },
+  {
+    "Id": "Creature_Golem_Lvl9",
+    "Name": "Golem Elite Grade 9",
+    "Health": 850
+  },
+  {
+    "Id": "Creature_Guardian_Lvl4",
+    "Name": "Guardian Elite Grade 4",
+    "Health": 418
+  },
+  {
+    "Id": "fairy_WispHunter_Lvl3",
+    "Name": "Wisp Hunter Lvl 3",
+    "Health": 128
+  },
+  {
+    "Id": "Creature_Dragon_Lvl9",
+    "Name": "Dragon Elite Grade 9",
+    "Health": 1020
+  },
+  {
+    "Id": "Creature_Abomination_Lvl2",
+    "Name": "Abomination Elite Grade 2",
+    "Health": 234
+  },
+  {
+    "Id": "Creature_Construct_Lvl7",
+    "Name": "Construct Elite Grade 7",
+    "Health": 560
+  },
+  {
+    "Id": "Creature_Wisp_Lvl3",
+    "Name": "Wisp Elite Grade 3",
+    "Health": 96
+  },
+  {
+    "Id": "Creature_Parasite_Lvl7",
+    "Name": "Parasite Elite Grade 7",
+    "Health": 196
+  },
+  {
+    "Id": "Creature_Golem_Lvl5",
+    "Name": "Golem Elite Grade 5",
+    "Health": 550
+  },
+  {
+    "Id": "Creature_Guardian_Lvl8",
+    "Name": "Guardian Elite Grade 8",
+    "Health": 682
+  },
+  {
+    "Id": "Creature_Construct_Lvl10",
+    "Name": "Construct Elite Grade 10",
+    "Health": 740
+  },
+  {
+    "Id": "Creature_Guardian_Lvl9",
+    "Name": "Guardian Elite Grade 9",
+    "Health": 748
+  },
+  {
+    "Id": "Creature_Parasite_Lvl6",
+    "Name": "Parasite Elite Grade 6",
+    "Health": 175
+  },
+  {
+    "Id": "Creature_Golem_Lvl4",
+    "Name": "Golem Elite Grade 4",
+    "Health": 475
+  },
+  {
+    "Id": "Creature_Wisp_Lvl2",
+    "Name": "Wisp Elite Grade 2",
+    "Health": 78
+  },
+  {
+    "Id": "Creature_Construct_Lvl6",
+    "Name": "Construct Elite Grade 6",
+    "Health": 500
+  },
+  {
+    "Id": "Creature_Abomination_Lvl3",
+    "Name": "Abomination Elite Grade 3",
+    "Health": 288
+  },
+  {
+    "Id": "Creature_Dragon_Lvl8",
+    "Name": "Dragon Elite Grade 8",
+    "Health": 930
+  },
+  {
+    "Id": "Creature_Dragon_Lvl10",
+    "Name": "Dragon Elite Grade 10",
+    "Health": 1110
+  },
+  {
+    "Id": "VoidBeast",
+    "Name": "Void Abyssal Beast",
+    "Health": 1500
+  },
+  {
+    "Id": "fairy_MushroomGuardian_Lvl1",
+    "Name": "Mushroom Guardian Lvl 1",
     "Health": 150
+  },
+  {
+    "Id": "Creature_Guardian_Lvl5",
+    "Name": "Guardian Elite Grade 5",
+    "Health": 484
+  },
+  {
+    "Id": "Creature_Golem_Lvl8",
+    "Name": "Golem Elite Grade 8",
+    "Health": 775
+  },
+  {
+    "Id": "Creature_Beast_Lvl3",
+    "Name": "Beast Elite Grade 3",
+    "Health": 160
+  },
+  {
+    "Id": "Creature_Dragon_Lvl4",
+    "Name": "Dragon Elite Grade 4",
+    "Health": 570
+  },
+  {
+    "Id": "Creature_Guardian_Lvl6",
+    "Name": "Guardian Elite Grade 6",
+    "Health": 550
+  },
+  {
+    "Id": "Creature_Parasite_Lvl9",
+    "Name": "Parasite Elite Grade 9",
+    "Health": 238
+  },
+  {
+    "Id": "Creature_Construct_Lvl9",
+    "Name": "Construct Elite Grade 9",
+    "Health": 680
+  },
+  {
+    "Id": "Creature_Dragon_Lvl7",
+    "Name": "Dragon Elite Grade 7",
+    "Health": 840
+  },
+  {
+    "Id": "Creature_Parasite_Lvl5",
+    "Name": "Parasite Elite Grade 5",
+    "Health": 154
+  },
+  {
+    "Id": "Creature_Golem_Lvl7",
+    "Name": "Golem Elite Grade 7",
+    "Health": 700
+  },
+  {
+    "Id": "Creature_Wisp_Lvl1",
+    "Name": "Wisp Elite Grade 1",
+    "Health": 60
+  },
+  {
+    "Id": "Creature_Construct_Lvl5",
+    "Name": "Construct Elite Grade 5",
+    "Health": 440
+  },
+  {
+    "Id": "fairy_WispHunter_Lvl1",
+    "Name": "Wisp Hunter Lvl 1",
+    "Health": 80
+  },
+  {
+    "Id": "Creature_Abomination_Lvl1",
+    "Name": "Abomination Elite Grade 1",
+    "Health": 180
+  },
+  {
+    "Id": "Creature_Construct_Lvl4",
+    "Name": "Construct Elite Grade 4",
+    "Health": 380
+  },
+  {
+    "Id": "Creature_Parasite_Lvl4",
+    "Name": "Parasite Elite Grade 4",
+    "Health": 133
+  },
+  {
+    "Id": "Creature_Golem_Lvl6",
+    "Name": "Golem Elite Grade 6",
+    "Health": 625
+  },
+  {
+    "Id": "Creature_Dragon_Lvl6",
+    "Name": "Dragon Elite Grade 6",
+    "Health": 750
+  },
+  {
+    "Id": "Creature_Beast_Lvl1",
+    "Name": "Beast Elite Grade 1",
+    "Health": 100
+  },
+  {
+    "Id": "Creature_Construct_Lvl8",
+    "Name": "Construct Elite Grade 8",
+    "Health": 620
   },
   {
     "Id": "Creature_Parasite_Lvl8",
     "Name": "Parasite Elite Grade 8",
     "Health": 217
+  },
+  {
+    "Id": "Creature_Guardian_Lvl7",
+    "Name": "Guardian Elite Grade 7",
+    "Health": 616
+  },
+  {
+    "Id": "fairy_MushroomGuardian_Lvl3",
+    "Name": "Mushroom Guardian Lvl 3",
+    "Health": 240
+  },
+  {
+    "Id": "Creature_Wisp_Lvl10",
+    "Name": "Wisp Elite Grade 10",
+    "Health": 222
+  },
+  {
+    "Id": "Creature_Parasite_Lvl3",
+    "Name": "Parasite Elite Grade 3",
+    "Health": 112
+  },
+  {
+    "Id": "Creature_Golem_Lvl1",
+    "Name": "Golem Elite Grade 1",
+    "Health": 250
+  },
+  {
+    "Id": "Creature_Wisp_Lvl7",
+    "Name": "Wisp Elite Grade 7",
+    "Health": 168
+  },
+  {
+    "Id": "Creature_Construct_Lvl3",
+    "Name": "Construct Elite Grade 3",
+    "Health": 320
+  },
+  {
+    "Id": "Creature_Abomination_Lvl6",
+    "Name": "Abomination Elite Grade 6",
+    "Health": 450
+  },
+  {
+    "Id": "fairy_WispHunter_Lvl7",
+    "Name": "Wisp Hunter Lvl 7",
+    "Health": 224
+  },
+  {
+    "Id": "Creature_Beast_Lvl6",
+    "Name": "Beast Elite Grade 6",
+    "Health": 250
+  },
+  {
+    "Id": "Creature_Guardian_Lvl10",
+    "Name": "Guardian Elite Grade 10",
+    "Health": 814
+  },
+  {
+    "Id": "fairy_MushroomGuardian_Lvl10",
+    "Name": "Mushroom Guardian Lvl 10",
+    "Health": 555
+  },
+  {
+    "Id": "Creature_Dragon_Lvl1",
+    "Name": "Dragon Elite Grade 1",
+    "Health": 300
+  },
+  {
+    "Id": "Creature_Beast_Lvl7",
+    "Name": "Beast Elite Grade 7",
+    "Health": 280
+  },
+  {
+    "Id": "Creature_Guardian_Lvl1",
+    "Name": "Guardian Elite Grade 1",
+    "Health": 220
+  },
+  {
+    "Id": "fairy_MushroomGuardian_Lvl5",
+    "Name": "Mushroom Guardian Lvl 5",
+    "Health": 330
+  },
+  {
+    "Id": "Creature_Abomination_Lvl7",
+    "Name": "Abomination Elite Grade 7",
+    "Health": 504
+  },
+  {
+    "Id": "Creature_Construct_Lvl2",
+    "Name": "Construct Elite Grade 2",
+    "Health": 260
+  },
+  {
+    "Id": "Creature_Wisp_Lvl6",
+    "Name": "Wisp Elite Grade 6",
+    "Health": 150
+  },
+  {
+    "Id": "Creature_Parasite_Lvl2",
+    "Name": "Parasite Elite Grade 2",
+    "Health": 91
+  },
+  {
+    "Id": "Creature_Parasite_Lvl10",
+    "Name": "Parasite Elite Grade 10",
+    "Health": 259
   }
 ]
