@@ -12,7 +12,7 @@ local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local PlayerDataService = require(script.Parent.PlayerDataService)
 local CovenConfig = require(ReplicatedStorage.Shared.Configuration.CovenConfig)
 
-local CovenService = { Name = "CovenService", ServiceStatus = "Production", }
+local CovenService = { Name = "CovenService", ServiceStatus = "Production" }
 
 type CovenData = {
 	Id: string,

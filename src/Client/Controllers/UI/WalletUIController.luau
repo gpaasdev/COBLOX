@@ -22,7 +22,9 @@ function WalletUIController.Init(self, parentGui, maid)
 	self.maid = Maid.new()
 
 	if maid then
-		maid:GiveTask(function() self.maid:Destroy() end)
+		maid:GiveTask(function()
+			self.maid:Destroy()
+		end)
 	end
 
 	-- Aura Pill
@@ -210,7 +212,8 @@ function WalletUIController.UpdateWallet(self, aura: number, sparks: number, coi
 		self.walletSparksLabel.Text = LocalizationController.Get("HUD_SPARKS", sparks)
 	end
 	if self.walletCoinLabel then
-		self.walletCoinLabel.Text = string.format(LocalizationController.Get("WALLET_FORMAT_COINS"), tostring(coins or 0))
+		self.walletCoinLabel.Text =
+			string.format(LocalizationController.Get("WALLET_FORMAT_COINS"), tostring(coins or 0))
 	end
 	if self.walletGemLabel then
 		self.walletGemLabel.Text = string.format(LocalizationController.Get("WALLET_FORMAT_GEMS"), tostring(gems or 0))

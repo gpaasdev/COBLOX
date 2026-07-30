@@ -8,11 +8,9 @@ local CombatVFXController = {}
 CombatVFXController.Name = "CombatVFXController"
 CombatVFXController.ServiceStatus = "Production"
 
-function CombatVFXController.Init(self)
-end
+function CombatVFXController.Init(self) end
 
-function CombatVFXController.Start(self)
-end
+function CombatVFXController.Start(self) end
 
 function CombatVFXController.PlayTelegraph(mobId: string)
 	print("[VFX] RED TELEGRAPH: Monster is winding up to attack!")

@@ -5,7 +5,9 @@ local UserInputService = game:GetService("UserInputService")
 local HapticService = game:GetService("HapticService")
 
 local LocalizationController = require(script.Parent.Parent:WaitForChild("LocalizationController") :: any)
-local UIAnimationEngine = require(script.Parent.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("UIAnimationEngine") :: any)
+local UIAnimationEngine = require(
+	script.Parent.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("UIAnimationEngine") :: any
+)
 local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local COLOR_BG_DARK = Color3.fromRGB(30, 27, 75)
@@ -25,7 +27,9 @@ function NotificationController.Init(self, parentGui, maid)
 	self.parentGui = parentGui
 
 	if maid then
-		maid:GiveTask(function() self.maid:Destroy() end)
+		maid:GiveTask(function()
+			self.maid:Destroy()
+		end)
 	end
 
 	self.notificationLabel = Instance.new("TextLabel")

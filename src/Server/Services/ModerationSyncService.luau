@@ -15,8 +15,7 @@ function ModerationSyncService.Init()
 	end)
 end
 
-function ModerationSyncService.Start()
-end
+function ModerationSyncService.Start() end
 
 function ModerationSyncService.CheckPlayerRestriction(player: Player)
 	-- In production, checks Open Cloud User Restrictions / Ban API payload

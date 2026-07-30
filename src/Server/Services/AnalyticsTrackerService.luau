@@ -11,8 +11,7 @@ function AnalyticsTrackerService.Init(self: any, Registry: any)
 	print("[AnalyticsTrackerService] Initializing Game Analytics & Economy Flow Tracking...")
 end
 
-function AnalyticsTrackerService.Start(self: any, Registry: any)
-end
+function AnalyticsTrackerService.Start(self: any, Registry: any) end
 
 function AnalyticsTrackerService.LogEconomyTransaction(
 	player: Player,

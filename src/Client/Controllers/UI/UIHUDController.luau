@@ -28,7 +28,9 @@ function UIHUDController.Init(self, parentGui, maid)
 	self.parentGui = parentGui
 
 	if maid then
-		maid:GiveTask(function() self.maid:Destroy() end)
+		maid:GiveTask(function()
+			self.maid:Destroy()
+		end)
 	end
 
 	-- 0. Main Quest Banner (Top-Left Onboarding & Objective HUD)

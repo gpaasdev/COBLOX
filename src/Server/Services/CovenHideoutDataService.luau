@@ -10,11 +10,9 @@ local CovenHideoutDataService = {
 	Name = "CovenHideoutData",
 }
 
-function CovenHideoutDataService.Init()
-end
+function CovenHideoutDataService.Init() end
 
-function CovenHideoutDataService.Start()
-end
+function CovenHideoutDataService.Start() end
 
 type StructureData = {
 	Id: string,

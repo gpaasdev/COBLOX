@@ -187,7 +187,11 @@ function EggService.HatchEgg(player: Player, eggId: string): ServiceResult<{ Pet
 
 	for _, entry in ipairs(config.Pool) do
 		local weight = entry.Weight
-		if entry.SpiritId and GeneratedSpiritRegistry[entry.SpiritId] and GeneratedSpiritRegistry[entry.SpiritId].Rarity == "Legendary" then
+		if
+			entry.SpiritId
+			and GeneratedSpiritRegistry[entry.SpiritId]
+			and GeneratedSpiritRegistry[entry.SpiritId].Rarity == "Legendary"
+		then
 			weight = math.floor(weight * totalLuckMultiplier)
 		end
 		totalWeight += weight

@@ -7,11 +7,9 @@ local BusinessService = {
 	Name = "Business",
 }
 
-function BusinessService.Init()
-end
+function BusinessService.Init() end
 
-function BusinessService.Start()
-end
+function BusinessService.Start() end
 local MacroEconomyService = require(script.Parent.MacroEconomyService)
 local PlayerDataService = require(script.Parent.PlayerDataService)
 local EconomyService = require(script.Parent.EconomyService)

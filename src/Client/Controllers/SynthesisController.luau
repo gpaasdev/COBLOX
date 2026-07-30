@@ -352,7 +352,17 @@ function SynthesisController._CreateModal()
 	selectorLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 	selectorLayout.Parent = selectorContainer
 
-	local materials = { "Iron_Ore", "Copper_Ore", "Water Element", "Fire Element", "Quartz", "AstralIron", "PyroEssence", "HydroCrystal", "Coal" }
+	local materials = {
+		"Iron_Ore",
+		"Copper_Ore",
+		"Water Element",
+		"Fire Element",
+		"Quartz",
+		"AstralIron",
+		"PyroEssence",
+		"HydroCrystal",
+		"Coal",
+	}
 	for _, mat in ipairs(materials) do
 		local matBtn = Instance.new("TextButton")
 		matBtn.Name = "Mat_" .. mat

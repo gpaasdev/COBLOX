@@ -123,8 +123,7 @@
       },
       "Packages": {
         "$path": "Packages"
-      },
-
+      }
     },
     "ServerScriptService": {
       "$className": "ServerScriptService",

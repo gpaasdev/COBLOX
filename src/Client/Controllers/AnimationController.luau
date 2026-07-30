@@ -1,7 +1,9 @@
 --!strict
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Animator = Players.LocalPlayer.Character and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Animator
+local Animator = Players.LocalPlayer.Character
+	and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+	and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").Animator
 
 local AssetManifest = require(ReplicatedStorage.Shared.Assets.AssetManifest)
 local Maid = require(ReplicatedStorage.Shared.Utility.Maid)
@@ -35,7 +37,9 @@ function AnimationController._LoadAnimator(char: Model)
 end
 
 function AnimationController.PlaySwing(self, comboStep: number?)
-	if not Animator then return end
+	if not Animator then
+		return
+	end
 	AnimationController._StopCurrent()
 
 	local animIds = {
@@ -44,7 +48,9 @@ function AnimationController.PlaySwing(self, comboStep: number?)
 		AssetManifest.Animations.SwordSwing3,
 	}
 	local animId = animIds[comboStep or 1] or animIds[1]
-	if animId == "rbxassetid://10288498712" then return end
+	if animId == "rbxassetid://10288498712" then
+		return
+	end
 
 	local ok, anim = pcall(function()
 		return Animator:LoadAnimation({
@@ -61,11 +67,15 @@ function AnimationController.PlaySwing(self, comboStep: number?)
 end
 
 function AnimationController.PlayParry(self)
-	if not Animator then return end
+	if not Animator then
+		return
+	end
 	AnimationController._StopCurrent()
 
 	local animId = AssetManifest.Animations.Parry
-	if animId == "rbxassetid://10288498712" then return end
+	if animId == "rbxassetid://10288498712" then
+		return
+	end
 
 	local ok, anim = pcall(function()
 		return Animator:LoadAnimation({
@@ -82,11 +92,15 @@ function AnimationController.PlayParry(self)
 end
 
 function AnimationController.PlayDash(self)
-	if not Animator then return end
+	if not Animator then
+		return
+	end
 	AnimationController._StopCurrent()
 
 	local animId = AssetManifest.Animations.Dash
-	if animId == "rbxassetid://10288498712" then return end
+	if animId == "rbxassetid://10288498712" then
+		return
+	end
 
 	local ok, anim = pcall(function()
 		return Animator:LoadAnimation({
@@ -103,11 +117,15 @@ function AnimationController.PlayDash(self)
 end
 
 function AnimationController.PlayStun(self)
-	if not Animator then return end
+	if not Animator then
+		return
+	end
 	AnimationController._StopCurrent()
 
 	local animId = AssetManifest.Animations.Stun
-	if animId == "rbxassetid://10288498712" then return end
+	if animId == "rbxassetid://10288498712" then
+		return
+	end
 
 	local ok, anim = pcall(function()
 		return Animator:LoadAnimation({
@@ -124,11 +142,15 @@ function AnimationController.PlayStun(self)
 end
 
 function AnimationController.PlayEquip(self)
-	if not Animator then return end
+	if not Animator then
+		return
+	end
 	AnimationController._StopCurrent()
 
 	local animId = AssetManifest.Animations.Equip
-	if animId == "rbxassetid://10288498712" then return end
+	if animId == "rbxassetid://10288498712" then
+		return
+	end
 
 	local ok, anim = pcall(function()
 		return Animator:LoadAnimation({

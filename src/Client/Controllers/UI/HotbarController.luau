@@ -4,7 +4,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 
 local LocalizationController = require(script.Parent.Parent:WaitForChild("LocalizationController") :: any)
-local UIButtonAnimator = require(script.Parent.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("UIButtonAnimator") :: any)
+local UIButtonAnimator = require(
+	script.Parent.Parent.Parent:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("UIButtonAnimator") :: any
+)
 local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 local localPlayer = Players.LocalPlayer
@@ -30,7 +32,9 @@ function HotbarController.Init(self, parentGui, maid)
 	self.hotbarSlotsData = {}
 
 	if maid then
-		maid:GiveTask(function() self.maid:Destroy() end)
+		maid:GiveTask(function()
+			self.maid:Destroy()
+		end)
 	end
 
 	-- 4. Bottom Viral Action Hotbar & Inventory Slots HUD

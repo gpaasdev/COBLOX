@@ -62,7 +62,8 @@ function CutsceneController.TransitionBiomeLighting(zoneId: string, transitionDu
 	print("[CutsceneController] Transitioning Biome Lighting to: " .. zoneId)
 end
 
-function CutsceneController.PlayChapterIntroCutscene(self,
+function CutsceneController.PlayChapterIntroCutscene(
+	self,
 	targetCFrame: CFrame,
 	durationSeconds: number,
 	onComplete: () -> ()?

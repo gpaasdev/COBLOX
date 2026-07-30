@@ -6,7 +6,7 @@ local PlayerDataService = require(ServerScriptService.Server.Services.PlayerData
 local QuestRegistry = require(ReplicatedStorage.Shared.Configuration.QuestRegistry)
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
-local QuestService = { Name = "QuestService", ServiceStatus = "Production", }
+local QuestService = { Name = "QuestService", ServiceStatus = "Production" }
 
 function QuestService.Init()
 	print("[QuestService] Initializing Daily Quest Engine...")

@@ -34,10 +34,14 @@ function IntegrationTestService.Start()
 	IntegrationTestService.TestWeaponConfig()
 	IntegrationTestService.TestPlacementFlow()
 
-	print(string.format(
-		"\n📊 Results: %d passed, %d failed, %d errors",
-		results.Passed, results.Failed, #results.Errors
-	))
+	print(
+		string.format(
+			"\n📊 Results: %d passed, %d failed, %d errors",
+			results.Passed,
+			results.Failed,
+			#results.Errors
+		)
+	)
 	if #results.Errors > 0 then
 		print("❌ Failed checks:")
 		for _, err in results.Errors do
@@ -167,7 +171,16 @@ function IntegrationTestService.TestMachineConfig()
 	assert(typeCount == 8, "MachineConfig.Types has " .. typeCount .. " types (expected 8)")
 
 	-- Test 2: Each type has required fields
-	local expectedTypes = { Smelter = true, Refinery = true, Synthesizer = true, Reactor = true, Turbine = true, Cooler = true, Furnace = true, Crucible = true }
+	local expectedTypes = {
+		Smelter = true,
+		Refinery = true,
+		Synthesizer = true,
+		Reactor = true,
+		Turbine = true,
+		Cooler = true,
+		Furnace = true,
+		Crucible = true,
+	}
 	local missingTypes = {}
 	for typeName in expectedTypes do
 		if not MachineConfig.Types[typeName] then
@@ -253,7 +266,10 @@ function IntegrationTestService.TestRecipeMatch(ingredients: { [string]: number 
 		end
 		if match then
 			if expectedName then
-				assert(recipeDef.Name == expectedName, "Recipe match: " .. recipeDef.Name .. " (expected " .. expectedName .. ")")
+				assert(
+					recipeDef.Name == expectedName,
+					"Recipe match: " .. recipeDef.Name .. " (expected " .. expectedName .. ")"
+				)
 			end
 			return true
 		end

@@ -128,7 +128,8 @@ function PetService.CreatePet(player: Player, petId: string): ServiceResult<PetI
 				Id = petId,
 				Name = spiritDef.Name,
 				Description = spiritDef.Description,
-				BaseMultiplier = if spiritDef.Rarity == "Common" then 1
+				BaseMultiplier = if spiritDef.Rarity == "Common"
+					then 1
 					elseif spiritDef.Rarity == "Uncommon" then 2
 					elseif spiritDef.Rarity == "Rare" then 5
 					elseif spiritDef.Rarity == "Epic" then 10

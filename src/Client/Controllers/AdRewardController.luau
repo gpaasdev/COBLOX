@@ -26,7 +26,13 @@ function AdRewardController.Init()
 	print("[AdRewardController] Initializing Rewarded Ad UI...")
 end
 
-function AdRewardController._CreateAdButton(self, placementId: string, rewardType: string, label: string, parent: Instance)
+function AdRewardController._CreateAdButton(
+	self,
+	placementId: string,
+	rewardType: string,
+	label: string,
+	parent: Instance
+)
 	if adButtonCache[placementId] then
 		return
 	end

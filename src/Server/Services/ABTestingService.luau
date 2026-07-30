@@ -5,11 +5,9 @@ local ABTestingService = {
 	Name = "ABTesting",
 }
 
-function ABTestingService.Init()
-end
+function ABTestingService.Init() end
 
-function ABTestingService.Start()
-end
+function ABTestingService.Start() end
 
 export type Variant = "Control_A" | "Experimental_B"
 

@@ -7,11 +7,9 @@ local NPCPsychologyService = {
 	Name = "NPCPsychology",
 }
 
-function NPCPsychologyService.Init()
-end
+function NPCPsychologyService.Init() end
 
-function NPCPsychologyService.Start()
-end
+function NPCPsychologyService.Start() end
 
 export type NPCBrain = {
 	Id: string,
