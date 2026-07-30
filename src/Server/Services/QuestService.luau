@@ -6,16 +6,15 @@ local PlayerDataService = require(ServerScriptService.Server.Services.PlayerData
 local QuestRegistry = require(ReplicatedStorage.Shared.Configuration.QuestRegistry)
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
-local QuestManager = {}
-QuestManager.ServiceStatus = "Production"
+local QuestService = { Name = "QuestService", ServiceStatus = "Production", }
 
-function QuestManager.Init()
-	print("[QuestManager] Initializing Daily Quest Engine...")
+function QuestService.Init()
+	print("[QuestService] Initializing Daily Quest Engine...")
 	NetChannels.GetRemoteFunction("ClaimQuest")
 	NetChannels.GetRemoteEvent("SyncQuest")
 end
 
-function QuestManager.Start()
+function QuestService.Start()
 	local signalsFolder = ReplicatedStorage:FindFirstChild("Signals")
 	if not signalsFolder then
 		signalsFolder = Instance.new("Folder")
@@ -28,7 +27,7 @@ function QuestManager.Start()
 	craftSignal.Parent = signalsFolder
 
 	craftSignal.Event:Connect(function(player: Player, craftType: string, amount: number)
-		QuestManager.IncrementProgress(player, craftType, amount)
+		QuestService.IncrementProgress(player, craftType, amount)
 	end)
 
 	local RateLimitService = require(game:GetService("ServerScriptService").Server.Services.RateLimitService)
@@ -40,7 +39,7 @@ function QuestManager.Start()
 		if not RateLimitService.CheckRateLimit(player, "ClaimQuest", 0.5) then
 			return false
 		end
-		return QuestManager.ClaimQuest(player, questId)
+		return QuestService.ClaimQuest(player, questId)
 	end
 
 	-- Automated Daily Quest Rotation Engine
@@ -48,7 +47,7 @@ function QuestManager.Start()
 		while true do
 			-- Rotate quests every 24 hours (simulated as 1 hour for testing)
 			task.wait(3600)
-			print("[QuestManager] Rotating Daily Quests for all active players...")
+			print("[QuestService] Rotating Daily Quests for all active players...")
 			local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
 			for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
 				local res = PlayerDataService.GetProfile(player)
@@ -59,7 +58,7 @@ function QuestManager.Start()
 						data.DailyQuests.Completed = {}
 					end)
 					-- In a full implementation, we'd pick new random quests from QuestRegistry
-					QuestManager.SyncClient(player, res.Data.DailyQuests)
+					QuestService.SyncClient(player, res.Data.DailyQuests)
 				end
 			end
 			local GlobalBroadcastService =
@@ -69,7 +68,7 @@ function QuestManager.Start()
 	end)
 end
 
-function QuestManager.IncrementProgress(player: Player, questType: string, amount: number)
+function QuestService.IncrementProgress(player: Player, questType: string, amount: number)
 	local res = PlayerDataService.GetProfile(player)
 	if not res.Success or not res.Data then
 		return
@@ -105,16 +104,16 @@ function QuestManager.IncrementProgress(player: Player, questType: string, amoun
 		end
 	end
 
-	QuestManager.SyncClient(player, profile.DailyQuests)
+	QuestService.SyncClient(player, profile.DailyQuests)
 end
 
-function QuestManager.SyncClient(player: Player, questData: any)
+function QuestService.SyncClient(player: Player, questData: any)
 	local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 	local syncRemote = NetChannels.GetRemoteEvent("SyncQuest")
 	syncRemote:FireClient(player, questData)
 end
 
-function QuestManager.ClaimQuest(player: Player, questId: string)
+function QuestService.ClaimQuest(player: Player, questId: string)
 	-- Automatic claim happens in IncrementProgress, this just returns true if completed
 	local res = PlayerDataService.GetProfile(player)
 	if not res.Success or not res.Data then
@@ -127,4 +126,4 @@ function QuestManager.ClaimQuest(player: Player, questId: string)
 	return false
 end
 
-return QuestManager
+return QuestService

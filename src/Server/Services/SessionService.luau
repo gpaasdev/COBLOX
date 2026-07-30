@@ -8,6 +8,7 @@ local RunService = game:GetService("RunService")
 local DomainEventBus = require(ReplicatedStorage.Shared.Events.DomainEventBus)
 
 local SessionService = {}
+SessionService.ServiceStatus = "Experimental"
 SessionService.Name = "SessionService"
 
 type SessionData = {

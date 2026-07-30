@@ -14,21 +14,22 @@ export type ResearchDefinition = {
 	UnlocksRecipes: { string },
 }
 
-local ResearchRegistry: { [string]: ResearchDefinition } = {}
+local ResearchRegistry_data: { [string]: ResearchDefinition } = {}
+local ResearchRegistry = {}
 
 function ResearchRegistry.RegisterResearch(def: ResearchDefinition)
-	if ResearchRegistry[def.Id] then
+	if ResearchRegistry_data[def.Id] then
 		warn(string.format("⚠️ [ResearchRegistry] Duplicate research registration for '%s'. Overwriting.", def.Id))
 	end
-	ResearchRegistry[def.Id] = def
+	ResearchRegistry_data[def.Id] = def
 end
 
 function ResearchRegistry.GetResearch(id: string): ResearchDefinition?
-	return ResearchRegistry[id]
+	return ResearchRegistry_data[id]
 end
 
 function ResearchRegistry.GetAllResearch(): { [string]: ResearchDefinition }
-	return ResearchRegistry
+	return ResearchRegistry_data
 end
 
 -- Default Data-Driven Research Nodes

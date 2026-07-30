@@ -2,7 +2,10 @@
 local MemoryStoreService = game:GetService("MemoryStoreService")
 local RunService = game:GetService("RunService")
 
-local AuctionHouseService = {}
+local AuctionHouseService = {
+	ServiceStatus = "Experimental",
+	Name = "AuctionHouse",
+}
 local GlobalAuctionHouse = MemoryStoreService:GetSortedMap("GlobalAuctionHouse")
 
 function AuctionHouseService.Init()

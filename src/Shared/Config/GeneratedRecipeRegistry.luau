@@ -56,8 +56,8 @@ RecipeRegistry_data["RCP_AETHER_CRYSTAL"] = {
 	OutputType = "Material",
 }
 
-RecipeRegistry_data["RCP_AETHER_CRYSTAL"] = {
-	Id = "RCP_AETHER_CRYSTAL",
+RecipeRegistry_data["RCP_AETHER_CRYSTAL_FUSION"] = {
+	Id = "RCP_AETHER_CRYSTAL_FUSION",
 	Name = "Aether Crystal Fusion",
 	Description = "Gabungkan Aether Crystal Shards menjadi Aether Crystal murni.",
 	Ingredients = {"AetherCrystal_Shard", "AetherCrystal_Shard", "FairyDust"},
@@ -107,17 +107,17 @@ RecipeRegistry_data["RCP_AURA_POTION_MINOR"] = {
 RecipeRegistry_data["RCP_CELESTIAL_KEYSTONE"] = {
 	Id = "RCP_CELESTIAL_KEYSTONE",
 	Name = "Celestial Keystone",
-	Description = "Batu kunci untuk membuka portal ke Fairytale Realm.",
-	Ingredients = {"AetherCrystal_Ore", "FairyDust", "MoonBloom_Petal", "GoldVein_Ore"},
-	OutputType = "Key",
-}
-
-RecipeRegistry_data["RCP_CELESTIAL_KEYSTONE"] = {
-	Id = "RCP_CELESTIAL_KEYSTONE",
-	Name = "Celestial Keystone",
 	Description = "Craft a Keystone to unlock Celestial Sector 5 biomes.",
 	Ingredients = {"Aether_Singularity", "Gold_Singularity", "Mythril_Singularity"},
 	OutputType = "BiomePass",
+}
+
+RecipeRegistry_data["RCP_FAIRY_PORTAL_KEYSTONE"] = {
+	Id = "RCP_FAIRY_PORTAL_KEYSTONE",
+	Name = "Celestial Keystone",
+	Description = "Batu kunci untuk membuka portal ke Fairytale Realm.",
+	Ingredients = {"AetherCrystal_Ore", "FairyDust", "MoonBloom_Petal", "GoldVein_Ore"},
+	OutputType = "Key",
 }
 
 RecipeRegistry_data["RCP_COPPER_ALLOY"] = {

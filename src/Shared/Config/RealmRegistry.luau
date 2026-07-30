@@ -14,8 +14,9 @@ export type RealmEntry = {
 }
 
 local RealmRegistry: { [string]: RealmEntry } = {}
+local RealmRegistry_data: { [string]: RealmEntry } = {}
 
-RealmRegistry["MAIN"] = {
+RealmRegistry_data["MAIN"] = {
 	Key = "MAIN",
 	DisplayName = "Multiverse Alchemy Sanctum",
 	Description = "The original cyber-alchemist realm",
@@ -26,7 +27,7 @@ RealmRegistry["MAIN"] = {
 	Icon = "rbxassetid://6026568198",
 }
 
-RealmRegistry["FAIRYTALE"] = {
+RealmRegistry_data["FAIRYTALE"] = {
 	Key = "FAIRYTALE",
 	DisplayName = "COBLOX: Fairytale Fantasy Realm",
 	Description = "An enchanted realm of twilight magic and ancient spirits",
@@ -38,17 +39,17 @@ RealmRegistry["FAIRYTALE"] = {
 }
 
 function RealmRegistry.Get(key: string): RealmEntry?
-	return RealmRegistry[key]
+	return RealmRegistry_data[key]
 end
 
 function RealmRegistry.GetAll(): { [string]: RealmEntry }
-	return RealmRegistry
+	return RealmRegistry_data
 end
 
 function RealmRegistry.GetEnabled(): { RealmEntry }
 	local result: { RealmEntry } = {}
-	for _, entry in pairs(RealmRegistry) do
-		if typeof(entry) == "table" and entry.Enabled then
+	for _, entry in pairs(RealmRegistry_data) do
+		if entry.Enabled then
 			table.insert(result, entry)
 		end
 	end

@@ -14,7 +14,7 @@ return function()
 				Purity = 1.0,
 				Energy = 200,
 				ReactionTime = 10,
-				Initiator = nil, -- Normally a Player, but nil for headless tests
+				Initiator = nil,
 			}
 
 			-- When
@@ -23,7 +23,6 @@ return function()
 			-- Then
 			expect(output.Success).to.be.equal(true)
 			expect(output.Products["FerriumAlloy"]).to.be.equal(1)
-			-- Conservation of mass: 5 + 1 = 6. Yield is 1. Waste should be 5
 			expect(output.Waste["Slag"]).to.be.equal(5)
 			expect(output.Entropy > 0).to.be.equal(true)
 		end)

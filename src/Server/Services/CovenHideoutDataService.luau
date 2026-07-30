@@ -5,7 +5,16 @@ local DataStoreService = game:GetService("DataStoreService")
 
 local hideoutStore = DataStoreService:GetDataStore("CovenHideouts_v1")
 
-local CovenHideoutDataService = {}
+local CovenHideoutDataService = {
+	ServiceStatus = "Experimental",
+	Name = "CovenHideoutData",
+}
+
+function CovenHideoutDataService.Init()
+end
+
+function CovenHideoutDataService.Start()
+end
 
 type StructureData = {
 	Id: string,

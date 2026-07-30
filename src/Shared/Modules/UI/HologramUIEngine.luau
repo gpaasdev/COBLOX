@@ -5,6 +5,7 @@
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ConfigClient = require(ReplicatedStorage.Shared.Config.ConfigClient)
 
 local HologramUIEngine = {}
 HologramUIEngine.__index = HologramUIEngine
@@ -52,7 +53,7 @@ function HologramUIEngine.Create(adornment: Instance, options: HologramUIOptions
 	billboard.Size = options.Size or UDim2.new(0, 220, 0, 70)
 	billboard.StudsOffset = options.StudsOffset or Vector3.new(0, 4.5, 0)
 	billboard.AlwaysOnTop = true
-	billboard.MaxDistance = 120
+	billboard.MaxDistance = ConfigClient.BillboardMaxDistance
 	billboard.Adornee = adornment:IsA("PVInstance") and adornment or nil
 	billboard.Parent = adornment
 

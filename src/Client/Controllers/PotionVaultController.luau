@@ -49,7 +49,7 @@ function PotionVaultController.ToggleModal()
 	end
 end
 
-function PotionVaultController._CreateUI()
+function PotionVaultController._CreateUI(self)
 	local mainHUD = playerGui:WaitForChild("COBLOX_AlchemyHUD")
 
 	modalFrame = Instance.new("Frame")

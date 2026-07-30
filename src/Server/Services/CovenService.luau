@@ -12,8 +12,7 @@ local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local PlayerDataService = require(script.Parent.PlayerDataService)
 local CovenConfig = require(ReplicatedStorage.Shared.Configuration.CovenConfig)
 
-local CovenService = {}
-CovenService.ServiceStatus = "Production"
+local CovenService = { Name = "CovenService", ServiceStatus = "Production", }
 
 type CovenData = {
 	Id: string,
@@ -32,18 +31,24 @@ local playerCovenMap: { [number]: string } = {} -- Maps UserId to CovenId
 -- Fase 9: Dedicated DataStore for Coven persistence (Q2: independent schema)
 local CovenStore = DataStoreService:GetDataStore("COBLOX_Covens_v1")
 
--- Internal helper: persist a single coven to DataStore with pcall wrapping
+-- Internal helper: persist a single coven to DataStore with exponential backoff retry
 local function _PersistCoven(covenId: string)
 	local covenData = activeCovens[covenId]
 	if not covenData then
 		return
 	end
-	local ok, err = pcall(function()
-		CovenStore:SetAsync(covenId, covenData)
-	end)
-	if not ok then
-		warn("[CovenService] DataStore persist FAILED for coven", covenId, ":", err)
+	for attempt = 1, 5 do
+		local ok, err = pcall(function()
+			CovenStore:SetAsync(covenId, covenData)
+		end)
+		if ok then
+			return
+		end
+		if attempt < 5 then
+			task.wait(math.pow(2, attempt - 1))
+		end
 	end
+	warn("[CovenService] DataStore persist FAILED for coven", covenId, "after 5 retries")
 end
 
 function CovenService.Init()
@@ -64,7 +69,7 @@ function CovenService.Init()
 
 		if action == "Create" and type(data) == "string" then
 			CovenService.CreateCoven(player, data)
-		elseif action == "Donate" and type(data) == "number" then
+		elseif action == "Donate" and type(data) == "number" and data > 0 then
 			CovenService.DonateToCoven(player, data)
 		elseif action == "TeleportToHideout" then
 			CovenService.TeleportPlayerToHideout(player)
@@ -210,6 +215,9 @@ function CovenService.TeleportPlayerToHideout(player: Player)
 end
 
 function CovenService.DonateToCoven(player: Player, amount: number)
+	if amount <= 0 then
+		return
+	end
 	local covenId = playerCovenMap[player.UserId]
 	if not covenId then
 		return
@@ -225,9 +233,7 @@ function CovenService.DonateToCoven(player: Player, amount: number)
 		EconomyService.DeductCoins(player, amount, "CovenDonation")
 		coven.TreasuryCoins += amount
 
-		-- Logarithmic Anti-Inflation Level Up Formula: Level = max(1, floor(5 * ln(Treasury / 5000)))
-		local rawRatio = math.max(1, coven.TreasuryCoins / 5000)
-		local newLevel = math.max(1, math.floor(5 * math.log(rawRatio)))
+		local newLevel = CovenConfig.GetLevel(coven.TreasuryCoins)
 		if newLevel > coven.Level then
 			coven.Level = newLevel
 			print("[CovenService] Coven " .. coven.Name .. " leveled up to " .. coven.Level)
@@ -283,8 +289,7 @@ function CovenService.GetGlobalMultiplier(player: Player): number
 		return 1.0
 	end
 
-	-- Logarithmic Global Multiplier Buff: 1 + (0.15 * ln(Level + 1))
-	return 1.0 + (0.15 * math.log(coven.Level + 1))
+	return CovenConfig.GetMultiplierBuff(coven.Level)
 end
 
 -- Mass-persist all active covens on server shutdown

@@ -69,7 +69,7 @@ function AudioController.PlaySound(soundId: string, volume: number?, pitch: numb
 	return SoundPool.Play(soundId, cat :: any, group, volume, pitch)
 end
 
-function AudioController.PlayBGM(soundKey: string, fadeTime: number?)
+function AudioController.PlayBGM(self, soundKey: string, fadeTime: number?)
 	if currentBGMKey == soundKey and currentBGMSound and currentBGMSound.IsPlaying then
 		return
 	end

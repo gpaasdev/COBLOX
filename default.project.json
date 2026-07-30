@@ -124,9 +124,7 @@
       "Packages": {
         "$path": "Packages"
       },
-      "Localization": {
-        "$path": "src/Shared/Localization"
-      }
+
     },
     "ServerScriptService": {
       "$className": "ServerScriptService",

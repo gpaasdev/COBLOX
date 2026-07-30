@@ -21,9 +21,13 @@ local startupOrder = {
 	"TopbarController",
 	"AudioController",
 	"CombatController",
+	"CombatVFXController",
+	"AnimationController",
+	"MachineController",
 	"GraphicsOptimizationController",
 	"FTUEController",
 	"LeaderboardUIController",
+	"EventCalendarController",
 }
 
 -- 1. Register Controllers
@@ -94,6 +98,12 @@ ControllerRegistry.RegisterController("RealmEntryController", require(controller
 
 -- Tier 6 — Gameplay Systems (Phase A)
 ControllerRegistry.RegisterController("LeaderboardUIController", require(controllersFolder.LeaderboardUIController))
+
+-- Tier 7 — Experimental (Sprint 5)
+ControllerRegistry.RegisterController("AnimationController", require(controllersFolder.AnimationController))
+ControllerRegistry.RegisterController("CombatVFXController", require(controllersFolder.CombatVFXController))
+ControllerRegistry.RegisterController("EventCalendarController", require(controllersFolder.EventCalendarController))
+ControllerRegistry.RegisterController("MachineController", require(controllersFolder.MachineController))
 
 print("==================================================")
 print("[COBLOX Client Bootstrap] Initializing Controllers via ControllerRegistry...")

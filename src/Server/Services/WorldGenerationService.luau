@@ -2,7 +2,16 @@
 -- COBLOX SYSTEM 02: WORLD GENERATION
 -- Purpose: Generate believable natural environments using noise.
 
-local WorldGenerationService = {}
+local WorldGenerationService = {
+	ServiceStatus = "Experimental",
+	Name = "WorldGeneration",
+}
+
+function WorldGenerationService.Init()
+end
+
+function WorldGenerationService.Start()
+end
 local MathUtil = require(game:GetService("ReplicatedStorage").Shared.Utility.MathUtil)
 local Materials = require(game:GetService("ReplicatedStorage").Shared.Config.Materials)
 

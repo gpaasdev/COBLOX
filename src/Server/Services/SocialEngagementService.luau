@@ -119,18 +119,18 @@ end
 function SocialEngagementService._onRareHatch(player: Player)
 	task.delay(2, function()
 		SocialEngagementService.PromptInvite(player, "RareHatch")
-		_NotifyClientInviteTrigger(player, "RareHatch")
+		SocialEngagementService._NotifyClientInviteTrigger(player, "RareHatch")
 	end)
 end
 
 function SocialEngagementService._onCovenRaidComplete(player: Player)
 	task.delay(2, function()
 		SocialEngagementService.PromptInvite(player, "CovenRaidComplete")
-		_NotifyClientInviteTrigger(player, "CovenRaidComplete")
+		SocialEngagementService._NotifyClientInviteTrigger(player, "CovenRaidComplete")
 	end)
 end
 
-local function _NotifyClientInviteTrigger(player: Player, context: string)
+function SocialEngagementService._NotifyClientInviteTrigger(player: Player, context: string)
 	local notifyRemote = NetChannels.GetRemoteEvent("SocialInviteTriggered")
 	if notifyRemote then
 		notifyRemote:FireClient(player, context)

@@ -12,21 +12,22 @@ export type MachineDefinition = {
 	DefaultProperties: MachineTypes.MachineProperties,
 }
 
-local MachineRegistry: { [string]: MachineDefinition } = {}
+local MachineRegistry_data: { [string]: MachineDefinition } = {}
+local MachineRegistry = {}
 
 function MachineRegistry.RegisterMachine(def: MachineDefinition)
-	if MachineRegistry[def.Id] then
+	if MachineRegistry_data[def.Id] then
 		warn(string.format("⚠️ [MachineRegistry] Duplicate machine registration for '%s'. Overwriting.", def.Id))
 	end
-	MachineRegistry[def.Id] = def
+	MachineRegistry_data[def.Id] = def
 end
 
 function MachineRegistry.GetMachine(id: string): MachineDefinition?
-	return MachineRegistry[id]
+	return MachineRegistry_data[id]
 end
 
 function MachineRegistry.GetAllMachines(): { [string]: MachineDefinition }
-	return MachineRegistry
+	return MachineRegistry_data
 end
 
 -- Default Data-Driven Machine Content

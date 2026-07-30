@@ -2,7 +2,16 @@
 -- COBLOX SYSTEM 08: NPC PSYCHOLOGY
 -- Purpose: Defines emotional states and decision-making logic for NPCs.
 
-local NPCPsychologyService = {}
+local NPCPsychologyService = {
+	ServiceStatus = "Experimental",
+	Name = "NPCPsychology",
+}
+
+function NPCPsychologyService.Init()
+end
+
+function NPCPsychologyService.Start()
+end
 
 export type NPCBrain = {
 	Id: string,

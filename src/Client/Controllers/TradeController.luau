@@ -55,7 +55,7 @@ function TradeController.RequestTradeWith(targetPlayer: Player)
 	TradeController.ToggleModal()
 end
 
-function TradeController._CreateTradeModal()
+function TradeController._CreateTradeModal(self)
 	local playerGui = localPlayer:WaitForChild("PlayerGui")
 	local mainHUD = playerGui:WaitForChild("COBLOX_AlchemyHUD")
 

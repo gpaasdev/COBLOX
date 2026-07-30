@@ -59,7 +59,10 @@ function WeaponService.PurchaseWithCoins(player: Player, weaponId: string): bool
 		return false
 	end
 
-	EconomyService.AddCurrency(player, "Coins", -def.CoinCost, "WeaponPurchase_" .. weaponId)
+	local deductRes = EconomyService.DeductCoins(player, def.CoinCost, "WeaponPurchase_" .. weaponId)
+	if not deductRes.Success then
+		return false
+	end
 	WeaponService._GrantWeapon(player, weaponId)
 	return true
 end

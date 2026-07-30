@@ -20,7 +20,7 @@ function BadgeNotificationController.Init()
 	print("[BadgeNotificationController] Initialized.")
 end
 
-function BadgeNotificationController._ShowBadgeNotification(badgeName: string)
+function BadgeNotificationController._ShowBadgeNotification(self, badgeName: string)
 	local success, err = pcall(function()
 		StarterGui:SetCore("SendNotification", {
 			Title = "Badge Earned!",

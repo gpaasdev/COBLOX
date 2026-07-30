@@ -1,1 +1,1 @@
-{"Id":"RCP_AETHER_CRYSTAL","Name":"Aether Crystal Fusion","Description":"Gabungkan Aether Crystal Shards menjadi Aether Crystal murni.","Ingredients":["AetherCrystal_Shard","AetherCrystal_Shard","FairyDust"],"OutputType":"Material"}
+{"Id":"RCP_AETHER_CRYSTAL_FUSION","Name":"Aether Crystal Fusion","Description":"Gabungkan Aether Crystal Shards menjadi Aether Crystal murni.","Ingredients":["AetherCrystal_Shard","AetherCrystal_Shard","FairyDust"],"OutputType":"Material"}

@@ -9,6 +9,13 @@ local GameConfig = {
 	Combat = {
 		BaseDamage = 10,
 		CombatRange = 15, -- studs: zero-trust max distance for melee hit
+		AttackCooldown = 0.5, -- seconds between attacks
+		ParryWindowDuration = 0.3, -- seconds: timing window for parry
+		ZoneBoundaries = {
+			SafezoneRadius = 100, -- studs from center
+			ArenaRadius = 300,
+			FactionWarsRadius = 600,
+		},
 		ZoneModifiers = {
 			Wilderness = { damage = 1.5, hitStun = 1.2 },
 			Arena = { damage = 0.8, hitStun = 0.2 },
@@ -21,6 +28,15 @@ local GameConfig = {
 		MobLeashDistance = 45, -- studs: leash-back threshold
 		MobWindupDuration = 1.0, -- seconds
 		MobSpeed = 14, -- Humanoid.WalkSpeed for mobs
+		MobTickRate = 0.5, -- seconds between mob AI ticks
+		MobDefaultHealth = 100,
+		MobAttackDamage = 20,
+		MobRespawnDelay = 10, -- seconds
+		MobIdlePatrolInterval = 4, -- seconds before idle patrol
+		MobPatrolRadius = 10, -- studs from spawn
+		MobChaseTimeLimit = 15, -- seconds before mob gives up chase
+		MobHitboxHeight = 8, -- studs for AOE hitbox cube
+		PlotSafeZoneRadius = 25, -- studs: no enemy mobs near plot
 	},
 
 	MobLootTable = {
@@ -100,6 +116,23 @@ local GameConfig = {
 
 		-- Tier 6 (Gameplay Systems — Phase A)
 		WeaponService = true, -- Production: Weapon tiers & progression
+
+		-- Tier 7 (Experimental — Sprint 5 — default disabled)
+		ABTestingService = false,
+		AccessoryOptimizationService = false,
+		AdminDashboardService = false,
+		AnalyticsTrackerService = false,
+		AuctionHouseService = false,
+		BusinessService = false,
+		CovenHideoutDataService = false,
+		EventCalendarService = true,
+		FeatureFlagService = false,
+		FeedbackService = false,
+		ModerationSyncService = false,
+		NPCPsychologyService = false,
+		ReferralService = true,
+		SessionService = false,
+		WorldGenerationService = false,
 	},
 }
 

@@ -1,7 +1,17 @@
 --!strict
--- WeaponConfig.luau — SSOT for weapon definitions & progression
 
 export type WeaponTier = number
+
+export type WeaponVisual = {
+	MeshId: string,
+	TextureId: string?,
+	HandleOffset: CFrame,
+	TrailColor: Color3,
+	TrailEnabled: boolean,
+	ParticleColor: Color3,
+	SwingSound: string,
+	HitSound: string,
+}
 
 export type WeaponDef = {
 	Id: string,
@@ -15,6 +25,7 @@ export type WeaponDef = {
 	RobuxCost: number,
 	RequiresLevel: number,
 	UnlockMessage: string,
+	Visual: WeaponVisual,
 }
 
 local WeaponConfig: { [string]: WeaponDef } = {}
@@ -31,6 +42,16 @@ WeaponConfig["Fist"] = {
 	RobuxCost = 0,
 	RequiresLevel = 0,
 	UnlockMessage = "Fists equipped!",
+	Visual = {
+		MeshId = "",
+		TextureId = nil,
+		HandleOffset = CFrame.new(0, 0, 0),
+		TrailColor = Color3.fromRGB(255, 100, 100),
+		TrailEnabled = false,
+		ParticleColor = Color3.fromRGB(255, 100, 100),
+		SwingSound = "",
+		HitSound = "MobHit",
+	},
 }
 
 WeaponConfig["IronSword"] = {
@@ -44,7 +65,17 @@ WeaponConfig["IronSword"] = {
 	CoinCost = 5000,
 	RobuxCost = 0,
 	RequiresLevel = 2,
-	UnlockMessage = "⚔️ Iron Sword equipped! +25 DMG",
+	UnlockMessage = "Iron Sword equipped! +25 DMG",
+	Visual = {
+		MeshId = "rbxassetid://47433",
+		TextureId = nil,
+		HandleOffset = CFrame.new(0, -1, 0.5) * CFrame.Angles(math.rad(45), 0, 0),
+		TrailColor = Color3.fromRGB(180, 200, 255),
+		TrailEnabled = true,
+		ParticleColor = Color3.fromRGB(180, 200, 255),
+		SwingSound = "SwordSwing",
+		HitSound = "SwordHit",
+	},
 }
 
 WeaponConfig["FlameSaber"] = {
@@ -58,7 +89,17 @@ WeaponConfig["FlameSaber"] = {
 	CoinCost = 25000,
 	RobuxCost = 79,
 	RequiresLevel = 5,
-	UnlockMessage = "🔥 Flame Saber equipped! +45 DMG",
+	UnlockMessage = "Flame Saber equipped! +45 DMG",
+	Visual = {
+		MeshId = "rbxassetid://10288498712",
+		TextureId = nil,
+		HandleOffset = CFrame.new(0, -1.2, 0.5) * CFrame.Angles(math.rad(45), 0, 0),
+		TrailColor = Color3.fromRGB(255, 120, 50),
+		TrailEnabled = true,
+		ParticleColor = Color3.fromRGB(255, 120, 50),
+		SwingSound = "SwordSwing",
+		HitSound = "SwordHit",
+	},
 }
 
 WeaponConfig["AetherBlade"] = {
@@ -72,7 +113,17 @@ WeaponConfig["AetherBlade"] = {
 	CoinCost = 100000,
 	RobuxCost = 199,
 	RequiresLevel = 10,
-	UnlockMessage = "✨ Aether Blade equipped! +75 DMG",
+	UnlockMessage = "Aether Blade equipped! +75 DMG",
+	Visual = {
+		MeshId = "rbxassetid://15283548889",
+		TextureId = nil,
+		HandleOffset = CFrame.new(0, -1.5, 0.5) * CFrame.Angles(math.rad(45), 0, 0),
+		TrailColor = Color3.fromRGB(150, 100, 255),
+		TrailEnabled = true,
+		ParticleColor = Color3.fromRGB(150, 100, 255),
+		SwingSound = "SwordSwing",
+		HitSound = "SwordHit",
+	},
 }
 
 WeaponConfig["VoidGreatsword"] = {
@@ -86,7 +137,17 @@ WeaponConfig["VoidGreatsword"] = {
 	CoinCost = 500000,
 	RobuxCost = 499,
 	RequiresLevel = 20,
-	UnlockMessage = "🌌 Void Greatsword equipped! +120 DMG",
+	UnlockMessage = "Void Greatsword equipped! +120 DMG",
+	Visual = {
+		MeshId = "rbxassetid://6763151912",
+		TextureId = nil,
+		HandleOffset = CFrame.new(0, -2, 0.5) * CFrame.Angles(math.rad(45), 0, 0),
+		TrailColor = Color3.fromRGB(180, 50, 255),
+		TrailEnabled = true,
+		ParticleColor = Color3.fromRGB(180, 50, 255),
+		SwingSound = "SwordSwing",
+		HitSound = "SwordHit",
+	},
 }
 
 function WeaponConfig.Get(id: string): WeaponDef?

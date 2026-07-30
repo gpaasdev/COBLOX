@@ -7,6 +7,7 @@
 local Players = game:GetService("Players")
 
 local AccessoryOptimizationService = {}
+AccessoryOptimizationService.ServiceStatus = "Experimental"
 AccessoryOptimizationService.Name = "AccessoryOptimizationService"
 
 local function OptimizeCharacterAccessories(character: Model)

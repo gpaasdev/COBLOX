@@ -62,7 +62,7 @@ function CutsceneController.TransitionBiomeLighting(zoneId: string, transitionDu
 	print("[CutsceneController] Transitioning Biome Lighting to: " .. zoneId)
 end
 
-function CutsceneController.PlayChapterIntroCutscene(
+function CutsceneController.PlayChapterIntroCutscene(self,
 	targetCFrame: CFrame,
 	durationSeconds: number,
 	onComplete: () -> ()?
@@ -86,7 +86,7 @@ function CutsceneController.PlayChapterIntroCutscene(
 	end))
 end
 
-function CutsceneController.PlaySpiritMemory(elementType: string)
+function CutsceneController.PlaySpiritMemory(self, elementType: string)
 	local playerGui = localPlayer:WaitForChild("PlayerGui")
 	if not camera then
 		return

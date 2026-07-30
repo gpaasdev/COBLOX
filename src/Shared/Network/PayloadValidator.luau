@@ -39,6 +39,10 @@ function PayloadValidator.Validate(args: { any }, schema: { string }): (boolean,
 				if val ~= val or val == math.huge or val == -math.huge then
 					return false
 				end
+			elseif typeName == "positive" then
+				if typeof(val) ~= "number" or val < 0 or val ~= val or val == math.huge then
+					return false
+				end
 			end
 		end
 	end

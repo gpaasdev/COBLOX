@@ -11,16 +11,17 @@ export type FairytaleSpiritDef = {
 }
 
 local FairytaleSpiritRegistry: { [string]: FairytaleSpiritDef } = {}
+local FairytaleSpiritRegistry_data: { [string]: FairytaleSpiritDef } = {}
 
 function FairytaleSpiritRegistry.Get(id: string): FairytaleSpiritDef?
-	return FairytaleSpiritRegistry[id]
+	return FairytaleSpiritRegistry_data[id]
 end
 
 function FairytaleSpiritRegistry.GetAll(): { [string]: FairytaleSpiritDef }
-	return FairytaleSpiritRegistry
+	return FairytaleSpiritRegistry_data
 end
 
-FairytaleSpiritRegistry["SP_FAIRY_FOX"] = {
+FairytaleSpiritRegistry_data["SP_FAIRY_FOX"] = {
 	Id = "SP_FAIRY_FOX",
 	Name = "Fairy Fox",
 	Description = "Rubah bercahaya dengan ekor berkilauan.",
@@ -28,7 +29,7 @@ FairytaleSpiritRegistry["SP_FAIRY_FOX"] = {
 	Element = "Aether",
 	DropRate = "8.0%",
 }
-FairytaleSpiritRegistry["SP_PIXIE_SWARM"] = {
+FairytaleSpiritRegistry_data["SP_PIXIE_SWARM"] = {
 	Id = "SP_PIXIE_SWARM",
 	Name = "Pixie Swarm",
 	Description = "Kawanan peri kecil yang riang.",
@@ -36,7 +37,7 @@ FairytaleSpiritRegistry["SP_PIXIE_SWARM"] = {
 	Element = "Wind",
 	DropRate = "15.0%",
 }
-FairytaleSpiritRegistry["SP_MOON_WISP"] = {
+FairytaleSpiritRegistry_data["SP_MOON_WISP"] = {
 	Id = "SP_MOON_WISP",
 	Name = "Moon Wisp",
 	Description = "Cahaya bulan yang menjelma.",
@@ -44,7 +45,7 @@ FairytaleSpiritRegistry["SP_MOON_WISP"] = {
 	Element = "Nature",
 	DropRate = "7.0%",
 }
-FairytaleSpiritRegistry["SP_ENCHANTED_DEER"] = {
+FairytaleSpiritRegistry_data["SP_ENCHANTED_DEER"] = {
 	Id = "SP_ENCHANTED_DEER",
 	Name = "Enchanted Deer",
 	Description = "Rusa bertanduk cahaya bintang.",
@@ -52,7 +53,7 @@ FairytaleSpiritRegistry["SP_ENCHANTED_DEER"] = {
 	Element = "Nature",
 	DropRate = "4.0%",
 }
-FairytaleSpiritRegistry["SP_CRYSTAL_GOLEM"] = {
+FairytaleSpiritRegistry_data["SP_CRYSTAL_GOLEM"] = {
 	Id = "SP_CRYSTAL_GOLEM",
 	Name = "Crystal Golem",
 	Description = "Golem dari kristal mana murni.",
@@ -60,7 +61,7 @@ FairytaleSpiritRegistry["SP_CRYSTAL_GOLEM"] = {
 	Element = "Earth",
 	DropRate = "3.0%",
 }
-FairytaleSpiritRegistry["SP_CELESTIAL_SERAPH"] = {
+FairytaleSpiritRegistry_data["SP_CELESTIAL_SERAPH"] = {
 	Id = "SP_CELESTIAL_SERAPH",
 	Name = "Celestial Seraph",
 	Description = "Malaikat langit ketujuh.",
@@ -68,7 +69,7 @@ FairytaleSpiritRegistry["SP_CELESTIAL_SERAPH"] = {
 	Element = "Aether",
 	DropRate = "2.0%",
 }
-FairytaleSpiritRegistry["SP_FROST_PHOENIX"] = {
+FairytaleSpiritRegistry_data["SP_FROST_PHOENIX"] = {
 	Id = "SP_FROST_PHOENIX",
 	Name = "Frost Phoenix",
 	Description = "Phoenix dari es abadi.",
@@ -76,7 +77,7 @@ FairytaleSpiritRegistry["SP_FROST_PHOENIX"] = {
 	Element = "Ice",
 	DropRate = "1.5%",
 }
-FairytaleSpiritRegistry["SP_MAGMA_DRAGON"] = {
+FairytaleSpiritRegistry_data["SP_MAGMA_DRAGON"] = {
 	Id = "SP_MAGMA_DRAGON",
 	Name = "Magma Dragon",
 	Description = "Naga dari inti gunung berapi.",
@@ -84,7 +85,7 @@ FairytaleSpiritRegistry["SP_MAGMA_DRAGON"] = {
 	Element = "Fire",
 	DropRate = "1.5%",
 }
-FairytaleSpiritRegistry["SP_VOID_SHADE"] = {
+FairytaleSpiritRegistry_data["SP_VOID_SHADE"] = {
 	Id = "SP_VOID_SHADE",
 	Name = "Void Shade",
 	Description = "Bayangan dari kehampaan.",
@@ -92,7 +93,7 @@ FairytaleSpiritRegistry["SP_VOID_SHADE"] = {
 	Element = "Void",
 	DropRate = "0.5%",
 }
-FairytaleSpiritRegistry["SP_ETHER_DRAKE"] = {
+FairytaleSpiritRegistry_data["SP_ETHER_DRAKE"] = {
 	Id = "SP_ETHER_DRAKE",
 	Name = "Ether Drake",
 	Description = "Naga legendaris dari lapisan ether.",

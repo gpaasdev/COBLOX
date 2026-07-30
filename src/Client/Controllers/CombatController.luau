@@ -257,25 +257,6 @@ function CombatController.Parry()
 	end
 end
 
-function CombatController.PlayTelegraph(mobId: string)
-	print("[VFX] ⚠️ RED TELEGRAPH: Monster is winding up to attack! Press F / Shield to PARRY!")
-	local uiFolder = script.Parent
-	local UIController = require(uiFolder:WaitForChild("UIController") :: any)
-	UIController.ShowNotification(LocalizationController.Get("COMBAT_MOB_WINDUP"))
-end
-
-function CombatController.PlayStunVFX(mobId: string)
-	print("[VFX] 💥 PERFECT PARRY! Monster stunned!")
-
-	-- Cinematic dopamine hit
-	VFXEngine.ScreenPunch(0.8)
-	VFXEngine.PlayCameraShake(0.6, 0.25)
-
-	local uiFolder = script.Parent
-	local UIController = require(uiFolder:WaitForChild("UIController") :: any)
-	UIController.ShowNotification(LocalizationController.Get("COMBAT_PARRY_STUN"))
-end
-
 function CombatController.ConsumePotion()
 	local consumeRemoteFunc = NetChannels.GetRemoteFunction("RequestConsumePotion")
 	if consumeRemoteFunc then

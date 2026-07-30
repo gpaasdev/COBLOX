@@ -39,7 +39,7 @@ function OfflineEarningsController.TryShowWelcomeModal()
 	OfflineEarningsController.ShowWelcomeModal(result.PendingCoins)
 end
 
-function OfflineEarningsController.ShowWelcomeModal(earningsAmount: number)
+function OfflineEarningsController.ShowWelcomeModal(self, earningsAmount: number)
 	local playerGui = localPlayer:WaitForChild("PlayerGui")
 	local mainHUD = playerGui:FindFirstChild("COBLOX_AlchemyHUD")
 	if not mainHUD then

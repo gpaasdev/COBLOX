@@ -3,6 +3,7 @@
 local Players = game:GetService("Players")
 
 local FeatureFlagService = {}
+FeatureFlagService.ServiceStatus = "Experimental"
 FeatureFlagService.Name = "FeatureFlagService"
 
 -- 3-State Kill Switch Enums

@@ -9,6 +9,7 @@ local FeatureFlagService = require(script.Parent.FeatureFlagService)
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 
 local AdminDashboardService = {}
+AdminDashboardService.ServiceStatus = "Experimental"
 AdminDashboardService.Name = "AdminDashboardService"
 
 function AdminDashboardService.Init()

@@ -26,7 +26,7 @@ function AdRewardController.Init()
 	print("[AdRewardController] Initializing Rewarded Ad UI...")
 end
 
-function AdRewardController._CreateAdButton(placementId: string, rewardType: string, label: string, parent: Instance)
+function AdRewardController._CreateAdButton(self, placementId: string, rewardType: string, label: string, parent: Instance)
 	if adButtonCache[placementId] then
 		return
 	end
@@ -65,7 +65,7 @@ function AdRewardController._CreateAdButton(placementId: string, rewardType: str
 	adButtonCache[placementId] = button
 end
 
-function AdRewardController._ShowRewardNotification(text: string, isSuccess: boolean)
+function AdRewardController._ShowRewardNotification(self, text: string, isSuccess: boolean)
 	local screenGui = playerGui:FindFirstChild("AdRewardNotification")
 	if not screenGui then
 		screenGui = Instance.new("ScreenGui")

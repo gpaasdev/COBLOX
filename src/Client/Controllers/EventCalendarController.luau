@@ -180,7 +180,7 @@ function EventCalendarController.ToggleCalendar(self)
 	end
 end
 
-function EventCalendarController.Init() end
+function EventCalendarController.Init(self) end
 
 function EventCalendarController.Start(self)
 	self.maid = Maid.new()

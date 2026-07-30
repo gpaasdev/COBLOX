@@ -10,6 +10,7 @@ local DomainEventBus = require(ReplicatedStorage.Shared.Events.DomainEventBus)
 local RemoteConfig = require(ServerScriptService.Server.Services.RemoteConfig)
 
 local FeedbackService = {}
+FeedbackService.ServiceStatus = "Experimental"
 FeedbackService.Name = "FeedbackService"
 
 local feedbackQueue = {}

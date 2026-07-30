@@ -9,8 +9,8 @@ local PartCache = require(ReplicatedStorage.Shared.Modules.PartCache)
 
 -- Auto-detect realm from Place ID
 local currentPlaceId = game.PlaceId
-for key, entry in pairs(RealmRegistry) do
-	if typeof(entry) == "table" and entry.PlaceId == currentPlaceId then
+for key, entry in pairs(RealmRegistry.GetAll()) do
+	if entry.PlaceId == currentPlaceId then
 		RealmConfig.CurrentTheme = entry.Theme :: any
 		print(string.format("[Bootstrap] Auto-detected realm: %s (theme: %s)", key, entry.Theme))
 		break
@@ -58,7 +58,7 @@ local CombatService = require(ServerScriptService.Server.Services.CombatService)
 local MobService = require(ServerScriptService.Server.Services.MobService)
 local CovenService = require(ServerScriptService.Server.Services.CovenService)
 local ExpeditionService = require(ServerScriptService.Server.Services.ExpeditionService)
-local QuestManager = require(ServerScriptService.Server.Services.QuestManager)
+local QuestService = require(ServerScriptService.Server.Services.QuestService)
 local OnboardingService = require(ServerScriptService.Server.Services.OnboardingService)
 local StoreService = require(ServerScriptService.Server.Services.StoreService)
 
@@ -134,6 +134,25 @@ local SubscriptionService = require(ServerScriptService.Server.Services.Subscrip
 local WeaponService = require(ServerScriptService.Server.Services.WeaponService)
 
 -- ============================================================
+-- TIER 7 — Experimental [NEW — Sprint 5]
+-- ============================================================
+local ABTestingService = require(ServerScriptService.Server.Services.ABTestingService)
+local AccessoryOptimizationService = require(ServerScriptService.Server.Services.AccessoryOptimizationService)
+local AdminDashboardService = require(ServerScriptService.Server.Services.AdminDashboardService)
+local AnalyticsTrackerService = require(ServerScriptService.Server.Services.AnalyticsTrackerService)
+local AuctionHouseService = require(ServerScriptService.Server.Services.AuctionHouseService)
+local BusinessService = require(ServerScriptService.Server.Services.BusinessService)
+local CovenHideoutDataService = require(ServerScriptService.Server.Services.CovenHideoutDataService)
+local EventCalendarService = require(ServerScriptService.Server.Services.EventCalendarService)
+local FeatureFlagService = require(ServerScriptService.Server.Services.FeatureFlagService)
+local FeedbackService = require(ServerScriptService.Server.Services.FeedbackService)
+local ModerationSyncService = require(ServerScriptService.Server.Services.ModerationSyncService)
+local NPCPsychologyService = require(ServerScriptService.Server.Services.NPCPsychologyService)
+local ReferralService = require(ServerScriptService.Server.Services.ReferralService)
+local SessionService = require(ServerScriptService.Server.Services.SessionService)
+local WorldGenerationService = require(ServerScriptService.Server.Services.WorldGenerationService)
+
+-- ============================================================
 -- BOOT ORDER — services{} table with tier comments
 -- ============================================================
 local services = {
@@ -165,7 +184,7 @@ local services = {
 	MobService,
 	CovenService,
 	ExpeditionService,
-	QuestManager,
+	QuestService,
 	OnboardingService,
 	StoreService,
 
@@ -221,6 +240,23 @@ local services = {
 
 	-- TIER 6 — Gameplay Systems [NEW — Phase A]
 	WeaponService,
+
+	-- TIER 7 — Experimental [Sprint 5]
+	ABTestingService,
+	AccessoryOptimizationService,
+	AdminDashboardService,
+	AnalyticsTrackerService,
+	AuctionHouseService,
+	BusinessService,
+	CovenHideoutDataService,
+	EventCalendarService,
+	FeatureFlagService,
+	FeedbackService,
+	ModerationSyncService,
+	NPCPsychologyService,
+	ReferralService,
+	SessionService,
+	WorldGenerationService,
 }
 
 -- ============================================================

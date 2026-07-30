@@ -12,7 +12,7 @@ MachineController.Name = "MachineController"
 
 local _machineEvent: RemoteEvent?
 
-function MachineController.Init()
+function MachineController.Init(self)
 	local sharedEvents = ReplicatedStorage:FindFirstChild("Shared")
 		and ReplicatedStorage.Shared:FindFirstChild("Events")
 	if sharedEvents then

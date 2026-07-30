@@ -4,21 +4,22 @@
 
 local MaterialTypes = require(script.Parent.Parent.Types.MaterialTypes)
 
-local MaterialRegistry: { [string]: MaterialTypes.MaterialDef } = {}
+local MaterialRegistry_data: { [string]: MaterialTypes.MaterialDef } = {}
+local MaterialRegistry = {}
 
 function MaterialRegistry.RegisterMaterial(def: MaterialTypes.MaterialDef)
-	if MaterialRegistry[def.Id] then
+	if MaterialRegistry_data[def.Id] then
 		warn(string.format("⚠️ [MaterialRegistry] Duplicate material registration for '%s'. Overwriting.", def.Id))
 	end
-	MaterialRegistry[def.Id] = def
+	MaterialRegistry_data[def.Id] = def
 end
 
 function MaterialRegistry.GetMaterial(id: string): MaterialTypes.MaterialDef?
-	return MaterialRegistry[id]
+	return MaterialRegistry_data[id]
 end
 
 function MaterialRegistry.GetAllMaterials(): { [string]: MaterialTypes.MaterialDef }
-	return MaterialRegistry
+	return MaterialRegistry_data
 end
 
 local GeneratedMaterialRegistry = require(script.Parent.GeneratedMaterialRegistry)

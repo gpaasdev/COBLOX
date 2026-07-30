@@ -1,5 +1,6 @@
 --!strict
 local RateLimitService = {}
+RateLimitService.ServiceStatus = "Production"
 RateLimitService.Name = "RateLimitService"
 
 local rateLimits: { [number]: { [string]: number } } = {}

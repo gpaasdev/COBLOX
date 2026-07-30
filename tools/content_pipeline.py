@@ -116,6 +116,15 @@ def load_and_validate(pattern: str, schema_class):
                 exit(1)
     return valid_items
 
+def validate_no_duplicate_ids(items, label: str):
+    ids = {}
+    for item in items:
+        if item.Id in ids:
+            print(f"❌ Duplicate ID '{item.Id}' in {label} (files: {ids[item.Id]} and {item})")
+            exit(1)
+        ids[item.Id] = item.Name
+    print(f"✅ {label}: {len(items)} items, no duplicate IDs")
+
 def generate_luau_registry(items, output_path: str, registry_name: str, type_def: str):
     # Generate backward-compatible alias functions
     singular_name = registry_name.replace("Registry", "")
@@ -204,6 +213,18 @@ def main():
     recipes = load_and_validate(f"{base_path}/Recipes/*.json", RecipeSchema)
     market = load_and_validate(f"{base_path}/Market/*.json", MarketAssetSchema)
     
+    print("--- Validating No Duplicate IDs ---")
+    validate_no_duplicate_ids(materials, "Materials")
+    validate_no_duplicate_ids(reactions, "Reactions")
+    validate_no_duplicate_ids(machines, "Machines")
+    validate_no_duplicate_ids(research, "Research")
+    validate_no_duplicate_ids(biomes, "Biomes")
+    validate_no_duplicate_ids(creatures, "Creatures")
+    validate_no_duplicate_ids(spirits, "Spirits")
+    validate_no_duplicate_ids(badges, "Badges")
+    validate_no_duplicate_ids(recipes, "Recipes")
+    validate_no_duplicate_ids(market, "Market")
+
     print("--- Generating Luau Registries ---")
     
     mat_type_def = """export type MaterialRegistryDefinition = { Id: string, Name: string, Density: number, Conductivity: number, Value: number }"""

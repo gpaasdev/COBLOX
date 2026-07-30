@@ -15,6 +15,7 @@ local checkInterval = 2
 local frameHistory = {}
 local controllerMaid = Maid.new()
 local lastThrottleChange = 0
+local graphicsThrottled = false
 
 function PerformanceMonitorController.Init()
 	print("[PerformanceMonitorController] Initializing Mobile FPS Monitoring & Dynamic Throttling...")
@@ -49,7 +50,7 @@ function PerformanceMonitorController.Start()
 			avgFPS = avgFPS / #frameHistory
 
 			local now = tick()
-			if _G.GraphicsThrottled then
+			if graphicsThrottled then
 				if avgFPS > RESTORE_THRESHOLD_FPS and now - lastThrottleChange > THROTTLE_COOLDOWN then
 					PerformanceMonitorController.RestoreGraphics()
 				end
@@ -68,8 +69,8 @@ end
 
 function PerformanceMonitorController.ThrottleGraphics()
 	-- Dynamic Particle Throttling for Low-End Mobile
-	if not _G.GraphicsThrottled then
-		_G.GraphicsThrottled = true
+	if not graphicsThrottled then
+		graphicsThrottled = true
 		print("[PerformanceMonitorController] Low FPS detected! Throttling particles...")
 		for _, obj in ipairs(Workspace:GetDescendants()) do
 			if obj:IsA("ParticleEmitter") then
@@ -81,8 +82,8 @@ function PerformanceMonitorController.ThrottleGraphics()
 end
 
 function PerformanceMonitorController.RestoreGraphics()
-	if _G.GraphicsThrottled then
-		_G.GraphicsThrottled = false
+	if graphicsThrottled then
+		graphicsThrottled = false
 		print("[PerformanceMonitorController] FPS stabilized. Restoring particles...")
 		for _, obj in ipairs(Workspace:GetDescendants()) do
 			if obj:IsA("ParticleEmitter") then

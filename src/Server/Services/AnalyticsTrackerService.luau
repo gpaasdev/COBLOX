@@ -2,10 +2,16 @@
 
 local AnalyticsService = game:GetService("AnalyticsService")
 
-local AnalyticsTrackerService = {}
+local AnalyticsTrackerService = {
+	ServiceStatus = "Experimental",
+	Name = "AnalyticsTracker",
+}
 
 function AnalyticsTrackerService.Init()
 	print("[AnalyticsTrackerService] Initializing Game Analytics & Economy Flow Tracking...")
+end
+
+function AnalyticsTrackerService.Start()
 end
 
 function AnalyticsTrackerService.LogEconomyTransaction(

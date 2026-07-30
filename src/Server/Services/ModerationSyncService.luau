@@ -2,7 +2,10 @@
 
 local Players = game:GetService("Players")
 
-local ModerationSyncService = {}
+local ModerationSyncService = {
+	ServiceStatus = "Experimental",
+	Name = "ModerationSync",
+}
 
 function ModerationSyncService.Init()
 	print("[ModerationSyncService] Initializing Webhook & Open Cloud Moderation Sync...")
@@ -10,6 +13,9 @@ function ModerationSyncService.Init()
 	Players.PlayerAdded:Connect(function(player)
 		ModerationSyncService.CheckPlayerRestriction(player)
 	end)
+end
+
+function ModerationSyncService.Start()
 end
 
 function ModerationSyncService.CheckPlayerRestriction(player: Player)

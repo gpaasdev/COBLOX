@@ -36,7 +36,7 @@ function ResourceController.RequestHarvest(nodeInstanceId: string, hitPosition: 
 	end
 end
 
-function ResourceController.PlayHitAnimation(nodePart: BasePart)
+function ResourceController.PlayHitAnimation(self, nodePart: BasePart)
 	if not nodePart then
 		return
 	end
