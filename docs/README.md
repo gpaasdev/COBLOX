@@ -1,5 +1,9 @@
 > **[🏠 Master Index](MASTER_INDEX.md) | [⬅️ Back to Docs](README.md)**
 
+> [!WARNING]
+> **STATUS: OBSOLETE / DEPRECATED AS SINGLE SOURCE OF TRUTH (SSOT)**
+> Seluruh dokumen di direktori `docs/` ini telah dinyatakan **usang**. Jangan gunakan dokumen ini sebagai rujukan utama arsitektur atau parameter game. Rujukan utama (SSOT) yang berlaku adalah **`src/`** dan **`Content/Data/`**.
+
 # COBLOX PRODUCT BIBLE & MASTER SSOT HIERARCHY
 **Version:** 11.0 (Live Game Business Operating System Edition — LGBOS)  
 **Target Engine:** Roblox Luau (`--!strict`)  

@@ -41,6 +41,10 @@ function TelemetryController.Start(self, Registry: any)
 		handshakeEvent:FireServer(deviceType)
 	end
 
+	-- Track initial load duration telemetry (< 5s target budget)
+	local loadDuration = workspace:GetServerTimeNow() - tick()
+	TelemetryController.Track("Performance", "JoinDuration", deviceType, math.max(0, loadDuration))
+
 	print("[TelemetryController] Started tracking telemetry. Device:", deviceType)
 end
 

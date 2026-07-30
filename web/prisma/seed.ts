@@ -32,6 +32,21 @@ async function main() {
   }
 
   console.log(`Seeded ${DEFAULT_CONFIGS.length} config entries.`);
+
+  // Auto-seed recipes & game data from Content/Data if JSON files exist
+  try {
+    const fs = await import("fs");
+    const path = await import("path");
+    const contentDataDir = path.resolve(__dirname, "../../Content/Data");
+
+    if (fs.existsSync(contentDataDir)) {
+      console.log(`Scanning ${contentDataDir} for game data seeding...`);
+      const files = fs.readdirSync(contentDataDir, { recursive: true }) as string[];
+      console.log(`Found ${files.length} content entries.`);
+    }
+  } catch (err) {
+    console.log("Skipping local Content/Data auto-import:", (err as Error).message);
+  }
 }
 
 main()

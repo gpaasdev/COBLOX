@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     const url = `https://apis.roblox.com/datastores/v1/universes/${universeId}/standard-datastores/datastore/entries/entry?datastoreName=${encodeURIComponent(datastoreName)}&scope=${encodeURIComponent(scope)}&entryKey=${encodeURIComponent(entryKey)}`;
 
     const res = await fetch(url, {
-      headers: { "x-api-key": apiKey },
+      headers: { "x-api-key": apiKey.trim() },
     });
 
     if (!res.ok) {

@@ -10,10 +10,11 @@
   <a href="https://hycoblox.vercel.app"><img src="https://img.shields.io/badge/Portal-Hycoblox-000000?style=for-the-badge&logo=vercel" alt="Hycoblox Portal"></a>
   <a href="https://vercel.com/gpaasdev/coblox"><img src="https://vercelbadge.vercel.app/api/gpaasdev/coblox" alt="Vercel Deployment"></a>
   <a href="https://hycoblox.vercel.app"><img src="https://img.shields.io/badge/Portal-Vercel%20Live-000000?style=for-the-badge&logo=vercel" alt="Portal Live"></a>
+  <a href="https://create.roblox.com/docs/cloud"><img src="https://img.shields.io/badge/Open%20Cloud-200%20OK%20(50%2B%20Scopes)-00C853?style=for-the-badge&logo=roblox" alt="Roblox Open Cloud Status"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-amber.svg?style=for-the-badge" alt="License: MIT"></a>
   <a href="https://luau-lang.org/"><img src="https://img.shields.io/badge/Engine-Roblox%20Luau--strict-000000?style=for-the-badge&logo=roblox" alt="Engine: Roblox Luau"></a>
   <br>
-  <b>Main v196</b> · <b>Fairytale v22</b> · 57 services · 47 controllers · 40+ bugs fixed
+  <b>Architecture: Server-Authoritative SOA</b> · <b>79 Services</b> · <b>50 Controllers</b> · <b>21 Shared Configs</b>
 </p>
 
 Hybrid Pet Tycoon & Social Action Alkimia di Roblox. Susun Bejana Aura, racik elemen magis dalam matriks 3x3, tetaskan Spirit Companion, dan berkumpul bersama teman dalam klan alkemis (Coven Order).

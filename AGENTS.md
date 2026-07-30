@@ -2,6 +2,8 @@
 
 > **Cross-Tool Context File** (Antigravity, Claude Code, Cursor, Windsurf, Gemini CLI).
 > See also `.agents/AGENTS.md` for local-only tool configuration (gitignored).
+> 
+> **IMPORTANT:** The actual codebase (`src/` and `Content/Data/`) is the ONLY active Single Source of Truth (SSOT). Files under `docs/` are DEPRECATED / OBSOLETE and serve only as historical reference.
 
 ---
 
@@ -112,11 +114,13 @@ local dropWeight = tonumber(dropStr)
 
 # 5. Security & Performance Guidelines
 
-### Zero-Trust Security
+### Zero-Trust Security & Open Cloud API Standards
 - Always validate client inputs server-side.
 - Enforce physical distance checks (≤ 15 studs) for spatial interactions.
 - Validate payload arguments at runtime (`typeof()` checks) in all `RemoteEvent` and `RemoteFunction` handlers.
 - All DataStore, MemoryStore, and HTTP calls MUST be wrapped in `pcall` or `xpcall`.
+- **Open Cloud API Auth Standard:** Requests to Roblox Open Cloud endpoints (`apis.roblox.com`) via `x-api-key` require unencoded raw Secret API Keys from `create.roblox.com/credentials` (with IP CIDR set to `0.0.0.0/0` for Vercel/cloud runners). OAuth 2.0 requests use `Authorization: Bearer <access_token>`.
+
 
 ### Resource Budgeting
 - Target total memory: < 2.5 GB RAM (Mobile Target).

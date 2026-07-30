@@ -3,15 +3,15 @@
 local AnalyticsService = game:GetService("AnalyticsService")
 
 local AnalyticsTrackerService = {
-	ServiceStatus = "Experimental",
-	Name = "AnalyticsTracker",
+	ServiceStatus = "Production",
+	Name = "AnalyticsTrackerService",
 }
 
-function AnalyticsTrackerService.Init()
+function AnalyticsTrackerService.Init(self: any, Registry: any)
 	print("[AnalyticsTrackerService] Initializing Game Analytics & Economy Flow Tracking...")
 end
 
-function AnalyticsTrackerService.Start()
+function AnalyticsTrackerService.Start(self: any, Registry: any)
 end
 
 function AnalyticsTrackerService.LogEconomyTransaction(
@@ -67,6 +67,16 @@ function AnalyticsTrackerService.LogAutomationMilestone(player: Player, machineI
 	pcall(function()
 		AnalyticsService:LogCustomEvent(player, "AutomationMilestone", totalOutput, {
 			MachineId = machineId,
+		})
+	end)
+end
+
+function AnalyticsTrackerService.LogDataStoreMetric(actionType: string, dataSize: number, success: boolean)
+	-- Digunakan untuk Open Cloud Metrics atau Custom Analytics Telemetry
+	pcall(function()
+		AnalyticsService:LogCustomEvent(nil :: any, "DataStoreUsage", dataSize, {
+			Action = actionType,
+			Success = tostring(success),
 		})
 	end)
 end
