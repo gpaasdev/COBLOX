@@ -2,5 +2,25 @@
   "Id": "Synthesizer_v7",
   "Name": "Industrial Synthesizer Mark 7",
   "PowerConsumption": 700,
-  "MaxTemperature": 2250
+  "MaxTemperature": 2250,
+  "Tier": "T4",
+  "MachineType": "Synthesizer",
+  "Version": 7,
+  "InputTypes": [
+    "AetherCrystal",
+    "EtherDust",
+    "CrystalShard"
+  ],
+  "OutputTypes": [
+    "SyntheticGem",
+    "PowerCell",
+    "EnergyOrb"
+  ],
+  "Speed": 9.6,
+  "Efficiency": 0.87,
+  "RecipeMap": [
+    "Recipe_Synthesizer_1",
+    "Recipe_Synthesizer_2",
+    "Recipe_Synthesizer_3"
+  ]
 }

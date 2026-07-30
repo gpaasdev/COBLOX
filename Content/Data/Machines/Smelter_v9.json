@@ -2,5 +2,27 @@
   "Id": "Smelter_v9",
   "Name": "Industrial Smelter Mark 9",
   "PowerConsumption": 900,
-  "MaxTemperature": 2750
+  "MaxTemperature": 2750,
+  "Tier": "T5",
+  "MachineType": "Smelter",
+  "Version": 9,
+  "InputTypes": [
+    "IronOre",
+    "CopperOre",
+    "GoldOre",
+    "Stone"
+  ],
+  "OutputTypes": [
+    "IronIngot",
+    "CopperIngot",
+    "GoldIngot",
+    "RefinedStone"
+  ],
+  "Speed": 9.0,
+  "Efficiency": 0.86,
+  "RecipeMap": [
+    "Recipe_Smelter_1",
+    "Recipe_Smelter_2",
+    "Recipe_Smelter_3"
+  ]
 }

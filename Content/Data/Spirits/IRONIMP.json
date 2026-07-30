@@ -4,5 +4,36 @@
   "Rarity": "Common",
   "Element": "Earth",
   "DropRate": "15.0%",
-  "Description": "Lahir dari serpihan besi tua."
+  "Description": "Lahir dari serpihan besi tua.",
+  "Stats": {
+    "HP": 80,
+    "Attack": 8,
+    "Defense": 5,
+    "Speed": 1.08
+  },
+  "Abilities": [
+    "RockBarrier",
+    "Quake"
+  ],
+  "SkillPool": [
+    "RockBarrier",
+    "Quake",
+    "StoneSkin",
+    "SandTrap"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 15,
+    "evolvesTo": "TITANIUMWYVERN",
+    "evolutionMat": "EarthEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "EarthEssence",
+      "count": 1
+    },
+    {
+      "item": "Gold",
+      "count": 10
+    }
+  ]
 }

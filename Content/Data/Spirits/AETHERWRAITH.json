@@ -4,5 +4,37 @@
   "Rarity": "Epic",
   "Element": "Void",
   "DropRate": "2.0%",
-  "Description": "Setengah ada, setengah bayangan."
+  "Description": "Setengah ada, setengah bayangan.",
+  "Stats": {
+    "HP": 1144,
+    "Attack": 114,
+    "Defense": 76,
+    "Speed": 0.53
+  },
+  "Abilities": [
+    "ShadowStrike",
+    "VoidRift",
+    "DarkPulse"
+  ],
+  "SkillPool": [
+    "ShadowStrike",
+    "VoidRift",
+    "DarkPulse",
+    "SoulSteal"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 30,
+    "evolvesTo": "ABYSSALKRAKEN",
+    "evolutionMat": "VoidEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "VoidEssence",
+      "count": 4
+    },
+    {
+      "item": "Gold",
+      "count": 40
+    }
+  ]
 }

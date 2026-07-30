@@ -138,6 +138,15 @@ export type PlayerProfile = {
 		TotalMobsKilled: number,
 		TotalDamageDealt: number,
 	}?,
+	Avatar: AvatarConfigData?,
+}
+
+export type AvatarConfigData = {
+	SkinTone: Color3?,
+	HeadMeshId: string?,
+	ClothingAssetIds: { string },
+	PBRSkinTextureId: string?,
+	EnableProceduralIK: boolean,
 }
 
 export type PlayerProfileV2 = PlayerProfile

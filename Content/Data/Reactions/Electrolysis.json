@@ -1,0 +1,15 @@
+{
+  "Id": "Electrolysis",
+  "Name": "Electrolysis",
+  "RequiredMaterials": {
+    "Water": 5,
+    "Salt": 1
+  },
+  "MinTemperature": 100,
+  "MaxTemperature": 300,
+  "MinPressure": 1.0,
+  "Product": "Hydrogen",
+  "YieldRatio": 3.0,
+  "EnergyRequired": 150,
+  "EntropyGenerated": 0.08
+}

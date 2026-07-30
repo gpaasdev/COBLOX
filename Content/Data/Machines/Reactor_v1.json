@@ -2,5 +2,23 @@
   "Id": "Reactor_v1",
   "Name": "Industrial Reactor Mark 1",
   "PowerConsumption": 100,
-  "MaxTemperature": 750
+  "MaxTemperature": 750,
+  "Tier": "T1",
+  "MachineType": "Reactor",
+  "Version": 1,
+  "InputTypes": [
+    "Uranium",
+    "Plutonium",
+    "MagmaCore"
+  ],
+  "OutputTypes": [
+    "EnergyCell",
+    "Plasma",
+    "Steam"
+  ],
+  "Speed": 12.0,
+  "Efficiency": 0.5,
+  "RecipeMap": [
+    "Recipe_Reactor_1"
+  ]
 }

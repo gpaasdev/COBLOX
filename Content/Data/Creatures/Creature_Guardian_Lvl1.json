@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Guardian_Lvl1",
   "Name": "Guardian Elite Grade 1",
-  "Health": 100
+  "Health": 220,
+  "Damage": 10,
+  "AttackSpeed": 0.9,
+  "Defense": 12,
+  "Abilities": [
+    "ShieldWall",
+    "HolyStrike"
+  ],
+  "LootTable": [
+    {
+      "item": "GuardianShard",
+      "chance": 0.7,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "HolySeal",
+      "chance": 0.2,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 22
 }

@@ -1,5 +1,49 @@
 {
   "Id": "Biome_Subterranean_1",
   "Name": "Subterranean Wastes Sector 1",
-  "Temperature": 250.0
+  "Temperature": 250.0,
+  "Tier": "T1",
+  "DangerLevel": 3,
+  "AmbientSound": "CaveDrip",
+  "Color": "#886644",
+  "Resources": [
+    {
+      "item": "StoneCore",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "item": "CrystalShard",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "item": "MetalScrap",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Golem_Lvl2",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    },
+    {
+      "creature": "Creature_Construct_Lvl2",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    },
+    {
+      "creature": "Creature_Parasite_Lvl2",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    }
+  ]
 }

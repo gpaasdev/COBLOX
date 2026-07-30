@@ -6,6 +6,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local DataTypes = require(ReplicatedStorage.Shared.Types.DataTypes)
 local EconomyConfig = require(ReplicatedStorage.Shared.Configuration.EconomyConfig)
+local ElementMarketConfig = require(ReplicatedStorage.Shared.Configuration.ElementMarketConfig)
 local PlayerDataService = require(script.Parent.PlayerDataService)
 local ProfileStoreAdapter = require(script.Parent.ProfileStoreAdapter)
 local RemoteConfigService = require(ServerScriptService.Server.Services.RemoteConfigService)
@@ -41,6 +42,8 @@ function EconomyService.Start()
 			EconomyService._SyncClient(player, res.Data.Wallet)
 		end
 	end
+
+	EconomyService.StartElementTick()
 end
 
 function EconomyService.CalculateQuantumVaultBalance(player: Player): ServiceResult<number>
@@ -79,7 +82,7 @@ function EconomyService.CalculateQuantumVaultBalance(player: Player): ServiceRes
 
 	local now = os.time()
 	local timeElapsed = math.max(0, now - vault.LastDepositTimestamp)
-	local daysElapsed = math.min(30, timeElapsed / 86400) -- Cap offline compounding at 30 days max
+	local daysElapsed = math.min(30, timeElapsed / 86400)
 
 	local interestRate = RemoteConfigService.GetTuningValue("VaultInterestRate", 0.05)
 	local rawCompound = principal * math.pow(1 + interestRate, daysElapsed)
@@ -258,7 +261,6 @@ function EconomyService.ProcessRebirth(player: Player): ServiceResult<number>
 	local wallet = res.Data.Wallet
 	local currentTokens = wallet.RebirthTokens or 0
 	local baseCost = RemoteConfigService.GetTuningValue("RebirthCost", 100000)
-	-- Exponential Scaling Anti-Inflation Formula: Base * (2.5 ^ tokens)
 	local rebirthCost = math.floor(baseCost * math.pow(2.5, currentTokens))
 	local tokenReward = RemoteConfigService.GetTuningValue("RebirthTokenReward", 1)
 
@@ -358,7 +360,6 @@ function EconomyService.DeductCurrency(
 		return EconomyService.DeductCoins(player, amount, reason or "DeductCurrency")
 	end
 
-	-- For non-Coins currencies, use SafeUpdateProfile
 	local initialBalance = currentBalance
 	local ok = pcall(function()
 		ProfileStoreAdapter.SafeUpdateProfile(player, function(data)
@@ -386,6 +387,49 @@ function EconomyService.DeductCurrency(
 		Data = currentBalance - amount,
 		Retryable = false,
 	}
+end
+
+function EconomyService.GetElementPrice(elementId: string): number
+	local market = ElementMarketConfig[elementId]
+	if not market then
+		return 0
+	end
+
+	local ratio = market.GlobalDemand / math.max(1, market.GlobalSupply)
+	local dynamicPrice = math.floor(market.BasePrice * ratio)
+	return math.max(1, dynamicPrice)
+end
+
+function EconomyService.RecordElementTrade(elementId: string, amount: number, isBuy: boolean)
+	local market = ElementMarketConfig[elementId]
+	if not market then
+		return
+	end
+
+	if isBuy then
+		market.GlobalDemand += amount
+		market.GlobalSupply = math.max(0, market.GlobalSupply - amount)
+	else
+		market.GlobalSupply += amount
+		market.GlobalDemand = math.max(10, market.GlobalDemand - amount * 0.5)
+	end
+end
+
+local elementTickRunning = false
+
+function EconomyService.StartElementTick()
+	if elementTickRunning then
+		return
+	end
+	elementTickRunning = true
+
+	task.spawn(function()
+		while task.wait(300) do
+			for _, market in pairs(ElementMarketConfig) do
+				market.GlobalDemand = math.max(10, market.GlobalDemand * 0.997)
+			end
+		end
+	end)
 end
 
 return EconomyService

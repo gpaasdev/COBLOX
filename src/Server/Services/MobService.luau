@@ -32,15 +32,20 @@ local ATTACK_RANGE = GameConfig.Combat.MobAttackRange
 local LEASH_DISTANCE = GameConfig.Combat.MobLeashDistance
 local WINDUP_DURATION = GameConfig.Combat.MobWindupDuration
 
-function MobService.Init()
+function MobService.Init(self)
+	self._running = true
 	-- Tick-Rate Driven AI Loop (0.5 second pulse for performance budget < 2.5 GB RAM)
 	task.spawn(function()
-		while true do
+		while self._running do
 			MobService.Tick(0.5)
 			task.wait(0.5)
 		end
 	end)
 	print("🧟 MobService Initialized (5-State FSM Architecture)")
+end
+
+function MobService.Stop(self)
+	self._running = false
 end
 
 function MobService.SpawnMob(id: string, position: Vector3)
@@ -166,14 +171,9 @@ function MobService.SpawnMob(id: string, position: Vector3)
 	hrp.Anchored = false
 	hrp:SetNetworkOwner(nil) -- Force Server Ownership for AlignPosition to work!
 
-	local mobActor = Instance.new("Actor")
-	mobActor.Name = "MobActor"
-	mobActor.Parent = mobModel
-
 	activeMobs[id] = {
 		Id = id,
 		Model = mobModel,
-		Actor = mobActor,
 		State = "IDLE",
 		StateTime = os.clock(),
 		Target = nil,
@@ -219,17 +219,36 @@ end
 
 function MobService.TakeDamage(id: string, amount: number, attacker: Player?)
 	local mob = activeMobs[id]
-	if mob and mob.State ~= "DEAD" and mob.State ~= "RETURN" then -- Invulnerable during RETURN
+	if mob and mob.State ~= "DEAD" and mob.State ~= "RETURN" then
 		mob.Health -= amount
+
+		local hrp = mob.Model.PrimaryPart
+		local bb = hrp and hrp:FindFirstChild("MobHealthHUD") :: BillboardGui?
+		if bb then
+			local card = bb:FindFirstChildOfClass("Frame")
+			local hpBg = card and card:FindFirstChild("HPBg") :: Frame?
+			local hpBar = hpBg and hpBg:FindFirstChild("HPBar") :: Frame?
+			if hpBar then
+				local pct = math.max(mob.Health / 100, 0)
+				hpBar.Size = UDim2.new(pct, 0, 1, 0)
+			end
+		end
+
+		CombatEvent:FireAllClients("MobDamaged", {
+			mobId = id,
+			currentHp = mob.Health,
+			maxHp = 100,
+			damage = amount,
+			position = hrp and hrp.Position or Vector3.new(),
+		})
+
 		if mob.Health <= 0 then
-			-- RACE CONDITION FIX: capture lootTier and spawnPos BEFORE removing from activeMobs
 			local lootTier = if string.find(id, "Boss") or string.find(id, "Titan") then "Boss" else "Default"
 			local savedSpawnPos = mob.SpawnPosition
 			mob.State = "DEAD"
 			mob.Model:Destroy()
 			activeMobs[id] = nil
 
-			-- Weighted loot drop via _RollLoot
 			if attacker then
 				local lootEntry = MobService._RollLoot(lootTier)
 				if lootEntry then
@@ -244,7 +263,6 @@ function MobService.TakeDamage(id: string, amount: number, attacker: Player?)
 						)
 					)
 				end
-				-- Track combat stats
 				local ProfileStoreAdapter = require(ServerScriptService.Server.Services.ProfileStoreAdapter)
 				ProfileStoreAdapter.SafeUpdateProfile(attacker, function(profileData)
 					if not profileData.CombatStats then
@@ -255,7 +273,6 @@ function MobService.TakeDamage(id: string, amount: number, attacker: Player?)
 				end)
 			end
 
-			-- Respawn mob after delay
 			task.delay(10, function()
 				MobService.SpawnMob(id, savedSpawnPos)
 			end)

@@ -2,5 +2,25 @@
   "Id": "Cooler_v8",
   "Name": "Industrial Cooler Mark 8",
   "PowerConsumption": 800,
-  "MaxTemperature": 2500
+  "MaxTemperature": 2500,
+  "Tier": "T5",
+  "MachineType": "Cooler",
+  "Version": 8,
+  "InputTypes": [
+    "Water",
+    "IceShard",
+    "LiquidNitrogen"
+  ],
+  "OutputTypes": [
+    "Coolant",
+    "CryoFuel",
+    "ChilledAir"
+  ],
+  "Speed": 5.1,
+  "Efficiency": 0.94,
+  "RecipeMap": [
+    "Recipe_Cooler_1",
+    "Recipe_Cooler_2",
+    "Recipe_Cooler_3"
+  ]
 }

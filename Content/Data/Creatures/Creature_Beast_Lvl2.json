@@ -1,5 +1,26 @@
 {
   "Id": "Creature_Beast_Lvl2",
   "Name": "Beast Elite Grade 2",
-  "Health": 400
+  "Health": 130,
+  "Damage": 10,
+  "AttackSpeed": 1.33,
+  "Defense": 3,
+  "Abilities": [
+    "ClawSwipes"
+  ],
+  "LootTable": [
+    {
+      "item": "RawMeat",
+      "chance": 0.7,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "item": "Leather",
+      "chance": 0.4,
+      "min": 1,
+      "max": 2
+    }
+  ],
+  "XP": 20
 }

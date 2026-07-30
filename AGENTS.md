@@ -1,138 +1,124 @@
-# AGENTS.md — COBLOX Roblox Game (Single Source of Truth)
+# AGENTS.md — COBLOX
 
-> **Cross-Tool Context File** (Antigravity, Claude Code, Cursor, Windsurf, Gemini CLI).
-> See also `.agents/AGENTS.md` for local-only tool configuration (gitignored).
-> 
-> **IMPORTANT:** The actual codebase (`src/` and `Content/Data/`) is the ONLY active Single Source of Truth (SSOT). Files under `docs/` are DEPRECATED / OBSOLETE and serve only as historical reference.
+Sci-fantasy industrial sandbox di Roblox Engine. Luau `--!strict`, Rojo + Aftman.
 
----
+## Tooling & Commands
 
-# 1. Project Architecture & Scope Boundaries
-
-COBLOX is a **Roblox-exclusive sci-fantasy industrial sandbox game** built in Luau on the Roblox Engine using Rojo and Aftman.
-
----
-
-# 2. Frozen Core Services & Configuration Rules
-
-### Frozen Services
-Do NOT refactor without approved ADR:
-`SaveService`, `EconomyService`, `EggService`, `PetService`, `TycoonService`, `TradeService`, `RuntimeServer`, `RuntimeClient`.
-
-### Configuration Additions
-All content additions MUST be made via config files in `Content/Data/` or `Shared/Config/`.
-
----
-
-# 3. Code Bounds & Standards
-
-- **Header:** `--!strict` in all Luau scripts.
-- **Linter:** `selene src/` must pass clean (0 errors/warnings).
-- **Limits:** Max 300 lines/module, max 40 lines/function, cyclomatic complexity $< 10$.
-
----
-
-# 4. Mandatory Luau Coding Patterns
-
-### Registries — Data/Func Separation (ALL Registries)
-**NEVER** iterate any registry table directly with `pairs()`. Use `Registry.GetAll()`:
-
-```luau
-local data = Registry.GetAll()  -- returns {_data} table (data only)
-for id, entry in pairs(data) do
-    -- entry is guaranteed to be a data table, never a function
-end
+```bash
+aftman install              # install toolchain (Rojo, Selene, StyLua, luau-lsp)
+rojo serve default.project.json  # sync → Studio
+selene src/                 # linter — must pass 0 errors/warnings
+stylua --check src/         # formatter check
+stylua src/                 # format all
+rojo build -o test.rbxl     # build check
+python scripts/validate_rgs_compliance.py  # compliance audit
 ```
 
-This includes `RealmRegistry`, `GeneratedFairytaleSpiritRegistry`, and all `Generated*Registry` files.
+**CI** (`.github/workflows/ci.yml`): `selene src/` → `stylua --check src/` → `rojo build`.
 
-### Service Registration Requirements
-Every service in `RuntimeServer.server.luau` MUST have:
-- `ServiceStatus = "Production",` — set to `"Experimental"` only for testing
-- `Name = "ServiceName",` — matches the file name (no `table: 0x...` in boot logs)
-- `Init()` — always present; boot order depends on `services{}` table position
-- `Start()` — required for services that need post-boot activation; leave empty `function X.Start() end` if unused
+## Architecture
 
+| Layer | Dir | Entrypoint |
+|-------|-----|------------|
+| Server | `src/Server/Services/` | `RuntimeServer.server.luau` (7-tier boot) |
+| Client | `src/Client/Controllers/` | `RuntimeClient.client.luau` (ControllerRegistry) |
+| Shared | `src/Shared/` | Config, Utility, Types, Events, Network |
+| Config | `src/Shared/Config/` | `Generated*Registry.luau` + `Content/Data/` |
+| Assets | `src/Assets/` | Synced via Rojo to ReplicatedStorage.Shared.Assets |
 
+- **Services** (`Service.luau` di `src/Server/Services/`) — `ServiceStatus`, `Name`, `Init(self)`, `Start(self)`, daftar di `RuntimeServer.server.luau`.
+- **Controllers** (`Controller.luau` di `src/Client/Controllers/`) — `Init(self, Registry)`, `Start(self, Registry)`, daftar di `RuntimeClient.client.luau`.
 
+## Pola Kode Wajib
+
+### Registry — jangan iterasi langsung
 ```luau
-local data = Registry.GetAll()  -- returns {_data} table (data only)
-for id, entry in pairs(data) do
-    -- entry is guaranteed to be a data table, never a function
-end
+local data = Registry.GetAll()  -- returns {_data} table, bukan tabel asli
+for id, entry in pairs(data) do ... end
+```
+Berlaku untuk semua `Generated*Registry` + `RealmRegistry`.
+
+### Controller — colon notation dengan `self`
+```luau
+function X.Init(self, Registry) self.maid = Maid.new() end
+function X.Start(self, Registry) end
+function X._Helper(self) end
+```
+⚠️ `Start(self, Registry)` tanpa `self` → Registry masuk sebagai `self` → `self.maid` nil.
+⚠️ **Bug terverifikasi di `InteractionController.luau`** (line 24): `Init()` tanpa `self` — jika Registry dilewatkan akan error. ✅ **Fixed** — `self` ditambahkan.
+
+### Maid/cleanup
+```luau
+self.maid = Maid.new()
+self.maid:GiveTask(event:Connect(...))
+```
+`ContextActionService:BindAction()` return `nil` — jangan di-GiveTask:
+```luau
+self.maid:GiveTask(function() ContextActionService:UnbindAction("X") end)
 ```
 
-### ControllerRegistry — Colon Notation for ALL Lifecycle Methods
-Always use colon notation for `Init` AND `Start`, both must include `self` parameter:
+### Lain-lain
+- `DropRate` di config berupa string persen (`"1.5%"`): `tonumber(tostring(x):gsub("%%", ""))`
+- Semua DataStore/HTTP/RemoteEvent handler: `pcall()` + `typeof()` validasi
+- Interaksi fisik: jarak ≤ 15 studs, validasi server-side
 
-```luau
-function MyController.Init(self, Registry: any)
-    ...
-end
+## Frozen Services
 
-function MyController.Start(self, Registry: any)
-    ...
-end
-```
+Jangan refactor tanpa ADR: `EconomyService`, `EggService`, `PetService`, `TycoonService`, `TradeService`, `RuntimeServer`, `RuntimeClient`.
 
-The ControllerRegistry calls `controller:Init(Registry)` and `controller:Start(Registry)` using colon notation.
-A `Start()` without `self` will misinterpret the Registry argument as `self`, causing nil errors on `self.maid`.
+## Content Pipeline (Config-Driven)
 
-### File Naming — Consistency
-- All services in `src/Server/Services/` must end in `Service.luau` (e.g., `QuestService.luau`, not `QuestManager.luau`).
-- All controllers in `src/Client/Controllers/` must end in `Controller.luau`.
+Semua tambahan konten via file config, bukan edit service:
+- **Items/Materials:** `Content/Data/Materials/` → `GeneratedMaterialRegistry`
+- **Recipes:** `Content/Data/Recipes/` → `GeneratedRecipeRegistry`
+- **Machines:** `Content/Data/Machines/` → `GeneratedMachineRegistry`
+- **Spirits:** `Content/Data/Spirits/` → `GeneratedSpiritRegistry`
+- **LiveOps:** `src/LiveOps/`
 
+## Resource Budgets (Mobile Target)
 
-```luau
-function MyController.Init(self, Registry: any)
-    self.maid = Maid.new()
-    self:_CreateUI()
-end
+| Item | Limit |
+|------|-------|
+| RAM | < 2.5 GB |
+| Particles/emitter | ≤ 20 |
+| BillboardGui MaxDistance | ≤ 35 |
+| HUD AR elements | ScreenGui + WorldToViewportPoint (jangan BillboardGui) |
 
-function MyController._CreateUI(self)
-    self.maid:GiveTask(someEvent:Connect(function() end))
-end
-```
+VFX transient: `ObjectPool` (Visible=false recycling).
 
-### ContextActionService — No Return Value
-`ContextActionService:BindAction()` returns `nil`. Do NOT wrap in `GiveTask()`:
-```luau
-ContextActionService:BindAction("ActionName", handler, ...)
-self.maid:GiveTask(function()
-    ContextActionService:UnbindAction("ActionName")
-end)
-```
+## UPGRADE-1.md — Implementation Roadmap
 
-### Spirit DropRate Parsing
-`DropRate` uses percentage strings (e.g. `"1.5%"`):
-```luau
-local dropStr = tostring(spirit.DropRate):gsub("%%", "")
-local dropWeight = tonumber(dropStr)
-```
+`docs/02-ARCHITECTURE_AND_SPECS/UPGRADE-1.md` adalah vision document untuk **Roblox AI Engine Architect (RAEA)**. Status gap vs codebase:
 
----
+| Priority | Area | Status |
+|----------|------|--------|
+| P0 | RAEA_ModernAvatarEngine module (6 fungsi) | ✅ SELESAI |
+| 0.3 | CloudSyncService (MessagingService hot-reload) | ✅ SELESAI |
+| 1 | Avatar modern + AvatarService (IK, FACS, clothing) | ✅ SELESAI |
+| 2 | AI pipelines (Meshy, DeepMotion, Suno) — AssetGenerationService + AIPipelineService | ✅ SELESAI |
+| 2 | MCPBridge, FallbackCodeGenerator, AIPrompt upgrade | ✅ SELESAI |
+| 3 | Self-healing loop (LogService monitoring + error diagnosis) | ✅ Runtime monitoring |
+| — | Fusion UI (replacement for Roact/Instance.new UI) | ✅ wally.toml dep + demo controller |
+| — | R6→R15 retargeting adapter | ✅ SELESAI |
 
-# 5. Security & Performance Guidelines
+Lihat `docs/02-ARCHITECTURE_AND_SPECS/UPGRADE-1.md` untuk detail spesifikasi per-area.
 
-### Zero-Trust Security & Open Cloud API Standards
-- Always validate client inputs server-side.
-- Enforce physical distance checks (≤ 15 studs) for spatial interactions.
-- Validate payload arguments at runtime (`typeof()` checks) in all `RemoteEvent` and `RemoteFunction` handlers.
-- All DataStore, MemoryStore, and HTTP calls MUST be wrapped in `pcall` or `xpcall`.
-- **Open Cloud API Auth Standard:** Requests to Roblox Open Cloud endpoints (`apis.roblox.com`) via `x-api-key` require unencoded raw Secret API Keys from `create.roblox.com/credentials` (with IP CIDR set to `0.0.0.0/0` for Vercel/cloud runners). OAuth 2.0 requests use `Authorization: Bearer <access_token>`.
+## Docs Status
 
+`docs/*` = **DEPRECATED / OBSOLETE** sebagai SSOT. `src/` dan `Content/Data/` adalah satu-satunya source of truth yang aktif.
 
-### Resource Budgeting
-- Target total memory: < 2.5 GB RAM (Mobile Target).
-- Use `ObjectPool` for transient visual effects and damage text (`Visible = false` recycling).
-- `BillboardGui` instances MUST have `MaxDistance` set (≤ 35) with distance culling.
-- Render AR Lens HUD elements via `ScreenGui` using `WorldToViewportPoint` projections, NEVER `BillboardGui`.
+## Web Portal
 
----
+`web/` adalah Next.js 16 + Tailwind v4 + Prisma/Neon PostgreSQL. Lihat `web/AGENTS.md` untuk panduan spesifik (ada breaking changes di Next.js versi ini).
 
-# 6. Definition of Done (DoD)
+`cd web && npm run lint` → ESLint (TSX/TS).
+`cd web && npm run lint:css` → stylelint (CSS) — jalankan jika ada perubahan CSS.
 
-A task is DONE only when:
-1. `selene src/` passes with 0 errors/warnings.
-2. Rojo builds cleanly (`rojo build -o test.rbxl`).
-3. Memory budget (< 2.5 GB RAM) and particle limits (≤ 20 active particles/emitter) are verified.
+## Definisi Selesai (DoD)
+
+1. `selene src/` → 0 errors/warnings
+2. `rojo build -o test.rbxl` → sukses
+3. `python scripts/validate_rgs_compliance.py` → clean
+4. `cd web && npm run lint` → 0 warnings (jika ada perubahan TSX/TS)
+5. `cd web && npm run lint:css` → 0 warnings (jika ada perubahan CSS)
+6. Budget RAM (< 2.5 GB) & partikel (≤ 20/emitter) diverifikasi

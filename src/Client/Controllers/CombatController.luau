@@ -84,17 +84,27 @@ function CombatController.Init(self)
 		end
 	end))
 
-	self.maid:GiveTask(CombatEvent.OnClientEvent:Connect(function(event, mobId)
-		if event == "MobWindup" then
-			CombatController.PlayTelegraph(mobId)
-		elseif event == "MobStunned" then
-			CombatController.PlayStunVFX(mobId)
+	self.maid:GiveTask(CombatEvent.OnClientEvent:Connect(function(event, data)
+		if event == "MobStunned" then
+			require(script.Parent.CombatVFXController).PlayStunVFX(data)
+		elseif event == "MobDamaged" then
+			if typeof(data) == "table" then
+				local dmgText = tostring(data.damage)
+				VFXEngine.CreateFloatingText(dmgText, data.position, Color3.fromRGB(255, 50, 50))
+				if data.currentHp <= 0 then
+					VFXEngine.CreateFloatingText("KILL!", data.position, Color3.fromRGB(255, 200, 0))
+				end
+			end
+		elseif event == "PotionUsed" then
+			VFXEngine.CreateFloatingText("+30 HP!", Vector3.new(), Color3.fromRGB(50, 255, 50))
+		elseif event == "FlexEffect" then
+			VFXEngine.CreateFloatingText("💪 FLEX!", Vector3.new(), Color3.fromRGB(255, 255, 0))
 		end
 	end))
 
 	if MobWindupVFX then
 		self.maid:GiveTask(MobWindupVFX.OnClientEvent:Connect(function(mobId: string, targetPos: Vector3)
-			CombatController.PlayTelegraph(mobId)
+			require(script.Parent.CombatVFXController).PlayTelegraph(mobId)
 		end))
 	end
 
@@ -138,6 +148,7 @@ function CombatController.SwitchWeapon()
 	end
 	currentWeapon = PLAYER_WEAPONS[idx]
 	CombatController._UpdateWeaponVisual()
+	CombatEvent:FireServer("SwitchWeapon", currentWeapon)
 	print(
 		string.format(
 			"[CombatController] Weapon switched to: %s (DMG: %d, Range: %d)",

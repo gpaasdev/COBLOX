@@ -1,0 +1,15 @@
+{
+  "Id": "VoidExtraction",
+  "Name": "VoidExtraction",
+  "RequiredMaterials": {
+    "VoidShard": 3,
+    "DarkEssence": 2
+  },
+  "MinTemperature": 2000,
+  "MaxTemperature": 3000,
+  "MinPressure": 1.0,
+  "Product": "PureVoid",
+  "YieldRatio": 0.5,
+  "EnergyRequired": 500,
+  "EntropyGenerated": 0.15
+}

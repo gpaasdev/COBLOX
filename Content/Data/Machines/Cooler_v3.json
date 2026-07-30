@@ -2,5 +2,25 @@
   "Id": "Cooler_v3",
   "Name": "Industrial Cooler Mark 3",
   "PowerConsumption": 300,
-  "MaxTemperature": 1250
+  "MaxTemperature": 1250,
+  "Tier": "T2",
+  "MachineType": "Cooler",
+  "Version": 3,
+  "InputTypes": [
+    "Water",
+    "IceShard",
+    "LiquidNitrogen"
+  ],
+  "OutputTypes": [
+    "Coolant",
+    "CryoFuel",
+    "ChilledAir"
+  ],
+  "Speed": 3.6,
+  "Efficiency": 0.84,
+  "RecipeMap": [
+    "Recipe_Cooler_1",
+    "Recipe_Cooler_2",
+    "Recipe_Cooler_3"
+  ]
 }

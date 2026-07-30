@@ -1,1 +1,43 @@
-{"Id":"fairy_CentralHub","Name":"Sanctum Citadel","Temperature":300.0}
+{
+  "Id": "fairy_CentralHub",
+  "Name": "Sanctum Citadel",
+  "Temperature": 300.0,
+  "Tier": "T1",
+  "DangerLevel": 2,
+  "AmbientSound": "ForestBirds",
+  "Color": "#88ff88",
+  "Resources": [
+    {
+      "item": "WoodPlank",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "item": "Herb",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "item": "Fiber",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Beast_Lvl2",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    },
+    {
+      "creature": "Creature_Wisp_Lvl2",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    }
+  ]
+}

@@ -1,5 +1,43 @@
 {
   "Id": "Biome_Aether_2",
   "Name": "Aether Wastes Sector 2",
-  "Temperature": 300.0
+  "Temperature": 300.0,
+  "Tier": "T2",
+  "DangerLevel": 3,
+  "AmbientSound": "CelestialHum",
+  "Color": "#ccaaff",
+  "Resources": [
+    {
+      "item": "AetherCrystal",
+      "chance": 0.4,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "EtherDust",
+      "chance": 0.4,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "StarShard",
+      "chance": 0.4,
+      "min": 1,
+      "max": 2
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Wisp_Lvl5",
+      "weight": 3,
+      "minLevel": 4,
+      "maxLevel": 6
+    },
+    {
+      "creature": "Creature_Construct_Lvl3",
+      "weight": 3,
+      "minLevel": 4,
+      "maxLevel": 6
+    }
+  ]
 }

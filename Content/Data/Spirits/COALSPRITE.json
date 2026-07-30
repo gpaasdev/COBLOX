@@ -4,5 +4,36 @@
   "Rarity": "Common",
   "Element": "Fire",
   "DropRate": "10.0%",
-  "Description": "Panas dan bandel."
+  "Description": "Panas dan bandel.",
+  "Stats": {
+    "HP": 96,
+    "Attack": 10,
+    "Defense": 6,
+    "Speed": 1.02
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 15,
+    "evolvesTo": "FLAMECAT",
+    "evolutionMat": "FireEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "FireEssence",
+      "count": 1
+    },
+    {
+      "item": "Gold",
+      "count": 10
+    }
+  ]
 }

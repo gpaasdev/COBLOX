@@ -2,5 +2,22 @@
   "Id": "FusionReactor_v1",
   "Name": "Basic Fusion Reactor",
   "PowerConsumption": 500,
-  "MaxTemperature": 3000
+  "MaxTemperature": 3000,
+  "Tier": "T1",
+  "MachineType": "FusionReactor",
+  "Version": 1,
+  "InputTypes": [
+    "Deuterium",
+    "Tritium",
+    "Plasma"
+  ],
+  "OutputTypes": [
+    "FusionCell",
+    "NeutronFlux"
+  ],
+  "Speed": 15.0,
+  "Efficiency": 0.4,
+  "RecipeMap": [
+    "Recipe_FusionReactor_1"
+  ]
 }

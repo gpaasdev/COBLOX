@@ -4,5 +4,36 @@
   "Rarity": "Common",
   "Element": "Earth",
   "DropRate": "8.0%",
-  "Description": "Suka menyembunyikan ore."
+  "Description": "Suka menyembunyikan ore.",
+  "Stats": {
+    "HP": 74,
+    "Attack": 7,
+    "Defense": 5,
+    "Speed": 1.1
+  },
+  "Abilities": [
+    "RockBarrier",
+    "Quake"
+  ],
+  "SkillPool": [
+    "RockBarrier",
+    "Quake",
+    "StoneSkin",
+    "SandTrap"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 15,
+    "evolvesTo": "SANDGOLEM",
+    "evolutionMat": "EarthEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "EarthEssence",
+      "count": 1
+    },
+    {
+      "item": "Gold",
+      "count": 10
+    }
+  ]
 }

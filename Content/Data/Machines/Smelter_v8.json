@@ -2,5 +2,27 @@
   "Id": "Smelter_v8",
   "Name": "Industrial Smelter Mark 8",
   "PowerConsumption": 800,
-  "MaxTemperature": 2500
+  "MaxTemperature": 2500,
+  "Tier": "T5",
+  "MachineType": "Smelter",
+  "Version": 8,
+  "InputTypes": [
+    "IronOre",
+    "CopperOre",
+    "GoldOre",
+    "Stone"
+  ],
+  "OutputTypes": [
+    "IronIngot",
+    "CopperIngot",
+    "GoldIngot",
+    "RefinedStone"
+  ],
+  "Speed": 8.5,
+  "Efficiency": 0.84,
+  "RecipeMap": [
+    "Recipe_Smelter_1",
+    "Recipe_Smelter_2",
+    "Recipe_Smelter_3"
+  ]
 }

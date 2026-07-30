@@ -4,5 +4,37 @@
   "Rarity": "Rare",
   "Element": "Lightning",
   "DropRate": "2.0%",
-  "Description": "Wujud fisik dari badai petir."
+  "Description": "Wujud fisik dari badai petir.",
+  "Stats": {
+    "HP": 446,
+    "Attack": 45,
+    "Defense": 29,
+    "Speed": 0.78
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 25,
+    "evolvesTo": "ABYSSALKRAKEN",
+    "evolutionMat": "LightningEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "LightningEssence",
+      "count": 3
+    },
+    {
+      "item": "Gold",
+      "count": 30
+    }
+  ]
 }

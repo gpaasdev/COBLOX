@@ -21,7 +21,7 @@ QuestController.RewardClaimed = Signal.new()
 local claimQuestRemote: RemoteFunction
 local syncQuestRemote: RemoteEvent
 
-function QuestController.Init()
+function QuestController.Init(self)
 	print("[QuestController] Initializing Client Quest Controller...")
 	claimQuestRemote = NetChannels.GetRemoteFunction("ClaimQuest")
 	syncQuestRemote = NetChannels.GetRemoteEvent("SyncQuest")

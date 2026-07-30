@@ -2,5 +2,25 @@
   "Id": "Synthesizer_v9",
   "Name": "Industrial Synthesizer Mark 9",
   "PowerConsumption": 900,
-  "MaxTemperature": 2750
+  "MaxTemperature": 2750,
+  "Tier": "T5",
+  "MachineType": "Synthesizer",
+  "Version": 9,
+  "InputTypes": [
+    "AetherCrystal",
+    "EtherDust",
+    "CrystalShard"
+  ],
+  "OutputTypes": [
+    "SyntheticGem",
+    "PowerCell",
+    "EnergyOrb"
+  ],
+  "Speed": 10.8,
+  "Efficiency": 0.91,
+  "RecipeMap": [
+    "Recipe_Synthesizer_1",
+    "Recipe_Synthesizer_2",
+    "Recipe_Synthesizer_3"
+  ]
 }

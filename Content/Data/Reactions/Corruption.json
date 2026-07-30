@@ -1,0 +1,15 @@
+{
+  "Id": "Corruption",
+  "Name": "Corruption",
+  "RequiredMaterials": {
+    "BioMass": 3,
+    "ToxicSac": 1
+  },
+  "MinTemperature": 100,
+  "MaxTemperature": 400,
+  "MinPressure": 1.0,
+  "Product": "CorruptIchor",
+  "YieldRatio": 1.5,
+  "EnergyRequired": 80,
+  "EntropyGenerated": 0.066
+}

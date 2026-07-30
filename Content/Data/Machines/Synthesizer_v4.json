@@ -2,5 +2,25 @@
   "Id": "Synthesizer_v4",
   "Name": "Industrial Synthesizer Mark 4",
   "PowerConsumption": 400,
-  "MaxTemperature": 1500
+  "MaxTemperature": 1500,
+  "Tier": "T3",
+  "MachineType": "Synthesizer",
+  "Version": 4,
+  "InputTypes": [
+    "AetherCrystal",
+    "EtherDust",
+    "CrystalShard"
+  ],
+  "OutputTypes": [
+    "SyntheticGem",
+    "PowerCell",
+    "EnergyOrb"
+  ],
+  "Speed": 7.8,
+  "Efficiency": 0.81,
+  "RecipeMap": [
+    "Recipe_Synthesizer_1",
+    "Recipe_Synthesizer_2",
+    "Recipe_Synthesizer_3"
+  ]
 }

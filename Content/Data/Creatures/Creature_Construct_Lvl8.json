@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Construct_Lvl8",
   "Name": "Construct Elite Grade 8",
-  "Health": 6400
+  "Health": 620,
+  "Damage": 29,
+  "AttackSpeed": 0.59,
+  "Defense": 21,
+  "Abilities": [
+    "LaserBeam",
+    "SelfRepair"
+  ],
+  "LootTable": [
+    {
+      "item": "MetalScrap",
+      "chance": 0.8,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "item": "PowerCell",
+      "chance": 0.25,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 160
 }

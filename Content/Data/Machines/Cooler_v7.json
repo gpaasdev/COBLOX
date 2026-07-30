@@ -2,5 +2,25 @@
   "Id": "Cooler_v7",
   "Name": "Industrial Cooler Mark 7",
   "PowerConsumption": 700,
-  "MaxTemperature": 2250
+  "MaxTemperature": 2250,
+  "Tier": "T4",
+  "MachineType": "Cooler",
+  "Version": 7,
+  "InputTypes": [
+    "Water",
+    "IceShard",
+    "LiquidNitrogen"
+  ],
+  "OutputTypes": [
+    "Coolant",
+    "CryoFuel",
+    "ChilledAir"
+  ],
+  "Speed": 4.8,
+  "Efficiency": 0.92,
+  "RecipeMap": [
+    "Recipe_Cooler_1",
+    "Recipe_Cooler_2",
+    "Recipe_Cooler_3"
+  ]
 }

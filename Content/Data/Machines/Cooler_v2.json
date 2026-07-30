@@ -2,5 +2,24 @@
   "Id": "Cooler_v2",
   "Name": "Industrial Cooler Mark 2",
   "PowerConsumption": 200,
-  "MaxTemperature": 1000
+  "MaxTemperature": 1000,
+  "Tier": "T2",
+  "MachineType": "Cooler",
+  "Version": 2,
+  "InputTypes": [
+    "Water",
+    "IceShard",
+    "LiquidNitrogen"
+  ],
+  "OutputTypes": [
+    "Coolant",
+    "CryoFuel",
+    "ChilledAir"
+  ],
+  "Speed": 3.3,
+  "Efficiency": 0.82,
+  "RecipeMap": [
+    "Recipe_Cooler_1",
+    "Recipe_Cooler_2"
+  ]
 }

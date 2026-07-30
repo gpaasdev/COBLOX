@@ -4,5 +4,36 @@
   "Rarity": "Uncommon",
   "Element": "Earth",
   "DropRate": "5.0%",
-  "Description": "Terbentuk dari pasir gurun."
+  "Description": "Terbentuk dari pasir gurun.",
+  "Stats": {
+    "HP": 217,
+    "Attack": 22,
+    "Defense": 14,
+    "Speed": 0.88
+  },
+  "Abilities": [
+    "RockBarrier",
+    "Quake"
+  ],
+  "SkillPool": [
+    "RockBarrier",
+    "Quake",
+    "StoneSkin",
+    "SandTrap"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 20,
+    "evolvesTo": "CRYSTALBEAR",
+    "evolutionMat": "EarthEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "EarthEssence",
+      "count": 2
+    },
+    {
+      "item": "Gold",
+      "count": 20
+    }
+  ]
 }

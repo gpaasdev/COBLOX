@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Golem_Lvl3",
   "Name": "Golem Elite Grade 3",
-  "Health": 900
+  "Health": 400,
+  "Damage": 22,
+  "AttackSpeed": 0.71,
+  "Defense": 14,
+  "Abilities": [
+    "GroundSlam",
+    "RockShield"
+  ],
+  "LootTable": [
+    {
+      "item": "StoneCore",
+      "chance": 0.8,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "CrystalShard",
+      "chance": 0.3,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 75
 }

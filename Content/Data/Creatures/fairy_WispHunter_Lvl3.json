@@ -1,1 +1,27 @@
-{"Id":"fairy_WispHunter_Lvl3","Name":"Wisp Hunter Lvl 3","Health":120}
+{
+  "Id": "fairy_WispHunter_Lvl3",
+  "Name": "Wisp Hunter Lvl 3",
+  "Health": 128,
+  "Damage": 13,
+  "AttackSpeed": 1.57,
+  "Defense": 5,
+  "Abilities": [
+    "HuntersMark",
+    "ShadowStrike"
+  ],
+  "LootTable": [
+    {
+      "item": "RawMeat",
+      "chance": 0.7,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "item": "Leather",
+      "chance": 0.4,
+      "min": 1,
+      "max": 2
+    }
+  ],
+  "XP": 24
+}

@@ -2,5 +2,24 @@
   "Id": "Turbine_v5",
   "Name": "Industrial Turbine Mark 5",
   "PowerConsumption": 500,
-  "MaxTemperature": 1750
+  "MaxTemperature": 1750,
+  "Tier": "T3",
+  "MachineType": "Turbine",
+  "Version": 5,
+  "InputTypes": [
+    "Steam",
+    "WindForce",
+    "Plasma"
+  ],
+  "OutputTypes": [
+    "Electricity",
+    "KineticEnergy"
+  ],
+  "Speed": 5.6,
+  "Efficiency": 0.93,
+  "RecipeMap": [
+    "Recipe_Turbine_1",
+    "Recipe_Turbine_2",
+    "Recipe_Turbine_3"
+  ]
 }

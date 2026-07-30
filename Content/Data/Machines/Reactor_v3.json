@@ -2,5 +2,25 @@
   "Id": "Reactor_v3",
   "Name": "Industrial Reactor Mark 3",
   "PowerConsumption": 300,
-  "MaxTemperature": 1250
+  "MaxTemperature": 1250,
+  "Tier": "T2",
+  "MachineType": "Reactor",
+  "Version": 3,
+  "InputTypes": [
+    "Uranium",
+    "Plutonium",
+    "MagmaCore"
+  ],
+  "OutputTypes": [
+    "EnergyCell",
+    "Plasma",
+    "Steam"
+  ],
+  "Speed": 14.4,
+  "Efficiency": 0.54,
+  "RecipeMap": [
+    "Recipe_Reactor_1",
+    "Recipe_Reactor_2",
+    "Recipe_Reactor_3"
+  ]
 }

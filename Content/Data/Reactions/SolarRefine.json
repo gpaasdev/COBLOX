@@ -1,0 +1,15 @@
+{
+  "Id": "SolarRefine",
+  "Name": "SolarRefine",
+  "RequiredMaterials": {
+    "GoldOre": 3,
+    "SunlightEssence": 1
+  },
+  "MinTemperature": 1000,
+  "MaxTemperature": 1500,
+  "MinPressure": 1.0,
+  "Product": "RefinedGold",
+  "YieldRatio": 2.0,
+  "EnergyRequired": 150,
+  "EntropyGenerated": 0.08
+}

@@ -1,1 +1,40 @@
-{"Id":"SP_CELESTIAL_SERAPH","Name":"Celestial Seraph","Rarity":"Epic","Element":"Aether","DropRate":"2.0%","Description":"Malaikat langit ketujuh."}
+{
+  "Id": "SP_CELESTIAL_SERAPH",
+  "Name": "Celestial Seraph",
+  "Rarity": "Epic",
+  "Element": "Aether",
+  "DropRate": "2.0%",
+  "Description": "Malaikat langit ketujuh.",
+  "Stats": {
+    "HP": 710,
+    "Attack": 71,
+    "Defense": 45,
+    "Speed": 0.78
+  },
+  "Abilities": [
+    "ArcaneBolt",
+    "Teleport",
+    "ManaShield"
+  ],
+  "SkillPool": [
+    "ArcaneBolt",
+    "Teleport",
+    "ManaShield",
+    "Starfall"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 30,
+    "evolvesTo": null,
+    "evolutionMat": "AetherEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "AetherEssence",
+      "count": 4
+    },
+    {
+      "item": "Gold",
+      "count": 40
+    }
+  ]
+}

@@ -4,5 +4,36 @@
   "Rarity": "Common",
   "Element": "Water",
   "DropRate": "8.0%",
-  "Description": "Bentuk seperti tetesan air murni."
+  "Description": "Bentuk seperti tetesan air murni.",
+  "Stats": {
+    "HP": 128,
+    "Attack": 13,
+    "Defense": 8,
+    "Speed": 0.89
+  },
+  "Abilities": [
+    "HealingRain",
+    "TidalWave"
+  ],
+  "SkillPool": [
+    "HealingRain",
+    "TidalWave",
+    "FrostArmor",
+    "HydroPump"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 15,
+    "evolvesTo": "STORMELEMENTAL",
+    "evolutionMat": "WaterEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "WaterEssence",
+      "count": 1
+    },
+    {
+      "item": "Gold",
+      "count": 10
+    }
+  ]
 }

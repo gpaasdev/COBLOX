@@ -2,5 +2,23 @@
   "Id": "Synthesizer_v1",
   "Name": "Industrial Synthesizer Mark 1",
   "PowerConsumption": 100,
-  "MaxTemperature": 750
+  "MaxTemperature": 750,
+  "Tier": "T1",
+  "MachineType": "Synthesizer",
+  "Version": 1,
+  "InputTypes": [
+    "AetherCrystal",
+    "EtherDust",
+    "CrystalShard"
+  ],
+  "OutputTypes": [
+    "SyntheticGem",
+    "PowerCell",
+    "EnergyOrb"
+  ],
+  "Speed": 6.0,
+  "Efficiency": 0.75,
+  "RecipeMap": [
+    "Recipe_Synthesizer_1"
+  ]
 }

@@ -2,5 +2,25 @@
   "Id": "Refinery_v3",
   "Name": "Industrial Refinery Mark 3",
   "PowerConsumption": 300,
-  "MaxTemperature": 1250
+  "MaxTemperature": 1250,
+  "Tier": "T2",
+  "MachineType": "Refinery",
+  "Version": 3,
+  "InputTypes": [
+    "CrudeOil",
+    "OrganicSlurry",
+    "ToxicSac"
+  ],
+  "OutputTypes": [
+    "Fuel",
+    "BioMass",
+    "PurifiedIchor"
+  ],
+  "Speed": 9.6,
+  "Efficiency": 0.64,
+  "RecipeMap": [
+    "Recipe_Refinery_1",
+    "Recipe_Refinery_2",
+    "Recipe_Refinery_3"
+  ]
 }

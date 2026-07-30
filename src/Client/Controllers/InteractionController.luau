@@ -19,13 +19,12 @@ local isHolding = false
 local currentTarget: BasePart? = nil
 local chargeStartTime = 0
 
-local controllerMaid = Maid.new()
-
-function InteractionController.Init()
+function InteractionController.Init(self)
+	self.maid = Maid.new()
 	print("[InteractionController] Initializing Client Dynamic Physics Interaction Engine...")
 end
 
-function InteractionController.Start()
+function InteractionController.Start(self)
 	ContextActionService:BindAction(
 		"InteractAction",
 		InteractionController._HandleInput,
@@ -33,6 +32,9 @@ function InteractionController.Start()
 		Enum.UserInputType.MouseButton1,
 		Enum.KeyCode.E
 	)
+	self.maid:GiveTask(function()
+		ContextActionService:UnbindAction("InteractAction")
+	end)
 end
 
 function InteractionController._HandleInput(
@@ -57,9 +59,9 @@ function InteractionController._HandleInput(
 
 			if chargeDuration < 0.2 then
 				-- Just a quick toss/drop
-				InteractionController._RequestThrow(0.1)
+				InteractionController._RequestThrow(InteractionController, 0.1)
 			else
-				InteractionController._RequestThrow(throwPower)
+				InteractionController._RequestThrow(InteractionController, throwPower)
 			end
 			chargeStartTime = 0
 		end
@@ -85,7 +87,7 @@ function InteractionController._TryGrab()
 				if res and res.Success then
 					isHolding = true
 					currentTarget = part
-					InteractionController._StartHoldingLoop()
+					InteractionController._StartHoldingLoop(InteractionController)
 				else
 					print("Grab failed:", res and res.Message)
 				end
@@ -94,19 +96,18 @@ function InteractionController._TryGrab()
 	end
 end
 
-function InteractionController._RequestThrow(chargePower: number)
+function InteractionController._RequestThrow(self, chargePower: number)
 	local throwRemote = NetChannels.GetRemoteFunction("RequestThrow")
 	if throwRemote then
 		local res = throwRemote:InvokeServer(chargePower)
 		if res and res.Success then
 			isHolding = false
 			currentTarget = nil
-			controllerMaid:DoCleaning()
 		end
 	end
 end
 
-function InteractionController._StartHoldingLoop()
+function InteractionController._StartHoldingLoop(self)
 	local char = Players.LocalPlayer.Character
 	if not char or not char.PrimaryPart then
 		return
@@ -118,13 +119,10 @@ function InteractionController._StartHoldingLoop()
 	end
 
 	-- 1. Setup Client Camera Tracking
-	controllerMaid:GiveTask(RunService.RenderStepped:Connect(function()
+	self.maid:GiveTask(RunService.RenderStepped:Connect(function()
 		if isHolding and currentTarget then
 			local lookVector = CAMERA.CFrame.LookVector
-			local offset = Vector3.new(0, 0, -4) -- 4 studs in front
 
-			-- We update the attachment CFrame based on camera view
-			-- Since attachment is inside HumanoidRootPart, we need to map World to Object space
 			local targetWorldPos = CAMERA.CFrame.Position + (lookVector * 6)
 			holdAttachment.WorldCFrame = CFrame.new(targetWorldPos) * CFrame.Angles(0, CAMERA.CFrame.Rotation.Y, 0)
 		end
@@ -142,9 +140,8 @@ function InteractionController._StartHoldingLoop()
 		ikControl.Weight = 0.8
 		ikControl.Parent = humanoid
 
-		controllerMaid:GiveTask(ikControl)
+		self.maid:GiveTask(ikControl)
 
-		-- Also for Left Arm (Optional based on R6 vs R15)
 		local ikControlLeft = Instance.new("IKControl")
 		ikControlLeft.Name = "InteractionIKLeft"
 		ikControlLeft.Type = Enum.IKControlType.Transform
@@ -154,7 +151,7 @@ function InteractionController._StartHoldingLoop()
 		ikControlLeft.Weight = 0.8
 		ikControlLeft.Parent = humanoid
 
-		controllerMaid:GiveTask(ikControlLeft)
+		self.maid:GiveTask(ikControlLeft)
 	end
 end
 

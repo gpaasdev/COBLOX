@@ -4,5 +4,36 @@
   "Rarity": "Common",
   "Element": "Fire",
   "DropRate": "7.0%",
-  "Description": "Sisa pembakaran alkimia."
+  "Description": "Sisa pembakaran alkimia.",
+  "Stats": {
+    "HP": 63,
+    "Attack": 6,
+    "Defense": 4,
+    "Speed": 1.15
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 15,
+    "evolvesTo": "SPARKBUG",
+    "evolutionMat": "FireEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "FireEssence",
+      "count": 1
+    },
+    {
+      "item": "Gold",
+      "count": 10
+    }
+  ]
 }

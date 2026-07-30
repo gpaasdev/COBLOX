@@ -1,5 +1,43 @@
 {
   "Id": "Biome_Toxic_5",
   "Name": "Toxic Wastes Sector 5",
-  "Temperature": 450.0
+  "Temperature": 450.0,
+  "Tier": "T5",
+  "DangerLevel": 4,
+  "AmbientSound": "ToxicBubble",
+  "Color": "#66ff44",
+  "Resources": [
+    {
+      "item": "ToxicSac",
+      "chance": 0.55,
+      "min": 1,
+      "max": 5
+    },
+    {
+      "item": "CorruptIchor",
+      "chance": 0.55,
+      "min": 1,
+      "max": 5
+    },
+    {
+      "item": "BioMass",
+      "chance": 0.55,
+      "min": 1,
+      "max": 5
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Parasite_Lvl4",
+      "weight": 3,
+      "minLevel": 13,
+      "maxLevel": 15
+    },
+    {
+      "creature": "Creature_Abomination_Lvl2",
+      "weight": 3,
+      "minLevel": 13,
+      "maxLevel": 15
+    }
+  ]
 }

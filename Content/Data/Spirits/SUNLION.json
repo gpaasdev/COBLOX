@@ -4,5 +4,37 @@
   "Rarity": "Rare",
   "Element": "Light",
   "DropRate": "3.0%",
-  "Description": "Memancarkan cahaya matahari."
+  "Description": "Memancarkan cahaya matahari.",
+  "Stats": {
+    "HP": 390,
+    "Attack": 39,
+    "Defense": 25,
+    "Speed": 0.84
+  },
+  "Abilities": [
+    "HolyLight",
+    "Radiance",
+    "Purify"
+  ],
+  "SkillPool": [
+    "HolyLight",
+    "Radiance",
+    "Purify",
+    "Blessing"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 25,
+    "evolvesTo": "SOLARDRAGON",
+    "evolutionMat": "LightEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "LightEssence",
+      "count": 3
+    },
+    {
+      "item": "Gold",
+      "count": 30
+    }
+  ]
 }

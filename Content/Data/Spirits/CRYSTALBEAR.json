@@ -4,5 +4,37 @@
   "Rarity": "Rare",
   "Element": "Ice",
   "DropRate": "3.0%",
-  "Description": "Tubuh penuh kristal bening."
+  "Description": "Tubuh penuh kristal bening.",
+  "Stats": {
+    "HP": 306,
+    "Attack": 31,
+    "Defense": 19,
+    "Speed": 0.94
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 25,
+    "evolvesTo": "TITANIUMWYVERN",
+    "evolutionMat": "IceEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "IceEssence",
+      "count": 3
+    },
+    {
+      "item": "Gold",
+      "count": 30
+    }
+  ]
 }

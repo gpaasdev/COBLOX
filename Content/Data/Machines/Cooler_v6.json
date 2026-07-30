@@ -2,5 +2,25 @@
   "Id": "Cooler_v6",
   "Name": "Industrial Cooler Mark 6",
   "PowerConsumption": 600,
-  "MaxTemperature": 2000
+  "MaxTemperature": 2000,
+  "Tier": "T4",
+  "MachineType": "Cooler",
+  "Version": 6,
+  "InputTypes": [
+    "Water",
+    "IceShard",
+    "LiquidNitrogen"
+  ],
+  "OutputTypes": [
+    "Coolant",
+    "CryoFuel",
+    "ChilledAir"
+  ],
+  "Speed": 4.5,
+  "Efficiency": 0.9,
+  "RecipeMap": [
+    "Recipe_Cooler_1",
+    "Recipe_Cooler_2",
+    "Recipe_Cooler_3"
+  ]
 }

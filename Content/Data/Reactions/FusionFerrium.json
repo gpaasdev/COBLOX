@@ -1,0 +1,15 @@
+{
+  "Id": "FusionFerrium",
+  "Name": "FusionFerrium",
+  "RequiredMaterials": {
+    "Iron": 5,
+    "AetherCrystal": 1
+  },
+  "MinTemperature": 1500,
+  "MaxTemperature": 2500,
+  "MinPressure": 1.0,
+  "Product": "FerriumAlloy",
+  "YieldRatio": 1.0,
+  "EnergyRequired": 100,
+  "EntropyGenerated": 0.07
+}

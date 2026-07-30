@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Wisp_Lvl10",
   "Name": "Wisp Elite Grade 10",
-  "Health": 10000
+  "Health": 222,
+  "Damage": 18,
+  "AttackSpeed": 1.2,
+  "Defense": 5,
+  "Abilities": [
+    "EnergyBolt",
+    "PhaseShift"
+  ],
+  "LootTable": [
+    {
+      "item": "EtherDust",
+      "chance": 0.9,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "item": "WispEssence",
+      "chance": 0.2,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 60
 }

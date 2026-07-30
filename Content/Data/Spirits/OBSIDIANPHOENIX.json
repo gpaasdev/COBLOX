@@ -4,5 +4,37 @@
   "Rarity": "Rare",
   "Element": "Fire",
   "DropRate": "5.0%",
-  "Description": "Terlahir dari lava dan abu."
+  "Description": "Terlahir dari lava dan abu.",
+  "Stats": {
+    "HP": 292,
+    "Attack": 29,
+    "Defense": 18,
+    "Speed": 0.95
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 25,
+    "evolvesTo": "SOLARDRAGON",
+    "evolutionMat": "FireEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "FireEssence",
+      "count": 3
+    },
+    {
+      "item": "Gold",
+      "count": 30
+    }
+  ]
 }

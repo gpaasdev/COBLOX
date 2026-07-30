@@ -43,3 +43,12 @@ jobs:
           if [ -n "$NEW_FILES" ]; then
             echo "$NEW_FILES" | xargs -I{} sh -c 'test -f "{}" && selene "{}" || true'
           fi
+
+      - name: Run tests
+        run: |
+          chmod +x scripts/run_tests.sh
+          bash scripts/run_tests.sh
+
+      - name: RGS compliance audit
+        run: |
+          python3 scripts/validate_rgs_compliance.py

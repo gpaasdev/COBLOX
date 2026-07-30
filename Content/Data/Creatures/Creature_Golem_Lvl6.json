@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Golem_Lvl6",
   "Name": "Golem Elite Grade 6",
-  "Health": 3600
+  "Health": 625,
+  "Damage": 32,
+  "AttackSpeed": 0.58,
+  "Defense": 21,
+  "Abilities": [
+    "GroundSlam",
+    "RockShield"
+  ],
+  "LootTable": [
+    {
+      "item": "StoneCore",
+      "chance": 0.8,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "CrystalShard",
+      "chance": 0.3,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 150
 }

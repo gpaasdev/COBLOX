@@ -39,12 +39,12 @@ function PlacementController.Start()
 
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			PlacementController.ConfirmPlacement()
-		elseif input.KeyCode == Enum.KeyCode.R then
+		elseif input.KeyCode == Enum.KeyCode.Z then
 			currentRotationY = (currentRotationY + 90) % 360
 			if previewHologram then
 				previewHologram.Orientation = Vector3.new(0, currentRotationY, 0)
 			end
-		elseif input.KeyCode == Enum.KeyCode.X then
+		elseif input.KeyCode == Enum.KeyCode.C then
 			PlacementController.StopPlacementPreview()
 			PlacementController._ShowControlHUD(false)
 			isPlacementActive = false

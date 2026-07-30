@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Wisp_Lvl2",
   "Name": "Wisp Elite Grade 2",
-  "Health": 400
+  "Health": 78,
+  "Damage": 6,
+  "AttackSpeed": 1.73,
+  "Defense": 1,
+  "Abilities": [
+    "EnergyBolt",
+    "PhaseShift"
+  ],
+  "LootTable": [
+    {
+      "item": "EtherDust",
+      "chance": 0.9,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "item": "WispEssence",
+      "chance": 0.2,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 12
 }

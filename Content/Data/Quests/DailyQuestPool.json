@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "dailyPool": [
+    {
+      "id": "daily_harvest_ores",
+      "name": "Ore Harvester",
+      "description": "Mine 10 ores from any realm",
+      "type": "harvest",
+      "targetItem": "Ore",
+      "targetCount": 10,
+      "rewards": { "coins": 500, "xp": 100 }
+    },
+    {
+      "id": "daily_craft_potions",
+      "name": "Potion Brewer",
+      "description": "Brew 3 potions at the alchemy station",
+      "type": "craft",
+      "targetCategory": "potion",
+      "targetCount": 3,
+      "rewards": { "coins": 750, "xp": 150 }
+    },
+    {
+      "id": "daily_hatch_eggs",
+      "name": "Egg Hatcher",
+      "description": "Hatch 2 eggs",
+      "type": "hatch",
+      "targetCount": 2,
+      "rewards": { "coins": 1000, "xp": 200 }
+    },
+    {
+      "id": "daily_defeat_mobs",
+      "name": "Monster Slayer",
+      "description": "Defeat 15 mobs",
+      "type": "combat",
+      "targetCount": 15,
+      "rewards": { "coins": 1500, "xp": 300 }
+    },
+    {
+      "id": "daily_trade_items",
+      "name": "Merchant's Way",
+      "description": "Complete 3 trades",
+      "type": "trade",
+      "targetCount": 3,
+      "rewards": { "coins": 2000, "xp": 400 }
+    },
+    {
+      "id": "daily_collect_essence",
+      "name": "Essence Collector",
+      "description": "Collect 5 elemental essences",
+      "type": "collect",
+      "targetItem": "Essence",
+      "targetCount": 5,
+      "rewards": { "coins": 500, "xp": 100, "gems": 50 }
+    },
+    {
+      "id": "daily_visit_realm",
+      "name": "Realm Traveler",
+      "description": "Visit 3 different realms",
+      "type": "explore",
+      "targetCount": 3,
+      "rewards": { "coins": 1000, "xp": 250 }
+    },
+    {
+      "id": "daily_use_machine",
+      "name": "Machine Operator",
+      "description": "Use any machine 5 times",
+      "type": "machine",
+      "targetCount": 5,
+      "rewards": { "coins": 750, "xp": 150 }
+    }
+  ],
+  "weeklyPool": [
+    {
+      "id": "weekly_defeat_boss",
+      "name": "Boss Buster",
+      "description": "Defeat 3 boss creatures",
+      "type": "combat",
+      "targetCount": 3,
+      "rewards": { "coins": 10000, "xp": 2000, "gems": 200 }
+    },
+    {
+      "id": "weekly_complete_raids",
+      "name": "Raid Commander",
+      "description": "Complete 5 shadow raids",
+      "type": "raid",
+      "targetCount": 5,
+      "rewards": { "coins": 15000, "xp": 3000, "gems": 500 }
+    },
+    {
+      "id": "weekly_mass_craft",
+      "name": "Grand Artificer",
+      "description": "Craft 50 items",
+      "type": "craft",
+      "targetCount": 50,
+      "rewards": { "coins": 20000, "xp": 5000, "material": "Primal_Ore", "amount": 5 }
+    }
+  ]
+}

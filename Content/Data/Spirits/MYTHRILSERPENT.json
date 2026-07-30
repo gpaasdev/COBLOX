@@ -4,5 +4,37 @@
   "Rarity": "Epic",
   "Element": "Aether",
   "DropRate": "3.0%",
-  "Description": "Bersinar dalam kegelapan."
+  "Description": "Bersinar dalam kegelapan.",
+  "Stats": {
+    "HP": 1102,
+    "Attack": 110,
+    "Defense": 73,
+    "Speed": 0.56
+  },
+  "Abilities": [
+    "ArcaneBolt",
+    "Teleport",
+    "ManaShield"
+  ],
+  "SkillPool": [
+    "ArcaneBolt",
+    "Teleport",
+    "ManaShield",
+    "Starfall"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 30,
+    "evolvesTo": "QUANTUMHYDRA",
+    "evolutionMat": "AetherEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "AetherEssence",
+      "count": 4
+    },
+    {
+      "item": "Gold",
+      "count": 40
+    }
+  ]
 }

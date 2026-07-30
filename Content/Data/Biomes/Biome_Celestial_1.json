@@ -1,5 +1,43 @@
 {
   "Id": "Biome_Celestial_1",
   "Name": "Celestial Wastes Sector 1",
-  "Temperature": 250.0
+  "Temperature": 250.0,
+  "Tier": "T1",
+  "DangerLevel": 5,
+  "AmbientSound": "StellarChime",
+  "Color": "#ffddaa",
+  "Resources": [
+    {
+      "item": "CelestialOrb",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "item": "StarFragment",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "item": "LightEssence",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Dragon_Lvl5",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    },
+    {
+      "creature": "Creature_Construct_Lvl7",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    }
+  ]
 }

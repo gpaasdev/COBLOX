@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Golem_Lvl9",
   "Name": "Golem Elite Grade 9",
-  "Health": 8100
+  "Health": 850,
+  "Damage": 42,
+  "AttackSpeed": 0.44,
+  "Defense": 28,
+  "Abilities": [
+    "GroundSlam",
+    "RockShield"
+  ],
+  "LootTable": [
+    {
+      "item": "StoneCore",
+      "chance": 0.8,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "CrystalShard",
+      "chance": 0.3,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 225
 }

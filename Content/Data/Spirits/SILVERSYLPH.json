@@ -4,5 +4,36 @@
   "Rarity": "Uncommon",
   "Element": "Wind",
   "DropRate": "8.0%",
-  "Description": "Gesit dan tak terduga."
+  "Description": "Gesit dan tak terduga.",
+  "Stats": {
+    "HP": 223,
+    "Attack": 22,
+    "Defense": 15,
+    "Speed": 0.87
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 20,
+    "evolvesTo": "IRONIMP",
+    "evolutionMat": "WindEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "WindEssence",
+      "count": 2
+    },
+    {
+      "item": "Gold",
+      "count": 20
+    }
+  ]
 }

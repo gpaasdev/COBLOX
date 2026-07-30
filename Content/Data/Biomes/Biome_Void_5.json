@@ -1,5 +1,43 @@
 {
   "Id": "Biome_Void_5",
   "Name": "Void Wastes Sector 5",
-  "Temperature": 450.0
+  "Temperature": 450.0,
+  "Tier": "T5",
+  "DangerLevel": 6,
+  "AmbientSound": "VoidWhisper",
+  "Color": "#220044",
+  "Resources": [
+    {
+      "item": "VoidShard",
+      "chance": 0.55,
+      "min": 1,
+      "max": 5
+    },
+    {
+      "item": "AbyssalEye",
+      "chance": 0.55,
+      "min": 1,
+      "max": 5
+    },
+    {
+      "item": "DarkEssence",
+      "chance": 0.55,
+      "min": 1,
+      "max": 5
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Dragon_Lvl8",
+      "weight": 3,
+      "minLevel": 13,
+      "maxLevel": 15
+    },
+    {
+      "creature": "Creature_Abomination_Lvl8",
+      "weight": 3,
+      "minLevel": 13,
+      "maxLevel": 15
+    }
+  ]
 }

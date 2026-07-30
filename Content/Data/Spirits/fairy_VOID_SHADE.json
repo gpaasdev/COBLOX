@@ -1,1 +1,41 @@
-{"Id":"SP_VOID_SHADE","Name":"Void Shade","Rarity":"Legendary","Element":"Void","DropRate":"0.5%","Description":"Bayangan dari kehampaan."}
+{
+  "Id": "SP_VOID_SHADE",
+  "Name": "Void Shade",
+  "Rarity": "Legendary",
+  "Element": "Void",
+  "DropRate": "0.5%",
+  "Description": "Bayangan dari kehampaan.",
+  "Stats": {
+    "HP": 2200,
+    "Attack": 220,
+    "Defense": 132,
+    "Speed": 0.48
+  },
+  "Abilities": [
+    "ShadowStrike",
+    "VoidRift",
+    "DarkPulse",
+    "SoulSteal"
+  ],
+  "SkillPool": [
+    "ShadowStrike",
+    "VoidRift",
+    "DarkPulse",
+    "SoulSteal"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 35,
+    "evolvesTo": null,
+    "evolutionMat": "VoidEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "VoidEssence",
+      "count": 5
+    },
+    {
+      "item": "Gold",
+      "count": 50
+    }
+  ]
+}

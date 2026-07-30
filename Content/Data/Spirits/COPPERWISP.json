@@ -4,5 +4,36 @@
   "Rarity": "Common",
   "Element": "Lightning",
   "DropRate": "12.0%",
-  "Description": "Berkilat lemah saat marah."
+  "Description": "Berkilat lemah saat marah.",
+  "Stats": {
+    "HP": 118,
+    "Attack": 12,
+    "Defense": 8,
+    "Speed": 0.93
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 15,
+    "evolvesTo": "BRONZEDRAKE",
+    "evolutionMat": "LightningEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "LightningEssence",
+      "count": 1
+    },
+    {
+      "item": "Gold",
+      "count": 10
+    }
+  ]
 }

@@ -2,5 +2,24 @@
   "Id": "Turbine_v3",
   "Name": "Industrial Turbine Mark 3",
   "PowerConsumption": 300,
-  "MaxTemperature": 1250
+  "MaxTemperature": 1250,
+  "Tier": "T2",
+  "MachineType": "Turbine",
+  "Version": 3,
+  "InputTypes": [
+    "Steam",
+    "WindForce",
+    "Plasma"
+  ],
+  "OutputTypes": [
+    "Electricity",
+    "KineticEnergy"
+  ],
+  "Speed": 4.8,
+  "Efficiency": 0.89,
+  "RecipeMap": [
+    "Recipe_Turbine_1",
+    "Recipe_Turbine_2",
+    "Recipe_Turbine_3"
+  ]
 }

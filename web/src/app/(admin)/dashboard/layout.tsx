@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LogOut, LayoutDashboard, Database, Bell, Settings, Activity, FileText, Shield } from "lucide-react";
+import { LayoutDashboard, Database, Bell, Settings, Activity, FileText } from "lucide-react";
 import { LogoutButton } from "./components/LogoutButton";
 
 const navItems = [

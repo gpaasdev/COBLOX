@@ -1,5 +1,43 @@
 {
   "Id": "Biome_Glacial_2",
   "Name": "Glacial Wastes Sector 2",
-  "Temperature": 300.0
+  "Temperature": 300.0,
+  "Tier": "T2",
+  "DangerLevel": 3,
+  "AmbientSound": "WindHowl",
+  "Color": "#88ccff",
+  "Resources": [
+    {
+      "item": "IceShard",
+      "chance": 0.4,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "FrostCrystal",
+      "chance": 0.4,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "Permafrost",
+      "chance": 0.4,
+      "min": 1,
+      "max": 2
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Wisp_Lvl3",
+      "weight": 3,
+      "minLevel": 4,
+      "maxLevel": 6
+    },
+    {
+      "creature": "Creature_Guardian_Lvl2",
+      "weight": 3,
+      "minLevel": 4,
+      "maxLevel": 6
+    }
+  ]
 }

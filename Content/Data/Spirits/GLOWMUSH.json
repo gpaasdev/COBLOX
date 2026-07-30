@@ -4,5 +4,36 @@
   "Rarity": "Uncommon",
   "Element": "Nature",
   "DropRate": "5.0%",
-  "Description": "Menyinari rawa-rawa gelap."
+  "Description": "Menyinari rawa-rawa gelap.",
+  "Stats": {
+    "HP": 152,
+    "Attack": 15,
+    "Defense": 10,
+    "Speed": 1.03
+  },
+  "Abilities": [
+    "VineWhip",
+    "Regrowth"
+  ],
+  "SkillPool": [
+    "VineWhip",
+    "Regrowth",
+    "PoisonSpores",
+    "WildRage"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 20,
+    "evolvesTo": "SUNLION",
+    "evolutionMat": "NatureEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "NatureEssence",
+      "count": 2
+    },
+    {
+      "item": "Gold",
+      "count": 20
+    }
+  ]
 }

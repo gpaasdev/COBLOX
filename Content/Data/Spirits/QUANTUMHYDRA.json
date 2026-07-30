@@ -4,5 +4,38 @@
   "Rarity": "Legendary",
   "Element": "Quantum",
   "DropRate": "1.9%",
-  "Description": "Bergerak antara dimensi."
+  "Description": "Bergerak antara dimensi.",
+  "Stats": {
+    "HP": 1285,
+    "Attack": 128,
+    "Defense": 77,
+    "Speed": 0.72
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 35,
+    "evolvesTo": null,
+    "evolutionMat": "QuantumEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "QuantumEssence",
+      "count": 5
+    },
+    {
+      "item": "Gold",
+      "count": 50
+    }
+  ]
 }

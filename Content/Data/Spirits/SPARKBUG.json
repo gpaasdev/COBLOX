@@ -4,5 +4,36 @@
   "Rarity": "Common",
   "Element": "Lightning",
   "DropRate": "7.0%",
-  "Description": "Mengeluarkan letupan kecil."
+  "Description": "Mengeluarkan letupan kecil.",
+  "Stats": {
+    "HP": 145,
+    "Attack": 14,
+    "Defense": 10,
+    "Speed": 0.82
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 15,
+    "evolvesTo": "WINDFLYER",
+    "evolutionMat": "LightningEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "LightningEssence",
+      "count": 1
+    },
+    {
+      "item": "Gold",
+      "count": 10
+    }
+  ]
 }

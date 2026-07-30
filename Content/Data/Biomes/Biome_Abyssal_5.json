@@ -1,5 +1,43 @@
 {
   "Id": "Biome_Abyssal_5",
   "Name": "Abyssal Wastes Sector 5",
-  "Temperature": 450.0
+  "Temperature": 450.0,
+  "Tier": "T5",
+  "DangerLevel": 5,
+  "AmbientSound": "DeepRumble",
+  "Color": "#4422aa",
+  "Resources": [
+    {
+      "item": "AbyssalEye",
+      "chance": 0.55,
+      "min": 1,
+      "max": 5
+    },
+    {
+      "item": "DarkEssence",
+      "chance": 0.55,
+      "min": 1,
+      "max": 5
+    },
+    {
+      "item": "VoidShard",
+      "chance": 0.55,
+      "min": 1,
+      "max": 5
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Abomination_Lvl5",
+      "weight": 3,
+      "minLevel": 13,
+      "maxLevel": 15
+    },
+    {
+      "creature": "Creature_Guardian_Lvl6",
+      "weight": 3,
+      "minLevel": 13,
+      "maxLevel": 15
+    }
+  ]
 }

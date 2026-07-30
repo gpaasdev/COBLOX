@@ -2,5 +2,25 @@
   "Id": "Reactor_v4",
   "Name": "Industrial Reactor Mark 4",
   "PowerConsumption": 400,
-  "MaxTemperature": 1500
+  "MaxTemperature": 1500,
+  "Tier": "T3",
+  "MachineType": "Reactor",
+  "Version": 4,
+  "InputTypes": [
+    "Uranium",
+    "Plutonium",
+    "MagmaCore"
+  ],
+  "OutputTypes": [
+    "EnergyCell",
+    "Plasma",
+    "Steam"
+  ],
+  "Speed": 15.6,
+  "Efficiency": 0.56,
+  "RecipeMap": [
+    "Recipe_Reactor_1",
+    "Recipe_Reactor_2",
+    "Recipe_Reactor_3"
+  ]
 }

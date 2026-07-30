@@ -1,1 +1,39 @@
-{"Id":"SP_MOON_WISP","Name":"Moon Wisp","Rarity":"Uncommon","Element":"Nature","DropRate":"7.0%","Description":"Cahaya bulan yang menjelma."}
+{
+  "Id": "SP_MOON_WISP",
+  "Name": "Moon Wisp",
+  "Rarity": "Uncommon",
+  "Element": "Nature",
+  "DropRate": "7.0%",
+  "Description": "Cahaya bulan yang menjelma.",
+  "Stats": {
+    "HP": 215,
+    "Attack": 22,
+    "Defense": 14,
+    "Speed": 0.89
+  },
+  "Abilities": [
+    "VineWhip",
+    "Regrowth"
+  ],
+  "SkillPool": [
+    "VineWhip",
+    "Regrowth",
+    "PoisonSpores",
+    "WildRage"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 20,
+    "evolvesTo": null,
+    "evolutionMat": "NatureEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "NatureEssence",
+      "count": 2
+    },
+    {
+      "item": "Gold",
+      "count": 20
+    }
+  ]
+}

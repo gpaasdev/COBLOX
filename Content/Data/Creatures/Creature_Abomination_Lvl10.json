@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Abomination_Lvl10",
   "Name": "Abomination Elite Grade 10",
-  "Health": 10000
+  "Health": 666,
+  "Damage": 40,
+  "AttackSpeed": 0.6,
+  "Defense": 20,
+  "Abilities": [
+    "TentacleSlam",
+    "CorruptAura"
+  ],
+  "LootTable": [
+    {
+      "item": "CorruptIchor",
+      "chance": 0.6,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "TentacleFragment",
+      "chance": 0.4,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 180
 }

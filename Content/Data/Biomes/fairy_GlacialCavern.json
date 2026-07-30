@@ -1,1 +1,43 @@
-{"Id":"fairy_GlacialCavern","Name":"Glacial Cavern","Temperature":230.0}
+{
+  "Id": "fairy_GlacialCavern",
+  "Name": "Glacial Cavern",
+  "Temperature": 230.0,
+  "Tier": "T1",
+  "DangerLevel": 3,
+  "AmbientSound": "WindHowl",
+  "Color": "#88ccff",
+  "Resources": [
+    {
+      "item": "IceShard",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "item": "FrostCrystal",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "item": "Permafrost",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Wisp_Lvl3",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    },
+    {
+      "creature": "Creature_Guardian_Lvl2",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    }
+  ]
+}

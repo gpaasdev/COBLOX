@@ -2,5 +2,25 @@
   "Id": "Reactor_v6",
   "Name": "Industrial Reactor Mark 6",
   "PowerConsumption": 600,
-  "MaxTemperature": 2000
+  "MaxTemperature": 2000,
+  "Tier": "T4",
+  "MachineType": "Reactor",
+  "Version": 6,
+  "InputTypes": [
+    "Uranium",
+    "Plutonium",
+    "MagmaCore"
+  ],
+  "OutputTypes": [
+    "EnergyCell",
+    "Plasma",
+    "Steam"
+  ],
+  "Speed": 18.0,
+  "Efficiency": 0.6,
+  "RecipeMap": [
+    "Recipe_Reactor_1",
+    "Recipe_Reactor_2",
+    "Recipe_Reactor_3"
+  ]
 }

@@ -1,1 +1,49 @@
-{"Id":"fairy_VolcanicForge","Name":"Volcanic Forge","Temperature":420.0}
+{
+  "Id": "fairy_VolcanicForge",
+  "Name": "Volcanic Forge",
+  "Temperature": 420.0,
+  "Tier": "T1",
+  "DangerLevel": 4,
+  "AmbientSound": "LavaCrackle",
+  "Color": "#ff4422",
+  "Resources": [
+    {
+      "item": "Obsidian",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "item": "Sulfur",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    },
+    {
+      "item": "MagmaCore",
+      "chance": 0.35,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Beast_Lvl5",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    },
+    {
+      "creature": "Creature_Golem_Lvl3",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    },
+    {
+      "creature": "Creature_Dragon_Lvl1",
+      "weight": 3,
+      "minLevel": 1,
+      "maxLevel": 3
+    }
+  ]
+}

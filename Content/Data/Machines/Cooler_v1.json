@@ -2,5 +2,23 @@
   "Id": "Cooler_v1",
   "Name": "Industrial Cooler Mark 1",
   "PowerConsumption": 100,
-  "MaxTemperature": 750
+  "MaxTemperature": 750,
+  "Tier": "T1",
+  "MachineType": "Cooler",
+  "Version": 1,
+  "InputTypes": [
+    "Water",
+    "IceShard",
+    "LiquidNitrogen"
+  ],
+  "OutputTypes": [
+    "Coolant",
+    "CryoFuel",
+    "ChilledAir"
+  ],
+  "Speed": 3.0,
+  "Efficiency": 0.8,
+  "RecipeMap": [
+    "Recipe_Cooler_1"
+  ]
 }

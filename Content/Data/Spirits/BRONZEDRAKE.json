@@ -4,5 +4,36 @@
   "Rarity": "Uncommon",
   "Element": "Fire",
   "DropRate": "7.0%",
-  "Description": "Cakar perunggu yang kuat."
+  "Description": "Cakar perunggu yang kuat.",
+  "Stats": {
+    "HP": 140,
+    "Attack": 14,
+    "Defense": 9,
+    "Speed": 1.06
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 20,
+    "evolvesTo": "SILVERSYLPH",
+    "evolutionMat": "FireEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "FireEssence",
+      "count": 2
+    },
+    {
+      "item": "Gold",
+      "count": 20
+    }
+  ]
 }

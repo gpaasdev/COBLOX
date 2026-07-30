@@ -1,0 +1,15 @@
+{
+  "Id": "Purification",
+  "Name": "Purification",
+  "RequiredMaterials": {
+    "CorruptIchor": 2,
+    "HolySeal": 1
+  },
+  "MinTemperature": 600,
+  "MaxTemperature": 1000,
+  "MinPressure": 1.0,
+  "Product": "PurifiedIchor",
+  "YieldRatio": 1.0,
+  "EnergyRequired": 120,
+  "EntropyGenerated": 0.074
+}

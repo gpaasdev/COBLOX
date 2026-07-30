@@ -1,5 +1,26 @@
 {
   "Id": "Creature_Beast_Lvl7",
   "Name": "Beast Elite Grade 7",
-  "Health": 4900
+  "Health": 280,
+  "Damage": 19,
+  "AttackSpeed": 1.0,
+  "Defense": 6,
+  "Abilities": [
+    "ClawSwipes"
+  ],
+  "LootTable": [
+    {
+      "item": "RawMeat",
+      "chance": 0.7,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "item": "Leather",
+      "chance": 0.4,
+      "min": 1,
+      "max": 2
+    }
+  ],
+  "XP": 70
 }

@@ -4,5 +4,37 @@
   "Rarity": "Rare",
   "Element": "Dark",
   "DropRate": "3.0%",
-  "Description": "Menghilang di bayangan."
+  "Description": "Menghilang di bayangan.",
+  "Stats": {
+    "HP": 526,
+    "Attack": 53,
+    "Defense": 35,
+    "Speed": 0.68
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 25,
+    "evolvesTo": "AETHERWRAITH",
+    "evolutionMat": "DarkEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "DarkEssence",
+      "count": 3
+    },
+    {
+      "item": "Gold",
+      "count": 30
+    }
+  ]
 }

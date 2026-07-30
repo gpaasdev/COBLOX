@@ -2,5 +2,24 @@
   "Id": "Turbine_v7",
   "Name": "Industrial Turbine Mark 7",
   "PowerConsumption": 700,
-  "MaxTemperature": 2250
+  "MaxTemperature": 2250,
+  "Tier": "T4",
+  "MachineType": "Turbine",
+  "Version": 7,
+  "InputTypes": [
+    "Steam",
+    "WindForce",
+    "Plasma"
+  ],
+  "OutputTypes": [
+    "Electricity",
+    "KineticEnergy"
+  ],
+  "Speed": 6.4,
+  "Efficiency": 0.97,
+  "RecipeMap": [
+    "Recipe_Turbine_1",
+    "Recipe_Turbine_2",
+    "Recipe_Turbine_3"
+  ]
 }

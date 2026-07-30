@@ -2,5 +2,25 @@
   "Id": "Synthesizer_v10",
   "Name": "Industrial Synthesizer Mark 10",
   "PowerConsumption": 1000,
-  "MaxTemperature": 3000
+  "MaxTemperature": 3000,
+  "Tier": "T5",
+  "MachineType": "Synthesizer",
+  "Version": 10,
+  "InputTypes": [
+    "AetherCrystal",
+    "EtherDust",
+    "CrystalShard"
+  ],
+  "OutputTypes": [
+    "SyntheticGem",
+    "PowerCell",
+    "EnergyOrb"
+  ],
+  "Speed": 11.4,
+  "Efficiency": 0.93,
+  "RecipeMap": [
+    "Recipe_Synthesizer_1",
+    "Recipe_Synthesizer_2",
+    "Recipe_Synthesizer_3"
+  ]
 }

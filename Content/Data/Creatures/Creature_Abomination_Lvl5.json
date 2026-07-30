@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Abomination_Lvl5",
   "Name": "Abomination Elite Grade 5",
-  "Health": 2500
+  "Health": 396,
+  "Damage": 24,
+  "AttackSpeed": 0.82,
+  "Defense": 12,
+  "Abilities": [
+    "TentacleSlam",
+    "CorruptAura"
+  ],
+  "LootTable": [
+    {
+      "item": "CorruptIchor",
+      "chance": 0.6,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "TentacleFragment",
+      "chance": 0.4,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 90
 }

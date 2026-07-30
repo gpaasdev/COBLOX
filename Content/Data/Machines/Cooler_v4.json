@@ -2,5 +2,25 @@
   "Id": "Cooler_v4",
   "Name": "Industrial Cooler Mark 4",
   "PowerConsumption": 400,
-  "MaxTemperature": 1500
+  "MaxTemperature": 1500,
+  "Tier": "T3",
+  "MachineType": "Cooler",
+  "Version": 4,
+  "InputTypes": [
+    "Water",
+    "IceShard",
+    "LiquidNitrogen"
+  ],
+  "OutputTypes": [
+    "Coolant",
+    "CryoFuel",
+    "ChilledAir"
+  ],
+  "Speed": 3.9,
+  "Efficiency": 0.86,
+  "RecipeMap": [
+    "Recipe_Cooler_1",
+    "Recipe_Cooler_2",
+    "Recipe_Cooler_3"
+  ]
 }

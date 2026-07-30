@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Guardian_Lvl8",
   "Name": "Guardian Elite Grade 8",
-  "Health": 6400
+  "Health": 682,
+  "Damage": 26,
+  "AttackSpeed": 0.59,
+  "Defense": 30,
+  "Abilities": [
+    "ShieldWall",
+    "HolyStrike"
+  ],
+  "LootTable": [
+    {
+      "item": "GuardianShard",
+      "chance": 0.7,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "HolySeal",
+      "chance": 0.2,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 176
 }

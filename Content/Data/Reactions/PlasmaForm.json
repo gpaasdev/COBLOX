@@ -1,0 +1,15 @@
+{
+  "Id": "PlasmaForm",
+  "Name": "PlasmaForm",
+  "RequiredMaterials": {
+    "EnergyCell": 2,
+    "MagmaCore": 1
+  },
+  "MinTemperature": 3000,
+  "MaxTemperature": 5000,
+  "MinPressure": 1.0,
+  "Product": "Plasma",
+  "YieldRatio": 1.0,
+  "EnergyRequired": 400,
+  "EntropyGenerated": 0.13
+}

@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Construct_Lvl2",
   "Name": "Construct Elite Grade 2",
-  "Health": 400
+  "Health": 260,
+  "Damage": 13,
+  "AttackSpeed": 0.86,
+  "Defense": 10,
+  "Abilities": [
+    "LaserBeam",
+    "SelfRepair"
+  ],
+  "LootTable": [
+    {
+      "item": "MetalScrap",
+      "chance": 0.8,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "item": "PowerCell",
+      "chance": 0.25,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 40
 }

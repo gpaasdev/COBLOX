@@ -4,5 +4,36 @@
   "Rarity": "Common",
   "Element": "Wind",
   "DropRate": "8.0%",
-  "Description": "Melayang ditiup angin."
+  "Description": "Melayang ditiup angin.",
+  "Stats": {
+    "HP": 130,
+    "Attack": 13,
+    "Defense": 9,
+    "Speed": 0.88
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 15,
+    "evolvesTo": "THUNDERBIRD",
+    "evolutionMat": "WindEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "WindEssence",
+      "count": 1
+    },
+    {
+      "item": "Gold",
+      "count": 10
+    }
+  ]
 }

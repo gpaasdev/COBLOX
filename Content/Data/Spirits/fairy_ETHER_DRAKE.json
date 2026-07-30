@@ -1,1 +1,41 @@
-{"Id":"SP_ETHER_DRAKE","Name":"Ether Drake","Rarity":"Legendary","Element":"Aether","DropRate":"0.3%","Description":"Naga legendaris dari lapisan ether."}
+{
+  "Id": "SP_ETHER_DRAKE",
+  "Name": "Ether Drake",
+  "Rarity": "Legendary",
+  "Element": "Aether",
+  "DropRate": "0.3%",
+  "Description": "Naga legendaris dari lapisan ether.",
+  "Stats": {
+    "HP": 1780,
+    "Attack": 178,
+    "Defense": 107,
+    "Speed": 0.59
+  },
+  "Abilities": [
+    "ArcaneBolt",
+    "Teleport",
+    "ManaShield",
+    "Starfall"
+  ],
+  "SkillPool": [
+    "ArcaneBolt",
+    "Teleport",
+    "ManaShield",
+    "Starfall"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 35,
+    "evolvesTo": null,
+    "evolutionMat": "AetherEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "AetherEssence",
+      "count": 5
+    },
+    {
+      "item": "Gold",
+      "count": 50
+    }
+  ]
+}

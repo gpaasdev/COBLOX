@@ -1,0 +1,14 @@
+{
+  "Id": "Distillation",
+  "Name": "Distillation",
+  "RequiredMaterials": {
+    "CrudeOil": 5
+  },
+  "MinTemperature": 200,
+  "MaxTemperature": 400,
+  "MinPressure": 1.0,
+  "Product": "Fuel",
+  "YieldRatio": 3.0,
+  "EnergyRequired": 100,
+  "EntropyGenerated": 0.07
+}

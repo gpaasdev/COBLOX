@@ -2,5 +2,25 @@
   "Id": "Reactor_v5",
   "Name": "Industrial Reactor Mark 5",
   "PowerConsumption": 500,
-  "MaxTemperature": 1750
+  "MaxTemperature": 1750,
+  "Tier": "T3",
+  "MachineType": "Reactor",
+  "Version": 5,
+  "InputTypes": [
+    "Uranium",
+    "Plutonium",
+    "MagmaCore"
+  ],
+  "OutputTypes": [
+    "EnergyCell",
+    "Plasma",
+    "Steam"
+  ],
+  "Speed": 16.8,
+  "Efficiency": 0.58,
+  "RecipeMap": [
+    "Recipe_Reactor_1",
+    "Recipe_Reactor_2",
+    "Recipe_Reactor_3"
+  ]
 }

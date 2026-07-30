@@ -1,0 +1,15 @@
+{
+  "Id": "ArcaneInfusion",
+  "Name": "ArcaneInfusion",
+  "RequiredMaterials": {
+    "StarShard": 2,
+    "ManaCrystal": 3
+  },
+  "MinTemperature": 1000,
+  "MaxTemperature": 2000,
+  "MinPressure": 1.0,
+  "Product": "ArcaneGem",
+  "YieldRatio": 1.0,
+  "EnergyRequired": 300,
+  "EntropyGenerated": 0.11
+}

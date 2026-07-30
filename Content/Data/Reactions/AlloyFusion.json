@@ -1,0 +1,15 @@
+{
+  "Id": "AlloyFusion",
+  "Name": "AlloyFusion",
+  "RequiredMaterials": {
+    "CopperIngot": 2,
+    "TinIngot": 1
+  },
+  "MinTemperature": 800,
+  "MaxTemperature": 1200,
+  "MinPressure": 1.0,
+  "Product": "BronzeIngot",
+  "YieldRatio": 2.0,
+  "EnergyRequired": 80,
+  "EntropyGenerated": 0.066
+}

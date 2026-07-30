@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Wisp_Lvl8",
   "Name": "Wisp Elite Grade 8",
-  "Health": 6400
+  "Health": 186,
+  "Damage": 15,
+  "AttackSpeed": 1.33,
+  "Defense": 4,
+  "Abilities": [
+    "EnergyBolt",
+    "PhaseShift"
+  ],
+  "LootTable": [
+    {
+      "item": "EtherDust",
+      "chance": 0.9,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "item": "WispEssence",
+      "chance": 0.2,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 48
 }

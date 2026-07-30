@@ -1,1 +1,39 @@
-{"Id":"SP_PIXIE_SWARM","Name":"Pixie Swarm","Rarity":"Common","Element":"Wind","DropRate":"15.0%","Description":"Kawanan peri kecil yang riang."}
+{
+  "Id": "SP_PIXIE_SWARM",
+  "Name": "Pixie Swarm",
+  "Rarity": "Common",
+  "Element": "Wind",
+  "DropRate": "15.0%",
+  "Description": "Kawanan peri kecil yang riang.",
+  "Stats": {
+    "HP": 144,
+    "Attack": 14,
+    "Defense": 10,
+    "Speed": 0.82
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 15,
+    "evolvesTo": null,
+    "evolutionMat": "WindEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "WindEssence",
+      "count": 1
+    },
+    {
+      "item": "Gold",
+      "count": 10
+    }
+  ]
+}

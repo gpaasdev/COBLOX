@@ -1,0 +1,22 @@
+{
+  "seasonId": "Season_01_MythicRise",
+  "name": "Mythic Rise",
+  "durationDays": 90,
+  "startDate": "2026-08-01T00:00:00Z",
+  "endDate": "2026-10-29T23:59:59Z",
+  "theme": "Mythic",
+  "description": "Ancient mythics awaken across the realms. Collect Mythic-tier spirits and unlock legendary forges.",
+  "battlePassId": "BP_Season_01",
+  "features": {
+    "newSpirits": ["Spirit_Mythic_Phoenix", "Spirit_Mythic_Leviathan", "Spirit_Mythic_Gryphon"],
+    "newMaterials": ["Mythic_Essence", "Primal_Ore", "Celestial_Shard"],
+    "newRecipes": ["MYTHIC_FORGE", "PRIMAL_FUSION"],
+    "newBiomes": ["Biome_Mythic_1", "Biome_Mythic_2"],
+    "newBosses": ["Boss_Mythic_Phoenix", "Boss_Mythic_Leviathan"]
+  },
+  "multipliers": {
+    "luckMultiplier": 1.5,
+    "expMultiplier": 1.25,
+    "coinMultiplier": 1.25
+  }
+}

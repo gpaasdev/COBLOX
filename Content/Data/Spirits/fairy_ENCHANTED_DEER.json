@@ -1,1 +1,40 @@
-{"Id":"SP_ENCHANTED_DEER","Name":"Enchanted Deer","Rarity":"Rare","Element":"Nature","DropRate":"4.0%","Description":"Rusa bertanduk cahaya bintang."}
+{
+  "Id": "SP_ENCHANTED_DEER",
+  "Name": "Enchanted Deer",
+  "Rarity": "Rare",
+  "Element": "Nature",
+  "DropRate": "4.0%",
+  "Description": "Rusa bertanduk cahaya bintang.",
+  "Stats": {
+    "HP": 443,
+    "Attack": 44,
+    "Defense": 29,
+    "Speed": 0.78
+  },
+  "Abilities": [
+    "VineWhip",
+    "Regrowth",
+    "PoisonSpores"
+  ],
+  "SkillPool": [
+    "VineWhip",
+    "Regrowth",
+    "PoisonSpores",
+    "WildRage"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 25,
+    "evolvesTo": null,
+    "evolutionMat": "NatureEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "NatureEssence",
+      "count": 3
+    },
+    {
+      "item": "Gold",
+      "count": 30
+    }
+  ]
+}

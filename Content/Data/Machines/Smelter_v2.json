@@ -2,5 +2,26 @@
   "Id": "Smelter_v2",
   "Name": "Industrial Smelter Mark 2",
   "PowerConsumption": 200,
-  "MaxTemperature": 1000
+  "MaxTemperature": 1000,
+  "Tier": "T2",
+  "MachineType": "Smelter",
+  "Version": 2,
+  "InputTypes": [
+    "IronOre",
+    "CopperOre",
+    "GoldOre",
+    "Stone"
+  ],
+  "OutputTypes": [
+    "IronIngot",
+    "CopperIngot",
+    "GoldIngot",
+    "RefinedStone"
+  ],
+  "Speed": 5.5,
+  "Efficiency": 0.72,
+  "RecipeMap": [
+    "Recipe_Smelter_1",
+    "Recipe_Smelter_2"
+  ]
 }

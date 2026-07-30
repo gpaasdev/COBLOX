@@ -1,0 +1,21 @@
+{
+  "battlePassId": "BP_Season_01",
+  "seasonId": "Season_01_MythicRise",
+  "totalTiers": 50,
+  "xpPerTier": 1000,
+  "premiumPrice": 799,
+  "premiumPlusPrice": 1499,
+  "tiers": [
+    { "tier": 1, "free": { "type": "coins", "amount": 500 }, "premium": { "type": "spirit", "id": "Spirit_Mythic_Phoenix", "rarity": "Legendary" } },
+    { "tier": 5, "free": { "type": "material", "id": "Mythic_Essence", "amount": 5 }, "premium": { "type": "cosmetic", "id": "WingsMythic" } },
+    { "tier": 10, "free": { "type": "gems", "amount": 200 }, "premium": { "type": "mount", "id": "Mythic_Steed" } },
+    { "tier": 15, "free": { "type": "material", "id": "Primal_Ore", "amount": 3 }, "premium": { "type": "aura", "id": "AuraMythicFlame" } },
+    { "tier": 20, "free": { "type": "coins", "amount": 2000 }, "premium": { "type": "spirit", "id": "Spirit_Mythic_Leviathan", "rarity": "Legendary" } },
+    { "tier": 25, "free": { "type": "potion", "id": "AURA_POTION_MAJOR", "amount": 2 }, "premium": { "type": "title", "id": "Mythic_Risen" } },
+    { "tier": 30, "free": { "type": "material", "id": "Celestial_Shard", "amount": 5 }, "premium": { "type": "emote", "id": "MythicRoar" } },
+    { "tier": 35, "free": { "type": "gems", "amount": 500 }, "premium": { "type": "cosmetic", "id": "CapeMythic" } },
+    { "tier": 40, "free": { "type": "recipe", "id": "MYTHIC_FORGE" }, "premium": { "type": "boost", "id": "EXP_BOOST_2X_7D" } },
+    { "tier": 45, "free": { "type": "coins", "amount": 5000 }, "premium": { "type": "material", "id": "Mythic_Essence", "amount": 20 } },
+    { "tier": 50, "free": { "type": "spirit", "id": "Spirit_Mythic_Gryphon", "rarity": "Legendary" }, "premium": { "type": "cosmetic", "id": "ThroneMythic" } }
+  ]
+}

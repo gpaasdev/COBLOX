@@ -4,5 +4,37 @@
   "Rarity": "Epic",
   "Element": "Water",
   "DropRate": "1.5%",
-  "Description": "Penguasa laut dalam Sanctum."
+  "Description": "Penguasa laut dalam Sanctum.",
+  "Stats": {
+    "HP": 913,
+    "Attack": 91,
+    "Defense": 59,
+    "Speed": 0.66
+  },
+  "Abilities": [
+    "HealingRain",
+    "TidalWave",
+    "FrostArmor"
+  ],
+  "SkillPool": [
+    "HealingRain",
+    "TidalWave",
+    "FrostArmor",
+    "HydroPump"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 30,
+    "evolvesTo": null,
+    "evolutionMat": "WaterEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "WaterEssence",
+      "count": 4
+    },
+    {
+      "item": "Gold",
+      "count": 40
+    }
+  ]
 }

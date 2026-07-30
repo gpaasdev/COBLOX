@@ -2,5 +2,25 @@
   "Id": "Cooler_v5",
   "Name": "Industrial Cooler Mark 5",
   "PowerConsumption": 500,
-  "MaxTemperature": 1750
+  "MaxTemperature": 1750,
+  "Tier": "T3",
+  "MachineType": "Cooler",
+  "Version": 5,
+  "InputTypes": [
+    "Water",
+    "IceShard",
+    "LiquidNitrogen"
+  ],
+  "OutputTypes": [
+    "Coolant",
+    "CryoFuel",
+    "ChilledAir"
+  ],
+  "Speed": 4.2,
+  "Efficiency": 0.88,
+  "RecipeMap": [
+    "Recipe_Cooler_1",
+    "Recipe_Cooler_2",
+    "Recipe_Cooler_3"
+  ]
 }

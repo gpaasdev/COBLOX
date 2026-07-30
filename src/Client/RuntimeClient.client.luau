@@ -28,6 +28,11 @@ local startupOrder = {
 	"FTUEController",
 	"LeaderboardUIController",
 	"EventCalendarController",
+	"SettingsController",
+	"QuestJournalController",
+	"KeyGuideController",
+	"CommerceController",
+	"FusionDemoController",
 }
 
 -- 1. Register Controllers
@@ -98,6 +103,17 @@ ControllerRegistry.RegisterController("RealmEntryController", require(controller
 
 -- Tier 6 — Gameplay Systems (Phase A)
 ControllerRegistry.RegisterController("LeaderboardUIController", require(controllersFolder.LeaderboardUIController))
+
+-- Tier 6.5 — UI Systems (Phase 1b)
+ControllerRegistry.RegisterController("SettingsController", require(controllersFolder.SettingsController))
+ControllerRegistry.RegisterController("QuestJournalController", require(controllersFolder.QuestJournalController))
+ControllerRegistry.RegisterController("KeyGuideController", require(controllersFolder.KeyGuideController))
+
+-- Tier 6.75 — Commerce & Social (Phase 2)
+ControllerRegistry.RegisterController("CommerceController", require(controllersFolder.CommerceController))
+
+-- Tier 6.9 — Experimental
+ControllerRegistry.RegisterController("FusionDemoController", require(controllersFolder.FusionDemoController))
 
 -- Tier 7 — Experimental (Sprint 5)
 ControllerRegistry.RegisterController("AnimationController", require(controllersFolder.AnimationController))

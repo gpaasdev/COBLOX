@@ -2,5 +2,21 @@
   "Id": "CryoCooler_v1",
   "Name": "Cryogenic Cooling Chamber",
   "PowerConsumption": 1200,
-  "MaxTemperature": 500
+  "MaxTemperature": 500,
+  "Tier": "T1",
+  "MachineType": "CryoCooler",
+  "Version": 1,
+  "InputTypes": [
+    "LiquidHelium",
+    "IceShard"
+  ],
+  "OutputTypes": [
+    "AbsoluteZeroCoolant",
+    "Superconductor"
+  ],
+  "Speed": 2.0,
+  "Efficiency": 0.9,
+  "RecipeMap": [
+    "Recipe_CryoCooler_1"
+  ]
 }

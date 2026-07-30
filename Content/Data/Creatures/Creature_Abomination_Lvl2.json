@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Abomination_Lvl2",
   "Name": "Abomination Elite Grade 2",
-  "Health": 400
+  "Health": 234,
+  "Damage": 15,
+  "AttackSpeed": 0.96,
+  "Defense": 7,
+  "Abilities": [
+    "TentacleSlam",
+    "CorruptAura"
+  ],
+  "LootTable": [
+    {
+      "item": "CorruptIchor",
+      "chance": 0.6,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "TentacleFragment",
+      "chance": 0.4,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 36
 }

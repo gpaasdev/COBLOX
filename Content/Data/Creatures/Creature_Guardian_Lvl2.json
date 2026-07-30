@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Guardian_Lvl2",
   "Name": "Guardian Elite Grade 2",
-  "Health": 400
+  "Health": 286,
+  "Damage": 12,
+  "AttackSpeed": 0.86,
+  "Defense": 15,
+  "Abilities": [
+    "ShieldWall",
+    "HolyStrike"
+  ],
+  "LootTable": [
+    {
+      "item": "GuardianShard",
+      "chance": 0.7,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "HolySeal",
+      "chance": 0.2,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 44
 }

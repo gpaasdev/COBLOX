@@ -50,6 +50,10 @@ scratch/*.tmp
 .vercel
 scratch/
 
+# AI Agent Session Artifacts
+session-*.md
+.opencode/
+
 # Internal Planning & Archive Docs (not for public repo)
 docs/archive/
 UEFN/

@@ -108,6 +108,13 @@ local defaultProfile: PlayerProfile = {
 		FirstJoin = os.time(),
 		TotalPlayTimeSeconds = 0,
 	},
+	Avatar = {
+		SkinTone = BrickColor.new("Light yellowish brown").Color,
+		HeadMeshId = nil,
+		ClothingAssetIds = {},
+		PBRSkinTextureId = nil,
+		EnableProceduralIK = true,
+	},
 }
 
 local DataStoreService = game:GetService("DataStoreService")

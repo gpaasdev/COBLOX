@@ -2,5 +2,25 @@
   "Id": "Refinery_v6",
   "Name": "Industrial Refinery Mark 6",
   "PowerConsumption": 600,
-  "MaxTemperature": 2000
+  "MaxTemperature": 2000,
+  "Tier": "T4",
+  "MachineType": "Refinery",
+  "Version": 6,
+  "InputTypes": [
+    "CrudeOil",
+    "OrganicSlurry",
+    "ToxicSac"
+  ],
+  "OutputTypes": [
+    "Fuel",
+    "BioMass",
+    "PurifiedIchor"
+  ],
+  "Speed": 12.0,
+  "Efficiency": 0.7,
+  "RecipeMap": [
+    "Recipe_Refinery_1",
+    "Recipe_Refinery_2",
+    "Recipe_Refinery_3"
+  ]
 }

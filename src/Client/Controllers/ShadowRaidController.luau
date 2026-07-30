@@ -19,12 +19,12 @@ end
 
 function ShadowRaidController.Start(self)
 	self.maid = Maid.new()
-	-- Keybind for Begal Aura / Shadow Raid (Hotkey: 'B')
+	-- Keybind for Begal Aura / Shadow Raid (Hotkey: 'N')
 	self.maid:GiveTask(UserInputService.InputBegan:Connect(function(input, gameProcessed)
 		if gameProcessed then
 			return
 		end
-		if input.KeyCode == Enum.KeyCode.B then
+		if input.KeyCode == Enum.KeyCode.N then
 			ShadowRaidController.AttemptRaidFromNearest()
 		end
 	end))

@@ -1,1 +1,40 @@
-{"Id":"SP_MAGMA_DRAGON","Name":"Magma Dragon","Rarity":"Epic","Element":"Fire","DropRate":"1.5%","Description":"Naga dari inti gunung berapi."}
+{
+  "Id": "SP_MAGMA_DRAGON",
+  "Name": "Magma Dragon",
+  "Rarity": "Epic",
+  "Element": "Fire",
+  "DropRate": "1.5%",
+  "Description": "Naga dari inti gunung berapi.",
+  "Stats": {
+    "HP": 605,
+    "Attack": 60,
+    "Defense": 37,
+    "Speed": 0.84
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 30,
+    "evolvesTo": null,
+    "evolutionMat": "FireEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "FireEssence",
+      "count": 4
+    },
+    {
+      "item": "Gold",
+      "count": 40
+    }
+  ]
+}

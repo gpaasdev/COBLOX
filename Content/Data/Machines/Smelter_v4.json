@@ -2,5 +2,27 @@
   "Id": "Smelter_v4",
   "Name": "Industrial Smelter Mark 4",
   "PowerConsumption": 400,
-  "MaxTemperature": 1500
+  "MaxTemperature": 1500,
+  "Tier": "T3",
+  "MachineType": "Smelter",
+  "Version": 4,
+  "InputTypes": [
+    "IronOre",
+    "CopperOre",
+    "GoldOre",
+    "Stone"
+  ],
+  "OutputTypes": [
+    "IronIngot",
+    "CopperIngot",
+    "GoldIngot",
+    "RefinedStone"
+  ],
+  "Speed": 6.5,
+  "Efficiency": 0.76,
+  "RecipeMap": [
+    "Recipe_Smelter_1",
+    "Recipe_Smelter_2",
+    "Recipe_Smelter_3"
+  ]
 }

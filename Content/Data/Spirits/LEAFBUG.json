@@ -4,5 +4,36 @@
   "Rarity": "Common",
   "Element": "Nature",
   "DropRate": "7.0%",
-  "Description": "Penjaga tanaman alami."
+  "Description": "Penjaga tanaman alami.",
+  "Stats": {
+    "HP": 140,
+    "Attack": 14,
+    "Defense": 9,
+    "Speed": 0.84
+  },
+  "Abilities": [
+    "VineWhip",
+    "Regrowth"
+  ],
+  "SkillPool": [
+    "VineWhip",
+    "Regrowth",
+    "PoisonSpores",
+    "WildRage"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 15,
+    "evolvesTo": "GLOWMUSH",
+    "evolutionMat": "NatureEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "NatureEssence",
+      "count": 1
+    },
+    {
+      "item": "Gold",
+      "count": 10
+    }
+  ]
 }

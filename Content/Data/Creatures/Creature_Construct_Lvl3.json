@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Construct_Lvl3",
   "Name": "Construct Elite Grade 3",
-  "Health": 900
+  "Health": 320,
+  "Damage": 16,
+  "AttackSpeed": 0.81,
+  "Defense": 12,
+  "Abilities": [
+    "LaserBeam",
+    "SelfRepair"
+  ],
+  "LootTable": [
+    {
+      "item": "MetalScrap",
+      "chance": 0.8,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "item": "PowerCell",
+      "chance": 0.25,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 60
 }

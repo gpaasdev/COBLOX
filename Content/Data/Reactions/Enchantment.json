@@ -1,0 +1,15 @@
+{
+  "Id": "Enchantment",
+  "Name": "Enchantment",
+  "RequiredMaterials": {
+    "ArcaneGem": 1,
+    "WeaponPart": 1
+  },
+  "MinTemperature": 500,
+  "MaxTemperature": 1000,
+  "MinPressure": 1.0,
+  "Product": "EnchantedWeapon",
+  "YieldRatio": 1.0,
+  "EnergyRequired": 250,
+  "EntropyGenerated": 0.1
+}

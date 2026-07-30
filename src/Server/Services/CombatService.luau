@@ -5,6 +5,7 @@ local Players = game:GetService("Players")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local GameConfig = require(ReplicatedStorage.Shared.Configuration.GameConfig)
 local WeaponConfig = require(ReplicatedStorage.Shared.Configuration.WeaponConfig)
+local DomainEventBus = require(ReplicatedStorage.Shared.Events.DomainEventBus)
 
 local CombatService = {}
 CombatService.Name = "CombatService"
@@ -39,11 +40,18 @@ local function GetZoneRuleset(position: Vector3): ZoneRuleset
 	end
 end
 
-function CombatService.Init()
+function CombatService.Init(self)
 	local combatEvent = NetChannels.GetRemoteEvent("CombatEvent")
 	local RateLimitService = require(script.Parent.RateLimitService)
 
-	combatEvent.OnServerEvent:Connect(function(player, action: string, targetId: string?, weaponType: string?)
+	self.maid = require(ReplicatedStorage.Shared.Utility.Maid).new()
+
+	self.maid:GiveTask(Players.PlayerRemoving:Connect(function(player: Player)
+		parryWindows[player.UserId] = nil
+		lastAttackTime[player.UserId] = nil
+	end))
+
+	self.maid:GiveTask(combatEvent.OnServerEvent:Connect(function(player, action: string, targetId: string?, weaponType: string?)
 		if type(action) ~= "string" then
 			return
 		end
@@ -58,8 +66,27 @@ function CombatService.Init()
 			CombatService.ProcessHit(player, targetId, weaponType)
 		elseif action == "Parry" then
 			parryWindows[player.UserId] = os.clock()
+		elseif action == "SwitchWeapon" then
+			if typeof(targetId) == "string" then
+				local WeaponService = require(script.Parent.WeaponService)
+				WeaponService.EquipWeapon(player, targetId)
+			end
+		elseif action == "ConsumePotion" then
+			local EconomyService = require(script.Parent.EconomyService)
+			local res = EconomyService.DeductCurrency(player, "Potions", 1, "ConsumePotion")
+			if res.Success then
+				DomainEventBus:Publish("PlayerHealed", { player = player, amount = 30 })
+				local combatEvent = NetChannels.GetRemoteEvent("CombatEvent")
+				combatEvent:FireClient(player, "PotionUsed", {})
+				print(string.format("[CombatService] %s consumed a potion", player.Name))
+			end
+		elseif action == "TriggerFlex" then
+			DomainEventBus:Publish("PlayerFlexed", { player = player })
+			local combatEvent = NetChannels.GetRemoteEvent("CombatEvent")
+			combatEvent:FireClient(player, "FlexEffect", {})
+			print(string.format("[CombatService] %s flexed", player.Name))
 		end
-	end)
+	end))
 	print("⚔️ CombatService Initialized")
 end
 

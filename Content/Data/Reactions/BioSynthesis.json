@@ -1,0 +1,16 @@
+{
+  "Id": "BioSynthesis",
+  "Name": "BioSynthesis",
+  "RequiredMaterials": {
+    "Fiber": 5,
+    "Herb": 3,
+    "Water": 2
+  },
+  "MinTemperature": 200,
+  "MaxTemperature": 500,
+  "MinPressure": 1.0,
+  "Product": "Medicine",
+  "YieldRatio": 2.0,
+  "EnergyRequired": 60,
+  "EntropyGenerated": 0.062
+}

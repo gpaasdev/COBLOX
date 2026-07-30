@@ -2,5 +2,25 @@
   "Id": "Cooler_v10",
   "Name": "Industrial Cooler Mark 10",
   "PowerConsumption": 1000,
-  "MaxTemperature": 3000
+  "MaxTemperature": 3000,
+  "Tier": "T5",
+  "MachineType": "Cooler",
+  "Version": 10,
+  "InputTypes": [
+    "Water",
+    "IceShard",
+    "LiquidNitrogen"
+  ],
+  "OutputTypes": [
+    "Coolant",
+    "CryoFuel",
+    "ChilledAir"
+  ],
+  "Speed": 5.7,
+  "Efficiency": 0.98,
+  "RecipeMap": [
+    "Recipe_Cooler_1",
+    "Recipe_Cooler_2",
+    "Recipe_Cooler_3"
+  ]
 }

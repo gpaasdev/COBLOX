@@ -4,5 +4,36 @@
   "Rarity": "Uncommon",
   "Element": "Water",
   "DropRate": "5.0%",
-  "Description": "Tidak pernah meleleh."
+  "Description": "Tidak pernah meleleh.",
+  "Stats": {
+    "HP": 271,
+    "Attack": 27,
+    "Defense": 18,
+    "Speed": 0.76
+  },
+  "Abilities": [
+    "HealingRain",
+    "TidalWave"
+  ],
+  "SkillPool": [
+    "HealingRain",
+    "TidalWave",
+    "FrostArmor",
+    "HydroPump"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 20,
+    "evolvesTo": "WATERDRIP",
+    "evolutionMat": "WaterEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "WaterEssence",
+      "count": 2
+    },
+    {
+      "item": "Gold",
+      "count": 20
+    }
+  ]
 }

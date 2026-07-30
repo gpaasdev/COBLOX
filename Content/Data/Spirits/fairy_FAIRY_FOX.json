@@ -1,1 +1,39 @@
-{"Id":"SP_FAIRY_FOX","Name":"Fairy Fox","Rarity":"Uncommon","Element":"Aether","DropRate":"8.0%","Description":"Rubah bercahaya dengan ekor berkilauan."}
+{
+  "Id": "SP_FAIRY_FOX",
+  "Name": "Fairy Fox",
+  "Rarity": "Uncommon",
+  "Element": "Aether",
+  "DropRate": "8.0%",
+  "Description": "Rubah bercahaya dengan ekor berkilauan.",
+  "Stats": {
+    "HP": 179,
+    "Attack": 18,
+    "Defense": 12,
+    "Speed": 0.97
+  },
+  "Abilities": [
+    "ArcaneBolt",
+    "Teleport"
+  ],
+  "SkillPool": [
+    "ArcaneBolt",
+    "Teleport",
+    "ManaShield",
+    "Starfall"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 20,
+    "evolvesTo": null,
+    "evolutionMat": "AetherEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "AetherEssence",
+      "count": 2
+    },
+    {
+      "item": "Gold",
+      "count": 20
+    }
+  ]
+}

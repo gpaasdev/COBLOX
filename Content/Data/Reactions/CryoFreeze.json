@@ -1,0 +1,15 @@
+{
+  "Id": "CryoFreeze",
+  "Name": "CryoFreeze",
+  "RequiredMaterials": {
+    "IceShard": 3,
+    "LiquidHelium": 1
+  },
+  "MinTemperature": -100,
+  "MaxTemperature": 50,
+  "MinPressure": 1.0,
+  "Product": "AbsoluteZeroCoolant",
+  "YieldRatio": 1.0,
+  "EnergyRequired": 200,
+  "EntropyGenerated": 0.09
+}

@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Construct_Lvl7",
   "Name": "Construct Elite Grade 7",
-  "Health": 4900
+  "Health": 560,
+  "Damage": 27,
+  "AttackSpeed": 0.63,
+  "Defense": 19,
+  "Abilities": [
+    "LaserBeam",
+    "SelfRepair"
+  ],
+  "LootTable": [
+    {
+      "item": "MetalScrap",
+      "chance": 0.8,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "item": "PowerCell",
+      "chance": 0.25,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 140
 }

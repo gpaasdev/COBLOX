@@ -1,0 +1,15 @@
+{
+  "Id": "Pyrolysis",
+  "Name": "Pyrolysis",
+  "RequiredMaterials": {
+    "Wood": 3,
+    "Sulfur": 1
+  },
+  "MinTemperature": 400,
+  "MaxTemperature": 800,
+  "MinPressure": 1.0,
+  "Product": "Charcoal",
+  "YieldRatio": 2.0,
+  "EnergyRequired": 50,
+  "EntropyGenerated": 0.06
+}

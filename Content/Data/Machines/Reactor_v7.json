@@ -2,5 +2,25 @@
   "Id": "Reactor_v7",
   "Name": "Industrial Reactor Mark 7",
   "PowerConsumption": 700,
-  "MaxTemperature": 2250
+  "MaxTemperature": 2250,
+  "Tier": "T4",
+  "MachineType": "Reactor",
+  "Version": 7,
+  "InputTypes": [
+    "Uranium",
+    "Plutonium",
+    "MagmaCore"
+  ],
+  "OutputTypes": [
+    "EnergyCell",
+    "Plasma",
+    "Steam"
+  ],
+  "Speed": 19.2,
+  "Efficiency": 0.62,
+  "RecipeMap": [
+    "Recipe_Reactor_1",
+    "Recipe_Reactor_2",
+    "Recipe_Reactor_3"
+  ]
 }

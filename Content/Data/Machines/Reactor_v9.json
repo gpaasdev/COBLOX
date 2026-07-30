@@ -2,5 +2,25 @@
   "Id": "Reactor_v9",
   "Name": "Industrial Reactor Mark 9",
   "PowerConsumption": 900,
-  "MaxTemperature": 2750
+  "MaxTemperature": 2750,
+  "Tier": "T5",
+  "MachineType": "Reactor",
+  "Version": 9,
+  "InputTypes": [
+    "Uranium",
+    "Plutonium",
+    "MagmaCore"
+  ],
+  "OutputTypes": [
+    "EnergyCell",
+    "Plasma",
+    "Steam"
+  ],
+  "Speed": 21.6,
+  "Efficiency": 0.66,
+  "RecipeMap": [
+    "Recipe_Reactor_1",
+    "Recipe_Reactor_2",
+    "Recipe_Reactor_3"
+  ]
 }

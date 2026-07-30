@@ -4,5 +4,38 @@
   "Description": "A legendary entity born from the abyss.",
   "Rarity": "Legendary",
   "Element": "Void",
-  "DropRate": "0.1%"
+  "DropRate": "0.1%",
+  "Stats": {
+    "HP": 2395,
+    "Attack": 239,
+    "Defense": 144,
+    "Speed": 0.43
+  },
+  "Abilities": [
+    "ShadowStrike",
+    "VoidRift",
+    "DarkPulse",
+    "SoulSteal"
+  ],
+  "SkillPool": [
+    "ShadowStrike",
+    "VoidRift",
+    "DarkPulse",
+    "SoulSteal"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 35,
+    "evolvesTo": null,
+    "evolutionMat": "VoidEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "VoidEssence",
+      "count": 5
+    },
+    {
+      "item": "Gold",
+      "count": 50
+    }
+  ]
 }

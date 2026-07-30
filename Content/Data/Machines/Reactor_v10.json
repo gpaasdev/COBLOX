@@ -2,5 +2,25 @@
   "Id": "Reactor_v10",
   "Name": "Industrial Reactor Mark 10",
   "PowerConsumption": 1000,
-  "MaxTemperature": 3000
+  "MaxTemperature": 3000,
+  "Tier": "T5",
+  "MachineType": "Reactor",
+  "Version": 10,
+  "InputTypes": [
+    "Uranium",
+    "Plutonium",
+    "MagmaCore"
+  ],
+  "OutputTypes": [
+    "EnergyCell",
+    "Plasma",
+    "Steam"
+  ],
+  "Speed": 22.8,
+  "Efficiency": 0.68,
+  "RecipeMap": [
+    "Recipe_Reactor_1",
+    "Recipe_Reactor_2",
+    "Recipe_Reactor_3"
+  ]
 }

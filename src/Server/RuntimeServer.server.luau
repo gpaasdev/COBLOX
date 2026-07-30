@@ -26,6 +26,7 @@ end)
 -- TIER 0 — Infrastructure
 -- ============================================================
 local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
+local HealthService = require(ServerScriptService.Server.Services.HealthService)
 local RemoteConfigService = require(ServerScriptService.Server.Services.RemoteConfigService)
 local ExperimentService = require(ServerScriptService.Server.Services.ExperimentService)
 local LiveOpsService = require(ServerScriptService.Server.Services.LiveOpsService)
@@ -115,6 +116,7 @@ local FlexZoneService = require(ServerScriptService.Server.Services.FlexZoneServ
 -- ============================================================
 local AnnouncementService = require(ServerScriptService.Server.Services.AnnouncementService)
 local CrossServerMessagingService = require(ServerScriptService.Server.Services.CrossServerMessagingService)
+local CloudSyncService = require(ServerScriptService.Server.Services.CloudSyncService)
 
 -- ============================================================
 -- TIER 5 — Monetization & Social [NEW — Phase 0 Production]
@@ -124,14 +126,23 @@ local BadgeService = require(ServerScriptService.Server.Services.BadgeService)
 local SocialEngagementService = require(ServerScriptService.Server.Services.SocialEngagementService)
 
 -- ============================================================
--- TIER 5.5 — Subscription [NEW — Phase 3]
+-- TIER 5.5 — Subscription & Season Pass [NEW — Phase 3]
 -- ============================================================
 local SubscriptionService = require(ServerScriptService.Server.Services.SubscriptionService)
+local SeasonPassService = require(ServerScriptService.Server.Services.SeasonPassService)
 
+-- ============================================================
 -- ============================================================
 -- TIER 6 — Gameplay Systems [NEW — Phase A]
 -- ============================================================
 local WeaponService = require(ServerScriptService.Server.Services.WeaponService)
+local AvatarService = require(ServerScriptService.Server.Services.AvatarService)
+local AssetGenerationService = require(ServerScriptService.Server.Services.AssetGenerationService)
+local AIPipelineService = require(ServerScriptService.Server.Services.AIPipelineService)
+local SelfHealingService = require(ServerScriptService.Server.Services.SelfHealingService)
+local BossService = require(ServerScriptService.Server.Services.BossService)
+local LiveEventService = require(ServerScriptService.Server.Services.LiveEventService)
+local VoiceChatService = require(ServerScriptService.Server.Services.VoiceChatController) :: any
 
 -- ============================================================
 -- TIER 7 — Experimental [NEW — Sprint 5]
@@ -158,6 +169,7 @@ local WorldGenerationService = require(ServerScriptService.Server.Services.World
 local services = {
 	-- TIER 0 — Infrastructure
 	RateLimitService,
+	HealthService,
 	RemoteConfigService,
 	ExperimentService,
 	LiveOpsService,
@@ -229,17 +241,26 @@ local services = {
 	-- TIER 4+ — Cross-Server [NEW]
 	AnnouncementService,
 	CrossServerMessagingService,
+	CloudSyncService,
 
 	-- TIER 5 — Monetization & Social [NEW — Phase 0 Production]
 	RewardedAdService,
 	BadgeService,
 	SocialEngagementService,
 
-	-- TIER 5.5 — Subscription [NEW — Phase 3]
+	-- TIER 5.5 — Subscription & Season Pass [NEW — Phase 3]
 	SubscriptionService,
+	SeasonPassService,
 
 	-- TIER 6 — Gameplay Systems [NEW — Phase A]
 	WeaponService,
+	AvatarService,
+	AssetGenerationService,
+	AIPipelineService,
+	SelfHealingService,
+	BossService,
+	LiveEventService,
+	VoiceChatService,
 
 	-- TIER 7 — Experimental [Sprint 5]
 	ABTestingService,
@@ -317,7 +338,7 @@ for _, service in ipairs(services) do
 
 	local status = service.ServiceStatus or "Unknown"
 	if service.Init then
-		service.Init()
+		service:Init()
 		print(string.format("[Bootstrap] ✅ INIT [%s]: %s", status, name))
 		booted += 1
 	end
@@ -329,7 +350,7 @@ for _, service in ipairs(services) do
 		continue
 	end
 	if service.Start then
-		service.Start()
+		service:Start()
 	end
 end
 

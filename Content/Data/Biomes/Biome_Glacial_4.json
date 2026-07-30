@@ -1,5 +1,43 @@
 {
   "Id": "Biome_Glacial_4",
   "Name": "Glacial Wastes Sector 4",
-  "Temperature": 400.0
+  "Temperature": 400.0,
+  "Tier": "T4",
+  "DangerLevel": 3,
+  "AmbientSound": "WindHowl",
+  "Color": "#88ccff",
+  "Resources": [
+    {
+      "item": "IceShard",
+      "chance": 0.5,
+      "min": 1,
+      "max": 4
+    },
+    {
+      "item": "FrostCrystal",
+      "chance": 0.5,
+      "min": 1,
+      "max": 4
+    },
+    {
+      "item": "Permafrost",
+      "chance": 0.5,
+      "min": 1,
+      "max": 4
+    }
+  ],
+  "SpawnTable": [
+    {
+      "creature": "Creature_Wisp_Lvl3",
+      "weight": 3,
+      "minLevel": 10,
+      "maxLevel": 12
+    },
+    {
+      "creature": "Creature_Guardian_Lvl2",
+      "weight": 3,
+      "minLevel": 10,
+      "maxLevel": 12
+    }
+  ]
 }

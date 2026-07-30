@@ -1,0 +1,15 @@
+{
+  "Id": "CrystalGrowth",
+  "Name": "CrystalGrowth",
+  "RequiredMaterials": {
+    "AetherCrystal": 2,
+    "EtherDust": 3
+  },
+  "MinTemperature": 800,
+  "MaxTemperature": 1200,
+  "MinPressure": 1.0,
+  "Product": "LargeCrystal",
+  "YieldRatio": 1.0,
+  "EnergyRequired": 200,
+  "EntropyGenerated": 0.09
+}

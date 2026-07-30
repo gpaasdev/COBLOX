@@ -1,1 +1,40 @@
-{"Id":"SP_CRYSTAL_GOLEM","Name":"Crystal Golem","Rarity":"Rare","Element":"Earth","DropRate":"3.0%","Description":"Golem dari kristal mana murni."}
+{
+  "Id": "SP_CRYSTAL_GOLEM",
+  "Name": "Crystal Golem",
+  "Rarity": "Rare",
+  "Element": "Earth",
+  "DropRate": "3.0%",
+  "Description": "Golem dari kristal mana murni.",
+  "Stats": {
+    "HP": 373,
+    "Attack": 37,
+    "Defense": 24,
+    "Speed": 0.86
+  },
+  "Abilities": [
+    "RockBarrier",
+    "Quake",
+    "StoneSkin"
+  ],
+  "SkillPool": [
+    "RockBarrier",
+    "Quake",
+    "StoneSkin",
+    "SandTrap"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 25,
+    "evolvesTo": null,
+    "evolutionMat": "EarthEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "EarthEssence",
+      "count": 3
+    },
+    {
+      "item": "Gold",
+      "count": 30
+    }
+  ]
+}

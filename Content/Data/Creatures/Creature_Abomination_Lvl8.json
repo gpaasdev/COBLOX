@@ -1,5 +1,27 @@
 {
   "Id": "Creature_Abomination_Lvl8",
   "Name": "Abomination Elite Grade 8",
-  "Health": 6400
+  "Health": 558,
+  "Damage": 34,
+  "AttackSpeed": 0.69,
+  "Defense": 17,
+  "Abilities": [
+    "TentacleSlam",
+    "CorruptAura"
+  ],
+  "LootTable": [
+    {
+      "item": "CorruptIchor",
+      "chance": 0.6,
+      "min": 1,
+      "max": 2
+    },
+    {
+      "item": "TentacleFragment",
+      "chance": 0.4,
+      "min": 1,
+      "max": 1
+    }
+  ],
+  "XP": 144
 }

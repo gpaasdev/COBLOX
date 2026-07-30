@@ -4,5 +4,37 @@
   "Rarity": "Rare",
   "Element": "Metal",
   "DropRate": "4.0%",
-  "Description": "Sayap titanium yang tak bisa ditembus."
+  "Description": "Sayap titanium yang tak bisa ditembus.",
+  "Stats": {
+    "HP": 593,
+    "Attack": 59,
+    "Defense": 40,
+    "Speed": 0.61
+  },
+  "Abilities": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield"
+  ],
+  "SkillPool": [
+    "FlameBurst",
+    "Inferno",
+    "FireShield",
+    "BurnTouch"
+  ],
+  "EvolutionPath": {
+    "maxLevel": 25,
+    "evolvesTo": "MYTHRILSERPENT",
+    "evolutionMat": "MetalEssence"
+  },
+  "FusionMaterials": [
+    {
+      "item": "MetalEssence",
+      "count": 3
+    },
+    {
+      "item": "Gold",
+      "count": 30
+    }
+  ]
 }

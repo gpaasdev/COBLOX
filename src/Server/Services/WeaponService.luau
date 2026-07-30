@@ -143,9 +143,11 @@ function WeaponService.GetEquippedWeapon(player: Player): string?
 	return "Fist"
 end
 
-function WeaponService.Init()
+function WeaponService.Init(self)
 	print("[WeaponService] Initializing Weapon Progression Engine...")
 	local RateLimitService = require(ServerScriptService.Server.Services.RateLimitService)
+
+	self.maid = require(ReplicatedStorage.Shared.Utility.Maid).new()
 
 	local purchaseRemote = NetChannels.GetRemoteEvent("PurchaseWeaponRequest")
 	if purchaseRemote then
