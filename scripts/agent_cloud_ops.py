@@ -29,18 +29,18 @@ API_KEY = CONFIG.get("ROBLOX_OPEN_CLOUD_API_KEY", "").strip('"').strip("'").stri
 UNIVERSE_ID = CONFIG.get("ROBLOX_UNIVERSE_ID", "10545905192")
 PLACE_ID = CONFIG.get("ROBLOX_PLACE_ID", "105075159736246")
 
-def introspect_key():
-    """Validates API Key scopes via Open Cloud Introspect API"""
-    url = "https://apis.roblox.com/api-keys/v1/introspect"
-    data = json.dumps({"apiKey": API_KEY}).encode("utf-8")
-    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+def list_datastores():
+    """Lists DataStores via Open Cloud v2 API"""
+    url = f"https://apis.roblox.com/cloud/v2/universes/{UNIVERSE_ID}/data-stores"
+    req = urllib.request.Request(url, headers={"x-api-key": API_KEY, "User-Agent": "COBLOX-Agent/1.0"})
     try:
         with urllib.request.urlopen(req) as resp:
             res = json.loads(resp.read().decode())
-            print(f"✅ Key Verified: Name='{res.get('name')}', Scopes={len(res.get('scopes', []))}")
-            return res
+            stores = [ds.get("id") for ds in res.get("dataStores", [])]
+            print(f"✅ DataStores Verified: {stores}")
+            return stores
     except urllib.error.HTTPError as e:
-        print(f"❌ Introspect Error: {e.code} - {e.read().decode()}")
+        print(f"❌ DataStores List Error ({e.code}): {e.read().decode()}")
         return None
 
 def execute_luau(script_code: str):
@@ -78,4 +78,4 @@ if __name__ == "__main__":
     print("==================================================")
     print("🤖 COBLOX AI Agent Cloud Operations Engine")
     print("==================================================")
-    introspect_key()
+    list_datastores()
