@@ -1,13 +1,13 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-07-30T05:30:32.171286+00:00Z",
-  "git_commit": "f743d314df3e35a81b53f7922d375ff71c097f61",
-  "content_hash": "34274502c9a61def195b046aeb5c72b0cf3f25ad55962bbc3b7a5879577967b3",
+  "generated_at": "2026-07-30T22:44:39.351292+00:00Z",
+  "git_commit": "9b058ca45e973203da58c2c50e84fc337b0b47a5",
+  "content_hash": "9d0fe349dede3854d75cd2e4bd864e73b6b5ed8ea05adb8f0c1896eedd629a55",
   "schema_version": "v11",
   "pipeline_version": "1.0",
   "entity_counts": {
     "materials": 112,
-    "reactions": 1,
+    "reactions": 16,
     "machines": 62,
     "research": 152,
     "biomes": 47,

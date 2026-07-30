@@ -24,6 +24,150 @@ function ReactionRegistry.GetAllReaction(): { [string]: ReactionRegistryDefiniti
 	return ReactionRegistry_data
 end
 
+ReactionRegistry_data["AlloyFusion"] = {
+	Id = "AlloyFusion",
+	Name = "AlloyFusion",
+	RequiredMaterials = {
+		CopperIngot = 2.0,
+		TinIngot = 1.0,
+	},
+	MinTemperature = 800.0,
+	MaxTemperature = 1200.0,
+	MinPressure = 1.0,
+	Product = "BronzeIngot",
+	YieldRatio = 2.0,
+	EnergyRequired = 80.0,
+	EntropyGenerated = 0.066,
+}
+
+ReactionRegistry_data["ArcaneInfusion"] = {
+	Id = "ArcaneInfusion",
+	Name = "ArcaneInfusion",
+	RequiredMaterials = {
+		StarShard = 2.0,
+		ManaCrystal = 3.0,
+	},
+	MinTemperature = 1000.0,
+	MaxTemperature = 2000.0,
+	MinPressure = 1.0,
+	Product = "ArcaneGem",
+	YieldRatio = 1.0,
+	EnergyRequired = 300.0,
+	EntropyGenerated = 0.11,
+}
+
+ReactionRegistry_data["BioSynthesis"] = {
+	Id = "BioSynthesis",
+	Name = "BioSynthesis",
+	RequiredMaterials = {
+		Fiber = 5.0,
+		Herb = 3.0,
+		Water = 2.0,
+	},
+	MinTemperature = 200.0,
+	MaxTemperature = 500.0,
+	MinPressure = 1.0,
+	Product = "Medicine",
+	YieldRatio = 2.0,
+	EnergyRequired = 60.0,
+	EntropyGenerated = 0.062,
+}
+
+ReactionRegistry_data["Corruption"] = {
+	Id = "Corruption",
+	Name = "Corruption",
+	RequiredMaterials = {
+		BioMass = 3.0,
+		ToxicSac = 1.0,
+	},
+	MinTemperature = 100.0,
+	MaxTemperature = 400.0,
+	MinPressure = 1.0,
+	Product = "CorruptIchor",
+	YieldRatio = 1.5,
+	EnergyRequired = 80.0,
+	EntropyGenerated = 0.066,
+}
+
+ReactionRegistry_data["CryoFreeze"] = {
+	Id = "CryoFreeze",
+	Name = "CryoFreeze",
+	RequiredMaterials = {
+		IceShard = 3.0,
+		LiquidHelium = 1.0,
+	},
+	MinTemperature = -100.0,
+	MaxTemperature = 50.0,
+	MinPressure = 1.0,
+	Product = "AbsoluteZeroCoolant",
+	YieldRatio = 1.0,
+	EnergyRequired = 200.0,
+	EntropyGenerated = 0.09,
+}
+
+ReactionRegistry_data["CrystalGrowth"] = {
+	Id = "CrystalGrowth",
+	Name = "CrystalGrowth",
+	RequiredMaterials = {
+		AetherCrystal = 2.0,
+		EtherDust = 3.0,
+	},
+	MinTemperature = 800.0,
+	MaxTemperature = 1200.0,
+	MinPressure = 1.0,
+	Product = "LargeCrystal",
+	YieldRatio = 1.0,
+	EnergyRequired = 200.0,
+	EntropyGenerated = 0.09,
+}
+
+ReactionRegistry_data["Distillation"] = {
+	Id = "Distillation",
+	Name = "Distillation",
+	RequiredMaterials = {
+		CrudeOil = 5.0,
+	},
+	MinTemperature = 200.0,
+	MaxTemperature = 400.0,
+	MinPressure = 1.0,
+	Product = "Fuel",
+	YieldRatio = 3.0,
+	EnergyRequired = 100.0,
+	EntropyGenerated = 0.07,
+}
+
+ReactionRegistry_data["Electrolysis"] = {
+	Id = "Electrolysis",
+	Name = "Electrolysis",
+	RequiredMaterials = {
+		Water = 5.0,
+		Salt = 1.0,
+	},
+	MinTemperature = 100.0,
+	MaxTemperature = 300.0,
+	MinPressure = 1.0,
+	Product = "Hydrogen",
+	YieldRatio = 3.0,
+	EnergyRequired = 150.0,
+	EntropyGenerated = 0.08,
+}
+
+ReactionRegistry_data["Enchantment"] = {
+	Id = "Enchantment",
+	Name = "Enchantment",
+	RequiredMaterials = {
+		ArcaneGem = 1.0,
+		WeaponPart = 1.0,
+	},
+	MinTemperature = 500.0,
+	MaxTemperature = 1000.0,
+	MinPressure = 1.0,
+	Product = "EnchantedWeapon",
+	YieldRatio = 1.0,
+	EnergyRequired = 250.0,
+	EntropyGenerated = 0.1,
+}
+
 ReactionRegistry_data["FerriumFusion"] = {
 	Id = "FerriumFusion",
 	Name = "Ferrium Alloy Fusion",
@@ -38,6 +182,102 @@ ReactionRegistry_data["FerriumFusion"] = {
 	YieldRatio = 1.0,
 	EnergyRequired = 100.0,
 	EntropyGenerated = 0.05,
+}
+
+ReactionRegistry_data["FusionFerrium"] = {
+	Id = "FusionFerrium",
+	Name = "FusionFerrium",
+	RequiredMaterials = {
+		Iron = 5.0,
+		AetherCrystal = 1.0,
+	},
+	MinTemperature = 1500.0,
+	MaxTemperature = 2500.0,
+	MinPressure = 1.0,
+	Product = "FerriumAlloy",
+	YieldRatio = 1.0,
+	EnergyRequired = 100.0,
+	EntropyGenerated = 0.07,
+}
+
+ReactionRegistry_data["PlasmaForm"] = {
+	Id = "PlasmaForm",
+	Name = "PlasmaForm",
+	RequiredMaterials = {
+		EnergyCell = 2.0,
+		MagmaCore = 1.0,
+	},
+	MinTemperature = 3000.0,
+	MaxTemperature = 5000.0,
+	MinPressure = 1.0,
+	Product = "Plasma",
+	YieldRatio = 1.0,
+	EnergyRequired = 400.0,
+	EntropyGenerated = 0.13,
+}
+
+ReactionRegistry_data["Purification"] = {
+	Id = "Purification",
+	Name = "Purification",
+	RequiredMaterials = {
+		CorruptIchor = 2.0,
+		HolySeal = 1.0,
+	},
+	MinTemperature = 600.0,
+	MaxTemperature = 1000.0,
+	MinPressure = 1.0,
+	Product = "PurifiedIchor",
+	YieldRatio = 1.0,
+	EnergyRequired = 120.0,
+	EntropyGenerated = 0.074,
+}
+
+ReactionRegistry_data["Pyrolysis"] = {
+	Id = "Pyrolysis",
+	Name = "Pyrolysis",
+	RequiredMaterials = {
+		Wood = 3.0,
+		Sulfur = 1.0,
+	},
+	MinTemperature = 400.0,
+	MaxTemperature = 800.0,
+	MinPressure = 1.0,
+	Product = "Charcoal",
+	YieldRatio = 2.0,
+	EnergyRequired = 50.0,
+	EntropyGenerated = 0.06,
+}
+
+ReactionRegistry_data["SolarRefine"] = {
+	Id = "SolarRefine",
+	Name = "SolarRefine",
+	RequiredMaterials = {
+		GoldOre = 3.0,
+		SunlightEssence = 1.0,
+	},
+	MinTemperature = 1000.0,
+	MaxTemperature = 1500.0,
+	MinPressure = 1.0,
+	Product = "RefinedGold",
+	YieldRatio = 2.0,
+	EnergyRequired = 150.0,
+	EntropyGenerated = 0.08,
+}
+
+ReactionRegistry_data["VoidExtraction"] = {
+	Id = "VoidExtraction",
+	Name = "VoidExtraction",
+	RequiredMaterials = {
+		VoidShard = 3.0,
+		DarkEssence = 2.0,
+	},
+	MinTemperature = 2000.0,
+	MaxTemperature = 3000.0,
+	MinPressure = 1.0,
+	Product = "PureVoid",
+	YieldRatio = 0.5,
+	EnergyRequired = 500.0,
+	EntropyGenerated = 0.15,
 }
 
 return ReactionRegistry

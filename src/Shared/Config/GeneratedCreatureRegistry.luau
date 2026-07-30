@@ -27,61 +27,61 @@ end
 CreatureRegistry_data["Creature_Abomination_Lvl1"] = {
 	Id = "Creature_Abomination_Lvl1",
 	Name = "Abomination Elite Grade 1",
-	Health = 100,
+	Health = 180,
 }
 
 CreatureRegistry_data["Creature_Abomination_Lvl10"] = {
 	Id = "Creature_Abomination_Lvl10",
 	Name = "Abomination Elite Grade 10",
-	Health = 10000,
+	Health = 666,
 }
 
 CreatureRegistry_data["Creature_Abomination_Lvl2"] = {
 	Id = "Creature_Abomination_Lvl2",
 	Name = "Abomination Elite Grade 2",
-	Health = 400,
+	Health = 234,
 }
 
 CreatureRegistry_data["Creature_Abomination_Lvl3"] = {
 	Id = "Creature_Abomination_Lvl3",
 	Name = "Abomination Elite Grade 3",
-	Health = 900,
+	Health = 288,
 }
 
 CreatureRegistry_data["Creature_Abomination_Lvl4"] = {
 	Id = "Creature_Abomination_Lvl4",
 	Name = "Abomination Elite Grade 4",
-	Health = 1600,
+	Health = 342,
 }
 
 CreatureRegistry_data["Creature_Abomination_Lvl5"] = {
 	Id = "Creature_Abomination_Lvl5",
 	Name = "Abomination Elite Grade 5",
-	Health = 2500,
+	Health = 396,
 }
 
 CreatureRegistry_data["Creature_Abomination_Lvl6"] = {
 	Id = "Creature_Abomination_Lvl6",
 	Name = "Abomination Elite Grade 6",
-	Health = 3600,
+	Health = 450,
 }
 
 CreatureRegistry_data["Creature_Abomination_Lvl7"] = {
 	Id = "Creature_Abomination_Lvl7",
 	Name = "Abomination Elite Grade 7",
-	Health = 4900,
+	Health = 504,
 }
 
 CreatureRegistry_data["Creature_Abomination_Lvl8"] = {
 	Id = "Creature_Abomination_Lvl8",
 	Name = "Abomination Elite Grade 8",
-	Health = 6400,
+	Health = 558,
 }
 
 CreatureRegistry_data["Creature_Abomination_Lvl9"] = {
 	Id = "Creature_Abomination_Lvl9",
 	Name = "Abomination Elite Grade 9",
-	Health = 8100,
+	Health = 612,
 }
 
 CreatureRegistry_data["Creature_Beast_Lvl1"] = {
@@ -93,415 +93,415 @@ CreatureRegistry_data["Creature_Beast_Lvl1"] = {
 CreatureRegistry_data["Creature_Beast_Lvl10"] = {
 	Id = "Creature_Beast_Lvl10",
 	Name = "Beast Elite Grade 10",
-	Health = 10000,
+	Health = 370,
 }
 
 CreatureRegistry_data["Creature_Beast_Lvl2"] = {
 	Id = "Creature_Beast_Lvl2",
 	Name = "Beast Elite Grade 2",
-	Health = 400,
+	Health = 130,
 }
 
 CreatureRegistry_data["Creature_Beast_Lvl3"] = {
 	Id = "Creature_Beast_Lvl3",
 	Name = "Beast Elite Grade 3",
-	Health = 900,
+	Health = 160,
 }
 
 CreatureRegistry_data["Creature_Beast_Lvl4"] = {
 	Id = "Creature_Beast_Lvl4",
 	Name = "Beast Elite Grade 4",
-	Health = 1600,
+	Health = 190,
 }
 
 CreatureRegistry_data["Creature_Beast_Lvl5"] = {
 	Id = "Creature_Beast_Lvl5",
 	Name = "Beast Elite Grade 5",
-	Health = 2500,
+	Health = 220,
 }
 
 CreatureRegistry_data["Creature_Beast_Lvl6"] = {
 	Id = "Creature_Beast_Lvl6",
 	Name = "Beast Elite Grade 6",
-	Health = 3600,
+	Health = 250,
 }
 
 CreatureRegistry_data["Creature_Beast_Lvl7"] = {
 	Id = "Creature_Beast_Lvl7",
 	Name = "Beast Elite Grade 7",
-	Health = 4900,
+	Health = 280,
 }
 
 CreatureRegistry_data["Creature_Beast_Lvl8"] = {
 	Id = "Creature_Beast_Lvl8",
 	Name = "Beast Elite Grade 8",
-	Health = 6400,
+	Health = 310,
 }
 
 CreatureRegistry_data["Creature_Beast_Lvl9"] = {
 	Id = "Creature_Beast_Lvl9",
 	Name = "Beast Elite Grade 9",
-	Health = 8100,
+	Health = 340,
 }
 
 CreatureRegistry_data["Creature_Construct_Lvl1"] = {
 	Id = "Creature_Construct_Lvl1",
 	Name = "Construct Elite Grade 1",
-	Health = 100,
+	Health = 200,
 }
 
 CreatureRegistry_data["Creature_Construct_Lvl10"] = {
 	Id = "Creature_Construct_Lvl10",
 	Name = "Construct Elite Grade 10",
-	Health = 10000,
+	Health = 740,
 }
 
 CreatureRegistry_data["Creature_Construct_Lvl2"] = {
 	Id = "Creature_Construct_Lvl2",
 	Name = "Construct Elite Grade 2",
-	Health = 400,
+	Health = 260,
 }
 
 CreatureRegistry_data["Creature_Construct_Lvl3"] = {
 	Id = "Creature_Construct_Lvl3",
 	Name = "Construct Elite Grade 3",
-	Health = 900,
+	Health = 320,
 }
 
 CreatureRegistry_data["Creature_Construct_Lvl4"] = {
 	Id = "Creature_Construct_Lvl4",
 	Name = "Construct Elite Grade 4",
-	Health = 1600,
+	Health = 380,
 }
 
 CreatureRegistry_data["Creature_Construct_Lvl5"] = {
 	Id = "Creature_Construct_Lvl5",
 	Name = "Construct Elite Grade 5",
-	Health = 2500,
+	Health = 440,
 }
 
 CreatureRegistry_data["Creature_Construct_Lvl6"] = {
 	Id = "Creature_Construct_Lvl6",
 	Name = "Construct Elite Grade 6",
-	Health = 3600,
+	Health = 500,
 }
 
 CreatureRegistry_data["Creature_Construct_Lvl7"] = {
 	Id = "Creature_Construct_Lvl7",
 	Name = "Construct Elite Grade 7",
-	Health = 4900,
+	Health = 560,
 }
 
 CreatureRegistry_data["Creature_Construct_Lvl8"] = {
 	Id = "Creature_Construct_Lvl8",
 	Name = "Construct Elite Grade 8",
-	Health = 6400,
+	Health = 620,
 }
 
 CreatureRegistry_data["Creature_Construct_Lvl9"] = {
 	Id = "Creature_Construct_Lvl9",
 	Name = "Construct Elite Grade 9",
-	Health = 8100,
+	Health = 680,
 }
 
 CreatureRegistry_data["Creature_Dragon_Lvl1"] = {
 	Id = "Creature_Dragon_Lvl1",
 	Name = "Dragon Elite Grade 1",
-	Health = 100,
+	Health = 300,
 }
 
 CreatureRegistry_data["Creature_Dragon_Lvl10"] = {
 	Id = "Creature_Dragon_Lvl10",
 	Name = "Dragon Elite Grade 10",
-	Health = 10000,
+	Health = 1110,
 }
 
 CreatureRegistry_data["Creature_Dragon_Lvl2"] = {
 	Id = "Creature_Dragon_Lvl2",
 	Name = "Dragon Elite Grade 2",
-	Health = 400,
+	Health = 390,
 }
 
 CreatureRegistry_data["Creature_Dragon_Lvl3"] = {
 	Id = "Creature_Dragon_Lvl3",
 	Name = "Dragon Elite Grade 3",
-	Health = 900,
+	Health = 480,
 }
 
 CreatureRegistry_data["Creature_Dragon_Lvl4"] = {
 	Id = "Creature_Dragon_Lvl4",
 	Name = "Dragon Elite Grade 4",
-	Health = 1600,
+	Health = 570,
 }
 
 CreatureRegistry_data["Creature_Dragon_Lvl5"] = {
 	Id = "Creature_Dragon_Lvl5",
 	Name = "Dragon Elite Grade 5",
-	Health = 2500,
+	Health = 660,
 }
 
 CreatureRegistry_data["Creature_Dragon_Lvl6"] = {
 	Id = "Creature_Dragon_Lvl6",
 	Name = "Dragon Elite Grade 6",
-	Health = 3600,
+	Health = 750,
 }
 
 CreatureRegistry_data["Creature_Dragon_Lvl7"] = {
 	Id = "Creature_Dragon_Lvl7",
 	Name = "Dragon Elite Grade 7",
-	Health = 4900,
+	Health = 840,
 }
 
 CreatureRegistry_data["Creature_Dragon_Lvl8"] = {
 	Id = "Creature_Dragon_Lvl8",
 	Name = "Dragon Elite Grade 8",
-	Health = 6400,
+	Health = 930,
 }
 
 CreatureRegistry_data["Creature_Dragon_Lvl9"] = {
 	Id = "Creature_Dragon_Lvl9",
 	Name = "Dragon Elite Grade 9",
-	Health = 8100,
+	Health = 1020,
 }
 
 CreatureRegistry_data["Creature_Golem_Lvl1"] = {
 	Id = "Creature_Golem_Lvl1",
 	Name = "Golem Elite Grade 1",
-	Health = 100,
+	Health = 250,
 }
 
 CreatureRegistry_data["Creature_Golem_Lvl10"] = {
 	Id = "Creature_Golem_Lvl10",
 	Name = "Golem Elite Grade 10",
-	Health = 10000,
+	Health = 925,
 }
 
 CreatureRegistry_data["Creature_Golem_Lvl2"] = {
 	Id = "Creature_Golem_Lvl2",
 	Name = "Golem Elite Grade 2",
-	Health = 400,
+	Health = 325,
 }
 
 CreatureRegistry_data["Creature_Golem_Lvl3"] = {
 	Id = "Creature_Golem_Lvl3",
 	Name = "Golem Elite Grade 3",
-	Health = 900,
+	Health = 400,
 }
 
 CreatureRegistry_data["Creature_Golem_Lvl4"] = {
 	Id = "Creature_Golem_Lvl4",
 	Name = "Golem Elite Grade 4",
-	Health = 1600,
+	Health = 475,
 }
 
 CreatureRegistry_data["Creature_Golem_Lvl5"] = {
 	Id = "Creature_Golem_Lvl5",
 	Name = "Golem Elite Grade 5",
-	Health = 2500,
+	Health = 550,
 }
 
 CreatureRegistry_data["Creature_Golem_Lvl6"] = {
 	Id = "Creature_Golem_Lvl6",
 	Name = "Golem Elite Grade 6",
-	Health = 3600,
+	Health = 625,
 }
 
 CreatureRegistry_data["Creature_Golem_Lvl7"] = {
 	Id = "Creature_Golem_Lvl7",
 	Name = "Golem Elite Grade 7",
-	Health = 4900,
+	Health = 700,
 }
 
 CreatureRegistry_data["Creature_Golem_Lvl8"] = {
 	Id = "Creature_Golem_Lvl8",
 	Name = "Golem Elite Grade 8",
-	Health = 6400,
+	Health = 775,
 }
 
 CreatureRegistry_data["Creature_Golem_Lvl9"] = {
 	Id = "Creature_Golem_Lvl9",
 	Name = "Golem Elite Grade 9",
-	Health = 8100,
+	Health = 850,
 }
 
 CreatureRegistry_data["Creature_Guardian_Lvl1"] = {
 	Id = "Creature_Guardian_Lvl1",
 	Name = "Guardian Elite Grade 1",
-	Health = 100,
+	Health = 220,
 }
 
 CreatureRegistry_data["Creature_Guardian_Lvl10"] = {
 	Id = "Creature_Guardian_Lvl10",
 	Name = "Guardian Elite Grade 10",
-	Health = 10000,
+	Health = 814,
 }
 
 CreatureRegistry_data["Creature_Guardian_Lvl2"] = {
 	Id = "Creature_Guardian_Lvl2",
 	Name = "Guardian Elite Grade 2",
-	Health = 400,
+	Health = 286,
 }
 
 CreatureRegistry_data["Creature_Guardian_Lvl3"] = {
 	Id = "Creature_Guardian_Lvl3",
 	Name = "Guardian Elite Grade 3",
-	Health = 900,
+	Health = 352,
 }
 
 CreatureRegistry_data["Creature_Guardian_Lvl4"] = {
 	Id = "Creature_Guardian_Lvl4",
 	Name = "Guardian Elite Grade 4",
-	Health = 1600,
+	Health = 418,
 }
 
 CreatureRegistry_data["Creature_Guardian_Lvl5"] = {
 	Id = "Creature_Guardian_Lvl5",
 	Name = "Guardian Elite Grade 5",
-	Health = 2500,
+	Health = 484,
 }
 
 CreatureRegistry_data["Creature_Guardian_Lvl6"] = {
 	Id = "Creature_Guardian_Lvl6",
 	Name = "Guardian Elite Grade 6",
-	Health = 3600,
+	Health = 550,
 }
 
 CreatureRegistry_data["Creature_Guardian_Lvl7"] = {
 	Id = "Creature_Guardian_Lvl7",
 	Name = "Guardian Elite Grade 7",
-	Health = 4900,
+	Health = 616,
 }
 
 CreatureRegistry_data["Creature_Guardian_Lvl8"] = {
 	Id = "Creature_Guardian_Lvl8",
 	Name = "Guardian Elite Grade 8",
-	Health = 6400,
+	Health = 682,
 }
 
 CreatureRegistry_data["Creature_Guardian_Lvl9"] = {
 	Id = "Creature_Guardian_Lvl9",
 	Name = "Guardian Elite Grade 9",
-	Health = 8100,
+	Health = 748,
 }
 
 CreatureRegistry_data["Creature_Parasite_Lvl1"] = {
 	Id = "Creature_Parasite_Lvl1",
 	Name = "Parasite Elite Grade 1",
-	Health = 100,
+	Health = 70,
 }
 
 CreatureRegistry_data["Creature_Parasite_Lvl10"] = {
 	Id = "Creature_Parasite_Lvl10",
 	Name = "Parasite Elite Grade 10",
-	Health = 10000,
+	Health = 259,
 }
 
 CreatureRegistry_data["Creature_Parasite_Lvl2"] = {
 	Id = "Creature_Parasite_Lvl2",
 	Name = "Parasite Elite Grade 2",
-	Health = 400,
+	Health = 91,
 }
 
 CreatureRegistry_data["Creature_Parasite_Lvl3"] = {
 	Id = "Creature_Parasite_Lvl3",
 	Name = "Parasite Elite Grade 3",
-	Health = 900,
+	Health = 112,
 }
 
 CreatureRegistry_data["Creature_Parasite_Lvl4"] = {
 	Id = "Creature_Parasite_Lvl4",
 	Name = "Parasite Elite Grade 4",
-	Health = 1600,
+	Health = 133,
 }
 
 CreatureRegistry_data["Creature_Parasite_Lvl5"] = {
 	Id = "Creature_Parasite_Lvl5",
 	Name = "Parasite Elite Grade 5",
-	Health = 2500,
+	Health = 154,
 }
 
 CreatureRegistry_data["Creature_Parasite_Lvl6"] = {
 	Id = "Creature_Parasite_Lvl6",
 	Name = "Parasite Elite Grade 6",
-	Health = 3600,
+	Health = 175,
 }
 
 CreatureRegistry_data["Creature_Parasite_Lvl7"] = {
 	Id = "Creature_Parasite_Lvl7",
 	Name = "Parasite Elite Grade 7",
-	Health = 4900,
+	Health = 196,
 }
 
 CreatureRegistry_data["Creature_Parasite_Lvl8"] = {
 	Id = "Creature_Parasite_Lvl8",
 	Name = "Parasite Elite Grade 8",
-	Health = 6400,
+	Health = 217,
 }
 
 CreatureRegistry_data["Creature_Parasite_Lvl9"] = {
 	Id = "Creature_Parasite_Lvl9",
 	Name = "Parasite Elite Grade 9",
-	Health = 8100,
+	Health = 238,
 }
 
 CreatureRegistry_data["Creature_Wisp_Lvl1"] = {
 	Id = "Creature_Wisp_Lvl1",
 	Name = "Wisp Elite Grade 1",
-	Health = 100,
+	Health = 60,
 }
 
 CreatureRegistry_data["Creature_Wisp_Lvl10"] = {
 	Id = "Creature_Wisp_Lvl10",
 	Name = "Wisp Elite Grade 10",
-	Health = 10000,
+	Health = 222,
 }
 
 CreatureRegistry_data["Creature_Wisp_Lvl2"] = {
 	Id = "Creature_Wisp_Lvl2",
 	Name = "Wisp Elite Grade 2",
-	Health = 400,
+	Health = 78,
 }
 
 CreatureRegistry_data["Creature_Wisp_Lvl3"] = {
 	Id = "Creature_Wisp_Lvl3",
 	Name = "Wisp Elite Grade 3",
-	Health = 900,
+	Health = 96,
 }
 
 CreatureRegistry_data["Creature_Wisp_Lvl4"] = {
 	Id = "Creature_Wisp_Lvl4",
 	Name = "Wisp Elite Grade 4",
-	Health = 1600,
+	Health = 114,
 }
 
 CreatureRegistry_data["Creature_Wisp_Lvl5"] = {
 	Id = "Creature_Wisp_Lvl5",
 	Name = "Wisp Elite Grade 5",
-	Health = 2500,
+	Health = 132,
 }
 
 CreatureRegistry_data["Creature_Wisp_Lvl6"] = {
 	Id = "Creature_Wisp_Lvl6",
 	Name = "Wisp Elite Grade 6",
-	Health = 3600,
+	Health = 150,
 }
 
 CreatureRegistry_data["Creature_Wisp_Lvl7"] = {
 	Id = "Creature_Wisp_Lvl7",
 	Name = "Wisp Elite Grade 7",
-	Health = 4900,
+	Health = 168,
 }
 
 CreatureRegistry_data["Creature_Wisp_Lvl8"] = {
 	Id = "Creature_Wisp_Lvl8",
 	Name = "Wisp Elite Grade 8",
-	Health = 6400,
+	Health = 186,
 }
 
 CreatureRegistry_data["Creature_Wisp_Lvl9"] = {
 	Id = "Creature_Wisp_Lvl9",
 	Name = "Wisp Elite Grade 9",
-	Health = 8100,
+	Health = 204,
 }
 
 CreatureRegistry_data["VoidBeast"] = {
@@ -513,61 +513,61 @@ CreatureRegistry_data["VoidBeast"] = {
 CreatureRegistry_data["fairy_MushroomGuardian_Lvl1"] = {
 	Id = "fairy_MushroomGuardian_Lvl1",
 	Name = "Mushroom Guardian Lvl 1",
-	Health = 80,
+	Health = 150,
 }
 
 CreatureRegistry_data["fairy_MushroomGuardian_Lvl10"] = {
 	Id = "fairy_MushroomGuardian_Lvl10",
 	Name = "Mushroom Guardian Lvl 10",
-	Health = 1500,
+	Health = 555,
 }
 
 CreatureRegistry_data["fairy_MushroomGuardian_Lvl3"] = {
 	Id = "fairy_MushroomGuardian_Lvl3",
 	Name = "Mushroom Guardian Lvl 3",
-	Health = 160,
+	Health = 240,
 }
 
 CreatureRegistry_data["fairy_MushroomGuardian_Lvl5"] = {
 	Id = "fairy_MushroomGuardian_Lvl5",
 	Name = "Mushroom Guardian Lvl 5",
-	Health = 320,
+	Health = 330,
 }
 
 CreatureRegistry_data["fairy_MushroomGuardian_Lvl7"] = {
 	Id = "fairy_MushroomGuardian_Lvl7",
 	Name = "Mushroom Guardian Lvl 7",
-	Health = 650,
+	Health = 420,
 }
 
 CreatureRegistry_data["fairy_WispHunter_Lvl1"] = {
 	Id = "fairy_WispHunter_Lvl1",
 	Name = "Wisp Hunter Lvl 1",
-	Health = 60,
+	Health = 80,
 }
 
 CreatureRegistry_data["fairy_WispHunter_Lvl10"] = {
 	Id = "fairy_WispHunter_Lvl10",
 	Name = "Wisp Hunter Lvl 10",
-	Health = 1200,
+	Health = 296,
 }
 
 CreatureRegistry_data["fairy_WispHunter_Lvl3"] = {
 	Id = "fairy_WispHunter_Lvl3",
 	Name = "Wisp Hunter Lvl 3",
-	Health = 120,
+	Health = 128,
 }
 
 CreatureRegistry_data["fairy_WispHunter_Lvl5"] = {
 	Id = "fairy_WispHunter_Lvl5",
 	Name = "Wisp Hunter Lvl 5",
-	Health = 250,
+	Health = 176,
 }
 
 CreatureRegistry_data["fairy_WispHunter_Lvl7"] = {
 	Id = "fairy_WispHunter_Lvl7",
 	Name = "Wisp Hunter Lvl 7",
-	Health = 500,
+	Health = 224,
 }
 
 return CreatureRegistry
