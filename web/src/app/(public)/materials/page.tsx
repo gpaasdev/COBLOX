@@ -33,6 +33,8 @@ export default function MaterialsRegistryPage() {
               assetIcon = "/assets/coblox_pyro_crystal_icon.png";
             } else if (mat.Id === "AETHER_CRYSTAL" || mat.Name?.includes("Aether")) {
               assetIcon = "/assets/coblox_aether_crystal_icon.png";
+            } else if (mat.Id === "QUANTUM_ESSENCE" || mat.Name?.includes("Quantum")) {
+              assetIcon = "/assets/coblox_quantum_essence_icon.png";
             }
 
             return (
