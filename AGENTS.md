@@ -94,12 +94,12 @@ VFX transient: `ObjectPool` (Visible=false recycling).
 |----------|------|--------|
 | P0 | RAEA_ModernAvatarEngine module (6 fungsi) | ✅ SELESAI |
 | 0.3 | CloudSyncService (MessagingService hot-reload) | ✅ SELESAI |
-| 1 | Avatar modern + AvatarService (IK, FACS, clothing) | ✅ SELESAI |
+| 1 | Avatar modern + AvatarService (IK, FACS, clothing) | ✅ SELESAI (HumanoidDescription pipeline, 2026-07-31) |
 | 2 | AI pipelines (Meshy, DeepMotion, Suno) — AssetGenerationService + AIPipelineService | ✅ SELESAI |
 | 2 | MCPBridge, FallbackCodeGenerator, AIPrompt upgrade | ✅ SELESAI |
 | 3 | Self-healing loop (LogService monitoring + error diagnosis) | ✅ Runtime monitoring |
-| — | Fusion UI (replacement for Roact/Instance.new UI) | ✅ wally.toml dep + demo controller |
-| — | R6→R15 retargeting adapter | ✅ SELESAI |
+| — | Fusion UI (replacement for Roact/Instance.new UI) | ⚠️ wally.toml dep + demo controller (butuh `wally install`) |
+| — | R6→R15 retargeting adapter | ⚠️ DEPRECATED — digantikan pipeline HumanoidDescription di AvatarService |
 
 Lihat `docs/02-ARCHITECTURE_AND_SPECS/UPGRADE-1.md` untuk detail spesifikasi per-area.
 

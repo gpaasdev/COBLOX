@@ -26,10 +26,6 @@ function CommerceController.Init(self, Registry)
 end
 
 function CommerceController.Start(self, Registry)
-	self.maid:GiveTask(MarketplaceService.ProcessReceipt:Connect(function(receiptInfo: ReceiptInfo)
-		return CommerceController._HandleReceipt(self, receiptInfo)
-	end))
-
 	UserInputService.InputBegan:Connect(function(input: InputObject, processed: boolean)
 		if processed then
 			return
@@ -175,17 +171,6 @@ function CommerceController._BuildUI(self)
 	closeBtn.MouseButton1Click:Connect(function()
 		CommerceController._ToggleShop(self)
 	end)
-end
-
-function CommerceController._HandleReceipt(self, receiptInfo: ReceiptInfo): Enum.ProductPurchaseDecision
-	print(
-		string.format(
-			"[CommerceController] Receipt processed: %s (ID: %d)",
-			receiptInfo.ProductId,
-			receiptInfo.PurchaseId
-		)
-	)
-	return Enum.ProductPurchaseDecision.PurchaseGranted
 end
 
 function CommerceController.ShowRewardedAd(self, adType: string, callback: (boolean) -> ())

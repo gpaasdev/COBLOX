@@ -1,9 +1,9 @@
 --!strict
-local ReactionEngine = require(game.ServerScriptService.Server.Services.ReactionEngine)
-local DiscoveryService = require(game.ServerScriptService.Server.Services.DiscoveryService)
-local MacroEconomyService = require(game.ServerScriptService.Server.Services.MacroEconomyService)
-
 return function()
+	local ReactionEngine = require(game.ServerScriptService.Server.Services.ReactionEngine)
+	local DiscoveryService = require(game.ServerScriptService.Server.Services.DiscoveryService)
+	local MacroEconomyService = require(game.ServerScriptService.Server.Services.MacroEconomyService)
+
 	describe("Gameplay Integration Pipeline (P0)", function()
 		it("should process reaction, calculate entropy, and trigger discovery", function()
 			-- Given

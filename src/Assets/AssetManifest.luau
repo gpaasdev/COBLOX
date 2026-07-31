@@ -6,8 +6,21 @@
 -- via scripts/upload_experience_assets.py.
 
 local AssetManifest = {
-	Version = "1.2.0",
-	GeneratedAt = "2026-07-27",
+	Version = "1.3.0",
+	GeneratedAt = "2026-07-31",
+
+	-- R15 combat/movement animations for AnimationController.
+	-- R6→R15 migrated IDs from the official Roblox "R6 to R15 Animation List"
+	-- (DevForum 4079574, Avatar Unification Team) — Roblox-published, free to use.
+	Animations = {
+		SwordSwing = "rbxassetid://12520999032", -- Slash
+		SwordSwing2 = "rbxassetid://13978510688", -- dualslash2
+		SwordSwing3 = "rbxassetid://13978511071", -- swordPumpUp2
+		Parry = "rbxassetid://12521002003", -- lunge (parry-counter)
+		Dash = "rbxassetid://13978512316", -- Ninja Dash
+		Stun = "rbxassetid://13978511543", -- swordswingjump (staggered flinch)
+		Equip = "rbxassetid://12520996634", -- ToolLoopAnimation
+	},
 
 	Models = {
 		Nature = {

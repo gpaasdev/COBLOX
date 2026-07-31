@@ -55,37 +55,36 @@ end
 
 function LocalizationController.Get(key: string, ...: any): string
 	local selectArgs = { ... }
-	local translatedText: string? = nil
 
-	-- 1. Try Cloud Translator First (Roblox Creator Hub Cloud Localization Table)
-	if cloudTranslator then
-		local success, result = pcall(function()
-			return cloudTranslator:FormatByKey(key, selectArgs)
-		end)
-		if success and result and result ~= "" and result ~= key then
-			translatedText = result
-		end
-	end
-
-	-- 2. Fallback to Local Dictionary (GameLocalization.luau)
-	if not translatedText then
-		local dict = GameLocalization[activeLocale] or GameLocalization["en-us"]
-		local template = dict and dict[key] or (GameLocalization["en-us"] and GameLocalization["en-us"][key]) or key
+	-- 1. Local Dictionary First (GameLocalization.luau) — the source of truth.
+	--    Roblox auto-translate (cloud LocalizationTable) only holds GUI source
+	--    text, not these game keys, so FormatByKey on them always emits a
+	--    "Key ... not found for locale ..." warning before falling through.
+	local dict = GameLocalization[activeLocale] or GameLocalization["en-us"]
+	local template = dict and dict[key] or (GameLocalization["en-us"] and GameLocalization["en-us"][key])
+	if template then
 		if #selectArgs > 0 then
 			local success, formatted = pcall(function()
 				return string.format(template, unpack(selectArgs))
 			end)
 			if success then
-				translatedText = formatted
-			else
-				translatedText = template
+				return formatted
 			end
-		else
-			translatedText = template
+		end
+		return template
+	end
+
+	-- 2. Cloud Translator Fallback (Roblox Creator Hub Localization Table)
+	if cloudTranslator then
+		local success, result = pcall(function()
+			return cloudTranslator:FormatByKey(key, selectArgs)
+		end)
+		if success and result and result ~= "" and result ~= key then
+			return result
 		end
 	end
 
-	return translatedText or key
+	return key
 end
 
 return LocalizationController

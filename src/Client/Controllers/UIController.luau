@@ -43,6 +43,12 @@ function UIController.Init(self)
 	UIController:_CreateHUD()
 end
 
+function UIController.ShowNotification(self, msg: string)
+	if self.notificationController then
+		self.notificationController:Show(msg)
+	end
+end
+
 function UIController.Start(self)
 	local syncRemote = NetChannels.GetRemoteEvent("SyncEconomy")
 	if syncRemote then

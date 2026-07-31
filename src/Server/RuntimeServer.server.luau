@@ -367,9 +367,13 @@ print("==================================================")
 -- ============================================================
 -- POST-BOOT: ConfigClient sync for joining players
 -- ============================================================
-local IntegrationTestService = require(ServerScriptService.Server.Services.IntegrationTestService)
-IntegrationTestService.Start()
-print("[Bootstrap] IntegrationTestService executed")
+-- Integration tests only run in Studio (dev) — skip on live servers.
+local RunService = game:GetService("RunService")
+if RunService:IsStudio() then
+	local IntegrationTestService = require(ServerScriptService.Server.Services.IntegrationTestService)
+	IntegrationTestService.Start()
+	print("[Bootstrap] IntegrationTestService executed")
+end
 
 local ConfigClient = require(ReplicatedStorage.Shared.Config.ConfigClient)
 local Players = game:GetService("Players")

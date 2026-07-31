@@ -6,7 +6,42 @@
     "Price": 500,
     "Currency": "Robux",
     "Category": "Gamepass",
-    "ImageUrl": "rbxassetid://1928659952"
+    "ImageUrl": "https://www.roblox.com/asset-thumbnail/image?assetId=1928659952&width=420&height=420&format=png",
+    "AssetId": 1928659952,
+    "BuyUrl": "https://www.roblox.com/game-pass/1928659952"
+  },
+  {
+    "Id": "MKT_1931064295",
+    "Name": "Super Luck Pass",
+    "Description": "2x drop rate untuk semua rarity Spirit. Aktif selama pass dimiliki.",
+    "Price": 399,
+    "Currency": "Robux",
+    "Category": "Gamepass",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-0/420/420/Image/Png/noFilter",
+    "AssetId": 1931064295,
+    "BuyUrl": "https://www.roblox.com/game-pass/1931064295"
+  },
+  {
+    "Id": "MKT_1923436403",
+    "Name": "👑 VIP Pass",
+    "Description": "Multiplier Koin permanen x1.5, Tag Chat Neon kuning, area VIP eksklusif, dan starter Pet Golden Cat.\t",
+    "Price": 299,
+    "Currency": "Robux",
+    "Category": "Gamepass",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-c86b7d253016e3d58e6a91a13f62dab7/420/420/GameIcon12/Png/noFilter",
+    "AssetId": 1923436403,
+    "BuyUrl": "https://www.roblox.com/game-pass/1923436403"
+  },
+  {
+    "Id": "MKT_1930974306",
+    "Name": "Auto-Hatch Pass",
+    "Description": "Otomatis hatch telur tanpa membuka UI. Spirit langsung masuk inventory.",
+    "Price": 299,
+    "Currency": "Robux",
+    "Category": "Gamepass",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-0/420/420/Image/Png/noFilter",
+    "AssetId": 1930974306,
+    "BuyUrl": "https://www.roblox.com/game-pass/1930974306"
   },
   {
     "Id": "MKT_FAIRYTALE_PASS",
@@ -15,6 +50,184 @@
     "Price": 299,
     "Currency": "Robux",
     "Category": "Gamepass",
-    "ImageUrl": "rbxassetid://0"
+    "ImageUrl": "/assets/coblox_fairy_dragon_companion.png",
+    "AssetId": 0,
+    "BuyUrl": ""
+  },
+  {
+    "Id": "MKT_1924362417",
+    "Name": "🍀 Super Luck",
+    "Description": "Meningkatkan peluang mendapatkan pet Rare, Epic, dan Legendary sebesar +100% (x2 Luck).\t",
+    "Price": 199,
+    "Currency": "Robux",
+    "Category": "Gamepass",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-0/420/420/Image/Png/noFilter",
+    "AssetId": 1924362417,
+    "BuyUrl": "https://www.roblox.com/game-pass/1924362417"
+  },
+  {
+    "Id": "MKT_1931154285",
+    "Name": "Extra Inventory Pass",
+    "Description": "Tambah 50 slot inventory + 2 slot equip Spirit ekstra.",
+    "Price": 199,
+    "Currency": "Robux",
+    "Category": "Gamepass",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-0/420/420/Image/Png/noFilter",
+    "AssetId": 1931154285,
+    "BuyUrl": "https://www.roblox.com/game-pass/1931154285"
+  },
+  {
+    "Id": "MKT_1925292405",
+    "Name": "⚡ Auto-Hatch",
+    "Description": "Memungkinkan penetasan telur terus-menerus tanpa harus mengklik manual",
+    "Price": 149,
+    "Currency": "Robux",
+    "Category": "Gamepass",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-f217d1510f11bba72326f5e5823dd4fe/420/420/Image/Png/noFilter",
+    "AssetId": 1925292405,
+    "BuyUrl": "https://www.roblox.com/game-pass/1925292405"
+  },
+  {
+    "Id": "MKT_1924818406",
+    "Name": "🎒 +50 Inventory Slots",
+    "Description": "Menambah kapasitas penyimpanan pet maksimal dari 75 menjadi 125 slot secara permanen.\t",
+    "Price": 99,
+    "Currency": "Robux",
+    "Category": "Gamepass",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-5b8f81a44a1e4503d38ddc63f557177d/420/420/UnknownImage/Png/noFilter",
+    "AssetId": 1924818406,
+    "BuyUrl": "https://www.roblox.com/game-pass/1924818406"
+  },
+  {
+    "Id": "MKT_3612013301",
+    "Name": "+1 Rebirth Token",
+    "Description": "Dapatkan 1 Rebirth Token tanpa grinding.",
+    "Price": 299,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3612013301,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3612013290",
+    "Name": "+1,000 Gems",
+    "Description": "Tambah 1.000 Gem. Paket paling value untuk hardcore player.",
+    "Price": 199,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3612013290,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3611126995",
+    "Name": "💎 Gems Large Pack",
+    "Description": "Instan +1,000 Gems",
+    "Price": 199,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3611126995,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3612013298",
+    "Name": "+100 Chrono Sparks",
+    "Description": "Tambah 100 Chrono Sparks untuk event dan waktu ekstra.",
+    "Price": 149,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3612013298,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3612013269",
+    "Name": "+50,000 Coins",
+    "Description": "Tambah 50.000 Coins instan. Paket hemat terbaik!",
+    "Price": 99,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3612013269,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3611126895",
+    "Name": "💰 Coins Large Pack",
+    "Description": "Instan +50,000 Coins\t",
+    "Price": 99,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3611126895,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3612013293",
+    "Name": "+2,500 Aura Energy",
+    "Description": "Isi ulang 2.500 Aura Energy seketika.",
+    "Price": 79,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3612013293,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3612013424",
+    "Name": "+100 Gems",
+    "Description": "Tambah 100 Gem premium untuk hatch dan upgrade eksklusif.",
+    "Price": 49,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3612013424,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3611126819",
+    "Name": "💎 Gems Small Pack",
+    "Description": "Instan +100 Gems",
+    "Price": 49,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3611126819,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3612013265",
+    "Name": "+5,000 Coins",
+    "Description": "Tambah 5.000 Coins instan ke akun alkimiamu.",
+    "Price": 25,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3612013265,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3611126655",
+    "Name": "💰 Coins Small Pack",
+    "Description": "Instan +5,000 Coins",
+    "Price": 25,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3611126655,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
+  },
+  {
+    "Id": "MKT_3612013299",
+    "Name": "Instant Egg Hatch",
+    "Description": "Hatch telur aktif secara instan. Skip waktu tunggu.",
+    "Price": 15,
+    "Currency": "Robux",
+    "Category": "Developer Product",
+    "ImageUrl": "https://tr.rbxcdn.com/180DAY-52d2d38ba3633310181dd4dd07a3c6e0/420/420/Image/Png/noFilter",
+    "AssetId": 3612013299,
+    "BuyUrl": "https://www.roblox.com/games/105075159736246"
   }
 ]

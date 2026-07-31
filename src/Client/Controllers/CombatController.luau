@@ -14,6 +14,7 @@ local TweenService = game:GetService("TweenService")
 local CombatController = {}
 local canAttack = true
 local isDashing = false
+local comboStep = 0
 
 local PLAYER_WEAPONS = { "Fist", "Sword", "Staff" }
 local currentWeapon = "Fist"
@@ -22,6 +23,7 @@ local weaponRange = { Fist = 8, Sword = 14, Staff = 20 }
 
 local VFXEngine = require(script.Parent.Parent.Modules.UI.VFXEngine)
 local LocalizationController = require(script.Parent:WaitForChild("LocalizationController") :: any)
+local AnimationController = require(script.Parent:WaitForChild("AnimationController") :: any)
 local Maid = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utility"):WaitForChild("Maid"))
 
 function CombatController.Init(self)
@@ -148,6 +150,7 @@ function CombatController.SwitchWeapon()
 	end
 	currentWeapon = PLAYER_WEAPONS[idx]
 	CombatController._UpdateWeaponVisual()
+	AnimationController.PlayEquip()
 	CombatEvent:FireServer("SwitchWeapon", currentWeapon)
 	print(
 		string.format(
@@ -209,6 +212,9 @@ function CombatController.Attack()
 	local weaponIdMap = { Fist = "Fist", Sword = "IronSword", Staff = "FlameSaber" }
 	CombatEvent:FireServer("Attack", nearestMobId, weaponIdMap[currentWeapon] or "Fist")
 
+	comboStep = comboStep % 3 + 1
+	AnimationController.PlaySwing(comboStep)
+
 	if nearestMobId then
 		print(
 			string.format(
@@ -232,6 +238,7 @@ function CombatController.Dash()
 		return
 	end
 	isDashing = true
+	AnimationController.PlayDash()
 	print("[VFX] Dash trail played!")
 	task.delay(0.5, function()
 		isDashing = false
@@ -240,6 +247,7 @@ end
 
 function CombatController.Parry()
 	print("[VFX] Parry shield activated!")
+	AnimationController.PlayParry()
 	CombatEvent:FireServer("Parry")
 
 	-- 3D Visual Hologram Shield Effect on Player Character

@@ -16,8 +16,6 @@ function FusionDemoController.Init(self, Registry)
 end
 
 function FusionDemoController.Start(self, Registry)
-	self._maid = require(ReplicatedStorage.Shared.Utility.Maid).new()
-
 	self._fusion = FusionProvider.GetFusion()
 	if not self._fusion then
 		print("[FusionDemoController] Fusion not available — skipping demo")
@@ -35,7 +33,7 @@ function FusionDemoController.Start(self, Registry)
 		end
 	end)
 
-	self._maid:GiveTask(function()
+	self.maid:GiveTask(function()
 		if self._screenGui then
 			self._screenGui:Destroy()
 			self._screenGui = nil
@@ -96,7 +94,7 @@ function FusionDemoController._BuildUI(self)
 	statusText.Size = UDim2.new(1, -40, 0, 60)
 	statusText.Position = UDim2.fromOffset(20, 60)
 	statusText.BackgroundTransparency = 1
-	statusText.Text = "Fusion v0.3.0 running\nPress F to toggle"
+	statusText.Text = "Fusion v0.3.0 running\nPress T to toggle"
 	statusText.TextColor3 = Color3.fromRGB(148, 163, 184)
 	statusText.TextSize = 14
 	statusText.Font = Enum.Font.Gotham
@@ -106,8 +104,8 @@ function FusionDemoController._BuildUI(self)
 end
 
 function FusionDemoController.Cleanup(self)
-	if self._maid then
-		self._maid:Destroy()
+	if self.maid then
+		self.maid:Destroy()
 	end
 	if self._screenGui then
 		self._screenGui:Destroy()

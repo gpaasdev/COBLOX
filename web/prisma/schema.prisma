@@ -153,3 +153,17 @@ model Redirect {
 
   @@map("redirects")
 }
+
+model DataStoreSnapshot {
+  id            String   @id @default(uuid())
+  datastoreName String   @map("datastore_name")
+  entryKey      String   @map("entry_key")
+  scope         String   @default("global")
+  payload       String   @db.Text
+  version       String   @default("")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@unique([datastoreName, entryKey, scope])
+  @@map("datastore_snapshots")
+}

@@ -39,7 +39,14 @@ export default async function MarketAssetPage({ params }: PageProps) {
     category: "Gamepass",
     slug: assetSlug,
     imageUrl: "https://raw.githubusercontent.com/gpaasdev/COBLOX/main/.github/assets/game_thumbnail_16x9.png",
+    buyUrl: "",
   };
+
+  const buyUrl =
+    asset.buyUrl ||
+    (asset.category === "Developer Product"
+      ? `https://www.roblox.com/games/${process.env.ROBLOX_PLACE_ID || "105075159736246"}`
+      : `https://www.roblox.com/game-pass/${asset.id}`);
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://gpaasdev.github.io/COBLOX";
 
@@ -109,12 +116,12 @@ export default async function MarketAssetPage({ params }: PageProps) {
             </div>
 
             <a
-              href={`https://www.roblox.com/game-pass/${asset.id}`}
+              href={buyUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl flex items-center gap-2 justify-center transition-colors shadow-lg"
             >
-              <ShoppingCart className="w-5 h-5" /> Beli di Roblox
+              <ShoppingCart className="w-5 h-5" /> {asset.category === "Developer Product" ? "Beli di Dalam Game" : "Beli di Roblox"}
             </a>
           </div>
         </div>

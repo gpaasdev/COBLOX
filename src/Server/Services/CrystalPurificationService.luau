@@ -159,7 +159,7 @@ function CrystalPurificationService.TakeCrystalCargo(
 	-- Play Feedback Sound
 	pcall(function()
 		local sound = Instance.new("Sound")
-		sound.SoundId = "rbxassetid://6023565860" -- Valid Magic Chime SFX
+		sound.SoundId = "rbxassetid://138677306" -- Valid Magic Chime SFX
 		sound.Volume = 1
 		sound.Parent = char.PrimaryPart
 		sound:Play()

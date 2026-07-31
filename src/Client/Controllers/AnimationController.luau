@@ -48,9 +48,6 @@ function AnimationController.PlaySwing(self, comboStep: number?)
 		AssetManifest.Animations.SwordSwing3,
 	}
 	local animId = animIds[comboStep or 1] or animIds[1]
-	if animId == "rbxassetid://10288498712" then
-		return
-	end
 
 	local ok, anim = pcall(function()
 		return Animator:LoadAnimation({
@@ -73,9 +70,6 @@ function AnimationController.PlayParry(self)
 	AnimationController._StopCurrent()
 
 	local animId = AssetManifest.Animations.Parry
-	if animId == "rbxassetid://10288498712" then
-		return
-	end
 
 	local ok, anim = pcall(function()
 		return Animator:LoadAnimation({
@@ -98,9 +92,6 @@ function AnimationController.PlayDash(self)
 	AnimationController._StopCurrent()
 
 	local animId = AssetManifest.Animations.Dash
-	if animId == "rbxassetid://10288498712" then
-		return
-	end
 
 	local ok, anim = pcall(function()
 		return Animator:LoadAnimation({
@@ -123,9 +114,6 @@ function AnimationController.PlayStun(self)
 	AnimationController._StopCurrent()
 
 	local animId = AssetManifest.Animations.Stun
-	if animId == "rbxassetid://10288498712" then
-		return
-	end
 
 	local ok, anim = pcall(function()
 		return Animator:LoadAnimation({
@@ -148,9 +136,6 @@ function AnimationController.PlayEquip(self)
 	AnimationController._StopCurrent()
 
 	local animId = AssetManifest.Animations.Equip
-	if animId == "rbxassetid://10288498712" then
-		return
-	end
 
 	local ok, anim = pcall(function()
 		return Animator:LoadAnimation({

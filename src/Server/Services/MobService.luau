@@ -7,6 +7,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local CreatureBuilder = require(ReplicatedStorage.Shared.Modules.Render.CreatureBuilder)
 local GameConfig = require(ReplicatedStorage.Shared.Configuration.GameConfig)
+local CombatZones = require(ReplicatedStorage.Shared.Modules.CombatZones)
 local CombatEvent = NetChannels.GetRemoteEvent("CombatEvent")
 local MobWindupVFX = NetChannels.GetUnreliableRemoteEvent("MobWindupVFX") -- Fase 10: visual-only windup telegraph
 
@@ -471,6 +472,12 @@ function MobService._IsPlayerInSafeZone(player: Player): boolean
 	end
 
 	local pos = char.PrimaryPart.Position
+
+	-- Spawn-hub safezone (must match CombatService zone gating)
+	if CombatZones.IsInSpawnSafeZone(pos) then
+		return true
+	end
+
 	local mapFolder = workspace:FindFirstChild("Map")
 	if not mapFolder then
 		return false

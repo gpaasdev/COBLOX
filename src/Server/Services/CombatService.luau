@@ -6,6 +6,7 @@ local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local GameConfig = require(ReplicatedStorage.Shared.Configuration.GameConfig)
 local WeaponConfig = require(ReplicatedStorage.Shared.Configuration.WeaponConfig)
 local DomainEventBus = require(ReplicatedStorage.Shared.Events.DomainEventBus)
+local CombatZones = require(ReplicatedStorage.Shared.Modules.CombatZones)
 
 local CombatService = {}
 CombatService.Name = "CombatService"
@@ -25,20 +26,7 @@ local function GetEquippedWeapon(player: Player): string?
 end
 
 -- Modular Rulesets
-type ZoneRuleset = "Wilderness" | "Arena" | "FactionWars" | "Safezone"
-
-local function GetZoneRuleset(position: Vector3): ZoneRuleset
-	local distFromCenter = Vector3.new(position.X, 0, position.Z).Magnitude
-	if distFromCenter < 100 then
-		return "Safezone"
-	elseif distFromCenter < 300 then
-		return "Arena"
-	elseif distFromCenter < 600 then
-		return "FactionWars"
-	else
-		return "Wilderness"
-	end
-end
+type ZoneRuleset = CombatZones.ZoneRuleset
 
 function CombatService.Init(self)
 	local combatEvent = NetChannels.GetRemoteEvent("CombatEvent")
@@ -110,7 +98,7 @@ function CombatService.ProcessHit(player: Player, targetId: string, weaponType: 
 		return
 	end
 
-	local zone = GetZoneRuleset(hrp.Position)
+	local zone = CombatZones.GetZoneRuleset(hrp.Position)
 	if zone == "Safezone" then
 		return
 	end

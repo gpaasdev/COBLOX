@@ -7,7 +7,7 @@ local RunService = game:GetService("RunService")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local DomainEventBus = require(ReplicatedStorage.Shared.Events.DomainEventBus)
-local RemoteConfig = require(ServerScriptService.Server.Services.RemoteConfig)
+local RemoteConfigService = require(ServerScriptService.Server.Services.RemoteConfigService)
 
 local FeedbackService = {}
 FeedbackService.ServiceStatus = "Experimental"
@@ -111,7 +111,7 @@ function FeedbackService.FlushQueue()
 			return
 		end
 
-		local webhookUrl = RemoteConfig.Get("DiscordWebhookUrl") or ""
+		local webhookUrl = RemoteConfigService.GetStringValue("DiscordWebhookUrl", "")
 		if webhookUrl == "" or webhookUrl:find("PLACEHOLDER") then
 			print(
 				string.format(

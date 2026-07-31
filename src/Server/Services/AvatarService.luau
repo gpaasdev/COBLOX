@@ -29,6 +29,28 @@ function AvatarService.Start()
 		AvatarService._ApplySavedConfig(player, profile)
 	end)
 
+	-- Modern death: keep the R15 rig intact (smooth death animation) instead of
+	-- the default "shattered blocks" BreakJointsOnDeath=true behavior.
+	-- NOTE: use per-player CharacterAdded (Players.CharacterAdded is invalid).
+	local function applyModernDeath(character: Model)
+		local humanoid = character:FindFirstChildOfClass("Humanoid")
+		if humanoid then
+			humanoid.BreakJointsOnDeath = false
+		end
+	end
+
+	local function watchPlayer(player: Player)
+		if player.Character then
+			applyModernDeath(player.Character)
+		end
+		player.CharacterAdded:Connect(applyModernDeath)
+	end
+
+	for _, player in ipairs(Players:GetPlayers()) do
+		watchPlayer(player)
+	end
+	Players.PlayerAdded:Connect(watchPlayer)
+
 	Players.PlayerRemoving:Connect(function(player: Player)
 		local maid = playerAvatars[player]
 		if maid then
@@ -55,12 +77,87 @@ function AvatarService._ApplySavedConfig(player: Player, profile: PlayerProfile)
 		character = player.CharacterAdded:Wait()
 	end
 
-	if profile.Avatar.EnableProceduralIK then
+	local config = profile.Avatar
+
+	-- Modern HumanoidDescription application (R15 scales + skin tone + layered
+	-- clothing) via the Roblox-blessed API. Preserves existing accessories by
+	-- starting from the applied description.
+	local function applyModernDescription()
+		local humanoid = character:FindFirstChildOfClass("Humanoid")
+		if not humanoid then
+			return false
+		end
+
+		local okDesc, desc = pcall(function()
+			return humanoid:GetAppliedDescription()
+		end)
+		if not okDesc or not desc then
+			return false
+		end
+
+		local skin = config.SkinTone
+		if typeof(skin) == "Color3" then
+			desc.HeadColor3 = skin
+			desc.TorsoColor3 = skin
+			desc.LeftArmColor3 = skin
+			desc.RightArmColor3 = skin
+			desc.LeftLegColor3 = skin
+			desc.RightLegColor3 = skin
+		end
+
+		desc.BodyTypeScale = 1
+		desc.ProportionScale = 1
+		desc.BodyHeightScale = math.clamp(desc.BodyHeightScale or 1, 0.9, 1.1)
+		desc.BodyWidthScale = math.clamp(desc.BodyWidthScale or 1, 0.9, 1.1)
+		desc.HeadScale = math.clamp(desc.HeadScale or 1, 0.95, 1.05)
+
+		local accessories = desc:GetAccessories(true)
+		for _, assetId in ipairs(config.ClothingAssetIds) do
+			if type(assetId) == "string" then
+				local numeric = tonumber(assetId:gsub("rbxassetid://", ""))
+				if numeric then
+					local exists = false
+					for _, acc in ipairs(accessories) do
+						if acc.AssetId == numeric then
+							exists = true
+							break
+						end
+					end
+					if not exists then
+						table.insert(accessories, {
+							Order = 1,
+							AssetId = numeric,
+							Puffiness = 0.1,
+							AccessoryType = Enum.AccessoryType.Shirt,
+							IsLayered = true,
+						})
+					end
+				end
+			end
+		end
+		desc:SetAccessories(accessories, true)
+
+		local okApply, applyErr = pcall(function()
+			humanoid:ApplyDescription(desc)
+		end)
+		if not okApply then
+			warn(string.format("[AvatarService] ApplyDescription failed for %s: %s", player.Name, tostring(applyErr)))
+			return false
+		end
+		return true
+	end
+
+	local ok, err = pcall(applyModernDescription)
+	if not ok then
+		warn(string.format("[AvatarService] Modern description failed for %s: %s", player.Name, tostring(err)))
+	end
+
+	if config.EnableProceduralIK then
 		local maid = RAEA_Engine.SetupProceduralIK(character)
 		playerAvatars[player] = maid
 	end
 
-	for _, assetId in ipairs(profile.Avatar.ClothingAssetIds) do
+	for _, assetId in ipairs(config.ClothingAssetIds) do
 		local success, result = pcall(function()
 			local mesh = Instance.new("MeshPart")
 			mesh.MeshId = assetId

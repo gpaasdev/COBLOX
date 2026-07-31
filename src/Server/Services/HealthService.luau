@@ -29,8 +29,9 @@ function HealthService._RunCheck()
 	lastCheckTime = os.time()
 	local ok = true
 
+	local Stats = game:GetService("Stats")
 	local ok1, mem = pcall(function()
-		return settings():GetService("Stats"):GetTotalMemoryMb()
+		return Stats:GetTotalMemoryUsageMb()
 	end)
 	if ok1 then
 		if mem > 2000 then

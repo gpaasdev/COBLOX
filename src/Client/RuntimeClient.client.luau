@@ -22,6 +22,7 @@ local startupOrder = {
 	"AudioController",
 	"CombatController",
 	"CombatVFXController",
+	"AvatarController",
 	"AnimationController",
 	"MachineController",
 	"GraphicsOptimizationController",
@@ -116,6 +117,7 @@ ControllerRegistry.RegisterController("CommerceController", require(controllersF
 ControllerRegistry.RegisterController("FusionDemoController", require(controllersFolder.FusionDemoController))
 
 -- Tier 7 — Experimental (Sprint 5)
+ControllerRegistry.RegisterController("AvatarController", require(controllersFolder.AvatarController))
 ControllerRegistry.RegisterController("AnimationController", require(controllersFolder.AnimationController))
 ControllerRegistry.RegisterController("CombatVFXController", require(controllersFolder.CombatVFXController))
 ControllerRegistry.RegisterController("EventCalendarController", require(controllersFolder.EventCalendarController))

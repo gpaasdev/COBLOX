@@ -8,6 +8,7 @@ local Players = game:GetService("Players")
 
 local NetChannels = require(ReplicatedStorage.Shared.Network.NetChannels)
 local MCPBridge = require(ReplicatedStorage.Shared.Modules.MCPBridge)
+local HuggingFaceBridge = require(ReplicatedStorage.Shared.Modules.HuggingFaceBridge)
 
 local AIPipelineService = {}
 AIPipelineService.ServiceStatus = "Experimental"
@@ -121,6 +122,16 @@ function AIPipelineService._ResolveSteps(pipelineType: string, params: any): { a
 			{ name = "call_suno_api", description = "Generate via Suno AI" },
 			{ name = "upload_audio", description = "Upload as Audio asset" },
 		}
+	elseif pipelineType == "generate_code" then
+		return {
+			{ name = "validate_prompt", description = "Validate input prompt" },
+			{ name = "call_hf_code", description = "Generate code via Hugging Face (zero-cost)" },
+		}
+	elseif pipelineType == "generate_image" then
+		return {
+			{ name = "validate_prompt", description = "Validate input prompt" },
+			{ name = "call_hf_image", description = "Generate image via Hugging Face (zero-cost)" },
+		}
 	end
 	return {}
 end
@@ -135,7 +146,7 @@ function AIPipelineService._ExecuteStep(step: any, pipeline: any): any
 	elseif step.name == "call_meshy_api" then
 		local apiKey = AIPipelineService._GetApiKey("MESHY_API_KEY")
 		if not apiKey then
-			return { abort = true, reason = "Meshy API key not configured" }
+			return AIPipelineService._TryHFFallback(pipeline, "image")
 		end
 		local config = { ApiKey = apiKey }
 		local result = MCPBridge._Request(
@@ -154,7 +165,7 @@ function AIPipelineService._ExecuteStep(step: any, pipeline: any): any
 	elseif step.name == "call_deepmotion_api" then
 		local apiKey = AIPipelineService._GetApiKey("DEEPMOTION_API_KEY")
 		if not apiKey then
-			return { abort = true, reason = "DeepMotion API key not configured" }
+			return AIPipelineService._TryHFFallback(pipeline, "motion")
 		end
 		local config = { ApiKey = apiKey }
 		local result = MCPBridge._Request(
@@ -172,7 +183,7 @@ function AIPipelineService._ExecuteStep(step: any, pipeline: any): any
 	elseif step.name == "call_suno_api" then
 		local apiKey = AIPipelineService._GetApiKey("SUNO_API_KEY")
 		if not apiKey then
-			return { abort = true, reason = "Suno API key not configured" }
+			return AIPipelineService._TryHFFallback(pipeline, "audio")
 		end
 		local result = MCPBridge._Request(
 			"POST",
@@ -187,6 +198,10 @@ function AIPipelineService._ExecuteStep(step: any, pipeline: any): any
 			})
 		)
 		return result
+	elseif step.name == "call_hf_code" then
+		return AIPipelineService._RunHFCode(pipeline)
+	elseif step.name == "call_hf_image" then
+		return AIPipelineService._RunHFImage(pipeline)
 	elseif step.name == "upload_to_roblox" or step.name == "upload_keyframe" or step.name == "upload_audio" then
 		local apiKey = AIPipelineService._GetApiKey("OPEN_CLOUD_API_KEY")
 		if not apiKey then
@@ -264,6 +279,74 @@ function AIPipelineService._PublishCrossServerUpdate(pipeline: any)
 			timestamp = os.time(),
 		})
 	end)
+end
+
+function AIPipelineService._GetHFConfig()
+	local token = AIPipelineService._GetApiKey("HF_TOKEN")
+	if not token then
+		return nil
+	end
+	return {
+		Token = token,
+		Model = AIPipelineService._GetApiKey("HF_MODEL"),
+	}
+end
+
+function AIPipelineService._RunHFCode(pipeline: any): any
+	local config = AIPipelineService._GetHFConfig()
+	if not config then
+		return { abort = true, reason = "HF_TOKEN not configured" }
+	end
+
+	local prompt = pipeline.params.prompt
+	local result = HuggingFaceBridge.GenerateCode(prompt, config)
+	if result.Success then
+		local body = result.Body
+		local generated = ""
+		if type(body) == "table" and body[1] and body[1].generated_text then
+			generated = tostring(body[1].generated_text)
+		elseif type(body) == "table" and body.generated_text then
+			generated = tostring(body.generated_text)
+		else
+			generated = HttpService:JSONEncode(body)
+		end
+		return { success = true, source = generated, provider = "huggingface", model = config.Model }
+	end
+	return { abort = true, reason = "HF code generation failed: " .. tostring(result.Error) }
+end
+
+function AIPipelineService._RunHFImage(pipeline: any): any
+	local config = AIPipelineService._GetHFConfig()
+	if not config then
+		return { abort = true, reason = "HF_TOKEN not configured" }
+	end
+
+	local prompt = pipeline.params.prompt
+	local result = HuggingFaceBridge.GenerateImage(prompt, config)
+	if result.Success then
+		return { success = true, provider = "huggingface", model = config.Model, raw = result.Body }
+	end
+	return { abort = true, reason = "HF image generation failed: " .. tostring(result.Error) }
+end
+
+function AIPipelineService._TryHFFallback(pipeline: any, kind: string): any
+	local config = AIPipelineService._GetHFConfig()
+	if not config then
+		return { abort = true, reason = "Paid API key not configured and HF_TOKEN absent (no fallback)" }
+	end
+
+	if kind == "image" then
+		return AIPipelineService._RunHFImage(pipeline)
+	end
+
+	local result = HuggingFaceBridge.GenerateText(
+		string.format("Describe a Roblox %s effect for: %s", kind, tostring(pipeline.params.prompt)),
+		config
+	)
+	if result.Success then
+		return { success = true, fallback = true, provider = "huggingface", model = config.Model, raw = result.Body }
+	end
+	return { abort = true, reason = "HF fallback failed: " .. tostring(result.Error) }
 end
 
 function AIPipelineService._GetApiKey(keyName: string): string?

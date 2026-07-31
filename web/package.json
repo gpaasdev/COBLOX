@@ -11,7 +11,9 @@
     "start": "next start",
     "lint": "eslint",
     "lint:css": "stylelint \"src/**/*.css\"",
-    "db:seed": "npx prisma db seed"
+    "db:seed": "npx prisma db seed",
+    "sync:monetization": "tsx scripts/sync_monetization.ts",
+    "backup:datastores": "tsx scripts/backup_datastores.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

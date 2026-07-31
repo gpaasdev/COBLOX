@@ -12,7 +12,9 @@ local GameConfig = {
 		AttackCooldown = 0.5, -- seconds between attacks
 		ParryWindowDuration = 0.3, -- seconds: timing window for parry
 		ZoneBoundaries = {
-			SafezoneRadius = 100, -- studs from center
+			-- studs from center. MUST stay below nearest mob spawn (~42 studs) so
+			-- players can always damage default world mobs; spawn hub stays safe.
+			SafezoneRadius = 40,
 			ArenaRadius = 300,
 			FactionWarsRadius = 600,
 		},

@@ -235,6 +235,7 @@ function TycoonService._SpawnDynamicVault(plotId: string)
 	beacon.Size = NumberSequence.new(3, 8)
 	beacon.Speed = NumberRange.new(25, 40)
 	beacon.Lifetime = NumberRange.new(2, 3)
+	beacon.Rate = 8
 	beacon.Enabled = false
 	beacon.Parent = vault
 

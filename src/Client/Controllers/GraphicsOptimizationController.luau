@@ -1,6 +1,7 @@
 --!strict
 
-local UserSettings = UserSettings()
+local userSettings = UserSettings()
+local userGameSettings = userSettings:GetService("UserGameSettings")
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
@@ -25,7 +26,9 @@ function GraphicsOptimizationController.Init(self)
 	local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
 
 	if isMobile then
-		settings().Rendering.QualityLevel = Enum.QualityLevel.Level08
+		pcall(function()
+			userGameSettings.SavedQualityLevel = Enum.SavedQualitySetting.QualityLevel8
+		end)
 		currentQuality = "medium"
 		print("[GraphicsOptimizationController] Mobile detected — starting at Quality Level 8")
 	end
@@ -67,8 +70,10 @@ function GraphicsOptimizationController._EvaluateQuality()
 	lastChangeTime = now
 
 	if targetQuality == "low" then
-		settings().Rendering.QualityLevel = Enum.QualityLevel.Level03
-		Lighting.ShadowSoftness = Enum.ShadowSoftness.Low
+		pcall(function()
+			userGameSettings.SavedQualityLevel = Enum.SavedQualitySetting.QualityLevel3
+		end)
+		Lighting.ShadowSoftness = 0.1
 		Lighting.GlobalShadows = false
 		print(
 			string.format(
@@ -77,13 +82,17 @@ function GraphicsOptimizationController._EvaluateQuality()
 			)
 		)
 	elseif targetQuality == "medium" then
-		settings().Rendering.QualityLevel = Enum.QualityLevel.Level08
-		Lighting.ShadowSoftness = Enum.ShadowSoftness.Medium
+		pcall(function()
+			userGameSettings.SavedQualityLevel = Enum.SavedQualitySetting.QualityLevel8
+		end)
+		Lighting.ShadowSoftness = 0.2
 		Lighting.GlobalShadows = true
 		print(string.format("[GraphicsOptimizationController] Medium quality mode (FPS: %d)", currentFps))
 	elseif targetQuality == "high" then
-		settings().Rendering.QualityLevel = Enum.QualityLevel.Level10
-		Lighting.ShadowSoftness = Enum.ShadowSoftness.High
+		pcall(function()
+			userGameSettings.SavedQualityLevel = Enum.SavedQualitySetting.QualityLevel10
+		end)
+		Lighting.ShadowSoftness = 0.3
 		Lighting.GlobalShadows = true
 		print(
 			string.format("[GraphicsOptimizationController] High quality mode (FPS: %d) — full fidelity", currentFps)

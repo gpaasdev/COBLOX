@@ -1,4 +1,7 @@
 --!strict
+-- DEPRECATED: legacy R6→R15 retargeting adapter. Superseded by the modern
+-- HumanoidDescription pipeline in AvatarService (P0-CONNECT-1, 2026-07-31).
+-- Kept for reference only; scheduled for deletion in P2-HOUSEKEEPING.
 
 local R6ToR15Adapter = {}
 
